@@ -1,0 +1,83 @@
+The following ipf-3.27 source code files and pv-b1001-n1a.trc data files pertain to changes which reduce the size of IPFSRV *.pfo and *.pfd files. A description follows.
+
+1. Added an option to /GEN_DROP to supress the summary listing (SUMMARY=OFF). The original and revised commands are listed below.
+
+   /GEN_DROP,AI_CONTROL=OFF,INITIAL_DROP=50,TOL=10
+   /GEN_DROP,AI_CONTROL=OFF,SUMMARY=OFF,INITIAL_DROP=50,TOL=10
+
+2. Invoked an existing option to supress the summary of the /CHANGE_BUS_TYPES. The original and revised commands are listed below.
+
+   /CHANGE_BUS_TYPES, BQ=B,BG=BQ,BX=B,LTC=OFF,FILE=CHANGEBUS.TXT
+   /CHANGE_BUS_TYPES, BQ=B,BG=BQ,BX=B,LTC=OFF,LIST=OFF,FILE=CHANGEBUS.TXT
+
+3. Added code to rewind the *.pfo, *.pfd, and *.pff file in IPFSRV following each loading of an OLD_BASE.  The *.pfo, *.pfd, and *.pff files reflect the processing following loading an OLD_BASE.
+
+4. Remove some debug printout in p_gtdata which accompanies USER_ANALYSIS processing.
+
+Instructions for installing ipf-3.27 source code updates.
+
+1. Copy this file in binary mode to your root default directory and untar it.
+
+   cd ~
+   tar -xvf ipf-changes.tar
+
+2. Create backup versions of all source files being modified.
+
+   cd /shr/ipf-3.27/ipf
+   cp comdrp.f comdrp.f.0
+   cp gendrp.inc gendrp.inc.0
+   cp getdrp.f getdrp.f.0
+   cp p_gtdata.f p_gtdata.f.0
+   cp srv_fcmdprs.f srv_fcmdprs.f.0
+
+3. Copy the new modules into this directory.
+
+   cp ~/comdrp.f .
+   cp ~/gendrp.inc .
+   cp ~/getdrp.f .
+   cp ~/p_gtdata.f .
+   cp ~/srv_fcmdprs.f .
+
+3. Rebuild the entire ipf-3.27 suite.
+
+   cd ..
+   make clean
+   make
+
+4. Copy some of the new executables to the /usr/bin directory.
+
+   cp exe/bpf /usr/bin
+   cp exe/ipfsrv /usr/bin
+   cp ~/tkdiff /usr/bin
+
+   The last file is a nifty text difference program copied from an old version of Tk/Tcl.  Use it in place of Linux's diff with exactly the same arguments. The first useful application will explain the data changes in the next section.
+
+To examine these changes on the new and old n1a.lis files untarred, 
+
+  cd ~
+  tkdiff n1a.lis n1a.lis.0
+
+Instructions for modifying the pvcurce data.
+
+1. CD to the directory containing the pvcurve data.
+
+2. Modify the COMMON_MODE_DATA file referenced in each *.trc file. For James pv-b1001-n1a.trc, the file is n1a.lis.  In this file, n1a.lis, modify each instance of /CHANGE_BUS_TYPES and /GEN_DROP as show.
+
+   /GEN_DROP,AI_CONTROL=OFF,SUMMARY=OFF,INITIAL_DROP=50,TOL=10
+
+   /CHANGE_BUS_TYPES, BQ=B,BG=BQ,BX=B,LTC=OFF,LIST=OFF,FILE=CHANGEBUS.TXT
+
+This file contains 35 instances of each command. 
+
+Caution.  If you converted all your pv data using the set of commands
+
+   dos-linux.bash '*.TRC *.trc'
+   dos-linux.bash '*.LIS *.lis'
+   dos-linux.bash '*.TXT *.txt'
+   dos-linux.bash '*.DAT *.dat'
+
+then all your file names are lower case.  The file name in the example /CHANGE_BUS_TYPES, ...,FILE=CHANGEBUS.TXT should list that file as "changebus.txt".
+
+Before these changes, James pv-b1001-n1a.trc file generated two huge ipfsrv outpt file -- root.pfo and root.pfd.  These files were 900,000,000 and 400,000,000 bytes respectively.  After the changes, they never exceeded 500,000 bytes.  The VAX version suffers the same problem.
+
+wlp 21-Oct-2000

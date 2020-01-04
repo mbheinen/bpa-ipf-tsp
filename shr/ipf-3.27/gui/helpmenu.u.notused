@@ -1,0 +1,894 @@
+ 
+ 
+object
+    help_menu_cascade: XmCascadeButtonGadget
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Help");
+            XmNmnemonic = keysym("H");
+            };
+        controls
+            {
+            XmPulldownMenu help_menu;
+            };
+        };
+!***VUIT_Manage false ***
+    text_input_error_dialog: XmWarningDialog
+        {
+        arguments
+            {
+            XmNborderWidth = 0;
+            XmNmessageString = compound_string("The value you just entered is not",separate=true) &
+                compound_string("valid. You are allowed to leave it",separate=true) &
+                compound_string("as is, but be aware it may cause",separate=true) &
+                compound_string("subsequent problems.");
+            XmNbackground = selected_button_color;
+            XmNsymbolPixmap = icon(color_table = color_table(background color = ' ',
+                    foreground color = '*',
+                    color('red') = 'a',
+                    color('gray57') = 'b',
+                    color('white') = 'c',
+                    selected_button_color = 'd'),
+                '*************************ddddddddddddddddddddddddddddddddddd',
+                '*aaacccccccccccccaaaaaaa*****ddddddddddddddddddddddddddddddd',
+                '*aaacccccccccccccaaaaaaaaaaa***ddddddddddddddddddddddddddddd',
+                '*aaaccccaaaaaccccaaaaaaaaaaaaa****dddddddddddddddddddddddddd',
+                '*aaacccaaaaaaacccaaaaaaaaaaaaaaaa***********dddddddddddddddd',
+                '*aaaccaaaaaaaaaccaaaaaaaaaaaaaaaaaaaaaaaaaa*dddddddddddddddd',
+                '*aaaccaaaaaaaaaccaaaaaaaaaaaaaaaaaaaaaaaaaa*dddddddddddddddd',
+                '*aaaccaaaaaaaacccaaaaaaaaaaaaaaaaaaaaaaaaaa*addddddddddddddd',
+                '*aaaccaaaaaaaacccaaaaaaaaaaaaaaaaaaaaaaaaaa*addddddddddddddd',
+                '*aaaccaaaaaaaaaccaaaaaaaaaaaaaaaaaaaaaaaaaa*aadddddddddddddd',
+                '*aaaccaaaaaaaaaccaaaaaaaaaaaaaaaaaaaaaaaaaa*aadddddddddddddd',
+                '*aaacccaaaaaaacccaaaaaaaaaaaaaaaa***********aadddddddddddddd',
+                '*aaaccccaaaaaccccaaaaaaaaaaaaa****dddddddddaaadddddddddddddd',
+                '*aaacccccccccccccaaaaaaaaaaa***ddddddddddddaaadddddddddddddd',
+                '*aaacccccccccccccaaaaaaa*****ddddddddddddddaaadddddddddddddd',
+                '*************************ddddddddddddddddddaaadddddddddddddd',
+                'ddddddddddddddddddddddddddddddddddddddddddaaaadddddddddddddd',
+                'ddddddddddddddddddddddddddddddddddddddddddaaaadddddddddddddd',
+                'ddddddddddddddddddddddddddddddddddddddddddaaaddddddddddddddd',
+                'ddddddddddddddddddddddddddddddddddddddddddaaaddddddddddddddd',
+                'ddddddddddddddddddddddddddddddddddddddddddaaaddddddddddddddd',
+                'ddddddddddddddddddddddddddddddddddddddddddaaaddddddddddddddd',
+                'dddddddddddddddddddddddddddddddddddddddddaaaaddddddddddddddd',
+                'dddddddddddddddddddddddddddddddddddddddddaaadddddaaddddddddd',
+                'dddddddddddddddddddddddddddddddddddddddddaaaadddaaaadddddddd',
+                'dddddddddddddddddddddddddddddddddddddddddaaaadddaaaadddddddd',
+                'ddddddddddddddddddddddddddddddddddddddddddaadddddaaddddddddd',
+                'ddddddddddddddddddddddddddddddddddddddddddaadddddcccdddddddd',
+                'ddddddddddddddddddddddddddddddddddddddddddaaaddcccccccdddddd',
+                'dddddddddddddddddddddddddddddddddddddddddddaaacccccccccddddd',
+                'dddddddddddddddddddddddddddddddddddddddddddaaacccccccccddddd',
+                'ddddddddddddddddddddddddddddddddddddddddddddaaacccccccccdddd',
+                'dddddddddddddddddddddddddddddddddddddddddddccaaacccccccccddd',
+                'ddddddddddddddddddddddddddddddddddddddddddcccaaaaaaaaacccddd',
+                'ddddddddddddddddddddddddddddddddddddddddddccccaaaaaaaaacccdd',
+                'ddddddddddddddddddddddddddddddddddddddddbbbbbbbbbbbbbbbbbbbb',
+                'ddddddddddddddddddddddddddddddddddddddddbbbbbbbbbbbbbbbbbbbb',
+                'ddddddddddddddddddddddddddddddddddddddddbbcccccccccccaacccbb',
+                'ddddddddddddddddddddddddddddddddddddddddbbccccccccccaaacccbb',
+                'ddddddddddddddddddddddddddddddddddddddddbbccccccaaccaaccccbb',
+                'ddddddddddddddddddddddddddddddddddddddddbbcccaaaaaaaacccccbb',
+                'ddddddddddddddddddddddddddddddddddddddddbbcccaaaaccaacccccbb',
+                'dddddddddddddddddddddddddddddddddddddddddbbccccccccccccccbbd',
+                'dddddddddddddddddddddddddddddddddddddddddbbbccccccccccccbbbd',
+                'ddddddddddddddddddddddddddddddddddddddddddbbccccccccccccbbdd',
+                'dddddddddddddddddddddddddddddddddddddddddddbbccccccccccbbddd',
+                'ddddddddddddddddddddddddddddddddddddddddddddbbbccccccbbbdddd',
+                'dddddddddddddddddddddddddddddddddddddddddddddbbbbbbbbbbddddd',
+                'ddddddddddddddddddddddddddddddddddddddddddddddbbbbbbbbdddddd',
+                'dddddddddddddddddddddddddddddddddddddddddddddddddbbddddddddd',
+                'dddddddddddddddddddddddddddddddddddddddddddddddddbbddddddddd',
+                'dddddddddddddddddddddddddddddddddddddddddddddddddbbddddddddd',
+                'dddddddddddddddddddddddddddddddddddddddddddddddddbbddddddddd',
+                'dddddddddddddddddddddddddddddddddddddddddddddddddbbddddddddd',
+                'dddddddddddddddddddddddddddddddddddddddddddddddddbbddddddddd',
+                'dddddddddddddddddddddddddddddddddddddddddddddddddbbddddddddd',
+                'dddddddddddddddddddddddddddddddddddddddddddddddddbbddddddddd',
+                'dddddddddddddddddddddddddddddddddddddddddddddbbbbbbbbbbddddd',
+                'ddddddddddddddddddddddddddddddddddddddddbbbbbbbbbbbbbbbbbbbb',
+                'ddddddddddddddddddddddddddddddddddddddddbbbbbbbbbbbbbbbbbbbb');
+            XmNdialogTitle = compound_string("INPUT ERROR");
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+!***VUIT_Manage false ***
+    unimplemented_feature_box: XmInformationDialog
+        {
+        arguments
+            {
+            XmNborderWidth = 1;
+            XmNmessageString = compound_string("This feature is not implemented.");
+            XmNdialogTitle = compound_string("INFORMATION");
+            XmNbackground = selected_button_color;
+            XmNdefaultButtonType = XmDIALOG_OK_BUTTON;
+            };
+        };
+    help_dialog_close_pb: XmPushButton
+        {
+        arguments
+            {
+            arguments close_pushbutton_list;
+            XmNleftAttachment = XmATTACH_POSITION;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopOffset = 0;
+            XmNtopWidget = XmPushButton help_dia_annotate_pb;
+            XmNwidth = 100;
+            XmNleftPosition = 76;
+            XmNrightAttachment = XmATTACH_POSITION;
+            XmNrightPosition = 96;
+            };
+        callbacks
+            {
+            XmNactivateCallback = procedures
+                {
+                unmanage_help_dialog(0);
+                };
+            };
+        };
+    help_dialog_page_up_pb: XmPushButton
+        {
+        arguments
+            {
+            arguments std_pushbutton;
+            XmNlabelString = compound_string("Page Up");
+            XmNleftAttachment = XmATTACH_POSITION;
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNleftPosition = 4;
+            XmNrightAttachment = XmATTACH_POSITION;
+            XmNrightPosition = 24;
+            XmNtopWidget = XmScrolledWindow help_scroll_window;
+            XmNtopOffset = 15;
+            };
+        callbacks
+            {
+            XmNactivateCallback = procedures
+                {
+                help_dialog_page_up(0);
+                };
+            };
+        };
+    help_dialog_page_down_pb: XmPushButton
+        {
+        arguments
+            {
+            arguments std_pushbutton;
+            XmNlabelString = compound_string("Page Down");
+            XmNleftAttachment = XmATTACH_POSITION;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNrightAttachment = XmATTACH_POSITION;
+            XmNrightPosition = 48;
+            XmNleftPosition = 28;
+            XmNtopWidget = XmPushButton help_dialog_page_up_pb;
+            };
+        callbacks
+            {
+            XmNactivateCallback = procedures
+                {
+                help_dialog_page_down(0);
+                };
+            };
+        };
+ 
+object
+    help_menu: XmPulldownMenu
+        {
+        arguments
+            {
+            XmNborderWidth = 1;
+            };
+        controls
+            {
+            XmPushButtonGadget help_menu_general_pb;
+            XmPushButtonGadget help_menu_context_pb;
+            XmPushButtonGadget
+                {
+                arguments
+                    {
+                    XmNlabelString = compound_string("Error Messages...");
+                    XmNmnemonic = keysym("E");
+                    };
+                callbacks
+                    {
+                    XmNactivateCallback = procedures
+                        {
+                        manage_error_dialog(0);
+                        };
+                    };
+                };
+            };
+        };
+ 
+object
+    help_menu_general_pb: XmPushButtonGadget
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("General...");
+            XmNmnemonic = keysym("G");
+            };
+        callbacks
+            {
+            XmNactivateCallback = procedures
+                {
+                manage_help_dialog(0);
+                };
+            };
+        };
+ 
+object
+!**VUIT_Manage false ***
+    help_dialog: XmFormDialog
+        {
+        arguments
+            {
+            XmNx = 0;
+            XmNy = 0;
+            XmNwidth = 651;
+            XmNheight = 504;
+            XmNborderWidth = 1;
+            XmNdialogTitle = compound_string("HELP");
+            XmNautoUnmanage = false;
+            XmNdefaultPosition = false;
+            XmNdialogStyle = XmDIALOG_MODELESS;
+            };
+        controls
+            {
+            XmScrolledWindow help_scroll_window;
+            XmPushButton help_dialog_close_pb;
+            XmPushButton help_dia_annotate_pb;
+            XmPushButton help_dialog_page_down_pb;
+            XmPushButton help_dialog_page_up_pb;
+            };
+        callbacks
+            {
+            };
+        };
+    help_dialog_draw_area: XmDrawingArea
+        {
+        arguments
+            {
+            XmNborderWidth = 0;
+            XmNresizePolicy = XmRESIZE_NONE;
+            XmNunitType = Xm1000TH_INCHES;
+            XmNheight = 5481;
+            XmNwidth = 8248;
+            XmNbackground = color('white');
+            };
+        controls
+            {
+            unmanaged XmPushButton paper_clip;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNexposeCallback = procedures
+                {
+                help_expose_callback(0);
+                };
+            XmNinputCallback = procedures
+                {
+                help_input_callback(0);
+                };
+            };
+        };
+!**VUIT_Manage false ***
+!***VUIT_Manage false ***
+    help_file_selection_dialog: XmFileSelectionDialog
+        {
+        arguments
+            {
+            XmNborderWidth = 1;
+            XmNdirMask = compound_string("/shr5/eohbjlr/guihelp/*.mif");
+            XmNdialogTitle = compound_string("HELP FILE SELECTION");
+            XmNnoResize = true;
+            XmNautoUnmanage = true;
+            XmNdefaultPosition = false;
+            };
+        callbacks
+            {
+            XmNokCallback = procedures
+                {
+                help_file_name_set(0);
+                };
+            };
+        };
+!**VUIT_Manage false ***
+!***VUIT_Manage false ***
+    help_annotate_dialog: XmFormDialog
+        {
+        arguments
+            {
+            XmNx = 181;
+            XmNy = 192;
+            XmNwidth = 496;
+            XmNheight = 352;
+            XmNborderWidth = 1;
+            XmNdialogTitle = compound_string("ANNOTATE HELP FILE");
+            XmNdefaultPosition = true;
+            };
+        controls
+            {
+            XmMenuBar help_dia_annotate_menubar;
+            XmScrolledWindow
+                {
+                arguments
+                    {
+                    XmNwidth = 25;
+                    XmNheight = 25;
+                    XmNborderWidth = 1;
+                    XmNleftAttachment = XmATTACH_FORM;
+                    XmNtopAttachment = XmATTACH_WIDGET;
+                    XmNleftOffset = 0;
+                    XmNtopOffset = 0;
+                    XmNrightAttachment = XmATTACH_FORM;
+                    XmNrightOffset = 0;
+                    XmNbottomAttachment = XmATTACH_FORM;
+                    XmNbottomOffset = 0;
+                    XmNtopWidget = XmMenuBar help_dia_annotate_menubar;
+                    XmNscrollBarDisplayPolicy = XmAS_NEEDED;
+                    XmNscrollingPolicy = XmAUTOMATIC;
+                    XmNvisualPolicy = XmCONSTANT;
+                    };
+                controls
+                    {
+                    XmText help_annotate_text;
+                    };
+                };
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    help_annotate_text: XmText
+        {
+        arguments
+            {
+            XmNwidth = 495;
+            XmNheight = 308;
+            XmNcolumns = 55;
+            XmNy = 27;
+            XmNx = 91;
+            XmNrows = 20;
+            XmNeditMode = XmMULTI_LINE_EDIT;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    help_dia_annotate_menubar: XmMenuBar
+        {
+        arguments
+            {
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNtopAttachment = XmATTACH_FORM;
+            XmNleftOffset = 0;
+            XmNtopOffset = 0;
+            XmNrightAttachment = XmATTACH_FORM;
+            XmNrightOffset = 1;
+            };
+        controls
+            {
+            XmCascadeButton
+                {
+                arguments
+                    {
+                    XmNx = 13;
+                    XmNy = 5;
+                    XmNlabelString = compound_string("Commands");
+                    };
+                controls
+                    {
+                    XmPulldownMenu
+                        {
+                        arguments
+                            {
+                            XmNx = 26;
+                            XmNy = 8;
+                            XmNborderWidth = 1;
+                            };
+                        controls
+                            {
+                            XmPushButton
+                                {
+                                arguments
+                                    {
+                                    XmNx = 25;
+                                    XmNy = 15;
+                                    XmNlabelString = compound_string("Save");
+                                    };
+                                callbacks
+                                    {
+                                    XmNactivateCallback = procedures
+                                        {
+                                        help_annotate_save(0);
+                                        };
+                                    };
+                                };
+                            XmPushButton
+                                {
+                                arguments
+                                    {
+                                    XmNx = 75;
+                                    XmNy = 13;
+                                    XmNlabelString = compound_string("Remove");
+                                    };
+                                callbacks
+                                    {
+                                    XmNactivateCallback = procedures
+                                        {
+                                        help_annotate_remove(0);
+                                        };
+                                    };
+                                };
+                            XmPushButton
+                                {
+                                arguments
+                                    {
+                                    XmNx = 4;
+                                    XmNy = 5;
+                                    XmNlabelString = compound_string("Close");
+                                    };
+                                callbacks
+                                    {
+                                    XmNactivateCallback = procedures
+                                        {
+                                        unmanage_annotate_dialog(0);
+                                        };
+                                    };
+                                };
+                            };
+                        };
+                    };
+                };
+            };
+        };
+!**VUIT_Manage false ***
+!***VUIT_Manage false ***
+    help_subject_select_dialog: XmSelectionDialog
+        {
+        arguments
+            {
+            XmNx = 214;
+            XmNy = 220;
+            XmNborderWidth = 1;
+            XmNdialogTitle = compound_string("SUBJECT SELECTION");
+            XmNdefaultPosition = false;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+!**VUIT_Manage false ***
+!***VUIT_Manage false ***
+    help_glossary_select_dialog: XmSelectionDialog
+        {
+        arguments
+            {
+            XmNx = 214;
+            XmNy = 220;
+            XmNborderWidth = 1;
+            XmNdialogTitle = compound_string("GLOSSARY SELECTION");
+            XmNdefaultPosition = false;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+!**VUIT_Manage false ***
+!***VUIT_Manage false ***
+    help_index_selection_dialog: XmSelectionDialog
+        {
+        arguments
+            {
+            XmNx = 214;
+            XmNy = 220;
+            XmNborderWidth = 1;
+            XmNdialogTitle = compound_string("INDEX SELECTION");
+            XmNdefaultPosition = false;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+!**VUIT_Manage false ***
+!***VUIT_Manage false ***
+    help_trace_selection_dialog: XmSelectionDialog
+        {
+        arguments
+            {
+            XmNx = 214;
+            XmNy = 220;
+            XmNborderWidth = 1;
+            XmNdialogTitle = compound_string("TRACE SELECTION");
+            XmNdefaultPosition = false;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    help_menu_context_pb: XmPushButtonGadget
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Context...");
+            XmNsensitive = false;
+            };
+        callbacks
+            {
+            XmNactivateCallback = procedures
+                {
+                manage_not_implemented(0);
+                };
+            };
+        };
+!**VUIT_Manage false ***
+!***VUIT_Manage false ***
+    error_message_dialog: XmFormDialog
+        {
+        arguments
+            {
+            XmNwidth = 609;
+            XmNheight = 339;
+            XmNborderWidth = 1;
+            XmNdialogTitle = compound_string("ERROR MESSAGES");
+            XmNdefaultPosition = false;
+            XmNdialogStyle = XmDIALOG_MODELESS;
+            };
+        controls
+            {
+            XmScrolledWindow help_dia_error_scrollwin;
+            XmLabelGadget help_dia_icon_label;
+            XmLabelGadget help_dia_line_label;
+            XmLabelGadget help_dia_identifier_label;
+            XmTextField error_dia_identifier_text;
+            XmPushButton help_dia_close_pb;
+            XmTextField error_dia_line_text;
+            XmPushButton
+                {
+                arguments
+                    {
+                    arguments std_pushbutton;
+                    XmNlabelString = compound_string("Help");
+                    XmNleftAttachment = XmATTACH_POSITION;
+                    XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+                    XmNtopOffset = 0;
+                    XmNwidth = 100;
+                    XmNtopWidget = XmPushButton help_dia_close_pb;
+                    XmNsensitive = true;
+                    XmNleftPosition = 53;
+                    XmNrightAttachment = XmATTACH_POSITION;
+                    XmNrightPosition = 95;
+                    };
+                callbacks
+                    {
+                    XmNactivateCallback = procedures
+                        {
+                        error_dia_help_cb(0);
+                        };
+                    };
+                };
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    help_dia_close_pb: XmPushButton
+        {
+        arguments
+            {
+            arguments close_pushbutton_list;
+            XmNleftAttachment = XmATTACH_POSITION;
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNtopOffset = 20;
+            XmNrightAttachment = XmATTACH_POSITION;
+            XmNrightPosition = 47;
+            XmNtopWidget = XmScrolledWindow help_dia_error_scrollwin;
+            XmNleftPosition = 5;
+            };
+        };
+    help_dia_identifier_label: XmLabelGadget
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Identifier");
+            XmNleftAttachment = XmATTACH_WIDGET;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNleftOffset = 30;
+            XmNtopOffset = 0;
+            XmNtopWidget = XmLabelGadget help_dia_icon_label;
+            XmNleftWidget = XmLabelGadget help_dia_icon_label;
+            };
+        };
+    error_dia_line_text: XmTextField
+        {
+        arguments
+            {
+            arguments text_list_5;
+            XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNleftOffset = 0;
+            XmNtopOffset = 0;
+            XmNtopWidget = XmLabelGadget help_dia_line_label;
+            XmNleftWidget = XmLabelGadget help_dia_line_label;
+            XmNeditable = false;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    help_dia_line_label: XmLabelGadget
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Line");
+            XmNleftAttachment = XmATTACH_WIDGET;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNleftOffset = 30;
+            XmNtopOffset = 0;
+            XmNtopWidget = XmLabelGadget help_dia_identifier_label;
+            XmNleftWidget = XmTextField error_dia_identifier_text;
+            };
+        };
+    paper_clip: XmPushButton
+        {
+        arguments
+            {
+            XmNlabelPixmap = icon(color_table = color_table(background color = ' ',
+                    foreground color = '*',
+                    color('red') = 'a',
+                    color('white') = 'b'),
+                'bbaaaaaaaaaaaaaaaaaaaaaaaaaabb',
+                'baaaaaaaaaaaaaaaaaaaaaaaaaaaab',
+                'baaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+                'baabbbbbbbbbbbbbbbbbbbbbbbbaaa',
+                'babbbbbbbbbbbbbbbbbbbbbbbbbbaa',
+                'babbbbbbbbbbbbbbbbbbbbbbbbbbaa',
+                'bbbbbbbbbbbbbbbbbbbbbbbbbbbaaa',
+                'bbbbbbbaaaaaaaaaaaaaaaaaaaaaaa',
+                'bbbbbbbaaaaaaaaaaaaaaaaaaaaaab',
+                'bbbbbbbaaaaaaaaaaaaaaaaaaaaabb');
+            XmNlabelType = XmPIXMAP;
+            XmNmarginHeight = 0;
+            XmNmarginWidth = 0;
+            XmNx = -22;
+            XmNy = 233;
+            XmNshadowThickness = 0;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    help_scroll_window: XmScrolledWindow
+        {
+        arguments
+            {
+            XmNborderWidth = 0;
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNleftOffset = 5;
+            XmNrightAttachment = XmATTACH_FORM;
+            XmNrightOffset = 5;
+            XmNbottomAttachment = XmATTACH_FORM;
+            XmNbottomOffset = 57;
+            XmNscrollBarDisplayPolicy = XmAS_NEEDED;
+            XmNvisualPolicy = XmCONSTANT;
+            XmNscrollingPolicy = XmAUTOMATIC;
+            XmNtopAttachment = XmATTACH_FORM;
+            XmNbackground = white;
+            XmNtopOffset = 15;
+            };
+        controls
+            {
+            XmDrawingArea help_dialog_draw_area;
+            };
+        };
+    error_dia_identifier_text: XmTextField
+        {
+        arguments
+            {
+            arguments text_no_length;
+            XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNleftOffset = 0;
+            XmNtopOffset = 0;
+            XmNtopWidget = XmLabelGadget help_dia_identifier_label;
+            XmNleftWidget = XmLabelGadget help_dia_identifier_label;
+            XmNrightAttachment = XmATTACH_NONE;
+            XmNrightOffset = 0;
+            XmNeditable = false;
+            XmNcolumns = 30;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    help_dia_annotate_pb: XmPushButton
+        {
+        arguments
+            {
+            arguments std_pushbutton;
+            XmNlabelString = compound_string("Annotate");
+            XmNleftAttachment = XmATTACH_POSITION;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopWidget = XmPushButton help_dialog_page_down_pb;
+            XmNtopOffset = 0;
+            XmNleftPosition = 52;
+            XmNrightAttachment = XmATTACH_POSITION;
+            XmNrightPosition = 72;
+            };
+        callbacks
+            {
+            XmNactivateCallback = procedures
+                {
+                manage_help_annotate(0);
+                help_annotate_get(0);
+                };
+            };
+        };
+    error_dia_message_text: XmText
+        {
+        arguments
+            {
+            XmNcolumns = 55;
+            XmNeditMode = XmMULTI_LINE_EDIT;
+            XmNheight = 101;
+            XmNrows = 12;
+            XmNeditable = false;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    help_dia_icon_label: XmLabelGadget
+        {
+        arguments
+            {
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNtopAttachment = XmATTACH_FORM;
+            XmNleftOffset = 50;
+            XmNtopOffset = 17;
+            XmNlabelPixmap = icon(color_table = color_table(background color = ' ',
+                    foreground color = '*',
+                    color('red') = 'a',
+                    color('green') = 'b',
+                    color('blue1') = 'c',
+                    color('white') = 'd',
+                    color('goldenrod1') = 'e'),
+                'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+                'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+                'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+                'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+                'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+                'aaaaaaaaaaaaaaaaaaaaaaaaaaddddddddddaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+                'aaaaaaaaaaaaaaaaaaaaaaaadddddddddddd*****aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+                'aaaaaaaaaaaaaaaaaaaaaaddddddddddddddd*****ddaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+                'aaaaaaaaaaaaaaaaaaaaadddddddddddddddd*****ddddaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+                'aaaaaaaaaaaaaaaaaaaaddddddddddddddddd****dddddddaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+                'aaaaaaaaaaaaaaaaaaaddddddddddddddddd*****dddddddddaaaaaaaaaaaaaaaaaaaaaaaaa',
+                'aaaaaaaaaaaaaaaaaadddddddddddddddddd****ddddddddddddaaaaaaaaaaaaaaaaaaaaaaa',
+                'aaaaaaaaaaaaaaaaaadddddddddddddddddd****dddddddddddddaaaaaaaaaaaaaaaaaaaaaa',
+                'aaaaaaaaaaaaaaaaaddddddddddddddddddd****dd*dddddddddddaaaaaaaaaaaaaaaaaaaaa',
+                'aaaaaaaaaaaaaaaaadddddddddddddddddd********ddddddddddddaaaaaaaaaaaaaaaaaaaa',
+                'aaaaaaaaaaaaaaaaadddddddddddddddddd********dddddddddddddaaaaaaaaaaaaaaaaaaa',
+                'aaaaaaaaaaaaaaaaaddddddddddddddddd********ddddddddddddddaaaaaaaaaaaaaaaaaaa',
+                'aaaaaaaaaaaaaaaadddddddddddddddddd***d****ddddddddddddddaaaaaaaaaaaaaaaaaaa',
+                'aaaaaaaaaaaaaaaadddddddddddddddddd**dd***ddddddddddddddddaaaaaaaaaaaaaaaaaa',
+                'aaaaaaaaaaaaaaaadddddddddddddddddd*ddd**dddddddddddddddddaaaaaaaaaaaaaaaaaa',
+                'aaaaaaaaaaaaaaaaadddddddddddddddddddd***dddddddddddddddddaaaaaaaaaaaaaaaaaa',
+                'aaaaaaaaaaaaaaaaadddddddddddddddddddd**ddddddddddddddddddaaaaaaaaaaaaaaaaaa',
+                'aaaaaaaaaaaaaaaaaddddddddddddddddddd***ddddddddddddddddddaaaaaaaaaaaaaaaaaa',
+                'aaaaaaaaaaaaaaaaaddddddddddddddddddd**ddddddddddddddddddaaaaaaaaaaaaaaaaaaa',
+                'aaaaaaaaaaaaaaaaaadddddddddddddddddd**ddddddddddddddddddaaaaaaaaaaaaaaaaaaa',
+                'aaaaaaaaaaaaaaaaaaddddddddddddddddd**dddddddddddddddddddaaaaaaaaaaaaaaaaaaa',
+                'aaaaaaaaaaaaaaaaaaadddddddddddddddd**edddddddddddddddddaaaaaaaaaaaaaaaaaaaa',
+                'aaaaaaaaaaaaaaaaaaaaddddddddddddddd*eeedddddddddddddddaaaaaaaaaaaaaaaaaaaaa',
+                'aaaaaaaaaaaaaaaaaaaaaddddddddddddd**eeeddddddddddddddaaaadddddaaaaaaaaaaaaa',
+                'aaaaaaaaaaaaaaaaaaaaaadddddddddddd*eeeedddddddddddd**dddddddddddaaaaaaaaaaa',
+                'aaaaaaaaaaaaaaaaaaaaaaaddddddddddd*eeeedddddddddd**ddddddddddddddaaaaaaaaaa',
+                'aaaaaaaaaaaaaaaaaaaddd***ddddddddddeeeedddddd****edddddddddddddddaaaaaaaaaa',
+                'aaaaaaaaaaaaaaaaaaddddde*****ddddddeeeeed*****eeeeedddddddddddddaaaaaaaaaaa',
+                'aaaaaaaaaaaaaaaadddddeeeeeee*******eeeee*eeeeeeeeeddddddddddaaaaaaaaaaaaaaa',
+                'aaaaaaaaaaaaaaddddddeeeeeeeeeeeeeeeeeeeeeeeeeeedddddddddddaaaaaaaaaaaaaaaaa',
+                'aaaaaaaaaaaaaddddddeeeeeeeeeeeeeeeeeeeeeeeeeeddddddaaaaaaaaaaaaaaaaaaaaaaaa',
+                'aaaaaaaaaaaaddddddddeeeeeddddeeeeeeeeeeeeeedddddaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+                'aaaaaaaaaaaddddddddddddddddddddeeeeeeeeedddddaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+                'aaaaaaaaaaadddaaaaaaddddddddddeeeeeeeeeddddddaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+                'aaaaaaaaaaaaaaaaaaaaaaadddddeeeeeeedddddddddddaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+                'aaaaaaaaaaaaaaaaaaaaaaaaddddeeeeeddddddddddddddaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+                'aaaaaaaaaaaaaaaaaaaaaaaaddddeeeeddddddddddddddddaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+                'aaaaaaaaaaaaaaaaaaaaaadddddddddddddddddddddddddddaaaaaaaaaaaaaaaaaaaaaaaaaa',
+                'aaaaaaaaaaaaaaaaaaaaadddddddddddddddddddddddddddddaaaaaaaaaaaaaaaaaaaaaaaaa',
+                'aaaaaaaaaaaaaaaaaaaaaddddddddddaaaaaaaaddddddddddddaaaaaaaaaaaaaaaaaaaaaaaa',
+                'aaaaaaaaaaaaaaaaaaaadddddddddaaaaaaaaaaaaaadddddddddaaaaaaaaaaaaaaaaaaaaaaa',
+                'aaaaaaaaaaaaaaaaaaaaddddddaaaaaaaaaaaaaaaaaaaadddddaaaaaaaaaaaaaaaaaaaaaaaa',
+                'aaaaaaaaaaaaaaaaaaaadddddaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+                'aaaaaaaaaaaaaaaaaaaadddaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+                'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+                'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+                'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+                'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+                'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+                'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
+            XmNlabelType = XmPIXMAP;
+            XmNlabelString = compound_string("Errors");
+            };
+        };
+    help_dia_error_scrollwin: XmScrolledWindow
+        {
+        arguments
+            {
+            XmNborderWidth = 0;
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNleftOffset = 15;
+            XmNtopOffset = 20;
+            XmNrightAttachment = XmATTACH_FORM;
+            XmNrightOffset = 15;
+            XmNbottomAttachment = XmATTACH_NONE;
+            XmNbottomOffset = 128;
+            XmNx = 236;
+            XmNwidth = 496;
+            XmNy = 14;
+            XmNheight = 173;
+            XmNtopWidget = XmLabelGadget help_dia_icon_label;
+            };
+        controls
+            {
+            XmText error_dia_message_text;
+            };
+        };

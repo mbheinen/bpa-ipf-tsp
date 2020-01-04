@@ -1,0 +1,13 @@
+Before compiling IPF-3.27, do this:
+
+Type "cd /shr/ipf-3.27/ipf"
+
+Type "rm -f ipfinc"
+
+Then type, "ln -s /shr/ipf-3.27/ipf ipfinc"
+
+NOW compile:
+
+Type "cd /shr/ipf-3.27"
+
+Type "make"

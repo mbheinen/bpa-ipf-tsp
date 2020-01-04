@@ -1,0 +1,670 @@
+##############################################################################
+# @(#)XGUI	20.16 10/6/97
+#  THIS IS A RESOURCE FILE - ALSO CALLED THE 'XGUI' FILE.
+#	( This file contains some DEFAULTS for the GUI program. )
+#
+#  The following environment variables can be used
+
+#  XWindows standard:
+#  setenv XAPPLRESDIR installdir/exe/       ! path to standard XGUI file
+#  setenv UIDPATH installdir/exe/gui.uid    ! the definition of windows
+
+#  IPF custom:
+#  setenv IPFDIRS installdir/exe/           ! to find files like
+#                                           ! pfmaster.post
+ 
+
+# XGUI*tearOffModel: TEAR_OFF_ENABLED
+
+XGUI*drawwindow*labelType: False
+XGUI*drawwindow*xiShowLabel: False
+XGUI*drawwindow*boxOn: False
+
+# resources avialable as command line options
+# for more details type gui -help
+# XGUI*servername*: ipfsrv
+# or
+# XGUI*servername*: installpath/exe/ipfsrv
+# XGUI*server*: True
+# XGUI*node*: server_machine_name
+# XGUI*errmsg*: False
+# XGUI*debug*: False
+# XGUI*casename*: any_name
+# XGUI*sleep*: 1
+# XGUI*autostart*: True
+# XGUI*socketid*: 2010
+
+# This is the dir mask when the open file dialog is first brought up.
+
+XGUI*file_selection_box_open.dirpf
+# UNIX sendout
+# Mask: ../dat/*
+# UNIX test
+Mask: /shr/ipf-3.27/dat/*
+# VMS
+# Mask: ipf_tdat:*.*
+
+# This is the dir mask when the open linez dialog is first brought up.
+
+# UNIX sendout
+# XGUI*line_z_filesel.directory: ../dat
+# UNIX test
+XGUI*line_z_filesel.directory: /shr/ipf-3.27/dat
+# VMS
+# XGUI*line_z_filesel.directory: ipf_tdat:
+
+XGUI*line_z_filesel.pattern: *.lcd
+
+# These are the default dir masks in the open file menu.
+
+XGUI*open_dia_command_dir_text.value: *.pfc
+XGUI*open_dia_change_dir_text.value: *.c*
+XGUI*open_dia_base_dir_text.value: *.bse
+XGUI*open_dia_pti_dir_text.value: *.PTI
+# UNIX sendout
+# XGUI*open_dia_network_dir_text.value: ../dat/*.net
+# XGUI*open_dia_coord_dir_text.value: ../dat/*.cor
+# UNIX test
+# XGUI*open_dia_network_dir_text.value: /shr/ipf-3.27/dat/*.net
+# XGUI*open_dia_coord_dir_text.value: /shr/ipf-3.27/dat/*.cor
+XGUI*open_dia_network_dir_text.value: /BaseCases/*.net
+# XGUI*open_dia_network_dir_text.value: /basecases2000fx/*.bpa
+# XGUI*open_dia_coord_dir_text.value: /CORfiles/*.cor
+# XGUI*open_dia_coord_dir_text.value: /corfiles2000fx/*.cor
+XGUI*open_dia_coord_dir_text.value: *.cor
+
+# VMS
+# XGUI*open_dia_network_dir_text.value: ipf_tdat:*.net
+# XGUI*open_dia_coord_dir_text.value: ipf_tdat:*.cor
+
+# These are the default filepaths in the open file menu.
+# Leave blank where you don't want a default.
+# Don't set defaults for both base and network!!!
+
+XGUI*file_select_dia_command_text.value:
+XGUI*file_select_dia_change_text.value:
+XGUI*file_select_dia_pti_text.value:
+XGUI*file_select_dia_base_text.value:
+# UNIX sendout
+# XGUI*file_select_dia_network_text.value: ../dat/testdc3.net
+# XGUI*file_select_dia_coord_text.value: ../dat/testdc3.cor
+# UNIX test
+XGUI*file_select_dia_network_text.value: /shr/ipf-3.27/dat/testdc3.net
+XGUI*file_select_dia_coord_text.value: /shr/ipf-3.27/dat/testdc3.cor
+# VMS
+# XGUI*file_select_dia_network_text.value: ipf_tdat:testdc3.net
+# XGUI*file_select_dia_coord_text.value: ipf_tdat:testdc3.cor
+
+# UNIX sendout
+# XGUI*cflow_file_selection_box*directory: ../cfprog
+# UNIX test
+XGUI*cflow_file_selection_box*directory: /shr/ipf-3.27/exe
+# VMS
+# XGUI*cflow_file_selection_box*directory: cfprogdir:
+
+XGUI*cflow_file_selection_box*pattern: *
+
+# XGUI*cflow_socket_number_text.value: 2001
+# XGUI*cflow_sel_text.value: 2002
+
+################################################################################
+# below are the user specified print strings				       #
+# WARNING: the listItemCount must be LESS THAN OR EQUAL TO		       #
+# the number of comma separated listItems or program will crash!!!	       #
+################################################################################
+
+# LINUX sendout printer commands
+XGUI*printer_selection_box*textString: lpr 
+XGUI*printer_selection_box*listItems: lpr, \
+lpr -Plp
+# count must match number of items listed above !!!
+XGUI*printer_selection_box*listItemCount: 2
+
+# UNIX test   printer commands
+# XGUI*printer_selection_box*textString: lpr -Psparc
+# XGUI*printer_selection_box*listItems: lpr -Psparc, \
+# lpr -Pps
+# count must match number of items listed above !!!
+# XGUI*printer_selection_box*listItemCount: 2
+
+# VMS   printer commands
+# XGUI*printer_selection_box*textString: print/que=ps_eofqms
+# XGUI*printer_selection_box*listItems: print/que=ps_eofqms, \
+# print/que=ps_eohqms, print/que=ps_eoflps40, print/que=ps_rpsqms, \
+# print/que=ps_rpsqms, print/que=ps_aihd2150
+# count must match number of items listed above !!!
+# XGUI*printer_selection_box*listItemCount: 6
+
+# this will shrink font for on screen graphics 
+XGUI*drawwindow*fontList: -*-courier-medium-r-*-*-10-*-*-*-*-*-iso8859-1
+
+# USE THIS FOR DECSTATIONS
+# XGUI*XmText.fontList:	-*-Courier-Bold-R-*--*-100-*-*-*-*-ISO8859-1
+# XGUI*XmList.fontList:	-*-Courier-Bold-R-*--*-100-*-*-*-*-ISO8859-1
+# XGUI*drawwindow*fontList:       courier10
+# XGUI*bus_front_box*fontList:    courier10
+# XGUI*save_coord_keep_extra_data*set: True
+# XGUI*view_menu_solution_pd*set: True
+
+# USE THIS FOR VAXSTATIONS
+XGUI*XmText.fontList:	-*-Courier-Bold-R-*--*-140-*-*-*-*-ISO8859-1
+XGUI*XmList.fontList:	-*-Courier-Bold-R-*--*-140-*-*-*-*-ISO8859-1
+
+# Sizes & positions:
+
+XGUI.x: 0
+XGUI.y: 0
+# XGUI.width: 825
+# XGUI.height: 672
+
+XGUI*highlightThickness: 0
+XGUI*XmText.marginWidth: 2
+XGUI*XmText.marginHeight: 2
+
+XGUI*ipc_command_board.x: 793
+XGUI*ipc_command_board.y: 0
+XGUI*ipc_command_board.width: 475
+XGUI*ipc_command_board.height: 703
+
+XGUI*ipf_report_list_dialog.x: 0
+XGUI*ipf_report_list_dialog.y: 650
+XGUI*ipf_report_list_dialog.width: 790
+XGUI*ipf_report_list_dialog.height: 330
+
+XGUI*bus_front_box.x: 0
+XGUI*bus_front_box.y: 0
+XGUI*bus_front_box.width: 370
+XGUI*bus_front_box.height: 600
+
+XGUI*bus_output_dialog.x: 500
+XGUI*bus_output_dialog.y: 665
+
+XGUI*bus_elec_info_dialog.x: 0
+XGUI*bus_elec_info_dialog.y: 665
+
+XGUI*switched_reactance_dialog.x: 650
+XGUI*switched_reactance_dialog.y: 100
+
+XGUI*error_message_dialog.x: 0
+XGUI*error_message_dialog.y: 500
+
+XGUI*area_selection_box.busVisibleItemCount: 7
+XGUI*area_selection_box.branchVisibleItemCount: 7
+XGUI*area_selection_box.listVisibleItemCount: 7
+
+# STANDARD GUI PLOT DEFAULTS
+# XGUI*print_size_x_text.value: 21.59
+# XGUI*print_size_y_text.value: 27.94
+# XGUI*print_border_xpos_text.value: 21.59
+# XGUI*print_border_ypos_text.value: 27.94
+# XGUI*print_cmnt_xpos_text.value:  12.7
+# XGUI*print_cmnt_ypos_text.value:  3.7
+# XGUI*print_x_offset_text.value:  0.0
+# XGUI*print_y_offset_text.value:  0.0
+# XGUI*print_case_xpos_text.value:  12.7
+# XGUI*print_case_ypos_text.value:   4.0
+# XGUI*print_x_scale_text.value:  1.0
+# XGUI*print_y_scale_text.value:  1.0
+
+XGUI*plot_comments_text: UserComments
+# XGUI*label_box_x.value: 12.0
+# XGUI*label_box_y.value: 4.5
+# XGUI*coord_name_x.value: 10.5
+# XGUI*coord_name_y.value: 4.0
+# XGUI*pf_data_x.value: 10.5
+# XGUI*pf_data_y.value: 4.0
+# XGUI*legend_x_text.value:  5.0
+# XGUI*legend_y_text.value:  0.5
+
+# XGUI*unitType: 4
+
+
+# Colors:					  R   G   B
+#                                                |--||--||--|
+XGUI*foreground: 				#000000000000
+
+XGUI*background: 				#e000e000e000
+
+XGUI*XmText.background: 			#f000f000f000
+XGUI*XmList.background: 			#f000f000f000
+
+# XGUI*ac_E_line_info_form.background:		#d000d000d000
+# XGUI*ac_L_line_info_form.background:		#d000d000d000
+# XGUI*area_selection_dialog.background:	#d000d000d000
+# XGUI*branch_selection_dialog.background:	#d000d000d000
+# XGUI*bus_selection_dialog.background:		#d000d000d000
+# XGUI*continuation_bus_edit_dialog.background:	#d000d000d000
+# XGUI*exit_warning_dialog.background:		#d000d000d000
+# XGUI*file_menu_open_dialog.background:	#d000d000d000
+# XGUI*ipc_command_board.background:		#d000d000d000
+# XGUI*status_dialog.background:		#d000d000d000
+# XGUI*tool_dialog.background:			#d000d000d000
+# XGUI*transformer_dialog.background:		#d000d000d000
+
+XGUI*overload_high_label.background:            #ffff38e838e8
+XGUI*overload_high_label.foreground:            #ffffffffffff
+XGUI*overload_moderate_label.background:        #fb82ed900000
+XGUI*overload_moderate_label.foreground:        #000000000000
+XGUI*overload_low_label.background:             #aaa603660000
+XGUI*overload_low_label.foreground:             #ffffffffffff
+XGUI*overload_none_label.background:            #000000000000
+XGUI*overload_none_label.foreground:            #ffffffffffff
+XGUI*overload_extreme_text.value:               110
+XGUI*overload_moderate_text.value:              100
+XGUI*overload_mild_text.value:                   90
+
+XGUI*kv_500_label.background:			#ffffcccc0000
+XGUI*kv_500_label.foreground:			#000000000000
+XGUI*kv_345_label.background:			#e08074007200
+XGUI*kv_345_label.foreground:			#000000000000
+XGUI*kv_300_label.background:			#9c0078000300
+XGUI*kv_300_label.foreground:			#ffffffffffff
+XGUI*kv_230_label.background:			#20002000c000
+XGUI*kv_230_label.foreground:			#ffffffffffff
+XGUI*kv_161_label.background:			#0700a700ac00
+XGUI*kv_161_label.foreground:			#ffffffffffff
+XGUI*kv_138_label.background:			#0e8095002700
+XGUI*kv_138_label.foreground:			#ffffffffffff
+XGUI*kv_115_label.background:			#000000000000
+XGUI*kv_115_label.foreground:			#ffffffffffff
+XGUI*kv_69_label.background:			#3800bd00ffff
+XGUI*kv_69_label.foreground:			#000000000000
+XGUI*kv_46_label.background:			#e180aac03d00
+XGUI*kv_46_label.foreground:			#000000000000
+XGUI*kv_14_label.background:			#dc0023d023d0
+XGUI*kv_14_label.foreground:			#ffffffffffff
+XGUI*kv_7_label.background:			#a000a000a000
+XGUI*kv_7_label.foreground:			#000000000000
+XGUI*kv_dc_label.background:			#c7000000e000
+XGUI*kv_dc_label.foreground:			#ffffffffffff
+
+XGUI*active_pb_color:				#ffffe4848a3c
+#
+# interactive command window params
+#
+XGUI*main_command_window.historyVisibleItemCount: 4
+XGUI*ipc_scroll_cmds_pftogui.height: 200
+XGUI*ipc_scroll_cmds_guitopf.height: 200
+
+################################################################################
+#									       #
+# Notes to users:							       #
+#	The following tutorial explains how to set your own values for	       #
+#		1) Dialog window default location			       #
+#		2) Dialog window default size				       #
+#		3) Dialog window default background color		       #
+#		4) Text box default values		       		       #
+#									       #
+################################################################################
+#
+# To set a default window location, size or background color, first the
+# internal name of the dialog window must be known.  The following list is
+# a partial list of some important dialog windows:
+#
+# XGUI    (main)
+# XGUI*ipc_command_board           XGUI*ipc_report_dialog
+# XGUI*bus_front_box               XGUI*bus_output_box
+# XGUI*error_message_dialog        XGUI*print_opt_display_dialog
+# XGUI*print_dialog                XGUI*reports_form_1
+# XGUI*reports_form_2              XGUI*reports_form_3
+# XGUI*reports_form_4              XGUI*ipc_scroll_cmds_pftogui
+# XGUI*area_selection_dialog       XGUI*area_interchange_box
+# XGUI*bus_sect_dialog             XGUI*bus_edit_dialog (network editor)
+# XGUI*modify_bus_coord_dia        XGUI*cflow_selection_dialog
+# XGUI*open_file_dialog            XGUI*save_file_dialog
+# XGUI*help_dialog                 XGUI*error_message_dialog
+# XGUI*ipc_command_window          XGUI*ipf_alpha_bus_list_dialog
+# XGUI*line_tap_dialog             XGUI*linetap2
+# XGUI*line_Z_calc_dialog          XGUI*line_z_filesel
+# XGUI*line_z_save_dialog          XGUI*print_opt_page_dialog
+# XGUI*plot_options_dialog         XGUI*user_comment_dialog
+# XGUI*printer_select_dialog       XGUI*select_reports_dialog
+# XGUI*pf_report_dialog            XGUI*reports_file_select_dia
+# XGUI*reports_overwrite_dialog    XGUI*solve_dialog
+# XGUI*bus_help_dialog             XGUI*pf_descp_form
+# 
+#
+#        For example if it is desired that the error box should appear
+# 600 pixels from left edge of screen, 250 pixels from top edge and
+# the dialog is supposed to be 333 pixels wide, 488 pixels high, then the
+# following four lines should be edited into the XGUI file:
+# 
+# XGUI*error_message_dialog*x:     600
+# XGUI*error_message_dialog*y:     250
+# XGUI*error_message_dialog*width: 333
+# XGUI*error_message_dialog*height:488
+# 
+################################################################################
+#
+# Setting background and foreground colors is a more complicated, but can be
+# achieved if one recalls the format for the 500kv label color above:
+#
+# ! Colors:                                         R   G   B
+# !                                                |--||--||--|
+# XGUI*foreground:                                #000000000000
+# XGUI*background:                                #d000d000d000
+# 
+# XGUI*kv_500_label.background:                   #ffffcccc0000
+# XGUI*kv_500_label.foreground:                   #000000000000
+# 
+# What the above is saying, is the screen is composed of 3 colors, Red, Green
+# and Blue.   Each color may have a value from zero (0000) to (ffff)Hexidecimal.
+# (000000000000) is black, (ffffffffffff) is white, (ffff0000000) is red,
+# (0000ffff0000) is green and (00000000ffff) is blue.
+# 
+# The default background and foreground values for any screen which did not
+# have a background or foreground color will be 00000000 (black) on d000d000d00
+# (almost white).
+# 
+# The example for the kv_500_label background is ffff red, cccc green and
+# 0000 black which comes out a shade of yellow.  This will be the color for
+# the 500 kv transmission lines and the 500kV legend background.
+# 
+# If one wishes to alter the colors for overloaded lines, then the following
+# lines should be changed to suit:
+# 
+# XGUI*overload_high_label.background:            #ffff38e838e8
+# XGUI*overload_high_label.foreground:            #ffffffffffff
+# XGUI*overload_moderate_label.background:        #fb82ed900000
+# XGUI*overload_moderate_label.foreground:        #000000000000
+# XGUI*overload_low_label.background:             #aaa603660000
+# XGUI*overload_low_label.foreground:             #ffffffffffff
+# 
+################################################################################
+#
+# ANOTHER USE FOR THE RESOURCE FILE IS TO SPECIFY SOME DEFAULT VALUES
+# FOR VARIOUS TEXT BOXES.  For example is one wants to have a default name
+# appear in the coordinate file selection box, then the following line might
+# be useful:
+# 
+# XGUI*file_select_dia_coord_text.value:   newtestdc3.cor
+# 
+# As of April 1994, there are literally hundreds of potential text boxes
+# available in GUI which can be preset.  New text boxes are continually being
+# added and old text boxes are occasionally deleted.   At this time it would be
+# very difficult to maintain an accurate list of all available text values.
+# 
+# Listing them all is beyond the scope of this report.  However a partial list
+# is available for some of the plot options.  If the text box is not listed
+# below, then they might be looked up by peeking inside of one of the *.u
+# files.
+# 
+# 
+#
+######## List of all known text boxes as of APR/29/1994 ##############
+# 
+# ***** acbusform.u *****         ( jacket for bus_front_box )
+#        bus_owner			 bus_zone
+#        bus_v_max			 bus_v_hold
+#        bus_v_min			 bus_remote_name
+#        bus_remote_pcs			 bus_phase_xx
+#        bus_remote_base		 bus_p_load
+#        bus_q_load			 bus_p_shunt
+#        bus_q_shunt			 bus_p_max
+#        bus_p_gen			 bus_q_sched
+#        bus_q_min			 bus_q_min_2
+#        bus_p_max_2			 bus_p_gen_2
+#        bus_q_max			 bus_q_min_3
+#        bus_p_max_3			 bus_phase
+#        bus_q_sched_3
+#
+# *****  aclineform.u *****       ( jacket for bus_front_box )
+#        line_meter			 line_owner
+#        line_circuit_id 		 line_section
+#        line_R				 line_G
+#        line_X				 line_B
+#        line_no_parallels		 line_miles
+#        line_rating_emergency		 line_rating_thermal
+#        line_rating_bottleneck_text
+#
+# *****  areaselect.u *****       ( area_interchange_box )
+#        area_scheduled_export_text	 area_base_kv_text
+#        area_max_volt_text		 area_min_volt_text
+#        area_slack_bus_name_text	 area_name_text
+#        area_zone_1_text		 area_zone_2_text
+#        area_zone_3_text		 area_zone_4_text
+#        area_zone_5_text		 area_zone_6_text
+#        area_zone_7_text		 area_zone_8_text
+#        area_zone_9_text		 area_zone_10_text
+#        interchange_area_1_text	 interchange_area_2_text
+#        interchange_export_text
+#
+# *****  buscoord.u *****
+#        full_name_text			 diag_name_text
+#        bus_x_pos_text			 bus_y_pos_text
+#        name_x_pos_text		 name_y_pos_text
+#        nom_volts_text			 generator_angle_text
+#        reactor_angle_text
+#
+# ***** buseditn.u *****  ( bus_edit_dialog ) - network editor
+#        edit_bus_id1_text		 edit_column_num_text
+#        sect_bus_id1_text		 sect_bus_id2_text
+#        bus_sect_dia_tie_text
+#
+# ***** cflow.u *****    ( cflow_selection_dialog, cflow_socket_request_dialog )
+#        cflow_command_text		 cflow_sel_text
+#        cflow_socket_number_text
+#
+# ***** contform.u *****          ( jacket for bus_front_box )
+#        cont_gen_qmin			 cont_gen_qmax
+#        cont_gen_p			 cont_shunt_q
+#        cont_load_q			 cont_shunt_p
+#        cont_load_p			 cont_owner_text
+#        code_year_text
+#
+# ***** dcbusform.u *****         ( jacket for bus_front_box )
+#        dc_bus_owner_text		 dc_bus_zone_text
+#        dc_bus_bridges_text		 dc_bus_smooth_reac_text
+#        dc_bus_max_angle_text		 dc_bus_value_drop_text
+#        dc_bus_bridge_rate_text	 dc_bus_min_angle_text
+#        dc_bus_commutate_text		 dc_bus_conv_type_text
+#        dc_bus_ign_del_text		 dc_bus_min_ext_text
+#        dc_bus_power_text		 dc_bus_voltage_text
+#
+# ***** dclineform.u *****        ( jacket for bus_front_box )
+#        dc_line_owner_text		 dc_line_length_text
+#        dc_line_resistance_text	 dc_line_inductance_text
+#        dc_line_nominal_text		 dc_line_thermal_text
+#        dc_line_bottleneck_text	 dc_line_capacitance_text
+#        dc_line_controls_text		 dc_line_ign_text
+#        dc_line_ext_text		 dc_line_power_text
+#        dc_line_voltage_text		 dc_line_in_month_text
+#        dc_line_in_year_text		 dc_line_out_month_text
+#        dc_line_out_year_text		 dc_line_metering_text
+#
+# ***** equivform.u *****         ( jacket for bus_front_box )
+#       equiv_meter_text		 equiv_owner_text
+#       equiv_circuit_id_text		 equiv_section_text
+#       equiv_R_text			 equiv_G1_text
+#       equiv_X_text			 equiv_B1_text
+#       equiv_parallels_text		 equiv_G2_text
+#       equiv_B2_text			 equiv_rating_nominal_text
+#       equiv_rating_thermal_text	 equiv_rating_bottleneck_text
+#
+# ***** fopendia.u *****          ( open_file_dialog )
+#       file_select_dia_command_text	 open_dia_command_dir_text
+#       file_select_dia_change_text	 open_dia_change_dir_text 
+#       file_select_dia_pti_text	 open_dia_pti_dir_text
+#       file_select_dia_base_text	 open_dia_base_dir_text
+#       file_select_dia_network_text	 open_dia_network_dir_text
+#	file_select_dia_coord_text	 open_dia_coord_dir_text
+#
+# ***** frontdia.u *****          ( bus_front_box )
+#       bus_front_name			 bus_front_volts
+#       bus_front_line_name		 bus_front_volts_2
+#       bus_front_name_2
+#
+# ***** fsavedia.u *****          ( save_file_dialog )
+#       save_change_text		 save_base_text
+#       save_net_text			 save_coord_text
+#       save_stab_text
+#
+# ***** help.u *****
+#       help_annotate_text		 error_dia_identifier_text
+#       error_dia_line_text		 error_dia_message_text
+#
+# ***** ipcwindow.u *****
+#       ipc_text_guitopf		 ipf_alpha_search_text
+#
+# ***** linetap.u *****
+#       line_tap_name_text		 line_tap_bus_1_text
+#       line_tap_bus_2_text
+#
+# ***** linetap2.u *****
+#       line_tap_section_2		 line_tap_section_1
+#       line_tap_bus_1			 line_tap_name
+#       line_tap_bus_2
+#
+# ***** linezcalc.u *****
+#       line_z_distance_text		 line_z_basekv_text
+#       line_z_z1_R_text		 line_z_y_G_text
+#       line_z_z1_X_text		 line_z_y_B_text
+#       line_z_z0_R_text		 line_z_z0_X_text
+#       line_z_edit_number_text		 line_z_edit_od_text
+#       line_z_edit_phase_text		 line_z_edit_resist_text
+#       line_z_edit_od_text		 line_z_edit_skin_text
+#       line_z_edit_horiz_text		 line_z_edit_vtower_text
+#       line_z_edit_vmid_text		 line_z_edit_separ_text
+#       line_z_edit_angle_text		 line_z_save_text
+#
+# ***** main.u *****      ( gui_main )
+#       overload_extreme_text		 overload_moderate_text
+#       overload_mild_text		 status_change_file_text
+#       status_base_file_text		 status_coord_file_text
+#       status_status_text		 tools_zoom_factor_text
+#
+# ***** pf_descrip.u *****        ( pf_descp_form )
+#       pf_case_id_text			 pf_header_1_text
+#       pf_header_2_text		 pf_case_descrip_text
+#       pf_header_3_text		 pf_comments_text
+#
+# ***** pqcrvform.u *****
+#       pq_curve_p_gen_text		 pq_curve_q_max_text
+#       pq_curve_q_min_text		 pq_curve_p_gen_text
+#
+# ***** printopt.u *****
+#       print_cmnt_xpos_text		 print_cmnt_ypos_text
+#       print_border_xpos_text		 print_border_ypos_text
+#       print_case_xpos_text		 print_case_ypos_text
+#       print_size_x_text		 print_size_y_text
+#       print_x_offset_text		 print_y_offset_text
+#       print_x_scale_text		 print_y_scale_text
+#       label_box_x			 label_box_y
+#       label_box_se_x			 label_box_se_y
+#       legend_x_text			 legend_y_text
+#
+# ***** recorddia.u *****
+#       recorder_comand_number		 recorder_command_line
+#
+# ***** regxfmr.u *****           ( jacket for bus_front_box )
+#       regxfmr_owner_text		 regxfmr_remote_name_text
+#       regxfmr_remote_kv_text		 regxfmr_max_tap_text
+#       regxfmr_taps_text		 regxfmr_maxMVAR_text
+#       regxfmr_schedMVAR_text		 regxfmr_minMVAR_text
+#       regxfmr_min_tap_text		 regxfmr_max_shift_text
+#       regxfmr_min_shift_text		 regxfmr_shifts_text
+#       regxfmr_maxflow_text		 regxfmr_schedflow_text
+#       regxfmr_minflow_text
+#
+# ***** reportdia.u *****
+#       reports_file_name_text		 reports_alpha_entry_text
+#       reports_loading_max_text	 reports_loading_min_text
+#
+# ***** solve.u *****
+#       solve_decoupled_text		 solve_newton_text
+#
+# ***** swrreac.u *****           ( jacket for bus_front_box )
+#       swr_reac_remote_name_text	 swr_reac_remote_kv_text
+#       swr_reac_owner_text		 swr_reac_steps_1_text
+#       swr_reac_steps_2_text		 swr_reac_steps_3_text
+#       swr_reac_steps_4_text		 swr_reac_steps_5_text
+#       swr_reac_steps_6_text		 swr_reac_steps_7_text
+#       swr_reac_steps_8_text		 swr_reac_mvar_1_text
+#       swr_reac_mvar_2_text		 swr_reac_mvar_3_text
+#       swr_reac_mvar_4_text		 swr_reac_mvar_5_text
+#       swr_reac_mvar_6_text		 swr_reac_mvar_7_text
+#       swr_reac_mvar_8_text
+#
+# ***** tools.u *****
+#       tools_zoom_factor_text
+#
+# ***** xfmrdia.u *****           ( jacket for bus_front_box )
+#       xfmr_dialog_X_text		 xfmr_dialog_R_text
+#       xfmr_dialog_G_text		 xfmr_dialog_B_text
+#       xfmr_dialog_id_text		 xfmr_dialog_section_text
+#       xfmr_dialog_owner_text		 xfmr_dialog_metering_text
+#       xfmr_dialog_parallels_text	 xfmr_dialog_tap1_kv_text
+#       xfmr_dialog_tap2_kv_text	 xfmr_dialog_phase_text
+#       xfmr_dialog_nominal_text	 xfmr_dialog_thermal_text
+#       xfmr_dialog_bottleneck_text	 xfmr_dialog_emerg_text
+#
+################################################################################
+#
+#  STANDARD HARDCOPY PLOT DEFAULTS EXPLAINED IN MORE DETAIL:
+#
+################################################################################
+#
+# XGUI*print_size_x_text.value: 21.59    This is the metric equivalent of
+# XGUI*print_size_y_text.value: 27.94		 8.5 x 11 inch paper
+#
+# XGUI*print_border_xpos_text.value:     The border option puts a border on the
+# XGUI*print_border_ypos_text.value:     diagram in addition to the border that
+#					 is drawn as part of the diagram in BOX
+#					 option.  This option is generally not
+#					 specified.
+#
+# XGUI*print_cmnt_xpos_text.value:       Comments entered by the user or from
+# XGUI*print_cmnt_ypos_text.value:       the powerflow are located relative to
+#					 the BOX option unless another location
+#					 is specified.  This option is generally
+#					 not specified.
+#
+# XGUI*print_x_offset_text.value: 0.0    The origin for the diagram is generally
+# XGUI*print_y_offset_text.value: 0.0    the lower left corner of the paper.
+#					 This option can relocate the origin and
+#					 is generally set to 0.0
+#
+# XGUI*print_case_xpos_text.value:       The case name is located relative to 
+# XGUI*print_case_ypos_text.value:       the BOX option unless another location
+#					 is specified.  This option is generally
+#					 not specified.
+#
+# XGUI*print_x_scale_text.value:  1.0    The scale factor is generally specified
+# XGUI*print_y_scale_text.value:  1.0    as 1.0 in the xgui.dat file.  However,
+#					 it is often changed through the GUI.
+#					 By making the scale factor less than
+#					 1.0, the user may specify coordinates
+#					 greater than the paper size and have
+#					 the diagram scaled to fit on the
+#                                        standard paper.
+#
+# XGUI*plot_comments_text: UserComments  The location for user comments was once
+#					 controlable, but is now fixed in the
+#					 label box below the case name and
+#					 description.
+#
+# XGUI*label_box_x.value: 15.0           BPA users identify diagrams within an
+# XGUI*label_box_y.value: 04.0           identification box (usually) in the
+#					 lower right corner of the diagram.
+#                                        These coordinates are good for a
+#					 portrait orientation diagram with an
+#					 'x' and 'y'scale of 1.0,
+#
+# XGUI*coord_name_x.value:               The coordinate name is generally
+# XGUI*coord_name_y.value:               located just outside the lower border
+#					 of the diagram. This option is
+#                                        generally not specified.
+#
+# XGUI*pf_data_x.value:                  The location for powerflow comments was
+# XGUI*pf_data_y.value:                  once controlable, but is now fixed in
+#					 the label box below the user comments.
+#
+# XGUI*legend_x_text.value:              When the upper left corner of a legend
+# XGUI*legend_y_text.value:              box is specified, a legend will be
+#					 displayed in the box.  The legend
+#					 identifies each line pattern used in
+#                                        the hard copy diagram.  The legend is
+#					 Postscript code and can be modified by
+#					 the user.  This option is generally not#					 specified.
+################################################################################
+

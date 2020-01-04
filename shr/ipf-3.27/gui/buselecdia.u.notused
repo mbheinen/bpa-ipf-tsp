@@ -1,0 +1,114 @@
+ 
+ 
+object
+!***VUIT_Manage false ***
+    voltage_filter_dialog: XmFormDialog
+        {
+        arguments
+            {
+            XmNwidth = 704;
+            XmNheight = 216;
+            XmNborderWidth = 1;
+            };
+        controls
+            {
+            XmScale voltage_filter_min_kv_label;
+            XmScale voltage_filter_max_kv_label;
+            XmScale voltage_filter_low_pc_label;
+            XmScale
+                {
+                arguments
+                    {
+                    XmNborderWidth = 0;
+                    XmNleftAttachment = XmATTACH_POSITION;
+                    XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+                    XmNtopOffset = 0;
+                    XmNdecimalPoints = 1;
+                    XmNrightAttachment = XmATTACH_FORM;
+                    XmNrightOffset = 15;
+                    XmNwidth = 57;
+                    XmNmaximum = 1200;
+                    XmNminimum = 1000;
+                    XmNprocessingDirection = XmMAX_ON_RIGHT;
+                    XmNshowValue = true;
+                    XmNtitleString = compound_string("High Percent");
+                    XmNorientation = XmHORIZONTAL;
+                    XmNtopWidget = XmScale voltage_filter_low_pc_label;
+                    XmNhighlightThickness = 0;
+                    XmNvalue = 1050;
+                    XmNleftPosition = 50;
+                    };
+                };
+            };
+        };
+    voltage_filter_min_kv_label: XmScale
+        {
+        arguments
+            {
+            XmNborderWidth = 0;
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNtopAttachment = XmATTACH_FORM;
+            XmNleftOffset = 15;
+            XmNtopOffset = 15;
+            XmNdecimalPoints = 1;
+            XmNrightAttachment = XmATTACH_FORM;
+            XmNrightOffset = 15;
+            XmNwidth = 57;
+            XmNmaximum = 10000;
+            XmNminimum = 500;
+            XmNprocessingDirection = XmMAX_ON_RIGHT;
+            XmNshowValue = true;
+            XmNtitleString = compound_string("Min KV");
+            XmNorientation = XmHORIZONTAL;
+            XmNhighlightThickness = 0;
+            XmNvalue = 500;
+            };
+        };
+    voltage_filter_max_kv_label: XmScale
+        {
+        arguments
+            {
+            XmNborderWidth = 0;
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNleftOffset = 15;
+            XmNtopOffset = 0;
+            XmNdecimalPoints = 1;
+            XmNrightAttachment = XmATTACH_FORM;
+            XmNrightOffset = 15;
+            XmNwidth = 57;
+            XmNmaximum = 10000;
+            XmNminimum = 500;
+            XmNprocessingDirection = XmMAX_ON_RIGHT;
+            XmNshowValue = true;
+            XmNtitleString = compound_string("Max KV");
+            XmNorientation = XmHORIZONTAL;
+            XmNtopWidget = XmScale voltage_filter_min_kv_label;
+            XmNhighlightThickness = 0;
+            XmNvalue = 10000;
+            };
+        };
+    voltage_filter_low_pc_label: XmScale
+        {
+        arguments
+            {
+            XmNborderWidth = 0;
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNleftOffset = 15;
+            XmNtopOffset = 0;
+            XmNdecimalPoints = 1;
+            XmNrightAttachment = XmATTACH_POSITION;
+            XmNwidth = 57;
+            XmNmaximum = 1000;
+            XmNminimum = 800;
+            XmNprocessingDirection = XmMAX_ON_RIGHT;
+            XmNshowValue = true;
+            XmNtitleString = compound_string("Low Percent");
+            XmNorientation = XmHORIZONTAL;
+            XmNtopWidget = XmScale voltage_filter_max_kv_label;
+            XmNhighlightThickness = 0;
+            XmNrightPosition = 50;
+            XmNvalue = 950;
+            };
+        };

@@ -1,0 +1,10 @@
+contents/names:
+
+root.xinitrc
+root.mwmrc
+root.fpanelrc
+dot.bash_profile
+dot.xinitrc
+dot.mwmrc
+dot.fpanelrc
+

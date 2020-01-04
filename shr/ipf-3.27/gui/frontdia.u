@@ -1,0 +1,657 @@
+ 
+ 
+procedure
+!***VUIT_Action Unmanage bus_help_dialog ***
+ 
+    unmanage_bus_help;
+!***VUIT_no_Generate***
+!***VUIT_Action UserProc disable_bus_help ***
+ 
+    disable_bus_help;
+!***VUIT_no_Generate***
+!***VUIT_Action UserProc  ***
+ 
+    set_title_mode_2namebase;
+!***VUIT_no_Generate***
+!***VUIT_Action UserProc  ***
+ 
+    set_title_mode_linename;
+ 
+object
+!***VUIT_Manage false ***
+    bus_jackets: XmFormDialog
+        {
+        arguments
+            {
+            XmNdialogTitle = compound_string("NO INPUT DATA EDIT BOX");
+            XmNdefaultPosition = false;
+            XmNautoUnmanage = false;
+            XmNheight = 670;
+            XmNwidth = 448;
+            XmNnoResize = true;
+            XmNresizePolicy = XmRESIZE_NONE;
+            };
+        controls
+            {
+            unmanaged XmForm bus_jacket;
+            unmanaged XmForm cont_jacket;
+            unmanaged XmForm equiv_jacket;
+            unmanaged XmForm branch_jacket;
+            unmanaged XmForm xfmr_jacket;
+            unmanaged XmForm dc_bus_jacket;
+            unmanaged XmForm dc_line_jacket;
+            unmanaged XmForm pq_curve_jacket;
+            unmanaged XmForm reg_xfmr_jacket;
+            unmanaged XmForm swr_reac_jacket;
+            };
+!           XmTextField bus_front_name_2;
+!           XmTextField bus_front_volts_2;
+!           XmForm create_bus_comp_form;
+!           XmOptionMenu line_type_pd;
+        callbacks
+            {
+!           XmTextField bus_front_name_2;
+!           XmTextField bus_front_volts_2;
+!           XmForm create_bus_comp_form;
+!           XmOptionMenu line_type_pd;
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+ 
+object
+!***VUIT_Manage false ***
+    bus_front_box: XmFormDialog
+        {
+        arguments
+            {
+            XmNdialogTitle = compound_string("INPUT DATA EDIT BOX");
+            XmNdefaultPosition = false;
+            XmNautoUnmanage = false;
+            XmNheight = 670;
+            XmNwidth = 448;
+            XmNnoResize = true;
+            XmNresizePolicy = XmRESIZE_NONE;
+            XmNborderWidth = 1;
+            };
+        controls
+            {
+            XmLabelGadget front_dia_name_label;
+            XmTextField bus_front_name;
+            XmTextField bus_front_volts;
+            XmTextField bus_front_line_name;
+            XmOptionMenu bus_item_pulldown;
+            XmPushButton reset_pushbutton;
+            XmPushButton outage_pushbutton;
+            XmPushButton close_pushbutton;
+            XmPushButton add_pushbutton;
+            XmPushButton send_pushbutton;
+            XmPushButton delete_pushbutton;
+            XmTextField bus_front_name_2;
+            XmTextField bus_front_volts_2;
+            XmForm create_bus_comp_form;
+            XmOptionMenu line_type_pd;
+            };
+!            XmPushButton front_dia_calc_z_pb;
+!            XmPushButton front_dia_tap_line_pb;
+        callbacks
+            {
+!            XmPushButton front_dia_calc_z_pb;
+!            XmPushButton front_dia_tap_line_pb;
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+!****************************************************************
+!************* TOP THREE BOXES IN MAIN WINDOW *******************
+    front_dia_name_label: XmLabelGadget
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Name");
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNleftOffset = 15;
+            XmNtopAttachment = XmATTACH_POSITION;
+            XmNtopPosition = 3;
+            };
+        };
+    bus_front_name: XmTextField
+        {
+        arguments
+            {
+            arguments text_list_8;
+            XmNleftAttachment = XmATTACH_WIDGET;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopOffset = 5;
+            XmNleftOffset = 105;
+            XmNleftWidget = XmLabelGadget front_dia_name_label;
+            XmNtopWidget = XmLabelGadget front_dia_name_label;
+            XmNborderWidth = 0;
+            XmNeditable = true;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    bus_front_volts: XmTextField
+        {
+        arguments
+            {
+            arguments text_list_5;
+            XmNleftAttachment = XmATTACH_WIDGET;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNleftWidget = XmTextField bus_front_name;
+            XmNleftOffset = 30;
+            XmNtopWidget = XmTextField bus_front_name;
+            XmNeditable = true;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNmodifyVerifyCallback = procedures
+                {
+                decimal_check(0);
+                };
+            };
+        };
+    bus_item_pulldown: XmOptionMenu
+        {
+        arguments
+            {
+            XmNborderWidth = 0;
+            XmNleftAttachment = XmATTACH_WIDGET;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNleftOffset = 6;
+            XmNtopOffset = -6;
+            XmNtopWidget = XmTextField bus_front_name;
+            XmNleftWidget = XmTextField bus_front_volts;
+            };
+        controls
+            {
+            XmPulldownMenu bus_pulldown;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+!************************************************************************
+!*************  SIX PUSH BUTTONS AT BOTTOM OF WINDOW ********************
+!************************************************************************
+!
+    reset_pushbutton: XmPushButton
+        {
+        arguments
+            {
+            arguments std_pushbutton;
+            XmNlabelString = compound_string("Reset");
+            XmNleftAttachment = XmATTACH_POSITION;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNrightAttachment = XmATTACH_POSITION;
+            XmNleftPosition = 67;
+            XmNwidth = 126;
+            XmNrightPosition = 95;
+            XmNtopWidget = XmPushButton send_pushbutton;
+            };
+        callbacks
+            {
+            XmNactivateCallback = procedures
+                {
+                reset_data(0);
+                };
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+!
+    outage_pushbutton: XmPushButton
+        {
+        arguments
+            {
+            arguments std_pushbutton;
+            XmNlabelString = compound_string("Outage");
+            XmNleftAttachment = XmATTACH_POSITION;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNbottomWidget = XmPushButton reset_pushbutton;
+            XmNrightAttachment = XmATTACH_POSITION;
+            XmNrightPosition = 64;
+            XmNleftPosition = 36;
+            XmNtopWidget = XmPushButton delete_pushbutton;
+            XmNsensitive = false;
+            };
+        callbacks
+            {
+            XmNactivateCallback = procedures
+                {
+                reset_data(0);
+                };
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+!
+    close_pushbutton: XmPushButton
+        {
+        arguments
+            {
+            arguments close_pushbutton_list;
+            XmNleftAttachment = XmATTACH_POSITION;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopWidget = XmPushButton outage_pushbutton;
+            XmNrightAttachment = XmATTACH_POSITION;
+            XmNrightPosition = 95;
+            XmNleftPosition = 67;
+            };
+        callbacks
+            {
+            XmNactivateCallback = procedures
+                {
+                cancel_bus_settings(0);
+                unmanage_bus_front_box(0);
+                unmanage_bus_output_dialog(0);
+                unmanage_bus_help(0);
+                };
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+!
+    add_pushbutton: XmPushButton
+        {
+        arguments
+            {
+            arguments std_pushbutton;
+            XmNlabelString = compound_string("Add");
+            XmNleftAttachment = XmATTACH_POSITION;
+            XmNleftPosition = 5;
+            XmNrightAttachment = XmATTACH_POSITION;
+            XmNrightPosition = 33;
+            XmNtopAttachment = XmATTACH_POSITION;
+            XmNtopPosition = 87;
+            };
+        callbacks
+            {
+            XmNactivateCallback = procedures
+                {
+                send_add_data_to_powerflow(0);
+                };
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+!
+    send_pushbutton: XmPushButton
+        {
+        arguments
+            {
+            arguments std_pushbutton;
+            XmNlabelString = compound_string("Modify");
+            XmNleftAttachment = XmATTACH_POSITION;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopWidget = XmPushButton add_pushbutton;
+            XmNwidth = 65;
+            XmNrightAttachment = XmATTACH_POSITION;
+            XmNrightPosition = 64;
+            XmNleftPosition = 36;
+            };
+        callbacks
+            {
+            XmNactivateCallback = procedures
+                {
+                send_mod_data_to_powerflow(0);
+                };
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    bus_front_line_name: XmTextField
+        {
+        arguments
+            {
+            arguments text_list_26;
+            XmNleftAttachment = XmATTACH_WIDGET;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNleftOffset = 13;
+            XmNtopOffset = 0;
+            XmNleftWidget = XmLabelGadget front_dia_name_label;
+            XmNtopWidget = XmLabelGadget front_dia_name_label;
+            XmNborderWidth = 0;
+            XmNeditable = false;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    bus_front_name_2: XmTextField
+        {
+        arguments
+            {
+            arguments text_list_8;
+            XmNleftAttachment = XmATTACH_WIDGET;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNleftOffset = 100;
+            XmNleftWidget = XmTextField bus_front_volts;
+            XmNtopWidget = XmTextField bus_front_volts;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    bus_front_volts_2: XmTextField
+        {
+        arguments
+            {
+            arguments text_list_5;
+            XmNleftAttachment = XmATTACH_WIDGET;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNleftOffset = 37;
+            XmNleftWidget = XmTextField bus_front_name_2;
+            XmNtopWidget = XmTextField bus_front_name_2;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    create_bus_comp_form: XmForm
+        {
+        arguments
+            {
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNleftOffset = 15;
+            XmNrightAttachment = XmATTACH_FORM;
+            XmNrightOffset = 15;
+            XmNtopPosition = 78;
+            XmNtopAttachment = XmATTACH_POSITION;
+            };
+        controls
+            {
+            XmOptionMenu bus_jacket_new_option_menu;
+            XmLabelGadget bus_create_comp_label;
+            };
+        };
+    bus_create_comp_label: XmLabelGadget
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("New Component");
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNtopAttachment = XmATTACH_FORM;
+            XmNleftOffset = 3;
+            XmNtopOffset = 7;
+            XmNtopWidget = XmOptionMenu bus_jacket_new_option_menu;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    line_pb: XmPushButton
+        {
+        arguments
+            {
+            XmNx = 2;
+            XmNy = 2;
+            XmNlabelString = compound_string("L ");
+            XmNborderWidth = 1;
+            XmNbackground = color('aquamarine2');
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNactivateCallback = procedures
+                {
+                create_line_rec(0);
+                set_title_mode_linename(0);
+                };
+            };
+        };
+    xfmr_pb: XmPushButton
+        {
+        arguments
+            {
+            XmNx = 11;
+            XmNy = 16;
+            XmNlabelString = compound_string("T");
+            XmNborderWidth = 1;
+            XmNbackground = color('aquamarine2');
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNactivateCallback = procedures
+                {
+                create_xfmr_rec(0);
+                set_title_mode_linename(0);
+                };
+            };
+        };
+    phase_shift_pb: XmPushButton
+        {
+        arguments
+            {
+            XmNx = 14;
+            XmNy = 45;
+            XmNlabelString = compound_string("TP");
+            XmNborderWidth = 1;
+            XmNbackground = color('aquamarine2');
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNactivateCallback = procedures
+                {
+                create_xfmr_shift_rec(0);
+                set_title_mode_linename(0);
+                };
+            };
+        };
+    reg_xfmr_pb: XmPushButton
+        {
+        arguments
+            {
+            XmNx = 12;
+            XmNy = 82;
+            XmNlabelString = compound_string("R");
+            XmNborderWidth = 1;
+            XmNbackground = color('aquamarine2');
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNactivateCallback = procedures
+                {
+                create_regxfmr_rec(0);
+                set_title_mode_linename(0);
+                };
+            };
+        };
+    equivline_pb: XmPushButton
+        {
+        arguments
+            {
+            XmNx = 12;
+            XmNy = 112;
+            XmNlabelString = compound_string("E");
+            XmNborderWidth = 1;
+            XmNbackground = color('aquamarine2');
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNactivateCallback = procedures
+                {
+                create_equiv_rec(0);
+                set_title_mode_linename(0);
+                };
+            };
+        };
+    dc_line_pb: XmPushButton
+        {
+        arguments
+            {
+            XmNy = 131;
+            XmNlabelString = compound_string("LD");
+            XmNborderWidth = 1;
+            XmNbackground = color('NavajoWhite');
+            XmNsensitive = false;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNactivateCallback = procedures
+                {
+                create_dc_2_term_rec(0);
+                set_title_mode_linename(0);
+                };
+            };
+        };
+    lm_line_pb: XmPushButton
+        {
+        arguments
+            {
+            XmNy = 181;
+            XmNlabelString = compound_string("LM");
+            XmNborderWidth = 1;
+            XmNbackground = color('NavajoWhite');
+            XmNsensitive = false;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNactivateCallback = procedures
+                {
+                create_dc_multi_term_rec(0);
+                set_title_mode_linename(0);
+                };
+            };
+        };
+    line_type_pd: XmOptionMenu
+        {
+        arguments
+            {
+            XmNleftAttachment = XmATTACH_WIDGET;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopOffset = -5;
+            XmNleftWidget = XmTextField bus_front_line_name;
+            XmNtopWidget = XmTextField bus_front_line_name;
+            XmNborderWidth = 0;
+            XmNleftOffset = -5;
+            };
+        controls
+            {
+            XmPulldownMenu
+                {
+                arguments
+                    {
+                    XmNx = 27;
+                    XmNy = 12;
+                    XmNborderWidth = 1;
+                    XmNbackground = color('khaki2');
+                    };
+                controls
+                    {
+                    XmPushButton line_pb;
+                    XmPushButton xfmr_pb;
+                    XmPushButton phase_shift_pb;
+                    XmPushButton reg_xfmr_pb;
+                    XmPushButton equivline_pb;
+                    XmPushButton dc_line_pb;
+                    XmPushButton lm_line_pb;
+                    };
+                };
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+!            XmForm xfmr_jacket;
+    delete_pushbutton: XmPushButton
+        {
+        arguments
+            {
+            arguments std_pushbutton;
+            XmNlabelString = compound_string("Delete");
+            XmNleftAttachment = XmATTACH_POSITION;
+            XmNrightAttachment = XmATTACH_POSITION;
+            XmNleftPosition = 5;
+            XmNwidth = 44;
+            XmNrightPosition = 33;
+            XmNtopPosition = 93;
+            XmNtopAttachment = XmATTACH_POSITION;
+            };
+        callbacks
+            {
+            XmNactivateCallback = procedures
+                {
+                send_del_data_to_powerflow(0);
+                };
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };

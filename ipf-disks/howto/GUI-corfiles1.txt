@@ -1,0 +1,94 @@
+IPF-3.27 GUI -- Linux Version
+
+Coordinate File Modification for Generation Studies
+December 7, 2000 ver. 1.00
+
+Discussion
+
+For Generation Integration Studies, the use of Powerflow Plots showing proposed new generation facilities and 
+associated system improvements is essential.  Generally the diagrams available are the Standard BPA 
+Powerflow Plots (.COR files) developed for the Budget Cases.  Creation of new plots or modification of these 
+existing .COR files is necessary to show the additional facilities.  Manual modification using a text editor is 
+very time consuming and is not intuitive.  Use of the IPF GUI is a very effective way to update the poweflow 
+plots with the new system information, or to create new plots from scratch.
+
+The following step-by-step procedure is a guide to the steps necessary to create (1) an updated .COR plot file 
+based on an existing Budget Case Powerflow Plot .COR file, or (2) to create a new .COR plot file from scratch 
+using the IPF GUI.
+
+Procedure
+
+1) Modify Existing Budget Case .COR File:
+
+Run the IPF GUI and click the appropriate "select" and "apply", and "load selections" buttons 
+to load the base case file (*.BSE) already containing the added Generation and associated 
+system improvements and the Budget Case coordinate file (*.COR) for the part of the system 
+you are going to show. Then click the  "load selections" buttons to load them both.  Then 
+“File, Save-As” to save the .COR file with a name of your choice in your user directory.  After 
+that, activate the “Explode” function by clicking the 2nd Button in the 2nd Column, and click 
+on the busses with the new generation and facilities you have added to the system model in the 
+.BSE file.  Then, activate the “Symbol Move” function by clicking the 5th Button in the 2nd 
+Column, and use the mouse to rearrange the symbols on the diagram representing the new 
+generation and facilities.  When you are done, use “File, Save-As” to save your new .COR 
+file.
+
+Click  “Select” for Base Case File directory list
+Click the .BSE file you want to use
+Click “Apply”
+
+Click  “Select” for Coordinate File directory list
+Click the .COR file you want to use
+Click “Apply”
+
+Click “Load Selections”
+After the .BSE and .COR files are loaded, click “View, Solution Data On”
+
+Click “File, Save-As”.  
+For “Coordinate”, click “Select” and enter your new name for this coordinate file.
+Click “OK” , then click “Save” to save the .COR file; then click “Close”.
+Procedure
+
+2) Create New .COR File from scratch:
+
+Run the IPF GUI and click the appropriate "select" and "apply", and "load selections" buttons 
+to load the base case file (*.BSE) already containing the added Generation and associated 
+system improvements and the Blank Template coordinate file (L85X11.COR or 
+P85X11.COR) to show the part of the system you are going to show. Then click the  "load 
+selections" buttons to load them both.  Then “File, Save-As” to save the .COR file with a 
+name of your choice in your user directory.  
+
+Activate the “Bus Input Data” function by clicking the 6th Button in the 1st Column.  The 
+cursor will change from an arrow to an open square.  Close the “Bus Input Data” window.  
+Click “Edit, Alpha List”  to bring up a list of all the busses in the .BSE case.  Now select the 
+bus you will use to start the diagram.  Click in the “Search Bus Name kV” window and with 
+“CapsLock” on, type in the 1st letter of the bus name, then the 2nd, etc. until the bus name 
+appears in the list.  Select the desired bus and click “Close”.  Then, with the mouse, locate the 
+1st bus at the appropriate location on the blank diagram, and click to place it there.
+
+After that, activate the “Explode” function by clicking the 2nd Button in the 2nd Column, and 
+click on the busses with the new generation and facilities you have added to the system model 
+in the .BSE file.  Then, activate the “Symbol Move” function by clicking the 5th Button in the 
+2nd Column, and use the mouse to rearrange the symbols on the diagram representing the new 
+generation and facilities.  When you are done, use “File, Save-As” to save your new .COR 
+file.
+
+Click  “Select” for Base Case File directory list
+Click the .BSE file you want to use
+Click “Apply”
+
+Click  “Select” for Coordinate File directory list
+Click the .COR file you want to use
+Click “Apply”
+
+Click “Load Selections”
+After the .BSE and .COR files are loaded, click “View, Solution Data On”
+
+Click “File, Save-As”.  
+For “Coordinate”, click “Select” and enter your new name for this coordinate file.
+Click “OK” , then click “Save” to save the .COR file; then click “Close”.
+
+
+
+
+1
+

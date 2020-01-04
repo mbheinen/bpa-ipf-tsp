@@ -1,0 +1,64 @@
+# Default Front Panel configuration file (system.fpanelrc)
+#
+# To personalize this file, copy it to your home directory, rename it
+# to ".fpanelrc", and then edit it.
+#
+# The items in this file build the front panel from left to right.
+
+# "Handle" on the left for moving the window.
+
+handle left
+
+# Digital clock.
+
+clock
+
+# System load graph.
+
+load
+
+# Mail check icon, for local mailbox (use resource to set mailbox file).
+# Optional: add two pixmap names for empty and full pixmaps.
+
+mail
+
+# A pop-up menu icon.  Clicking this icon pops up a menu of other commands.
+# Each menu item can have a pixmap (preceded by an @ symbol) or text, but
+# not both.
+
+menu toolsmenu
+{
+    "Motif Tools"       f.label
+    "Separator"         f.separator
+    "Terminal"          f.exec "mxterm"
+    "IPF-3.26 GUI"      f.exec "mxterm -geometry -500+400 -e /shr/ipf-3.26/exe/gui"
+    "IPF-Batch"         f.exec "mxterm -geometry -500+400 -e /shr/ipf-3.26/exe/bpf"
+    "IPF-Reports"       f.exec "mxterm -geometry -500+400 -e /shr/ipf-3.26/exe/ipf_reports"
+    "IPF-Cut"           f.exec "mxterm -geometry -500+400 -e /shr/ipf-3.26/exe/cutting"
+    "IPF-NetData"       f.exec "mxterm -geometry -500+400 -e /shr/ipf-3.26/exe/netdat"
+    "IPF-LineFloAnal"   f.exec "mxterm -geometry -500+400 -e /shr/ipf-3.26/exe/LFA"
+    "IPF-Plot"          f.exec "mxterm -geometry -500+400 -e /shr/ipf-3.26/exe/ipfplot
+    "Pixmap Browser"    f.exec "cd /usr/include/X11/icons; xbmbrowser"
+    "Pixmap Editor"     f.exec "pixmap"
+    "Widget Demo"       f.exec "periodic"
+}
+
+# The workspace switcher.  The number of workspaces can be changed, as can
+# their names and the virtual root coordinates for each button (measured in
+# screen widths and heights).  For best layout use an even number of desktops.
+
+desktops
+{
+  "One"		f.goto		0,0
+  "Three"	f.goto		0,1
+  "Two"		f.goto		1,0
+  "Four"	f.goto		1,1
+}
+
+# The "Exit" button.  Pixmap name for the button is optional.
+
+logout
+
+# The handle on the right end, that includes the "iconify" button.
+
+handle right

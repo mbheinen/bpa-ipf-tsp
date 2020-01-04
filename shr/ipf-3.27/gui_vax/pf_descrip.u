@@ -1,0 +1,303 @@
+
+
+procedure
+!***VUIT_Action Manage pf_descp_form ***
+
+    pf_descrip_form;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc fill_descrip_form ***
+
+    fill_descrip_form;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc send_descrip_to_pf ***
+
+    send_descrip_to_pf;
+
+object
+!***VUIT_Manage false ***
+    pf_descp_form: XmFormDialog 
+        {
+        arguments
+            {
+            XmNdialogTitle = compound_string("PowerFlow Case Id/Header/Comments");
+            XmNbackgroundPixmap = weave;
+            };
+        controls
+            {
+            XmLabel pf_case_id_label;
+            XmTextField pf_case_id_text;
+            XmLabel pf_header_label;
+            XmTextField pf_header_1_text;
+            XmTextField pf_header_2_text;
+            XmLabel pf_comments_label;
+            XmPushButton pf_commt_close_pb;
+            XmPushButton pf_commt_apply_pb;
+            XmPushButton pf_commt_reset_pb;
+            XmLabel pf_case_descrip_label;
+            XmTextField pf_case_descrip_text;
+            XmTextField pf_header_3_text;
+            XmScrolledWindow pf_comments_scroll_window;
+            };
+        };
+    pf_case_id_label: XmLabel 
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Case ID");
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNtopAttachment = XmATTACH_FORM;
+            XmNleftOffset = 19;
+            XmNtopOffset = 20;
+            XmNbackgroundPixmap = weave;
+            };
+        };
+    pf_case_id_text: XmTextField 
+        {
+        arguments
+            {
+            arguments text_list_10;
+            XmNleftAttachment = XmATTACH_WIDGET;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNleftOffset = 130;
+            XmNleftWidget = XmLabel pf_case_id_label;
+            XmNtopWidget = XmLabel pf_case_id_label;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    pf_header_label: XmLabel 
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("PF Header(s)");
+            XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNtopOffset = 7;
+            XmNtopWidget = XmLabel pf_case_id_label;
+            XmNleftWidget = XmLabel pf_case_id_label;
+            XmNbackgroundPixmap = weave;
+            };
+        };
+    pf_header_1_text: XmTextField 
+        {
+        arguments
+            {
+            arguments text_no_length;
+            XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNtopWidget = XmLabel pf_header_label;
+            XmNleftWidget = XmLabel pf_header_label;
+            XmNeditable = false;
+            XmNrightAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNrightWidget = XmTextField pf_case_descrip_text;
+            XmNmaxLength = 130;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    pf_header_2_text: XmTextField 
+        {
+        arguments
+            {
+            arguments text_no_length;
+            XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNtopWidget = XmTextField pf_header_1_text;
+            XmNleftWidget = XmTextField pf_header_1_text;
+            XmNrightAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNrightWidget = XmTextField pf_header_1_text;
+            XmNmaxLength = 130;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    pf_comments_label: XmLabel 
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("PF Comments");
+            XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNbackgroundPixmap = weave;
+            XmNtopWidget = XmTextField pf_header_3_text;
+            XmNleftWidget = XmTextField pf_header_3_text;
+            XmNtopOffset = 17;
+            };
+        };
+    pf_commt_reset_pb: XmPushButton 
+        {
+        arguments
+            {
+            arguments std_pushbutton;
+            XmNlabelString = compound_string("Reset");
+            XmNleftAttachment = XmATTACH_POSITION;
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNbottomAttachment = XmATTACH_FORM;
+            XmNbottomOffset = 20;
+            XmNleftPosition = 15;
+            XmNtopWidget = XmScrolledWindow pf_comments_scroll_window;
+            XmNtopOffset = 15;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNactivateCallback = procedures
+                {
+                };
+            };
+        };
+    pf_commt_apply_pb: XmPushButton 
+        {
+        arguments
+            {
+            arguments std_pushbutton;
+            XmNlabelString = compound_string("Apply");
+            XmNleftAttachment = XmATTACH_POSITION;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopWidget = XmPushButton pf_commt_reset_pb;
+            XmNalignment = XmALIGNMENT_CENTER;
+            XmNleftPosition = 45;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNactivateCallback = procedures
+                {
+                send_descrip_to_pf(0);
+                };
+            };
+        };
+    pf_commt_close_pb: XmPushButton 
+        {
+        arguments
+            {
+            arguments close_pushbutton_list;
+            XmNleftAttachment = XmATTACH_POSITION;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopWidget = XmPushButton pf_commt_apply_pb;
+            XmNleftPosition = 75;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNactivateCallback = procedures
+                {
+                };
+            };
+        };
+    pf_case_descrip_label: XmLabel 
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Description");
+            XmNleftAttachment = XmATTACH_WIDGET;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNleftOffset = 22;
+            XmNleftWidget = XmTextField pf_case_id_text;
+            XmNtopWidget = XmLabel pf_case_id_label;
+            XmNbackgroundPixmap = weave;
+            };
+        };
+    pf_case_descrip_text: XmTextField 
+        {
+        arguments
+            {
+            arguments text_list_20_max;
+            XmNleftAttachment = XmATTACH_WIDGET;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNleftWidget = XmLabel pf_case_descrip_label;
+            XmNtopWidget = XmLabel pf_case_descrip_label;
+            XmNleftOffset = 100;
+            XmNrightAttachment = XmATTACH_FORM;
+            XmNrightOffset = 200;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    pf_header_3_text: XmTextField 
+        {
+        arguments
+            {
+            arguments text_no_length;
+            XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNtopWidget = XmTextField pf_header_2_text;
+            XmNleftWidget = XmTextField pf_header_2_text;
+            XmNrightAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNrightWidget = XmTextField pf_header_2_text;
+            XmNcolumns = 120;
+            XmNmaxLength = 130;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    pf_comments_scroll_window: XmScrolledWindow 
+        {
+        arguments
+            {
+            XmNborderWidth = 2;
+            XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNscrollBarPlacement = XmBOTTOM_RIGHT;
+            XmNtopWidget = XmLabel pf_comments_label;
+            XmNleftWidget = XmLabel pf_comments_label;
+            XmNtopOffset = 10;
+            XmNrightAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNrightWidget = XmTextField pf_case_descrip_text;
+            };
+        controls
+            {
+            XmText pf_comments_text;
+            };
+        };
+    pf_comments_text: XmText 
+        {
+        arguments
+            {
+            XmNcolumns = 80;
+            XmNeditMode = XmMULTI_LINE_EDIT;
+            XmNrows = 8;
+            XmNwidth = 600;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };

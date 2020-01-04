@@ -1,0 +1,1487 @@
+value
+    bus_colors: color_table(background color = ' ',
+                    foreground color = '*',
+                    window_background_color = 'c',
+                    gray = 'b',
+                    color('red') = 'a');
+ 
+procedure
+!***VUIT_no_Generate***
+!***VUIT_Action UserProc set_bus_icon ***
+ 
+    set_bus_icon;
+!***VUIT_Action Manage bus_shapes_dialog ***
+ 
+    manage_bus_icon_form;
+ 
+object
+    main_bus_icon_form: XmForm
+        {
+        arguments
+            {
+            XmNwidth = 103;
+            XmNheight = 105;
+            XmNborderWidth = 1;
+            XmNleftAttachment = XmATTACH_WIDGET;
+            XmNtopAttachment = XmATTACH_FORM;
+            XmNleftWidget = XmTextField status_change_file_text;
+            XmNleftOffset = 120;
+            XmNtopWidget = XmTextField status_change_file_text;
+            XmNtopOffset = 4;
+            XmNrightAttachment = XmATTACH_FORM;
+            XmNrightOffset = 5;
+            };
+        controls
+            {
+            XmPushButtonGadget bus_norm_pb;
+            XmPushButtonGadget bus_norm_cap_reac_pb;
+            XmLabelGadget legend_nogen_label;
+            XmLabelGadget legend_gen_label;
+            XmPushButtonGadget bus_norm_cap_pb;
+            XmPushButtonGadget bus_norm_reac_pb;
+            XmLabelGadget bus_gen_cap_label;
+            XmPushButtonGadget bus_gen_pb;
+            XmPushButtonGadget bus_gen_cap_pb;
+            XmPushButtonGadget bus_gen_reac_pb;
+            XmPushButtonGadget bus_gen_cap_reac_pb;
+            XmLabelGadget bus_gen_reac_label;
+            XmLabelGadget bus_gen_both_label;
+            XmPushButtonGadget pt_pb;
+            XmPushButtonGadget pt1_pb;
+            XmPushButtonGadget undisplayed_bus_icon;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    legend_nogen_label: XmLabelGadget
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("NoGen");
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNtopAttachment = XmATTACH_FORM;
+            };
+        };
+    legend_gen_label: XmLabelGadget
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Gen");
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNleftWidget = XmLabelGadget legend_nogen_label;
+            XmNtopWidget = XmLabelGadget legend_nogen_label;
+            XmNrightAttachment = XmATTACH_FORM;
+            XmNrightOffset = 5;
+            };
+        };
+    bus_norm_pb: XmPushButtonGadget
+        {
+        arguments
+            {
+            XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNleftOffset = 10;
+            XmNarmPixmap = icon( color_table = bus_colors,
+                '  *******  ',
+                ' ********* ',
+                '***     ***',
+                '**       **',
+                '**       **',
+                '**       **',
+                '**       **',
+                '**       **',
+                '***     ***',
+                ' ********* ',
+                '  *******  ');
+            XmNlabelType = XmPIXMAP;
+            XmNtopWidget = XmLabelGadget legend_nogen_label;
+            XmNleftWidget = XmLabelGadget legend_nogen_label;
+            XmNshadowThickness = 0;
+            XmNheight = 20;
+            XmNwidth = 20;
+            XmNrightAttachment = XmATTACH_SELF;
+            XmNtopOffset = 0;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    bus_gen_pb: XmPushButtonGadget
+        {
+        arguments
+            {
+            XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNarmPixmap = icon(color_table = bus_colors,
+                '   aaaaa   ',
+                '  aaaaaaa  ',
+                ' aa     aa ',
+                'aa       aa',
+                'aa       aa',
+                'aa       aa',
+                'aa       aa',
+                'aa       aa',
+                ' aa     aa ',
+                '  aaaaaaa  ',
+                '   aaaaa   ');
+            XmNlabelType = XmPIXMAP;
+            XmNtopWidget = XmPushButtonGadget bus_norm_pb;
+            XmNleftWidget = XmLabelGadget legend_gen_label;
+            XmNleftOffset = 5;
+            XmNshadowThickness = 0;
+            XmNwidth = 21;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    bus_norm_cap_pb: XmPushButtonGadget
+        {
+        arguments
+            {
+            XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNarmPixmap = icon(color_table = bus_colors,
+                '  *******  ',
+                ' ********* ',
+                '**   *   **',
+                '**   *   **',
+                '**   *   **',
+                '***********',
+                '**   *   **',
+                '**   *   **',
+                '**   *   **',
+                ' ********* ',
+                '  *******  ');
+            XmNlabelType = XmPIXMAP;
+            XmNleftWidget = XmPushButtonGadget bus_norm_pb;
+            XmNtopWidget = XmPushButtonGadget bus_norm_pb;
+            XmNshadowThickness = 0;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    bus_gen_cap_label: XmLabelGadget
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Cap");
+            XmNleftAttachment = XmATTACH_WIDGET;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopWidget = XmPushButtonGadget bus_norm_cap_pb;
+            XmNleftWidget = XmPushButtonGadget bus_norm_cap_pb;
+            XmNleftOffset = 3;
+            };
+        };
+    bus_gen_cap_pb: XmPushButtonGadget
+        {
+        arguments
+            {
+            XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNarmPixmap = icon(color_table = bus_colors,
+                '   aaaaa   ',
+                '  aaaaaaa  ',
+                ' aa  *  aa ',
+                'aa   *   aa',
+                'aa   *   aa',
+                'aa*******aa',
+                'aa   *   aa',
+                'aa   *   aa',
+                ' aa  *  aa ',
+                '  aaaaaaa  ',
+                '   aaaaa   ');
+            XmNlabelType = XmPIXMAP;
+            XmNleftWidget = XmPushButtonGadget bus_gen_pb;
+            XmNtopWidget = XmPushButtonGadget bus_gen_pb;
+            XmNshadowThickness = 0;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    bus_norm_reac_pb: XmPushButtonGadget
+        {
+        arguments
+            {
+            XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNarmPixmap = icon(color_table = bus_colors,
+                '  *******  ',
+                ' ********* ',
+                '**       **',
+                '**       **',
+                '***********',
+                '***********',
+                '**       **',
+                '**       **',
+                '**       **',
+                ' ********* ',
+                '  *******  ');
+            XmNlabelType = XmPIXMAP;
+            XmNleftWidget = XmPushButtonGadget bus_norm_cap_pb;
+            XmNtopWidget = XmPushButtonGadget bus_norm_cap_pb;
+            XmNshadowThickness = 0;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    bus_gen_reac_label: XmLabelGadget
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Reac");
+            XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopWidget = XmPushButtonGadget bus_norm_reac_pb;
+            XmNleftWidget = XmLabelGadget bus_gen_cap_label;
+            XmNtopOffset = -3;
+            };
+        };
+    bus_gen_reac_pb: XmPushButtonGadget
+        {
+        arguments
+            {
+            XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNarmPixmap = icon(color_table = bus_colors,
+                '   aaaaa   ',
+                '  aaaaaaa  ',
+                ' aa     aa ',
+                'aa       aa',
+                'aa*******aa',
+                'aa*******aa',
+                'aa       aa',
+                'aa       aa',
+                ' aa     aa ',
+                '  aaaaaaa  ',
+                '   aaaaa   ');
+            XmNlabelType = XmPIXMAP;
+            XmNleftWidget = XmPushButtonGadget bus_gen_cap_pb;
+            XmNtopWidget = XmPushButtonGadget bus_gen_cap_pb;
+            XmNshadowThickness = 0;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    bus_norm_cap_reac_pb: XmPushButtonGadget
+        {
+        arguments
+            {
+            XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNarmPixmap = icon(color_table = bus_colors,
+                '  *******  ',
+                ' ********* ',
+                '**       **',
+                '** ** ** **',
+                '** ***** **',
+                '**  ***  **',
+                '** ***** **',
+                '** ** ** **',
+                '**       **',
+                ' ********* ',
+                '  *******  ');
+            XmNlabelType = XmPIXMAP;
+            XmNborderWidth = 0;
+            XmNleftWidget = XmPushButtonGadget bus_norm_reac_pb;
+            XmNtopWidget = XmPushButtonGadget bus_norm_reac_pb;
+            XmNshadowThickness = 0;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    bus_gen_both_label: XmLabelGadget
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Both");
+            XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopWidget = XmPushButtonGadget bus_norm_cap_reac_pb;
+            XmNleftWidget = XmLabelGadget bus_gen_reac_label;
+            XmNtopOffset = -3;
+            };
+        };
+    bus_gen_cap_reac_pb: XmPushButtonGadget
+        {
+        arguments
+            {
+            XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNarmPixmap = icon(color_table = bus_colors,
+                '  aaaaaaa  ',
+                ' aaaaaaaaa ',
+                'aa       aa',
+                'aa ** ** aa',
+                'aa ***** aa',
+                'aa  ***  aa',
+                'aa ***** aa',
+                'aa ** ** aa',
+                'aa       aa',
+                ' aaaaaaaaa ',
+                '  aaaaaaa  ');
+            XmNlabelType = XmPIXMAP;
+            XmNleftWidget = XmPushButtonGadget bus_gen_reac_pb;
+            XmNtopWidget = XmPushButtonGadget bus_norm_cap_reac_pb;
+            XmNshadowThickness = 0;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    pt_pb: XmPushButtonGadget
+        {
+        arguments
+            {
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNleftOffset = 95;
+            XmNtopAttachment = XmATTACH_FORM;
+            XmNtopOffset = 95;
+            XmNarmPixmap = icon(color_table = bus_colors,
+                ' bbb ',
+                'bbbbb',
+                'bbbbb',
+                'bbbbb',
+                ' bbb ');
+            XmNshadowThickness = 0;
+            XmNhighlightThickness = 0;
+            XmNmarginWidth = 0;
+            XmNwidth = 5;
+            XmNheight = 5;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    pt1_pb: XmPushButtonGadget
+        {
+        arguments
+            {
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNleftOffset = 96;
+            XmNtopAttachment = XmATTACH_FORM;
+            XmNtopOffset = 96;
+            XmNheight = 3;
+            XmNshadowThickness = 0;
+            XmNwidth = 3;
+            XmNhighlightThickness = 0;
+            XmNmarginWidth = 0;
+            XmNarmPixmap = icon(color_table = bus_colors,
+                '***',
+                '***',
+                '***');
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    undisplayed_bus_icon: XmPushButtonGadget
+        {
+        arguments
+            {
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNleftOffset = 95;
+            XmNtopAttachment = XmATTACH_FORM;
+            XmNtopOffset = 96;
+            XmNshadowThickness = 0;
+            XmNarmPixmap = icon(color_table = bus_colors,
+                '     ',
+                '     ',
+                '  *  ',
+                '     ',
+                '     ');
+            XmNmarginWidth = 0;
+            XmNheight = 5;
+            XmNwidth = 5;
+            };
+        callbacks
+            {
+            XmNarmCallback = procedures
+                {
+                };
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    bus_med_circle: XmPushButtonGadget
+        {
+        arguments
+            {
+            XmNleftAttachment = XmATTACH_POSITION;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNleftOffset = 0;
+            XmNlabelType = XmPIXMAP;
+            XmNtopWidget = XmPushButtonGadget bus_small_circle;
+            XmNleftWidget = XmLabelGadget legend_nogen_label;
+            XmNshadowThickness = 0;
+            XmNheight = 20;
+            XmNwidth = 20;
+            XmNtopOffset = -4;
+            XmNleftPosition = 40;
+            XmNlabelPixmap = icon( color_table = bus_colors,
+                'cc*******cc',
+                'c**bbbbb**c',
+                '**bbbbbbb**',
+                '*bbbbbbbbb*',
+                '*bbbbbbbbb*',
+                '*bbbbbbbbb*',
+                '*bbbbbbbbb*',
+                '*bbbbbbbbb*',
+                '**bbbbbbb**',
+                'c**bbbbb**c',
+                'cc*******cc');
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNactivateCallback = procedures
+                {
+                set_bus_icon("MCN");
+                };
+            };
+        };
+    bus_large_circle: XmPushButtonGadget
+        {
+        arguments
+            {
+            XmNleftAttachment = XmATTACH_POSITION;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNleftOffset = 0;
+            XmNtopWidget = XmPushButtonGadget bus_small_circle;
+            XmNleftWidget = XmLabelGadget legend_nogen_label;
+            XmNshadowThickness = 0;
+            XmNheight = 27;
+            XmNwidth = 27;
+            XmNarmPixmap = icon(color_table = bus_colors,
+                'cccccc*********cccccc',
+                'cccc*************cccc',
+                'ccc***bbbbbbbbb***ccc',
+                'cc***bbbbbbbbbbb***cc',
+                'c***bbbbbbbbbbbbb***c',
+                'c**bbbbbbbbbbbbbbb**c',
+                '**bbbbbbbbbbbbbbbbb**',
+                '**bbbbbbbbbbbbbbbbb**',
+                '**bbbbbbbbbbbbbbbbb**',
+                '**bbbbbbbbbbbbbbbbb**',
+                '**bbbbbbbbbbbbbbbbb**',
+                '**bbbbbbbbbbbbbbbbb**',
+                '**bbbbbbbbbbbbbbbbb**',
+                '**bbbbbbbbbbbbbbbbb**',
+                '**bbbbbbbbbbbbbbbbb**',
+                'c**bbbbbbbbbbbbbbb**c',
+                'c***bbbbbbbbbbbbb***c',
+                'cc***bbbbbbbbbbb***cc',
+                'ccc***bbbbbbbbb***ccc',
+                'cccc*************cccc',
+                'cccccc*********cccccc');
+            XmNtopOffset = -7;
+            XmNleftPosition = 70;
+            XmNlabelType = XmPIXMAP;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNactivateCallback = procedures
+                {
+                set_bus_icon("LCN");
+                };
+            };
+        };
+    bus_small_circle: XmPushButtonGadget
+        {
+        arguments
+            {
+            XmNleftAttachment = XmATTACH_POSITION;
+            XmNtopAttachment = XmATTACH_POSITION;
+            XmNarmPixmap = icon(color_table = bus_colors,
+                'c***c',
+                '*bbb*',
+                '*bbb*',
+                '*bbb*',
+                'c***c');
+            XmNlabelType = XmPIXMAP;
+            XmNtopWidget = XmLabelGadget legend_nogen_label;
+            XmNleftWidget = XmLabelGadget legend_nogen_label;
+            XmNshadowThickness = 0;
+            XmNheight = 10;
+            XmNwidth = 10;
+            XmNleftPosition = 15;
+            XmNtopPosition = 15;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNactivateCallback = procedures
+                {
+                set_bus_icon("SCN");
+                };
+            };
+        };
+    bus_large_circle_blk: XmPushButtonGadget
+        {
+        arguments
+            {
+            XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNlabelType = XmPIXMAP;
+            XmNtopWidget = XmPushButtonGadget bus_small_circle_blk;
+            XmNleftWidget = XmPushButtonGadget bus_large_circle;
+            XmNshadowThickness = 0;
+            XmNheight = 27;
+            XmNwidth = 27;
+            XmNarmPixmap = icon(color_table = bus_colors,
+                'cccccc*********cccccc',
+                'cccc*************cccc',
+                'ccc***************ccc',
+                'cc*****************cc',
+                'c*******************c',
+                'c*******************c',
+                '*********************',
+                '*********************',
+                '*********************',
+                '*********************',
+                '*********************',
+                '*********************',
+                '*********************',
+                '*********************',
+                '*********************',
+                'c*******************c',
+                'c*******************c',
+                'cc*****************cc',
+                'ccc***************ccc',
+                'cccc*************cccc',
+                'cccccc*********cccccc');
+            XmNtopOffset = -7;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNactivateCallback = procedures
+                {
+                set_bus_icon("LCB");
+                };
+            };
+        };
+    bus_med_circle_blk: XmPushButtonGadget
+        {
+        arguments
+            {
+            XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNleftOffset = 0;
+            XmNarmPixmap = icon(color_table = bus_colors,
+                'cc*******cc',
+                'c*********c',
+                '***********',
+                '***********',
+                '***********',
+                '***********',
+                '***********',
+                '***********',
+                '***********',
+                'c*********c',
+                'cc*******cc');
+            XmNlabelType = XmPIXMAP;
+            XmNtopWidget = XmPushButtonGadget bus_small_circle_blk;
+            XmNleftWidget = XmPushButtonGadget bus_med_circle;
+            XmNshadowThickness = 0;
+            XmNheight = 20;
+            XmNwidth = 20;
+            XmNtopOffset = -4;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNactivateCallback = procedures
+                {
+                set_bus_icon("MCB");
+                };
+            };
+        };
+    bus_small_circle_blk: XmPushButtonGadget
+        {
+        arguments
+            {
+            XmNleftAttachment = XmATTACH_POSITION;
+            XmNtopAttachment = XmATTACH_POSITION;
+            XmNleftOffset = 0;
+            XmNarmPixmap = icon(color_table = bus_colors,
+                'c***c',
+                '*****',
+                '*****',
+                '*****',
+                'c***c');
+            XmNlabelType = XmPIXMAP;
+            XmNtopWidget = XmLabelGadget legend_nogen_label;
+            XmNleftWidget = XmLabelGadget legend_nogen_label;
+            XmNshadowThickness = 0;
+            XmNheight = 10;
+            XmNwidth = 10;
+            XmNleftPosition = 15;
+            XmNtopPosition = 27;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNactivateCallback = procedures
+                {
+                set_bus_icon("SCB");
+                };
+            };
+        };
+    bus_med_square: XmPushButtonGadget
+        {
+        arguments
+            {
+            XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNleftOffset = 0;
+            XmNarmPixmap = icon(color_table = bus_colors,
+                'c*********c',
+                '***********',
+                '**bbbbbbb**',
+                '**bbbbbbb**',
+                '**bbbbbbb**',
+                '**bbbbbbb**',
+                '**bbbbbbb**',
+                '**bbbbbbb**',
+                '**bbbbbbb**',
+                '***********',
+                'c*********c');
+            XmNlabelType = XmPIXMAP;
+            XmNtopWidget = XmPushButtonGadget bus_small_square;
+            XmNleftWidget = XmPushButtonGadget bus_med_circle;
+            XmNshadowThickness = 0;
+            XmNheight = 20;
+            XmNwidth = 20;
+            XmNtopOffset = -4;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNactivateCallback = procedures
+                {
+                set_bus_icon("MSN");
+                };
+            };
+        };
+    bus_large_square: XmPushButtonGadget
+        {
+        arguments
+            {
+            XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNlabelType = XmPIXMAP;
+            XmNtopWidget = XmPushButtonGadget bus_small_square;
+            XmNleftWidget = XmPushButtonGadget bus_large_circle;
+            XmNshadowThickness = 0;
+            XmNheight = 27;
+            XmNwidth = 27;
+            XmNarmPixmap = icon(color_table = bus_colors,
+                'c*******************c',
+                '*********************',
+                '***bbbbbbbbbbbbbbb***',
+                '**bbbbbbbbbbbbbbbbb**',
+                '**bbbbbbbbbbbbbbbbb**',
+                '**bbbbbbbbbbbbbbbbb**',
+                '**bbbbbbbbbbbbbbbbb**',
+                '**bbbbbbbbbbbbbbbbb**',
+                '**bbbbbbbbbbbbbbbbb**',
+                '**bbbbbbbbbbbbbbbbb**',
+                '**bbbbbbbbbbbbbbbbb**',
+                '**bbbbbbbbbbbbbbbbb**',
+                '**bbbbbbbbbbbbbbbbb**',
+                '**bbbbbbbbbbbbbbbbb**',
+                '**bbbbbbbbbbbbbbbbb**',
+                '**bbbbbbbbbbbbbbbbb**',
+                '**bbbbbbbbbbbbbbbbb**',
+                '**bbbbbbbbbbbbbbbbb**',
+                '***bbbbbbbbbbbbbbb***',
+                '*********************',
+                'c*******************c');
+            XmNtopOffset = -7;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNactivateCallback = procedures
+                {
+                set_bus_icon("LSN");
+                };
+            };
+        };
+    bus_small_square: XmPushButtonGadget
+        {
+        arguments
+            {
+            XmNleftAttachment = XmATTACH_POSITION;
+            XmNtopAttachment = XmATTACH_POSITION;
+            XmNleftOffset = 0;
+            XmNarmPixmap = icon(color_table = bus_colors,
+                '*****',
+                '*bbb*',
+                '*bbb*',
+                '*bbb*',
+                '*****');
+            XmNlabelType = XmPIXMAP;
+            XmNtopWidget = XmLabelGadget legend_nogen_label;
+            XmNleftWidget = XmLabelGadget legend_nogen_label;
+            XmNshadowThickness = 0;
+            XmNheight = 10;
+            XmNwidth = 10;
+            XmNleftPosition = 15;
+            XmNtopPosition = 39;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNactivateCallback = procedures
+                {
+                set_bus_icon("SSN");
+                };
+            };
+        };
+    bus_large_square_blk: XmPushButtonGadget
+        {
+        arguments
+            {
+            XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNlabelType = XmPIXMAP;
+            XmNtopWidget = XmPushButtonGadget bus_small_square_blk;
+            XmNleftWidget = XmPushButtonGadget bus_large_circle;
+            XmNshadowThickness = 0;
+            XmNheight = 27;
+            XmNwidth = 27;
+            XmNarmPixmap = icon(color_table = bus_colors,
+                ' ******************* ',
+                '*********************',
+                '*********************',
+                '*********************',
+                '*********************',
+                '*********************',
+                '*********************',
+                '*********************',
+                '*********************',
+                '*********************',
+                '*********************',
+                '*********************',
+                '*********************',
+                '*********************',
+                '*********************',
+                '*********************',
+                '*********************',
+                '*********************',
+                '*********************',
+                '*********************',
+                ' ******************* ');
+            XmNtopOffset = -7;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNactivateCallback = procedures
+                {
+                set_bus_icon("LSB");
+                };
+            };
+        };
+    bus_med_square_blk: XmPushButtonGadget
+        {
+        arguments
+            {
+            XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNarmPixmap = icon(color_table = bus_colors,
+                ' ********* ',
+                '***********',
+                '***********',
+                '***********',
+                '***********',
+                '***********',
+                '***********',
+                '***********',
+                '***********',
+                '***********',
+                ' ********* ');
+            XmNlabelType = XmPIXMAP;
+            XmNtopWidget = XmPushButtonGadget bus_small_square_blk;
+            XmNleftWidget = XmPushButtonGadget bus_med_circle;
+            XmNshadowThickness = 0;
+            XmNheight = 20;
+            XmNwidth = 20;
+            XmNtopOffset = -4;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNactivateCallback = procedures
+                {
+                set_bus_icon("MSB");
+                };
+            };
+        };
+    bus_small_square_blk: XmPushButtonGadget
+        {
+        arguments
+            {
+            XmNleftAttachment = XmATTACH_POSITION;
+            XmNtopAttachment = XmATTACH_POSITION;
+            XmNleftOffset = 0;
+            XmNarmPixmap = icon(color_table = bus_colors,
+                '*****',
+                '*****',
+                '*****',
+                '*****',
+                '*****');
+            XmNlabelType = XmPIXMAP;
+            XmNtopWidget = XmLabelGadget legend_nogen_label;
+            XmNleftWidget = XmLabelGadget legend_nogen_label;
+            XmNshadowThickness = 0;
+            XmNheight = 10;
+            XmNwidth = 10;
+            XmNleftPosition = 15;
+            XmNtopPosition = 51;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNactivateCallback = procedures
+                {
+                set_bus_icon("SSB");
+                };
+            };
+        };
+!***VUIT_Manage false ***
+    bus_shapes_dialog: XmFormDialog
+        {
+        arguments
+            {
+            XmNwidth = 214;
+            XmNheight = 370;
+            XmNborderWidth = 1;
+            XmNdialogTitle = compound_string("Bus  Shape  Menu");
+            };
+        controls
+            {
+            XmLabelGadget
+                {
+                arguments
+                    {
+                    XmNlabelString = compound_string("Click on desired Bus shape");
+                    XmNleftAttachment = XmATTACH_FORM;
+                    XmNtopAttachment = XmATTACH_FORM;
+                    XmNrightAttachment = XmATTACH_FORM;
+                    };
+                };
+            XmPushButtonGadget bus_med_circle;
+            XmPushButtonGadget bus_large_circle;
+            XmPushButtonGadget bus_small_circle;
+            XmPushButtonGadget bus_large_circle_blk;
+            XmPushButtonGadget bus_med_circle_blk;
+            XmPushButtonGadget bus_small_circle_blk;
+            XmPushButtonGadget bus_med_square;
+            XmPushButtonGadget bus_large_square;
+            XmPushButtonGadget bus_small_square;
+            XmPushButtonGadget bus_large_square_blk;
+            XmPushButtonGadget bus_med_square_blk;
+            XmPushButtonGadget bus_small_square_blk;
+            XmPushButtonGadget bus_small_bar;
+            XmPushButtonGadget bus_medium_bar;
+            XmPushButtonGadget bus_large_bar;
+            XmPushButtonGadget bus_small_bar_blk;
+            XmPushButtonGadget bus_med_bar_blk;
+            XmPushButtonGadget bus_large_bar_blk;
+            XmPushButtonGadget bus_rect_round;
+            XmPushButtonGadget bus_rect_square;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    bus_small_bar: XmPushButtonGadget
+        {
+        arguments
+            {
+            XmNleftAttachment = XmATTACH_POSITION;
+            XmNtopAttachment = XmATTACH_POSITION;
+            XmNleftOffset = -5;
+            XmNarmPixmap = icon(color_table = bus_colors,
+                '***************',
+                '*             *',
+                '***************');
+            XmNlabelType = XmPIXMAP;
+            XmNtopWidget = XmLabelGadget legend_nogen_label;
+            XmNleftWidget = XmLabelGadget legend_nogen_label;
+            XmNshadowThickness = 0;
+            XmNheight = 7;
+            XmNwidth = 19;
+            XmNleftPosition = 15;
+            XmNtopPosition = 63;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNactivateCallback = procedures
+                {
+                set_bus_icon("SBN");
+                };
+            };
+        };
+    bus_medium_bar: XmPushButtonGadget
+        {
+        arguments
+            {
+            XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNleftOffset = -10;
+            XmNarmPixmap = icon(color_table = bus_colors,
+                ' **************************** ',
+                '******************************',
+                '**                          **',
+                '******************************',
+                ' **************************** ');
+            XmNlabelType = XmPIXMAP;
+            XmNtopWidget = XmPushButtonGadget bus_small_bar;
+            XmNleftWidget = XmPushButtonGadget bus_med_circle;
+            XmNshadowThickness = 0;
+            XmNheight = 9;
+            XmNwidth = 40;
+            XmNtopOffset = -1;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNactivateCallback = procedures
+                {
+                set_bus_icon("MBN");
+                };
+            };
+        };
+    bus_large_bar: XmPushButtonGadget
+        {
+        arguments
+            {
+            XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNleftOffset = -10;
+            XmNlabelType = XmPIXMAP;
+            XmNtopWidget = XmPushButtonGadget bus_small_bar;
+            XmNleftWidget = XmPushButtonGadget bus_large_circle;
+            XmNshadowThickness = 0;
+            XmNheight = 11;
+            XmNwidth = 50;
+            XmNarmPixmap = icon(color_table = bus_colors,
+                'c**************************************c',
+                '****************************************',
+                '**bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb**',
+                '**bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb**',
+                '**bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb**',
+                '****************************************',
+                'c**************************************c');
+            XmNtopOffset = -2;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNactivateCallback = procedures
+                {
+                set_bus_icon("LBN");
+                };
+            };
+        };
+    bus_small_bar_blk: XmPushButtonGadget
+        {
+        arguments
+            {
+            XmNleftAttachment = XmATTACH_POSITION;
+            XmNtopAttachment = XmATTACH_POSITION;
+            XmNleftOffset = -5;
+            XmNarmPixmap = icon(color_table = bus_colors,
+                '********************',
+                '********************',
+                '********************');
+            XmNlabelType = XmPIXMAP;
+            XmNtopWidget = XmLabelGadget legend_nogen_label;
+            XmNleftWidget = XmLabelGadget legend_nogen_label;
+            XmNshadowThickness = 0;
+            XmNheight = 7;
+            XmNwidth = 19;
+            XmNleftPosition = 15;
+            XmNtopPosition = 75;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNactivateCallback = procedures
+                {
+                set_bus_icon("SBB");
+                };
+            };
+        };
+    bus_med_bar_blk: XmPushButtonGadget
+        {
+        arguments
+            {
+            XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNleftOffset = -10;
+            XmNarmPixmap = icon(color_table = bus_colors,
+                '******************************',
+                '******************************',
+                '******************************',
+                '******************************',
+                '******************************');
+            XmNlabelType = XmPIXMAP;
+            XmNtopWidget = XmPushButtonGadget bus_small_bar_blk;
+            XmNleftWidget = XmPushButtonGadget bus_med_circle;
+            XmNshadowThickness = 0;
+            XmNheight = 9;
+            XmNwidth = 40;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNactivateCallback = procedures
+                {
+                set_bus_icon("MBB");
+                };
+            };
+        };
+    bus_large_bar_blk: XmPushButtonGadget
+        {
+        arguments
+            {
+            XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNleftOffset = -10;
+            XmNlabelType = XmPIXMAP;
+            XmNtopWidget = XmPushButtonGadget bus_small_bar_blk;
+            XmNleftWidget = XmPushButtonGadget bus_large_circle;
+            XmNshadowThickness = 0;
+            XmNheight = 11;
+            XmNwidth = 50;
+            XmNarmPixmap = icon(color_table = bus_colors,
+                '****************************************',
+                '****************************************',
+                '****************************************',
+                '****************************************',
+                '****************************************',
+                '****************************************',
+                '****************************************');
+            XmNtopOffset = -1;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNactivateCallback = procedures
+                {
+                set_bus_icon("LBB");
+                };
+            };
+        };
+    bus_rect_round: XmPushButtonGadget
+        {
+        arguments
+            {
+            XmNleftAttachment = XmATTACH_POSITION;
+            XmNtopAttachment = XmATTACH_POSITION;
+            XmNlabelType = XmPIXMAP;
+            XmNtopWidget = XmLabelGadget legend_nogen_label;
+            XmNleftWidget = XmLabelGadget legend_nogen_label;
+            XmNshadowThickness = 0;
+            XmNheight = 27;
+            XmNwidth = 60;
+            XmNarmPixmap = icon(color_table = bus_colors,
+                'cccccc***************************************cccccc',
+                'cccc*******************************************cccc',
+                'ccc***bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb***ccc',
+                'cc***bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb***cc',
+                'c***bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb***c',
+                'c**bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb**c',
+                '**bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb**',
+                '**bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb**',
+                '**bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb**',
+                '**bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb**',
+                '**bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb**',
+                '**bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb**',
+                '**bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb**',
+                '**bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb**',
+                '**bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb**',
+                'c**bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb**c',
+                'c***bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb***c',
+                'cc***bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb***cc',
+                'ccc***bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb***ccc',
+                'cccc*******************************************cccc',
+                'cccccc***************************************cccccc');
+            XmNtopPosition = 85;
+            XmNleftPosition = 15;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNactivateCallback = procedures
+                {
+                set_bus_icon("LRR");
+                };
+            };
+        };
+    bus_rect_square: XmPushButtonGadget
+        {
+        arguments
+            {
+            XmNleftAttachment = XmATTACH_POSITION;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNlabelType = XmPIXMAP;
+            XmNtopWidget = XmPushButtonGadget bus_rect_round;
+            XmNleftWidget = XmLabelGadget legend_nogen_label;
+            XmNshadowThickness = 0;
+            XmNheight = 27;
+            XmNwidth = 60;
+            XmNarmPixmap = icon(color_table = bus_colors,
+                '***************************************************',
+                '***************************************************',
+                '**bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb**',
+                '**bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb**',
+                '**bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb**',
+                '**bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb**',
+                '**bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb**',
+                '**bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb**',
+                '**bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb**',
+                '**bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb**',
+                '**bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb**',
+                '**bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb**',
+                '**bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb**',
+                '**bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb**',
+                '**bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb**',
+                '**bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb**',
+                '**bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb**',
+                '**bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb**',
+                '**bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb**',
+                '***************************************************',
+                '***************************************************');
+            XmNleftPosition = 60;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNactivateCallback = procedures
+                {
+                set_bus_icon("LRS");
+                };
+            };
+        };
+    bus_legend_label: XmLabelGadget
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Legend");
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNtopAttachment = XmATTACH_FORM;
+            XmNrightAttachment = XmATTACH_FORM;
+            };
+        };
+    bus_legend_bus_lbl: XmLabelGadget
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Bus");
+            XmNleftAttachment = XmATTACH_WIDGET;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopWidget = XmPushButtonGadget bus_legend_bus_pixmap;
+            XmNleftWidget = XmPushButtonGadget bus_legend_bus_pixmap;
+            XmNrightAttachment = XmATTACH_FORM;
+            XmNtopOffset = -4;
+            };
+        };
+    bus_legend_cap_lbl: XmLabelGadget
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Capacitor");
+            XmNleftAttachment = XmATTACH_WIDGET;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopWidget = XmPushButtonGadget bus_legend_cap_pixmap;
+            XmNleftWidget = XmPushButtonGadget bus_legend_cap_pixmap;
+            XmNrightAttachment = XmATTACH_FORM;
+            XmNtopOffset = -2;
+            };
+        };
+    bus_legend_bus_pixmap: XmPushButtonGadget
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Label");
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNleftOffset = 5;
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNlabelType = XmPIXMAP;
+            XmNtopWidget = XmLabelGadget bus_legend_label;
+            XmNtopOffset = 2;
+            XmNarmPixmap = icon(color_table = bus_colors,
+                'cc*******cc',
+                'c**bbbbb**c',
+                '**bbbbbbb**',
+                '*bbbbbbbbb*',
+                '*bbbbbbbbb*',
+                '*bbbbbbbbb*',
+                '*bbbbbbbbb*',
+                '*bbbbbbbbb*',
+                '**bbbbbbb**',
+                'c**bbbbb**c',
+                'cc*******cc');
+            XmNshadowThickness = 1;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNactivateCallback = procedures
+                {
+                manage_bus_icon_form(0);
+                };
+            };
+        };
+    bus_legend_cap_pixmap: XmPushButtonGadget
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Label");
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNleftOffset = 6;
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNtopOffset = 2;
+            XmNtopWidget = XmPushButtonGadget bus_legend_gen_pixmap;
+            XmNlabelType = XmPIXMAP;
+            XmNshadowThickness = 0;
+            XmNarmPixmap = icon(color_table = bus_colors,
+                'ccccc*ccccc',
+                'ccccc*ccccc',
+                'ccccc*ccccc',
+                'cc*******cc',
+                'cc*******cc',
+                'ccccccccccc',
+                'cc*******cc',
+                'cc*******cc',
+                'ccccc*ccccc',
+                'ccccc*ccccc',
+                'ccccc*ccccc');
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    bus_legend_react_pixmap: XmPushButtonGadget
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Label");
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNleftOffset = 7;
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNlabelType = XmPIXMAP;
+            XmNtopWidget = XmPushButtonGadget bus_legend_cap_pixmap;
+            XmNtopOffset = 0;
+            XmNarmPixmap = icon(color_table = bus_colors,
+                'ccc*ccccc',
+                'ccc*ccccc',
+                'ccc****cc',
+                'ccccccc*c',
+                'cccccccc*',
+                'c******c*',
+                '*cccccc*c',
+                '*cccccc*c',
+                'c******c*',
+                'cccccccc*',
+                'c******c*',
+                '*cccccc*c',
+                '*cccccc*c',
+                'c******c*',
+                'cccccccc*',
+                'c******c*',
+                '*cccccc*c',
+                '*cccccc*c',
+                'c******c*',
+                'cccccccc*',
+                'ccccccc*c',
+                'ccc****cc',
+                'ccc*ccccc',
+                'ccc*ccccc');
+            XmNshadowThickness = 0;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    bus_legend_react_lbl: XmLabelGadget
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Reactor");
+            XmNleftAttachment = XmATTACH_WIDGET;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopWidget = XmPushButtonGadget bus_legend_react_pixmap;
+            XmNleftWidget = XmPushButtonGadget bus_legend_react_pixmap;
+            XmNrightAttachment = XmATTACH_FORM;
+            XmNtopOffset = 2;
+            };
+        };
+    bus_legend_gen_pixmap: XmPushButtonGadget
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Label");
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNleftOffset = 6;
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNtopOffset = 4;
+            XmNtopWidget = XmPushButtonGadget bus_legend_bus_pixmap;
+            XmNshadowThickness = 0;
+            XmNarmPixmap = icon(color_table = bus_colors,
+                'cccaaaaaccc',
+                'ccacccccacc',
+                'cacc***ccac',
+                'acc*ccc*cca',
+                'acc*cccccca',
+                'acc*cc**cca',
+                'acc*ccc*cca',
+                'acc*ccc*cca',
+                'cacc***ccac',
+                'ccacccccacc',
+                'cccaaaaaccc');
+            XmNlabelType = XmPIXMAP;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };

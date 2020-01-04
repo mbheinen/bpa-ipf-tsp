@@ -1,0 +1,171 @@
+# Default Front Panel configuration file (system.fpanelrc)
+#
+# This Generic Version (dot327G.fpa) is customized for a MOTIF Login
+# Account for running version 3.27 of the BPA Powerflow Program.
+#
+# To personalize this file, copy it to your home directory, copy it
+# to ".fpanelrc", and then edit it.
+#
+# The items in this file build the front panel from left to right.
+
+# "Handle" on the left for moving the window.
+
+handle left
+
+# Digital clock.
+
+clock
+
+# System load graph.
+
+load
+
+# Mail check icon, for local mailbox (use resource to set mailbox file).
+# Optional: add two pixmap names for empty and full pixmaps.
+
+# mail
+
+
+
+menu bio
+{
+    "MISC. COMMANDS"     f.label
+    "Separator"         f.separator
+    "RAS Dialup"        f.exec "cd /ipf-disks/howto; kedit GENERICdialupLinuxHowto.txt"
+    "RAS Dialog"        f.exec "cd /ipf-disks/howto; kedit GENERICrasDialog.txt"
+    "IPF-Update Howto"  f.exec "cd /ipf-disks/howto; kedit readme_ipfupdatesG.txt"
+    "Separator"         f.separator
+    "OTHER COMMANDS"    f.label
+    "Separator"         f.separator
+    "launch-pf.bash"    f.exec "cd /ipf-disks/howto; kedit launch_pf.txt"
+    "dos-linux.bash"    f.exec "cd /ipf-disks/howto; kedit dos-linux.txt"
+    "tkdiff"            f.exec "cd /ipf-disks/howto; kedit tkdiff.txt"
+    "Separator"         f.separator
+    "Terminal"          f.exec "mxterm"
+}
+
+
+menu bio
+{
+    "IPF COMMANDS"      f.label
+    "Separator"         f.separator
+    "gui"               f.exec "cd /ipf-disks/howto; kedit gui.txt"
+    "bpf"               f.exec "cd /ipf-disks/howto; kedit bpf.txt"
+    "ipfbat"            f.exec "cd /ipf-disks/howto; kedit ipfbat.txt"
+    "netdat"            f.exec "cd /ipf-disks/howto; kedit netdat.txt"
+    "cutting"           f.exec "cd /ipf-disks/howto; kedit cutting.txt"
+    "ipf_reports"       f.exec "cd /ipf-disks/howto; kedit ipf_reports.txt"
+    "ipfplot"           f.exec "cd /ipf-disks/howto; kedit ipfplot.txt"
+    "puf"               f.exec "cd /ipf-disks/howto; kedit puf.txt"
+    "fast outage"       f.exec "cd /ipf-disks/howto; kedit fastout.txt"
+    "Separator"         f.separator
+    "CFLOW COMMANDS"    f.label
+    "Separator"         f.separator
+    "cflow"             f.exec "cd /ipf-disks/howto; kedit cflow.txt"
+    "pvcurve"           f.exec "cd /ipf-disks/howto; kedit pvcurve.txt"
+    "post_pvcurve"      f.exec "cd /ipf-disks/howto; kedit post_pvcurve.txt"
+    "qvcurve"           f.exec "cd /ipf-disks/howto; kedit qvcurve.txt"
+    "findout"           f.exec "cd /ipf-disks/howto; kedit findout.txt"
+    "mimic"             f.exec "cd /ipf-disks/howto; kedit mimic.txt"
+    "Separator"         f.separator
+    "OTHER COMMANDS"    f.label
+    "Separator"         f.separator
+    "launch-pf.bash"    f.exec "cd /ipf-disks/howto; kedit launch_pf.txt"
+    "dos-linux.bash"    f.exec "cd /ipf-disks/howto; kedit dos-linux.txt"
+    "tkdiff"            f.exec "cd /ipf-disks/howto; kedit tkdiff.txt"
+    "Separator"         f.separator
+    "Terminal"          f.exec "mxterm"
+}
+
+menu meter
+{
+    "IPF Tools"         f.label
+    "Separator"         f.separator
+    "IPF-3.27 GUI"      f.exec "mxterm -geometry -500+400 -e /shr/ipf-3.27/exe/gui"
+    "IPF-Batch"         f.exec "mxterm -geometry -500+400 -e /shr/ipf-3.27/exe/bpf"
+    "IPF-Reports"       f.exec "mxterm -geometry -500+400 -e /shr/ipf-3.27/exe/ipf_reports"
+    "IPF-Cut"           f.exec "mxterm -geometry -500+400 -e /shr/ipf-3.27/exe/cutting"
+    "IPF-NetData"       f.exec "mxterm -geometry -500+400 -e /shr/ipf-3.27/exe/netdat"
+#    "IPF-LineFloAnal"   f.exec "mxterm -geometry -500+400 -e /shr/ipf-3.27/exe/LFA"
+    "IPF-FastOutage"    f.exec "mxterm -geometry -500+400 -e /shr/ipf-3.27/exe/bpf"
+    "IPF-Plot-(rq/a)"   f.exec "mxterm -geometry -500+400 -e /shr/ipf-3.27/exe/ipfplot"
+    "Separator"         f.separator
+    "CFLOW Tools"       f.label
+    "Separator"         f.separator
+    "PathUseFactor"     f.exec "mxterm -geometry -500+400 -e puf"
+    "PVcurve"           f.exec "mxterm -geometry -500+400 -e /shr/ipf-3.27/cflow/pvcurve"
+    "PostPVcurve-(rq/a)" f.exec "mxterm -geometry -500+400 -e /shr/ipf-3.27/cflow/post_pvcurve"
+    "QVcurve"           f.exec "mxterm -geometry -500+400 -e /shr/ipf-3.27/cflow/qvcurve"
+    "FindOut"           f.exec "mxterm -geometry -500+400 -e /shr/ipf-3.27/cflow/findout"
+    "Mimic"             f.exec "mxterm -geometry -500+400 -e /shr/ipf-3.27/cflow/mimic"
+    "Separator"         f.separator
+    "LaunchPowerflow"   f.exec "mxterm -geometry -500+400 -e launch_pf.bash"
+    "Dos-Linuxconvert (rq/a)"  f.exec "mxterm -geometry -500+400 -e dos-linux.bash"
+    "FileCompare-tkdiff (rq/a)"    f.exec "mxterm -geometry -500+400 -e tkdiff"
+    "Separator"         f.separator
+#    "IPF-CFLOWcommands" f.exec "mxterm -geometry -500+400 -e cat ./IPF-CFLOWcommands.txt"
+    "Terminal"          f.exec "mxterm"
+    "Separator"         f.separator
+    "Motif Tools"       f.label
+    "Separator"         f.separator
+    "Pixmap Browser"    f.exec "cd /usr/include/X11/icons; xbmbrowser"
+    "Pixmap Editor"     f.exec "pixmap"
+    "Widget Demo"       f.exec "periodic"
+}
+
+
+
+# A pop-up menu icon.  Clicking this icon pops up a menu of other commands.
+# Each menu item can have a pixmap (preceded by an @ symbol) or text, but
+# not both.
+
+menu toolsmenu
+{
+    "MISC Tools"        f.label
+    "Separator"         f.separator
+    "StarOffice 5.2"    f.exec "/home/ipf327user/office52/soffice"
+    "Acrobat 4.05 PDF"  f.exec "acroread"
+    "XPDF PDF Viewer"   f.exec "xpdf" 
+    "Emacs Editor"      f.exec "emacs"
+    "Kedit Editor"      f.exec "kedit"
+    "GXeditor"          f.exec "gxedit"
+    "Geditor"           f.exec "gedit"
+#    "Visual SlickEdit"  f.exec "runvs"
+    "GV PostScript Viewer" f.exec "gv"
+    "RAS Dialup"        f.exec "rp3"
+    "Netscape Navigator"  f.exec "netscape"
+    "DiskMounter"       f.exec "usermount"
+    "X-OSview"          f.exec "xosview"
+    "GNUspreadsheet"    f.exec "gnumeric"
+    "GNUfilemanager"    f.exec "mxterm -geometry -300+200 -e mc +x"
+    "Separator"         f.separator
+    "Terminal"          f.exec "mxterm"
+    "Separator"         f.separator
+    "Motif Tools"       f.label
+    "Separator"         f.separator
+    "Pixmap Browser"    f.exec "cd /usr/include/X11/icons; xbmbrowser"
+    "Pixmap Editor"     f.exec "pixmap"
+    "Widget Demo"       f.exec "periodic"
+}
+
+# The workspace switcher.  The number of workspaces can be changed, as can
+# their names and the virtual root coordinates for each button (measured in
+# screen widths and heights).  For best layout use an even number of desktops.
+
+desktops
+{
+  "One"		f.goto		0,0
+  "Two	"	f.goto		0,1
+  "Three"	f.goto		1,0
+  "Four"	f.goto		1,1
+  "Five"	f.goto		2,0
+  "Six "	f.goto		2,1
+}
+
+# The "Exit" button.  Pixmap name for the button is optional.
+
+logout
+
+# The handle on the right end, that includes the "iconify" button.
+
+handle right

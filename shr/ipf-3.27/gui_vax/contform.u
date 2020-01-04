@@ -1,0 +1,740 @@
+
+value
+    cont_colors: color_table(background color = ' ', 
+        foreground color = '*', 
+        rgb(65535,65535,36411) = 'a', 
+        rgb(65535,29130,29130) = 'b' );
+
+object
+!
+!*****************************************************************
+!*********** CONTINUATION BUS SUB-WINDOW *************************
+!*****************************************************************
+!
+    cont_jacket: XmForm 
+        {
+        arguments
+            {
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNtopAttachment = XmATTACH_FORM;
+            XmNleftOffset = 15;
+            XmNtopOffset = 60;
+            XmNshadowThickness = 2;
+            XmNshadowType = XmSHADOW_ETCHED_IN;
+            XmNrightAttachment = XmATTACH_FORM;
+            XmNrightOffset = 15;
+            XmNbottomAttachment = XmATTACH_FORM;
+            XmNbottomOffset = 160;
+            };
+        controls
+            {
+            XmForm cont_name_type;
+            XmForm cont_bus_load_form;
+            XmForm cont_gen_form;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    cont_gen_qmin: XmTextField 
+        {
+        arguments
+            {
+            arguments text_list_6;
+            XmNleftAttachment = XmATTACH_POSITION;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNbottomAttachment = XmATTACH_NONE;
+            XmNleftPosition = 71;
+            XmNtopWidget = XmTextField cont_gen_qmax;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNmodifyVerifyCallback = procedures
+                {
+                decimal_check(0);
+                };
+            };
+        };
+    cont_gen_qmax: XmTextField 
+        {
+        arguments
+            {
+            arguments text_list_6;
+            XmNleftAttachment = XmATTACH_POSITION;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNbottomAttachment = XmATTACH_NONE;
+            XmNleftPosition = 40;
+            XmNtopWidget = XmTextField cont_gen_p;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNmodifyVerifyCallback = procedures
+                {
+                decimal_check(0);
+                };
+            };
+        };
+    front_dia_gen_qmax_label: XmLabelGadget 
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Gen Qmax");
+            XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopAttachment = XmATTACH_NONE;
+            XmNbottomAttachment = XmATTACH_WIDGET;
+            XmNy = 7;
+            XmNwidth = 83;
+            XmNheight = 21;
+            XmNleftOffset = -10;
+            XmNleftWidget = XmTextField cont_gen_qmax;
+            XmNrightAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNrightWidget = XmTextField cont_gen_qmax;
+            XmNrightOffset = -15;
+            XmNbottomWidget = XmTextField cont_gen_qmax;
+            };
+        };
+    cont_gen_p: XmTextField 
+        {
+        arguments
+            {
+            arguments text_list_6;
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNtopAttachment = XmATTACH_POSITION;
+            XmNx = 0;
+            XmNtopPosition = 40;
+            XmNleftOffset = 643;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNmodifyVerifyCallback = procedures
+                {
+                decimal_check(0);
+                };
+            };
+        };
+    front_dia_gen_p_label: XmLabelGadget 
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Gen P");
+            XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopAttachment = XmATTACH_NONE;
+            XmNbottomAttachment = XmATTACH_WIDGET;
+            XmNy = 23;
+            XmNwidth = 75;
+            XmNrightAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNheight = 21;
+            XmNrightWidget = XmTextField cont_gen_p;
+            XmNleftWidget = XmTextField cont_gen_p;
+            XmNbottomWidget = XmTextField cont_gen_p;
+            XmNleftOffset = -10;
+            XmNrightOffset = -10;
+            };
+        };
+    cont_shunt_q: XmTextField 
+        {
+        arguments
+            {
+            arguments text_list_5;
+            XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNbottomAttachment = XmATTACH_NONE;
+            XmNleftWidget = XmTextField cont_load_q;
+            XmNtopWidget = XmTextField cont_shunt_p;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNmodifyVerifyCallback = procedures
+                {
+                decimal_check(0);
+                };
+            };
+        };
+    cont_shunt_p: XmTextField 
+        {
+        arguments
+            {
+            arguments text_list_5;
+            XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopAttachment = XmATTACH_POSITION;
+            XmNrightAttachment = XmATTACH_NONE;
+            XmNtopPosition = 70;
+            XmNleftWidget = XmTextField cont_load_p;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNmodifyVerifyCallback = procedures
+                {
+                decimal_check(0);
+                };
+            };
+        };
+    cont_load_q: XmTextField 
+        {
+        arguments
+            {
+            arguments text_list_6;
+            XmNleftAttachment = XmATTACH_POSITION;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNleftPosition = 60;
+            XmNtopWidget = XmTextField cont_load_p;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNmodifyVerifyCallback = procedures
+                {
+                decimal_check(0);
+                };
+            };
+        };
+    cont_load_p: XmTextField 
+        {
+        arguments
+            {
+            arguments text_list_6;
+            XmNleftAttachment = XmATTACH_POSITION;
+            XmNtopAttachment = XmATTACH_POSITION;
+            XmNtopPosition = 25;
+            XmNleftPosition = 20;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNmodifyVerifyCallback = procedures
+                {
+                decimal_check(0);
+                };
+            };
+        };
+    front_dia_load_p_label: XmLabelGadget 
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Load P");
+            XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNrightAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNbottomAttachment = XmATTACH_WIDGET;
+            XmNtopAttachment = XmATTACH_NONE;
+            XmNleftWidget = XmTextField cont_load_p;
+            XmNrightWidget = XmTextField cont_load_p;
+            XmNbottomWidget = XmTextField cont_load_p;
+            };
+        };
+    cont_bus_load_form: XmForm 
+        {
+        arguments
+            {
+            arguments form_resource_list;
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNtopAttachment = XmATTACH_POSITION;
+            XmNtopPosition = 30;
+            XmNrightAttachment = XmATTACH_FORM;
+            XmNleftOffset = 15;
+            XmNrightOffset = 15;
+            XmNbottomAttachment = XmATTACH_POSITION;
+            XmNbottomPosition = 65;
+            };
+        controls
+            {
+            XmLabelGadget 
+                {
+                arguments
+                    {
+                    XmNlabelString = compound_string("Shunt Q");
+                    XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+                    XmNbottomAttachment = XmATTACH_WIDGET;
+                    XmNrightAttachment = XmATTACH_OPPOSITE_WIDGET;
+                    XmNtopAttachment = XmATTACH_NONE;
+                    XmNleftWidget = XmTextField cont_shunt_q;
+                    XmNbottomWidget = XmTextField cont_shunt_q;
+                    XmNrightWidget = XmTextField cont_shunt_q;
+                    XmNrightOffset = -10;
+                    XmNleftOffset = -10;
+                    };
+                };
+            XmTextField cont_shunt_q;
+            XmLabelGadget 
+                {
+                arguments
+                    {
+                    XmNlabelString = compound_string("Load Q");
+                    XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+                    XmNtopAttachment = XmATTACH_NONE;
+                    XmNbottomAttachment = XmATTACH_WIDGET;
+                    XmNbottomOffset = 0;
+                    XmNrightAttachment = XmATTACH_OPPOSITE_WIDGET;
+                    XmNleftOffset = 0;
+                    XmNleftWidget = XmTextField cont_load_q;
+                    XmNbottomWidget = XmTextField cont_load_q;
+                    XmNrightWidget = XmTextField cont_load_q;
+                    };
+                };
+            XmTextField cont_load_q;
+            XmTextField cont_shunt_p;
+            XmLabelGadget 
+                {
+                arguments
+                    {
+                    XmNlabelString = compound_string("Shunt P");
+                    XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+                    XmNtopAttachment = XmATTACH_NONE;
+                    XmNbottomAttachment = XmATTACH_WIDGET;
+                    XmNrightAttachment = XmATTACH_OPPOSITE_WIDGET;
+                    XmNrightOffset = -10;
+                    XmNleftOffset = -10;
+                    XmNleftWidget = XmTextField cont_shunt_p;
+                    XmNrightWidget = XmTextField cont_shunt_p;
+                    XmNbottomWidget = XmTextField cont_shunt_p;
+                    };
+                };
+            XmLabelGadget front_dia_load_p_label;
+            XmTextField cont_load_p;
+            };
+        };
+    cont_owner_text: XmTextField 
+        {
+        arguments
+            {
+            arguments text_list_3;
+            XmNleftAttachment = XmATTACH_POSITION;
+            XmNtopAttachment = XmATTACH_POSITION;
+            XmNtopWidget = XmOptionMenu cont_type_optionmenu;
+            XmNleftPosition = 40;
+            XmNtopPosition = 50;
+            XmNleftOffset = -30;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    cont_owner_label: XmLabelGadget 
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Owner");
+            XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNbottomAttachment = XmATTACH_NONE;
+            XmNleftWidget = XmTextField cont_owner_text;
+            XmNrightAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNrightWidget = XmTextField cont_owner_text;
+            XmNleftOffset = -15;
+            XmNrightOffset = -15;
+            XmNheight = 25;
+            XmNtopWidget = XmLabelGadget cont_type_label;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    cont_type_optionmenu: XmOptionMenu 
+        {
+        arguments
+            {
+            XmNborderWidth = 0;
+            XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNtopWidget = XmLabelGadget cont_type_label;
+            XmNtopOffset = 8;
+            XmNleftWidget = XmLabelGadget cont_type_label;
+            XmNleftOffset = 15;
+            };
+        controls
+            {
+            XmPulldownMenu 
+                {
+                arguments
+                    {
+                    XmNborderWidth = 1;
+                    };
+                controls
+                    {
+                    XmPushButton 
+                        {
+                        arguments
+                            {
+                            XmNlabelString = compound_string("+N");
+                            };
+                        callbacks
+                            {
+                            XmNactivateCallback = procedures
+                                {
+                                set_cont_type("N");
+                                };
+                            };
+                        };
+                    XmPushButton 
+                        {
+                        arguments
+                            {
+                            XmNlabelString = compound_string("+F");
+                            };
+                        callbacks
+                            {
+                            XmNactivateCallback = procedures
+                                {
+                                set_cont_type("F");
+                                };
+                            };
+                        };
+                    XmPushButton 
+                        {
+                        arguments
+                            {
+                            XmNlabelString = compound_string("+I");
+                            };
+                        callbacks
+                            {
+                            XmNactivateCallback = procedures
+                                {
+                                set_cont_type("I");
+                                };
+                            };
+                        };
+                    XmPushButton 
+                        {
+                        arguments
+                            {
+                            XmNlabelString = compound_string("+A");
+                            };
+                        callbacks
+                            {
+                            XmNactivateCallback = procedures
+                                {
+                                set_cont_type("A");
+                                };
+                            };
+                        };
+                    XmPushButton 
+                        {
+                        arguments
+                            {
+                            XmNlabelString = compound_string("+P");
+                            };
+                        callbacks
+                            {
+                            XmNactivateCallback = procedures
+                                {
+                                set_cont_type("P");
+                                };
+                            };
+                        };
+                    XmPushButton 
+                        {
+                        arguments
+                            {
+                            XmNlabelString = compound_string("+C");
+                            };
+                        callbacks
+                            {
+                            XmNactivateCallback = procedures
+                                {
+                                set_cont_type("C");
+                                };
+                            };
+                        };
+                    XmPushButton 
+                        {
+                        arguments
+                            {
+                            XmNlabelString = compound_string("+S");
+                            };
+                        callbacks
+                            {
+                            XmNactivateCallback = procedures
+                                {
+                                set_cont_type("S");
+                                };
+                            };
+                        };
+                    XmPushButton 
+                        {
+                        arguments
+                            {
+                            XmNlabelString = compound_string("+");
+                            };
+                        callbacks
+                            {
+                            XmNactivateCallback = procedures
+                                {
+                                set_cont_type(" ");
+                                };
+                            };
+                        };
+                    };
+                };
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    cont_name_type: XmForm 
+        {
+        arguments
+            {
+            arguments form_resource_list;
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNtopAttachment = XmATTACH_FORM;
+            XmNrightAttachment = XmATTACH_FORM;
+            XmNtopOffset = 15;
+            XmNleftOffset = 15;
+            XmNrightOffset = 15;
+            XmNbottomAttachment = XmATTACH_POSITION;
+            XmNbottomPosition = 25;
+            };
+        controls
+            {
+            XmOptionMenu cont_type_optionmenu;
+            XmForm cont_type_warning_form;
+            XmTextField cont_owner_text;
+            XmLabelGadget cont_owner_label;
+            XmLabelGadget cont_type_label;
+            XmLabelGadget code_year_label;
+            XmTextField code_year_text;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    cont_gen_form: XmForm 
+        {
+        arguments
+            {
+            arguments form_resource_list;
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNleftOffset = 15;
+            XmNtopAttachment = XmATTACH_POSITION;
+            XmNrightAttachment = XmATTACH_FORM;
+            XmNrightOffset = 15;
+            XmNbottomAttachment = XmATTACH_POSITION;
+            XmNbottomPosition = 95;
+            XmNtopPosition = 70;
+            };
+        controls
+            {
+            XmLabelGadget 
+                {
+                arguments
+                    {
+                    XmNlabelString = compound_string("Gen Qmin");
+                    XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+                    XmNtopAttachment = XmATTACH_NONE;
+                    XmNbottomAttachment = XmATTACH_WIDGET;
+                    XmNy = 4;
+                    XmNwidth = 88;
+                    XmNheight = 21;
+                    XmNleftOffset = -15;
+                    XmNleftWidget = XmTextField cont_gen_qmin;
+                    XmNrightAttachment = XmATTACH_OPPOSITE_WIDGET;
+                    XmNrightWidget = XmTextField cont_gen_qmin;
+                    XmNrightOffset = -15;
+                    XmNbottomWidget = XmTextField cont_gen_qmin;
+                    };
+                };
+            XmTextField cont_gen_qmin;
+            XmLabelGadget front_dia_gen_qmax_label;
+            XmTextField cont_gen_qmax;
+            XmLabelGadget front_dia_gen_p_label;
+            XmTextField cont_gen_p;
+            };
+        };
+    cont_type_label: XmLabelGadget 
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Code Type");
+            XmNleftAttachment = XmATTACH_POSITION;
+            XmNtopAttachment = XmATTACH_FORM;
+            XmNbottomAttachment = XmATTACH_NONE;
+            XmNleftOffset = -30;
+            XmNleftPosition = 10;
+            XmNheight = 25;
+            XmNtopOffset = 20;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    code_year_label: XmLabelGadget 
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Code Year");
+            XmNleftAttachment = XmATTACH_POSITION;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNleftOffset = -30;
+            XmNleftPosition = 70;
+            XmNtopWidget = XmLabelGadget cont_owner_label;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    code_year_text: XmTextField 
+        {
+        arguments
+            {
+            arguments text_list_2;
+            XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNleftOffset = 298;
+            XmNtopWidget = XmTextField cont_owner_text;
+            XmNleftWidget = XmLabelGadget code_year_label;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    cont_type_warning_form: XmForm 
+        {
+        arguments
+            {
+            XmNborderWidth = 10;
+            XmNleftAttachment = XmATTACH_POSITION;
+            XmNtopAttachment = XmATTACH_FORM;
+            XmNtopOffset = 5;
+            XmNrightAttachment = XmATTACH_FORM;
+            XmNrightOffset = 5;
+            button_in_color = color('black');
+            button_out_color = color('black');
+            XmNbottomAttachment = XmATTACH_FORM;
+            XmNbottomOffset = 5;
+            XmNleftPosition = 30;
+            XmNborderColor = rgb(65535,29130,29130);
+            XmNbackground = rgb(65535,65535,36411);
+            };
+        controls
+            {
+            XmLabel cont_type_not_sel_label;
+            XmLabel cont_red_arrows;
+            XmLabel cont_warning_cont_label;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    cont_type_not_sel_label: XmLabel 
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("+Bus TYPE not selected!");
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNtopAttachment = XmATTACH_POSITION;
+            XmNleftOffset = 10;
+            XmNbackground = rgb(65535,65535,36411);
+            XmNrightAttachment = XmATTACH_FORM;
+            XmNrightOffset = 10;
+            XmNtopPosition = 10;
+            };
+        };
+    cont_red_arrows: XmLabel 
+        {
+        arguments
+            {
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNtopAttachment = XmATTACH_FORM;
+            XmNleftOffset = 5;
+            XmNtopOffset = 50;
+            XmNbackgroundPixmap = icon(color_table = cont_colors, 
+                'aaaaaaaa**aaaaaaaaaaaaaaaaaaaaaaaa',
+                'aaaaaaa***aaaaaaaaaaaaaaaaaaaaaaaa',
+                'aaaaaa**b*aaaaaaaaaaaaaaaaaaaaaaaa',
+                'aaaaa**bb*aaaaaaaaaaaaaaaaaaaaaaaa',
+                'aaaa**bbb***********************aa',
+                'aaa**bbbbbbbbbbbbbbbbbbbbbbbbbb*aa',
+                'aa**bbbbbbbbbbbbbbbbbbbbbbbbbbb*aa',
+                'a**bbbbbbbbbbbbbbbbbbbbbbbbbbbb*aa',
+                '**bbbbbbbbbbbbbbbbbbbbbbbbbbbbb*aa',
+                '*bbbbbbbbbbbbbbbbbbbbbbbbbbbbbb*aa',
+                '*bbbbbbbbbbbbbbbbbbbbbbbbbbbbbb*aa',
+                '**bbbbbbbbbbbbbbbbbbbbbbbbbbbbb*aa',
+                'a**bbbbbbbbbbbbbbbbbbbbbbbbbbbb*aa',
+                'aa**bbbbbbbbbbbbbbbbbbbbbbbbbbb*aa',
+                'aaa**bbbbbbbbbbbbbbbbbbbbbbbbbb*aa',
+                'aaaa**bbb***********************aa',
+                'aaaaa**bb*aaaaaaaaaaaaaaaaaaaaaaaa',
+                'aaaaaa**b*aaaaaaaaaaaaaaaaaaaaaaaa',
+                'aaaaaaa***aaaaaaaaaaaaaaaaaaaaaaaa',
+                'aaaaaaaa**aaaaaaaaaaaaaaaaaaaaaaaa');
+            XmNwidth = 68;
+            XmNheight = 20;
+            XmNlabelString = compound_string("");
+            };
+        };
+    cont_warning_cont_label: XmLabel 
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Select Valid Type",separate=true) &
+                compound_string("  To  Continue");
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNtopAttachment = XmATTACH_POSITION;
+            XmNleftOffset = 90;
+            XmNbackground = rgb(65535,65535,36411);
+            XmNforeground = rgb(58248,0,0);
+            XmNtopPosition = 40;
+            };
+        };

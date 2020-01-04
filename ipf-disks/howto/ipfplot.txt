@@ -1,0 +1,17 @@
+IPF Batch Plotting Program -- ipfplot
+
+Usage:  ipfplot <coordinatefile.cor> <basefile1.bse> <basefile2.bse(opt)> <cr>
+
+Output:  PostScript Plot file <plot.ps>
+
+Batch plotting program to produce printed map files in PostScript (.PS)
+format. The program accepts a coordinate file (.COR) and a base case file
+(.BSE) on the command line, as well as an optional second base case file. When
+the second base case file is specified, a difference plot is produced. You can
+also use IPFPLOT to produce bubble diagrams. 
+
+The same coordinate files (.COR) are used by both GUI and IPFPLOT, but not
+all capabilities are  available in the GUI. Documentation is in the IPF
+Advanced Users Guide (ipfadv.pdf).
+
+

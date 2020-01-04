@@ -1,0 +1,148 @@
+
+
+
+
+
+
+
+
+
+
+
+
+                                       *******************************************************
+                                       *                                                     *
+                                       *                                                     *
+                                       *     EXTENDED TRANSIENT-MIDTERM STABILITY PROGRAM    *
+                                       *     ============================================    *
+                                       *                                                     *
+                                       *                      (ETMSP)                        *
+                                       *                                                     *
+                                       *                                                     *
+                                       *            VERSION 3.10  RELEASE 93/06/15           *
+                                       *                     LEVEL OHV3-00                   *
+                                       *                                                     *
+                                       *                JOINTLY DEVELOPED BY                 *
+                                       *                                                     *
+                                       *                    ONTARIO HYDRO                    *
+                                       *                700 UNIVERSITY AVENUE                *
+                                       *              TORONTO, ONTARIO,  CANADA              *
+                                       *                                                     *
+                                       *                         AND                         *
+                                       *                                                     *
+                                       *          ELECTRIC POWER RESEARCH INSTITUTE          *
+                                       *                3412  HILLVIEW AVENUE                *
+                                       *                PALO ALTO, CALIFORNIA                *
+                                       *                                                     *
+                                       *                                                     *
+                                       *                                                     *
+                                       *       INPUT DATA AND INITIAL CONDITION REPORT       *
+                                       *       =======================================       *
+                                       *                                                     *
+                                       *               DATE OF RUN:  25-OCT-93               *
+                                       *                                                     *
+                                       * COPYRIGHT @(1993) ELECTRIC POWER RESEARCH INSTITUTE *
+                                       *                 ALL RIGHTS RESERVED                 *
+                                       *******************************************************
+
+1
+
+                               * * * * *  GENERATOR DATA IN IMPEDANCE AND TIME CONSTANT FORM * * * * *
+
+  BUS# STATION NAME GID     BMVA BASVR FREQ      R     XD     XQ     XL    X'D    X'Q   X''D   X''Q    T'D    T'Q   T''D   T''Q
+ ----- ------------ --- -------- ----- ---- ------ ------ ------ ------ ------ ------ ------ ------ ------ ------ ------ ------
+     5 GEN TD1  20.  H    100.00 1.000 60.0 0.0000  0.900  0.800  0.075  0.150  0.150  0.100  0.100  6.000 1.0000 0.0600 0.0600
+     5 GEN TD1  20.  L    100.00 1.000 60.0 0.0000  0.900  0.800  0.075  0.150  0.150  0.100  0.100  6.000 1.0000 0.0600 0.0600
+1
+
+                                 * * * * *  GENERATOR INITIAL LOADING AND SATURATION DATA * * * * *
+
+  BUS# STATION NAME GID     BMVA BASVR      H   DAMP  PF     GMW  QF     GMX ISAT    ASAT    BSAT   BATL   BATM   XUIR
+ ----- ------------ --- -------- ----- ------ ------ --- ------- --- ------- ---- ------- ------- ------ ------ ------
+     5 GEN TD1  20.  H    100.00 1.000   4.00   1.00  60  125.40  60    0.00   0
+     5 GEN TD1  20.  L    100.00 1.000   4.00   1.00  40   83.60  40    0.00   0
+1
+
+                      * * * * * CLASSICAL GENERATOR DATA TABLE * * * * *
+
+  BUS# STATION NAME GID    BMVA    BASVR           HM     DAMP      X'D  PF       GMW  QF       GMX
+ ----- ------------ --- ------- -------- ------------ -------- -------- --- --------- --- ---------
+     1 SLACK   500.  1   100.00   1.0000    9999.9902  99.0000   0.0010 100   1000.02 100      0.00
+     2 CTY TD1 500.  1  1000.00   1.0000     999.9990  99.0000   0.0100 100   1000.00 100      0.00
+1
+                            * * * TOTAL INERTIA AND GENERATION ON   100.00 MVA BASE * * *
+
+                          AREA# AREA NAME           INERTIA            GMW            GMX
+                          ----- ------------        -------        -------        -------
+                             1                     20007.98          22.09           0.00
+
+                                SYSTEM TOTAL       20007.98          22.09           0.00
+1                                            GOVERNOR TYPE  4 (WSCC TYPE GS)
+                                           IEEE LINEAR MODEL FOR THERMAL UNITS
+
+ BUS # STATION NAME GID    K1     T1     T2     T3   RMAX   RMIN   PMAX     T4     T5     T6     T7     K2     K3     K4     K5
+ ----- ------------ --- ----- ------ ------ ------ ------ ------ ------ ------ ------ ------ ------ ------ ------ ------ ------
+     5 GEN TD1  20.  H100.000  0.300  0.150  0.050  0.300 -1.000  2.200  0.150  0.150  0.150   0.00  0.200  0.000  0.400  0.000 HP
+1                                                    GOVERNOR TYPE  5
+                                           IEEE LINEAR MODEL LP OF THERMAL UNITS
+
+ BUS # STATION NAME GID    K6     K7     K8
+ ----- ------------ --- ----- ------ ------
+     5 GEN TD1  20.  L  0.100  0.300  0.000
+1
+
+                                                  ========================================
+
+                                                     CHANNEL MAP FOR DETAILED GENERATOR
+
+                                                  ========================================
+
+                                        LIST OF SYMBOLS :
+                                        -----------------
+
+                                        VM    --  TERMINAL VOLTAGE MAGNITUDE
+
+                                        MW    --  ACTIVE GENERATION
+
+                                        MX    --  REACTIVE GENERATION
+
+                                        ABS   --  ABSOLUTE MACHINE ANGLE
+
+                                        DOM   --  SPEED DEVIATION
+
+                                        TMEC  --  MECHANICAL TORQUE
+
+                                        EFD   --  FIELD VOLTAGE
+
+                                        IFD   --  FIELD CURRENT
+
+                                        CR    --  OUTPUT CURRENT REAL COMPONENT
+
+                                        CI    --  OUTPUT CURRENT IMAGINARY COMPONENT
+
+                                        ZR    --  TERMINAL APPARENT IMPEDANCE REAL
+
+                                        ZI    --  TERMINAL APPARENT IMPEDANCE IMAGINARY
+1 * * *  DEVICE :     GENERATOR      * * * 
+  BUS# STATION NAME GID      VM    MW    MX   ABS   DOM  TMEC   EFD   IFD    CR    CI    ZR    ZI
+  ---- ------------ ---    ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----
+     5 GEN TD1  20.  H       11    12    13    14
+     5 GEN TD1  20.  L       15    16    17    18
+1
+
+                                   * * * * * DETAILED GENERATOR INITIAL CONDITIONS * * * * *
+
+                                                                                                SAT.FACTORS
+  BUS# STATION NAME GID   BMVA   VMAG     VANG     P(MW)    Q(MX)   CR(PU)   CI(PU)    DELTA  D-AXIS  Q-AXIS     EFD    VREF    PREF
+ ----- ------------ ---  -----  ------   ------   ------   ------   ------   ------   ------  ------  ------  ------  ------  ------
+     5 GEN TD1  20.  H  100.00  1.1000    27.28   125.40     0.00   1.0132   0.5226    66.95  1.0000  1.0000  1.5017            0.95
+     5 GEN TD1  20.  L  100.00  1.1000    27.28    83.60     0.00   0.6754   0.3484    56.21  1.0000  1.0000  1.2936            0.00
+1
+
+                                  * * * * * CLASSICAL GENERATOR INITIAL CONDITIONS * * * * *
+
+  BUS# STATION NAME GID    BMVA    VMAG     VANG    P(MW)    Q(MX)   CR(PU)   CI(PU)      E'Q    DELTA    PREF
+ ----- ------------ --- ------- ------- -------- -------- -------- -------- -------- -------- -------- -------
+     1 SLACK   500.  1   100.00  1.0000     0.00  1000.02     0.00  10.0002   0.0000     1.00   0.5730
+     2 CTY TD1 500.  1  1000.00  1.0000    -0.12  1000.00     0.00   1.0000  -0.0021     1.00   0.4545
+

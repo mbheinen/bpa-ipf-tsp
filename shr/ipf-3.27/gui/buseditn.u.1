@@ -1,0 +1,862 @@
+ 
+ 
+procedure
+!***VUIT_Action Manage bus_edit_dialog ***
+ 
+!***VUIT_Action UserProc edit_init ***
+ 
+    manage_bus_edit_dialog;
+!***VUIT_no_Generate***
+!***VUIT_Action UserProc output_column_num ***
+ 
+    output_column_num;
+!***VUIT_no_Generate***
+!***VUIT_Action UserProc bus_edit_autoload_toggle ***
+ 
+    bus_edit_autoload_toggle;
+ 
+object
+!***VUIT_Manage false ***
+    bus_edit_dialog: XmFormDialog
+        {
+        arguments
+            {
+            XmNborderWidth = 0;
+            XmNdialogTitle = compound_string("NETWORK EDIT");
+            XmNautoUnmanage = false;
+            XmNhorizontalSpacing = 20;
+            XmNverticalSpacing = 20;
+            };
+        controls
+            {
+            XmForm edit_bus_form1;
+            XmForm edit_bus_form2;
+            XmForm edit_bus_form3;
+            XmForm edit_bus_form4;
+            XmForm edit_bus_form5;
+            XmForm edit_bus_form6;
+            XmText edit_bus_id1_text;
+            XmPushButton edit_bus_internal_pb;
+            XmPushButton edit_bus_external_pb;
+            XmPushButton edit_bus_send_topf_pb;
+            XmPushButton edit_bus_ok_pb;
+            XmTextField edit_bus_count;
+            XmTextField edit_column_num_text;
+            XmLabel column_num_label;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    edit_bus_form1: XmForm
+        {
+        arguments
+            {
+            XmNhorizontalSpacing = 2;
+            XmNverticalSpacing = 2;
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNtopAttachment = XmATTACH_FORM;
+            XmNwidth = 120;
+            };
+        controls
+            {
+            XmLabelGadget edit_bus_id1_label;
+            XmPushButton edit_bus_apply1_pb;
+            XmPushButton edit_bus_reset1_pb;
+            XmScrolledList edit_bus_item1_list;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    edit_bus_form2: XmForm
+        {
+        arguments
+            {
+            XmNhorizontalSpacing = 2;
+            XmNverticalSpacing = 2;
+            XmNleftAttachment = XmATTACH_WIDGET;
+            XmNleftWidget = XmForm edit_bus_form1;
+            XmNtopAttachment = XmATTACH_FORM;
+            XmNwidth = 60;
+            XmNrightAttachment = XmATTACH_NONE;
+            };
+        controls
+            {
+            XmLabelGadget edit_bus_id2_label;
+            XmPushButton edit_bus_apply2_pb;
+            XmPushButton edit_bus_reset2_pb;
+            XmScrolledList edit_bus_item2_list;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    edit_bus_form3: XmForm
+        {
+        arguments
+            {
+            XmNhorizontalSpacing = 2;
+            XmNverticalSpacing = 2;
+            XmNleftAttachment = XmATTACH_WIDGET;
+            XmNleftWidget = XmForm edit_bus_form2;
+            XmNtopAttachment = XmATTACH_FORM;
+            XmNwidth = 60;
+            };
+        controls
+            {
+            XmLabelGadget edit_bus_id3_label;
+            XmPushButton edit_bus_apply3_pb;
+            XmPushButton edit_bus_reset3_pb;
+            XmScrolledList edit_bus_item3_list;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    edit_bus_form4: XmForm
+        {
+        arguments
+            {
+            XmNhorizontalSpacing = 2;
+            XmNverticalSpacing = 2;
+            XmNleftAttachment = XmATTACH_WIDGET;
+            XmNleftWidget = XmForm edit_bus_form3;
+            XmNtopAttachment = XmATTACH_FORM;
+            XmNwidth = 120;
+            };
+        controls
+            {
+            XmLabelGadget edit_bus_id4_label;
+            XmPushButton edit_bus_apply4_pb;
+            XmPushButton edit_bus_reset4_pb;
+            XmScrolledList edit_bus_item4_list;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    edit_bus_form5: XmForm
+        {
+        arguments
+            {
+            XmNhorizontalSpacing = 2;
+            XmNverticalSpacing = 2;
+            XmNleftAttachment = XmATTACH_WIDGET;
+            XmNleftWidget = XmForm edit_bus_form4;
+            XmNtopAttachment = XmATTACH_FORM;
+            XmNwidth = 60;
+            };
+        controls
+            {
+            XmLabelGadget edit_bus_id5_label;
+            XmPushButton edit_bus_apply5_pb;
+            XmPushButton edit_bus_reset5_pb;
+            XmScrolledList edit_bus_item5_list;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    edit_bus_form6: XmForm
+        {
+        arguments
+            {
+            XmNhorizontalSpacing = 2;
+            XmNverticalSpacing = 2;
+            XmNleftAttachment = XmATTACH_WIDGET;
+            XmNleftWidget = XmForm edit_bus_form5;
+            XmNtopAttachment = XmATTACH_FORM;
+            XmNwidth = 200;
+            XmNheight = 275;
+            };
+        controls
+            {
+            XmLabelGadget edit_bus_id6_label;
+            XmPushButton edit_bus_apply6_pb;
+            XmPushButton edit_bus_reset6_pb;
+            XmScrolledList edit_bus_item6_list;
+            XmToggleButton bus_edit_autoload_tb;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    edit_bus_id1_label: XmLabelGadget
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Area");
+            XmNtopAttachment = XmATTACH_FORM;
+            XmNleftAttachment = XmATTACH_FORM;
+            };
+        };
+    edit_bus_item1_list: XmScrolledList
+        {
+        arguments
+            {
+            XmNvisibleItemCount = 7;
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNtopWidget = XmLabelGadget edit_bus_id1_label;
+            XmNscrollBarDisplayPolicy = XmAS_NEEDED;
+            XmNscrollBarPlacement = XmBOTTOM_RIGHT;
+            XmNselectionPolicy = XmMULTIPLE_SELECT;
+            XmNlistSizePolicy = XmVARIABLE;
+            XmNrightAttachment = XmATTACH_FORM;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    edit_bus_apply1_pb: XmPushButton
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Apply");
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNtopWidget = XmScrolledList edit_bus_item1_list;
+            XmNleftAttachment = XmATTACH_FORM;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNactivateCallback = procedures
+                {
+                edit_apply(1);
+                };
+            };
+        };
+    edit_bus_reset1_pb: XmPushButton
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Reset");
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNtopWidget = XmScrolledList edit_bus_item1_list;
+            XmNleftAttachment = XmATTACH_WIDGET;
+            XmNleftWidget = XmPushButton edit_bus_apply1_pb;
+            XmNsensitive = false;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNactivateCallback = procedures
+                {
+                edit_reset(1);
+                };
+            };
+        };
+    edit_bus_id2_label: XmLabelGadget
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Zone");
+            XmNtopAttachment = XmATTACH_FORM;
+            XmNleftAttachment = XmATTACH_FORM;
+            };
+        };
+    edit_bus_item2_list: XmScrolledList
+        {
+        arguments
+            {
+            XmNvisibleItemCount = 7;
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNtopWidget = XmLabelGadget edit_bus_id2_label;
+            XmNscrollBarDisplayPolicy = XmAS_NEEDED;
+            XmNscrollBarPlacement = XmBOTTOM_RIGHT;
+            XmNselectionPolicy = XmMULTIPLE_SELECT;
+            XmNlistSizePolicy = XmVARIABLE;
+            XmNrightAttachment = XmATTACH_FORM;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    edit_bus_apply2_pb: XmPushButton
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Apply");
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNtopWidget = XmScrolledList edit_bus_item2_list;
+            XmNleftAttachment = XmATTACH_FORM;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNactivateCallback = procedures
+                {
+                edit_apply(2);
+                };
+            };
+        };
+    edit_bus_reset2_pb: XmPushButton
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Reset");
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNtopWidget = XmPushButton edit_bus_apply2_pb;
+            XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNleftWidget = XmPushButton edit_bus_apply2_pb;
+            XmNsensitive = false;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNactivateCallback = procedures
+                {
+                edit_reset(2);
+                };
+            };
+        };
+    edit_bus_id3_label: XmLabelGadget
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Owner");
+            XmNtopAttachment = XmATTACH_FORM;
+            XmNleftAttachment = XmATTACH_FORM;
+            };
+        };
+    edit_bus_item3_list: XmScrolledList
+        {
+        arguments
+            {
+            XmNvisibleItemCount = 7;
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNtopWidget = XmLabelGadget edit_bus_id3_label;
+            XmNscrollBarDisplayPolicy = XmAS_NEEDED;
+            XmNscrollBarPlacement = XmBOTTOM_RIGHT;
+            XmNselectionPolicy = XmMULTIPLE_SELECT;
+            XmNlistSizePolicy = XmVARIABLE;
+            XmNrightAttachment = XmATTACH_FORM;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    edit_bus_apply3_pb: XmPushButton
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Apply");
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNtopWidget = XmScrolledList edit_bus_item3_list;
+            XmNleftAttachment = XmATTACH_FORM;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNactivateCallback = procedures
+                {
+                edit_apply(3);
+                };
+            };
+        };
+    edit_bus_reset3_pb: XmPushButton
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Reset");
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNtopWidget = XmPushButton edit_bus_apply3_pb;
+            XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNleftWidget = XmPushButton edit_bus_apply3_pb;
+            XmNsensitive = false;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNactivateCallback = procedures
+                {
+                edit_reset(3);
+                };
+            };
+        };
+    edit_bus_id4_label: XmLabelGadget
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Base");
+            XmNtopAttachment = XmATTACH_FORM;
+            XmNleftAttachment = XmATTACH_FORM;
+            };
+        };
+    edit_bus_item4_list: XmScrolledList
+        {
+        arguments
+            {
+            XmNvisibleItemCount = 7;
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNtopWidget = XmLabelGadget edit_bus_id4_label;
+            XmNscrollBarDisplayPolicy = XmAS_NEEDED;
+            XmNscrollBarPlacement = XmBOTTOM_RIGHT;
+            XmNselectionPolicy = XmMULTIPLE_SELECT;
+            XmNlistSizePolicy = XmVARIABLE;
+            XmNrightAttachment = XmATTACH_FORM;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    edit_bus_apply4_pb: XmPushButton
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Apply");
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNtopWidget = XmScrolledList edit_bus_item4_list;
+            XmNleftAttachment = XmATTACH_FORM;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNactivateCallback = procedures
+                {
+                edit_apply(4);
+                };
+            };
+        };
+    edit_bus_reset4_pb: XmPushButton
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Reset");
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNtopWidget = XmScrolledList edit_bus_item4_list;
+            XmNleftAttachment = XmATTACH_WIDGET;
+            XmNleftWidget = XmPushButton edit_bus_apply4_pb;
+            XmNsensitive = false;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNactivateCallback = procedures
+                {
+                edit_reset(4);
+                };
+            };
+        };
+    edit_bus_id5_label: XmLabelGadget
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Type");
+            XmNtopAttachment = XmATTACH_FORM;
+            XmNleftAttachment = XmATTACH_FORM;
+            };
+        };
+    edit_bus_item5_list: XmScrolledList
+        {
+        arguments
+            {
+            XmNvisibleItemCount = 7;
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNtopWidget = XmLabelGadget edit_bus_id5_label;
+            XmNscrollBarDisplayPolicy = XmAS_NEEDED;
+            XmNselectionPolicy = XmMULTIPLE_SELECT;
+            XmNlistSizePolicy = XmVARIABLE;
+            XmNscrollBarPlacement = XmBOTTOM_RIGHT;
+            XmNrightAttachment = XmATTACH_FORM;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    edit_bus_apply5_pb: XmPushButton
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Apply");
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNtopWidget = XmScrolledList edit_bus_item5_list;
+            XmNleftAttachment = XmATTACH_FORM;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNactivateCallback = procedures
+                {
+                edit_apply(5);
+                };
+            };
+        };
+    edit_bus_reset5_pb: XmPushButton
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Reset");
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNtopWidget = XmPushButton edit_bus_apply5_pb;
+            XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNleftWidget = XmPushButton edit_bus_apply5_pb;
+            XmNsensitive = false;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNactivateCallback = procedures
+                {
+                edit_reset(5);
+                };
+            };
+        };
+    edit_bus_id6_label: XmLabelGadget
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Bus");
+            XmNtopAttachment = XmATTACH_FORM;
+            XmNleftAttachment = XmATTACH_FORM;
+            };
+        };
+    edit_bus_item6_list: XmScrolledList
+        {
+        arguments
+            {
+            XmNvisibleItemCount = 7;
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNtopWidget = XmLabelGadget edit_bus_id6_label;
+            XmNscrollBarDisplayPolicy = XmAS_NEEDED;
+            XmNscrollBarPlacement = XmBOTTOM_RIGHT;
+            XmNselectionPolicy = XmMULTIPLE_SELECT;
+            XmNlistSizePolicy = XmVARIABLE;
+            XmNrightAttachment = XmATTACH_FORM;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    edit_bus_apply6_pb: XmPushButton
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Apply");
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNtopWidget = XmScrolledList edit_bus_item6_list;
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNrightAttachment = XmATTACH_POSITION;
+            XmNrightPosition = 49;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNactivateCallback = procedures
+                {
+                edit_apply(6);
+                };
+            };
+        };
+    edit_bus_reset6_pb: XmPushButton
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Reset");
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNtopWidget = XmScrolledList edit_bus_item6_list;
+            XmNleftAttachment = XmATTACH_WIDGET;
+            XmNleftWidget = XmPushButton edit_bus_apply6_pb;
+            XmNsensitive = false;
+            XmNrightAttachment = XmATTACH_FORM;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNactivateCallback = procedures
+                {
+                edit_reset(6);
+                };
+            };
+        };
+    edit_bus_id1_text: XmText
+        {
+        arguments
+            {
+            XmNcolumns = 92;
+            XmNrows = 20;
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNtopAttachment = XmATTACH_FORM;
+            XmNtopOffset = 300;
+            XmNbottomAttachment = XmATTACH_FORM;
+            XmNeditMode = XmMULTI_LINE_EDIT;
+            };
+        callbacks
+            {
+            XmNmodifyVerifyCallback = procedures
+                {
+                overstrike(0);
+                };
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNmotionVerifyCallback = procedures
+                {
+                output_column_num(0);
+                };
+            };
+        };
+    edit_bus_internal_pb: XmPushButton
+        {
+        arguments
+            {
+            arguments std_pushbutton;
+            XmNrightAttachment = XmATTACH_FORM;
+            XmNtopAttachment = XmATTACH_FORM;
+            XmNlabelString = compound_string("Internal Editor");
+            XmNtopOffset = 20;
+            };
+        callbacks
+            {
+            XmNactivateCallback = procedures
+                {
+                edit_bus(0);
+                };
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    edit_bus_external_pb: XmPushButton
+        {
+        arguments
+            {
+            arguments std_pushbutton;
+            XmNrightAttachment = XmATTACH_FORM;
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNtopWidget = XmPushButton edit_bus_internal_pb;
+            XmNlabelString = compound_string("External Editor");
+            };
+        callbacks
+            {
+            XmNactivateCallback = procedures
+                {
+                edit_bus(1);
+                };
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    edit_bus_send_topf_pb: XmPushButton
+        {
+        arguments
+            {
+            arguments std_pushbutton;
+            XmNrightAttachment = XmATTACH_FORM;
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNtopWidget = XmPushButton edit_bus_external_pb;
+            XmNlabelString = compound_string("Send to PF");
+            XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNleftWidget = XmPushButton edit_bus_internal_pb;
+            XmNleftOffset = 0;
+            };
+        callbacks
+            {
+            XmNactivateCallback = procedures
+                {
+                edit_send_to_pf(0);
+                };
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    edit_bus_ok_pb: XmPushButton
+        {
+        arguments
+            {
+            arguments close_pushbutton_list;
+            XmNrightAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNtopWidget = XmPushButton edit_bus_send_topf_pb;
+            XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNleftWidget = XmPushButton edit_bus_internal_pb;
+            XmNleftOffset = 0;
+            XmNrightWidget = XmPushButton edit_bus_send_topf_pb;
+            XmNrightOffset = 0;
+            };
+        callbacks
+            {
+            XmNactivateCallback = procedures
+                {
+                edit_bus_close(0);
+                };
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    edit_bus_count: XmTextField
+        {
+        arguments
+            {
+            XmNrightAttachment = XmATTACH_FORM;
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNtopWidget = XmPushButton edit_bus_ok_pb;
+            XmNeditable = false;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    edit_column_num_text: XmTextField
+        {
+        arguments
+            {
+            arguments text_list_4;
+            XmNleftAttachment = XmATTACH_WIDGET;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNleftWidget = XmLabel column_num_label;
+            XmNtopWidget = XmLabel column_num_label;
+            XmNtopOffset = 0;
+            XmNleftOffset = 50;
+            XmNeditable = false;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    column_num_label: XmLabel
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Column Number");
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNtopAttachment = XmATTACH_FORM;
+            XmNleftOffset = 200;
+            XmNtopOffset = 270;
+            };
+        };
+    bus_edit_autoload_tb: XmToggleButton
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Auto Reload");
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNtopWidget = XmPushButton edit_bus_apply6_pb;
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNrightAttachment = XmATTACH_POSITION;
+            XmNrightPosition = 80;
+            XmNleftOffset = 5;
+            XmNtopOffset = 5;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNvalueChangedCallback = procedures
+                {
+                bus_edit_autoload_toggle(0);
+                };
+            };
+        };

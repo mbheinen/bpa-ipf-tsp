@@ -1,0 +1,139 @@
+IPF Network Data Extraction -- netdat
+
+Usage:  netdat <cr>
+	 > Enter OLD_BASE file name (or Q to quit): <binarybasefile.bse>
+	 > Enter saved network file (default is "binarybasefile.net"):<cr>
+	 > Enter <return> to extract data as a BPA NETWORK_DATA file,
+   	   enter G to extract data as a GE_DATA file, 
+   	   enter P to extract data as a PTI_DATA file, or 
+   	   enter Q to quit): 
+
+Output:  Converts binary base file (.BSE) to an ASCII network data base file:
+	 (.NET, .BPA, .PTI, or .GE) .
+
+This is the batch version of the "save netdata file" function built into the
+GUI/IPFSRV. This program generates a WSCC-formatted network data file in any
+of the following dialects: BPA, WSCC, or PTI.  "Dialects" means that the file
+is still WSCC, but the data is generated with special processing or
+restrictions and is destined for use with other programs. In the case of the
+PTI dialect, that data is preprocessed by the PTI-proprietary conversion
+program WSCFOR. Documentation is in Appendix F of the IPF Batch Users Guide
+(ipfbat.pdf).
+
+-------------------------------------------------------------------------------
+BPA NETWORK_DATA file format:
+netdat <cr>
+	 > Enter OLD_BASE file name (or Q to quit): <test.bse>
+	 > Enter saved network file (default is "test.net"):<cr>
+	 > Enter <return> to extract data as a BPA NETWORK_DATA file,
+   	   enter G to extract data as a GE_DATA file, 
+   	   enter P to extract data as a PTI_DATA file, or 
+   	   enter Q to quit):  <cr>
+
+> Enter dialect ( BPA, WSCC,
+                   WSCC1 :  +A INT, taps --> BPA taps,
+                   WSCC2 :  +A INT, taps --> WSCC steps,
+                or PTI ): BPA <cr>
+> Enter record size (120, 80, or B80/L120):120 <cr>
+> Section buses saved as Pseudo-buses (N or Y)? : Y <cr>
+> Replace assymetric type E branches with type L branches (N or Y)? : Y <cr>
+> Replace d-c system with equivalent bus injections (N or Y): N <cr>
+ * Options selected - dialect  = BPA       
+                      size     = 120       
+                      rating   = EXTENDED  
+                      sections = PSEUDOBUSES 
+                      type_e   = SYMMETRIC   
+                      ips_ref  =  
+                      zone_ren =  
+                      net d-c  = N
+ > Are above options correct (Y or N)? Y <cr>
+ BCDDAT option set to default % VARs.
+ BCDDAT option set to minimum X =  0.00000
+
+ Original branch [L     G31HIGH  5002MID PS   50011 100  00080 01553      5221006000              ]                                  
+ Replaced branch [L     G31HIGH  5002G31HIG&1 5001  100  00080 01553      5221006000              ]                                  
+ Original branch [L     G31HIGH  5002MID PS   50012 100       -00767                              ]                                  
+ Replaced branch [L     G31HIG&1 5002G31HIG&2 5001  100       -00767                              ]                                  
+ Original branch [TP    G31HIGH  5002MID PS   50013 100  00020 00663            -3000             ]                                  
+ Replaced branch [TP    G31HIG&2 5002MID PS   5001  100  00020 00663            -3000             ]                                  
+
+ Original branch [L     G32HIGH  5002MID PS   50011 100  00080 01553      5221006000              ]                                  
+ Replaced branch [L     G32HIGH  5002G32HIG&1 5001  100  00080 01553      5221006000              ]                                  
+ Original branch [L     G32HIGH  5002MID PS   50012 100       -00767                              ]                                  
+ Replaced branch [L     G32HIG&1 5002G32HIG&2 5001  100       -00767                              ]                                  
+ Original branch [TP    G32HIGH  5002MID PS   50013 100  00020 00663            -3000             ]                                  
+ Replaced branch [TP    G32HIG&2 5002MID PS   5001  100  00020 00663            -3000             ]                                  
+    80 records written to NETWORK_DATA file test.net                                                                                 
+ > Extract another case (Y or N)? N <cr>
+
+
+-------------------------------------------------------------------------------
+GE_DATA file format:
+
+netdat <cr>
+	 > Enter OLD_BASE file name (or Q to quit): <test.bse>
+	 > Enter saved network file (default is "test.net"):test.ge <cr>
+	 > Enter <return> to extract data as a BPA NETWORK_DATA file,
+   	   enter G to extract data as a GE_DATA file, 
+   	   enter P to extract data as a PTI_DATA file, or 
+   	   enter Q to quit):  G <cr>
+
+> Enter GE translation file name (or <RETURN> if none, or Q to quit)> <cr>
+ * Warning -- a translation file is not specified and no saved GE bus numberdata is available  
+> Enter new GE translation file name (or <RETURN> if none) > <cr>
+> Enter optional Branch Data file name (or <RETURN>  if none) > <cr>
+> Enter optional Extended Branch Data file name (or <RETURN> if none) > <cr>
+> Enter optional Out-of-service Branch Data file name (or <RETURN>  if none) > <cr>
+> Enter optional Out-of-service Shunt Data file name (or <RETURN>  if none) > <cr>
+> Rename blank parallel ID's to '1' (y or n): y <cr>
+> Replace d-c system with equivalent bus injections (N or Y): Y <cr>
+> Preserve BPA bus zones (N or Y): Y <cr>
+> Preserve BPA bus ownerships (N or Y): Y <cr>
+> Season to deposit IPF branch data ratings (those not in the branch data file)
+   1 : RATE1, RATE2 (Summer) 
+   2 : RATE3, RATE4 (Winter) 
+   3 : RATE5, RATE6 (Spring) 
+   4 : RATE7, RATE8 (Fall) 
+> Enter Season Code: 2 <cr>
+ * Options selected - Rename blank id's            = Y
+                      Net d-c system               = Y
+                      Preserve BPA bus zones       = Y
+                      Preserve BPA bus ownerships  = Y
+                      Season of IPF branch ratings = 2
+
+ > Are above options correct (Y or N)? Y <cr>
+
+-------------------------------------------------------------------------------
+PTI_DATA file format:
+
+netdat <cr>
+	 > Enter OLD_BASE file name (or Q to quit): <test.bse>
+	 > Enter saved network file (default is "test.net"):test.pti <cr>
+	 > Enter <return> to extract data as a BPA NETWORK_DATA file,
+   	   enter G to extract data as a GE_DATA file, 
+   	   enter P to extract data as a PTI_DATA file, or 
+   	   enter Q to quit): P <cr>
+> Enter PTI translation file name (or <RETURN> if none, or Q to quit) >  <cr>
+* Warning -- a translation file is not specified and no saved PTI bus number data is available
+> Enter PTI version number (23 or 24): 24 <cr>
+> Enter new PTI translation file name (or NULL if none) > NULL <cr>
+> Enter optional Out-of-service Branch Data file name (or <RETURN>  if none) >  <cr>
+> Rename blank parallel ID's to '1' (y or n): y <cr>
+> Append bus name, basekv to end of record (Y or N): Y <cr>
+ * Rebuilding zone and ownership hash tables...
+ * Rebuilding cross-reference arrays ...
+ BCDDAT option set to compute % VARs.
+ BCDDAT option set to minimum X =  0.00000
+ * Creating a new PTI Translation File
+    36 name records written to translation file NULL                                                                                 
+  Bus records:   original     1 inserted    26
+  Area records:  original     1 inserted     3
+  Zone records:  original     1 inserted     3
+  Owner records: original     1 inserted     3
+
+-------------------------------------------------------------------------------
+ 
+
+
+
+

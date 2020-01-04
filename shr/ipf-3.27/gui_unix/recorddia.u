@@ -1,0 +1,347 @@
+
+
+object
+!**VUIT_Manage false ***
+!***VUIT_Manage false ***
+    recorder_form: XmForm 
+        {
+        arguments
+            {
+            XmNwidth = 194;
+            XmNheight = 72;
+            XmNhorizontalSpacing = 5;
+            XmNmarginHeight = 5;
+            XmNmarginWidth = 5;
+            XmNverticalSpacing = 5;
+            XmNbackground = rgb(45874,45874,45874);
+            XmNx = 287;
+            XmNy = 228;
+            };
+        controls
+            {
+            XmPushButton recorder_step_forward_pb;
+            XmPushButton recorder_step_back_pb;
+            XmPushButton recorder_last_command_pb;
+            XmPushButton recorder_first_command_pb;
+            XmPushButton recorder_stop_pb;
+            XmToggleButton recorder_run_pb;
+            XmText recorder_comand_number;
+            XmText recorder_command_line;
+            };
+        };
+    recorder_step_forward_pb: XmPushButton 
+        {
+        arguments
+            {
+            XmNleftAttachment = XmATTACH_WIDGET;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNleftOffset = 6;
+            XmNtopOffset = 0;
+            XmNlabelPixmap = icon(color_table = color_table(background color = ' ', 
+                    foreground color = '*', 
+                    rgb(65535,1310,0) = 'a'),
+                '                 ',
+                ' *               ',
+                ' ***             ',
+                ' *****           ',
+                ' *******         ',
+                ' *********       ',
+                ' ***********     ',
+                ' *************   ',
+                ' *************** ',
+                ' *************   ',
+                ' ***********     ',
+                ' *********       ',
+                ' *******         ',
+                ' *****           ',
+                ' ***             ',
+                ' *               ',
+                '                 ');
+            XmNlabelType = XmPIXMAP;
+            XmNheight = 29;
+            XmNleftWidget = XmToggleButton recorder_run_pb;
+            XmNtopWidget = XmToggleButton recorder_run_pb;
+            XmNbottomAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNbottomWidget = XmToggleButton recorder_run_pb;
+            XmNbottomOffset = 0;
+            XmNhighlightThickness = 0;
+            XmNbackground = active_button_color;
+            };
+        callbacks
+            {
+            XmNactivateCallback = procedures
+                {
+                manage_not_implemented(0);
+                };
+            };
+        };
+    recorder_step_back_pb: XmPushButton 
+        {
+        arguments
+            {
+            XmNleftAttachment = XmATTACH_WIDGET;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNleftOffset = 5;
+            XmNtopOffset = 0;
+            XmNlabelPixmap = icon(color_table = color_table(background color = ' ', 
+                    foreground color = '*', 
+                    rgb(65535,1310,0) = 'a'),
+                '                 ',
+                '               * ',
+                '             *** ',
+                '           ***** ',
+                '         ******* ',
+                '       ********* ',
+                '     *********** ',
+                '   ************* ',
+                ' *************** ',
+                '   ************* ',
+                '     *********** ',
+                '       ********* ',
+                '         ******* ',
+                '           ***** ',
+                '             *** ',
+                '               * ',
+                '                 ');
+            XmNlabelType = XmPIXMAP;
+            XmNleftWidget = XmPushButton recorder_first_command_pb;
+            XmNtopWidget = XmPushButton recorder_first_command_pb;
+            XmNbottomAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNbottomWidget = XmPushButton recorder_first_command_pb;
+            XmNbottomOffset = 0;
+            XmNhighlightThickness = 0;
+            XmNbackground = active_button_color;
+            };
+        callbacks
+            {
+            XmNactivateCallback = procedures
+                {
+                manage_not_implemented(0);
+                };
+            };
+        };
+    recorder_last_command_pb: XmPushButton 
+        {
+        arguments
+            {
+            XmNleftAttachment = XmATTACH_WIDGET;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNleftOffset = 5;
+            XmNtopOffset = 0;
+            XmNlabelPixmap = icon(color_table = color_table(background color = ' ', 
+                    foreground color = '*', 
+                    rgb(65535,1310,0) = 'a'),
+                '                 ',
+                '     *       *** ',
+                '     **      *** ',
+                '     ***     *** ',
+                '     ****    *** ',
+                '     *****   *** ',
+                ' **********  *** ',
+                ' *********** *** ',
+                ' *************** ',
+                ' *********** *** ',
+                ' **********  *** ',
+                '     *****   *** ',
+                '     ****    *** ',
+                '     ***     *** ',
+                '     **      *** ',
+                '     *       *** ',
+                '                 ');
+            XmNlabelType = XmPIXMAP;
+            XmNleftWidget = XmPushButton recorder_step_forward_pb;
+            XmNtopWidget = XmPushButton recorder_step_forward_pb;
+            XmNbottomAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNbottomWidget = XmPushButton recorder_step_forward_pb;
+            XmNbottomOffset = 0;
+            XmNhighlightThickness = 0;
+            XmNbackground = active_button_color;
+            };
+        callbacks
+            {
+            XmNactivateCallback = procedures
+                {
+                manage_not_implemented(0);
+                };
+            };
+        };
+    recorder_first_command_pb: XmPushButton 
+        {
+        arguments
+            {
+            XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNleftOffset = 0;
+            XmNtopOffset = 10;
+            XmNlabelPixmap = icon(color_table = color_table(background color = ' ', 
+                    foreground color = '*', 
+                    rgb(65535,1310,0) = 'a'),
+                '                 ',
+                ' ***       *     ',
+                ' ***      **     ',
+                ' ***     ***     ',
+                ' ***    ****     ',
+                ' ***   *****     ',
+                ' ***  ********** ',
+                ' *** *********** ',
+                ' *************** ',
+                ' *** *********** ',
+                ' ***  ********** ',
+                ' ***   *****     ',
+                ' ***    ****     ',
+                ' ***     ***     ',
+                ' ***      **     ',
+                ' ***       *     ',
+                '                 ');
+            XmNlabelType = XmPIXMAP;
+            XmNtopWidget = XmText recorder_comand_number;
+            XmNleftWidget = XmText recorder_comand_number;
+            XmNhighlightThickness = 0;
+            XmNbackground = active_button_color;
+            };
+        callbacks
+            {
+            XmNactivateCallback = procedures
+                {
+                manage_not_implemented(0);
+                };
+            };
+        };
+    recorder_stop_pb: XmPushButton 
+        {
+        arguments
+            {
+            XmNleftAttachment = XmATTACH_WIDGET;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNleftOffset = 5;
+            XmNtopOffset = 0;
+            XmNlabelPixmap = icon(color_table = color_table(background color = ' ', 
+                    foreground color = '*', 
+                    rgb(65535,1310,0) = 'a'),
+                '                 ',
+                '      *****      ',
+                '    **     **    ',
+                '   *         *   ',
+                '  *   *****   *  ',
+                '  *  *******  *  ',
+                ' *  *********  * ',
+                ' *  *********  * ',
+                ' *  *********  * ',
+                ' *  *********  * ',
+                ' *  *********  * ',
+                '  *  *******  *  ',
+                '  *   *****   *  ',
+                '   *         *   ',
+                '    **     **    ',
+                '      *****      ',
+                '                 ');
+            XmNlabelType = XmPIXMAP;
+            XmNleftWidget = XmPushButton recorder_step_back_pb;
+            XmNtopWidget = XmPushButton recorder_step_back_pb;
+            XmNbottomAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNbottomWidget = XmPushButton recorder_step_back_pb;
+            XmNbottomOffset = 0;
+            XmNhighlightThickness = 0;
+            XmNbackground = active_button_color;
+            };
+        callbacks
+            {
+            XmNactivateCallback = procedures
+                {
+                manage_not_implemented(0);
+                };
+            };
+        };
+    recorder_run_pb: XmToggleButton 
+        {
+        arguments
+            {
+            XmNlabelPixmap = icon(color_table = color_table(background color = ' ', 
+                    foreground color = '*', 
+                    rgb(65535,1310,0) = 'a'),
+                '                 ',
+                '      aaaaa      ',
+                '    aa     aa    ',
+                '   a         a   ',
+                '  a   aaaaa   a  ',
+                '  a  aaaaaaa  a  ',
+                ' a  aaaaaaaaa  a ',
+                ' a  aaaaaaaaa  a ',
+                ' a  aaaaaaaaa  a ',
+                ' a  aaaaaaaaa  a ',
+                ' a  aaaaaaaaa  a ',
+                '  a  aaaaaaa  a  ',
+                '  a   aaaaa   a  ',
+                '   a         a   ',
+                '    aa     aa    ',
+                '      aaaaa      ',
+                '                 ');
+            XmNlabelType = XmPIXMAP;
+            XmNhighlightThickness = 0;
+            XmNleftAttachment = XmATTACH_WIDGET;
+            XmNleftWidget = XmPushButton recorder_stop_pb;
+            XmNleftOffset = 5;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopWidget = XmPushButton recorder_stop_pb;
+            XmNtopOffset = 0;
+            XmNbottomAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNbottomWidget = XmPushButton recorder_stop_pb;
+            XmNbottomOffset = 0;
+            XmNindicatorOn = false;
+            XmNshadowThickness = 2;
+            XmNbackground = active_button_color;
+            };
+        callbacks
+            {
+            XmNvalueChangedCallback = procedures
+                {
+                };
+            };
+        };
+    recorder_comand_number: XmText 
+        {
+        arguments
+            {
+            XmNwidth = 40;
+            XmNcolumns = 1;
+            XmNmaxLength = 3;
+            XmNy = -1;
+            XmNtopAttachment = XmATTACH_FORM;
+            XmNtopOffset = 10;
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNleftOffset = 10;
+            XmNhighlightThickness = 0;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    recorder_command_line: XmText 
+        {
+        arguments
+            {
+            XmNwidth = 115;
+            XmNcolumns = 1;
+            XmNleftOffset = 0;
+            XmNtopOffset = 0;
+            XmNleftAttachment = XmATTACH_WIDGET;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNleftWidget = XmText recorder_comand_number;
+            XmNtopWidget = XmText recorder_comand_number;
+            XmNrightAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNrightOffset = 0;
+            XmNhighlightThickness = 0;
+            XmNrightWidget = XmPushButton recorder_last_command_pb;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };

@@ -1,0 +1,584 @@
+
+
+procedure
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc create_from_scratch ***
+
+    create_from_scratch;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc help_annotate_get ***
+
+    file_save_proc;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc help_annotate_get ***
+
+    help_annotate_get;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc create_new_ipf_bus ***
+
+    create_new_ipf_bus;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc help_annotate_save ***
+
+    help_annotate_save;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc help_annotate_remove ***
+
+    help_annotate_remove;
+!***VUIT_Action Manage select_reports_dialog ***
+
+    activate_reports_dialog;
+!***VUIT_Action Manage exit_warning_box ***
+
+    activate_quit_dialog;
+!***VUIT_Action Manage open_file_dialog ***
+
+    activate_open_file_dialog;
+!***VUIT_Action Unmanage open_file_dialog ***
+
+!***VUIT_Action UserProc apply_files ***
+
+    apply_file_selections;
+!***VUIT_Action Unmanage select_reports_dialog ***
+
+    unmanage_reports_dialog;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc get_bus_selection ***
+
+    get_bus_selection;
+!make this work
+!***VUIT_Action Unmanage area_selection_dialog ***
+
+    cancel_area_selection_box;
+!***VUIT_Action Manage bus_edit_dialog ***
+
+    manage_network_edit_dialog;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc pfinit_cb ***
+
+    pfinit_cb;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc ipc_commandString_xtoc ***
+
+    ipc_commandString_xtoc;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc file_default_set ***
+
+    file_default_set;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc file_name_set ***
+
+    file_name_set;
+!***VUIT_Action Unmanage ipc_command_board ***
+
+    unmanage_ipc_com_dialog;
+!***VUIT_Action Manage unimplemented_feature_box ***
+
+    manage_not_implemented;
+!***VUIT_Action Register ***
+
+    register_name;
+!***VUIT_Action Unmanage help_dialog ***
+
+    unmanage_help_dialog;
+!***VUIT_Action Unmanage help_annotate_dialog ***
+
+    unmanage_annotate_dialog;
+!***VUIT_Action Manage help_annotate_dialog ***
+
+    manage_help_annotate;
+!***VUIT_Action Manage help_dialog ***
+
+    manage_help_dialog;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc help_dialog_page_up ***
+
+    help_dialog_page_up;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc help_dialog_page_down ***
+
+    help_dialog_page_down;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc pfsolution_cb ***
+
+    pfsolution_cb;
+!***VUIT_Action Manage bus_branch_select_dialog ***
+
+    manage_bus_branch_dialog;
+!***VUIT_Action Manage ipc_command_board ***
+
+    manage_command_dialog;
+!***VUIT_Action Manage save_file_dialog ***
+
+    manage_save_dialog;
+!***VUIT_Action Unmanage open_file_dialog ***
+
+    unmanage_file_open_dialog;
+!***VUIT_Action Manage cflow_selection_dialog ***
+
+    manage_cflow_select_dialog;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc cflow_launch_cb ***
+
+    cflow_launch_cb;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc cflow_kill_cb ***
+
+    cflow_kill_cb;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc cflow_debug_cb ***
+
+    cflow_debug_cb;
+!***VUIT_Action Manage error_message_dialog ***
+
+    manage_error_dialog;
+!***VUIT_Action Unmanage bus_output_dialog ***
+
+    unmanage_bus_output_dialog;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc send_mod_data_to_powerflow ***
+
+    send_mod_data_to_powerflow;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc reset_data ***
+
+    reset_data;
+!***VUIT_Action Unmanage bus_front_box ***
+
+    unmanage_bus_front_box;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc set_bus_type ***
+
+    set_bus_type;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc set_default_files ***
+
+    set_default_files;
+!***VUIT_Action Unmanage line_Z_calc_dialog ***
+
+    unmanage_line_z_dia;
+!***VUIT_Action Manage line_Z_calc_dialog ***
+
+    manage_line_z_dia;
+!***VUIT_Action Manage bus_sect_dialog ***
+
+!***VUIT_Action UserProc sect_init ***
+
+    manage_bus_sect_dialog;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc sect_init ***
+
+    sect_init;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc sect_ok ***
+
+    sect_ok;
+!***VUIT_Action Unmanage bus_sect_dialog ***
+
+    unmanage_bus_sect_dia;
+!***VUIT_Action Manage line_z_filesel ***
+
+    manage_line_z_filesel;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc help_file_name_set ***
+
+    help_file_name_set;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc help_input_callback ***
+
+    help_input_callback;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc help_expose_callback ***
+
+    help_expose_callback;
+!***VUIT_Action Manage print_dialog ***
+
+    print_view_plot;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc line_z_list_number_cb ***
+
+    line_z_list_number_cb;
+!***VUIT_Action Manage line_z_save_dialog ***
+
+    manage_line_z_save_dialog;
+!***VUIT_Action Unmanage line_z_save_dialog ***
+
+    unmanage_line_z_save_dia;
+!***VUIT_Action Unmanage ipf_report_list_dialog ***
+
+    unmanage_ipf_rep_list_dia;
+!***VUIT_Action Manage ipf_report_list_dialog ***
+
+    manage_ipf_rep_list_dia;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc error_dia_help_cb ***
+
+    error_dia_help_cb;
+!***VUIT_Action Manage ipf_alpha_bus_list_dialog ***
+
+    manage_ipf_alpha_bus_list;
+!***VUIT_Action Unmanage ipf_alpha_bus_list_dialog ***
+
+    unmanage_ipf_alpha_bus_list;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc pfAlphaList ***
+
+    pfAlphaList;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc ipf_alpha_srch_value_chg ***
+
+    ipf_alpha_srch_value_chg;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc alpha_bus_list_select ***
+
+    alpha_bus_list_select;
+!***VUIT_Action Unmanage line_tap_dialog ***
+
+    unmanage_line_tap_dialog;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc alphanum_check ***
+
+    alphanum_check;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc decimal_check ***
+
+    decimal_check;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc digit_check ***
+
+    digit_check;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc load_all_edit_widget_id ***
+
+    load_all_edit_widget_id;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc printGraphData ***
+
+    printGraphData;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc tools_set_view_mode_cb ***
+
+    tools_set_view_mode_cb;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc change_cursor_to ***
+
+    change_cursor_to;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc edit_bus ***
+
+    edit_bus;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc edit_init ***
+
+    edit_init;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc edit_reset ***
+
+    edit_reset;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc edit_bus_close ***
+
+    edit_bus_close;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc edit_send_to_pf ***
+
+    edit_send_to_pf;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc edit_apply ***
+
+    edit_apply;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc overstrike ***
+
+    overstrike;
+!ect_bus ***
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc sect_bus ***
+
+    sect_bus;
+!ect_tie ***
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc sect_tie ***
+
+    sect_tie;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc tap_apply ***
+
+    tap_apply;
+!ap_ok ***
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc tap_ok ***
+
+    tap_ok;
+!ap_init ***
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc tap_init ***
+
+    tap_init;
+!ools_zoom_cb ***
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc tools_zoom_cb ***
+
+    tools_zoom_cb;
+!***VUIT_Action Unmanage save_file_dialog ***
+
+    unmanage_save_file_dialog;
+!fGetFilterLists ***
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc pfGetFilterLists ***
+
+    pfGetFilterLists;
+!***VUIT_Action Manage pf_report_dialog ***
+
+    manage_pfreport_dia;
+!fGetReport ***
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc pfGetReport ***
+
+    pfGetReport;
+!***VUIT_Action Unmanage pf_report_dialog ***
+
+    unmanage_pf_report_dia;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc fill_branch_jacket_cb_sb ***
+
+    fill_branch_jacket_cb_sb;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc fill_bus_dialog_cb ***
+
+    fill_bus_dialog_cb;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc set_cont_type ***
+
+    set_cont_type;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc alpha_check ***
+
+    alpha_check;
+!***VUIT_Action Manage area_selection_dialog ***
+
+    manage_area_selection_dialog;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc line_pq_list_cb ***
+
+    line_pq_list_cb;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc line_pq_edit_insert ***
+
+    line_pq_edit_insert;
+!ine_pq_edit_replace ***
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc line_pq_edit_replace ***
+
+    line_pq_edit_replace;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc line_pq_edit_delete ***
+
+    line_pq_edit_delete;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc special_selection_action_cb ***
+
+    special_selection_action_cb;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc create_pq_record ***
+
+    create_pq_record;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc create_cont_record ***
+
+    create_cont_record;
+!***VUIT_no_Generate*** 
+!***VUIT_Action Unmanage cont_type_warning_form ***
+
+!***VUIT_Action UserProc reports_file_ok_cb ***
+
+    reports_file_ok_cb;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc process_pq_radio_buttons ***
+
+    process_pq_radio_buttons;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc print_plot ***
+
+    print_plot;
+!***VUIT_Action Manage print_opt_page_dialog ***
+
+    manage_print_opt_page;
+!***VUIT_Action Manage plot_options_dialog ***
+
+    manage_print_opt_display;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc data_check ***
+
+    data_check;
+!***VUIT_Action Unmanage solve_dialog ***
+
+    unmanage_solve_dialog;
+!***VUIT_Action Manage solve_dialog ***
+
+!***VUIT_Action UserProc pfget_solution_params ***
+
+    manage_solve_dialog;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc solve_reset ***
+
+    solve_reset;
+!***VUIT_Action Unmanage cor_edit_dia ***
+
+    unmanage_cor_edit_dialog;
+!***VUIT_no_Generate***
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc cor_selection_edit ***
+
+    cor_selection_edit;
+!***VUIT_Action Manage cflow_socket_request_dia ***
+
+    manage_cflow_socket_dia;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc cancel_bus_settings ***
+
+    cancel_bus_settings;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc process_regxfmr_rb ***
+
+    process_regxfmr_rb;
+!***VUIT_Action Unmanage save_network_dialog ***
+
+    unmanage_save_net_dia;
+!***VUIT_Action Manage save_network_dialog ***
+
+    manage_save_net_dialog;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc create_reac_rec ***
+
+    create_reac_rec;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc create_line_rec ***
+
+    create_line_rec;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc create_xfmr_rec ***
+
+    create_xfmr_rec;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc create_equiv_rec ***
+
+    create_xfmr_shift_rec;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc create_equiv_rec ***
+
+    create_equiv_rec;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc create_regxfmr_rec ***
+
+    create_regxfmr_rec;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc create_dc_2_term_rec ***
+
+    create_dc_2_term_rec;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc create_dc_multi_term_rec ***
+
+    create_dc_multi_term_rec;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc set_dia_flow_deflts ***
+
+    set_dia_flow_deflts;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc change_print_plot_opts ***
+
+    change_print_plot_opts;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc apply_files ***
+
+    apply_files;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc process_prtopt_rb ***
+
+    process_prtopt_rb;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc refresh_solution_data ***
+
+    refresh_solution_data;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc creategraphtbl ***
+
+    creategraphtbl;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc draw_area_input ***
+
+    draw_area_input;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc clear_solution_data ***
+
+    clear_solution_data;
+!***VUIT_Action Unmanage printer_select_dialog ***
+
+    unmanage_printer_select_dia;
+!***VUIT_Action Manage printer_select_dia ***
+
+    plot_destination_cb;
+!***VUIT_Action Manage printer_select_dialog ***
+
+    manage_printer_select_dia;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc set_printer_selection ***
+
+    set_printer_selection;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc get_bus_alpha_select ***
+
+    get_bus_alpha_select;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc set_regxfmr_jckts_cb ***
+
+    set_regxfmr_jckts_cb;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc alphanum_sp_check ***
+
+    alphanum_sp_check;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc file_check_and_save_cb ***
+
+    file_check_and_save_cb;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc file_save_cb ***
+
+    file_save_cb;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc exit_ipf_quick ***
+
+    exit_ipf_quick;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc exit_ipf ***
+
+    exit_ipf;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc set_graph_unit_and_origin_cb ***
+
+    set_graph_unit_and_origin_cb;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc fill_area_selection_box2 ***
+
+    fill_area_selection_box2;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc loadArea2 ***
+
+    loadArea2;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc send_del_data_to_powerflow ***
+
+    send_add_data_to_powerflow;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc send_del_data_to_powerflow ***
+
+    send_del_data_to_powerflow;
+!***VUIT_Action UserProc exit_ipf ***
+
+!***VUIT_Action Exit ***
+
+    exit_gui;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc pfget_solution_params ***
+
+    pfget_solution_params;

@@ -1,0 +1,54 @@
+. JUNK.trc 21-Oct-1997 11:42:18 JLR6683 GPF.EXE_V320
+................................................................................
+. This trace file is based on a NORMAL Winter basecase.  There is a heavy
+. south to north flow across the northwest system.  The DC is set to a maximum
+. import (3114 MW) and the export to BC Hydro is at its maximum of (2268 MW).
+. The increased loading in the NW will be served by increased generation at
+. Coulee.  The import on the COI is near zero (146 MW).
+................................................................................
+/REPORT
+  NAME = JUNK
+  SERIES = NMGRC
+.  USER_ANALYSIS = ANGLE.UAN
+  USER_ANALYSIS =
+  CONTROL_FILE = 
+  COMMON_MODE_DATA = CMODE-NM.LIS
+  PERTURBATION = LOAD
+  TRACE = YES
+/LIMITS
+.  LOAD_P_PCT  = 0.500
+  LOAD_P_PCT  = 4.0
+.  LOAD_Q_PCT  = 0.500
+  LOAD_Q_PCT  = 4.00
+.  LOAD_STEPS  = 80
+  LOAD_STEPS  = 5
+  LOAD_ZONES  = NA,NB,OP
+  LOAD_AREAS  = 
+  LOAD_OWNERS = 
+./CHANGE_BUS_TYPES, LTC=ON_DCONLY
+/CHANGE_BUS_TYPES
+/SOLUTION
+>AI_CONTROL=OFF
+>MISC_CNTRL, VFLATSTART =OFF, DCLP =ON 
+>LTC=ON_DCONLY
+.  "LTC=ON_DCONLY" was added
+/BASECASE
+  J98SN07.BSE
+/PRI_CHANGE
+/PERTURBED_BUS
+.-----< Bus  ><KV>     <START> <STOP > <STEP >
+B     BUCKLEY 500.  ,      0.0    75.0    25.0
+/MONITORED_BUS
+B     BIG EDDY500.  
+B     JOHN DAY500.  
+/GENERATOR_BUS
+B     COULEE 213.8
+B     COULEE5115.0
+B     COULEE5215.0
+/CUT_PLANE
+> CUT-PLANE BEOST
+L     OSTRNDER500.0BIG EDDY500. 0
+> CUT-PLANE PEARL-MARION
+L     PEARL   500. MARION  500.
+/BRANCH
+/COMMON_MODE

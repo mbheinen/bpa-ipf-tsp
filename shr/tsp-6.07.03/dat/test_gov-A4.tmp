@@ -1,0 +1,22 @@
+[ID COORD
+OPtion BOrder 20.49 28.70
+OPtion BX_ident 13.2 5.25 20.00 0.70
+OPtion CAse_name 13.4 4.12
+OPtion COmments 13.5 4.5
+OPtion LGend 11.0 5.25
+OPtion OFfset 0.2 0.0
+OPtion SCale 1.0 1.0
+OPtion SIze 20.49 28.70
+OPtion BUs_detail NO_Angle
+B BOX     1.00BOX     3 11.03  4.48 -0.02 -0.30150108  0.00 
+B CTY TD1  500CTY TD1 3  8.87 21.29  9.81 21.49 72     0.00 
+B GEN TD1 20.0GEN TD1 3 14.36 20.02 14.92 19.74 29 35  0.00 
+B HS  TD1  500HS  TD1 3 14.11 18.19 14.11 17.68 75 84  0.00 
+B LL      1.00LL      3  0.54  0.72 -0.02 -0.27150108  0.00 
+B LOD TD1  500LOD TD1 3  8.62 18.47  8.36 17.81 38141  0.00 
+B SLACK    500SLACK   3  5.06 22.59  4.15 21.70 82351  0.00 
+B UR      1.00UR      3 21.62 27.94 -0.02 -0.10172108  0.00 
+L BOX     1.00LL      1.00   2 11.03  0.72                                                  
+L BOX     1.00UR      1.00   2 21.62  4.45                                                  
+L LL      1.00UR      1.00   2  0.54 27.94                                                  
+(*EOR)

@@ -1,0 +1,9 @@
+IPF Version 3.27.07
+31-October-2000
+
+For Updates:
+Create a subdirectory under / called /updates.
+Copy all the update subdirectories with date names to /updates.
+Excute updates from /updates.
+
+NOTE:  All of the updates included here have been compiled in this working version, IPF-3.27.07.

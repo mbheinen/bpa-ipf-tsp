@@ -1,0 +1,291 @@
+%% 
+%% PLOTS - Translated by VTRAN version: VT 4.0.0  
+%% 
+%% 
+%% PLOTS - Translated by VTRAN version: VT 4.0.0  
+%% 
+%**** WE MAY NEED PLTORI ****PLTORI 0 0
+    1.000000 inch     9.850000 inch     0.085700
+(  SWING CASE test_gov   EXECUTED ON 18-Dec-99 USING VERSION 6.07                )
+    0.000000     80 Symbol
+    1.000000 inch     9.700001 inch     0.085700
+(  6000 BUS POWER FLOW CASE(TESTGOV   ) EXECUTED ON 12/18/99                     )
+    0.000000     80 Symbol
+    1.000000 inch     9.550001 inch     0.085700
+(   CASE GOVERNOR     SWI  001                                                   )
+    0.000000     80 Symbol
+    1.000000 inch     9.400002 inch     0.085700
+(   GOVERNOR:  TESTS GOVERNOR AND TURBINE MODELS.                                )
+    0.000000     80 Symbol
+    1.000000 inch     9.250002 inch     0.085700
+(   MECHANICAL TORQUE OPTION                                                     )
+    0.000000     80 Symbol
+    1.000000 inch     9.100002 inch     0.085700
+(        )
+    0.000000      8 Symbol
+    1.000000 inch     8.950003 inch     0.085700
+(CASE TESTGOV       1  1                                                         )
+    0.000000     80 Symbol
+    1.000000 inch     8.800003 inch     0.085700
+(LS  HS  TD1 500.  GEN TD1 20.0 1    1     5.0      .0001                        )
+    0.000000     80 Symbol
+    1.000000 inch     8.650003 inch     0.085700
+(LS  HS  TD1 500.  GEN TD1 20.0 1   -1    10.0                                   )
+    0.000000     80 Symbol
+    1.000000 inch     8.500004 inch     0.085700
+(F1                     1                                                        )
+    0.000000     80 Symbol
+    1.000000 inch     8.350004 inch     0.085700
+(FF      1.0 300.                                                               1)
+    0.000000     80 Symbol
+    1.000000 inch     8.200005 inch     0.085700
+(     LOW BUS VOLTAGES WERE NOT CALCULATED                                       )
+    0.000000     80 Symbol
+    1.000000 inch     8.050005 inch     0.085700
+(     DURING THE FOLLOWING FAULT PERIODS.                                        )
+    0.000000     80 Symbol
+    1.000000 inch     7.900005 inch     0.085700
+(                  5.000 CYCLES TO   10.000 CYCLES                               )
+    0.000000     80 Symbol
+    1.000000 inch     7.750005 inch     0.085700
+(     THE FOLLOWING 20 BUSES HAVE THE LOWEST BUS VOLTAGES                        )
+    0.000000     80 Symbol
+    1.000000 inch     7.600005 inch     0.085700
+(     DURING NONFAULT PERIODS.                                                   )
+    0.000000     80 Symbol
+    1.000000 inch     7.450005 inch     0.085700
+(     BUS NAME  BASE KV  VOLTAGE(PU)  RELATIVE %  TIME(CYCLES)                   )
+    0.000000     80 Symbol
+    1.000000 inch     7.300004 inch     0.085700
+(     HS  TD1    500.0      0.8108         76.25         28.00                   )
+    0.000000     80 Symbol
+    1.000000 inch     7.150004 inch     0.085700
+(     LOD TD1    500.0      0.8278         84.62         27.00                   )
+    0.000000     80 Symbol
+    1.000000 inch     7.000004 inch     0.085700
+(     GEN TD1     20.0      0.9443         85.85         29.00                   )
+    0.000000     80 Symbol
+    1.000000 inch     6.850004 inch     0.085700
+(     CTY TD1    500.0      0.9984         99.84         27.00                   )
+    0.000000     80 Symbol
+    1.000000 inch     6.700004 inch     0.085700
+(     SLACK      500.0      1.0000        100.00         18.00                   )
+    0.000000     80 Symbol
+    1.000000 inch     6.550004 inch     0.085700
+(     THE FOLLOWING 20 BUSES HAVE THE HIGHEST BUS VOLTAGES                       )
+    0.000000     80 Symbol
+    1.000000 inch     6.400004 inch     0.085700
+(     BUS NAME  BASE KV  VOLTAGE(PU)  RELATIVE %  TIME(CYCLES)                   )
+    0.000000     80 Symbol
+    1.000000 inch     6.250004 inch     0.085700
+(     GEN TD1     20.0      1.1498       104.53         289.00                   )
+    0.000000     80 Symbol
+    1.000000 inch     6.100004 inch     0.085700
+(     HS  TD1    500.0      1.1339       106.64         289.00                   )
+    0.000000     80 Symbol
+    1.000000 inch     5.950004 inch     0.085700
+(     LOD TD1    500.0      1.0099       103.23         291.00                   )
+    0.000000     80 Symbol
+    1.000000 inch     5.800004 inch     0.085700
+(     CTY TD1    500.0      1.0002       100.02         293.00                   )
+    0.000000     80 Symbol
+    1.000000 inch     5.650003 inch     0.085700
+(     SLACK      500.0      1.0000       100.00          71.00                   )
+    0.000000     80 Symbol
+    1.000000 inch     5.500003 inch     0.085700
+(     THE FOLLOWING 20 BUSES HAVE THE LOWEST BUS FREQUENCIES                     )
+    0.000000     80 Symbol
+    1.000000 inch     5.350003 inch     0.085700
+(     DURING NONFAULT PERIODS.                                                   )
+    0.000000     80 Symbol
+    1.000000 inch     5.200003 inch     0.085700
+(     BUS NAME  BASE KV  FREQUENCY(HERTZ)  TIME(CYCLES)                          )
+    0.000000     80 Symbol
+    1.000000 inch     5.050003 inch     0.085700
+(     GEN TD1     20.0       -0.7619             106.00                          )
+    0.000000     80 Symbol
+    1.000000 inch     4.900003 inch     0.085700
+(     HS  TD1    500.0       -0.5873             106.00                          )
+    0.000000     80 Symbol
+    1.000000 inch     4.750003 inch     0.085700
+(     LOD TD1    500.0       -0.2038             107.00                          )
+    0.000000     80 Symbol
+    1.000000 inch     4.600003 inch     0.085700
+(     CTY TD1    500.0       -0.0020             107.00                          )
+    0.000000     80 Symbol
+    1.000000 inch     4.450003 inch     0.085700
+(     SLACK      500.0        0.0000             106.00                          )
+    0.000000     80 Symbol
+    1.000000 inch     4.300003 inch     0.085700
+( **********************************************************************         )
+    0.000000     80 Symbol
+    1.000000 inch     4.150002 inch     0.085700
+( ****                                                              ****         )
+    0.000000     80 Symbol
+    1.000000 inch     4.000002 inch     0.085700
+( ****                            VFHIST                            ****         )
+    0.000000     80 Symbol
+    1.000000 inch     3.850002 inch     0.085700
+( ****                                                              ****         )
+    0.000000     80 Symbol
+    1.000000 inch     3.700002 inch     0.085700
+( ****       GLOBAL BUS VOLTAGE AND FREQUENCY SCANNING REPORT       ****         )
+    0.000000     80 Symbol
+    1.000000 inch     3.550002 inch     0.085700
+( ****                                                              ****         )
+    0.000000     80 Symbol
+    1.000000 inch     3.400002 inch     0.085700
+( ****            TIME INTERVAL =     0.0 TO   298.0 CYCLES         ****         )
+    0.000000     80 Symbol
+    1.000000 inch     3.250002 inch     0.085700
+( ****                                                              ****         )
+    0.000000     80 Symbol
+    1.000000 inch     3.100002 inch     0.085700
+( ****                                                              ****         )
+    0.000000     80 Symbol
+    1.000000 inch     2.950002 inch     0.085700
+( **** BASE CASE TITLE:                                             ****         )
+    0.000000     80 Symbol
+    1.000000 inch     2.800002 inch     0.085700
+( **** TESTGOV                                                      ****         )
+    0.000000     80 Symbol
+    1.000000 inch     2.650002 inch     0.085700
+( **** test_gov                                                     ****         )
+    0.000000     80 Symbol
+    1.000000 inch     2.500001 inch     0.085700
+( ****                                                              ****         )
+    0.000000     80 Symbol
+    1.000000 inch     2.350001 inch     0.085700
+( **********************************************************************         )
+    0.000000     80 Symbol
+    1.000000 inch     2.200001 inch     0.085700
+(                                                                                )
+    0.000000     80 Symbol
+    1.000000 inch     2.050001 inch     0.085700
+(                                                                                )
+    0.000000     80 Symbol
+    1.000000 inch     1.900001 inch     0.085700
+(                                                                                )
+    0.000000     80 Symbol
+    1.000000 inch     1.750001 inch     0.085700
+( ------ No-load bus relative voltage dip below     0.0% For entire system ------)
+    0.000000     80 Symbol
+    1.000000 inch     1.600001 inch     0.085700
+(        Bus  name             start    end   elapsed    VLO%     area           )
+    0.000000     80 Symbol
+    1.000000 inch     1.450001 inch     0.085700
+(                               cycles  cycles  cycles                           )
+    0.000000     80 Symbol
+    1.000000 inch     1.300001 inch     0.085700
+(                                                                                )
+    0.000000     80 Symbol
+    1.000000 inch     1.150001 inch     0.085700
+(             [GEN TD1   20.0]   10.00  162.00  152.00   85.85   1 System        )
+    0.000000     80 Symbol
+    1.000000 inch     1.000001 inch     0.085700
+(             [HS  TD1  500.0]   10.00   49.00   39.00   76.25   1 System        )
+    0.000000     80 Symbol
+    1.000000 inch     0.850001 inch     0.085700
+(             [HS  TD1  500.0]   73.00  105.00   32.00   84.11   1 System        )
+    0.000000     80 Symbol
+    1.000000 inch     0.700001 inch     0.085700
+(             [HS  TD1  500.0]  134.00  158.00   24.00   90.32   1 System        )
+    0.000000     80 Symbol
+    1.000000 inch     0.550001 inch     0.085700
+(             [GEN TD1   20.0]  189.00  211.00   22.00   96.45   1 System        )
+    0.000000     80 Symbol
+    1.000000 inch     0.400001 inch     0.085700
+(             [HS  TD1  500.0]  192.00  209.00   17.00   94.88   1 System        )
+    0.000000     80 Symbol
+    1.000000 inch     0.250001 inch     0.085700
+(             [HS  TD1  500.0]  248.00  258.00   10.00   98.31   1 System        )
+    0.000000     80 Symbol
+    1.000000 inch     0.100001 inch     0.085700
+(             [GEN TD1   20.0]  249.00  257.00    8.00   99.26   1 System        )
+    0.000000     80 Symbol
+    1.000000 inch    -0.049999 inch     0.085700
+(             [HS  TD1  500.0]    0.00    2.00    2.00  100.00   1 System        )
+    0.000000     80 Symbol
+    1.000000 inch    -0.199999 inch     0.085700
+(                                                                                )
+    0.000000     80 Symbol
+    1.000000 inch    -0.349999 inch     0.085700
+(                                                                                )
+    0.000000     80 Symbol
+    1.000000 inch    -0.499999 inch     0.085700
+(                                                                                )
+    0.000000     80 Symbol
+    1.000000 inch    -0.649999 inch     0.085700
+( ------ Load bus relative voltage dip below     0.0% for entire system -------  )
+    0.000000     80 Symbol
+    1.000000 inch    -0.799999 inch     0.085700
+(        Bus  name             start    end   elapsed    vlo%     area           )
+    0.000000     80 Symbol
+    1.000000 inch    -0.949999 inch     0.085700
+(                               cycles  cycles  cycles                           )
+    0.000000     80 Symbol
+    1.000000 inch    -1.099999 inch     0.085700
+(                                                                                )
+    0.000000     80 Symbol
+    1.000000 inch    -1.249999 inch     0.085700
+(             [SLACK    500.0]    0.00   70.00   70.00  100.00   1 System        )
+    0.000000     80 Symbol
+    1.000000 inch    -1.399999 inch     0.085700
+(             [SLACK    500.0]   72.00  129.00   57.00  100.00   1 System        )
+    0.000000     80 Symbol
+    1.000000 inch    -1.549999 inch     0.085700
+(             [CTY TD1  500.0]   10.00   47.00   37.00   99.84   1 System        )
+    0.000000     80 Symbol
+    1.000000 inch    -1.699998 inch     0.085700
+(             [LOD TD1  500.0]   10.00   47.00   37.00   84.62   1 System        )
+    0.000000     80 Symbol
+    1.000000 inch    -1.849998 inch     0.085700
+(             [CTY TD1  500.0]   74.00  103.00   29.00   99.90   1 System        )
+    0.000000     80 Symbol
+    1.000000 inch    -1.999998 inch     0.085700
+(             [LOD TD1  500.0]   75.00  103.00   28.00   90.20   1 System        )
+    0.000000     80 Symbol
+    1.000000 inch    -2.149998 inch     0.085700
+(             [SLACK    500.0]  133.00  158.00   25.00  100.00   1 System        )
+    0.000000     80 Symbol
+    1.000000 inch    -2.299999 inch     0.085700
+(             [LOD TD1  500.0]  135.00  157.00   22.00   94.26   1 System        )
+    0.000000     80 Symbol
+    1.000000 inch    -2.449999 inch     0.085700
+(             [CTY TD1  500.0]  135.00  157.00   22.00   99.94   1 System        )
+    0.000000     80 Symbol
+    1.000000 inch    -2.599999 inch     0.085700
+(             [SLACK    500.0]  163.00  184.00   21.00  100.00   1 System        )
+    0.000000     80 Symbol
+    1.000000 inch    -2.749999 inch     0.085700
+(             [SLACK    500.0]  217.00  237.00   20.00  100.00   1 System        )
+    0.000000     80 Symbol
+    1.000000 inch    -2.899999 inch     0.085700
+(             [SLACK    500.0]  191.00  210.00   19.00  100.00   1 System        )
+    0.000000     80 Symbol
+    1.000000 inch    -3.049999 inch     0.085700
+(             [SLACK    500.0]  270.00  288.00   18.00  100.00   1 System        )
+    0.000000     80 Symbol
+    1.000000 inch    -3.199999 inch     0.085700
+(             [CTY TD1  500.0]  110.00  127.00   17.00   99.96   1 System        )
+    0.000000     80 Symbol
+    1.000000 inch    -3.349999 inch     0.085700
+(             [CTY TD1  500.0]  165.00  182.00   17.00   99.96   1 System        )
+    0.000000     80 Symbol
+    1.000000 inch    -3.499999 inch     0.085700
+(             [CTY TD1  500.0]  219.00  235.00   16.00   99.96   1 System        )
+    0.000000     80 Symbol
+    1.000000 inch    -3.649999 inch     0.085700
+(             [LOD TD1  500.0]  193.00  208.00   15.00   96.97   1 System        )
+    0.000000     80 Symbol
+    1.000000 inch    -3.799999 inch     0.085700
+(             [CTY TD1  500.0]  193.00  208.00   15.00   99.97   1 System        )
+    0.000000     80 Symbol
+    1.000000 inch    -3.950000 inch     0.085700
+(             [CTY TD1  500.0]   53.00   67.00   14.00   99.98   1 System        )
+    0.000000     80 Symbol
+    1.000000 inch    -4.099999 inch     0.085700
+(             [CTY TD1  500.0]  272.00  286.00   14.00   99.97   1 System        )
+    0.000000     80 Symbol
+    0.000000  inch     0.000000  inch   -999 pPlot
+    0.000000  inch     0.000000  inch    998 pPlot

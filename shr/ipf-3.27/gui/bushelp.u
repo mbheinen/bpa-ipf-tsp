@@ -1,0 +1,149 @@
+ 
+ 
+object
+!***VUIT_Manage false ***
+    bus_help_dialog: XmFormDialog
+        {
+        arguments
+            {
+            XmNx = 14;
+            XmNy = 24;
+            XmNwidth = 260;
+            XmNheight = 210;
+            XmNborderWidth = 1;
+            XmNdialogTitle = compound_string("Create Bus Help Dialog");
+            };
+        controls
+            {
+            XmPushButton disable_bus_help_dialog;
+            XmLabel bus_help_1;
+            XmLabel bus_help_2;
+            XmLabel bus_help_3;
+            XmLabel bus_help_4;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    disable_bus_help_dialog: XmPushButton
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Disable this Window");
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNtopAttachment = XmATTACH_FORM;
+            XmNleftOffset = 10;
+            XmNtopOffset = 170;
+            XmNrightAttachment = XmATTACH_FORM;
+            XmNbackground = color('khaki1');
+            XmNrightOffset = 10;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+!            XmNactivateCallback = procedures
+!                {
+!                disable_bus_help(0);
+!                };
+            };
+        };
+    bus_help_4: XmLabel
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Click on graph ",separate=true) &
+                compound_string("to select location",separate=true) &
+                compound_string("to site this new bus.");
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNtopAttachment = XmATTACH_FORM;
+            XmNleftOffset = 10;
+            XmNtopOffset = 80;
+            XmNrightAttachment = XmATTACH_FORM;
+            XmNfontList = font_table(font('-*-courier-bold-r-*-*-*-120-*-*-*-*-iso8859-1'));
+            XmNrightOffset = 10;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    bus_help_3: XmLabel
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("POWERFLOW",separate=true) &
+                compound_string("accepted new bus data:");
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNtopAttachment = XmATTACH_FORM;
+            XmNleftOffset = 8;
+            XmNtopOffset = 10;
+            XmNrightAttachment = XmATTACH_FORM;
+            XmNrightOffset = 10;
+            XmNbackground = color('LightGreen');
+            XmNborderWidth = 1;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    bus_help_1: XmLabel
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Creating Bus");
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNtopAttachment = XmATTACH_FORM;
+            XmNleftOffset = 10;
+            XmNtopOffset = 8;
+            XmNrightAttachment = XmATTACH_FORM;
+            XmNrightOffset = 10;
+            XmNfontList = font_table(font('-*-terminal-bold-r-*-*-*-100-*-*-*-*-iso8859-1'));
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    bus_help_2: XmLabel
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Enter new BUS name",separate=true) &
+                compound_string("base and data.",separate=true) &
+                compound_string("",separate=true) &
+                compound_string("Push \"Add\" or \"Close\"",separate=true) &
+                compound_string("in bus dialog window",separate=true) &
+                compound_string("    when done.");
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNtopAttachment = XmATTACH_FORM;
+            XmNleftOffset = 10;
+            XmNtopOffset = 42;
+            XmNrightOffset = 10;
+            XmNrightAttachment = XmATTACH_FORM;
+            XmNfontList = font_table(font('-*-courier-bold-r-*-*-*-120-*-*-*-*-iso8859-1'));
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };

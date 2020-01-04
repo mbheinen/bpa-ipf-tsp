@@ -1,0 +1,120 @@
+ 
+ 
+object
+    main_menu_edit: XmCascadeButton
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Edit");
+            XmNmnemonic = keysym("E");
+            };
+        controls
+            {
+            XmPulldownMenu main_menu_pulldown;
+            };
+        };
+    main_menu_pulldown: XmPulldownMenu
+        {
+        arguments
+            {
+            XmNborderWidth = 1;
+            };
+        controls
+            {
+            XmPushButton edit_menu_area_button;
+            XmPushButton
+                {
+                arguments
+                    {
+                    XmNlabelString = compound_string("Sectionalize Bus...");
+                    XmNmnemonic = keysym("S");
+                    };
+                callbacks
+                    {
+                    XmNactivateCallback = procedures
+                        {
+                        manage_bus_sect_dialog(0);
+                        };
+                    };
+                };
+            XmPushButton
+                {
+                arguments
+                    {
+                    XmNlabelString = compound_string("Tap Branch...");
+                    XmNmnemonic = keysym("T");
+                    };
+                callbacks
+                    {
+                    XmNactivateCallback = procedures
+                        {
+                        manage_branch_tap_dialog(0);
+                        };
+                    };
+                };
+            XmPushButton edit_menu_bus_button;
+            XmPushButton edit_menu_ascii_button;
+            };
+        };
+    edit_menu_bus_button: XmPushButton
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Bus/Branch Edit...");
+            XmNmnemonic = keysym("B");
+            };
+        callbacks
+            {
+            XmNactivateCallback = procedures
+                {
+                manage_bus_branch_edit_box(0);
+                fill_bus_selection_box(0);
+                fill_branch_selection_box(0);
+                manage_bus_branch_edit_box(0);
+                fill_bus_selection_box(0);
+                fill_branch_selection_box(0);
+                };
+            };
+        };
+    edit_menu_ascii_button: XmPushButton
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("ASCII Files...");
+            XmNx = 67;
+            XmNy = 183;
+            XmNsensitive = false;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNactivateCallback = procedures
+                {
+                manage_not_implemented(0);
+                };
+            };
+        };
+    edit_menu_area_button: XmPushButton
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Area/Interchange...");
+            XmNmnemonic = keysym("A");
+            };
+        callbacks
+            {
+            XmNactivateCallback = procedures
+                {
+                manage_area_selection_dialog(0);
+                fill_area_selection_box(0);
+                };
+            };
+        };
+ 
+procedure
+!***VUIT_Action Manage area_selection_dialog ***
+ 
+    manage_area_selection_dialog;

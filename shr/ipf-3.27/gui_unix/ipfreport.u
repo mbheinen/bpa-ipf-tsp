@@ -1,0 +1,270 @@
+
+
+object
+!**VUIT_Manage false ***
+!***VUIT_Manage false ***
+    ipf_report_list_dialog: XmFormDialog 
+        {
+        arguments
+            {
+            XmNborderWidth = 0;
+            XmNdialogTitle = compound_string("IPF REPORT LIST");
+            XmNdefaultPosition = false;
+            };
+        controls
+            {
+            XmPushButton ipfreport_close_pb;
+            XmScrolledList ipf_reports_list;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+!**VUIT_Manage false ***
+!***VUIT_Manage false ***
+    ipf_alpha_bus_list_dialog: XmFormDialog 
+        {
+        arguments
+            {
+            XmNdialogTitle = compound_string("ALPHA SEARCH");
+            XmNwidth = 200;
+            XmNautoUnmanage = false;
+            XmNheight = 651;
+            };
+        controls
+            {
+            XmPushButton alpha_close;
+            XmScrolledList ipf_alpha_bus_list;
+            XmText ipf_alpha_search_text;
+            XmLabel alpha_list_search_label;
+            XmPushButton alpha_list_reload;
+            XmPushButton alpha_list_edit_bus_branch;
+            XmToggleButton alpha_auto_reload_tb;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNmapCallback = procedures
+                {
+                pfAlphaList_map_cb(0);
+                };
+            };
+        };
+    ipfreport_close_pb: XmPushButton 
+        {
+        arguments
+            {
+            arguments close_pushbutton_list;
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNtopAttachment = XmATTACH_NONE;
+            XmNleftOffset = 15;
+            XmNtopOffset = 155;
+            XmNrightAttachment = XmATTACH_FORM;
+            XmNrightOffset = 15;
+            XmNbottomAttachment = XmATTACH_FORM;
+            XmNbottomOffset = 15;
+            XmNy = 155;
+            };
+        callbacks
+            {
+            XmNactivateCallback = procedures
+                {
+                unmanage_ipf_rep_list_dia(0);
+                };
+            };
+        };
+    ipf_reports_list: XmScrolledList 
+        {
+        arguments
+            {
+            XmNheight = 400;
+            XmNwidth = 140;
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNtopAttachment = XmATTACH_FORM;
+            XmNleftOffset = 15;
+            XmNtopOffset = 15;
+            XmNbottomAttachment = XmATTACH_FORM;
+            XmNbottomOffset = 60;
+            XmNrightAttachment = XmATTACH_FORM;
+            XmNrightOffset = 15;
+            XmNscrollBarDisplayPolicy = XmAS_NEEDED;
+!            XmNfontList = font_table(font('-*-COURIER-BOLD-R-*--*-120-*-*-*-*-ISO8859-1'));
+            XmNhighlightThickness = 2;
+            XmNlistSizePolicy = XmCONSTANT;
+            XmNvisibleItemCount = 6;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    ipf_alpha_bus_list: XmScrolledList 
+        {
+        arguments
+            {
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNleftOffset = 15;
+            XmNtopOffset = 100;
+            XmNbottomOffset = 220;
+            XmNrightAttachment = XmATTACH_FORM;
+            XmNrightOffset = 15;
+            XmNscrollBarDisplayPolicy = XmAS_NEEDED;
+!            XmNfontList = font_table(font('-*-COURIER-BOLD-R-*--*-120-*-*-*-*-ISO8859-1'));
+            XmNhighlightThickness = 2;
+            XmNlistSizePolicy = XmVARIABLE;
+            XmNvisibleItemCount = 15;
+            XmNbottomAttachment = XmATTACH_FORM;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                pfAlphaList(0);
+                };
+            XmNbrowseSelectionCallback = procedures
+                {
+                alpha_bus_list_select(0);
+                };
+            };
+        };
+    alpha_list_search_label: XmLabel 
+        {
+        arguments
+            {
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNleftOffset = 15;
+            XmNtopAttachment = XmATTACH_FORM;
+            XmNtopOffset = 10;
+            XmNlabelString = compound_string("Search Bus Name kV");
+            };
+        };
+    ipf_alpha_search_text: XmText 
+        {
+        arguments
+            {
+            XmNcolumns = 1;
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNleftOffset = 15;
+            XmNtopOffset = 11;
+            XmNleftWidget = XmLabel alpha_list_search_label;
+            XmNrightAttachment = XmATTACH_FORM;
+            XmNrightOffset = 15;
+            XmNtopWidget = XmLabel alpha_list_search_label;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNvalueChangedCallback = procedures
+                {
+                ipf_alpha_srch_value_chg("ipf_alpha_bus_list");
+                };
+            };
+        };
+    alpha_list_reload: XmPushButton 
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Update");
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNleftOffset = 15;
+            XmNrightAttachment = XmATTACH_FORM;
+            XmNrightOffset = 15;
+            XmNbottomAttachment = XmATTACH_WIDGET;
+            XmNbackground = ltblue;
+            XmNheight = 33;
+            XmNbottomWidget = XmPushButton alpha_list_edit_bus_branch;
+            XmNbottomOffset = 8;
+            };
+        callbacks
+            {
+            XmNactivateCallback = procedures
+                {
+                pfAlphaList(0);
+                };
+            };
+        };
+    alpha_close: XmPushButton 
+        {
+        arguments
+            {
+            arguments close_pushbutton_list;
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNleftOffset = 15;
+            XmNrightAttachment = XmATTACH_FORM;
+            XmNrightOffset = 15;
+            XmNbottomAttachment = XmATTACH_FORM;
+            XmNbottomOffset = 15;
+            };
+        callbacks
+            {
+            XmNactivateCallback = procedures
+                {
+                unmanage_ipf_alpha_bus_list(0);
+                };
+            };
+        };
+    alpha_list_edit_bus_branch: XmPushButton 
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Edit Bus/Branch");
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNleftOffset = 15;
+            XmNtopAttachment = XmATTACH_NONE;
+            XmNrightAttachment = XmATTACH_FORM;
+            XmNrightOffset = 15;
+            XmNbottomAttachment = XmATTACH_WIDGET;
+            XmNbackground = ltblue;
+            XmNheight = 33;
+            XmNbottomWidget = XmToggleButton alpha_auto_reload_tb;
+            XmNbottomOffset = 8;
+            };
+        callbacks
+            {
+            XmNactivateCallback = procedures
+                {
+                get_bus_alpha_select(0);
+                };
+            };
+        };
+    alpha_auto_reload_tb: XmToggleButton 
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Auto Reload",separate=true) &
+                compound_string("(Slows Performance)");
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNleftOffset = 1;
+            XmNtopAttachment = XmATTACH_NONE;
+            XmNbackground = lt_blue;
+            XmNrightOffset = 1;
+            XmNrightAttachment = XmATTACH_FORM;
+            XmNbottomAttachment = XmATTACH_WIDGET;
+            XmNbottomWidget = XmPushButton alpha_close;
+            XmNbottomOffset = 8;
+            XmNshadowThickness = 2;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };

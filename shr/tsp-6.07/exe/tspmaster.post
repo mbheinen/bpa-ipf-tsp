@@ -1,0 +1,781 @@
+%!
+%%DocumentFonts: (atend)
+%%Title: Transient stability subroutines 
+%%CreationDate: Sept 28, 1994 
+%%Pages: (atend)
+%%EndComments
+
+% MARKER 1.0 *******************
+
+
+
+400 dict begin         % preseinly using one global dictionary-- ran out at default size of 200
+
+% MARKER 2.0 *******************
+
+% MARKER 3.0 *******************
+
+/line-text-spacing 2 def               % spacing between text and lines
+
+
+/inch { 72 mul } def
+% ********************** define transient stability values 
+/axis-line-width 1.0 def                % default line width for objects
+/tic-line-width 0.01 def
+/grid-line-width 0.01 def
+/lin_sym_width 0.75 def
+/lin_sym_rad 0.05 inch def
+/curve-line-width 0.5 def
+/pen_open 0 def                       % 0 - no valid pen location via pPlot
+                                      % 1 - valid pen location exists via pPlot
+% *************** The following logic was used before PlPrPg was fully implemented
+% *********** setup for 1 or 4 plots per page **********************
+%/plt_p_pag 1 def                     % 1 plot per page defined here /not in PlPrPg
+%/num_tran 0 def                      % initalize count of re-orgins in pPlot
+%/x_pap  8.5 inch def
+%/y_pap 11.0 inch def
+%/plt_cnt   0 def                      % plots since showpage
+% 
+% pl_pr_pg PlPrPg => - setup for 1 or 4 plots per page
+% This routine could be called by "plots" in vtran.for   
+%
+/PlPrPg 
+{
+ /pl_pr_pg exch def 
+ /x_pap  8.5 inch def
+ /y_pap 11.0 inch def
+ pl_pr_pg 4 ne {/plt_p_pag 1 def} if  % 1 plot per page
+ pl_pr_pg 4 eq {/plt_p_pag 4 def} if  % 4 plots per page 
+ resetppp 
+} def
+% **************** reset for nppp plots per page
+% resetppp => -
+/resetppp
+  {
+    /num_tran  0 def    % count number re-origins in pPlot 
+    plt_p_pag 1 eq
+    {
+      /plt_cnt   0 def                      % plots since showpage
+%     0.5 0.5 scale
+%     0 y_pap translate
+    }if
+    plt_p_pag 4 eq
+    {
+      /plt_cnt   0 def                      % plots since showpage
+      0.5 0.5 scale
+      0 y_pap translate
+    }if 
+  } def
+
+% MARKER 4.0 *******************
+
+
+% MARKER 5.0 *******************
+
+
+
+% MARKER 6.0 *******************
+
+
+% MARKER 7.0 *******************
+
+
+% MARKER 8.0 *******************
+
+
+%  print an array of text starting at position x y and proceeds upward
+%* ARRAY x y prt-text-up =>
+%
+/prt-text-up
+{
+  txtcolor aload pop setrgbcolor       % draw text in text color 
+  /nxty exch  def
+  /nxtx exch  def
+  {
+    newpath
+    nxtx nxty moveto
+    dup
+    false charpath flattenpath pathbbox
+    newpath
+    nxtx nxty moveto                   % now that we have the size of text
+                                       % we can place it for real.
+    text-spacing add
+    /nxty exch def                     % retrieve upper right y
+    pop                                % upper right x
+    pop                                % lower left y
+    /nxtx exch def                     % lower left x
+    show 
+  } forall
+} def
+
+%  print an array of text starting at position x y and proceeds downward
+%* ARRAY x y prt-text-down =>
+%
+/prt-text-down
+{
+  txtcolor aload pop setrgbcolor        % draw text in foreground color 
+  /nxty exch  def
+  /nxtx exch  def
+  {
+    newpath
+    0 0 moveto
+    dup
+    false charpath flattenpath pathbbox
+    newpath
+    text-spacing add
+    nxty exch sub                      % upper right y
+    /nxty exch def
+    pop                                % upper right x
+    pop                                % lower left y
+    pop                                % lower left x
+    nxtx nxty moveto                   % now that we have the size of text
+                                       % we can place it for real.
+    show
+  } forall
+} def
+
+ 
+% MARKER 9.0 *******************
+
+%  print an array of text starting at position x y 
+%  print the first line above point x y, then proceeds downward
+%* ARRAY x y prt-bus-text-down =>
+%
+/prt-bus-text-down
+{
+  txtcolor aload pop setrgbcolor        % draw text in foreground color
+  /nxty exch  def
+  /nxtx exch  def
+  {
+    newpath
+    nxtx nxty moveto
+
+% calculate cordinates for NEXT nxtx and nxty 
+    dup
+    false charpath flattenpath pathbbox
+    newpath
+    nxtx nxty moveto
+    text-spacing add                   % add spacing to UR-x 
+    exch pop sub                       % get negative of delta-y
+    nxty add                           % calculate next nxty
+    /nxty exch def pop 
+
+% print at OLD location
+    show
+  } forall
+} def
+
+%  print an array of text starting at position x y and proceeds right 
+%* ARRAY x y prt-bus-text-right =>
+%
+/prt-bus-text-right
+{
+  txtcolor aload pop setrgbcolor       % draw text in text color
+  /nxty exch  def
+  /nxtx exch  def
+  /pass-no 0 def
+
+
+  {
+  /pass-no pass-no 1 add def
+    newpath
+    nxtx nxty moveto
+    dup
+    false charpath flattenpath pathbbox
+    newpath
+    
+    pass-no 1 le 
+      
+      {nxtx nxty moveto                   % reset for current text 
+       pop text-text-spc add
+       /nxtx exch def                     % upper-right-x
+       pop pop}                           % lower-left-y lower-left-x
+
+      {nxtx nxty moveto                   % reset for current text 
+       text-spacing add                   % add spacing to UR-x
+       exch pop sub                       % get negative of delta-y
+       nxty add                           % calculate next nxty
+       /nxty exch def pop
+      } ifelse 
+
+
+    show
+  } forall
+} def
+
+% MARKER 10.0 *******************
+
+/prt-bus-text-left
+{
+  txtcolor aload pop setrgbcolor       % draw text in text color
+  /nxty exch  def
+  /nxtx exch  def
+  /pass-no 0 def
+  {
+  /pass-no pass-no 1 add def
+    newpath
+    nxtx nxty moveto
+    dup
+    dup /savebox exch def                 % save string for transition to prt-down
+    false charpath flattenpath pathbbox
+    newpath
+    nxtx nxty moveto
+ 
+    pass-no 1 eq
+      {pop pop pop pop show} if
+
+    pass-no 2 eq
+      {pop                                % upper right y
+       exch pop sub nxtx add              % subtract right x from left x
+       /nxtx exch def   
+       /nxtx nxtx text-text-spc sub def   % account for text-to-text spacing
+       nxtx nxty moveto                   % resest location for current text   
+       show
+
+       newpath                            % begin setup for printing down
+       nxtx nxty moveto
+       savebox
+       false charpath flattenpath pathbbox
+       text-spacing add                   % add spacing to UR-x
+       exch pop sub                       % get negative of delta-y
+       nxty add                           % calculate next nxty
+       /nxty exch def pop
+      } if
+ 
+    pass-no 2 gt
+      {text-spacing add                   % add spacing to UR-x
+       exch pop sub                       % get negative of delta-y
+       nxty add                           % calculate next nxty
+       /nxty exch def pop
+       show                              % print string on top of stack
+      } if
+ 
+  } forall
+} def
+ 
+ 
+
+
+%  print a string of text with x y as lower left of string
+%* string x y prt-text-center-up =>
+%
+/prt-text-center-up
+{
+  moveto
+  dup
+  stringwidth
+  pop
+  -.5 mul
+  line-text-spacing rmoveto
+  show
+} def
+
+%  print a string of text with x y as upper left of string
+%* string x y prt-text-center-up =>
+%
+/prt-text-center-down                  % !!!!!!!!!! offset of cury incorrect
+{
+  newpath
+  /cury exch def
+  /curx exch def
+  dup
+  0 0 moveto
+  /fontheight currentfont /FontMatrix get 0 get 1000 mul def
+%  false charpath flattenpath pathbbox
+%  newpath
+%  /fontheight exch def
+  /cury cury fontheight sub def
+  stringwidth pop
+    -.5 mul
+  curx add
+  /curx exch def
+  curx cury moveto
+%  pop pop
+  show 
+} def
+
+% MARKER 11.0 *******************
+
+
+% MARKER 12.0 *******************
+
+
+% MARKER 13.0 *******************
+
+
+% MARKER 14.0 *******************
+
+% MARKER 15.0 *******************
+
+% MARKER 16.0 *******************
+
+% MARKER 17.0 *******************
+
+
+% MARKER 18.0 *******************
+
+
+% MARKER 19.0 *******************
+
+ 
+% MARKER 20.0 *******************
+
+
+% MARKER 21.0 *******************
+
+
+% MARKER 22.0 *******************
+
+
+% MARKER 24.0 *******************
+
+
+% MARKER 25.0 *******************
+
+
+% MARKER 26.0 *******************
+
+
+% MARKER 27.0 *******************
+
+
+% MARKER 28.0 *******************
+
+
+% MARKER 29.0 *******************
+
+
+% MARKER 30.0 *******************
+
+
+% MARKER 31.0 *******************
+
+%
+% stringCat
+% concatenate string1 and string2 into string1-string2
+%
+% (string1) (string2) stringCat=> new-string 
+%
+/stringCat
+{
+ /str2 exch def
+ /str1 exch def
+ str1 length dup /lngstr exch def      % get length of string1
+ str2 length  add string               % put new-string on stack
+ /newString exch def                   % name the new-string 
+ newString 0 str1 putinterval          % put string1 on new-string
+ newString lngstr str2 putinterval     % put string2 on new-string
+ newString                             % put new-string onstack
+} def
+
+% MARKER 32.0 *******************
+
+% MARKER 100.0 **************************************
+%
+% Put an axis on a plot  
+% xstart ystart label nchar axlen axang fval dv Axis => - 
+/Axis
+{
+ /dv exch def
+ /fval exch def
+ /axang exch def
+ /axlen exch def
+ /nchar exch def
+ /label exch def
+ /ystart exch def
+ /xstart exch def
+ gsave
+  /Helvetica-Bold findfont 10 scalefont setfont
+  axis-line-width setlinewidth
+  newpath
+   xstart ystart translate
+   axang rotate
+   0.0 0.0 moveto
+   axlen 0.0 lineto 
+  stroke
+  /ylab nchar 0 ge { 0.25}
+                   { -.35} ifelse inch def
+   label axlen 2.0 div ylab  prt-text-center-up
+  /xtic 0 def
+  /ticval fval def
+
+  0 1.0 inch axlen {   %  make a Tic mark each inch along axis length  
+       ticval nchar Tic     % use 'for' control variable as x ordinate
+  /xtic xtic 1.0 inch add def
+  /ticval ticval dv add def
+  }for
+
+ grestore
+}def
+
+%
+% Put a tic and value on an axis  
+% xtic axvalue axflag Tic => - 
+% 
+/Tic
+{
+ /axflag exch def
+ /axvalue exch def
+ /xtic exch def
+  tic-line-width setlinewidth
+% axvalue abs .00001 le {/axvalue 0.0 def} if
+  /axround axvalue 1000.0 mul round 1000.0 div def
+ newpath
+  xtic axflag 0 ge {0.05}{-0.05}ifelse inch moveto
+  xtic 0.0 lineto
+ stroke
+%  /lstr axround abs dup 1.0 le {pop 1.0 }if log 1.0 add cvi  % get length of string (LOS)
+% 4 add                                 % and space for .YYY decimal places to (LOS)  
+%  axround 0 lt { 1 add}if def          % increment (LOS) for minus sign 
+%  lstr string /lbl4val exch  def       % vbl for converting values to string lbl
+  13  string /lbl4val exch  def       % vbl for converting values to string lbl
+  axround lbl4val  cvs
+  /ytic axflag 0 gt {0.05 inch} { -.20 inch} ifelse def
+% lbl4val xtic 0.10 inch add  ytic prt-text-center-up
+          xtic 0.10 inch add  ytic prt-text-center-up %lbl4val is on the stack
+}def
+% MARKER 101.0 *******************
+%
+% Draw a grid
+% xgrid ygrid xint xspace yint yspace gridPattern => Grid 
+%
+/Grid
+{
+ /gridPattern exch def    % 0 - 1  used for set gray
+ /yspace exch def         % spacing between horizontal grid lines
+ /yint exch def           % number of horizontal grid lines 
+ /xspace exch def         % spacing between verticle grid lines
+ /xint exch def           % number of verticle grid lines
+ /ygrid exch def          % y ordiate of LL corner of grid
+ /xgrid exch def          % x ordiate of LL corner of grid
+ gsave
+  xgrid ygrid translate
+  0.0 0.0 moveto
+  grid-line-width setlinewidth
+% ********* temporary stuff to by-pass printer problem ****
+  gridPattern 0.79 gt {/gridPattern 0.6 def} if
+% ********* temporary stuff to by-pass printer problem ****
+  gridPattern setgray
+  /xgline 0 def              % x ordinate of verticle grid line 
+  /ymax yint yspace mul def  % max y ordinate of verticle grid line
+  /ygline 0 def              % y ordinate of horizontal grid line
+  /xmax xint xspace mul def  % max x ordinate of horizontal grid line 
+%   gridPattern 0 setdash
+   1 1 xint {  % draw verticle grid along x axis
+    pop                      % remove control variable from stack
+    /xgline xgline xspace add def
+    newpath
+    xgline 0.0 moveto
+    xgline ymax lineto 
+   stroke
+    }for 
+   1 1 yint {  % draw horizontal grid along y axis
+    pop                      % remove control variable from stack
+    /ygline ygline yspace add def
+    newpath
+    0.0 ygline moveto
+    xmax ygline lineto 
+   stroke
+    }for
+  grestore
+}def
+
+%
+%Symbol is similar to the "call symbol" from flat pen plotting  
+%However, the last parameter, number_of_characters is not used 
+%x_sym y_sym size_sym str_sym ang_sym nch_sym => Symbol -
+/Symbol
+{
+gsave
+ pop                  % ignore number of characters
+ /ang_sym  exch def
+ /str_sym  exch def 
+ /size_sym exch def 
+ /y_sym    exch def
+ /x_sym    exch def 
+ newpath
+  x_sym y_sym translate 
+  0 0 moveto
+  ang_sym rotate
+ 
+% /Helvetica findfont 100 size_sym mul scalefont setfont
+ /Courier-Bold findfont 10 scalefont setfont
+
+ str_sym
+ show 
+grestore
+}def
+% MARKER 102.0 *******************
+
+%  place pen plotter line symbol at position x_lin_sym y_lin_sym
+%  the symbol shape is indexed by lin_sym_ind 
+%  x_lin_sym y_lin_sym sym_rad lin_sym_ind LinSym => - 
+%
+/LinSym
+{ 
+  gsave
+  /lin_sym exch def
+ 
+  lin_sym 10 mod /lin_sym_ind exch def           % get mod of lin_sym_ind 
+  /sym_rad exch def 
+
+  translate                            % translate to the x y coordinates on stack
+
+
+  0 1 1                                % beginning of locate and print a bus shape
+  {                                    % beginning of locate and print a bus shape
+
+%----------------- The enclosed code may be customized at the users pleasure -----
+     
+      lin_sym 0 eq { exit}if               % do not draw symbols
+
+ 
+      lin_sym_ind 0  eq               % begin drawing box symbol 
+      {
+      lin_sym_width setlinewidth
+      newpath                        
+      0 0 moveto
+      0 sym_rad lineto
+      sym_rad neg sym_rad moveto
+      sym_rad neg sym_rad neg lineto
+      sym_rad sym_rad neg lineto
+      sym_rad sym_rad  lineto
+      sym_rad neg sym_rad lineto
+      
+      exit
+      } if                             % done drawing box symbol 
+
+      lin_sym_ind 1  eq               % begin drawing circle symbol
+      {
+      lin_sym_width setlinewidth
+      newpath                        
+      0 0 moveto
+      0 sym_rad lineto
+      sym_rad 0 moveto
+      0 0 sym_rad 0 360 arc     
+      exit
+      } if                             % done drawing circle 
+
+      lin_sym_ind 2  eq               % begin drawing triangle symbol 
+      {
+      lin_sym_width setlinewidth
+      newpath                        
+      0 0 moveto
+      0 sym_rad lineto
+      sym_rad neg sym_rad neg lineto
+      sym_rad sym_rad neg lineto
+      0 sym_rad lineto
+      exit
+      } if                             % done drawing triangle symbol 
+
+      lin_sym_ind 3  eq               % begin drawing plus symbol 
+      {
+      lin_sym_width setlinewidth
+      newpath                        
+      0 sym_rad moveto
+      0 sym_rad neg lineto
+      sym_rad neg 0 moveto
+      sym_rad 0 lineto
+      exit
+      } if                             % done drawing plus symbol 
+
+      lin_sym_ind 4  eq               % begin drawing X symbol 
+      {
+      lin_sym_width setlinewidth
+      newpath                        
+      sym_rad neg sym_rad moveto
+      sym_rad sym_rad neg lineto
+      sym_rad neg sym_rad neg moveto
+      sym_rad sym_rad lineto
+      exit
+      } if                             % done drawing X symbol 
+
+
+      lin_sym_ind 5  eq               % begin drawing diamond symbol 
+      {
+      lin_sym_width setlinewidth
+      newpath                        
+      0 0 moveto
+      0 sym_rad lineto
+      sym_rad neg 0 lineto
+      0 sym_rad neg lineto
+      sym_rad 0 lineto
+      0 sym_rad lineto
+      exit
+      } if                             % done drawing diamond symbol 
+
+      lin_sym_ind 6  eq               % begin drawing up arrow symbol 
+      {
+      lin_sym_width setlinewidth
+      newpath                        
+      0 sym_rad neg moveto
+      0 sym_rad lineto
+      sym_rad neg 0 lineto
+      sym_rad 0 lineto
+      0 sym_rad lineto
+      exit
+      } if                             % done drawing up arrow symbol 
+
+      lin_sym_ind 7  eq               % begin drawing bar_X symbol 
+      {
+      lin_sym_width setlinewidth
+      newpath                        
+      sym_rad neg sym_rad neg moveto
+      sym_rad sym_rad  lineto
+      sym_rad neg sym_rad lineto
+      sym_rad sym_rad neg lineto
+      exit
+      } if                             % done drawing bar_X symbol 
+
+      lin_sym_ind 8  eq               % begin drawing Z symbol 
+      {
+      lin_sym_width setlinewidth
+      newpath                        
+      sym_rad neg sym_rad moveto
+      sym_rad sym_rad  lineto
+      sym_rad neg sym_rad neg lineto
+      sym_rad sym_rad neg lineto
+      exit
+      } if                             % done drawing Z symbol 
+
+      lin_sym_ind 9  eq               % begin drawing Y symbol 
+      {
+      lin_sym_width setlinewidth
+      newpath                        
+      0 0 moveto
+      sym_rad neg sym_rad lineto
+      sym_rad sym_rad  moveto
+      0 0 lineto
+      0 sym_rad neg lineto
+      exit
+      } if                             % done drawing Y symbol 
+
+%----------------- The enclosed code may be customized at the users pleasure -----
+
+  } for pop                            % end of locate and print a bus shape
+  stroke
+  grestore
+} def
+% MARKER 103.0 *******************
+
+%  draw symbol 'ind_smb' at x_lin_smb, y_lin_smb
+%  connect all points in [array] 
+%  [array]  x_lin_smb y_lin_smb lin_typ => drawLinSmb => - 
+%
+/drawLinSmb
+{
+ /lin_typ exch def
+ /lin_typa lin_typ abs def
+
+  lin_sym_rad lin_typa LinSym  %   x_lin_smb, y_lin_smb are already on stack
+
+  dup length 2 sub 2 div /count exch def               % get length of array  
+  count 0 gt                         % check for enough points to draw a line 
+  lin_typ 0 ge and  {                % check for flag to draw line
+  aload pop                          % put array elements in stack
+
+  gsave
+  newpath
+  moveto                             % the far end coordinates are on top of the stack
+  count cvi { lineto } repeat        % draw lines to remaining coords on the stack
+  curve-line-width setlinewidth
+  stroke
+  grestore
+  } {pop} ifelse
+} def
+
+%
+% pPlot is similar to a pen Plot routine
+% x_pen y_pen i_pen => pPlot -
+%
+/pPlot
+{
+ /i_pen exch def
+ /y_pen exch def
+ /x_pen exch def
+ 0 1 1{
+   i_pen 2 eq{             % draw command
+     pen_open 1 eq{
+       x_pen y_pen lineto
+       stroke} if
+     newpath
+     /pen_open 1 def 
+     x_pen y_pen moveto
+     exit
+   }if
+
+
+   i_pen -2 eq{             % draw command and re-origin
+     pen_open 1 eq{
+       x_pen y_pen lineto
+       stroke} if
+     gsave 
+     /num_tran num_tran 1 add def  % count number of change of origin w/o grestore
+     x_pen y_pen translate 
+     newpath
+     /pen_open 1 def 
+     0 0 moveto
+     exit
+   }if
+
+
+   i_pen 3 eq{             % move command
+     newpath
+     /pen_open 1 def 
+     x_pen y_pen moveto
+     exit
+   }if
+
+
+   i_pen -3 eq{             % draw command and re-origin
+     gsave
+     /num_tran num_tran 1 add def  % count number of change of origin w/o grestore
+     x_pen y_pen translate 
+     newpath
+     /pen_open 1 def 
+     0 0 moveto
+     exit
+   }if
+
+
+   i_pen 999 eq{             % sort of end all plotting 
+     /plt_cnt plt_cnt 1 add def
+     plt_cnt plt_p_pag eq 
+       {showpage resetppp}
+       {num_tran 0 ne {1 1 num_tran {pop grestore} for}if
+        /num_tran 0 def
+        plt_cnt 1 eq {x_pap 0 translate}if
+        plt_cnt 2 eq {x_pap neg y_pap neg translate}if
+        plt_cnt 3 eq {x_pap 0 translate}if
+       } ifelse
+     exit
+   }if
+
+
+   i_pen -999 eq{             % end this plot 
+     /plt_cnt plt_cnt 1 add def
+     plt_cnt plt_p_pag eq
+       {showpage resetppp}
+       {num_tran 0 ne {1 1 num_tran {pop grestore} for}if
+        /num_tran 0 def
+        plt_cnt 1 eq {x_pap 0 translate}if
+        plt_cnt 2 eq {x_pap neg y_pap neg translate}if
+        plt_cnt 3 eq {x_pap 0 translate}if
+       } ifelse
+     exit
+   }if
+
+   i_pen 998 eq{             % definitely end all plotting 
+     plt_cnt 0 ne 
+       {showpage } if
+     exit
+   }if
+
+
+ }for pop
+
+}def
+
+currentdict
+
+%%EndProlog

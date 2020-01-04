@@ -1,0 +1,1 @@
+$ set terminal / /NOPASTHRU /BROADCAST

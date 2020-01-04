@@ -1,0 +1,970 @@
+ 
+ 
+procedure
+!***VUIT_Action Manage debug_dmgr_dialog ***
+ 
+    debug_dmgr_cb;
+!***VUIT_no_Generate***
+!***VUIT_Action UserProc set_dbase_source ***
+ 
+    set_dbase_source;
+!***VUIT_no_Generate***
+!***VUIT_Action UserProc get_db_first ***
+ 
+    get_db_first;
+!***VUIT_Action Unmanage debug_dmgr_dialog ***
+ 
+    unmanage_dbase_dialog_cb;
+!***VUIT_no_Generate***
+!***VUIT_Action UserProc get_db_next ***
+ 
+    get_db_next;
+!***VUIT_Action Manage graphelement_search_dialog ***
+ 
+    manage_graphelement_sreach_dlg;
+!***VUIT_no_Generate***
+!***VUIT_Action UserProc fill_graphelement_fields ***
+ 
+    fill_graphelement_fields;
+!***VUIT_no_Generate***
+!***VUIT_Action UserProc get_db_1st_link ***
+ 
+    get_db_1st_link;
+!***VUIT_no_Generate***
+!***VUIT_Action UserProc set_search_flg ***
+ 
+    set_search_flg;
+!***VUIT_no_Generate***
+!***VUIT_Action UserProc get_db_nxt_link ***
+ 
+    get_db_nxt_link;
+ 
+object
+!***VUIT_Manage false ***
+    debug_dmgr_dialog: XmFormDialog
+        {
+        arguments
+            {
+            XmNwidth = 650;
+            XmNborderWidth = 1;
+            XmNdialogTitle = compound_string("Debug Dmgr Dialog");
+            XmNautoUnmanage = false;
+            XmNheight = 700;
+            };
+        controls
+            {
+            XmForm dbase_radio_box_form;
+            XmPushButton dbase_data_first_pb;
+            XmPushButton dbase_next_pb;
+            XmPushButton dbase_set_search_key_pb;
+            XmPushButton dbase_link_pb;
+            XmPushButton dbase_nextlink_pb;
+            XmPushButton dbase_prev_pb;
+            XmSelectionBox dbase_list_box;
+            XmPushButton dbase_dialog_close_pb;
+            XmFormDialog graphelement_search_dialog;
+            XmLabel graphelement_idx_label;
+            XmTextField graphelement_class_text_fld;
+            XmTextField graphelement_index_text_fld;
+            XmTextField graphelement_display_text_fld;
+            XmTextField graphelement_type_text_fld;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    dbase_radio_box_form: XmForm
+        {
+        arguments
+            {
+            XmNborderWidth = 1;
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNleftOffset = 9;
+            XmNtopAttachment = XmATTACH_FORM;
+            XmNtopOffset = 12;
+            };
+        controls
+            {
+            XmRadioBox dbase_radiobox;
+            };
+        };
+    dbase_data_first_pb: XmPushButton
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("First");
+            XmNleftAttachment = XmATTACH_WIDGET;
+            XmNleftOffset = 10;
+            XmNtopAttachment = XmATTACH_FORM;
+            XmNtopOffset = 17;
+            XmNleftWidget = XmForm dbase_radio_box_form;
+            };
+        callbacks
+            {
+            XmNactivateCallback = procedures
+                {
+                get_db_first(0);
+                };
+            };
+        };
+    dbase_next_pb: XmPushButton
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Next");
+            XmNleftAttachment = XmATTACH_WIDGET;
+            XmNleftOffset = 10;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNleftWidget = XmPushButton dbase_data_first_pb;
+            XmNtopWidget = XmPushButton dbase_data_first_pb;
+            XmNsensitive = false;
+            };
+        callbacks
+            {
+            XmNactivateCallback = procedures
+                {
+                get_db_next(0);
+                };
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    dbase_link_pb: XmPushButton
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("1st Link");
+            XmNleftAttachment = XmATTACH_WIDGET;
+            XmNleftOffset = 10;
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNleftWidget = XmForm dbase_radio_box_form;
+            XmNtopWidget = XmPushButton dbase_data_first_pb;
+            XmNtopOffset = 10;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNactivateCallback = procedures
+                {
+                get_db_1st_link(0);
+                };
+            };
+        };
+    dbase_nextlink_pb: XmPushButton
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Next Link");
+            XmNleftAttachment = XmATTACH_WIDGET;
+            XmNleftOffset = 10;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNleftWidget = XmPushButton dbase_link_pb;
+            XmNtopWidget = XmPushButton dbase_link_pb;
+            XmNsensitive = false;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNactivateCallback = procedures
+                {
+                get_db_nxt_link(0);
+                };
+            };
+        };
+    dbase_list_box: XmSelectionBox
+        {
+        arguments
+            {
+            XmNborderWidth = 1;
+            XmNleftAttachment = XmATTACH_WIDGET;
+            XmNleftOffset = 10;
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNtopOffset = 10;
+            XmNbottomAttachment = XmATTACH_WIDGET;
+            XmNtopWidget = XmTextField graphelement_class_text_fld;
+            XmNrightAttachment = XmATTACH_FORM;
+            XmNrightOffset = 10;
+            XmNbottomWidget = XmPushButton dbase_dialog_close_pb;
+            XmNbottomOffset = 10;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    dbase_radiobox: XmRadioBox
+        {
+        arguments
+            {
+            XmNwidth = 25;
+            XmNheight = 25;
+            XmNborderWidth = 1;
+            XmNisHomogeneous = false;
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNtopAttachment = XmATTACH_FORM;
+            XmNtopOffset = 5;
+            XmNleftOffset = 5;
+            XmNbottomAttachment = XmATTACH_FORM;
+            XmNbottomOffset = 5;
+            XmNrightAttachment = XmATTACH_FORM;
+            XmNrightOffset = 5;
+            };
+        controls
+            {
+            XmToggleButtonGadget coord_dbase_rb;
+            XmToggleButtonGadget ge_radiobox_rb;
+            };
+        };
+    coord_dbase_rb: XmToggleButtonGadget
+        {
+        arguments
+            {
+            XmNx = 4;
+            XmNy = 2;
+            XmNlabelString = compound_string("Coordinate dbase");
+            XmNsensitive = false;
+            };
+        callbacks
+            {
+            XmNvalueChangedCallback = procedures
+                {
+                set_dbase_source("0");
+                };
+            };
+        };
+    ge_radiobox_rb: XmToggleButtonGadget
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("GraphElement dbase");
+            XmNset = true;
+            };
+        callbacks
+            {
+            XmNvalueChangedCallback = procedures
+                {
+                set_dbase_source("1");
+                };
+            };
+        };
+    dbase_prev_pb: XmPushButton
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Restart Here");
+            XmNleftAttachment = XmATTACH_WIDGET;
+            XmNleftOffset = 10;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNleftWidget = XmPushButton dbase_nextlink_pb;
+            XmNtopWidget = XmPushButton dbase_nextlink_pb;
+            XmNsensitive = false;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    dbase_set_search_key_pb: XmPushButton
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Set Search Key");
+            XmNleftAttachment = XmATTACH_WIDGET;
+            XmNleftOffset = 10;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNleftWidget = XmPushButton dbase_next_pb;
+            XmNtopWidget = XmPushButton dbase_next_pb;
+            };
+        callbacks
+            {
+            XmNactivateCallback = procedures
+                {
+                manage_graphelement_sreach_dlg(0);
+                };
+            };
+        };
+    dbase_dialog_close_pb: XmPushButton
+        {
+        arguments
+            {
+            arguments close_pushbutton_list;
+            XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopAttachment = XmATTACH_NONE;
+            XmNbottomAttachment = XmATTACH_FORM;
+            XmNleftWidget = XmTextField graphelement_class_text_fld;
+            XmNbottomOffset = 10;
+            XmNy = 579;
+            XmNrightAttachment = XmATTACH_FORM;
+            XmNrightOffset = 10;
+            };
+        callbacks
+            {
+            XmNactivateCallback = procedures
+                {
+                unmanage_dbase_dialog_cb(0);
+                };
+            };
+        };
+    graphelement_search_dialog: XmFormDialog
+        {
+        arguments
+            {
+            XmNborderWidth = 1;
+            XmNleftAttachment = XmATTACH_POSITION;
+            XmNtopAttachment = XmATTACH_FORM;
+            XmNtopOffset = 168;
+            XmNdialogTitle = compound_string("Search Key Setup");
+            XmNleftPosition = 5;
+            XmNrightPosition = 45;
+            XmNrightAttachment = XmATTACH_POSITION;
+            XmNx = 230;
+            XmNy = 161;
+            };
+        controls
+            {
+            XmRadioBox graph_key_rb;
+            XmLabel graph_key_label;
+            XmTextField vertext_text_fld;
+            XmTextField farvertex_text_fld;
+            XmLabel farvertex_label;
+            XmLabel vertex_id_label;
+            XmRadioBox VUITaaaag;
+            XmRadioBox graphelement_class_rb;
+            XmLabel graphelement_dply_label;
+            XmLabel graphelement_class_label;
+            XmPushButton graphelement_cancel_pb;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    graph_key_label: XmLabel
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Graph_key");
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNleftOffset = 50;
+            XmNtopAttachment = XmATTACH_FORM;
+            XmNtopOffset = 7;
+            };
+        };
+    graph_key_rb: XmRadioBox
+        {
+        arguments
+            {
+            XmNborderWidth = 1;
+            XmNisHomogeneous = false;
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNleftOffset = 10;
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNtopOffset = 10;
+            XmNtopWidget = XmLabel graph_key_label;
+            };
+        controls
+            {
+            XmToggleButtonGadget graphelement_class_index_tb;
+            XmToggleButtonGadget graphelement_display_tb;
+            XmToggleButtonGadget graphelement_type_tb;
+            XmToggleButtonGadget graphelement_vertex_id_tb;
+            XmToggleButtonGadget graphelement_display_type_tb;
+            XmToggleButton graphelement_type_vertx_farvrtx;
+            };
+        };
+    vertex_id_label: XmLabel
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Vertex_id");
+            XmNleftAttachment = XmATTACH_WIDGET;
+            XmNleftOffset = 10;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNleftWidget = XmRadioBox graph_key_rb;
+            XmNtopWidget = XmRadioBox graph_key_rb;
+            };
+        };
+    farvertex_label: XmLabel
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("FarVertex");
+            XmNleftAttachment = XmATTACH_WIDGET;
+            XmNleftOffset = 10;
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNtopOffset = 20;
+            XmNleftWidget = XmRadioBox graph_key_rb;
+            XmNtopWidget = XmLabel vertex_id_label;
+            };
+        };
+    vertext_text_fld: XmTextField
+        {
+        arguments
+            {
+            arguments text_list_13;
+            XmNleftAttachment = XmATTACH_WIDGET;
+            XmNleftOffset = 10;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNleftWidget = XmLabel vertex_id_label;
+            XmNtopWidget = XmRadioBox graph_key_rb;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    farvertex_text_fld: XmTextField
+        {
+        arguments
+            {
+            arguments text_list_13;
+            XmNleftAttachment = XmATTACH_WIDGET;
+            XmNleftOffset = 10;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNleftWidget = XmLabel farvertex_label;
+            XmNtopWidget = XmLabel farvertex_label;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    VUITaaaag: XmRadioBox
+        {
+        arguments
+            {
+            XmNwidth = 25;
+            XmNheight = 25;
+            XmNborderWidth = 1;
+            XmNisHomogeneous = false;
+            XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNtopOffset = 10;
+            XmNtopWidget = XmLabel graphelement_dply_label;
+            XmNleftWidget = XmLabel graphelement_dply_label;
+            XmNleftOffset = -40;
+            };
+        controls
+            {
+            XmToggleButton
+                {
+                arguments
+                    {
+                    XmNlabelString = compound_string("GraphDisplayOn");
+                    XmNset = true;
+                    };
+                };
+            XmToggleButton
+                {
+                arguments
+                    {
+                    XmNlabelString = compound_string("GraphDisplayOff");
+                    XmNsensitive = false;
+                    };
+                };
+            };
+        };
+    graphelement_dply_label: XmLabel
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Display");
+            XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNtopOffset = 30;
+            XmNtopWidget = XmTextField farvertex_text_fld;
+            XmNleftWidget = XmLabel farvertex_label;
+            XmNleftOffset = 100;
+            };
+        };
+    graphelement_class_label: XmLabel
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Class (Approximate order)");
+            XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNtopOffset = 10;
+            XmNtopWidget = XmRadioBox graph_key_rb;
+            XmNleftWidget = XmRadioBox graph_key_rb;
+            XmNleftOffset = 150;
+            };
+        };
+    graphelement_class_rb: XmRadioBox
+        {
+        arguments
+            {
+            XmNborderWidth = 1;
+            XmNisHomogeneous = true;
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNleftOffset = 10;
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNtopOffset = 10;
+            XmNtopWidget = XmLabel graphelement_class_label;
+            XmNnumColumns = 3;
+            XmNrightAttachment = XmATTACH_FORM;
+            XmNrightOffset = 10;
+            XmNbottomAttachment = XmATTACH_NONE;
+            XmNbottomOffset = 10;
+            };
+        controls
+            {
+            XmToggleButton graphelement_vbus_tb;
+            XmToggleButton graphelement_comlx_edge_pb;
+            XmToggleButton graphelement_class_group_bn;
+            XmToggleButton graphelement_papr_vertx_pb;
+            XmToggleButton graphelement_paper_edge_pb;
+            XmToggleButton graphelement_vcomment_tb;
+            XmToggleButton graphelement_lengnd_txt_pb;
+            XmToggleButton graphelement_lbl_crnr_pb;
+            XmToggleButton graphelement_class_label_bn;
+            XmToggleButton graphelement_edge_lbl_pb;
+            XmToggleButton graphelement_vertx_brdr_pb;
+            XmToggleButton graphelement_edge_brdr_pb;
+            };
+        };
+    graphelement_cancel_pb: XmPushButton
+        {
+        arguments
+            {
+            arguments close_pushbutton_list;
+            XmNleftAttachment = XmATTACH_POSITION;
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNtopWidget = XmRadioBox graphelement_class_rb;
+            XmNleftPosition = 5;
+            XmNrightPosition = 95;
+            XmNrightAttachment = XmATTACH_POSITION;
+            XmNtopOffset = 10;
+            XmNbottomAttachment = XmATTACH_FORM;
+            XmNbottomOffset = 10;
+            };
+        callbacks
+            {
+            };
+        };
+    graphelement_class_index_tb: XmToggleButtonGadget
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Class/Index");
+            XmNset = true;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    graphelement_display_tb: XmToggleButtonGadget
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Display");
+            XmNsensitive = false;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    graphelement_type_tb: XmToggleButtonGadget
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Type");
+            XmNsensitive = false;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    graphelement_vertex_id_tb: XmToggleButtonGadget
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Vertex Id");
+            XmNsensitive = false;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    graphelement_display_type_tb: XmToggleButtonGadget
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Display Type");
+            XmNsensitive = false;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    graphelement_type_vertx_farvrtx: XmToggleButton
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Type/Vertex/FarVertex");
+            XmNsensitive = false;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    graphelement_idx_label: XmLabel
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Index:");
+            XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNtopOffset = 5;
+            XmNtopWidget = XmForm dbase_radio_box_form;
+            XmNleftWidget = XmForm dbase_radio_box_form;
+            };
+        };
+    graphelement_index_text_fld: XmTextField
+        {
+        arguments
+            {
+            arguments text_list_4;
+            XmNleftAttachment = XmATTACH_WIDGET;
+            XmNleftOffset = 73;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopWidget = XmLabel graphelement_idx_label;
+            XmNleftWidget = XmLabel graphelement_idx_label;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    graphelement_class_text_fld: XmTextField
+        {
+        arguments
+            {
+            arguments text_list_30;
+            XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNleftOffset = 17;
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNtopOffset = 130;
+            XmNtopWidget = XmLabel graphelement_idx_label;
+            XmNleftWidget = XmForm dbase_radio_box_form;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    graphelement_display_text_fld: XmTextField
+        {
+        arguments
+            {
+            arguments text_list_20;
+            XmNleftAttachment = XmATTACH_WIDGET;
+            XmNleftOffset = 100;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopWidget = XmTextField graphelement_index_text_fld;
+            XmNleftWidget = XmTextField graphelement_index_text_fld;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    graphelement_type_text_fld: XmTextField
+        {
+        arguments
+            {
+            arguments text_list_20;
+            XmNleftAttachment = XmATTACH_WIDGET;
+            XmNleftOffset = 100;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopWidget = XmTextField graphelement_display_text_fld;
+            XmNleftWidget = XmTextField graphelement_display_text_fld;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    graphelement_vbus_tb: XmToggleButton
+        {
+        arguments
+            {
+            XmNx = 5;
+            XmNy = 6;
+            XmNlabelString = compound_string("Bus");
+            XmNset = true;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNvalueChangedCallback = procedures
+                {
+                set_search_flg(0);
+                };
+            };
+        };
+    graphelement_vcomment_tb: XmToggleButton
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Comment");
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNvalueChangedCallback = procedures
+                {
+                set_search_flg(0);
+                };
+            };
+        };
+    graphelement_class_label_bn: XmToggleButton
+        {
+        arguments
+            {
+            XmNy = 12;
+            XmNlabelString = compound_string("Label Text");
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNvalueChangedCallback = procedures
+                {
+                set_search_flg(0);
+                };
+            };
+        };
+    graphelement_class_group_bn: XmToggleButton
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Group");
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNvalueChangedCallback = procedures
+                {
+                set_search_flg(0);
+                };
+            };
+        };
+    graphelement_comlx_edge_pb: XmToggleButton
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Line");
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNvalueChangedCallback = procedures
+                {
+                set_search_flg(0);
+                };
+            };
+        };
+    graphelement_edge_lbl_pb: XmToggleButton
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Line Flow Label");
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNvalueChangedCallback = procedures
+                {
+                set_search_flg(0);
+                };
+            };
+        };
+    graphelement_vertx_brdr_pb: XmToggleButton
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Border Corner");
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNvalueChangedCallback = procedures
+                {
+                set_search_flg(0);
+                };
+            };
+        };
+    graphelement_lengnd_txt_pb: XmToggleButton
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Legend Text");
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNvalueChangedCallback = procedures
+                {
+                set_search_flg(0);
+                };
+            };
+        };
+    graphelement_edge_brdr_pb: XmToggleButton
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Border Edge");
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNvalueChangedCallback = procedures
+                {
+                set_search_flg(0);
+                };
+            };
+        };
+    graphelement_papr_vertx_pb: XmToggleButton
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Paper Corner");
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNvalueChangedCallback = procedures
+                {
+                set_search_flg(0);
+                };
+            };
+        };
+    graphelement_lbl_crnr_pb: XmToggleButton
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Label Corner");
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNvalueChangedCallback = procedures
+                {
+                set_search_flg(0);
+                };
+            };
+        };
+    graphelement_paper_edge_pb: XmToggleButton
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Paper Edge");
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNvalueChangedCallback = procedures
+                {
+                set_search_flg(0);
+                };
+            };
+        };

@@ -1,0 +1,27 @@
+IPF Graphic User Interface -- gui
+
+Usage:  gui <cr>
+
+Output:  Screen/Mouse-driven, Point-and-Click control of IPF powerflow program.
+
+The X-based (X Window System using the Motif Window Manager) push-button and
+menu-driven Graphical User Interface (gui) program that works in conjunction
+with the power flow server, IPFSRV.  Documentation is in the IPF Basic/GUI
+Users Guide (ipfgui.pdf).
+
+
+The GUI Approach:
+When you use the GUI approach, you use the dialog boxes, menus, windows,
+etc., of the GUI. This makes data input, output, and manipulation easy. In
+addition to allowing basic case solution tasks to be accomplished, certain
+specialized tasks such as creating coordinate files, taking line outages
+graphically, printing plots, tapping lines, viewing summary reports, and line
+impedance calculations, are available. 
+
+For information about how to work with the GUI dialog
+boxes, menus, windows, etc., see the IPF Basic/GUI Users Guide. This guide
+also has a tutorial to show you how to solve straightforward power system
+cases.  However,for some more involved analysis tasks, you need to use the BPF, 
+IPFBAT, and CFLOW  approaches.  
+
+

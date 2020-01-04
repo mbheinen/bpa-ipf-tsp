@@ -1,0 +1,7 @@
+ 
+ 
+value
+    k_startup_options_label_text:
+    compound_string("Startup Options");
+    k_style_label_text:
+    compound_string("Object Style");

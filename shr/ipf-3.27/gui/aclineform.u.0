@@ -1,0 +1,730 @@
+value
+    lin_colour_table:color_table(white = ' ', !background color = ' ',
+                                 black = '*', !foreground color = '*',
+!                                 green = 'e', !rgb(0,60292,0) = 'e',
+                                 color('green2') = 'e',
+!                                 grey  = 'd', !rgb(65535,37027,6553) = 'd',
+                                 color('grey33')  = 'd', !color('chocolate1') = 'd',
+!                                 Salmon = 'c', !rgb(65535,1310,0) = 'c',
+                                 color('salmon') = 'c', !color('red') = 'c',
+!                                 blue  = 'b', !rgb(0,0,55049) = 'b',
+                                 color('blue') = 'b',
+!                                 black = 'a'); !rgb(65535,65535,65535) = 'a');
+                                 black = 'a'); !color('white') = 'a');
+ 
+object
+    branch_jacket: XmForm
+        {
+        arguments
+            {
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNtopAttachment = XmATTACH_FORM;
+            XmNleftOffset = 15;
+            XmNtopOffset = 60;
+            XmNshadowThickness = 2;
+            XmNshadowType = XmSHADOW_ETCHED_IN;
+            XmNrightAttachment = XmATTACH_FORM;
+            XmNrightOffset = 15;
+            XmNbottomAttachment = XmATTACH_FORM;
+            XmNbottomOffset = 150;
+            };
+        controls
+            {
+            XmLabelGadget line_meter_label;
+            XmLabelGadget line_owner_label;
+            XmTextField line_meter;
+            XmTextField line_owner;
+            XmTextField line_circuit_id;
+            XmLabelGadget line_circuit_id_label;
+            XmLabelGadget line_section_label;
+            XmTextField line_section;
+            XmLabelGadget line_per_unit_label;
+            XmLabelGadget front_dia_equation1_label;
+            XmLabelGadget front_dia_equation2_label;
+            XmLabelGadget front_dia_R_label;
+            XmLabelGadget front_dia_X_label;
+            XmLabelGadget front_dia_Gdiv2_label;
+            XmLabelGadget front_dia_Bdiv2_label;
+            XmForm front_dia_current_form;
+            XmTextField line_R;
+            XmTextField line_G;
+            XmTextField line_X;
+            XmTextField line_B;
+            XmLabelGadget number_parallels_label;
+            XmTextField line_no_parallels;
+            XmLabelGadget line_miles_label;
+            XmTextField line_miles;
+            XmPushButton front_dia_calc_z_pb;
+            XmPushButton front_dia_tap_line_pb;
+            XmLabel
+                {
+                arguments
+                    {
+                    XmNleftAttachment = XmATTACH_WIDGET;
+                    XmNtopAttachment = XmATTACH_FORM;
+                    XmNleftOffset = 20;
+                    XmNtopOffset = 30;
+                    XmNlabelPixmap = clothes_line;
+                    XmNlabelType = XmPIXMAP;
+                    XmNleftWidget = XmTextField line_owner;
+                    };
+                };
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    line_meter_label: XmLabelGadget
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Metering");
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNtopAttachment = XmATTACH_FORM;
+            XmNleftOffset = 15;
+            XmNtopOffset = 15;
+            XmNheight = 30;
+            XmNwidth = 79;
+            };
+        };
+    line_meter: XmTextField
+        {
+        arguments
+            {
+            arguments text_list_1;
+            XmNleftAttachment = XmATTACH_WIDGET;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNleftOffset = 90;
+            XmNtopOffset = 0;
+            XmNleftWidget = XmLabelGadget line_meter_label;
+            XmNtopWidget = XmLabelGadget line_meter_label;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNmodifyVerifyCallback = procedures
+                {
+                digit_check(0);
+                };
+            };
+        };
+    line_owner_label: XmLabelGadget
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Owner");
+            XmNleftAttachment = XmATTACH_WIDGET;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNleftOffset = 10;
+            XmNtopOffset = 0;
+            XmNleftWidget = XmTextField line_meter;
+            XmNtopWidget = XmTextField line_meter;
+            XmNbottomAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNbottomWidget = XmTextField line_meter;
+            XmNbottomOffset = 5;
+            XmNwidth = 64;
+            };
+        };
+    line_circuit_id_label: XmLabelGadget
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Circuit ID");
+            XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNleftOffset = 3;
+            XmNtopOffset = 2;
+            XmNtopWidget = XmLabelGadget line_meter_label;
+            XmNleftWidget = XmLabelGadget line_meter_label;
+            XmNwidth = 75;
+            XmNheight = 30;
+            };
+        };
+    line_circuit_id: XmTextField
+        {
+        arguments
+            {
+            arguments text_list_1;
+            XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNleftOffset = 4;
+            XmNtopOffset = 0;
+            XmNleftWidget = XmTextField line_meter;
+            XmNtopWidget = XmLabelGadget line_circuit_id_label;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNmodifyVerifyCallback = procedures
+                {
+                alphanum_check(0);
+                };
+            };
+        };
+    line_section_label: XmLabelGadget
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Section");
+            XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNleftOffset = 0;
+            XmNtopOffset = 0;
+            XmNleftWidget = XmLabelGadget line_owner_label;
+            XmNtopWidget = XmTextField line_circuit_id;
+            XmNbottomAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNbottomWidget = XmTextField line_circuit_id;
+            XmNbottomOffset = 0;
+            XmNwidth = 69;
+            };
+        };
+    line_per_unit_label: XmLabelGadget
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("PER UNIT");
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNtopAttachment = XmATTACH_FORM;
+            XmNleftOffset = 130;
+            XmNtopOffset = 88;
+            XmNwidth = 93;
+            XmNrightAttachment = XmATTACH_FORM;
+            XmNrightOffset = 130;
+            };
+        };
+    front_dia_equation1_label: XmLabelGadget
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Zpi = R + jX");
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNleftOffset = 15;
+            XmNtopOffset = 1;
+            XmNtopWidget = XmLabelGadget line_per_unit_label;
+            };
+        };
+    front_dia_R_label: XmLabelGadget
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("R");
+            XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNleftOffset = 0;
+            XmNtopOffset = 5;
+            XmNtopWidget = XmLabelGadget front_dia_equation1_label;
+            XmNleftWidget = XmLabelGadget front_dia_equation1_label;
+            };
+        };
+    front_dia_equation2_label: XmLabelGadget
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Yp1 = (G + jB)/2");
+            XmNleftAttachment = XmATTACH_WIDGET;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNleftOffset = 59;
+            XmNtopOffset = 0;
+            XmNleftWidget = XmLabelGadget front_dia_equation1_label;
+            XmNtopWidget = XmLabelGadget front_dia_equation1_label;
+            XmNbottomAttachment = XmATTACH_NONE;
+            XmNbottomOffset = 0;
+            XmNheight = 21;
+            };
+        };
+    front_dia_Gdiv2_label: XmLabelGadget
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("G/2");
+            XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNleftOffset = 0;
+            XmNtopOffset = 0;
+            XmNtopWidget = XmTextField line_R;
+            XmNleftWidget = XmLabelGadget front_dia_equation2_label;
+            };
+        };
+    line_R: XmTextField
+        {
+        arguments
+            {
+            arguments text_list_7;
+            XmNleftAttachment = XmATTACH_WIDGET;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNleftOffset = 107;
+            XmNtopOffset = 0;
+            XmNleftWidget = XmLabelGadget front_dia_R_label;
+            XmNtopWidget = XmLabelGadget front_dia_R_label;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNmodifyVerifyCallback = procedures
+                {
+                decimal_check(0);
+                };
+            };
+        };
+    front_dia_X_label: XmLabelGadget
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("X");
+            XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNleftOffset = 0;
+            XmNtopOffset = 10;
+            XmNleftWidget = XmLabelGadget front_dia_R_label;
+            XmNtopWidget = XmLabelGadget front_dia_R_label;
+            };
+        };
+    line_X: XmTextField
+        {
+        arguments
+            {
+            arguments text_list_7;
+            XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNleftOffset = 0;
+            XmNtopOffset = 0;
+            XmNtopWidget = XmLabelGadget front_dia_X_label;
+            XmNleftWidget = XmTextField line_R;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNmodifyVerifyCallback = procedures
+                {
+                decimal_check(0);
+                };
+            };
+        };
+    line_G: XmTextField
+        {
+        arguments
+            {
+            arguments text_list_7;
+            XmNleftAttachment = XmATTACH_WIDGET;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNleftOffset = 107;
+            XmNtopOffset = 0;
+            XmNleftWidget = XmLabelGadget front_dia_Gdiv2_label;
+            XmNtopWidget = XmLabelGadget front_dia_Gdiv2_label;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    front_dia_Bdiv2_label: XmLabelGadget
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("B/2");
+            XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNleftOffset = 1;
+            XmNtopOffset = 0;
+            XmNtopWidget = XmTextField line_X;
+            XmNleftWidget = XmLabelGadget front_dia_Gdiv2_label;
+            };
+        };
+    front_dia_emergency_label: XmLabelGadget
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Nominal");
+            XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNleftOffset = -15;
+            XmNheight = 28;
+            XmNwidth = 101;
+            XmNbottomAttachment = XmATTACH_WIDGET;
+            XmNbottomWidget = XmTextField line_rating_emergency;
+            XmNbottomOffset = 0;
+            XmNrightAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNrightWidget = XmTextField line_rating_emergency;
+            XmNrightOffset = -15;
+            XmNleftWidget = XmTextField line_rating_emergency;
+            };
+        };
+    front_dia_ratings_label: XmLabelGadget
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("CURRENT RATINGS");
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNtopAttachment = XmATTACH_FORM;
+            XmNleftOffset = 49;
+            XmNtopOffset = 5;
+            XmNrightAttachment = XmATTACH_FORM;
+            XmNrightOffset = 41;
+            };
+        };
+    front_dia_thermal_label: XmLabelGadget
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Thermal");
+            XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopAttachment = XmATTACH_NONE;
+            XmNleftOffset = -11;
+            XmNtopOffset = 0;
+            XmNbottomWidget = XmTextField line_rating_thermal;
+            XmNbottomOffset = -1+2;
+            XmNleftWidget = XmTextField line_rating_thermal;
+            XmNwidth = 85;
+            XmNy = 18;
+            XmNrightAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNrightWidget = XmTextField line_rating_thermal;
+            XmNrightOffset = -10;
+            XmNbottomAttachment = XmATTACH_WIDGET;
+            };
+        };
+    line_rating_emergency: XmTextField
+        {
+        arguments
+            {
+            arguments text_list_5;
+            XmNleftAttachment = XmATTACH_POSITION;
+            XmNtopAttachment = XmATTACH_POSITION;
+            XmNleftPosition = 12;
+            XmNtopPosition = 60;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNmodifyVerifyCallback = procedures
+                {
+                decimal_check(0);
+                };
+            };
+        };
+    line_rating_thermal: XmTextField
+        {
+        arguments
+            {
+            arguments text_list_5;
+            XmNleftAttachment = XmATTACH_POSITION;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopOffset = 0;
+            XmNtopWidget = XmTextField line_rating_emergency;
+            XmNleftPosition = 42;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNmodifyVerifyCallback = procedures
+                {
+                decimal_check(0);
+                };
+            };
+        };
+    line_rating_bottleneck_label: XmLabelGadget
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Bottleneck");
+            XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopAttachment = XmATTACH_NONE;
+            XmNleftOffset = -30+10;
+            XmNtopOffset = 0;
+            XmNrightAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNrightOffset = -30+10;
+            XmNx = 198;
+            XmNbottomAttachment = XmATTACH_WIDGET;
+            XmNbottomWidget = XmTextField line_rating_bottleneck_text;
+            XmNbottomOffset = 0;
+            XmNleftWidget = XmTextField line_rating_bottleneck_text;
+            XmNwidth = 84;
+            XmNrightWidget = XmTextField line_rating_bottleneck_text;
+            XmNy = 21;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    line_owner: XmTextField
+        {
+        arguments
+            {
+            arguments text_list_3;
+            XmNleftAttachment = XmATTACH_WIDGET;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNleftOffset = 100;
+            XmNtopOffset = 0;
+            XmNleftWidget = XmLabelGadget line_owner_label;
+            XmNtopWidget = XmLabelGadget line_owner_label;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNmodifyVerifyCallback = procedures
+                {
+                alphanum_check(0);
+                };
+            };
+        };
+    line_section: XmTextField
+        {
+        arguments
+            {
+            arguments text_list_1;
+            XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNleftOffset = -1;
+            XmNtopOffset = 0;
+            XmNleftWidget = XmTextField line_owner;
+            XmNtopWidget = XmLabelGadget line_section_label;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNmodifyVerifyCallback = procedures
+                {
+                digit_check(0);
+                };
+            };
+        };
+    line_B: XmTextField
+        {
+        arguments
+            {
+            arguments text_list_7;
+            XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNleftOffset = 0;
+            XmNleftWidget = XmTextField line_G;
+            XmNtopWidget = XmLabelGadget front_dia_Bdiv2_label;
+            XmNtopOffset = 0;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNmodifyVerifyCallback = procedures
+                {
+                decimal_check(0);
+                };
+            };
+        };
+    number_parallels_label: XmLabelGadget
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Number of Parallels");
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNleftOffset = 15;
+            XmNtopOffset = 9;
+            XmNtopWidget = XmLabelGadget front_dia_X_label;
+            };
+        };
+    line_no_parallels: XmTextField
+        {
+        arguments
+            {
+            arguments text_list_1;
+            XmNleftAttachment = XmATTACH_WIDGET;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNleftOffset = 72;
+            XmNtopOffset = 0;
+            XmNleftWidget = XmLabelGadget number_parallels_label;
+            XmNtopWidget = XmLabelGadget number_parallels_label;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNmodifyVerifyCallback = procedures
+                {
+                digit_check(0);
+                };
+            };
+        };
+    line_miles_label: XmLabelGadget
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Miles");
+            XmNleftAttachment = XmATTACH_WIDGET;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNleftOffset = 20;
+            XmNtopOffset = 0;
+            XmNtopWidget = XmTextField line_no_parallels;
+            XmNleftWidget = XmTextField line_no_parallels;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    line_miles: XmTextField
+        {
+        arguments
+            {
+            arguments text_list_5;
+            XmNleftAttachment = XmATTACH_WIDGET;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNleftOffset = 102;
+            XmNtopOffset = 0;
+            XmNleftWidget = XmLabelGadget line_miles_label;
+            XmNtopWidget = XmLabelGadget line_miles_label;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNmodifyVerifyCallback = procedures
+                {
+                decimal_check(0);
+                };
+            };
+        };
+    line_rating_bottleneck_text: XmTextField
+        {
+        arguments
+            {
+            arguments text_list_5;
+            XmNleftAttachment = XmATTACH_POSITION;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopOffset = 0;
+            XmNtopWidget = XmTextField line_rating_thermal;
+            XmNx = 257;
+            XmNleftPosition = 72;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNmodifyVerifyCallback = procedures
+                {
+                decimal_check(0);
+                };
+            };
+        };
+    front_dia_calc_z_pb: XmPushButton
+        {
+        arguments
+            {
+            arguments std_pushbutton;
+            XmNlabelString = compound_string("Calculate Impedance");
+            XmNleftAttachment = XmATTACH_POSITION;
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNtopOffset = 35;
+            XmNwidth = 197;
+            XmNrightAttachment = XmATTACH_POSITION;
+            XmNrightPosition = 47;
+            XmNleftPosition = 5;
+            XmNtopWidget = XmForm front_dia_current_form;
+            };
+        callbacks
+            {
+            XmNactivateCallback = procedures
+                {
+                manage_line_z_dia(0);
+                load_all_edit_widget_id(0);
+                };
+            };
+        };
+    front_dia_current_form: XmForm
+        {
+        arguments
+            {
+            XmNwidth = 260;
+            XmNheight = 90;
+            XmNborderWidth = 0;
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNtopAttachment = XmATTACH_FORM;
+            XmNleftOffset = 11;
+            XmNtopOffset = 245;
+            XmNrightAttachment = XmATTACH_FORM;
+            XmNrightOffset = 11;
+            XmNshadowThickness = 2;
+            XmNshadowType = XmSHADOW_ETCHED_IN;
+            };
+        controls
+            {
+            XmLabelGadget front_dia_ratings_label;
+            XmLabelGadget front_dia_emergency_label;
+            XmLabelGadget front_dia_thermal_label;
+            XmLabelGadget line_rating_bottleneck_label;
+            XmTextField line_rating_emergency;
+            XmTextField line_rating_thermal;
+            XmTextField line_rating_bottleneck_text;
+            };
+        };
+    front_dia_tap_line_pb: XmPushButton
+        {
+        arguments
+            {
+            arguments std_pushbutton;
+            XmNlabelString = compound_string("Tap Line");
+            XmNleftAttachment = XmATTACH_POSITION;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopOffset = 0;
+            XmNtopWidget = XmPushButton front_dia_calc_z_pb;
+            XmNwidth = 150;
+            XmNrightAttachment = XmATTACH_POSITION;
+            XmNrightPosition = 95;
+            XmNleftPosition = 53;
+            };
+        callbacks
+            {
+            XmNactivateCallback = procedures
+                {
+                manage_branch_tap_dialog(0);
+                };
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };

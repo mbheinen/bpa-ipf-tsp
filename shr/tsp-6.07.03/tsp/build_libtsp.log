@@ -1,0 +1,844 @@
+Compiling file angsol.f
+Compiling file area_frpt.f
+Compiling file auxout.f
+Compiling file badz.f
+Compiling file brksol.f
+Compiling file brnchy.f
+Compiling file brnchz.f
+Compiling file bus_frpt.f
+Compiling file busout.f
+Compiling file busplt.f
+Compiling file bussum.f
+Compiling file calplt.f
+calplt.f: In subroutine `calplt':
+calplt.f:323: warning:
+                       call redecp(msub(2*mind), ksub(ind)+kount-1, 1)
+                            1
+calplt.f:392: (continued):
+                     call redecp(ylmt, kecs, 2)
+                          2
+Argument #1 of `redecp' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+calplt.f:323: warning:
+                       call redecp(msub(2*mind), ksub(ind)+kount-1, 1)
+                            1
+calplt.f:610: (continued):
+                     call redecp(ylmt, kecs, 2)
+                          2
+Argument #1 of `redecp' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+calplt.f:323: warning:
+                       call redecp(msub(2*mind), ksub(ind)+kount-1, 1)
+                            1
+calplt.f:857: (continued):
+                       call redecp(ylmt, kecs, 2)
+                            2
+Argument #1 of `redecp' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+calplt.f:323: warning:
+                       call redecp(msub(2*mind), ksub(ind)+kount-1, 1)
+                            1
+calplt.f:1211: (continued):
+                   call redecp(ylmt, kecs, 2)
+                        2
+Argument #1 of `redecp' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+Compiling file capital.f
+Compiling file cbelong.f
+Compiling file check_tc.f
+Compiling file chkbch.f
+Compiling file close_file.f
+Compiling file closts.f
+Compiling file cntrl.f
+Compiling file cntrla.f
+Compiling file copy.f
+Compiling file copyc.f
+Compiling file copyd.f
+Compiling file copyr.f
+Compiling file cpu_secs.f
+Compiling file cvinp.f
+Compiling file cvint.f
+Compiling file cvsol.f
+Compiling file dbgeko.f
+Compiling file dbgeko2.f
+Compiling file dbgfind.f
+Compiling file dbghere.f
+Compiling file dbgwrc.f
+Compiling file dbgwrcn.f
+Compiling file dbgwrf.f
+Compiling file dbgwrg.f
+Compiling file dbgwri.f
+Compiling file dbgwrl.f
+Compiling file dcaux.f
+Compiling file dcinp.f
+dcinp.f: In subroutine `dcinp':
+dcinp.f:519: warning:
+                     call ritecs(kdxtan(1, k), kecs, 45)  
+                          1
+dcinp.f:521: (continued):
+                     call ritecs(tab, kecs, idclm)  
+                          2
+Argument #1 of `ritecs' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+Compiling file dcint.f
+Compiling file dclin.f
+Compiling file dcmod.f
+Compiling file dcreg.f
+Compiling file dcsort.f
+Compiling file deriv.f
+Compiling file dwnbak.f
+Compiling file endo.f
+Compiling file endsum.f
+Compiling file eqvsec.f
+Compiling file erexit.f
+Compiling file err_exit.f
+Compiling file expnt.f
+Compiling file ffread.f
+Compiling file freqc.f
+Compiling file fxdec.f
+Compiling file gaminp.f
+Compiling file gamint.f
+Compiling file gamsol.f
+Compiling file gdifmd.f
+Compiling file gdifot.f
+Compiling file gdifrd.f
+Compiling file gencur.f
+Compiling file gendrp.f
+Compiling file genname.f
+Compiling file genout.f
+Compiling file genupd.f
+Compiling file gesigl.f
+Compiling file get_value.f
+Compiling file getfex.f
+Compiling file getflcs.f
+Compiling file getfnam.f
+getfnam.f: In subroutine `getfnam':
+getfnam.f:130: 
+         open (l5,
+         ^
+Unsupported OPEN control item at (^) -- ACTION=, ASSOCIATEVARIABLE=, BLOCKSIZE=, BUFFERCOUNT=, CARRIAGECONTROL=, DEFAULTFILE=, DELIM=, DISPOSE=, EXTENDSIZE=, INITIALSIZE=, KEY=, MAXREC=, NOSPANBLOCKS, ORGANIZATION=, PAD=, POSITION=, READONLY=, RECORDTYPE=, SHARED=, and USEROPEN= are not supported
+getfnam.f:136: 
+         open (l3,
+         ^
+Unsupported OPEN control item at (^) -- ACTION=, ASSOCIATEVARIABLE=, BLOCKSIZE=, BUFFERCOUNT=, CARRIAGECONTROL=, DEFAULTFILE=, DELIM=, DISPOSE=, EXTENDSIZE=, INITIALSIZE=, KEY=, MAXREC=, NOSPANBLOCKS, ORGANIZATION=, PAD=, POSITION=, READONLY=, RECORDTYPE=, SHARED=, and USEROPEN= are not supported
+getfnam.f:145: 
+         open (l9,
+         ^
+Unsupported OPEN control item at (^) -- ACTION=, ASSOCIATEVARIABLE=, BLOCKSIZE=, BUFFERCOUNT=, CARRIAGECONTROL=, DEFAULTFILE=, DELIM=, DISPOSE=, EXTENDSIZE=, INITIALSIZE=, KEY=, MAXREC=, NOSPANBLOCKS, ORGANIZATION=, PAD=, POSITION=, READONLY=, RECORDTYPE=, SHARED=, and USEROPEN= are not supported
+Compiling file getfx1.f
+Compiling file gethis.f
+Compiling file getids.f
+Compiling file getmat.f
+Compiling file getpfn.f
+Compiling file getswn.f
+Compiling file getyeq.f
+Compiling file govdb1.f
+Compiling file govdb2.f
+Compiling file govinp.f
+Compiling file govint.f
+Compiling file govsol.f
+Compiling file gtswdta.f
+Compiling file hivolt.f
+Compiling file ibelng3.f
+Compiling file ifunit.f
+Compiling file igensr.f
+Compiling file inam.f
+Compiling file inamar.f
+Compiling file indrop.f
+Compiling file initl1.f
+Compiling file initl2.f
+Compiling file initl3.f
+Compiling file initl4.f
+Compiling file innam5.f
+Compiling file innm8a.f
+Compiling file inp3fa.f
+Compiling file inp3fb.f
+Compiling file inp3fc.f
+Compiling file inp3fd.f
+Compiling file inp3fe.f
+Compiling file inp3ff.f
+Compiling file inp3fg.f
+Compiling file inp3fh.f
+Compiling file inp3fj.f
+Compiling file inp3fk.f
+Compiling file inp3fl.f
+Compiling file input1.f
+Compiling file input2.f
+Compiling file input3.f
+Compiling file int3fa.f
+Compiling file int3fb.f
+Compiling file int3fc.f
+Compiling file int3fd.f
+Compiling file int3fe.f
+Compiling file int3ff.f
+Compiling file int3fg.f
+Compiling file int3fh.f
+Compiling file int3fj.f
+Compiling file int3fk.f
+Compiling file int3fl.f
+Compiling file intch4.f
+Compiling file irange.f
+Compiling file jpinfo.f
+tspinc/jpilst.inc: In subroutine `jpinfo':
+In file included from jpinfo.f:16:
+tspinc/jpilst.inc:39: 
+           IMPLICIT INTEGER*2  L
+                               ^
+Invalid form for IMPLICIT statement at (^)
+tspinc/jpilst.inc:40: 
+           IMPLICIT INTEGER*4  A
+                               ^
+Invalid form for IMPLICIT statement at (^)
+tspinc/jpilst.inc:55: 
+           PARAMETER  ( JPI$_ACCOUNT  = '00000203'X ,
+                           ^
+Invalid form for PARAMETER statement at (^)
+tspinc/jpilst.inc:78: 
+           DATA    LenACC  /8/, LocACC /JPI$_ACCOUNT/ , ArtnAC /0/,
+                                        ^
+Expression at (^) has incorrect data type or rank for its context
+tspinc/jpilst.inc:78: 
+           DATA    LenACC  /8/, LocACC /JPI$_ACCOUNT/ , ArtnAC /0/,
+                                           ^
+Invalid form for DATA statement at (^)
+tspinc/jpilst.inc:78: 
+           DATA    LenACC  /8/, LocACC /JPI$_ACCOUNT/ , ArtnAC /0/,
+                                           ^
+Too few initial values in list of initializers for `locacc' at (^)
+jpinfo.f:16: 
+           call sys$getjpi(,,,lenacc,,,)                                   
+                   ^
+Invalid form for CALL statement at (^)
+Compiling file keybrd.f
+Compiling file kmpcord.f
+Compiling file komp31.f
+Compiling file komp_dip.f
+Compiling file komp_frpt.f
+Compiling file kompr.f
+Compiling file lastch.f
+Compiling file linout.f
+Compiling file linsum.f
+Compiling file lldrop.f
+Compiling file loadrp.f
+Compiling file lodcur.f
+Compiling file lodinp.f
+Compiling file lodint.f
+Compiling file lodnum.f
+Compiling file lschk.f
+Compiling file lserch.f
+Compiling file lsrch.f
+Compiling file lsread.f
+Compiling file matmod.f
+matmod.f: In subroutine `matmod':
+matmod.f:152: warning:
+           call redecs (ptab,k1,idcl)                                      
+                1
+matmod.f:349: (continued):
+         call redecs(idcf(1),necsf,nterm)                                  
+              2
+Argument #1 of `redecs' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+matmod.f:152: warning:
+           call redecs (ptab,k1,idcl)                                      
+                1
+matmod.f:350: (continued):
+         call redecs(idcf1(1),necsf+nterm,nterm)                           
+              2
+Argument #1 of `redecs' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+matmod.f:152: warning:
+           call redecs (ptab,k1,idcl)                                      
+                1
+matmod.f:353: (continued):
+         call redecs(moderi,necs1+15-1,1)                                  
+              2
+Argument #1 of `redecs' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+matmod.f:152: warning:
+           call redecs (ptab,k1,idcl)                                      
+                1
+matmod.f:366: (continued):
+         call redecs(ibus,necs1+46,1)                                      
+              2
+Argument #1 of `redecs' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+matmod.f:328: warning:
+     400 call ritecs (ptab,k1,idcl)                                        
+              1
+matmod.f:411: (continued):
+    4240 call ritecs(idcf(1),necsf,nterm)                                  
+              2
+Argument #1 of `ritecs' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+matmod.f:328: warning:
+     400 call ritecs (ptab,k1,idcl)                                        
+              1
+matmod.f:412: (continued):
+         call ritecs(idcf1(1),necsf+nterm,nterm)                           
+              2
+Argument #1 of `ritecs' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+matmod.f:328: warning:
+     400 call ritecs (ptab,k1,idcl)                                        
+              1
+matmod.f:433: (continued):
+         call ritecs(idcb(1),kdcm(nockt),lbt)                              
+              2
+Argument #1 of `ritecs' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+matmod.f:328: warning:
+     400 call ritecs (ptab,k1,idcl)                                        
+              1
+matmod.f:460: (continued):
+         call ritecs(kflt,kdcm(nockt)+7,4)                                 
+              2
+Argument #1 of `ritecs' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+matmod.f:328: warning:
+     400 call ritecs (ptab,k1,idcl)                                        
+              1
+matmod.f:609: (continued):
+         call ritecs(lsflg,kdcm(nockt)+10,3)                               
+              2
+Argument #1 of `ritecs' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+matmod.f:152: warning:
+           call redecs (ptab,k1,idcl)                                      
+                1
+matmod.f:632: (continued):
+         call redecs(moderi,idcb(lbt+jftab(ils))+14,1)                     
+              2
+Argument #1 of `redecs' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+matmod.f:328: warning:
+     400 call ritecs (ptab,k1,idcl)                                        
+              1
+matmod.f:645: (continued):
+         call ritecs(nflt, kdcm(nockt) + 13, 1)                        
+              2
+Argument #1 of `ritecs' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+matmod.f:152: warning:
+           call redecs (ptab,k1,idcl)                                      
+                1
+matmod.f:659: (continued):
+         call redecs(moderi,idcb(lbt+jftab(ils))+14,1)                     
+              2
+Argument #1 of `redecs' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+matmod.f:152: warning:
+           call redecs (ptab,k1,idcl)                                      
+                1
+matmod.f:1403: (continued):
+         call redecs(itab(114),k1+158,7)                                   
+              2
+Argument #1 of `redecs' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+Compiling file maxmin.f
+Compiling file mdcinp.f
+mdcinp.f: In subroutine `mdcinp':
+mdcinp.f:731: warning:
+                             call ritecs(dca(1), kecs, msizea)
+                                  1
+mdcinp.f:900: (continued):
+                       call ritecs(idcf(1), necsf, nterm)
+                            2
+Argument #1 of `ritecs' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+mdcinp.f:731: warning:
+                             call ritecs(dca(1), kecs, msizea)
+                                  1
+mdcinp.f:901: (continued):
+                       call ritecs(idcf1(1), necsf+nterm, nterm)
+                            2
+Argument #1 of `ritecs' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+mdcinp.f:731: warning:
+                             call ritecs(dca(1), kecs, msizea)
+                                  1
+mdcinp.f:905: (continued):
+                       call ritecs(mdcen, necse, nbus)
+                            2
+Argument #1 of `ritecs' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+mdcinp.f:660: warning:
+                             call redecs(bsbr, kkp(1, k1new)+kecst, kkp(2,
+                                  1
+mdcinp.f:942: (continued):
+                                     call redecs(ibus, iecdca+46, 1)
+                                          2
+Argument #1 of `redecs' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+mdcinp.f:660: warning:
+                             call redecs(bsbr, kkp(1, k1new)+kecst, kkp(2,
+                                  1
+mdcinp.f:947: (continued):
+     240                           call redecs(moderi, iecdca+14, 1)
+                                        2
+Argument #1 of `redecs' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+mdcinp.f:660: warning:
+                             call redecs(bsbr, kkp(1, k1new)+kecst, kkp(2,
+                                  1
+mdcinp.f:968: (continued):
+                                   call redecs(ibus, iecdca+46, 1)
+                                        2
+Argument #1 of `redecs' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+mdcinp.f:660: warning:
+                             call redecs(bsbr, kkp(1, k1new)+kecst, kkp(2,
+                                  1
+mdcinp.f:973: (continued):
+     270                         call redecs(moderi, iecdca+14, 1)
+                                      2
+Argument #1 of `redecs' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+mdcinp.f:660: warning:
+                             call redecs(bsbr, kkp(1, k1new)+kecst, kkp(2,
+                                  1
+mdcinp.f:975: (continued):
+                                   call redecs(modepc, iecdca+6, 1)
+                                        2
+Argument #1 of `redecs' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+mdcinp.f:660: warning:
+                             call redecs(bsbr, kkp(1, k1new)+kecst, kkp(2,
+                                  1
+mdcinp.f:1216: (continued):
+                   call redecs(mdcen, necse, nbus)
+                        2
+Argument #1 of `redecs' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+Compiling file mdcint.f
+Compiling file mdclin.f
+mdclin.f: In subroutine `mdclin':
+mdclin.f:66: warning:
+         call redecs (dca,idcb(ind1),msizea)                               
+              1
+mdclin.f:143: (continued):
+         call redecs (idcf,necsf,nterm)                                    
+              2
+Argument #1 of `redecs' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+mdclin.f:66: warning:
+         call redecs (dca,idcb(ind1),msizea)                               
+              1
+mdclin.f:144: (continued):
+         call redecs (idcf1,necsf+nterm,nterm)                             
+              2
+Argument #1 of `redecs' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+mdclin.f:343: warning:
+         call ritecs(dca(63),idcb(lbt+lterm)+62,1)                         
+              1
+mdclin.f:1410: (continued):
+         call ritecs(idcf,necsf,nterm)                                     
+              2
+Argument #1 of `ritecs' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+mdclin.f:343: warning:
+         call ritecs(dca(63),idcb(lbt+lterm)+62,1)                         
+              1
+mdclin.f:1411: (continued):
+         call ritecs(idcf1,necsf+nterm,nterm)                              
+              2
+Argument #1 of `ritecs' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+mdclin.f:66: warning:
+         call redecs (dca,idcb(ind1),msizea)                               
+              1
+mdclin.f:1432: (continued):
+         call redecs (idch,necsh,ndimh)                                    
+              2
+Argument #1 of `redecs' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+Compiling file mdcreg.f
+Compiling file miint.f
+Compiling file mmodin.f
+Compiling file modinp.f
+Compiling file modint.f
+Compiling file mpost.f
+Compiling file mvdcde.f
+Compiling file mvdcx.f
+Compiling file mvmod.f
+Compiling file mvplt.f
+Compiling file nambas.f
+Compiling file nambse.f
+Compiling file ndcout.f
+ndcout.f: In subroutine `ndcout':
+ndcout.f:93: warning:
+             call ritecp(msub1(2), ksubd(ii), 1)
+                  1
+ndcout.f:123: (continued):
+           call ritecp(work, kadr, istm)
+                2
+Argument #1 of `ritecp' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+ndcout.f:68: warning:
+             call redecp(msub1(2), ksubd(ii)+i, 1)
+                  1
+ndcout.f:160: (continued):
+                 call redecp(work(istart), kadr, icount)
+                      2
+Argument #1 of `redecp' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+ndcout.f:68: warning:
+             call redecp(msub1(2), ksubd(ii)+i, 1)
+                  1
+ndcout.f:171: (continued):
+                   call redecp(work(istart), kadr, icount)
+                        2
+Argument #1 of `redecp' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+ndcout.f:68: warning:
+             call redecp(msub1(2), ksubd(ii)+i, 1)
+                  1
+ndcout.f:177: (continued):
+                   call redecp(work(istart), kadr, icount)
+                        2
+Argument #1 of `redecp' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+Compiling file newtsl.f
+Compiling file nout1.f
+nout1.f: In subroutine `nout1':
+nout1.f:186: warning:
+         call gethisi(irectp, 1)
+              1
+nout1.f:315: (continued):
+           call gethisi(basekv, irecln)
+                2
+Argument #1 of `gethisi' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+Compiling file nout2.f
+nout2.f: In subroutine `nout2':
+nout2.f:791: warning:
+         call gethisi(irectp, 1)
+              1
+nout2.f:858: (continued):
+           call gethisi(constx, irecln)
+                2
+Argument #1 of `gethisi' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+Compiling file nxtwrd.f
+Compiling file opaux.f
+Compiling file open_file.f
+open_file.f: In function `open_file':
+open_file.f:102: 
+                 open(unit=unit,
+                 ^
+Unsupported OPEN control item at (^) -- ACTION=, ASSOCIATEVARIABLE=, BLOCKSIZE=, BUFFERCOUNT=, CARRIAGECONTROL=, DEFAULTFILE=, DELIM=, DISPOSE=, EXTENDSIZE=, INITIALSIZE=, KEY=, MAXREC=, NOSPANBLOCKS, ORGANIZATION=, PAD=, POSITION=, READONLY=, RECORDTYPE=, SHARED=, and USEROPEN= are not supported
+open_file.f:109: 
+                 open(unit=unit,
+                 ^
+Unsupported OPEN control item at (^) -- ACTION=, ASSOCIATEVARIABLE=, BLOCKSIZE=, BUFFERCOUNT=, CARRIAGECONTROL=, DEFAULTFILE=, DELIM=, DISPOSE=, EXTENDSIZE=, INITIALSIZE=, KEY=, MAXREC=, NOSPANBLOCKS, ORGANIZATION=, PAD=, POSITION=, READONLY=, RECORDTYPE=, SHARED=, and USEROPEN= are not supported
+open_file.f:117: 
+                 open(unit=unit,
+                 ^
+Unsupported OPEN control item at (^) -- ACTION=, ASSOCIATEVARIABLE=, BLOCKSIZE=, BUFFERCOUNT=, CARRIAGECONTROL=, DEFAULTFILE=, DELIM=, DISPOSE=, EXTENDSIZE=, INITIALSIZE=, KEY=, MAXREC=, NOSPANBLOCKS, ORGANIZATION=, PAD=, POSITION=, READONLY=, RECORDTYPE=, SHARED=, and USEROPEN= are not supported
+open_file.f:125: 
+                 open(unit=unit,
+                 ^
+Unsupported OPEN control item at (^) -- ACTION=, ASSOCIATEVARIABLE=, BLOCKSIZE=, BUFFERCOUNT=, CARRIAGECONTROL=, DEFAULTFILE=, DELIM=, DISPOSE=, EXTENDSIZE=, INITIALSIZE=, KEY=, MAXREC=, NOSPANBLOCKS, ORGANIZATION=, PAD=, POSITION=, READONLY=, RECORDTYPE=, SHARED=, and USEROPEN= are not supported
+open_file.f:147: 
+                 open(unit=unit,
+                 ^
+Unsupported OPEN control item at (^) -- ACTION=, ASSOCIATEVARIABLE=, BLOCKSIZE=, BUFFERCOUNT=, CARRIAGECONTROL=, DEFAULTFILE=, DELIM=, DISPOSE=, EXTENDSIZE=, INITIALSIZE=, KEY=, MAXREC=, NOSPANBLOCKS, ORGANIZATION=, PAD=, POSITION=, READONLY=, RECORDTYPE=, SHARED=, and USEROPEN= are not supported
+open_file.f:161: 
+                 open(unit=unit,
+                 ^
+Unsupported OPEN control item at (^) -- ACTION=, ASSOCIATEVARIABLE=, BLOCKSIZE=, BUFFERCOUNT=, CARRIAGECONTROL=, DEFAULTFILE=, DELIM=, DISPOSE=, EXTENDSIZE=, INITIALSIZE=, KEY=, MAXREC=, NOSPANBLOCKS, ORGANIZATION=, PAD=, POSITION=, READONLY=, RECORDTYPE=, SHARED=, and USEROPEN= are not supported
+Compiling file openpf.f
+openpf.f: In subroutine `openpf':
+openpf.f:11: 
+           open (unit=datai,file=pfname,status='OLD',readonly,form='UNFORMATTED',
+           ^
+Unsupported OPEN control item at (^) -- ACTION=, ASSOCIATEVARIABLE=, BLOCKSIZE=, BUFFERCOUNT=, CARRIAGECONTROL=, DEFAULTFILE=, DELIM=, DISPOSE=, EXTENDSIZE=, INITIALSIZE=, KEY=, MAXREC=, NOSPANBLOCKS, ORGANIZATION=, PAD=, POSITION=, READONLY=, RECORDTYPE=, SHARED=, and USEROPEN= are not supported
+Compiling file opents.f
+opents.f: In subroutine `opents':
+opents.f:88: 
+           open (unit=l8, file=solfl, status = type_open,                  
+           ^
+Unsupported OPEN control item at (^) -- ACTION=, ASSOCIATEVARIABLE=, BLOCKSIZE=, BUFFERCOUNT=, CARRIAGECONTROL=, DEFAULTFILE=, DELIM=, DISPOSE=, EXTENDSIZE=, INITIALSIZE=, KEY=, MAXREC=, NOSPANBLOCKS, ORGANIZATION=, PAD=, POSITION=, READONLY=, RECORDTYPE=, SHARED=, and USEROPEN= are not supported
+opents.f:93: 
+           open (unit=l8, status = type_open,                              
+           ^
+Unsupported OPEN control item at (^) -- ACTION=, ASSOCIATEVARIABLE=, BLOCKSIZE=, BUFFERCOUNT=, CARRIAGECONTROL=, DEFAULTFILE=, DELIM=, DISPOSE=, EXTENDSIZE=, INITIALSIZE=, KEY=, MAXREC=, NOSPANBLOCKS, ORGANIZATION=, PAD=, POSITION=, READONLY=, RECORDTYPE=, SHARED=, and USEROPEN= are not supported
+opents.f:118: 
+           open(unit=l1, status='scratch', access='direct', 
+                         1
+opents.f:124: (continued):
+        &       file = 'stab.scr01')
+                2
+Conflicting I/O control specifications at (2) and (1)
+opents.f:118: 
+           open(unit=l1, status='scratch', access='direct', 
+           ^
+Unsupported OPEN control item at (^) -- ACTION=, ASSOCIATEVARIABLE=, BLOCKSIZE=, BUFFERCOUNT=, CARRIAGECONTROL=, DEFAULTFILE=, DELIM=, DISPOSE=, EXTENDSIZE=, INITIALSIZE=, KEY=, MAXREC=, NOSPANBLOCKS, ORGANIZATION=, PAD=, POSITION=, READONLY=, RECORDTYPE=, SHARED=, and USEROPEN= are not supported
+opents.f:130: 
+           open(unit=l1, status='scratch', access='direct', 
+                         1
+opents.f:136: (continued):
+        &       file = 'swg_scr:scratch.dat')                              
+                2
+Conflicting I/O control specifications at (2) and (1)
+opents.f:130: 
+           open(unit=l1, status='scratch', access='direct', 
+           ^
+Unsupported OPEN control item at (^) -- ACTION=, ASSOCIATEVARIABLE=, BLOCKSIZE=, BUFFERCOUNT=, CARRIAGECONTROL=, DEFAULTFILE=, DELIM=, DISPOSE=, EXTENDSIZE=, INITIALSIZE=, KEY=, MAXREC=, NOSPANBLOCKS, ORGANIZATION=, PAD=, POSITION=, READONLY=, RECORDTYPE=, SHARED=, and USEROPEN= are not supported
+opents.f:146: 
+           open(unit=l2, status='scratch', access='direct', 
+                         1
+opents.f:150: (continued):
+        &       file = 'stab.scr02')                                       
+                2
+Conflicting I/O control specifications at (2) and (1)
+opents.f:146: 
+           open(unit=l2, status='scratch', access='direct', 
+           ^
+Unsupported OPEN control item at (^) -- ACTION=, ASSOCIATEVARIABLE=, BLOCKSIZE=, BUFFERCOUNT=, CARRIAGECONTROL=, DEFAULTFILE=, DELIM=, DISPOSE=, EXTENDSIZE=, INITIALSIZE=, KEY=, MAXREC=, NOSPANBLOCKS, ORGANIZATION=, PAD=, POSITION=, READONLY=, RECORDTYPE=, SHARED=, and USEROPEN= are not supported
+opents.f:157: 
+           open(unit=l2,status='scratch',access='direct',
+                        1
+opents.f:161: (continued):
+        &       file = 'swg_scr:junk.dat')                                 
+                2
+Conflicting I/O control specifications at (2) and (1)
+opents.f:157: 
+           open(unit=l2,status='scratch',access='direct',
+           ^
+Unsupported OPEN control item at (^) -- ACTION=, ASSOCIATEVARIABLE=, BLOCKSIZE=, BUFFERCOUNT=, CARRIAGECONTROL=, DEFAULTFILE=, DELIM=, DISPOSE=, EXTENDSIZE=, INITIALSIZE=, KEY=, MAXREC=, NOSPANBLOCKS, ORGANIZATION=, PAD=, POSITION=, READONLY=, RECORDTYPE=, SHARED=, and USEROPEN= are not supported
+opents.f:223: 
+            open (unit=l8, file=solfl, status = 'old',                     
+            ^
+Unsupported OPEN control item at (^) -- ACTION=, ASSOCIATEVARIABLE=, BLOCKSIZE=, BUFFERCOUNT=, CARRIAGECONTROL=, DEFAULTFILE=, DELIM=, DISPOSE=, EXTENDSIZE=, INITIALSIZE=, KEY=, MAXREC=, NOSPANBLOCKS, ORGANIZATION=, PAD=, POSITION=, READONLY=, RECORDTYPE=, SHARED=, and USEROPEN= are not supported
+opents.f:228: 
+           open (unit=l8, status = 'old',                                  
+           ^
+Unsupported OPEN control item at (^) -- ACTION=, ASSOCIATEVARIABLE=, BLOCKSIZE=, BUFFERCOUNT=, CARRIAGECONTROL=, DEFAULTFILE=, DELIM=, DISPOSE=, EXTENDSIZE=, INITIALSIZE=, KEY=, MAXREC=, NOSPANBLOCKS, ORGANIZATION=, PAD=, POSITION=, READONLY=, RECORDTYPE=, SHARED=, and USEROPEN= are not supported
+Compiling file pieqiv.f
+Compiling file pieqix.f
+Compiling file piequi.f
+Compiling file piqui1.f
+Compiling file plt.f
+Compiling file plt2v.f
+Compiling file pltcom.f
+Compiling file prgmon.f
+Compiling file proc_dip.f
+Compiling file proc_sdf.f
+Compiling file proerr.f
+Compiling file prterr.f
+Compiling file prtpkg.f
+Compiling file prtresid.f
+Compiling file prttb.f
+Compiling file prtwst.f
+Compiling file puterr.f
+Compiling file puthis.f
+puthis.f: In subroutine `puthisri':
+puthis.f:8: 
+         subroutine puthisrf (irectp, idesc, numwords, fltarr)
+                    1
+puthis.f:33: (continued):
+         call puthisrf (irectp, idesc, numwords, intarr)
+              2
+Argument #4 (named `fltarr') of `puthisrf' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+puthis.f: In subroutine `puthisi':
+puthis.f:17: warning:
+         call puthisi (irectp,1)
+              1
+puthis.f:83: (continued):
+         subroutine puthisi (intarr, kount)
+                    2
+Argument #1 (named `intarr') of `puthisi' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+Compiling file putout.f
+Compiling file qiksrt.f
+Compiling file r1inp.f
+Compiling file r1int.f
+Compiling file r1sol.f
+Compiling file rbinp.f
+Compiling file rbint.f
+Compiling file rcinp.f
+Compiling file rdbse.f
+Compiling file rdbsemvr.f
+Compiling file rdbsemvs.f
+Compiling file rdbsetr.f
+Compiling file rdbsets.f
+Compiling file rdinp.f
+Compiling file rdint.f
+Compiling file rdot.f
+Compiling file rdpltop.f
+Compiling file rdprtbse.f
+Compiling file rdsimop.f
+Compiling file rdsol.f
+Compiling file readid.f
+Compiling file readin.f
+Compiling file recn.f
+Compiling file redecq.f
+Compiling file redecs.f
+Compiling file reduce.f
+Compiling file relay.f
+Compiling file repet1.f
+Compiling file rginp.f
+Compiling file rgint.f
+Compiling file rgsol.f
+Compiling file ritecc.f
+Compiling file ritecp.f
+Compiling file ritecq.f
+Compiling file ritecs.f
+Compiling file rlinp.f
+Compiling file rlint1.f
+Compiling file rlint2.f
+Compiling file rlread.f
+Compiling file rlsol.f
+Compiling file rmargn.f
+Compiling file rminp.f
+Compiling file rmint.f
+Compiling file rmsol.f
+Compiling file rrinp.f
+Compiling file rrint.f
+Compiling file rrsol.f
+Compiling file rsinp.f
+Compiling file rsint.f
+Compiling file rssol.f
+Compiling file ruinp.f
+Compiling file ruint.f
+Compiling file rusol.f
+Compiling file rvint.f
+Compiling file rvread.f
+Compiling file rvsol.f
+Compiling file rw_main.f
+Compiling file savfil.f
+Compiling file scal.f
+Compiling file sdata.f
+sdata.f: In subroutine `sdata':
+sdata.f:410: warning:
+         if (kompr(nme10c,name1x,kdum)) 7280,7100,7300                     
+             1
+sdata.f:480: (continued):
+         if (kompr(name3c,name3x,kdum)) 7280,7420,7300                     
+             2
+Argument #1 of `kompr' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+sdata.f:410: warning:
+         if (kompr(nme10c,name1x,kdum)) 7280,7100,7300                     
+             1
+sdata.f:482: (continued):
+    7440 if (kompr(name4c,name4x,kdum)) 7280,7460,7300                     
+             2
+Argument #1 of `kompr' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+Compiling file sdclin.f
+Compiling file sdcreg.f
+Compiling file sect.f
+Compiling file shdinp.f
+Compiling file shdsol.f
+Compiling file sho_arry.f
+Compiling file solfa.f
+Compiling file solfb.f
+Compiling file solfc.f
+Compiling file solfd.f
+Compiling file solfe.f
+Compiling file solff.f
+Compiling file solfg.f
+Compiling file solfh.f
+Compiling file solfj.f
+Compiling file solfk.f
+Compiling file solfl.f
+Compiling file solgovn.f
+Compiling file soln.f
+soln.f: In subroutine `soln':
+soln.f:124: warning:
+                   call redecs(ptab(1), i2, 252)
+                        1
+soln.f:175: (continued):
+                   call redecs(mdcen, necse, nbus)
+                        2
+Argument #1 of `redecs' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+soln.f:228: warning:
+     120           call ritecs(idch, necsh, idch1)
+                        1
+soln.f:430: (continued):
+                   call ritecs(ptab(31), ndc+30, 1)
+                        2
+Argument #1 of `ritecs' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+Compiling file sort_dip.f
+Compiling file sort_frpt.f
+Compiling file spdcde.f
+Compiling file sptout.f
+Compiling file sptplt.f
+Compiling file ssinit.f
+Compiling file ssinp.f
+Compiling file ssort.f
+Compiling file sssolv.f
+Compiling file ssupdt.f
+Compiling file stabdat.f
+Compiling file stime.f
+Compiling file sumufl.f
+Compiling file svsinp.f
+Compiling file svsint.f
+Compiling file svssol.f
+Compiling file svsss1.f
+Compiling file svsss2.f
+Compiling file swap31.f
+Compiling file swap_dip.f
+Compiling file swap_frpt.f
+Compiling file swingm.f
+Compiling file tapewk.f
+Compiling file target.f
+Compiling file trphis.f
+Compiling file tslinp.f
+Compiling file tslsol.f
+Compiling file turbinp.f
+Compiling file turbint.f
+Compiling file turbsol.f
+Compiling file tzlag.f
+Compiling file tzldlg.f
+Compiling file tzlead.f
+Compiling file upcase.f
+Compiling file updt_dip.f
+Compiling file varfmt.f
+Compiling file vfhist.f
+Compiling file vtchk.f
+Compiling file vtran.f
+vtran.f: In subroutine `vtran':
+vtran.f:102: 
+           open (unit=lun,status='NEW',access = 'SEQUENTIAL',              
+           ^
+Unsupported OPEN control item at (^) -- ACTION=, ASSOCIATEVARIABLE=, BLOCKSIZE=, BUFFERCOUNT=, CARRIAGECONTROL=, DEFAULTFILE=, DELIM=, DISPOSE=, EXTENDSIZE=, INITIALSIZE=, KEY=, MAXREC=, NOSPANBLOCKS, ORGANIZATION=, PAD=, POSITION=, READONLY=, RECORDTYPE=, SHARED=, and USEROPEN= are not supported
+vtran.f:106: 
+           open (unit=lun,status='NEW',access = 'SEQUENTIAL',              
+           ^
+Unsupported OPEN control item at (^) -- ACTION=, ASSOCIATEVARIABLE=, BLOCKSIZE=, BUFFERCOUNT=, CARRIAGECONTROL=, DEFAULTFILE=, DELIM=, DISPOSE=, EXTENDSIZE=, INITIALSIZE=, KEY=, MAXREC=, NOSPANBLOCKS, ORGANIZATION=, PAD=, POSITION=, READONLY=, RECORDTYPE=, SHARED=, and USEROPEN= are not supported
+vtran.f:133: 
+            open(            unit = lun,                                   
+            ^
+Unsupported OPEN control item at (^) -- ACTION=, ASSOCIATEVARIABLE=, BLOCKSIZE=, BUFFERCOUNT=, CARRIAGECONTROL=, DEFAULTFILE=, DELIM=, DISPOSE=, EXTENDSIZE=, INITIALSIZE=, KEY=, MAXREC=, NOSPANBLOCKS, ORGANIZATION=, PAD=, POSITION=, READONLY=, RECORDTYPE=, SHARED=, and USEROPEN= are not supported
+vtran.f:212: 
+            open(            unit = lun,                                   
+            ^
+Unsupported OPEN control item at (^) -- ACTION=, ASSOCIATEVARIABLE=, BLOCKSIZE=, BUFFERCOUNT=, CARRIAGECONTROL=, DEFAULTFILE=, DELIM=, DISPOSE=, EXTENDSIZE=, INITIALSIZE=, KEY=, MAXREC=, NOSPANBLOCKS, ORGANIZATION=, PAD=, POSITION=, READONLY=, RECORDTYPE=, SHARED=, and USEROPEN= are not supported
+vtran.f:291: 
+            open(            unit = lun,                                   
+            ^
+Unsupported OPEN control item at (^) -- ACTION=, ASSOCIATEVARIABLE=, BLOCKSIZE=, BUFFERCOUNT=, CARRIAGECONTROL=, DEFAULTFILE=, DELIM=, DISPOSE=, EXTENDSIZE=, INITIALSIZE=, KEY=, MAXREC=, NOSPANBLOCKS, ORGANIZATION=, PAD=, POSITION=, READONLY=, RECORDTYPE=, SHARED=, and USEROPEN= are not supported
+Compiling file vymdi.f
+Compiling file vymds.f
+Compiling file vysol.f
+Compiling file wecc.f
+Compiling file wecn.f
+Compiling file wgacal.f
+Compiling file wgfcal.f
+Compiling file wgscal.f
+Compiling file wgvcal.f
+Compiling file whrec1.f
+Compiling file write.f
+Compiling file writmp.f
+Compiling file wrthis.f
+Compiling file wrtver.f
+Compiling file wstfeq.f
+Compiling file wstvlt.f
+Compiling file xdate.f
+Compiling file xtime.f
+Compiling file znmat.f
+Compiling file znoinp.f
+Compiling file znoint.f
+Compiling file znosol.f
+Compiling file caltme.c
+Compiling file cgetuser.c
+Compiling file cputmr.c
+Compiling file debug.c
+In file included from debug.c:11:
+dem.h:12: warning: redefinition of `ulong'
+/usr/include/sys/types.h:128: warning: `ulong' previously declared here
+dem.h:13: warning: redefinition of `ushort'
+/usr/include/sys/types.h:129: warning: `ushort' previously declared here
+debug.c: In function `dbgopen':
+debug.c:19: too many arguments to function `fopen'
+Compiling file fields.c
+fields.c:9: unixlib.h: No such file or directory
+In file included from fields.c:13:
+keystroke.h:6: iodef.h: No such file or directory
+keystroke.h:7: ssdef.h: No such file or directory
+keystroke.h:8: descrip.h: No such file or directory
+keystroke.h:9: processes.h: No such file or directory
+fields.c:18: warning: `TRUE' redefined
+/usr/include/curses.h:94: warning: this is the location of the previous definition
+fields.c:19: warning: `FALSE' redefined
+/usr/include/curses.h:95: warning: this is the location of the previous definition
+Compiling file is_it_vms.c
+Compiling file keystroke.c
+In file included from keystroke.c:6:
+keystroke.h:6: iodef.h: No such file or directory
+keystroke.h:7: ssdef.h: No such file or directory
+keystroke.h:8: descrip.h: No such file or directory
+keystroke.h:9: processes.h: No such file or directory
+Compiling file screen.c
+In file included from screen.c:11:
+keystroke.h:6: iodef.h: No such file or directory
+keystroke.h:7: ssdef.h: No such file or directory
+keystroke.h:8: descrip.h: No such file or directory
+keystroke.h:9: processes.h: No such file or directory
+Compiling file set_exit.c
+Compiling file shift.c
+Compiling file swginutil.c
+swginutil.c:10: jpidef.h: No such file or directory
+Library archive in file libtsp.log

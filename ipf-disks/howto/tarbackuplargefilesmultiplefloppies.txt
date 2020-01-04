@@ -1,0 +1,48 @@
+From:	Schaad, John G - TOC/ALVEY
+Sent:	Thursday, February 15, 2001 7:30 AM
+To:	Comegys, Gordon L - TOC
+Cc:	Randall, James L - TOT-DITT2; Burton, Jarvis D - TOE-Ditt2; Carter, 
+	Lawrence D - TOP-DITT2; Markley, Gordon - TOC; Furumasu, Larry - TOC; Hammack, 
+	Debbie- TOC/DITT2; Powell, Walt - TOP-DITT2
+
+Subject:	Linux Users:  Use of "tar" for backup of large files on multiple floppies  
+
+Use of "tar" for backup of large files on multiple floppies:
+
+Example:  You have a large file, sample_file.out, or a group of many files, 
+	sample_file1.out, sample_file2.out, etc. in a directory, /sample_directory,  
+	total size 7.5-MB
+
+First, you can use "tar" to create an "archive" of the file or group of files: 
+	 
+	sample_file.out.tar  
+
+-- "tar -cvf sample_file.out.tar ./sample_file.out"  or  
+-- "tar -cvf sample_directory.tar ./sample_directory"
+
+[IT IS NOT REQUIRED TO FORMAT THE FLOPPY, BEFOREHAND]
+
+Second, you can reduce the size of that file by using "compress" or "gzip", 
+to get sample_file.out.tar.gz, total size 4.3-MB.
+
+-- "gzip sample_file.out.tar"  or  "gzip sample_directory.tar"
+
+Third, you can place that file on multiple floppies with the following command:  
+
+     "tar -cvMf /dev/fd0 ./sample_file.out.tar.gz"
+
+-- You do not need to format the floppies, and it will prompt you for each "next floppy", 
+   until it is done.
+-- You should label and number the floppies as they are used, in order to keep track of 
+   the order.
+
+Fourth, you can copy the file off of the multiple floppies with the following command:  
+
+     "tar -xvMf /dev/fd0" 
+
+-- Put in the first floppy, and follow the prompts until you are done.
+
+If you ever want to re-use these floppies as normal formatted floppies, 
+you will have to reformat them.
+
+

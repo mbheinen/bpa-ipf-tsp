@@ -1,0 +1,41 @@
+# This Makefile is for all IPF executables
+#
+
+IPFDIR = $(IPFROOTDIR)
+
+all:
+	pwd
+	cd $(IPFDIR)/ipf; pwd; ./build_libipf.bash
+	cd $(IPFDIR)/ipc; pwd; ./build_libipc.bash
+#	cd $(IPFDIR)/gui; pwd; ./build_libgui.bash
+	cd $(IPFDIR)/exe; pwd; make -f bpf.make; cp bpf.exe /bin
+	cd $(IPFDIR)/exe; pwd; make -f ipfsrv.make; cp ipfsrv.exe /bin
+	cd $(IPFDIR)/exe; pwd; make -f ipf_reports.make; cp ipf_reports.exe /bin
+	cd $(IPFDIR)/exe; pwd; make -f cutting.make; cp cutting.exe /bin
+	cd $(IPFDIR)/exe; pwd; make -f netdat.make; cp netdat.exe /bin
+	cd $(IPFDIR)/exe; pwd; make -f ipfplot.make; cp ipfplot.exe /bin
+	cd $(IPFDIR)/exe; pwd; make -f ipfbat.make; cp ipfbat.exe /bin
+	cd $(IPFDIR)/exe; pwd; make -f puf.make; cp puf.exe /bin
+#	cd $(IPFDIR)/exe; pwd; make -f gui.make; cp gui.exe /bin
+	cd $(IPFDIR)/cflow; pwd; make -f findout.make; cp findout.exe /bin
+	cd $(IPFDIR)/cflow; pwd; make -f lineflow.make; cp lineflow.exe /bin
+	cd $(IPFDIR)/cflow; pwd; make -f pvcurve.make; cp pvcurve.exe /bin
+	cd $(IPFDIR)/cflow; pwd; make -f qvcurve.make; cp qvcurve.exe /bin
+	cd $(IPFDIR)/cflow; pwd; make -f mimic.make; cp mimic.exe /bin
+	cd $(IPFDIR)/cflow; pwd; make -f post_pvcurve.make; cp post_pvcurve.exe /bin
+
+clean:
+	cd $(IPFDIR)/ipf; pwd; rm -f *.o *.a
+	cd $(IPFDIR)/ipc; pwd; rm -f *.o *.a
+	cd $(IPFDIR)/gui; pwd; rm -f *.o *.a
+	cd $(IPFDIR)/exe; pwd; rm -f *.o bpf.exe
+	cd $(IPFDIR)/exe; pwd; rm -f ipfsrv.exe
+	cd $(IPFDIR)/exe; pwd; rm -f ipf_reports.exe
+	cd $(IPFDIR)/exe; pwd; rm -f cutting.exe
+	cd $(IPFDIR)/exe; pwd; rm -f ipfbat.exe
+	cd $(IPFDIR)/exe; pwd; rm -f netdat.exe
+	cd $(IPFDIR)/exe; pwd; rm -f ipfplot.exe
+	cd $(IPFDIR)/exe; pwd; rm -f puf.exe
+	cd $(IPFDIR)/exe; pwd; rm -f gui.exe gui.uid
+	cd $(IPFDIR)/cflow; pwd; rm -f *.o findout.exe pvcurve.exe qvcurve.exe mimic.exe post_pvcurve.exe
+

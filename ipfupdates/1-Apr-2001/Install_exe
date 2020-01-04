@@ -1,0 +1,51 @@
+# This Makefile is for all IPF executables
+#
+
+IPFDIR = $(IPFROOTDIR)
+
+install_exe:
+	pwd
+
+	cd $(IPFDIR)/exe; pwd; cp bpf /bin
+	cd $(IPFDIR)/exe; pwd; cp ipfsrv /bin
+	cd $(IPFDIR)/exe; pwd; cp ipf_reports /bin
+	cd $(IPFDIR)/exe; pwd; cp cutting /bin
+	cd $(IPFDIR)/exe; pwd; cp netdat /bin
+	cd $(IPFDIR)/exe; pwd; cp ipfplot /bin
+	cd $(IPFDIR)/exe; pwd; cp ipfbat /bin
+	cd $(IPFDIR)/exe; pwd; cp puf /bin
+	cd $(IPFDIR)/exe; pwd; cp gui /bin
+	cd $(IPFDIR)/cflow; pwd; cp findout /bin
+	cd $(IPFDIR)/cflow; pwd; cp lineflow /bin
+	cd $(IPFDIR)/cflow; pwd; pvcurve /bin
+	cd $(IPFDIR)/cflow; pwd; cp qvcurve /bin
+	cd $(IPFDIR)/cflow; pwd; cp mimic /bin
+	cd $(IPFDIR)/cflow; pwd; cp post_pvcurve /bin
+	echo "Copying some nifty utilities to /bin"
+	cp tkdiff /bin
+	cp dos-linux.bash /bin
+	cp launch_pf.bash /bin
+	cp ExamineBus.bash /bin
+	cp ipf.bash /bin
+	chmod a+x /bin/tkdiff
+	chmod a+x /bin/dos-linux.bash
+	chmod a+x /bin/launch_pf.bash
+	chmod a+x /bin/ExamineBus.bash
+	chmod a+x /bin/ipf.bash
+
+
+clean:
+	cd $(IPFDIR)/ipf; pwd; rm -f *.o *.a
+	cd $(IPFDIR)/ipc; pwd; rm -f *.o *.a
+	cd $(IPFDIR)/gui; pwd; rm -f *.o *.a
+	cd $(IPFDIR)/exe; pwd; rm -f *.o bpf
+	cd $(IPFDIR)/exe; pwd; rm -f ipfsrv
+	cd $(IPFDIR)/exe; pwd; rm -f ipf_reports
+	cd $(IPFDIR)/exe; pwd; rm -f cutting
+	cd $(IPFDIR)/exe; pwd; rm -f ipfbat
+	cd $(IPFDIR)/exe; pwd; rm -f netdat
+	cd $(IPFDIR)/exe; pwd; rm -f ipfplot
+	cd $(IPFDIR)/exe; pwd; rm -f puf
+	cd $(IPFDIR)/exe; pwd; rm -f gui gui.uid
+	cd $(IPFDIR)/cflow; pwd; rm -f *.o findout pvcurve qvcurve mimic post_pvcurve
+

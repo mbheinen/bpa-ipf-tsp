@@ -1,0 +1,44 @@
+IPF Advanced Powerflow Analysis -- cflow
+
+Usage:  <cflow routine name> <cr>
+
+	or
+
+	<include these routines in .PCL control files for use with IPFBAT>
+
+Output:  <depends on usage>
+
+Pre-Programmed CFLOW routines included with IPF-3.27 include the following:
+(see specific CFLOW routine HowTo's for further information)
+
+pvcurve
+post_pvcurve
+qvcurve
+findout
+mimic
+puf
+
+
+The CFLOW Approach: 
+Many system planning studies entail a large number of similar runs. IPS users
+have encoded these standard operations in the COPE language; to do the same
+sort of thing with IPF, you will use the CFLOW approach. Unlike COPE, CFLOW is
+not a complete language which is interpreted by the IPF program itself.
+Instead, CFLOW consists of a library of C language functions, callable from
+either C or Fortran. 
+
+To create a CFLOW program or routine, you write your routine using the C
+programming language (at least the main must be in C), including the header
+file cflowlib.h, which defines all the structures and unions which allow
+access to the powerflow input and solution values. To retrieve these values,
+you call various CFLOW routines. You can also pass modifications to IPFSRV,
+ask for a new solution, etc. See the IPF CFLOW Users Guide (cflow.pdf) for
+information on writing these programs.
+
+See section 3.4 of the IPF Advanced Users Guide (ipfadv.pdf) for information on
+including these routines in .PCL control files, along with other processes.
+
+
+
+
+

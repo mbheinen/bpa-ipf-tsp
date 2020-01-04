@@ -1,0 +1,64 @@
+PATH USE FACTORS, Ver. 1.01:
+Created: Friday, July 28, 2000 10:36 AM
+Revised: Wednesday, November 8, 2000 1:30 PM/jgs
+
+A new version of "puf" [Path Use Factors] (aka Line Flow Analysis) corrects a 
+factorization error and introduces new command-line options. 
+
+Usage:  puf [-x|] [-lossless] [-pv] [-ai] [-g] [-ps] [-p1] [-c <cutfile>]<cr>
+
+	where the parameters enclosed in square brackets [...] are optional. 
+
+-----------------------------------------------------------------------------
+
+The parameters are:
+
+-x<flag> : defines an Excel field separation character. 
+	<flag> is usually set to "|" (vertical bar).
+
+-pv : sets all buses as PV. Default is PV and PQ.
+
+-ai : sets area interchange control on. Default is off.
+
+-g : restricts sensitivities to generator buses only. Default is all buses.
+
+-ps : includes phase-shifter sensitivities. Default excludes phase shifter 
+sensitivities.
+
+-lossless : formulates the lossless sensitivities and should be used in 
+conjunction with -pv option.  The lossless formulation minimizes the affect
+of slack bus location. Default uses full Jacobian solution.
+
+-l1 : sensitivities expressed as dLine/dP (default)
+
+-l2 : sensitivities expressed as 1.0 + dLine/dP.
+
+-c <cutfile> : constrain the flow path with the cut system defined by cutting 
+commands in <cutfile>.
+
+-----------------------------------------------------------------------------
+
+Example, using a single parameter:
+
+	puf -x| <cr>
+
+You will be prompted for three files:
+    basecase file name (.BSE)
+    output file name   (.OUT)
+    flowgate file name (.TXT)
+
+The flowgate file name consists of WSCC-formatted branches which define a 
+particular cut plane. For this example, use a single but critical branch, 
+
+L RAVER 500 PAUL 5001  put in a text file, flowgate.txt
+
+-----------------------------------------------------------------------------
+
+Walter Powell
+Electrical Engineer (Consultant)
+Daytime Phone: 360-418-8810
+FAX: 360-418-8446
+Pager: 503-514-5951
+Mail Stop : TOP/DITT2
+ 
+ 

@@ -1,0 +1,16 @@
+[ID COORD
+OPtion BOrder 21.59 28.15
+OPtion BX_ident 13.2 4.45 21.1 0.76
+OPtion CAse_name 13.4 4.12
+OPtion COmments 13.5 3.7
+OPtion LGend 11.0 4.45
+OPtion SCale 1.0 1.0
+OPtion SIze 21.59 27.94
+OPtion BUs_detail NO_Angle
+B BOX     1.00BOX     3 11.00  4.48 -0.05 -0.30150112  0.00 
+B LL      1.00LL      3  0.51  0.72 -0.05 -0.27150112  0.00 
+B UR      1.00UR      3 21.59 27.94 -0.05 -0.10171144  0.00 
+L BOX     1.00LL      1.00   2 11.00  0.72                                                  
+L BOX     1.00UR      1.00   2 21.59  4.45                                                  
+L LL      1.00UR      1.00   2  0.51 27.94                                                  
+(*EOR)

@@ -1,0 +1,776 @@
+
+
+object
+    xfmr_jacket: XmForm 
+        {
+        arguments
+            {
+            XmNautoUnmanage = false;
+            XmNshadowThickness = 2;
+            XmNshadowType = XmSHADOW_ETCHED_IN;
+            XmNtopAttachment = XmATTACH_FORM;
+            XmNtopOffset = 60;
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNleftOffset = 15;
+            XmNrightAttachment = XmATTACH_FORM;
+            XmNrightOffset = 15;
+            XmNbottomAttachment = XmATTACH_FORM;
+            XmNbottomOffset = 150;
+            };
+        controls
+            {
+            XmTextField xfmr_dialog_X_text;
+            XmTextField xfmr_dialog_R_text;
+            XmLabel 
+                {
+                arguments
+                    {
+                    XmNx = 19;
+                    XmNy = 147;
+                    XmNlabelString = compound_string("R");
+                    XmNrightAttachment = XmATTACH_WIDGET;
+                    XmNrightWidget = XmTextField xfmr_dialog_R_text;
+                    XmNrightOffset = 7;
+                    XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+                    XmNtopWidget = XmTextField xfmr_dialog_R_text;
+                    XmNtopOffset = 2;
+                    };
+                };
+            XmLabel xfmr_jacket_X_lable;
+            XmTextField xfmr_dialog_G_text;
+            XmTextField xfmr_dialog_B_text;
+            XmLabel 
+                {
+                arguments
+                    {
+                    XmNx = 173;
+                    XmNy = 145;
+                    XmNlabelString = compound_string("G");
+                    XmNrightAttachment = XmATTACH_WIDGET;
+                    XmNrightWidget = XmTextField xfmr_dialog_G_text;
+                    XmNrightOffset = 2;
+                    XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+                    XmNtopWidget = XmTextField xfmr_dialog_G_text;
+                    XmNtopOffset = 2;
+                    };
+                };
+            XmLabel 
+                {
+                arguments
+                    {
+                    XmNx = 174;
+                    XmNy = 172;
+                    XmNlabelString = compound_string("| B |");
+                    XmNrightAttachment = XmATTACH_WIDGET;
+                    XmNrightWidget = XmTextField xfmr_dialog_B_text;
+                    XmNrightOffset = 2;
+                    XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+                    XmNtopWidget = XmTextField xfmr_dialog_B_text;
+                    XmNtopOffset = 3;
+                    };
+                };
+            XmLabel xfmr_dia_equation1_label;
+            XmLabel xfmr_dia_equation2_label;
+            XmLabelGadget xfmr_dia_id_label;
+            XmTextField xfmr_dialog_id_text;
+            XmLabelGadget xfmr_dia_section_label;
+            XmTextField xfmr_dialog_section_text;
+            XmLabelGadget xfmr_dia_owner_label;
+            XmTextField xfmr_dialog_owner_text;
+            XmTextField xfmr_dialog_metering_text;
+            XmLabelGadget xfmr_dia_metering2_label;
+            XmForm xfmr_dia_form2;
+            XmLabelGadget xfmr_dia_parallels_label;
+            XmTextField xfmr_dialog_parallels_text;
+            XmLabelGadget xfmr_dia_perunit_label;
+            XmTextField xfmr_dialog_tap1_kv_text;
+            XmTextField xfmr_dialog_tap2_kv_text;
+            XmLabelGadget xfmr_dialog_tap1_label;
+            XmLabelGadget xfmr_dialog_tap2_label;
+            XmLabelGadget xfmr_dialog_phase_label;
+            XmTextField xfmr_dialog_phase_text;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    xfmr_dialog_X_text: XmTextField 
+        {
+        arguments
+            {
+            arguments text_list_7;
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNtopWidget = XmTextField xfmr_dialog_R_text;
+            XmNtopOffset = 1;
+            XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNleftWidget = XmTextField xfmr_dialog_R_text;
+            XmNleftOffset = 0;
+            XmNrightAttachment = XmATTACH_NONE;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNmodifyVerifyCallback = procedures
+                {
+                decimal_check(0);
+                };
+            };
+        };
+    xfmr_dialog_R_text: XmTextField 
+        {
+        arguments
+            {
+            arguments text_list_7;
+            XmNx = 38;
+            XmNy = 145;
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNtopWidget = XmLabel xfmr_dia_equation1_label;
+            XmNtopOffset = 0;
+            XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNleftWidget = XmLabel xfmr_dia_equation1_label;
+            XmNleftOffset = -7;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNmodifyVerifyCallback = procedures
+                {
+                decimal_check(0);
+                };
+            };
+        };
+    xfmr_dialog_G_text: XmTextField 
+        {
+        arguments
+            {
+            arguments text_list_7;
+            XmNx = 250;
+            XmNy = 143;
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNtopWidget = XmLabel xfmr_dia_equation2_label;
+            XmNtopOffset = -1;
+            XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNleftOffset = 0;
+            XmNrightAttachment = XmATTACH_NONE;
+            XmNrightOffset = 58;
+            XmNleftWidget = XmLabel xfmr_dia_equation2_label;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNmodifyVerifyCallback = procedures
+                {
+                decimal_check(0);
+                };
+            };
+        };
+    xfmr_dialog_B_text: XmTextField 
+        {
+        arguments
+            {
+            arguments text_list_7;
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNtopWidget = XmTextField xfmr_dialog_G_text;
+            XmNtopOffset = 1;
+            XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNleftWidget = XmTextField xfmr_dialog_G_text;
+            XmNleftOffset = 0;
+            XmNrightOffset = 0;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNmodifyVerifyCallback = procedures
+                {
+                decimal_check(0);
+                };
+            };
+        };
+    xfmr_dia_equation1_label: XmLabel 
+        {
+        arguments
+            {
+            XmNx = 56;
+            XmNy = 124;
+            XmNlabelString = compound_string("Zpi = R + jX");
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNtopOffset = -5+5;
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNleftOffset = 82;
+            XmNtopWidget = XmLabelGadget xfmr_dia_perunit_label;
+            };
+        };
+    xfmr_dia_equation2_label: XmLabel 
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Ypi = G + jB");
+            XmNleftAttachment = XmATTACH_WIDGET;
+            XmNleftWidget = XmLabel xfmr_dia_equation1_label;
+            XmNleftOffset = 69;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopWidget = XmLabel xfmr_dia_equation1_label;
+            XmNtopOffset = 0;
+            };
+        };
+    xfmr_dia_id_label: XmLabelGadget 
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Circuit ID");
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNleftOffset = 20;
+            XmNtopWidget = XmLabelGadget xfmr_dia_metering2_label;
+            XmNtopOffset = 10;
+            };
+        };
+    xfmr_dialog_id_text: XmTextField 
+        {
+        arguments
+            {
+            arguments text_list_1;
+            XmNx = 290;
+            XmNy = 73;
+            XmNleftAttachment = XmATTACH_WIDGET;
+            XmNleftOffset = -6;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopOffset = 15;
+            XmNleftWidget = XmLabelGadget xfmr_dia_id_label;
+            XmNtopWidget = XmLabelGadget xfmr_dia_id_label;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNmodifyVerifyCallback = procedures
+                {
+                alphanum_check(0);
+                };
+            };
+        };
+    xfmr_dia_section_label: XmLabelGadget 
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Section");
+            XmNleftAttachment = XmATTACH_WIDGET;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopWidget = XmTextField xfmr_dialog_metering_text;
+            XmNtopOffset = 0;
+            XmNleftWidget = XmTextField xfmr_dialog_metering_text;
+            XmNleftOffset = 20;
+            };
+        };
+    xfmr_dialog_section_text: XmTextField 
+        {
+        arguments
+            {
+            arguments text_list_1;
+            XmNx = 306;
+            XmNy = 61;
+            XmNleftAttachment = XmATTACH_WIDGET;
+            XmNleftOffset = 46;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopOffset = -6;
+            XmNleftWidget = XmLabelGadget xfmr_dia_section_label;
+            XmNtopWidget = XmLabelGadget xfmr_dia_section_label;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNmodifyVerifyCallback = procedures
+                {
+                digit_check(0);
+                };
+            };
+        };
+    xfmr_dia_owner_label: XmLabelGadget 
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Owner");
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNleftAttachment = XmATTACH_WIDGET;
+            XmNtopWidget = XmTextField xfmr_dialog_id_text;
+            XmNtopOffset = 0;
+            XmNleftWidget = XmTextField xfmr_dialog_id_text;
+            XmNleftOffset = 20;
+            };
+        };
+    xfmr_dialog_owner_text: XmTextField 
+        {
+        arguments
+            {
+            arguments text_list_3;
+            XmNx = 61;
+            XmNy = 0;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopWidget = XmLabelGadget xfmr_dia_owner_label;
+            XmNtopOffset = 26;
+            XmNleftAttachment = XmATTACH_WIDGET;
+            XmNleftOffset = 55;
+            XmNleftWidget = XmLabelGadget xfmr_dia_owner_label;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNmodifyVerifyCallback = procedures
+                {
+                alphanum_check(0);
+                };
+            };
+        };
+    xfmr_dia_form2: XmForm 
+        {
+        arguments
+            {
+            XmNborderWidth = 0;
+            XmNresizePolicy = XmRESIZE_NONE;
+            XmNmarginWidth = 0;
+            XmNshadowThickness = 2;
+            XmNshadowType = XmSHADOW_ETCHED_IN;
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNleftOffset = 30;
+            XmNrightAttachment = XmATTACH_FORM;
+            XmNrightOffset = 30;
+            XmNtopWidget = XmTextField xfmr_dialog_X_text;
+            XmNtopOffset = 60;
+            XmNbottomAttachment = XmATTACH_FORM;
+            XmNbottomOffset = 30;
+            };
+        controls
+            {
+            XmLabelGadget 
+                {
+                arguments
+                    {
+                    XmNlabelString = compound_string("Nominal");
+                    XmNbottomAttachment = XmATTACH_WIDGET;
+                    XmNbottomWidget = XmTextField xfmr_dialog_nominal_text;
+                    XmNbottomOffset = 0;
+                    XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+                    XmNleftWidget = XmTextField xfmr_dialog_nominal_text;
+                    XmNleftOffset = -15;
+                    XmNrightAttachment = XmATTACH_OPPOSITE_WIDGET;
+                    XmNrightOffset = -15;
+                    XmNrightWidget = XmTextField xfmr_dialog_nominal_text;
+                    };
+                };
+            XmTextField xfmr_dialog_nominal_text;
+            XmLabelGadget 
+                {
+                arguments
+                    {
+                    XmNlabelString = compound_string("Thermal");
+                    XmNbottomAttachment = XmATTACH_WIDGET;
+                    XmNbottomWidget = XmTextField xfmr_dialog_thermal_text;
+                    XmNbottomOffset = -1+1;
+                    XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+                    XmNleftWidget = XmTextField xfmr_dialog_thermal_text;
+                    XmNleftOffset = -15;
+                    XmNrightAttachment = XmATTACH_OPPOSITE_WIDGET;
+                    XmNrightWidget = XmTextField xfmr_dialog_thermal_text;
+                    XmNrightOffset = -15;
+                    };
+                };
+            XmLabelGadget 
+                {
+                arguments
+                    {
+                    XmNlabelString = compound_string("Bottleneck");
+                    XmNbottomAttachment = XmATTACH_WIDGET;
+                    XmNbottomWidget = XmTextField xfmr_dialog_bottleneck_text;
+                    XmNbottomOffset = 1;
+                    XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+                    XmNleftWidget = XmTextField xfmr_dialog_bottleneck_text;
+                    XmNleftOffset = -15;
+                    XmNrightAttachment = XmATTACH_OPPOSITE_WIDGET;
+                    XmNrightWidget = XmTextField xfmr_dialog_bottleneck_text;
+                    XmNrightOffset = -14;
+                    };
+                };
+            XmTextField xfmr_dialog_thermal_text;
+            XmLabelGadget xfmr_dia_ratings_label;
+            XmTextField xfmr_dialog_bottleneck_text;
+            XmLabelGadget 
+                {
+                arguments
+                    {
+                    XmNlabelString = compound_string("Emergency");
+                    XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+                    XmNtopAttachment = XmATTACH_NONE;
+                    XmNleftWidget = XmTextField xfmr_dialog_emerg_text;
+                    XmNrightAttachment = XmATTACH_OPPOSITE_WIDGET;
+                    XmNrightWidget = XmTextField xfmr_dialog_emerg_text;
+                    XmNbottomAttachment = XmATTACH_WIDGET;
+                    XmNbottomWidget = XmTextField xfmr_dialog_emerg_text;
+                    XmNleftOffset = -15;
+                    XmNrightOffset = -15;
+                    };
+                };
+            XmTextField xfmr_dialog_emerg_text;
+            };
+        };
+    xfmr_dialog_nominal_text: XmTextField 
+        {
+        arguments
+            {
+            arguments text_list_4;
+            XmNtopAttachment = XmATTACH_POSITION;
+            XmNleftAttachment = XmATTACH_POSITION;
+            XmNleftPosition = 26;
+            XmNtopWidget = XmLabelGadget xfmr_dia_ratings_label;
+            XmNleftOffset = -328;
+            XmNwidth = 657;
+            XmNtopPosition = 32;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNmodifyVerifyCallback = procedures
+                {
+                decimal_check(0);
+                };
+            };
+        };
+    xfmr_dialog_thermal_text: XmTextField 
+        {
+        arguments
+            {
+            arguments text_list_4;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNleftAttachment = XmATTACH_POSITION;
+            XmNleftPosition = 70;
+            XmNtopWidget = XmTextField xfmr_dialog_nominal_text;
+            XmNleftOffset = -328;
+            XmNtopOffset = 0;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNmodifyVerifyCallback = procedures
+                {
+                decimal_check(0);
+                };
+            };
+        };
+    xfmr_dia_ratings_label: XmLabelGadget 
+        {
+        arguments
+            {
+            XmNx = 113;
+            XmNy = 7;
+            XmNlabelString = compound_string("MVA RATINGS");
+            XmNtopAttachment = XmATTACH_FORM;
+            XmNtopOffset = 5;
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNleftOffset = 78;
+            XmNrightAttachment = XmATTACH_FORM;
+            XmNrightOffset = 74;
+            };
+        };
+    xfmr_dialog_bottleneck_text: XmTextField 
+        {
+        arguments
+            {
+            arguments text_list_4;
+            XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopWidget = XmTextField xfmr_dialog_nominal_text;
+            XmNrightAttachment = XmATTACH_NONE;
+            XmNrightOffset = 19;
+            XmNleftWidget = XmTextField xfmr_dialog_nominal_text;
+            XmNtopPosition = 70;
+            XmNtopAttachment = XmATTACH_POSITION;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNmodifyVerifyCallback = procedures
+                {
+                decimal_check(0);
+                };
+            };
+        };
+    xfmr_dia_parallels_label: XmLabelGadget 
+        {
+        arguments
+            {
+            XmNx = 24;
+            XmNy = 211;
+            XmNlabelString = compound_string("Parallels");
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNleftAttachment = XmATTACH_WIDGET;
+            XmNleftWidget = XmTextField xfmr_dialog_owner_text;
+            XmNleftOffset = 20;
+            XmNtopWidget = XmTextField xfmr_dialog_owner_text;
+            XmNtopOffset = 0;
+            };
+        };
+    xfmr_dialog_parallels_text: XmTextField 
+        {
+        arguments
+            {
+            arguments text_list_1;
+            XmNx = 171;
+            XmNy = 209;
+            XmNleftAttachment = XmATTACH_WIDGET;
+            XmNleftWidget = XmLabelGadget xfmr_dia_parallels_label;
+            XmNleftOffset = 6;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopWidget = XmLabelGadget xfmr_dia_parallels_label;
+            XmNtopOffset = -1;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNmodifyVerifyCallback = procedures
+                {
+                digit_check(0);
+                };
+            };
+        };
+    xfmr_dia_perunit_label: XmLabelGadget 
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("PER UNIT");
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNleftOffset = 99;
+            XmNrightAttachment = XmATTACH_FORM;
+            XmNrightOffset = 100;
+            XmNtopWidget = XmLabelGadget xfmr_dia_id_label;
+            XmNtopOffset = 20;
+            };
+        };
+    xfmr_dialog_metering_text: XmTextField 
+        {
+        arguments
+            {
+            arguments text_list_1;
+            XmNleftAttachment = XmATTACH_WIDGET;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopOffset = 0;
+            XmNleftWidget = XmLabelGadget xfmr_dia_metering2_label;
+            XmNleftOffset = 50;
+            XmNtopWidget = XmLabelGadget xfmr_dia_metering2_label;
+            };
+!XmNmarginHeight = 0;
+        callbacks
+            {
+!XmNmarginHeight = 0;
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNmodifyVerifyCallback = procedures
+                {
+                digit_check(0);
+                };
+            };
+        };
+    xfmr_dia_metering2_label: XmLabelGadget 
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Metering");
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNtopAttachment = XmATTACH_FORM;
+            XmNtopOffset = 15;
+            XmNleftOffset = 73;
+            };
+        };
+    xfmr_dialog_tap2_kv_text: XmTextField 
+        {
+        arguments
+            {
+            arguments text_list_6;
+            XmNleftAttachment = XmATTACH_WIDGET;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNleftOffset = 5;
+            XmNtopOffset = 0;
+            XmNleftWidget = XmLabelGadget xfmr_dialog_tap2_label;
+            XmNtopWidget = XmLabelGadget xfmr_dialog_tap2_label;
+            };
+!XmNmarginHeight = 0;
+        callbacks
+            {
+!XmNmarginHeight = 0;
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    xfmr_dialog_tap2_label: XmLabelGadget 
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Tap 2 kV");
+            XmNleftAttachment = XmATTACH_POSITION;
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNtopOffset = 15;
+            XmNtopWidget = XmTextField xfmr_dialog_X_text;
+            XmNleftPosition = 53;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    xfmr_dialog_tap1_label: XmLabelGadget 
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Tap 1 kV");
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNleftOffset = 35;
+            XmNtopOffset = 15;
+            XmNtopWidget = XmTextField xfmr_dialog_X_text;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    xfmr_dialog_tap1_kv_text: XmTextField 
+        {
+        arguments
+            {
+            arguments text_list_6;
+            XmNleftAttachment = XmATTACH_WIDGET;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNleftOffset = 5;
+            XmNtopOffset = 0;
+            XmNtopWidget = XmLabelGadget xfmr_dialog_tap1_label;
+            XmNleftWidget = XmLabelGadget xfmr_dialog_tap1_label;
+            };
+!XmNmarginHeight = 0;
+        callbacks
+            {
+!XmNmarginHeight = 0;
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    xfmr_dialog_phase_label: XmLabelGadget 
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Phase Shift");
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNleftOffset = 50;
+            XmNtopOffset = 15;
+            XmNtopWidget = XmTextField xfmr_dialog_X_text;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    xfmr_dialog_phase_text: XmTextField 
+        {
+        arguments
+            {
+            arguments text_list_3;
+            XmNleftAttachment = XmATTACH_WIDGET;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNleftOffset = 5;
+            XmNtopOffset = 0;
+            XmNleftWidget = XmLabelGadget xfmr_dialog_phase_label;
+            XmNtopWidget = XmLabelGadget xfmr_dialog_phase_label;
+            };
+!XmNmarginHeight = 0;
+        callbacks
+            {
+!XmNmarginHeight = 0;
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    xfmr_dialog_emerg_text: XmTextField 
+        {
+        arguments
+            {
+            arguments text_list_4;
+            XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopWidget = XmTextField xfmr_dialog_bottleneck_text;
+            XmNleftWidget = XmTextField xfmr_dialog_thermal_text;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    xfmr_jacket_X_lable: XmLabel 
+        {
+        arguments
+            {
+            XmNx = 19;
+            XmNy = 173;
+            XmNlabelString = compound_string("X");
+            XmNrightAttachment = XmATTACH_WIDGET;
+            XmNrightWidget = XmTextField xfmr_dialog_X_text;
+            XmNrightOffset = 6;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopWidget = XmTextField xfmr_dialog_X_text;
+            XmNtopOffset = 2;
+            };
+        };

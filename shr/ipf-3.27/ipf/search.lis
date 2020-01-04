@@ -1,0 +1,5 @@
+iprint.f: 8000 format ('0 THE SIGN(I) VECTOR INDICATES THE SIGN OF THE I-TH ',
+iprint.f:      write (dbug,8000)
+rddtai.f:c                     8     8000 bus, modify so "ntot" is used so future
+wrdtao.f:c                     8     8000 bus, modify so "ntot" is used so future
+zone_list.f:c***        parameter (MAXBUFFER = 8000)

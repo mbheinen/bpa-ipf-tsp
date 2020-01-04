@@ -1,0 +1,17 @@
+(POWERFLOW, CASE=EST     )
+/ P_INPUTLIST,FULL 
+/ P_OUTPUTLIST,FULL 
+/ P_ANALYSIS_RPT,LEVEL=4 
+/ NEW_BASE, FILE = EST.BSE
+/ NETWORK_DATA, FILE = *
+.=====================================                                                                                  
+BS    INFBUS01100.01192.4-47.4        99991.000 9999-99991000                   
+BQ    GEN TD1 20.001                   240209.0999.0 -9991100                   
+T     GEN TD1 20.0 HS  TD1  5001             10000             200050000        
+T     GEN TD1 20.0 HS  TD1  500Z            25.000             200050000        
+B     HS  TD1  50001                                                            
+T     INFBUS01100. HS  TD1  500        04507 17591            1000050000        
+.=====================================                                                                                  
+/ SOLUTION
+> LOAD_SOLUTION, VOLTAGES=POLAR,FILE=EST.VOLTAGES, SOLUTION=HOTSTART
+( STOP )

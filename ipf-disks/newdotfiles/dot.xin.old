@@ -1,0 +1,7 @@
+mxterm -geometry -300+300 &
+mwm20 &
+xlogo &
+xclock -geometry -5+0 &
+xcalc -geometry -196+0 &
+xosview -geometry -5-200 &
+fpanel -geometry -0-0

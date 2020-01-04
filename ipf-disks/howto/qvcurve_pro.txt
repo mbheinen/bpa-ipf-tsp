@@ -1,0 +1,285 @@
+UTILITY:    QVcurve_Pro
+STRUCTURE:  common CFLOW architecture.
+TYPE:       Powerflow (IPFSRV), /CHANGE_PARAMETER voltage-reactance curve.
+SUMMARY:    Generate voltage reactance curves.
+RELATED:    LINEFLOW, FINDOUT, CFUSE, MIMIC
+SEE ALSO:   QVcurve
+UPDATED:    April 9, 1997
+LANGUAGE:   Standard C.  CFLOW Libraries.  CF_UTIL.H.
+DEVELOPER:  William D. Rogers, BPA, TOP, 230-3806, wdrogers@bpa.gov
+REQUESTER:  Mark Bond
+USERS:      S Kinney, K Kohne, M Rodrigues, G Comegys, B Tesema, C Matthews,...
+IPF:        Version 317 or above recommended.
+PURPOSE:    Automates production of Q-V curve plot files and plot routine setup
+            files for multiple base cases, outages, and critical buses.
+
+INPUT:
+        Any or all data can be entered interactively when prompted for, or
+        specified ahead of time in trace or data files.
+
+    REQUIRED
+        Interactive Powerflow (IPF) binary base case(s).
+        Critical bus name and kv.
+
+    OPTIONAL
+        Text file(s) listing base case file names.
+        Text file(s) listing change file names.
+        User analysis file.
+        Text file(s) listing branches to take as outages.
+        Text file(s) listing critical buses.
+        Text file(s) listing generator buses.
+        Text file(s) listing cut-planes.
+        Common-mode outage master data file.
+        Text file(s) listing common-mode outages.
+        Trace file specifying all or some of the desired inputs.
+
+MODES OF OPERATION:
+    QVcurve_Pro uses built in intelligence to prompt the user based on the
+    information already provided.  This serves to reduce the number of queries
+    the user must answer to run the program.
+
+    QVcurve_Pro automates these operations:
+        1)  Running /change_parameter of Q versus V at a bus
+        2)  Applying changes to multiple base cases prior to Q-V run
+        3)  Taking branch and common-mode outages
+        4)  Applying change_bus_type, AGC,and other controls
+        5)  Solving basecases with /SOLUTION options
+        6)  Applying user analysis file prior to Q-V run
+        7)  Generating Q-V curve plot setup files
+            a. for PSAP 22 plotter
+            b. for XYplot CFLOW program
+        8)  Generating a Q reserve summary of specified generators
+        9)  Generating a cut-plane flow summary of specified cut-planes
+       10)  Building Excel-friendly report tables
+       11)  Logging all user input into a "TRACE" file
+       12)  Performing multiple similar studies
+       13)  Re-running studies with updated base cases
+
+    QVcurve_Pro operates on these data:
+        1)  Base cases
+        2)  Change files
+        3)  Critical buses
+        4)  Branches to take out
+        5)  Common-mode outages
+        6)  Generator buses
+        7)  Branches monitored for flow
+        8)  Cut-planes (grouped branch flows)
+        9)  Other IPF control cards
+       10)  User analysis files
+
+    QVcurve_Pro reports these quantities:
+        1)  Qknee (Q minimum, approximate)
+        2)  Qlast (last value of Q obtained)
+        3)  Qmargn (Q margin)
+        4)  Vknee (Voltage at Qknee)
+        5)  Vlast (last voltage solved)
+        6)  Vop (operating voltage when Q=0)
+        7)  Qmax,basecase (maximum available Q at each specified generator)
+        8)  Qres,basecase (Qmax-Qgen at each specified generator)
+        9)  Qres,Vop (Qmax-Qgen when critical bus at Vop at each generator)
+       10)  Qres,Vknee (Qmax-Qgen when critical bus at Vknee at each generator)
+       11)  Total Qmax,basecase
+       12)  Total Qres,basecase
+       13)  Total Qres,Vop (also reported as Qres@Qop)
+       14)  Total Qres,Vknee (also reported as Qres@Qknee)
+       15)  Branch flows
+       16)  Cut-plane flows
+
+    QVcurve_Pro generates these reports:
+        1)  Critical bus with outage report (*.rpt)
+        2)  Generator reserve and cut-plane report (*.gen)
+        3)  Individual Q-V curves (*.qvpt)
+        4)  Setup files for PSAP22 (*.setup)
+	5)  Setup files for XYCURVE (*.xyc)
+
+PROMPTS (with some example inputs):
+    /BASECASE, /TRACE, or /INCLUDE
+     > Enter list of Basecase, *.TRC, or *.DAT files : 97AG023.BSE
+
+    /PRI_CHANGE
+     > Enter list of Primary Change (or *.DAT) files : QV007C.CHNG
+
+    /OUTPUT
+     > Enter list of names for .qvpt and .user files :
+
+    /BUS
+     > Enter file of critical busses for Q-V analysis:
+     > Enter list of critical busses for Q-V analysis:
+       > Btc<O>< Bus  ><KV>
+       > B     BIG EDDY500.
+       >
+
+    /GEN
+     > Enter file of generator buses for Qres summary:
+     > Enter list of generator buses for Qres summary:
+       > Btc<O>< Bus  ><KV>
+       > B     COULEE 213.8
+       >
+
+    /CUT_PLANE
+     > Enter file of monitored cut-plane descriptions:
+     > Enter list of monitored cut-plane descriptions:
+       > Lyc<O>< Bus1 ><V1> < Bus2 ><V2>C
+       > L  BPABIG EDDY500.0JOHN DAY500. 0
+       > L  BPABIG EDDY500.0JOHN DAY500.20
+       >
+
+    /BRANCH
+     > Enter file of branches for single-line outages:
+     > Enter list of branches for single-line outages:
+       > Tyc<O>< Bus1 ><V1> < Bus2 ><V2>C
+       > L  BPABUCKLEY 500.0SLATT   500.
+       >
+
+    /REPORT
+     > Enter main common-mode file, COMMON_MODE_DATA=: COMMON.DAT
+
+    /COMMON_MODE
+     > Enter file of common-mode outage identifiers  :
+     > Enter list of common-mode outage identifiers  :
+       > BFR ASHE-MARION-ALVEY
+       >
+
+    /REPORT
+     > Enter summary report name, FILE =[qvcurve.rpt]:
+     > Enter user analysis file,     USER_ANALYSIS = :
+     > Enter auxillary control file,  CONTROL_FILE = :
+     Each plot can have from 1 to 6 curves:
+     > Enter number of curves,  CURVES_PER_PLOT = [5]:
+
+    /LIMITS
+     For Q-V curve analysis: Enter Min, Max, and Delta Voltage:
+     > Max BE bus voltage in PU,  VX_MAX_PU = [1.100]:
+     > Min BE bus voltage in PU,  VX_MIN_PU = [0.900]:
+     > Max voltage change in PU,DELTA_VX_PU = [0.050]:
+
+    /SOLUTION, /CHANGE_BUS_TYPES, or /AGC
+     > Enter file of sol'n and change_bus_type defaults:
+
+    /SOLUTION       (Enter /solution qualifier and parameters)
+    : >AI_CONTROL=CON<
+    : >LTC=ON_DCONLY<
+    : >SOL_ITER,NEWTON=40<
+    :
+
+    /CHANGE_BUS_TYPES (Enter /change_bus_type qualifiers and data)
+    > /CHANGE_BUS_TYPES, BQ=B,BG=BQ,BX=B,LTC=OFF
+    : >LINE_DROP_COMPENSATION
+    : B     CENTR G1  20, 50%
+    : B     CENTR G2  20, 50%
+    : B     COULEE19  15, 50%
+    : B     COULEE20  15, 50%
+    : B     COULEE23  15, 50%
+    : B     COULEE24  15, 50%
+    :
+
+    /AGC (bus id data is fixed format, the rest is free field)
+    : B     < Bus  ><KV>   Pmin=<##>, Pmax=<##>, Pgen=<##>, =<##>
+    :
+
+OUTPUT FILES:
+    Report File (*.rpt) - critical bus with outage report
+    Auxillary Report File (*.aux) - generator and cut-plane report
+    Trace File (*.trc) - records all input parameters
+    Error File (*.log) - errors and operating messages
+    Q-V Files (*.qvpt) - list of Q and V values
+    IPFSRV File (*.out) - contains output from Powerflow, ipfsrv_cf.out
+
+INPUT FILE FORMATS: (similar to other CFLOW programs)
+
+Sample Trace File
+--------------------------------------------------------------------------------
+. 97AG023.trc 18-Nov-1996 10:56:17 WDR9936 $DISK1:[PSAP.IPF]GPF.EXE_V317
+/REPORT
+  FILE = 97AG023.RPT
+  USER_ANALYSIS = 
+  CONTROL_FILE = 
+  CURVES_PER_PLOT = 6
+  COMMON_MODE_DATA = COMMON.DAT
+  TRACE = YES
+/LIMITS
+  VX_MAX_PU   = 1.100
+  VX_MIN_PU   = 0.900
+  DELTA_VX_PU = 0.010
+/CHANGE_BUS_TYPES, BQ=B,BG=BQ,BX=B,LTC=OFF
+>LINE_DROP_COMPENSATION
+B     CENTR G1  20, 50%
+B     CENTR G2  20, 50%
+B     COULEE19  15, 50%
+B     COULEE20  15, 50%
+B     COULEE23  15, 50%
+B     COULEE24  15, 50%
+/AGC
+/SOLUTION
+>AI_CONTROL=CON<
+>LTC=ON_DCONLY<
+>SOL_ITER,NEWTON=40< 
+/BASECASE
+  97AG023.BSE
+/PRI_CHANGE
+  QV007C.CHNG
+/OUTPUT
+/SETUP
+/BUS
+B     BIG EDDY500.  
+B     JOHN DAY500.  
+/GENERATORS
+B     COULEE 213.8  
+B     CHIEF J213.8  
+/CUT_PLANES
+>
+L  BPABIG EDDY500.0JOHN DAY500. 0
+L  BPABIG EDDY500.0JOHN DAY500.20
+>
+L  BCHACK500  500.0NIC500  500.10
+L  BCHACK500  500.0NIC500  500.20
+L  BCHACK500  500.0REV500  500.10
+L  BCHACK500  500.0REV500  500.20
+L  BCHACK500  500.0SEL500  500.10
+/BRANCH
+/COMMON_MODE
+BFR ASHE-MARION-ALVEY
+./TRACE
+. 97AG023.BSE + QV007C.CHNG - {BFR#ASHE-MARION-ALVEY} @ (BIG#EDDY500.) 
+    > 97AG023-QV007C-C01-01.qvpt 
+. 97AG023.BSE + QV007C.CHNG - {BFR#ASHE-MARION-ALVEY} @ (JOHN#DAY500.)
+    > 97AG023-QV007C-C01-02.qvpt 
+--------------------------------------------------------------------------------
+
+OUTPUT REPORT FORMAT:
+
+    The data fields are delimited with vertical bars (|) to facilitate moving 
+    the data into DECwrite and Excel.
+
+USAGE:
+
+Add one of the following symbols to your login.com to point to the executables:
+$ DEFINE    CFPROGS    BPA9::DISK24:[PSAP.IPF.CFPROGS]          (BPA40,50,60,70)
+$ DEFINE    CFPROGS    DISK9:[PSAP.IPF.CFPROGS]                 (MOEA4)
+$ DEFINE    CFPROGS    DISK5:[PSAP.IPF.CFPROGS]                 (MOEA2)
+$ DEFINE    CFPROGS    DKA0:[PSAP.IPF.CFPROGS]                  (ALFSPO-Spokane)
+$ @CFPROGS:CFLOW_SYM_DEF.COM
+
+This sets up one or the other of the following two symbols:
+> SHO SYM QVcurve_Pro
+  QVcurve_Pro == "$CFPROGS:QVcurve_Pro.ALF_EXE"        (on an Alpha VMS machine)
+  QVcurve_Pro == "$CFPROGS:QVcurve_Pro.EXE"            (on a VAX VMS machine)
+
+Run CFLOW program by typing its name.
+> QVcurve_Pro (optionally follow with a trace (*.trc) file)
+
+To implement the plotting capability, set up the symbol CFLOW_PSQ to point to a
+PostScript device (add to login file):
+> CFLOW_PSQ :== PRINT/QUEUE=PS_EOFQMS
+
+Follow the prompts.  Just press return to use the default values which are given
+in brackets [].
+
+LOCATION: (Look here for the most recent updates.)
+    BPA9::DISK24:[PSAP.IPF.CFPROGS]QVcurve_Pro.EXE        - The VAX executable
+    BPA9::DISK24:[PSAP.IPF.CFPROGS]QVcurve_Pro.ALF_EXE    - The ALPHA executable
+    BPA9::DISK24:[PSAP.IPF.CFPROGS]QVcurve_Pro.C          - The C source code
+    BPA9::DISK24:[PSAP.IPF.CFDOC]QVcurve_Pro.HELP         - This file
+
+
+BPA9::disk24:[psap.ipf.cfdoc]QVcurve_Pro.help

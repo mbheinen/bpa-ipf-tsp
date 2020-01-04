@@ -1,0 +1,21 @@
+.FINDOUT VERSION 110 (06-30-99)
+.VARIANCE CEILING = 1.0000  VARIANCE FLOOR =-1.0000
+.Minimum loading to print (MIN_LOAD_PCT) =    80.00
+.|   |OUTAGES CAUSING OVERLOADS| |  |  | |   |      CASE NAME: ->      | | |  |  |    |   |a01cy99rfo.pfo_n||||a0102cy99rfo.pfo||||       |       |
+.|   |                         | |  |  | |   |                         | | |  |  |    |   |                ||||                ||||POST(%)|POST(%)|
+.|   |    Outaged  Branches    | |  |  | |   |   Overloaded Branches   | | |  |  |CRTC|IN | PRE  | POST |POST|| PRE  | POST |POST||VARIANC|VARIANC|
+.|OWN|< BUS1 ><V1> < BUS2 ><V2>|C|Z1|Z2|T|OWN|< BUS1 ><V1> < BUS2 ><V2>|C|S|Z1|Z2|RATG|MYY| LOAD | LOAD |(%)|F| LOAD | LOAD |(%)|F|   UP  |  DOWN |
+    
+L|PDO|BOX CANY115. BOX PS  115.|1|NG|NG|      SOLUTION     PROBLEMS        |||||||    |   |     FAILED RX  ||||     FAILED RX  ||||       |       |
+L|LEW|CHEHLSTP69.0 NAPAVITP69.0|1|NA|NA|      SOLUTION     PROBLEMS        |||||||    |   |     FAILED RX  ||||     FAILED RX  ||||       |       |
+L|LEW|CORKINS 69.0 LABREE  69.0|1|NA|NA|      SOLUTION     PROBLEMS        |||||||    |   |     FAILED RX  ||||     FAILED RX  ||||       |       |
+L|SCL|MASS    115. UNION   115.|3|SE|SE|      SOLUTION     PROBLEMS        |||||||    |   |     FAILED RX  ||||     FAILED RX  ||||       |       |
+L|IDP|MCCALL  138. OXBOW   138.|1|NI|NI|      SOLUTION     PROBLEMS        |||||||    |   |     FAILED RX  ||||     FAILED RX  ||||       |       |
+L|LEW|NAPAVINE69.0 NAPAVITP69.0|1|NA|NA|      SOLUTION     PROBLEMS        |||||||    |   |     FAILED RX  ||||     FAILED RX  ||||       |       |
+L|OPL|SANJUAN169.0 SANJUAN269.0|1|NA|NA|      SOLUTION     PROBLEMS        |||||||    |   |     FAILED RX  ||||     FAILED RX  ||||       |       |
+L|OPL|SANJUAN169.0 SANJUAN269.0|2|NA|NA|      SOLUTION     PROBLEMS        |||||||    |   |     FAILED RX  ||||     FAILED RX  ||||       |       |
+L|PPL|WEED JCT115. WEED JPS115.|1|YR|YR|      SOLUTION     PROBLEMS        |||||||    |   |     NO SOLUTION||||     NO SOLUTION||||       |       |
+L|IDP|WEISER  138. WEISR TP138.|1|NI|NI|      SOLUTION     PROBLEMS        |||||||    |   |     NO SOLUTION||||     NO SOLUTION||||       |       |
+T|COE|DWORSHAK500. DWOR    100.|1|NH|NH|      SOLUTION     PROBLEMS        |||||||    |   |     FAILED RX  ||||     FAILED RX  ||||       |       |
+T|IDP|MIDPOINT500. MIDPOINT345.|1|NI|NI|      SOLUTION     PROBLEMS        |||||||    |   |     FAILED RX  ||||     FAILED RX  ||||       |       |
+T|IDP|OXBOW   230. OXBOW   138.|1|NI|NI|      SOLUTION     PROBLEMS        |||||||    |   |     NO SOLUTION||||     NO SOLUTION||||       |       |

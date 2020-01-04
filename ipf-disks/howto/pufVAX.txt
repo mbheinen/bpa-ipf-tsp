@@ -1,0 +1,48 @@
+From: Powell, Walt - TOP-DITT2
+Sent: Friday, July 28, 2000 10:36 AM
+To: Russell, Glenn A - TMP
+Cc: Comegys, Gordon L - TOC
+Subject: Path Use Factors
+A new version of Path Use Factors (aka Line Flow Analysis) resides on HAL in 
+directory on disk25:[psap.ipf]. It corrects a factorization error and introduces 
+new command-line options. 
+To execute this program from the BPA80 cluster, define a variable with the 
+command
+$ PUFNSTUFF :== "$disk25:[psap.ipf]pufnstuff.exe_v327"
+and invoke it with the command
+$ PUFNSTUFF [-x|] [-lossless] [-pv] [-ai] [-g] [-ps] [-p1] [-c <cutfile>]
+where the parameters enclosed in square brackets [...] are optional. The 
+parameters are
+-x<flag> : defines an Excel field separation character. <flag> is usually set to 
+"|" (vertical bar).
+-pv : sets all buses as PV. Default is PV and PQ.
+-ai : sets area interchange control on. Default is off.
+-g : restricts sensitivities to generator buses only. Default is all buses.
+-ps : includes phase-shifter sensitivities. Default excludes phase shifter 
+sensitivities.
+-lossless : formulates the lossless sensitivities and should be used in 
+conjunction with -pv option.
+(the lossless formulation minimizes the affect of slack bus location). Default 
+uses full Jacobian 
+-l1 : sensitivities expressed as dLine/dP (default)
+-l2 : sensitivities expressed as 1.0 + dLine/dP.
+-c <cutfile> : constrain the flow path with the cut system defined by cutting 
+commands in <cutfile>.
+From my tests, I recommend the single parameter:
+$ PUFNSTUFF -x|
+You will be prompted for three files:
+    basecase file name 
+    output file name 
+    flowgate file name
+The flowgate file name consists of WSCC-formatted branches which define a 
+particular cut plane. For my tests, I've used a single but critical branch:
+L RAVER 500 PAUL 5001
+ 
+Walter Powell
+Electrical Engineer (Consultant)
+Daytime Phone: 360-418-8810
+FAX: 360-418-8446
+Pager: 503-514-5951
+Mail Stop : TOP/DITT2
+ 
+ 

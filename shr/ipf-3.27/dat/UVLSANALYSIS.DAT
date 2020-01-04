@@ -1,0 +1,236 @@
+> DEFINE_TYPE OLD_BASE
+ LET OB4= CASE
+ LET OB5= DATE
+ LET OB6= TIME
+> DEFINE_TYPE BUS_INDEX
+.  FOLLOWING ARE PGE RELAYS
+ LET R1=  NEWBERG  115.
+ LET L1=  NEWBERGR 115.
+ LET R2=  CANEMAH  59.8
+ LET L2=  CANEMAR  59.8
+ LET R3=  ST#HELEN 115.
+ LET L3=  ST#HELER 115.
+ LET R4=  RIVRGATE 230.
+ LET L4=  RIVRGATR 230.
+ LET R5=  KNOTT    115.
+ LET L5=  KNOTT#R  115.
+ LET R6=  SELLWOOD 115.
+ LET L6=  SELLWOOR 115.
+ LET R7=  TABOR    115.
+ LET L7=  TABOR#R  115. 
+ LET R8=  STA#E    115.
+ LET L8=  STA#E#R  115.
+ LET R9=  MCLOUGLA 115.
+ LET L9=  MCLOUGRA 115.
+ LET R10= RIVRGATE 115.
+ LET L10= RIVRGATR 115.
+ LET R11= CLACKMAS 115.
+ LET L11= CLACKMSR 115.
+. FOLLOWING ARE PPL UV RELAYS
+ LET R12= MURDER#C 115.
+ LET L12= MURDER#R 115.
+ LET R13= SANTIAM  230.
+ LET L13= SANTIAMR 230.
+ LET R14= TROUTPP1 230.
+ LET L14= TROUTPR1 230.
+ LET R15= DANEBO   115.
+ LET L15= DANEBO#R 115.
+.  FOLLOWING ARE EWEB UV RELAYS
+ LET R16= PRAIRIE  115.
+ LET L16= PRAIRIER 115.
+ LET R17= WEYRHSR3 115.
+ LET L17= WEYRHR3R 115.
+ LET R18= DILLARD  115.
+ LET L18= DILLARDR 115.
+.  FOLLOWING ARE BPA UV RELAYS
+ LET R19= TAHKNICH 115.
+ LET L19= TAHKNICR 115.
+. DRISCOLL 230. REPRESENTS WAUNA LOAD
+ LET R20= DRISCOLL 230.
+ LET L20= DRISCOLR 230.
+. WINDSHAR 230 BUS HAS CASCASE STEEL LOAD IN MODEL
+ LET R21= WINDSHAR 230.
+ LET L21= WINDSHRR 230.
+ LET R22= SALEM    115.
+ LET L22= SALEM#R  115.
+ LET R23= SPRING#B 115.
+ LET L23= SPRINGBR 115.
+ LET R24= TILLAMOK 115.
+ LET L24= TILLAMOR 115.
+. THE FOLLOWING ARE THE ASSUMED COWLITZ PUD RELAYS
+ LET R25= COWL#CCP 115.
+ LET L25= COWL#CCR 115.
+. THE FOLLOWING ARE THE ASSUMED CLARK CO. PUD RELAYS
+ LET R26= ROSS     115.
+ LET L26= ROSS#R   115.
+ LET A1=  RAVER    500.
+ LET A2=  PAUL     500.
+ LET A3=  ALLSTON  500.
+ LET A4=  KEELER   500.
+ LET A5=  PEARL    500.
+ LET A6=  OSTRNDER 500.
+ LET A7=  MARION   500.
+ LET A8=  LANE     500.
+ LET A9=  SANTIAM  500.
+ LET A10= ALVEY    500.
+ LET A11= BIG#EDDY 500.
+ LET A12= JOHN#DAY 500.
+ LET A13= ASHE     500.
+ LET B1=  ALLSTON  230.
+ LET B2=  ROSS     230.
+ LET B3=  KEELER   230.
+ LET B4=  SHERWOOD 230.
+ LET B5=  PEARL    230.
+ LET B6=  MCLOUGLN 230.
+ LET B7=  GRESHAM  230.
+ LET B8=  TROUTDAL 230.
+ LET B9=  BONNVILE 230.
+ LET B10= CHEMAWA  230.
+ LET B11= ALBANY   230.
+ LET B12= LANE     230.
+ LET B13= ALCOA    230.
+ LET C1=  COWL#CCP 115.
+ LET C2=  LONGVIEW 115.
+ LET C3=  WEYRHSR3 115.
+ LET C4=  BETHEL    66.
+ LET C5=  ROSS     115.
+ LET C6=  URBAN    115.
+ LET C7=  URBAN#R  115.
+ LET C8=  COWL#CCR 115.
+ LET C9=  LONGVW#R 115.
+ LET D1=  WEYRHR3R 115.
+ LET D2=  BETHELR   66.
+ LET D3=  ROSS#R   115.
+ LET D4=  WILSONVL 59.8
+ LET D5=  WILSONVR 59.8
+ LET G1=  CENTRALA 20.0
+ LET G2=  COWLITZ  115.
+ LET G3=  MAYFIELD 13.8
+ LET G4=  MOSSY#RK 13.8
+ LET G5=  BEAVER   13.8
+ LET G6=  BEAVER   20.0
+ LET G7=  MERWIN   115.
+ LET G8=  SWIFT    13.8
+ LET G9=  BONNVIL2 13.8
+ LET G10= BONN#PH2 13.8
+ LET G11= DALLES#3 13.8
+ LET G12= JOHN#DAY 13.8
+ LET G13= DETROIT  230.
+ LET G14= DEXTER   115.
+ LET G15= KEEL-SVC 230.
+ LET G16= MV-SVC   230.
+ LET G17= MCNARY#1 13.8
+ LET G18= MCNARY#2 13.8
+ LET G19= ASHE#2   25.0
+ LET G20= COULEE52 15.0
+ LET G21= DALLES21 13.8
+> DEFINE_TYPE ZONE_INDEX
+ LET ZA = NA + TC + SP + SC + AA + AB
+ LET ZB = NB
+ LET ZC = NC
+> DEFINE_TYPE FUNCTION
+ LET ZTP = ZA.PL + ZB.PL + ZC.PL 
+ LET ZTQ = ZA.QL + ZB.QL = ZC.QL
+ LET ZPG = ZA.PG + ZB.PG + ZC.PG 
+ LET ZPQ = ZA.QG + ZB.QG + ZC.QG 
+ LET ZQSH = ZA.QSH + ZB.QSH + ZC.QSH 
+ LET ZPLS = ZA.PLS + ZB.PLS + ZC.PLS 
+ LET ZQLS = ZA.QLS + ZB.QLS + ZC.QLS 
+ LET ZNP = ZTP - ZPG
+ LET ZNQ = ZTQ - ZPQ
+ LET R1D = R1.V - 1.015
+ LET R2D = R2.V - 1.002 
+ LET R3D = R3.V - 0.984
+ LET R4D = R4.V - 1.004 
+ LET R5D = R5.V - 1.000 
+ LET R6D = R6.V - 1.011 
+ LET R7D = R7.V - 1.010 
+ LET R8D = R8.V - 1.005 
+ LET R9D = R9.V - 1.030 
+ LET R10D = R10.V  - 1.030 
+ LET R11D = R11.V  - 1.030 
+ LET R12D = R12.V  - 0.988
+ LET R13D = R13.V  - 1.040 
+ LET R14D = R14.V  - 1.024 
+ LET R15D = R15.V  - 1.041 
+ LET R16D = R16.V  - 1.036 
+ LET R17D = R17.V  - 1.029 
+ LET R18D = R18.V  - 1.034 
+ LET R19D = R19.V  - 1.035 
+ LET R20D = R20.V  - 1.026 
+ LET R21D = R21.V  - 1.014 
+ LET R22D = R22.V  - 1.031 
+ LET R23D = R23.V  - 1.037 
+ LET R24D = R24.V  - 1.026 
+ LET R25D = R25.V  - 1.002
+ LET R26D = R26.V  - 1.031
+ LET DIF1= ZTP - 24764 
+ LET DIF2= ZTQ - 5626
+ LET DIF3= ZPG - 6893 
+ LET DIF4= ZPQ - 1533 
+ LET DIF5= ZNP - 17871 
+ LET DIF6= ZNQ - 4093 
+ LET DIF7= ZQSH - 9281 
+ LET DIF8= ZPLS - 735 
+ LET DIF9= ZQLS - 4489
+ LET SVC1= 350*G16.V**2
+ LET SVC2= 350*G15.V**2
+H
+C                                           NWPP WILSWA UVLS STUDY - $OB4/A10                                                ROW      
+C  BASE (J95EH237) WITH LADWP > NORTHWEST 2000MW SCHEDULE, PG&E>NORTHWEST 2000MW, BIG EDDY-OSTRANDER 500KV OUT OF SERVICE     1
+C .....................PGE, COWL, CLARK UNDERVOLTAGE RELAY BUS VOLTAGES, DELTA V, AND BUS LOAD................................2
+C   NEWBERG  115.   CANEMAH  59.8   ST#HELEN 115.   RIVRGATE 230.   KNOTT    115.   SELLWOOD 115.   TABOR    59.8             3       
+C V  $R1.V/F5.3      $R2.V/F5.3      $R3.V/F5.3      $R4.V/F5.3      $R5.V/F5.3      $R6.V/F5.3      $R7.V/F5.3               4       
+C dV $R1D/F5.3       $R2D/F5.3       $R3D/F5.3       $R4D/F5.3       $R5D/F5.3       $R6D/F5.3       $R7D/F5.3                5       
+C MW $L1.PL/F5.1     $L2.PL/F5.1     $L3.PL/F5.1     $L4.PL/F5.1     $L5.PL/F5.1     $L6.PL/F5.1     $L7.PL/F5.1              6       
+C   MCLOUGLA 115.   RIVRGATE 115.   CLACKMAS 115.   STA#E    115.  ......>>>>>>>>>> COWL CCP 115.   ROSS    115.              7       
+C V  $R9.V/F5.3      $R10.V/F5.3     $R11.V/F5.3     $R8.V/F5.3    ASSUMED RELAYS >  $R25.V/F5.3     $R26.V/F5.3              8        
+C dV $R9D/F5.3       $R10D/F5.3      $R11D/F5.3      $R8D/F5.3     FOR COWLITZ PUD>  $R25D/F5.3      $R26D/F5.3               9       
+C MW $L9.PL/F5.1     $L10.PL/F5.1    $L11.PL/F5.1    $L8.PL/F5.1   AND CLARK PUD  >  $L25.PL/F5.1     $L26.PL/F5.1            10       
+C .....................PACIFICORP AND EWEB UNDERVOLTAGE RELAY BUS VOLTAGES, DELTA V, AND BUS LOAD............................11 
+C   MURDER#C 115.  SANTIAM  230.  TROUTPP1 230.     PRAIRIE  115.  WEYRHSR3 115.  DILLARD  115.  DANEBO   115.               12       
+C V  $R12.V/F5.3    $R13.V/F5.3    $R14.V/F5.3       $R16.V/F5.3    $R17.V/F5.3    $R18.V/F5.3    $R15.V/F5.3                13          
+C dV $R12D/F5.3     $R13D/F5.3     $R14D/F5.3        $R16D/F5.3     $R17D/F5.3     $R18D/F5.3     $R15D/F5.3                 14       
+C MW $L12.PL/F5.1   $L13.PL/F5.1   $L14.PL/F5.1      $L16.PL/F5.1   $L17.PL/F5.1   $L18.PL/F5.1   $L15.PL/F5.1               15       
+C ..................................BPA UNDERVOLTAGE RELAY BUS VOLTAGES, DELTA V, AND BUS LOAD...............................16 
+C   TAHKNICH 115.   DRISCOLL 230.   WINDSHAR 230.   SALEM    115.   SPRING B 115.   TILLAMOK 115.                            17       
+C V  $R19.V/F5.3     $R20.V/F5.3     $R21.V/F5.3     $R22.V/F5.3     $R23.V/F5.3     $R24.V/F5.3                             18        
+C dV $R19D/F5.3      $R20D/F5.3      $R21D/F5.3      $R22D/F5.3      $R23D/F5.3      $R24D/F5.3                              19        
+C MW $L19.PL/F5.1    $L20.PL/F5.1    $L21.PL/F5.1    $L22.PL/F5.1    $L23.PL/F5.1    $L24.PL/F5.1                            20         
+C .........................................SOME SELECTED SYSTEM VOLTAGES.....................................................21 
+C ..........................................500KV SYSTEM VOLTAGES (PER UNIT).................................................22 
+C   RAVER    500.   PAUL     500.   ALLSTON  500.   KEELER   500.   PEARL    500.   OSTRNDER 500.   MARION   500.            23        
+C  $A1.V/F5.3       $A2.V/F5.3      $A3.V/F5.3      $A4.V/F5.3      $A5.V/F5.3      $A6.V/F5.3      $A7.V/F5.3               24        
+C  SANTIAM  500.    ALVEY    500.   BIG EDDY 500.   JOHN DAY 500.   ASHE     500.   LANE     500.                            25      
+C  $A9.V/F5.3       $A10.V/F5.3     $A11.V/F5.3     $A12.V/F5.3     $A13.V/F5.3     $A8.V/F5.3                               26       
+C .........................................230KV SYSTEM VOLTAGES (PER UNIT)..................................................27 
+C  ALLSTON  230.    ROSS     230.   KEELER   230.   SHERWOOD 230.   PEARL    230.   MCLOUGLN 230.   GRESHAM  230.            28       
+C  $B1.V/F5.3       $B2.V/F5.3      $B3.V/F5.3      $B4.V/F5.3      $B5.V/F5.3      $B6.V/F5.3      $B7.V/F5.3               29      
+C  BONNVILE 230.    CHEMAWA  230.   ALBANY   230.   LANE     230.   TROUTDAL 230.   ALCOA    230.                            30       
+C  $B9.V/F5.3       $B10.V/F5.3     $B11.V/F5.3     $B12.V/F5.3     $B8.V/F5.3      $B13.V/F5.3                              31          
+C .........................................115KV AND BELOW SYSTEM VOLTAGES AND LOAD BUSES (PER UNIT).........................32 
+C  COWL#CCP 115.    LONGVIEW 115.   WEYRHSR3 115.   BETHEL    66.   ROSS     115.   URBAN    115.    WILSONVL 59.8           33        
+C  $C1.V/F5.3       $C2.V/F5.3      $C3.V/F5.3      $C4.V/F5.3      $C5.V/F5.3      $C6.V/F5.3       $D4.V/F5.3              35         
+C  $C8.V/F5.3 R     $C9.V/F5.3 R    $D1.V/F5.3 R    $D2.V/F5.3 R    $D3.V/F5.3 R    $C7.V/F5.3 R     $D5.V/F5.3 R            36        
+C..........................GENERATOR TERMINAL VOLTAGES (PER UNIT) AND REACTIVE OUTPUT (MVAR).................................37 
+C    CENTRALA 20.0   COWLITZ  115.   MAYFIELD 13.8   MOSSY#RK 13.8   BEAVER   13.8   BEAVER   20.0   MV-SVC   230.           38          
+C V  $G1.V/F5.3      $G2.V/F5.3      $G3.V/F5.3      $G4.V/F5.3      $G5.V/F5.3      $G6.V/F5.3      $G16.V/F5.3             39        
+C Q  $G1.QG/F5.0     $G2.QG/F5.0     $G3.QG/F5.0     $G4.QG/F5.0     $G5.QG/F5.0     $G6.QG/F5.0     $G16.C/F5.0             40       
+CQMAX$G1.QM/F5.0     $G2.QM/F5.0     $G3.QM/F5.0     $G4.QM/F5.0     $G5.QM/F5.0     $G6.QM/F5.0     $SVC1                   41        
+C    BONNVIL2 13.8   BONN#PH2 13.8   DALLES#3 13.8   DALLES21 13.8   DETROIT  230.   DEXTER   115.   KEEL-SVC 230            42     
+C V  $G9.V/F5.3      $G10.V/F5.3     $G11.V/F5.3     $G21.V/F5.3     $G13.V/F5.3     $G14.V/F5.3     $G15.V/F5.3             43 
+C Q  $G9.QG/F5.0     $G10.QG/F5.0    $G11.QG/F5.0    $G21.QG/F5.0    $G13.QG/F5.0    $G14.QG/F5.0    $G15.C/F5.0             44        
+CQMAX$G9.QM/F5.0     $G10.QM/F5.0    $G11.QM/F5.0    $G21.QM/F5.0    $G13.QM/F5.0    $G14.QM/F5.0    $SVC2                   45        
+C    SWIFT    13.8   MERWIN   115.   MCNARY#1 13.8   MCNARY#2 13.8   ASHE#2 13.8     COULEE52 15.0   JOHN#DAY 13.8           46          
+C V  $G8.V/F5.3      $G7.V/F5.3                      $G18.V/F5.3     $G19.V/F5.3     $G20.V/F5.3     $G12.V/F5.3             47       
+C Q  $G8.QG/F5.0     $G7.QG/F5.0                     $G18.QG/F5.0    $G19.QG/F5.0    $G20.QG/F5.0    $G12.QG/F5.0            48    
+CQMAX$G8.QM/F5.0     $G7.QM/F5.0                     $G18.QM/F5.0    $G19.QM/F5.0    $G20.QM/F5.0    $G12.QM/F5.0            49        
+C.................................................ZONE QUANTITIES............................................................50 
+C                 ZONE NA (PUGET SOUND)   ZONE NB (N WILSWA)    ZONE NC (S WILSWA)          TOTALS      CHANGE FROM BASE     51      
+C                   MW         MVAR       MW         MVAR       MW         MVAR          MW       MVAR      MW      MVAR     52          
+C  LOAD            $ZA.PL     $ZA.QL     $ZB.PL     $ZB.QL     $ZC.PL     $ZC.QL        $ZTP     $ZTQ      $DIF1   $DIF2     53        
+C  GENERATION      $ZA.PG     $ZA.QG     $ZB.PG     $ZB.QG     $ZC.PG     $ZC.QG        $ZPG     $ZPQ              $DIF4     54        
+C . . . . . . . .  . . . . . .. . . . . .. . . . . .. . . . . . . . . .  NET (LOAD-GEN) $ZNP     $ZNQ      $DIF5   $DIF6     55       
+C  SHUNT REACTIVE             $ZA.QSH               $ZB.QSH               $ZC.QSH                $ZQSH             $DIF7     56          
+C  REAL LOSSES     $ZA.PLS               $ZB.PLS               $ZC.PLS                  $ZPLS              $DIF8             57       
+C  REACTIVE LOSSES            $ZA.QLS               $ZB.QLS               $ZC.QLS                $ZQLS             $DIF9     58                    

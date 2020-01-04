@@ -1,0 +1,135 @@
+Summary of changes associated with 24-Oct-2000.tar.
+
+1. Modified module cgetuser.c to eliminate generating " .pfo" and " .pfd"
+   (blank) file names.
+
+2. Modifed several ipf modules to implement a new option "SUMMARY=OFF" on 
+   /GEN_DROP commands.  The motive is to reduce the amount of output in the 
+   *.pfo files for voluminous output assocaited with PVCURVE studies.
+
+   An example of the original and revised format follows.
+
+   /GEN_DROP,AI_CONTROL=OFF,INITIAL_DROP=50,TOL=10
+   /GEN_DROP,AI_CONTROL=OFF,SUMMARY=OFF,INITIAL_DROP=50,TOL=10
+
+
+3. Revise modules srv_fcmdprs.f to rewind the *.pfo, *.pfd, and *.pff file in 
+   IPFSRV following each / OLD_BASE command.  The *.pfo, *.pfd, and *.pff 
+   files will reflect only the processing of the current / OLD_BASE command.
+
+4. Revised module p_gtdata.f to remove unnecessary debug printout.
+
+5. Installed the following modules in  /usr/bin. 
+
+   tkdiff - a graphical text difference routine.
+   launch_pf.bash - a useful utility to run bpf, consolidate any 
+     user analysis, and generate geographic plots.
+   dos-linux.bash - a useful utility to remove DOS-carriage returns
+     from files and rename those files to lowercase. An example
+     of its use is shown below.
+
+     dos-linux.bash '*.TXT *.txt'
+     dos-linux.bash '*.DAT *.dat'
+
+Summary of changes associated with 31-Oct-2000.tar.
+
+1. Copied pfmaster.post to /shr/ipf-3.27/dat directory.
+
+2. Added /COMMON_MODE_ANALYSIS corrections to ipfbat.
+
+3. Automatically rebuild ipf.
+
+Summary of changes associated with 2-Nov-2000.tar.
+
+1. Added /COMMON_MODE_ANALYSIS corrections to ipfbat.
+
+Summary of changes associated with 18-Nov-2000
+
+1. Updated post_pvcurve.c with version 1.02. Linux version required
+   malloc to accommodate a 12MB character structure.
+
+2. Updated sfctr.f to accommodate revised COMMON_MODE files
+   compiled by Larry Stadler.
+
+Summary of changes associated with 22-Nov-2000
+
+1. Modified dos-linux.bash to accommodate "English" and "troff" files.
+
+Summary of changes associated with 24-Nov-2000
+
+1. Modified all build_libxxx.bash files to compile with full optimization (-O4)
+   instead of full debug (-g).
+
+2. Modified all *.make files to link with full optimization (-O4) instead
+   of full debug (-g).
+
+Summary of changes associated with 14-Dec-2000
+
+1. Changed LOAD_PTI option to parse text in the form xxx, xxx, ...
+
+2. Modified all build_libxxx.bash files to compile with full debug (-g)
+   instead of full optimization (-O4).
+
+3. Modified all *.make files to link with full debug (-g) instead
+   of full optimization (-O4).
+
+Summary of changes associated with 1-Dec-2001
+
+1. Corrected FINDOUT to process COMMON_MODE_OUTAGES.
+
+Summary of changes associated with 16-Jan-2001
+
+Summary of changes associated with 1-Feb-2001
+
+1. Corrected reinitialization of /GEN_DROP when used in conjnction wtih
+   IPFBAT.
+
+2. Corrected resorting of arcnam/arcnum in buildzbo.f
+
+Summary of changes associated with 1-Mar-2001
+
+1. Added TRANSFILE=<file> option to /LOAD/GE to replace zone names
+   in EPC file with those in translation file.
+
+2. Corrected GE->IPF import.
+
+Summary of changes associated with 26-Mar-2001
+
+1. Eliminated all CFLOW socket calls
+
+2. Corrected errors affecting GE->IPF import.
+
+3. Corrected IPF_REPORTS base case comparison error - use names instead
+   of numbers for the area, owner, and zone filters.
+
+4. Added a new Fast Outage option (>NETWORK) per James Randall. This is 
+   explained with an example.  
+ 
+  > NETWORK ZONES NA,NB,NC,ND,NE,NF,NG,NH,NI,NJ,NK,PR,    BASES  30,1100.
+  > NETWORK ZONES SE,TA,SP,AA,AB,AC,PD,PF,PH,WW,WX,GR,    BASES  30,1100.
+  > NETWORK ZONES CC,TB,EU,JC,LK,KL,GP,CR,MD,UM,PT,WL,    BASES  30,1100.
+  > NETWORK ZONES CB,CN,PW,YK,PB,MT,YR,UW,                BASES  30,1100.
+  > NETWORK ZONES NA,NB,NC,ND,NE,NF,NG,NH,NI,NJ,NK,PR,    BASES  30,1100.
+  > NETWORK ZONES SE,TA,SP,AA,AB,AC,PD,PF,PH,WW,WX,GR,    BASES  30,1100.
+  > NETWORK ZONES CC,TB,EU,JC,LK,KL,GP,CR,MD,UM,PT,WL,    BASES  30,1100.
+  > NETWORK ZONES CB,CN,PW,YK,PB,MT,YR,UW,                BASES  30,1100.
+  > OUTAGE ZONES NA,                                      BASES  30,1100.
+  > OVERLOAD ZONES NA,                                    BASES  30,1100.
+
+  The > NETWORK records specify the reduced network which in this example is 
+  the NORTHWEST area. Only outages and overloads in zone NA are of interest.
+  However, for accuracy, the entire NORTHWEST area must be in the reduced 
+  equivalent network.   
+
+Summary of changes associated with 1-Apr-2001
+
+1. Corrected EPC import to recognize segment names instead of zero equipment
+   numbers.
+   
+2. Corrected EPC import to get missing bus and branch ownerships.
+
+3. Changed EPC import to optionally obtain any of the 8 branch ratings.
+
+4. Changed EPC import to preserve +N1, +N2, etc continuation bus types.
+
+wlp 1-Apr-2001

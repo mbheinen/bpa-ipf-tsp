@@ -1,0 +1,34 @@
+WvDial: Internet dialer version 1.41
+Initializing modem.
+Sending: ATZ
+ATZ
+OK
+Sending: ATQ0 V1 E1 S0=0 &C1 &D2 S11=55 +FCLASS=0
+ATQ0 V1 E1 S0=0 &C1 &D2 S11=55 +FCLASS=0
+OK
+Modem initialized.
+Sending: ATDT 9,1,800123-4567
+Waiting for carrier.
+ATDT 9,1,800123-4567
+CONNECT 48000/ARQ/V90/LAPM/V42BIS
+Carrier detected.  Waiting for prompt.
+
+
+User Access Verification
+
+Username: Looks like a login prompt.
+Sending: rxb1234
+rxb1234
+Password: Looks like a password prompt.
+Sending: (password)
+
+
+Port5301>Hmm... a prompt.  Sending "ppp".
+ppp
+Entering PPP mode.
+Async interface address is unnumbered (Ethernet0)
+Your IP address is 98.456.77.123. MTU is 1500 bytes
+Header compression will match your system.
+
+Looks like a welcome message.
+Starting pppd at Tue Oct 24 10:14:55 2000

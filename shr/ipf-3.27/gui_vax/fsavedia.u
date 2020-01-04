@@ -1,0 +1,1190 @@
+
+
+procedure
+!***VUIT_Action Manage file_save_coord_options_form ***
+
+    manage_file_save_coord_opt;
+!***VUIT_Action Manage stability_save_form ***
+
+    manage_stability_form;
+!***VUIT_no_Generate*** 
+!***VUIT_Action Manage file_save_select_dia ***
+
+    file_save_select_cb(integer);
+!***VUIT_Action Unmanage file_save_select_dia ***
+
+    file_save_select_cancel_cb;
+!***VUIT_no_Generate*** 
+!***VUIT_Action UserProc file_save_select_ok_cb ***
+
+    file_save_select_ok_cb;
+!***VUIT_Action Unmanage file_save_coord_options_form ***
+
+    unmanage_save_coord_options;
+!***VUIT_Action Unmanage file_save_coord_options_form ***
+
+    unmanage_file_save_coord_opt;
+
+list
+    save_file_lbl: arguments
+        {
+        XmNleftPosition = 2;
+        XmNleftAttachment = XmATTACH_POSITION;
+        XmNtopOffset = 10;
+        };
+    save_file_txt: arguments
+        {
+        arguments text_list_40;
+        XmNleftPosition = 18;
+        XmNleftAttachment = XmATTACH_POSITION;
+        XmNrightPosition = 70;
+        XmNrightAttachment = XmATTACH_POSITION;
+        XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+        };
+    save_file_pb: arguments
+        {
+        arguments std_pushbutton;
+        XmNlabelString = compound_string("Save");
+        XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+        XmNleftAttachment = XmATTACH_WIDGET;
+        XmNleftOffset = 10;
+        };
+    save_select_pb: arguments
+        {
+        arguments std_pushbutton;
+        XmNleftAttachment = XmATTACH_WIDGET;
+        XmNleftOffset = 10;
+        XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+        XmNlabelString = compound_string("Select");
+        };
+    save_opts_pb: arguments
+        {
+        arguments std_pushbutton;
+        XmNlabelString = compound_string("Options");
+        XmNleftAttachment = XmATTACH_WIDGET;
+        XmNleftOffset = 10;
+        XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+        };
+
+object
+!***VUIT_Manage false ***
+    save_base_file_error_box: XmErrorDialog 
+        {
+        arguments
+            {
+            XmNborderWidth = 1;
+            XmNmessageString = compound_string("");
+            XmNdialogStyle = XmDIALOG_PRIMARY_APPLICATION_MODAL;
+            XmNdialogTitle = compound_string("SAVE BASE FILE OVERWRITE");
+            XmNokLabelString = compound_string("Overwrite");
+            XmNbackground = selected_button_color;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNokCallback = procedures
+                {
+                file_save_cb(0);
+                };
+            };
+        };
+!***VUIT_Manage false ***
+    save_file_dialog: XmFormDialog 
+        {
+        arguments
+            {
+            XmNautoUnmanage = false;
+            XmNwidth = 800;
+            XmNverticalSpacing = 10;
+            XmNhorizontalSpacing = 10;
+            XmNheight = 370;
+            };
+        controls
+            {
+            XmForm save_form;
+            XmPushButton save_close_pb;
+            XmLabelGadget saved_message_label;
+            };
+        };
+    save_close_pb: XmPushButton 
+        {
+        arguments
+            {
+            arguments close_pushbutton_list;
+            XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNleftWidget = XmForm save_form;
+            XmNrightAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNrightWidget = XmForm save_form;
+            XmNrightOffset = 40;
+            XmNleftOffset = 40;
+            XmNbottomAttachment = XmATTACH_NONE;
+            XmNtopWidget = XmForm save_form;
+            };
+        callbacks
+            {
+            XmNactivateCallback = procedures
+                {
+                unmanage_save_file_dialog(0);
+                };
+            };
+        };
+    save_form: XmForm 
+        {
+        arguments
+            {
+            XmNborderWidth = 0;
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNshadowThickness = 2;
+            XmNshadowType = XmSHADOW_ETCHED_IN;
+            XmNtopWidget = XmLabelGadget saved_message_label;
+            XmNrightAttachment = XmATTACH_FORM;
+            XmNbottomAttachment = XmATTACH_FORM;
+            XmNbottomOffset = 50;
+            };
+        controls
+            {
+            XmLabelGadget save_change_label;
+            XmTextField save_change_text;
+            XmPushButton save_change_pb;
+            XmLabelGadget save_base_label;
+            XmLabelGadget save_net_label;
+            XmLabelGadget save_coord_label;
+            XmLabelGadget save_stab_label;
+            XmTextField save_base_text;
+            XmTextField save_net_text;
+            XmTextField save_coord_text;
+            XmTextField save_stab_text;
+            XmPushButton save_base_pb;
+            XmPushButton save_net_pb;
+            XmPushButton save_coord_pb;
+            XmPushButton save_stab_pb;
+            XmPushButton save_net_options_pb;
+            XmPushButton save_stab_options_pb;
+            XmPushButton save_coord_option_btn;
+            XmPushButton save_chg_file_select_btn;
+            XmPushButton file_bas_file_select_btn;
+            XmPushButton file_net_file_select_cb;
+            XmPushButton file_cor_file_select_pb;
+            XmPushButton file_stab_file_select_pb;
+            XmLabelGadget save_pti_label;
+            XmTextField save_pti_text;
+            XmPushButton save_pti_pb;
+            XmPushButton file_pti_file_select_pb;
+            XmPushButton save_pti_opts_pb;
+            };
+        };
+    save_change_label: XmLabelGadget 
+        {
+        arguments
+            {
+            arguments save_file_lbl;
+            XmNlabelString = compound_string("Change File:");
+            XmNtopAttachment = XmATTACH_POSITION;
+            XmNtopPosition = 5;
+            };
+        };
+    save_change_text: XmTextField 
+        {
+        arguments
+            {
+            arguments save_file_txt;
+            XmNtopWidget = XmLabelGadget save_change_label;
+            XmNleftWidget = XmLabelGadget save_change_label;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    save_change_pb: XmPushButton 
+        {
+        arguments
+            {
+            arguments save_file_pb;
+            XmNleftWidget = XmTextField save_change_text;
+            XmNtopWidget = XmTextField save_change_text;
+            };
+        callbacks
+            {
+            XmNactivateCallback = procedures
+                {
+                file_check_and_save_cb(1);
+                };
+            };
+        };
+    saved_message_label: XmLabelGadget 
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Files will be saved in your current directory by default.",separate=true) &
+                compound_string("If you want to save them elsewhere, enter the path.");
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNtopAttachment = XmATTACH_FORM;
+            XmNrightAttachment = XmATTACH_FORM;
+            };
+        };
+!***VUIT_Manage false ***
+    save_network_dialog: XmFormDialog 
+        {
+        arguments
+            {
+            XmNdialogTitle = compound_string("SAVE NETWORK DATA");
+            XmNautoUnmanage = false;
+            XmNborderWidth = 2;
+            };
+        controls
+            {
+            XmFrame save_net_opts_frame;
+            XmLabelGadget 
+                {
+                arguments
+                    {
+                    XmNy = 79;
+                    XmNlabelString = compound_string("Dialect");
+                    XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+                    XmNtopAttachment = XmATTACH_NONE;
+                    XmNleftWidget = XmFrame save_net_opts_frame;
+                    XmNrightAttachment = XmATTACH_OPPOSITE_WIDGET;
+                    XmNrightWidget = XmFrame save_net_opts_frame;
+                    XmNbottomAttachment = XmATTACH_WIDGET;
+                    XmNbottomWidget = XmFrame save_net_opts_frame;
+                    XmNrightOffset = -10;
+                    XmNleftOffset = -10;
+                    };
+                };
+            XmFrame save_rate_frame;
+            XmLabelGadget 
+                {
+                arguments
+                    {
+                    XmNy = 86;
+                    XmNlabelString = compound_string("Ratings");
+                    XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+                    XmNtopAttachment = XmATTACH_NONE;
+                    XmNbottomAttachment = XmATTACH_WIDGET;
+                    XmNbottomWidget = XmFrame save_rate_frame;
+                    XmNleftWidget = XmFrame save_rate_frame;
+                    XmNrightAttachment = XmATTACH_OPPOSITE_WIDGET;
+                    XmNrightWidget = XmFrame save_rate_frame;
+                    };
+                };
+            XmFrame save_net_size_frame;
+            XmLabelGadget 
+                {
+                arguments
+                    {
+                    XmNy = 223;
+                    XmNlabelString = compound_string("Record Size");
+                    XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+                    XmNtopAttachment = XmATTACH_NONE;
+                    XmNbottomAttachment = XmATTACH_WIDGET;
+                    XmNbottomWidget = XmFrame save_net_size_frame;
+                    XmNleftWidget = XmFrame save_net_size_frame;
+                    XmNrightAttachment = XmATTACH_OPPOSITE_WIDGET;
+                    XmNrightWidget = XmFrame save_net_size_frame;
+                    };
+                };
+            XmPushButton save_net_close_pb;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    save_net_opts_frame: XmFrame 
+        {
+        arguments
+            {
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNtopAttachment = XmATTACH_FORM;
+            XmNleftOffset = 20;
+            XmNtopOffset = 40;
+            };
+        controls
+            {
+            XmRadioBox save_net_opts_radio_box;
+            };
+        };
+    save_net_bpa_rb: XmToggleButton 
+        {
+        arguments
+            {
+            arguments toggle_defs;
+            XmNlabelString = compound_string("BPA");
+            XmNset = true;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    save_net_wscc_rb: XmToggleButton 
+        {
+        arguments
+            {
+            arguments toggle_defs;
+            XmNlabelString = compound_string("WSCC");
+            XmNx = 60;
+            XmNy = 15;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    save_net_wscc1_rb: XmToggleButton 
+        {
+        arguments
+            {
+            arguments toggle_defs;
+            XmNlabelString = compound_string("WSCC1");
+            XmNx = 36;
+            XmNy = 43;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    save_net_pti_rb: XmToggleButton 
+        {
+        arguments
+            {
+            arguments toggle_defs;
+            XmNlabelString = compound_string("PTI");
+            XmNx = 43;
+            XmNy = 76;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    save_net_opts_radio_box: XmRadioBox 
+        {
+        arguments
+            {
+            XmNisHomogeneous = false;
+            };
+        controls
+            {
+            XmToggleButton save_net_bpa_rb;
+            XmToggleButton save_net_wscc_rb;
+            XmToggleButton save_net_wscc1_rb;
+            XmToggleButton save_net_pti_rb;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    save_rate_frame: XmFrame 
+        {
+        arguments
+            {
+            XmNleftAttachment = XmATTACH_WIDGET;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopWidget = XmFrame save_net_opts_frame;
+            XmNrightAttachment = XmATTACH_FORM;
+            XmNleftWidget = XmFrame save_net_opts_frame;
+            XmNleftOffset = 50;
+            XmNrightOffset = 20;
+            };
+        controls
+            {
+            XmRadioBox save_net_rate_radio_box;
+            };
+        };
+    save_net_extended_rb: XmToggleButton 
+        {
+        arguments
+            {
+            arguments toggle_defs;
+            XmNlabelString = compound_string("Extended");
+            XmNset = true;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    save_net_nominal_rb: XmToggleButton 
+        {
+        arguments
+            {
+            arguments toggle_defs;
+            XmNlabelString = compound_string("Nominal");
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    save_net_minimum_rb: XmToggleButton 
+        {
+        arguments
+            {
+            arguments toggle_defs;
+            XmNlabelString = compound_string("Minimum");
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    save_net_size_frame: XmFrame 
+        {
+        arguments
+            {
+            XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNrightAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNrightWidget = XmFrame save_rate_frame;
+            XmNleftWidget = XmFrame save_rate_frame;
+            XmNtopWidget = XmFrame save_rate_frame;
+            XmNtopOffset = 30;
+            };
+        controls
+            {
+            XmRadioBox save_net_size_radio_box;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    save_net_80_rb: XmToggleButton 
+        {
+        arguments
+            {
+            arguments toggle_defs;
+            XmNlabelString = compound_string("80");
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    save_net_120_rb: XmToggleButton 
+        {
+        arguments
+            {
+            arguments toggle_defs;
+            XmNlabelString = compound_string("120");
+            XmNset = true;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    save_net_close_pb: XmPushButton 
+        {
+        arguments
+            {
+            arguments close_pushbutton_list;
+            XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNrightAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNrightWidget = XmFrame save_rate_frame;
+            XmNleftWidget = XmFrame save_net_opts_frame;
+            XmNtopWidget = XmFrame save_net_size_frame;
+            XmNtopOffset = 20;
+            XmNbottomAttachment = XmATTACH_FORM;
+            XmNbottomOffset = 20;
+            };
+        callbacks
+            {
+            XmNactivateCallback = procedures
+                {
+                unmanage_save_net_dia(0);
+                };
+            };
+        };
+    save_net_rate_radio_box: XmRadioBox 
+        {
+        arguments
+            {
+            XmNisHomogeneous = false;
+            };
+        controls
+            {
+            XmToggleButton save_net_extended_rb;
+            XmToggleButton save_net_nominal_rb;
+            XmToggleButton save_net_minimum_rb;
+            };
+        };
+    save_net_size_radio_box: XmRadioBox 
+        {
+        arguments
+            {
+            XmNisHomogeneous = false;
+            XmNwidth = 97;
+            XmNheight = 65;
+            };
+        controls
+            {
+            XmToggleButton save_net_80_rb;
+            XmToggleButton save_net_120_rb;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    save_base_label: XmLabelGadget 
+        {
+        arguments
+            {
+            arguments save_file_lbl;
+            XmNlabelString = compound_string("Base File:");
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNtopWidget = XmLabelGadget save_change_label;
+            };
+        };
+    save_net_label: XmLabelGadget 
+        {
+        arguments
+            {
+            arguments save_file_lbl;
+            XmNlabelString = compound_string("Network:");
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNtopWidget = XmLabelGadget save_base_label;
+            };
+        };
+    save_coord_label: XmLabelGadget 
+        {
+        arguments
+            {
+            arguments save_file_lbl;
+            XmNlabelString = compound_string("Coordinate:");
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNtopWidget = XmLabelGadget save_net_label;
+            };
+        };
+    save_base_text: XmTextField 
+        {
+        arguments
+            {
+            arguments save_file_txt;
+            XmNtopWidget = XmLabelGadget save_base_label;
+            XmNleftWidget = XmTextField save_change_text;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    save_stab_label: XmLabelGadget 
+        {
+        arguments
+            {
+            arguments save_file_lbl;
+            XmNlabelString = compound_string("Stability:");
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNtopWidget = XmLabelGadget save_coord_label;
+            XmNheight = 25;
+            };
+        };
+    save_net_text: XmTextField 
+        {
+        arguments
+            {
+            arguments save_file_txt;
+            XmNleftWidget = XmTextField save_base_text;
+            XmNtopWidget = XmLabelGadget save_net_label;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    save_coord_text: XmTextField 
+        {
+        arguments
+            {
+            arguments save_file_txt;
+            XmNleftWidget = XmTextField save_net_text;
+            XmNtopWidget = XmLabelGadget save_coord_label;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    save_stab_text: XmTextField 
+        {
+        arguments
+            {
+            arguments save_file_txt;
+            XmNtopWidget = XmLabelGadget save_stab_label;
+            XmNleftWidget = XmTextField save_coord_text;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    save_coord_pb: XmPushButton 
+        {
+        arguments
+            {
+            arguments save_file_pb;
+            XmNtopWidget = XmTextField save_coord_text;
+            XmNleftWidget = XmTextField save_coord_text;
+            };
+        callbacks
+            {
+            XmNarmCallback = procedures
+                {
+                file_check_and_save_cb(4);
+                };
+            };
+        };
+    save_base_pb: XmPushButton 
+        {
+        arguments
+            {
+            arguments save_file_pb;
+            XmNtopWidget = XmTextField save_base_text;
+            XmNleftWidget = XmTextField save_base_text;
+            };
+        callbacks
+            {
+            XmNactivateCallback = procedures
+                {
+                file_check_and_save_cb(2);
+                };
+            };
+        };
+    save_net_pb: XmPushButton 
+        {
+        arguments
+            {
+            arguments save_file_pb;
+            XmNtopWidget = XmTextField save_net_text;
+            XmNleftWidget = XmTextField save_net_text;
+            };
+        callbacks
+            {
+            XmNactivateCallback = procedures
+                {
+                file_check_and_save_cb(3);
+                };
+            };
+        };
+    save_stab_pb: XmPushButton 
+        {
+        arguments
+            {
+            arguments save_file_pb;
+            XmNleftWidget = XmTextField save_stab_text;
+            XmNtopWidget = XmTextField save_stab_text;
+            };
+        callbacks
+            {
+            XmNactivateCallback = procedures
+                {
+                file_check_and_save_cb(5);
+                };
+            };
+        };
+!***VUIT_Manage false ***
+    stability_save_form: XmFormDialog 
+        {
+        arguments
+            {
+            XmNborderWidth = 1;
+            XmNdialogTitle = compound_string("Stability File Type");
+            XmNbackground = rgb(65535,57230,51262);
+            };
+        controls
+            {
+            XmPushButton 
+                {
+                arguments
+                    {
+                    arguments close_pushbutton_list;
+                    XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+                    XmNtopAttachment = XmATTACH_WIDGET;
+                    XmNtopOffset = 20;
+                    XmNbottomAttachment = XmATTACH_FORM;
+                    XmNleftWidget = XmForm stab_radiobox_form;
+                    XmNrightAttachment = XmATTACH_OPPOSITE_WIDGET;
+                    XmNtopWidget = XmForm stab_radiobox_form;
+                    XmNbottomOffset = 20;
+                    XmNrightWidget = XmForm stab_radiobox_form;
+                    };
+                };
+            XmForm stab_radiobox_form;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    stab_radiobox_form: XmForm 
+        {
+        arguments
+            {
+            XmNborderWidth = 1;
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNtopAttachment = XmATTACH_FORM;
+            XmNleftOffset = 20;
+            XmNtopOffset = 20;
+            XmNrightAttachment = XmATTACH_FORM;
+            XmNrightOffset = 20;
+            };
+        controls
+            {
+            XmRadioBox 
+                {
+                arguments
+                    {
+                    XmNborderWidth = 1;
+                    XmNisHomogeneous = false;
+                    XmNrightAttachment = XmATTACH_FORM;
+                    XmNleftAttachment = XmATTACH_FORM;
+                    };
+                controls
+                    {
+                    XmToggleButton save_stability_ascii_rb;
+                    XmToggleButton save_stability_binary_rb;
+                    };
+                };
+            };
+        };
+    save_stability_ascii_rb: XmToggleButton 
+        {
+        arguments
+            {
+            XmNx = 3;
+            XmNy = 4;
+            XmNlabelString = compound_string("ASCII");
+            XmNset = true;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    save_stability_binary_rb: XmToggleButton 
+        {
+        arguments
+            {
+            XmNx = 8;
+            XmNy = 22;
+            XmNlabelString = compound_string("Binary");
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    save_stab_options_pb: XmPushButton 
+        {
+        arguments
+            {
+            arguments save_opts_pb;
+            XmNleftWidget = XmPushButton file_stab_file_select_pb;
+            XmNtopWidget = XmPushButton file_stab_file_select_pb;
+            };
+        callbacks
+            {
+            XmNactivateCallback = procedures
+                {
+                manage_stability_form(0);
+                };
+            };
+        };
+    save_net_options_pb: XmPushButton 
+        {
+        arguments
+            {
+            arguments save_opts_pb;
+            XmNleftWidget = XmPushButton file_net_file_select_cb;
+            XmNtopWidget = XmPushButton file_net_file_select_cb;
+            };
+        callbacks
+            {
+            XmNactivateCallback = procedures
+                {
+                manage_save_net_dialog(0);
+                };
+            };
+        };
+    save_coord_option_btn: XmPushButton 
+        {
+        arguments
+            {
+            arguments save_opts_pb;
+            XmNleftWidget = XmPushButton file_cor_file_select_pb;
+            XmNtopWidget = XmPushButton file_cor_file_select_pb;
+            };
+        callbacks
+            {
+            XmNactivateCallback = procedures
+                {
+                manage_file_save_coord_opt(0);
+                };
+            };
+        };
+    save_chg_file_select_btn: XmPushButton 
+        {
+        arguments
+            {
+            arguments save_select_pb;
+            XmNleftWidget = XmPushButton save_change_pb;
+            XmNtopWidget = XmPushButton save_change_pb;
+            };
+        callbacks
+            {
+            XmNactivateCallback = procedures
+                {
+                file_save_select_cb(1);
+                };
+            };
+        };
+    file_bas_file_select_btn: XmPushButton 
+        {
+        arguments
+            {
+            arguments save_select_pb;
+            XmNtopWidget = XmTextField save_base_text;
+            XmNleftWidget = XmPushButton save_base_pb;
+            };
+        callbacks
+            {
+            XmNactivateCallback = procedures
+                {
+                file_save_select_cb(2);
+                };
+            };
+        };
+    file_net_file_select_cb: XmPushButton 
+        {
+        arguments
+            {
+            arguments save_select_pb;
+            XmNleftWidget = XmPushButton save_net_pb;
+            XmNtopWidget = XmPushButton save_net_pb;
+            };
+        callbacks
+            {
+            XmNactivateCallback = procedures
+                {
+                file_save_select_cb(3);
+                };
+            };
+        };
+    file_cor_file_select_pb: XmPushButton 
+        {
+        arguments
+            {
+            arguments save_select_pb;
+            XmNleftWidget = XmPushButton save_coord_pb;
+            XmNtopWidget = XmPushButton save_coord_pb;
+            };
+        callbacks
+            {
+            XmNactivateCallback = procedures
+                {
+                file_save_select_cb(4);
+                };
+            };
+        };
+    file_stab_file_select_pb: XmPushButton 
+        {
+        arguments
+            {
+            arguments save_select_pb;
+            XmNleftWidget = XmPushButton save_stab_pb;
+            XmNtopWidget = XmPushButton save_stab_pb;
+            };
+        callbacks
+            {
+            XmNactivateCallback = procedures
+                {
+                file_save_select_cb(5);
+                };
+            };
+        };
+!***VUIT_Manage false ***
+    file_save_select_dia: XmFileSelectionDialog 
+        {
+        arguments
+            {
+            XmNautoUnmanage = true;
+            XmNdefaultPosition = true;
+            };
+        callbacks
+            {
+            XmNokCallback = procedures
+                {
+                file_save_select_ok_cb(0);
+                file_save_select_cancel_cb(0);
+                };
+            XmNcancelCallback = procedures
+                {
+                file_save_select_cancel_cb(0);
+                };
+            };
+        };
+!***VUIT_Manage false ***
+    file_save_coord_options_form: XmFormDialog 
+        {
+        arguments
+            {
+            XmNborderWidth = 1;
+            XmNdialogTitle = compound_string("Coordinate File Save Options");
+            XmNbackground = rgb(65535,57230,51262);
+            };
+        controls
+            {
+            XmPushButton save_coord_close_pb;
+            XmForm file_save_coord_form2;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    file_save_coord_form2: XmForm 
+        {
+        arguments
+            {
+            XmNborderWidth = 1;
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNtopAttachment = XmATTACH_FORM;
+            XmNleftOffset = 20;
+            XmNtopOffset = 20;
+            XmNrightAttachment = XmATTACH_FORM;
+            XmNrightOffset = 20;
+            };
+        controls
+            {
+            XmRadioBox 
+                {
+                arguments
+                    {
+                    XmNborderWidth = 1;
+                    XmNisHomogeneous = false;
+                    XmNrightAttachment = XmATTACH_FORM;
+                    XmNleftAttachment = XmATTACH_FORM;
+                    };
+                controls
+                    {
+                    XmToggleButtonGadget save_coord_keep_extra_data;
+                    XmToggleButtonGadget save_coord_delete_extra_data;
+                    };
+                };
+            };
+        };
+    save_coord_keep_extra_data: XmToggleButtonGadget 
+        {
+        arguments
+            {
+            XmNx = 3;
+            XmNy = 4;
+            XmNlabelString = compound_string("Save ALL bus and line coordinates",separate=true) &
+                compound_string(" including busses not displayed on screen.");
+            XmNset = true;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    save_coord_delete_extra_data: XmToggleButtonGadget 
+        {
+        arguments
+            {
+            XmNx = 8;
+            XmNy = 22;
+            XmNlabelString = compound_string("Save bus and line data which is",separate=true) &
+                compound_string(" in BOTH, coordinate and base file.");
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    save_coord_close_pb: XmPushButton 
+        {
+        arguments
+            {
+            arguments close_pushbutton_list;
+            XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNtopOffset = 20;
+            XmNbottomAttachment = XmATTACH_FORM;
+            XmNleftWidget = XmForm file_save_coord_form2;
+            XmNrightAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopWidget = XmForm file_save_coord_form2;
+            XmNbottomOffset = 20;
+            XmNrightWidget = XmForm file_save_coord_form2;
+            };
+        callbacks
+            {
+            XmNactivateCallback = procedures
+                {
+                unmanage_save_coord_options(0);
+                };
+            };
+        };
+!***VUIT_Manage false ***
+    write_protected_file_msg: XmMessageDialog 
+        {
+        arguments
+            {
+            XmNborderWidth = 1;
+            XmNcancelLabelString = compound_string("OK");
+            XmNmessageString = compound_string("File is WRITE-PROTECTED",separate=true) &
+                compound_string("     No file saved.",separate=true) &
+                compound_string("Use different file name  or...",separate=true) &
+                compound_string("Remove file write protection.");
+            XmNdialogTitle = compound_string("Notice.....");
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    save_pti_label: XmLabelGadget 
+        {
+        arguments
+            {
+            arguments save_file_lbl;
+            XmNlabelString = compound_string("PTI File");
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNtopWidget = XmLabelGadget save_stab_label;
+            XmNbottomOffset = 15;
+            XmNsensitive = false;
+            };
+        };
+    save_pti_text: XmTextField 
+        {
+        arguments
+            {
+            arguments save_file_txt;
+            XmNtopWidget = XmLabelGadget save_pti_label;
+            XmNsensitive = false;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    save_pti_pb: XmPushButton 
+        {
+        arguments
+            {
+            arguments save_file_pb;
+            XmNtopWidget = XmTextField save_pti_text;
+            XmNleftWidget = XmTextField save_pti_text;
+            XmNsensitive = false;
+            };
+        };
+    file_pti_file_select_pb: XmPushButton 
+        {
+        arguments
+            {
+            arguments save_select_pb;
+            XmNleftWidget = XmPushButton save_pti_pb;
+            XmNtopWidget = XmTextField save_pti_text;
+            XmNsensitive = false;
+            };
+        };
+    save_pti_opts_pb: XmPushButton 
+        {
+        arguments
+            {
+            arguments save_opts_pb;
+            XmNtopWidget = XmTextField save_pti_text;
+            XmNleftWidget = XmPushButton file_pti_file_select_pb;
+            XmNsensitive = false;
+            };
+        };

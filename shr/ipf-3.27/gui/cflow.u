@@ -1,0 +1,202 @@
+ 
+ 
+procedure
+!***VUIT_Action Unmanage cflow_selection_dialog ***
+ 
+    close_cflow_dialog;
+ 
+list
+    cflow_dialog_bg: arguments
+        {
+        XmNbackground = color('azure2');
+        };
+ 
+object
+    cflow_file_selection_box: XmFileSelectionBox
+        {
+        arguments
+            {
+            XmNborderWidth = 0;
+            XmNdialogTitle = compound_string("CFLOW FILE SELECTION");
+            XmNautoUnmanage = true;
+            XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNbottomAttachment = XmATTACH_FORM;
+            XmNshadowThickness = 2;
+            XmNshadowType = XmSHADOW_ETCHED_IN;
+            XmNrightAttachment = XmATTACH_FORM;
+            XmNrightOffset = 20;
+            XmNheight = 464;
+            XmNtopOffset = 25;
+            XmNtopWidget = XmTextField cflow_wait_time_text;
+            XmNokLabelString = compound_string("Launch Cflow");
+            XmNbottomOffset = 20;
+            XmNleftWidget = XmTextField cflow_command_text;
+            };
+        callbacks
+            {
+            XmNhelpCallback = procedures
+                {
+                manage_not_implemented(0);
+                };
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            XmNcancelCallback = procedures
+                {
+                close_cflow_dialog(0);
+                };
+            XmNokCallback = procedures
+                {
+                cflow_launch_cb(0);
+                close_cflow_dialog(0);
+                };
+            };
+        };
+    cflow_wait_time_text: XmTextField
+        {
+        arguments
+            {
+            arguments text_list_3;
+            XmNleftAttachment = XmATTACH_WIDGET;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopWidget = XmLabel cflow_sel_label;
+            XmNleftOffset = 100;
+            XmNleftWidget = XmLabel cflow_sel_label;
+            XmNvalue = "30";
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    cflow_sel_label: XmLabel
+        {
+        arguments
+            {
+            arguments cflow_dialog_bg;
+            XmNlabelString = compound_string("Wait");
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNtopOffset = 20;
+            XmNrightAttachment = XmATTACH_POSITION;
+            XmNrightPosition = 10;
+            XmNtopWidget = XmTextField cflow_command_text;
+            };
+        };
+!***VUIT_Manage false ***
+    cflow_selection_dialog: XmFormDialog
+        {
+        arguments
+            {
+            arguments cflow_dialog_bg;
+            XmNborderWidth = 0;
+            XmNdialogTitle = compound_string("CFLOW SELECTION BOX");
+            XmNwidth = 700;
+            };
+        controls
+            {
+            XmFileSelectionBox cflow_file_selection_box;
+            XmLabel cflow_sel_label;
+            XmTextField cflow_wait_time_text;
+            XmLabel cflow_command_text_label;
+            XmTextField cflow_command_text;
+            XmLabel VUITaaaaa;
+            XmRadioBox
+                {
+                arguments
+                    {
+                    XmNwidth = 25;
+                    XmNheight = 25;
+                    XmNborderWidth = 1;
+                    XmNisHomogeneous = false;
+                    XmNleftAttachment = XmATTACH_POSITION;
+                    XmNleftOffset = 0;
+                    XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+                    XmNtopOffset = -10;
+                    XmNleftPosition = 40;
+                    XmNtopWidget = XmLabel VUITaaaaa;
+                    XmNorientation = XmHORIZONTAL;
+                    };
+                controls
+                    {
+                    XmToggleButtonGadget cflow_window_tb;
+                    XmToggleButtonGadget cflow_background_tb;
+                    };
+                };
+            };
+        };
+    cflow_command_text_label: XmLabel
+        {
+        arguments
+            {
+            arguments cflow_dialog_bg;
+            XmNlabelString = compound_string("CFLOW Program Arguments");
+            XmNleftAttachment = XmATTACH_FORM;
+            XmNtopAttachment = XmATTACH_FORM;
+            XmNleftOffset = 20;
+            XmNtopOffset = 15;
+            };
+        };
+    cflow_command_text: XmTextField
+        {
+        arguments
+            {
+            arguments text_no_length;
+            XmNheight = 350;
+            XmNcolumns = 80;
+            XmNleftAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopAttachment = XmATTACH_WIDGET;
+            XmNtopWidget = XmLabel cflow_command_text_label;
+            XmNleftWidget = XmLabel cflow_command_text_label;
+            XmNtopOffset = 100;
+            XmNrightAttachment = XmATTACH_FORM;
+            XmNrightOffset = 200;
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };
+    VUITaaaaa: XmLabel
+        {
+        arguments
+            {
+            arguments cflow_dialog_bg;
+            XmNlabelString = compound_string("Seconds");
+            XmNleftAttachment = XmATTACH_WIDGET;
+            XmNleftOffset = 1;
+            XmNtopAttachment = XmATTACH_OPPOSITE_WIDGET;
+            XmNtopOffset = 1;
+            XmNleftWidget = XmTextField cflow_wait_time_text;
+            XmNtopWidget = XmTextField cflow_wait_time_text;
+            };
+        };
+    cflow_window_tb: XmToggleButtonGadget
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Window");
+            XmNset = true;
+            };
+        };
+    cflow_background_tb: XmToggleButtonGadget
+        {
+        arguments
+            {
+            XmNlabelString = compound_string("Background");
+            };
+        callbacks
+            {
+            MrmNcreateCallback = procedures
+                {
+                register_name(0);
+                };
+            };
+        };

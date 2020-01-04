@@ -1,0 +1,197 @@
+PROCEDURE FOR SETTING UP AND USING A GENERIC RAS DIALUP WITH LINUX:
+--------------------------------------------------------------
+(Important Note:  You must first have an INTERNET SERVICE PROVIDER(ISP) or 
+other RAS dialup account set up for DIALUP RAS to work).
+
+Bootup your PC in Linux (These procedures were developed to work with a system
+running Redhat Linux 6.2 with "Everything" installed).
+
+Login as root.  Run "startx" to get the Gnome Desktop.
+
+Click the "Footprint", and go up to "Internet, Dial-Up Configuration Tool"
+OR
+Open a terminal window and type "rp3 &"
+
+A window called "Create New Internet Connection" will come up.
+
+Click "Next"
+
+The first time you do this, a window for "finding your modem" will come up.
+Follow the commands, letting the program find your modem.
+(If Linux does not find your modem, it is probably a WinModem and is useless
+with Linux.  You will have to buy a real modem.)
+
+Click "Next"
+
+A window called "Phone number and name" will come up. There will be a block for
+the name, and three blocks for numbers.  In the first number block, put 1 or 9,1.
+In the second block, put area code 541; and in the third block put 123-4567.
+
+Set up the dialup account, "DIAL-RAS1" with 1 541 123-4567 or "DIAL-RAS9 with
+"9,1 541 123-4567.
+
+Click "Next"
+
+Enter your normal ISP LAN user login ID and Password.
+
+Click "Next"
+
+A window called "Other Options" will come up.  Select "Normal ISP"
+
+Click "Next"
+Click "Finish"
+
+Click the "Debug" button to connect.
+
+You can watch the dialup progress in the dialup window that opens. You will note
+that the information in the dialup window gives you the temporary IP address you
+have been assigned for this session.  The "connection status" may continue to say
+"Not connected" even though you really are connected -- you can ignore it".
+
+Here is what you will see:
+
+-------------------------------------------------------------
+
+WvDial: Internet dialer version 1.41
+Initializing modem.
+Sending: ATZ
+ATZ OK
+Sending: ATQ0 V1 E1 S0=0 &C1 &D2 S11=55 +FCLASS=0
+ATQ0 V1 E1 S0=0 &C1 &D2 S11=55 +FCLASS=0 OK
+Modem initialized.
+Sending: ATDT 9,1,877258-4267
+Waiting for carrier.
+ATDT 9,1,541123-4567 CONNECT 48000/ARQ/V90/LAPM/V42BIS
+Carrier detected.  Waiting for prompt.
+
+
+User Access Verification
+
+Username: Looks like a login prompt.
+Sending: rxb1234
+rxb1234
+Password: Looks like a password prompt.
+Sending: (password)
+
+
+Port5301>Hmm... a prompt.  Sending "ppp".
+ppp
+Entering PPP mode.
+Async interface address is unnumbered (Ethernet0)
+Your IP address is 46.239.22.197. MTU is 1500 bytes
+Header compression will match your system.
+
+Looks like a welcome message.
+Starting pppd at Tue Oct 24 10:14:55 2000
+
+-------------------------------------------------------------
+
+Once it is connected, click the Netscape Button at the bottom of your screen.
+
+When it comes up, direct it to http://www.bpa.gov/
+
+If this is successfull, you are now on the External BPA Web Page, and
+connected to the your ISP LAN.
+
+If this is NOT successful, see the section below on setting proxies in
+Netscape Navigator, and setting Domain Name Servers (DNS).
+
+-------------------------------------------------------------
+
+You can now direct Netscape to ftp://ftp.bpa.gov/outgoing/ to get to
+the BPA FTP Site, and you can use Shift-Click to download files.
+(Netscape will automatically determine whether to use ASCII or Binary.)
+
+Telnet Session with a RemoteHost:
+Click on the Monitor Icon at the bottom of your screen to start a terminal session.
+Type: "telnet RemoteHost"
+Follow the login procedure with your userid and password.
+When you are done, type "LO" or "lo" to logout of RemoteHost.
+Type "exit" to close the terminal session.
+
+FTP Session with a RemoteHost:
+Click on the Monitor Icon at the bottom of your screen to start a terminal session.
+Use "cd" to change to your local directory where you want your files to be stored.
+Type: "ftp RemoteHost"
+Follow the login procedure with your userid and password.
+Type "ascii" or "binary" to instruct ftp what type of file you want to transfer.
+Type "get" followed by the name of the file you want, e.g. "get xgui.dat".
+Watch the  file transfer progress.
+Use "put" in the same way, to transfer files from your PC to the RemoteHost.
+When you are done, type "close" and "quit" OR type "bye", to close the session and quit ftp.
+Type "exit" to close the terminal session.
+
+When you are done:
+Click the "CLOSE" button in the Dialup Progress Window, to hang up the phone connection.
+-------------------------------------------------------------
+
+Dialup-RAS Access with MOTIF/ "ipf327user" on Linux:
+
+Once you have set up and tested the RAS Dialup above, as "root", you can then log in 
+to "ipf327user" running the Motif Window Manager, and use dial-up there.
+
+Open a terminal window, and type "rp3 &".  This will run the Internet Dialer, and will give
+you choices for the various accounts you have set up, as described above.  It
+has been added to the standard Fpanel Popup menu; you can do the same by
+opening a terminal window,  log in as "su", and use an editor to edit the files
+".fpanelrc" and "dot327.fpa".  
+
+-------------------------------------------------------------
+
+SETTING PROXIES FOR NETSCAPE NAVIGATOR TO WORK FROM AN INTERNAL LAN THROUGH A
+FIREWALL:
+
+For a First-Time setup of Linux RAS-Dialup on a computer that has never connected to
+the LAN at the office via LAN Cable, you will need to do the following:
+
+Run Netscape Navitgator in Linux:
+Select: Edit, Preferences, 
+        click on the arrow next to "Advanced", 
+        click on "proxies".
+
+Click the Button next to "Manual Proxy Configuration"
+Click on "View".
+
+In the First Four (4) sets of boxes, put in the following numbers
+corresponding to the IP address of your Proxy Server (firewall):
+
+ftp:     164.760.8.30   port 80
+gopher:  164.760.8.30   port 80
+http:    164.760.8.30   port 80
+Secure:  164.760.8.30   port 80
+
+
+In the box that says, "No Proxy For:" , type or 'copy and paste' the any names
+or IP addresses for internal hosts:
+
+;*wins.yours.com;www.yours.com;rbl;106.237.98.532;www.nwoasis.org:8080;www.nwoasis.org:8488
+
+-----------
+RAS ACCESS TCP/IP SETTINGS:
+
+DNS Servers:
+
+67.180.254.3
+
+67.16.12.354
+
+67.160.12.127
+
+
+PROXY Server:
+
+164.760.8.30  firewall.yours.com
+
+
+NETWORK INTERNET MAIL Server:
+
+SMTP:  smtpserver.yours.com  67.135.12.439
+
+
+-----------
+John Schaad
+Ver. 1.02
+12-07-2000
+
+
+

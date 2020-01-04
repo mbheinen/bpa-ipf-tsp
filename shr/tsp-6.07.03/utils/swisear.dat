@@ -1,0 +1,28 @@
+!                        SWISEAR.DAT
+!  -  set of directories for i/o files for BPA stab program
+!  -  search for input files
+SRP  DFLT:
+SRP  SYS$LOGIN:
+SRP  WSCC:
+SWI  DFLT:
+SWI  SYS$LOGIN:
+SWI  WSCC:
+SDI  DFLT:
+SDI  SYS$LOGIN:
+SDI  DISK1:[SOL]
+BSE  DFLT:
+BSE  SYS$LOGIN:
+BSE  WSCCEOFC_DIR:
+BSE  WSCCBASE_DIR:
+BSE  DISK11:[BSE1]
+POST  DFLT:
+POST  SYS$LOGIN:
+POST  SWG_EXE_V:
+!  -  default for output files
+SOL  SWG_OUT:
+OUT  SWG_OUT:
+PDF  PLOT_OUT:
+PLT  PLOT_OUT:
+SDO  DISK1:[SOL]
+AUX  SWG_OUT:
+FCH  F_OUTPUT:

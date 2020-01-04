@@ -1,0 +1,145 @@
+# Makefile is for IPF updates
+#
+
+DATESTAMP = 1-Feb-2001
+IPFDIR = /shr/ipf-3.27
+READMEDIR = $(IPFDIR)/$(DATESTAMP)
+
+all:
+	pwd
+	echo "Creating backup copies of all updated files"
+	cp $(IPFDIR)/ipf/cgetuser.c $(IPFDIR)/ipf/cgetuser.c.0
+	cp $(IPFDIR)/ipf/comdrp.f $(IPFDIR)/ipf/comdrp.f.0
+	cp $(IPFDIR)/ipf/gendrp.inc $(IPFDIR)/ipf/gendrp.inc.0
+	cp $(IPFDIR)/ipf/getdrp.f $(IPFDIR)/ipf/getdrp.f.0
+	cp $(IPFDIR)/ipf/p_gtdata.f $(IPFDIR)/ipf/p_gtdata.f.0
+	cp $(IPFDIR)/ipf/srv_fcmdprs.f $(IPFDIR)/ipf/srv_fcmdprs.f.0
+	cp $(IPFDIR)/ipf/cmde2_head.f $(IPFDIR)/ipf/cmde2_head.f.0
+	cp $(IPFDIR)/ipf/cmde2_out.f $(IPFDIR)/ipf/cmde2_out.f.0
+	cp $(IPFDIR)/ipf/cmde2_sum.f $(IPFDIR)/ipf/cmde2_sum.f.0
+	cp $(IPFDIR)/ipf/p_cmde2.f $(IPFDIR)/ipf/p_cmde2.f.0
+	cp $(IPFDIR)/ipf/lis_cmde2.f $(IPFDIR)/ipf/lis_cmde2.f.0
+	cp $(IPFDIR)/ipf/cmde2_txt.f $(IPFDIR)/ipf/cmde2_txt.f.0
+	cp $(IPFDIR)/ipf/cmde2_inp.f $(IPFDIR)/ipf/cmde2_inp.f.0
+	cp $(IPFDIR)/ipf/cmde2_proc.f $(IPFDIR)/ipf/cmde2_proc.f.0
+	cp $(IPFDIR)/ipf/sfctr.f $(IPFDIR)/ipf/sfctr.f.0
+	cp $(IPFDIR)/ipf/fstout.f $(IPFDIR)/ipf/fstout.f.0
+	cp $(IPFDIR)/ipf/ldpti2dc.f $(IPFDIR)/ipf/ldpti2dc.f.0
+	cp $(IPFDIR)/ipf/ldptiare.f $(IPFDIR)/ipf/ldptiare.f.0
+	cp $(IPFDIR)/ipf/ldptibrn.f $(IPFDIR)/ipf/ldptibrn.f.0
+	cp $(IPFDIR)/ipf/ldptibus.f $(IPFDIR)/ipf/ldptibus.f.0
+	cp $(IPFDIR)/ipf/ldptigen.f $(IPFDIR)/ipf/ldptigen.f.0
+	cp $(IPFDIR)/ipf/ldptiint.f $(IPFDIR)/ipf/ldptiint.f.0
+	cp $(IPFDIR)/ipf/ldptild.f $(IPFDIR)/ipf/ldptild.f.0
+	cp $(IPFDIR)/ipf/ldptiltc.f $(IPFDIR)/ipf/ldptiltc.f.0
+	cp $(IPFDIR)/ipf/ldptimdc.f $(IPFDIR)/ipf/ldptimdc.f.0
+	cp $(IPFDIR)/ipf/ldptiown.f $(IPFDIR)/ipf/ldptiown.f.0
+	cp $(IPFDIR)/ipf/ldptisec.f $(IPFDIR)/ipf/ldptisec.f.0
+	cp $(IPFDIR)/ipf/ldptixdt.f $(IPFDIR)/ipf/ldptixdt.f.0
+	cp $(IPFDIR)/ipf/ldptizon.f $(IPFDIR)/ipf/ldptizon.f.0
+	cp $(IPFDIR)/ipf/ptiscan.f $(IPFDIR)/ipf/ptiscan.f.0
+	cp $(IPFDIR)/ipf/baseinit.f $(IPFDIR)/ipf/baseinit.f.0
+	cp $(IPFDIR)/ipf/buildzbo.f $(IPFDIR)/ipf/buildzbo.f.0
+	cp $(IPFDIR)/ipf/bldzone.f $(IPFDIR)/ipf/bldzone.f.0
+	cp $(IPFDIR)/ipf/rebldzon.f $(IPFDIR)/ipf/rebldzon.f.0
+	cp $(IPFDIR)/ipf/isolton.f $(IPFDIR)/ipf/isolton.f.0
+	cp $(IPFDIR)/ipf/ldptitrn.f $(IPFDIR)/ipf/ldptitrn.f.0
+	cp $(IPFDIR)/ipf/list_pfd.f $(IPFDIR)/ipf/list_pfd.f.0
+	cp $(IPFDIR)/ipf/sen_jac3.f $(IPFDIR)/ipf/sen_jac3.f.0
+	cp $(IPFDIR)/ipf/cmde2_ovld.f $(IPFDIR)/ipf/cmde2_ovld.f.0
+	cp $(IPFDIR)/ipf/p_gtbase.f $(IPFDIR)/ipf/p_gtbase.f.0
+	cp $(IPFDIR)/ipf/build_libipf.bash $(IPFDIR)/ipf/build_libipf.bash.0
+	cp $(IPFDIR)/ipc/build_libipc.bash $(IPFDIR)/ipc/build_libipc.bash.0
+	cp $(IPFDIR)/exe/bpf.make $(IPFDIR)/exe/bpf.make.0
+	cp $(IPFDIR)/exe/cutting.make $(IPFDIR)/exe/cutting.make.0
+	cp $(IPFDIR)/exe/gui.make $(IPFDIR)/exe/gui.make.0
+	cp $(IPFDIR)/exe/ipfbat.make $(IPFDIR)/exe/ipfbat.make.0
+	cp $(IPFDIR)/exe/ipf_reports.make $(IPFDIR)/exe/ipf_reports.make.0
+	cp $(IPFDIR)/exe/ipfplot.make $(IPFDIR)/exe/ipfplot.make.0
+	cp $(IPFDIR)/exe/ipfsrv.make $(IPFDIR)/exe/ipfsrv.make.0
+	cp $(IPFDIR)/exe/netdat.make $(IPFDIR)/exe/netdat.make.0
+	cp $(IPFDIR)/exe/puf.make $(IPFDIR)/exe/puf.make.0
+	cp $(IPFDIR)/cflow/findout.make $(IPFDIR)/cflow/findout.make.0
+	cp $(IPFDIR)/cflow/findout.c $(IPFDIR)/cflow/findout.c.0
+	cp $(IPFDIR)/cflow/mimic.make $(IPFDIR)/cflow/mimic.make.0
+	cp $(IPFDIR)/cflow/post_pvcurve.make $(IPFDIR)/cflow/post_pvcurve.make.0
+	cp $(IPFDIR)/cflow/pvcurve.make $(IPFDIR)/cflow/pvcurve.make.0
+	cp $(IPFDIR)/cflow/qvcurve.make $(IPFDIR)/cflow/qvcurve.make.0
+	cp $(IPFDIR)/Makefile $(IPFDIR)/Makefile.0
+	echo "Updating files"
+	cp cgetuser.c $(IPFDIR)/ipf
+	cp comdrp.f $(IPFDIR)/ipf
+	cp gendrp.inc $(IPFDIR)/ipf
+	cp getdrp.f $(IPFDIR)/ipf
+	cp p_gtdata.f $(IPFDIR)/ipf
+	cp srv_fcmdprs.f $(IPFDIR)/ipf
+	cp cmde2_head.f $(IPFDIR)/ipf
+	cp cmde2_out.f $(IPFDIR)/ipf
+	cp cmde2_sum.f $(IPFDIR)/ipf
+	cp lis_cmde2.f $(IPFDIR)/ipf
+	cp p_cmde2.f $(IPFDIR)/ipf
+	cp cmde2_inp.f $(IPFDIR)/ipf
+	cp cmde2_txt.f $(IPFDIR)/ipf
+	cp sfctr.f $(IPFDIR)/ipf
+	cp fstout.f $(IPFDIR)/ipf
+	cp cmde2_proc.f $(IPFDIR)/ipf
+	cp ldpti2dc.f $(IPFDIR)/ipf
+	cp ldptiare.f $(IPFDIR)/ipf
+	cp ldptibrn.f $(IPFDIR)/ipf
+	cp ldptibus.f $(IPFDIR)/ipf
+	cp ldptigen.f $(IPFDIR)/ipf
+	cp ldptiint.f $(IPFDIR)/ipf
+	cp ldptild.f $(IPFDIR)/ipf
+	cp ldptiltc.f $(IPFDIR)/ipf
+	cp ldptimdc.f $(IPFDIR)/ipf
+	cp ldptiown.f $(IPFDIR)/ipf
+	cp ldptisec.f $(IPFDIR)/ipf
+	cp ldptixdt.f $(IPFDIR)/ipf
+	cp ldptizon.f $(IPFDIR)/ipf
+	cp ptiscan.f $(IPFDIR)/ipf
+	cp baseinit.f $(IPFDIR)/ipf
+	cp bldzone.f $(IPFDIR)/ipf
+	cp buildzbo.f $(IPFDIR)/ipf
+	cp rebldzon.f $(IPFDIR)/ipf
+	cp isolton.f $(IPFDIR)/ipf
+	cp ldptitrn.f $(IPFDIR)/ipf
+	cp list_pfd.f $(IPFDIR)/ipf
+	cp puf.f $(IPFDIR)/ipf
+	cp ldoosfile.f $(IPFDIR)/ipf
+	cp sen_jac3.f $(IPFDIR)/ipf
+	cp cmde2_ovld.f $(IPFDIR)/ipf
+	cp p_gtbase.f $(IPFDIR)/ipf
+	cp post_pvcurve.c $(IPFDIR)/cflow
+	cp post_pvcurve.make $(IPFDIR)/cflow
+	cp Makefile.ipf $(IPFDIR)/Makefile
+	cp puf.make $(IPFDIR)/exe
+	cp build_libipf.bash $(IPFDIR)/ipf/build_libipf.bash
+	cp build_libipc.bash $(IPFDIR)/ipc/build_libipc.bash
+	cp bpf.make $(IPFDIR)/exe/bpf.make
+	cp cutting.make $(IPFDIR)/exe/cutting.make
+	cp gui.make $(IPFDIR)/exe/gui.make
+	cp ipfbat.make $(IPFDIR)/exe/ipfbat.make
+	cp ipf_reports.make $(IPFDIR)/exe/ipf_reports.make
+	cp ipfplot.make $(IPFDIR)/exe/ipfplot.make
+	cp ipfsrv.make $(IPFDIR)/exe/ipfsrv.make
+	cp netdat.make $(IPFDIR)/exe/netdat.make
+	cp puf.make $(IPFDIR)/exe/puf.make
+	cp findout.make $(IPFDIR)/cflow/findout.make
+	cp findout.c $(IPFDIR)/cflow/findout.c
+	cp mimic.make $(IPFDIR)/cflow/mimic.make
+	cp post_pvcurve.make $(IPFDIR)/cflow/post_pvcurve.make
+	cp pvcurve.make $(IPFDIR)/cflow/pvcurve.make
+	cp qvcurve.make $(IPFDIR)/cflow/qvcurve.make
+	echo "Copying some nifty utilities to /usr/bin"
+	cp tkdiff /usr/bin
+	cp dos-linux.bash /usr/bin
+	cp launch_pf.bash /usr/bin
+	chmod a+x /usr/bin/tkdiff
+	chmod a+x /usr/bin/dos-linux.bash
+	chmod a+x /usr/bin/launch_pf.bash
+	echo "Creating $(READMEDIR) directory"
+	if ! [ -e $(READMEDIR) ]; then mkdir $(READMEDIR); fi
+	cp README $(READMEDIR)
+	echo "All $(UPDATE) files installed. Full rebuild is in progress"
+	cd $(IPFDIR); make clean; make
+

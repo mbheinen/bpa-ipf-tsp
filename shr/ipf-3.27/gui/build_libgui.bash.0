@@ -1,0 +1,18 @@
+#!/bin/bash
+#
+# This procedure builds object libraries
+#
+
+cfile=`ls *.c`
+for file in ${cfile}
+do
+  ofile=${file%.*}.o
+  if ! [ -e ${ofile} ] || [ ${file} -nt ${ofile} ]; then 
+    echo "Compiling file ${file}" 
+    gcc -c -g -DUNDERSCORE -I/usr/include/sys/include ${file} 
+  fi
+done
+echo "Creating libgui.a"
+rm -f libgui.a
+ar -cr libgui.a *.o
+ls -al libgui.a
