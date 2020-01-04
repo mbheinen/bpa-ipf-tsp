@@ -1,5 +1,5 @@
 # Interactive Power Flow & Transient Stability Program
-This is a fork of the Bonneville Power Administration's Interactive Power Flow and Transient Stability Programs. Both of these are public domain and were originally obtained from http://ft.bpa.gov (which no longer seems to be available). My hope is to get this codebase to a point where it can be compiled and run in hopes to use it for benchmarking future projects related to power flow or transient stability analysis. 
+This is a fork of the Bonneville Power Administration's Interactive Power Flow and Transient Stability Programs. Both of these are public domain and were originally obtained from ftp://ftp.bpa.gov (which no longer seems to be available). My hope is to get this codebase to a point where it can be compiled and run in hopes to use it for benchmarking future projects related to power flow or transient stability analysis. 
 
 Much of the content in this README was taken from PDFs in the original codebase and therefore contain very dated content (e.g. setup of Red Hat 6.2 from a CD). Eventually, this will be cleaned up but for now has been copied for completeness of the initial import of the original codebase.
 
@@ -32,20 +32,18 @@ Additional Program Installation Guidelines (Install after you set up Redhat Linu
 8. The upgrade from ghostscript-5.xx to ghostscript-6.50 installs the ghostscript executables in a different location, and as a result the Redhat 6.2 PrinterTool cannot find them.  When you try to use PrinterTool to set up a printer, there is an error message stating that "Ghostscript does not appear to be installed on this system".  The easiest way to fix this is to copy all the ghostscript6.50 executables from the new install location, "/usr/local/bin" to "/usr/bin".  Login as "root" or "su", and change to the new ghostscript location by typing:  "cd /usr/local/bin".  Then type "cp ./* /usr/bin".  Now, you will find that PrinterTool can set up your printer.
 9. PrinterTool:  If you delete a printer you had already set up, PrinterTool will remind you to remember to remove the old spool directory, "/var/spool/lpd/lp". Do this by typing, " rm -fR /var/spool/lpd/lp".
 
-C.  Add Items to Motif FrontPanel "Pop-Up" Menus
+## Add Items to Motif FrontPanel "Pop-Up" Menus
 1.  With an editor of your choice, edit the file ".fpanelrc" in the /home/ipf327user subdirectory. Examine the structure of the existing menu items.  Add menu items and save the file.
 You can add a menu item for Adobe Acrobat by adding the line:           "Adobe Acrobat 405"     f.exec "acroread"
 You can add a menu item for X-Windows Calculator by adding the line:           "X-Calculator"                f.exec "xcalc"
 D.  Enliven the "ipf327user" Desktop with Snow
 1. Being logged in as "root", "cd" to the directory /ipf-disks/howto"
 2. Type "cp  ./x*  /usr/bin
-3.  The next time you login as "ipf327user", you will notice the difference.     (you copied two additional programs to /usr/bin that were not part of the
+3.  The next time you login as "ipf327user", you will notice the difference.     (you copied two additional programs to /usr/bin that were not part of the default Redhat 6.2 Installation, and one of them is programmed to start when you login as "ipf327user", per the login resource file .xinitrc) The programs are:  "xsnow" and "xearth". Open a terminal window and type "xearth &" to see the other program.
 
-      default Redhat 6.2 Installation, and one of them is programmed to start      when you login as "ipf327user", per the login resource file .xinitrc)      The programs are:  "xsnow" and "xearth"
-      Open a terminal window and type "xearth &" to see the other program.
------------------------------------------------------------------------------------------------------
-Setup PC with Redhat Linux 6.2 for Interactive Powerflow Program (IPF)
-A.  Install Redhat Linux 6.2 for Single-boot or Multi-boot system.
+
+# Setup PC with Redhat Linux 6.2 for Interactive Powerflow Program (IPF)
+## Install Redhat Linux 6.2 for Single-boot or Multi-boot system.
 1.  Have available and installed in your PC, an additional hard drive for Linux, or have an existing hard drive re-partitioned with at least 2.1-gigabytes of space available for Linux and IPF.
 2.  If your PC has an existing bootable internal IDE or SCSI CD-ROM, boot up the PC with the bootable Redhat 6.2 install CD.  If the CD-ROM device is not bootable, use the Redhat 6.2 bootable install floppy.  If your PC is a laptop or notebook without an internal CD-ROM, and your CD-ROM is an external PCMCIA device with a Linux-supported PCMCIA interface card, boot up with a floppy disk created with the "pcmcia.img" Linux boot image (this disk can be created on a DOS/Windows PC using instructions located in the "dosutils" subdirectory on the Redhat 6.2 CD).
 3.  At the initial Redhat install screen, choose "text" for the install mode, and type "text" at the command line prompt.
@@ -73,26 +71,27 @@ A.  Install Redhat Linux 6.2 for Single-boot or Multi-boot system.
 25. When X-configurator runs the test and asks if you can see the display, and then asks if you want to use a Graphical Login, answer "No" to the Graphical Login.  Later, you will manually set up user accounts for IPF users based on the Motif Window Manager, and if your default is the Gnome Desktop/Enlightenment Window Manager, you will not be able to create the Motif accounts.
 26. Complete:  Remove the backup boot floppy, and select OK to reboot the system.
 
-B.  Install Redhat Linux 6.2 Update CD (Optional): 1.  Redhat makes available an Update CD-ROM on a monthly basis, containing the latest versions of applications and kernels for the particular distributions (5.2, 6.2, and 7.x).  Obtain and Update CD, and install it.
+##  Install Redhat Linux 6.2 Update CD (Optional)
+1.  Redhat makes available an Update CD-ROM on a monthly basis, containing the latest versions of applications and kernels for the particular distributions (5.2, 6.2, and 7.x).  Obtain and Update CD, and install it.
 2.  Application Update:   Login as "root", do NOT run "startx". Insert the Update CD, and type:  "mount -t iso9660 /dev/cdrom /mnt/cdrom"
 3.  Type "cd /mnt/cdrom" to change to the CD-ROM.
 4.  Type "./install-updates" and follow the prompts, to update all the applications.  This process can take as long as 1-hour.  When that is done, you can update the kernel to the latest one on the Update CD following the procedure described later.
 5.  When it is done, type "cd /" and then type "umount /dev/cdrom".  Now you can remove the CD, unless you plan to update the kernel next.  You might get a "device busy" message.  If so, leave it alone, and shutdown anyway.
 6. When your are done, shutdown and reboot, by typing "shutdown -r now".
-7.   Kernel Update:   First, login as “root” and make a note of the version number and type of kernel you are presently running, for example, “Kernel 2.2.14-5.0 on an i686”.  Assuming you are running 6.2, type "cd /mnt/cdrom/6.2" to change to the 6.2 area on the CD-ROM.
-8. Type “ls kernel*.rpm” to get a list of the kernel RPM packages.  Update the RPM’s that apply to your situation.  For example, If you are running 6.2 on a laptop that has an i686 processor, at the minimum, you would upgrade two kernel RPM’s.  Type:
-“rpm  -U  kernel-2.2.17-14.i686.rpm”   and when that is complete, type: “rpm  -U  kernel-pcmcia-cs-2.2.17-14.i386.rpm”
-9. When that is complete, you will need to update both your “boot-up” LILO installation, and any boot floppies you are using.  Edit the file “/etc/lilo.conf”, and modify the Kernel identification to correspond to the new kernel, as installed in the “/boot” subdirectory.  Save the lilo.conf file, and install it by typing “lilo”.
-10.   Shutdown and reboot.  When you login, you should note the message indicating that the new kernel is operational.   Now, use the command, “mkbootdisk” to update your backup boot floppies.  For example, type “mkbootdisk –device  /dev/fd0  –v  2.2.17-14” and insert your existing boot floppy, or a blank disk for a new boot floppy.
-C.  Install Redhat Linux 6.2 Documentation Set (Optional):
-06/03/01
-6
+7.   Kernel Update:   First, login as "root" and make a note of the version number and type of kernel you are presently running, for example, "Kernel 2.2.14-5.0 on an i686".  Assuming you are running 6.2, type "cd /mnt/cdrom/6.2" to change to the 6.2 area on the CD-ROM.
+8. Type "ls kernel*.rpm" to get a list of the kernel RPM packages.  Update the RPMs that apply to your situation.  For example, If you are running 6.2 on a laptop that has an i686 processor, at the minimum, you would upgrade two kernel RPMs.  Type:
+"rpm  -U  kernel-2.2.17-14.i686.rpm"   and when that is complete, type: "rpm  -U  kernel-pcmcia-cs-2.2.17-14.i386.rpm"
+9. When that is complete, you will need to update both your "boot-up" LILO installation, and any boot floppies you are using.  Edit the file "/etc/lilo.conf", and modify the Kernel identification to correspond to the new kernel, as installed in the "/boot" subdirectory.  Save the lilo.conf file, and install it by typing "lilo".
+10.   Shutdown and reboot.  When you login, you should note the message indicating that the new kernel is operational.   Now, use the command, "mkbootdisk" to update your backup boot floppies.  For example, type "mkbootdisk -device  /dev/fd0  -v  2.2.17-14" and insert your existing boot floppy, or a blank disk for a new boot floppy.
+
+## Install Redhat Linux 6.2 Documentation Set (Optional):
 1.  Login as "root", and type "startx" to open the Gnome Desktop
 2.  Insert the CD in the drive, and allow Gnome to mount the CD
 3.  Select "system, gnorpm" and select "Install".
-4.  When the list of RPM packages comes up, select the ones you want to install by package name, but do not select the corresponding package name ending with (s).  Click the “Install” icon.
-5.  When installation is complete, close the Install Window, the GnomeRPM Window, and FileManagerWindow , and the  “/mnt/cdrom” Window.  Type:  "umount /dev/cdrom".  Now you can remove the CD.
-D.  Install Metrolink Motif Complete! Motif Window Manager and X-Windows Development Kit (XDK):
+4.  When the list of RPM packages comes up, select the ones you want to install by package name, but do not select the corresponding package name ending with (s).  Click the Â“InstallÂ” icon.
+5.  When installation is complete, close the Install Window, the GnomeRPM Window, and FileManagerWindow , and the  "/mnt/cdrom" Window.  Type:  "umount /dev/cdrom".  Now you can remove the CD.
+
+##  Install Metrolink Motif Complete! Motif Window Manager and X-Windows Development Kit (XDK):
 1.  Logon as root, and then run "startx" to start the X-Windows environment and Gnome desktop.
 2. Insert the MetroLink Motif Complete! CD.  The Gnome desktop will automatically mount the CD, in most cases.  If so, you can skip to Step-5.
 3.  Open a terminal window, Xterm, and type "cd  /"
@@ -111,7 +110,8 @@ D.  Install Metrolink Motif Complete! Motif Window Manager and X-Windows Develop
 17.  In the next window, select "RPM" package format, and click "next".
 18.  In the next window, click "next" to proceed with installation.
 19.  When it is all done with the installation, type "cd  /" to get back off the CD to your hard drive, and then unmount the CD by typing, "umount  /dev/cdrom", and then remove the CD.
-E.  Create New "ipf327user" Login Account Specifically for Running IPF-3.27:
+
+##  Create New "ipf327user" Login Account Specifically for Running IPF-3.27
 1.  Login as "root" and type "startx" to run the Gnome Desktop.
 2.  Select KDEmenus,System,UserManager.
 3.  Select Add, and type "ipf327user" in the space provided, then click "OK".
@@ -120,40 +120,35 @@ E.  Create New "ipf327user" Login Account Specifically for Running IPF-3.27:
 6.  Click "Set Password" and put in a password of your choice [be sure to write it down]
 7.  Click "OK","OK", File, Save, Exit.
 8.  This creates the "/home/ipf327user" account and subdirectory Template, which will     be filled in with the required Motif setup files, etc. by the following "Step-F".
-F.  INSTALL IPF-3.27.18 SOURCE CODE AND COMPILE:
+
+## INSTALL IPF-3.27.18 SOURCE CODE AND COMPILE
 1.  Login as "root" and type "startx" to run the Gnome Desktop.
-2.  Insert the CD with the Program Source Code ".tar.gz package" (either or both of the following files, or files with similar names:
-06/03/01
-8
-ipf-3.27.18generic_customer.tar.gz ipf-3.27.18generic_export.tar.gz
+2.  Insert the CD with the Program Source Code ".tar.gz package" (either or both of the following files, or files with similar names: ipf-3.27.18generic_customer.tar.gz ipf-3.27.18generic_export.tar.gz
 3.  Copy either of these files to the top directory "/".
 4.  Unzip and untar it by typing: "gunzip <filename.tar.gz> <cr> " tar -xvf <filename.tar><cr>
 5.  This will install the proper MOTIF "ipf327user" setup files in /home/ipf327user, and will install all the required program and related files and subdirectories in the IPFStandard directory structure [This is for a fresh, first-time install].
 6.  Change to the /root subdirectory, and replace the existing .bash_profile with the proper version that is updated with required "path"information for IPF-3.27.17 and later versions. Do this by typing "cd /root" and then type "cp ./bash_profile .bash_profile_original"' (This makes a backup of your original .bash_profile).
-Now, replace it with the new one, included as "sample.bash_profile"  or “sample.bash_profile_RH62” for a Redhat 6.x installation, or “sample.bash_profile_RH71” for a Redhat 7.x installation.
+Now, replace it with the new one, included as "sample.bash_profile"  or "sample.bash_profile_RH62" for a Redhat 6.x installation, or "sample.bash_profile_RH71" for a Redhat 7.x installation.
 Type:  cp /updatedisks/sample.bash_profile   /boot and then:   cp /updatedisks/sample.bash_profile  /boot/.bash_profile
 Type:  cp /updatedisks/sample.bash_profile_RH62   /boot and then:   cp /updatedisks/sample.bash_profile_RH62   /boot/.bash_profile
 OR
 Type:  cp /updatedisks/sample.bash_profile_RH71   /boot and then:   cp /updatedisks/sample.bash_profile_RH71   /boot/.bash_profile
-Copy the same corresponding special “sample.bash_profile” to replace the file “.bash_profile” residing in  “/home/ipf327user” and any other user account (either Motif or Gnome-based) that is used to run the IPF program.
-06/03/01
-9
-7.  Logout of the Gnome Desktop, and type “exit” to logoff completely as “root”.  Now, log back in as “root”.  This will activate the new path information installed by update provided by the copy of “sample.bash_profile”.  If you do not do this, you will not be able to compile IPF.
+Copy the same corresponding special "sample.bash_profile" to replace the file ".bash_profile" residing in  "/home/ipf327user" and any other user account (either Motif or Gnome-based) that is used to run the IPF program.
+7.  Logout of the Gnome Desktop, and type "exit" to logoff completely as "root".  Now, log back in as "root".  This will activate the new path information installed by update provided by the copy of "sample.bash_profile".  If you do not do this, you will not be able to compile IPF.
 8.  Change to the /ipfupdates directory by typing "cd /ipfupdates, and then change to the most recent update subdirectory, /1-April-2001 by typing "cd /1-April-2001".
 9.  Type "make" to compile the IPF-3.27.18 version of the powerflow program.
 10.  When compilation of the source code is complete, logout of the Gnome desktop, and leave the "root" login account by typing "exit".
 11.  Login as "ipf327user" with the password you have assigned to that account in Part E. above.
 12.  Now you are in the Motif Window Manager desktop environment from where you can  run the IPF-3.27 GUI, and all the associated batch programs from the command line, or from the "FrontPanel Pop-up Menus".
-G. Motif Window Manager for Running IPF
+
+## Motif Window Manager for Running IPF
 a)  Set Up Additional User Login Accounts for Motif Window Manager
 1.  It is helpful to have more than one user account, each running a different Window Manager.  For example, I set up two accounts for myself, one running the default window manager for the particular Linux Installation, and the other one to run Motif, so that I can run IPF. .....  User Login Accounts:  jack and jackm    .... the one with the "m" is set up to use Motif Window Manager.
 2.  When you set up a new account to run Motif Window Manager, DO NOT run "startx" in that account until after you have set up the proper start-up files in that account directory.  When you first run "startx", a new .Xauthority file is created, along with other setup files, which are then used by the chosen window manager for that account.
 3.  First, login to the new Motif user directory, (e.g. login as "jackm").  Type "ls  -al" to get a listing of all the files, including the "hidden"files.  In Linux and Unix, the hidden files always start with a "."   You will find a file called ".bash_profile".... make a backup of the original version of the file by copying it to a new name:  type "cp  .bash_profile  .bash_profile_original".
 4.  There are some Motif user setup files you will need to use.  They can be found on the CD in the file
-06/03/01
-10
 "ipf-disksH.tar.gz".    As part of the preliminary installation, you would have copied this file to the / directory of the hard drive, unzipped and untarred it.  The files you need are named and located in these locations:
-/updatedisk/sample.bash_profile_RH62 or RH71 to replace the default “.bash_profile” /ipf-disks/newdotfiles/dot.mwm /ipf-disks/newdotfiles/dot.xin /ipf-disks/newdotfiles/dot327.fpa /ipf-disks/XGUI
+/updatedisk/sample.bash_profile_RH62 or RH71 to replace the default Â“.bash_profileÂ” /ipf-disks/newdotfiles/dot.mwm /ipf-disks/newdotfiles/dot.xin /ipf-disks/newdotfiles/dot327.fpa /ipf-disks/XGUI
 5.  Copy these five (5) files to your "Motif User Account" directory.
 6.  You will need to replace the .bash_profile with the new one containing IPF-specific path information. Do this by typing, "cp  ./sample.bash_profile_RH62 (or RH71)  .bash_profile".  If it asks if you want to overwrite the existing file, respond  with a "y" for yes.
 7.  Make the proper versions of the other files by typing,  "cp  ./dot.mwm  .mwmrc",  "cp  ./dot.xin  .xinitrc", and  "cp  ./dot327.fpa  .fpanelrc".
@@ -164,23 +159,20 @@ a)  Set Up Additional User Login Accounts for Motif Window Manager
 b)  Set Up IPF-Capable User Login Accounts for Gnome Desktop Users:
 1)  If you like, you can modify  any existing or new standard Default, Gnome Desktop User accounts to that they can run the IPF GUI, and the batch routines.  Unless you add the features to the Gnome Desktop User Menus yourself, you will lose access to the various IPF Pop-Up Help files, and other items available from the Motif Front Panel (FPanel).  The Motif Runtime Libraries are still required to be installed for you to be able to run the GUI, even if using the Gnome desktop & window manager, instead of the Motif Window Manager.
 2)  There are basically three requirements:
-06/03/01
-11
 First:  You must have run Xconfigurator as "root" and set up the X-windows color scheme to use 16-bit color depth at 1024x768 screen resolution.   This will not work with 8-bit (256-color) color depth.  You may have already set up during installation for the screen to operate at 1024x768 and 16-bit color depth.
-Second:  You must replace the default ".bash_profile" with the file listed as "sample.bash_profile" in the /updatedisk directory,  using either the RH62 or the RH71 version of “sample.bash_profile”, which is setup to define the required paths, etc. for IPF.
+Second:  You must replace the default ".bash_profile" with the file listed as "sample.bash_profile" in the /updatedisk directory,  using either the RH62 or the RH71 version of Â“sample.bash_profileÂ”, which is setup to define the required paths, etc. for IPF.
 Third:    Bring a copy of the IPF XGUI resource file into the Gnome Desktop User directory by typing, "cp /ipfdisks/XGUI  ."    Without the XGUI file in the Gnome Desktop User directory, you will not get the proper colors on the screen when running the IPF GUI.
 Optionally you can run the various IPF programs from the command line by typing the respective commands followed by "&", or you can add them to the Gnome User Menus by using the Gnome Menu Editor, and entering each command followed by "&"..
 For example, to run the GUI, you would open a terminal window and type "gui  &".  You would do the same, with bpa, ipfbat, etc.
-c)  Install StarOffice 5.2:  Login as “root”, insert the StarOffice 5.2 CD;  change to the directory “/linux/office52/program” and type “ ./setup  /net”.  Select  “/usr/office52” as the install directory.  With this “base” installation, any user can be set up with the minimum configuration files as a “local user” copy, by logging in as that user, opening a terminal window, and typing: “/usr/office52/program/setup” and following the prompts to install the local user fileset.
-H.  COR Files Fix -- IPF Coordinate Files and Powerflow Plot Title Blocks -- HowTo Ver. 1.00  3/9/2001
+c)  Install StarOffice 5.2:  Login as "root", insert the StarOffice 5.2 CD;  change to the directory "/linux/office52/program" and type " ./setup  /net".  Select  "/usr/office52" as the install directory.  With this "base" installation, any user can be set up with the minimum configuration files as a "local user" copy, by logging in as that user, opening a terminal window, and typing: Â“/usr/office52/program/setupÂ” and following the prompts to install the local user fileset.
+
+## COR Files Fix -- IPF Coordinate Files and Powerflow Plot Title Blocks -- HowTo Ver. 1.00  3/9/2001
 1) IPF Coordinate Files: For the .COR files to work properly with IPF on Linux, the .COR file data cannot contain Carriage Returns at the ends of the lines.  .COR files transferred for a DOS or MS-Windows environment, will have had Carriage Returns inserted automatically, and these must be removed.
 In order to remove the carriage returns, use the IPF utility, "dos-linux.bash"
 Examples of Use:
 dos-linux.bash  EWEB.COR <cr> dos-linux.bash  ewebppl.cor <cr> dos-linux.bash  *.COR <cr>
 This utility also renames the files with "UPPER CASE" filenames, to "lower case" filenames.
 2)   Powerflow Plot Title Blocks/User Comments:
-06/03/01
-12
 There are some specific steps necessary to properly setup Title Blocks and User Comments on the IPF Plots. Described here is the step-by-step procedure to be followed:
 After you have loaded a study case, and loaded either an existing plot coordinate file or created a new one from either the Landscape (L85X11.COR) or Portrait (P85X11.COR), you will want to insert Title Block User Comments and Descriptive Information:
 a.  Click "File,Plot Options, User Comments"
@@ -201,17 +193,16 @@ IPF Plot File -- How to Create a Plot Coordinate File from Scratch
 4)  Load selections.  Solve the case.
 5)  Activate the "Input Data Edit Box" for new data (6th button down on left column).
 6)  Close the "Input Data Edit Box" window. You should now have a "square" cursor    on the screen.
-06/03/01
-13
-7)  Select Edit,AlphaList.  Set your caps-lock key to "on".  Click in the data window,    and type the first letter of the bus you want.
-8)  From the list of buses that comes up, select the bus you want as the starting point    for your new plot coordinate file, for example, LEBANON  115.  Close the window.
+7)  Select Edit,AlphaList.  Set your caps-lock key to "on".  Click in the data window, and type the first letter of the bus you want.
+8)  From the list of buses that comes up, select the bus you want as the starting point for your new plot coordinate file, for example, LEBANON  115.  Close the window.
 9)  With the "square" cursor, click to place it on the diagram.
 10) Activate the "Explode" button (2nd button down on right column), and click on the    newly-placed bus.  This will display all first adjacent branches.
 11) Activate the "Move" button (5th button down on right column), to move the buses and    labels around on the diagram.
 12) Activate the "bus-delete-from-diagram" button (3rd button down on left column) to    remove any unwanted buses from the diagram.
 13) When you get the diagram to the stage you want, use File,Save-As,Select to assign a    name and directory location to your new coordinate file (using"save_file_dialog_popup"    window).
 14) Then, click the Save button in the "save_file_dialog_popup" window to actually save    the file.
-J. IPF-3.27 GUI -- Linux Version
+
+## IPF-3.27 GUI -- Linux Version
 Coordinate File Modifications: December 7, 2000 ver. 1.00
 Discussion
 For Studies, the use of Powerflow Plots showing proposed new generation facilities and associated system improvements is essential.  Generally the diagrams available are the Standard Powerflow Plots (.COR files) developed for the Budget Cases.  Creation of new plots or modification of these existing .COR files is necessary to show the additional facilities.
@@ -221,57 +212,48 @@ The following step-by-step procedure is a guide to the steps necessary to create
 (2) to create a new .COR plot file from scratch using the IPF GUI.
 Procedure
 1) Modify Existing Budget Case .COR File:
-Run the IPF GUI and click the appropriate "select" and "apply", and "load selections"
-06/03/01
-14
-buttons to load the base case file (*.BSE) already containing the added Generation and associated system improvements and the Budget Case coordinate file (*.COR) for the part of the system you are going to show. Then click the  "load selections" buttons to load them both.  Then “File, Save-As” to save the .COR file with a name of your choice in your user directory.
-After that, activate the “Explode” function by clicking the 2nd Button in the 2nd Column, and click on the busses with the new generation and facilities you have added to the system model in the .BSE file.  Then, activate the “Symbol Move” function by clicking the 5th Button in the 2nd Column, and use the mouse to rearrange the symbols on the diagram representing the new generation and facilities.
-When you are done, use “File, Save-As” to save your new .COR file.
-Click  “Select” for Base Case File directory list Click the .BSE file you want to use Click “Apply”
-Click  “Select” for Coordinate File directory list Click the .COR file you want to use Click “Apply”
-Click “Load Selections” After the .BSE and .COR files are loaded, click “View, Solution Data On”
-Click “File, Save-As”.
-For “Coordinate”, click “Select” and enter your new name for this coordinate file. Click “OK” , then click “Save” to save the .COR file; then click “Close”.
+Run the IPF GUI and click the appropriate "select" and "apply", and "load selections" buttons to load the base case file (\*.BSE) already containing the added Generation and associated system improvements and the Budget Case coordinate file (\*.COR) for the part of the system you are going to show. Then click the  "load selections" buttons to load them both.  Then "File, Save-As" to save the .COR file with a name of your choice in your user directory.
+After that, activate the "Explode" function by clicking the 2nd Button in the 2nd Column, and click on the busses with the new generation and facilities you have added to the system model in the .BSE file.  Then, activate the "Symbol Move" function by clicking the 5th Button in the 2nd Column, and use the mouse to rearrange the symbols on the diagram representing the new generation and facilities.
+When you are done, use "File, Save-As" to save your new .COR file.
+Click "Select" for Base Case File directory list Click the .BSE file you want to use Click "Apply"
+Click "Select" for Coordinate File directory list Click the .COR file you want to use Click "Apply"
+Click "Load Selections" After the .BSE and .COR files are loaded, click Â“View, Solution Data On"
+Click "File, Save-As".
+For "Coordinate", click "Select" and enter your new name for this coordinate file. Click "OK" , then click "Save" to save the .COR file; then click "Close".
 2) Create New .COR File from scratch:
-Run the IPF GUI and click the appropriate "select" and "apply", and "load selections" buttons to load the base case file (*.BSE) already containing the added Generation and associated system improvements and the Blank Template coordinate file (L85X11.COR or P85X11.COR) to show the part of the system you are going to show. Then click the "load selections" buttons to load them both.
-Then “File, Save-As” to save the .COR file with a name of your choice in your user directory.
-Activate the “Bus Input Data” function by clicking the 6th Button in the 1st Column.  The cursor will change from an arrow to an open square.  Close the “Bus Input Data” window.
-Click “Edit, Alpha List”  to bring up a list of all the busses in the .BSE case.  Now select the bus you will use to start the diagram.  Click in the “Search Bus Name kV” window and with “CapsLock” on, type in the 1st letter of the bus name, then the 2nd, etc. until the bus name appears in the list.  Select the desired bus and click “Close”.
+Run the IPF GUI and click the appropriate "select" and "apply", and "load selections" buttons to load the base case file (\*.BSE) already containing the added Generation and associated system improvements and the Blank Template coordinate file (L85X11.COR or P85X11.COR) to show the part of the system you are going to show. Then click the "load selections" buttons to load them both.
+Then "File, Save-As" to save the .COR file with a name of your choice in your user directory.
+Activate the "Bus Input Data" function by clicking the 6th Button in the 1st Column.  The cursor will change from an arrow to an open square.  Close the "Bus Input Data" window.
+Click "Edit, Alpha List"  to bring up a list of all the busses in the .BSE case.  Now select the bus you will use to start the diagram.  Click in the "Search Bus Name kV" window and with Â“CapsLockÂ” on, type in the 1st letter of the bus name, then the 2nd, etc. until the bus name appears in the list.  Select the desired bus and click Â“CloseÂ”.
 Then, with the mouse, locate the 1st bus at the appropriate location on the blank diagram, and click to place it there.
-After that, activate the “Explode” function by clicking the 2nd Button in the 2nd Column, and click on the busses with the new generation and facilities you have added to the system model in the .BSE file.  Then, activate the “Symbol Move” function by clicking the 5th Button in the 2nd Column, and use the mouse to rearrange the symbols on the diagram representing the new generation and facilities.
-When you are done, use “File, Save-As” to save your new .COR file.
-06/03/01
-15
-Click  “Select” for Base Case File directory list Click the .BSE file you want to use Click “Apply”
-Click  “Select” for Coordinate File directory list Click the .COR file you want to use Click “Apply”
-Click “Load Selections” After the .BSE and .COR files are loaded, click “View, Solution Data On”
-Click “File, Save-As”. For “Coordinate”, click “Select” and enter your new name for this coordinate file. Click “OK” , then click “Save” to save the .COR file; then click “Close”.
+After that, activate the "Explode" function by clicking the 2nd Button in the 2nd Column, and click on the busses with the new generation and facilities you have added to the system model in the .BSE file.  Then, activate the "Symbol Move" function by clicking the 5th Button in the 2nd Column, and use the mouse to rearrange the symbols on the diagram representing the new generation and facilities.
+When you are done, use "File, Save-As" to save your new .COR file.
+Click "Select" for Base Case File directory list Click the .BSE file you want to use Click "Apply"
+Click "Select" for Coordinate File directory list Click the .COR file you want to use Click "Apply"
+Click "File, Save-As". For "Coordinate", click "Select" and enter your new name for this coordinate file. Click "OK", then click "Save" to save the .COR file; then click "Close".
 K.  PROPER USE OF "VIEW REPORTS" with the GUI
 When you use the GUI to view output reports for "Over-Loaded Line Report" or "Overvoltage/Undervoltage", etc. you must first Set the "Limits" values, after you select "View, Report".  You must set both values first, so they are usable with any of the reports you request after that.  If you do not, it will not work correctly.
 For Example: Limits:  Set % Line Load = 95     Set PU Volt Relax = 0.05
 This will give you report results showing Line or Transformer Loading more than 95%, and it will give you report results for voltages above 105% and below 95%.
-L.  IPF UPGRADE GUIDE -- EXAMPLE Upgrade to version IPF-3.17.16b with the 1-Feb-2001 Update Ver. 2.01 6/3/2001
+
+## IPF UPGRADE GUIDE -- EXAMPLE Upgrade to version IPF-3.17.16b with the 1-Feb-2001 Update Ver. 2.01 6/3/2001
 UPGRADE EXISTING IPF 3.27 PROGRAM INSTALLATION WITH NEW SOURCE CODE PACKAGE:
 1. Boot up system and login as "root"; type "startx" to start the Gnome Desktop GUI.
-2. Type "cd /shr" and then remove the existing /ipf-3.27 subdirectory and its contents by typing, "rm -fR ./ipf-3.27”.
+2. Type "cd /shr" and then remove the existing /ipf-3.27 subdirectory and its contents by typing, "rm -fR ./ipf-3.27Â”.
 3. Insert the CDROM with the newer version of IPF.  It should mount automatically
-06/03/01
-16
-4. Use the graphical file manager to copy the file "ipf-3.27.16bSRC.tar.gz" to the /shr directory, unzip and untar it, as described below.  Use “cd” to go to /shr/ipf-3.27.  There will be a copy of the most recent program update file, such as “1-Feb-2001.tar”.
-5. Use the graphical file manager or the command line copy command to copy the file "1-Feb2001.tar" to the /ipfupdates directory.  “cp ./1-Feb-2001.tar  /ipfupdates”.
+4. Use the graphical file manager to copy the file "ipf-3.27.16bSRC.tar.gz" to the /shr directory, unzip and untar it, as described below.  Use Â“cdÂ” to go to /shr/ipf-3.27.  There will be a copy of the most recent program update file, such as Â“1-Feb-2001.tarÂ”.
+5. Use the graphical file manager or the command line copy command to copy the file "1-Feb2001.tar" to the /ipfupdates directory.  Â“cp ./1-Feb-2001.tar  /ipfupdatesÂ”.
 6. Close the graphical file manager, and in a terminal window, type "umount /dev/cdrom" in order to unmount the CD so you can remove it.
 7. Type "cd /shr" to go to the IPF directory.
 8. Type "gunzip ipf-3.27.16b.tar.gz" to unzip the file;
 9. Type "tar -xvf ipf-3.27.16b.tar" to untar the file and its contents;
 10.Type "cd /ipfupdates" and type "tar -xvf 1-Feb-2001.tar" to untar the update.
-11.Type "cd 1-Feb-2001" to go into the /1-Feb-2001 subdirectory, and type "make" to recompile the IPF program with the latest update, and install the new executables in their correct location “/bin”.    "make" will do it all for you.
+11.Type "cd 1-Feb-2001" to go into the /1-Feb-2001 subdirectory, and type "make" to recompile the IPF program with the latest update, and install the new executables in their correct location Â“/binÂ”.    "make" will do it all for you.
 M:  UPGRADE IPF HOW-TO's AND MOTIF USER INTERFACE MENU:
 The collection of "pop-up how-to's", are not all completed or revised, but the latest version is included on the CD.   They are part of a file called:     "ipf-disksH.tar.gz".  To update your system to the latest version, follow these steps:
 1. Boot up system and login as "root"; type "startx" to start the Gnome Desktop GUI.
 2. Type "cd /" to put yourself at the top of the directory tree.  Backup/save the existing /ipf-disks subdirectory by typing: "mv ./ipf-disks  ipf-disks-old"
 OR  if you do not have anything there you want to keep, remove the existing /ipf-disks subdirectory  and its contents by typing,
-06/03/01
-17
 "rm -fR ./ipf-disks"
 3. Insert the CDROM with the newer version of /ipf-disks (included on the CD as the file: "ipf-disksH.tar.gz".  The CD should mount automatically.
 4. Use the graphical file manager to copy the file "ipf-disksH.tar.gz" to the / directory.
@@ -281,49 +263,42 @@ OR  if you do not have anything there you want to keep, remove the existing /ipf
 "cp ./dot327.fpa  dot327.fpa.original" "cp ./.fpanelrc .fpanelrc.original"
 8. Get a copy of the New-Updated version of dot327.fpa, by typing: "cp /ipf-disks/howto/dot327.fpa  ." Respond to the prompt, "yes" , if it asks you for permission to overwrite the old file.
 9. Make a new version of the fpanel resource file, .fpanelrc, by typing: "cp ./dot327.fpa  .fpanelrc"    Logout, and login as "ipf327user"
-N:  PC CONFIGURATION and GUIDELINE SPECIFICATION:
+
+## PC CONFIGURATION and GUIDELINE SPECIFICATION:
 FOR RUNNING THE BPA POWERFLOW PROGRAM, IPF
 Dual-Boot WinNT and Redhat Linux 6.2 INSTALLATION  11-April-2001 -------------------
 HARDWARE CONFIGURATION:
 Motherboard:  Intel Pentium CPU - 133-Mhz minimum, 266-Mhz or faster, preferred
-06/03/01
-18
 RAM:  64-MB minimum, 128MB or more, recommended
 1)  Primary Master IDE hard-drive: Loaded with MS-Windows95/98/NT/2000 ----2) Primary Slave IDE hard-drive: Loaded with MS-Windows95/98/NT/2000  OR  add a new drive and use it for Linux
 3) Secondary Master IDE hard-drive: Loaded with MS-Windows95/98/NT/2000 OR  add a new drive and use it for Linux
-4) Secondary Slave IDE hard-drive: Loaded with MS-Windows95/98/NT/2000 OR  add a new drive and use it for Linux ----If you already have all 4 of your IDE controllers connected to other Hard Drives, IDE CDROM’s, etc, then you can add a Linux-supported SCSI adapter, and add one or more SCSI drives for the Linux installation.
+4) Secondary Slave IDE hard-drive: Loaded with MS-Windows95/98/NT/2000 OR  add a new drive and use it for Linux ----If you already have all 4 of your IDE controllers connected to other Hard Drives, IDE CDROMÂ’s, etc, then you can add a Linux-supported SCSI adapter, and add one or more SCSI drives for the Linux installation.
 The new drive added for LINUX should be at least 2.1-gig, at the very minimum.  10-gig or larger, highly recommended.
-Floppy Drive:  3-1/2” standard
+Floppy Drive:  3-1/2" standard
 CDROM:  IDE or SCSI (for software loading)
 Network Interface Card -  3COM 3C509x (ISA)min; 3C905, 3C905B, 3C905C (PCI) preferred
 Video Card - ATI (Mach64) 2-MB VRAM or  more (preferred) or other Hi-Rez Video Card supported by Redhat Linux 6.2;   (1024x768, 256-colors, MINIMUM)
+
 Mouse: 3-button PS/2, Logitech (preferred); 2-button mouse can emulate 3-button operaton
---------------------------------------------------------------------------
 Optional CDR/RW: SCSI (most SCSI models supported by Redhat Linux 6.2)
 --- NOTE:   IDE CDR/RW require special setup procedures with Linux, and are NOT recommended.
 Optional SCSI Host Bus Adapter HBA -  Adaptec or Tekram, supported by Redhat Linux 6.2
 Optional SCSI Tape Drive:  Wangtek 5525ES SCSI (DC6000 Series QIC tape drive)
----------------------------------------------------------------------------
 Case & Power Supply; (250-watts, recommended)
-06/03/01
-19
-Video Monitor:  15” 1024x768-minimum, 17” or larger recommended
+Video Monitor:  15" 1024x768-minimum, 17" or larger recommended
 Locally-Attached PRINTER:  Must have POSTSCRIPT capability in hardware, for example: HP-4M, HP-5MP, HP-6MP, HP Deskjet 1600CM, etc. connected to LPT1 port.
 (NOTE:  there are a number of non-postscript printers (laser, inkjet, etc.) which will work with the Linux Ghostscript Postscript translator, but I have not seen any yet that plot the outside borders of an IPF Powerflow Plot correctly.   A printer with native postscript is highly recommended).
-There are some ways of using Samba on Linux to print from Linux to a Windows NT LAN printer, and they use procedures related to editing the file, “/etc/smp.conf”, activating Samba SMBCLIENT, and using PrinterTool to set up a Samba/Windows95/NT Printer.  Detailed descriptions of this process will be part of a separate Howto Document.
+There are some ways of using Samba on Linux to print from Linux to a Windows NT LAN printer, and they use procedures related to editing the file, Â“/etc/smp.confÂ”, activating Samba SMBCLIENT, and using PrinterTool to set up a Samba/Windows95/NT Printer.  Detailed descriptions of this process will be part of a separate Howto Document.
 One alternative is, if there is a LAN-Postscript-Capable printer in close physical proximity to the dual-boot LinuxWindows IPF PC, most printers such as HP-4M, also have the parallel and/or serial ports which will work and switch automatically with the LAN connection.  So, all you need to do is run a parallel printer cable from the Linux PC to the LAN printer.
 OPERATING SYSTEM SOFTWARE:  Redhat Linux 5.2, 6.1, or 6.2, required
 (Redhat 7.0 not recommended at this time, unless you want to install some additional patches from Redhat. Otherwise, get 6.2 for now, and wait for Redhat 7.1 or 7.2)
 MOTIF SDK SOFTWARE:  Motif Window Manager/SDK:  Metrolink Motif Complete! , required.
 Note:  This system is set up as "Dual-Boot", by installing the Linux on the added Hard Drive, and booting the Linux with a floppy.  This provides physical isolation between the Linux and MS-Windows partitions and boot files, to minimize any risks associated with corrupted partition tables or other things, as the equipment ages; or attacks by MS-Windows-associated boot viruses.
----------------------
-O.  Installation on Linux Redhat 5.1, 5.2, 6.1, 6.2
+
+## Installation on Linux Redhat 5.1, 5.2, 6.1, 6.2
 MetroLink Motif Complete for Running IPF ver. 1.04, 4/11/2001
 1.  Logon as root, and then run "startx" to start the X-Windows environment and Gnome desktop.
-2.  Insert the MetroLink Motif Complete CD.  The Gnome desktop will automatically mount the CD, in most cases.
-06/03/01
-20
-If so, you can skip Step-4.
+2.  Insert the MetroLink Motif Complete CD.  The Gnome desktop will automatically mount the CD, in most cases. If so, you can skip Step-4.
 3.  Open a terminal window, Xterm, and type "cd  /"
 4.  Mount the CD by typing, "mount  -t  iso9660  /dev/cdrom  /mnt/cdrom
 5.  Change directory to the CD by typing, "cd  /mnt/cdrom"
@@ -341,10 +316,9 @@ If so, you can skip Step-4.
 17.  In the next window, select "RPM" package format, and click "next".
 18.  In the next window, click "next" to proceed with installation.
 19.  When it is all done with the installation, type "cd  /" to get back off the CD to your hard drive, and then unmount the CD by typing, "umount  /dev/cdrom", and then remove the CD.
-P.  Motif Window Manager for Running IPF Set Up User Login Accounts for Motif
+
+## Motif Window Manager for Running IPF Set Up User Login Accounts for Motif
 1.  It is helpful to have more than one user account, each running a different Window Manager.  For example, I set up two accounts for myself, one running the default window manager for the particular Linux Installation, and the other one to run Motif, so that I can run IPF. .....  User Login Accounts:  jack and jackm    .... the one with the "m" is set up to use Motif Window Manager.
-06/03/01
-21
 2.  When you set up a new account to run Motif Window Manager, DO NOT run "startx" in that account until after you have set up the proper start-up files in that account directory.  When you first run "startx", a new .Xauthority file is created, along with other setup files, which are then used by the chosen window manager for that account.
 3.  First, login to the new Motif user directory, (e.g. login as "jackm").  Type "ls  -al" to get a listing of all the files, including the "hidden"files.  In Linux and Unix, the hidden files always start with a "."   You will find a file called ".bash_profile".... make a backup of the original version of the file by copying it to a new name:  type "cp  .bash_profile  .bash_profile_original".
 4.  There are some Motif user setup files you will need to use.  They can be found on the CD in the file "ipf-disksH.tar.gz".    As part of the preliminary installation, you would have copied this file to the / directory of the hard drive, unzipped and untarred it.  The files you need are named and located in these locations:
@@ -356,15 +330,14 @@ P.  Motif Window Manager for Running IPF Set Up User Login Accounts for Motif
 8.  Log out by typing, "exit".
 9.  Log back in as "jackm", type the command, "startx", and you should have a Motif Window Manager desktop in front of you with an mxterm, terminal window open.  You can open another terminal window by clicking on the "tools" icon in the fpanel control panel bar at the bottom of the screen.
 10.  If you have IPF-3.27 already installed, you can run it by going to an open mxterm window and typing, the following command:  "gui  &"
-Q.  IPF Coordinate Files and Powerflow Plot Title Blocks -- "HowTo"
-06/03/01
-22
+
+## IPF Coordinate Files and Powerflow Plot Title Blocks -- "HowTo"
 Ver. 1.00  3/9/2001
 1) IPF Coordinate Files:
 2) For the .COR files to work properly with IPF on Linux, the .COR file data cannot contain Carriage Returns at the ends of the lines.  .COR files transferred for a DOS or MS-Windows environment, will have had Carriage Returns inserted automatically, and these must be removed.
 In order to remove the carriage returns, use the IPF utility, "dos-linux.bash"
 Examples of Use:
-dos-linux.bash  EWEB.COR <cr> dos-linux.bash  ewebppl.cor <cr> dos-linux.bash  *.COR <cr>
+dos-linux.bash  EWEB.COR <cr> dos-linux.bash  ewebppl.cor <cr> dos-linux.bash  \*.COR <cr>
 This utility also renames the files with "UPPER CASE" filenames, to "lower case" filenames.
 3) Powerflow Plot Title Blocks/User Comments:
 There are some specific steps necessary to properly setup Title Blocks and User Comments on the IPF Plots. Described here is the step-by-step procedure to be followed:
@@ -377,8 +350,6 @@ c.  Click "OK"
 d.  Look at the Title Block on the screen.  You will see that the comments do not yet appear.
 e.  Click "File,PlotOptions,PageOptions" and click the "OK" button.
 f.  Now you will see your Additional User Comments appear in the title block.  This process is necessary to update the Additional User Comments information, each time you make a change.
-06/03/01
-23
 g.  Now, click "File,Plot Options, User Comments,ViewPlot"  or  "File, Print Plot" to view the Postscript IPF Plot with the Ghostview Postscript file viewer.
 h.  From Ghostview, you can view the plot up close, and print copies as needed.
 R.  Problems with Linux finding all of a machine's RAM
@@ -407,7 +378,7 @@ If you are logged into a User Account, and need to have System Administrator acc
 In X-Windows  GUI, open a terminal window:  Login as ( su ) with password ( xxxxxx ).
 
 
-# TRANSIENT STABILITY PROGRAM, TSP-6.07:
+# Transient Stability Program, TSP-6.07:
 
 ## INSTALLATION/SETUP INSTRUCTIONS:
 
