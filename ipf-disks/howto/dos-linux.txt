@@ -1,3 +1,0 @@
-Utility Program to remove carriage returns from the ends of lines for 
-data files imported to Linux from DOS/MS-Windows.  Also changes file 
-names from Capital Letters to Lower Case.

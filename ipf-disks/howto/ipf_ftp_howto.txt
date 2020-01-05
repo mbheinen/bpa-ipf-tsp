@@ -1,4 +1,0 @@
-Location on brick for ftp uploads/downloads:
-
-
-/web/int/ftp/outgoing/gen-team
