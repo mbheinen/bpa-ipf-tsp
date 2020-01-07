@@ -1,5 +1,5 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 2.8.5)
-PROJECT(bpa-ipf-tsp Fortran)
+PROJECT(bpa-ipf-tsp Fortran C)
 
 # Set bpa-ipf-foo version
 SET(VERSION 0.0.2)
@@ -17,6 +17,7 @@ ENDIF(FCNAME STREQUAL "pgf90")
 
 # Define libraries
 SET(IPFLIB ipf)
+SET(IPCLIB ipc)
 SET(TSPLIB libtsp)
 
 # Define executables
@@ -37,25 +38,26 @@ SET(SRC ${CMAKE_SOURCE_DIR}/src)
 SET(LIB ${CMAKE_SOURCE_DIR}/lib)
 SET(BIN ${CMAKE_SOURCE_DIR}/bin)
 SET(SRCIPF ${SRC}/ipf)
-SET(SRCLIBTSP ${SRC}/libtsp)
+SET(SRCIPC ${SRC}/ipc)
+# SET(SRCLIBTSP ${SRC}/libtsp)
 SET(SRCBPF ${SRC}/bpf)
-SET(SRCIPFBAT ${SRC}/ipfbat)
-SET(SRCIPFREPORTS ${SRC}/ipf_reports)
-SET(SRCIPFTEST ${SRC}/ipf_test)
-SET(SRCIPFPLOT ${SRC}/ipfplot)
-SET(SRCIPFSRV ${SRC}/ipfsrv)
-SET(SRCGUI ${SRC}/gui)
-SET(SRCPUF ${SRC}/puf)
-SET(SRCNETDAT ${SRC}/netdat)
-SET(SRCCUTTING ${SRC}/cutting)
-SET(SRCTSP ${SRC}/tsp)
+# SET(SRCIPFBAT ${SRC}/ipfbat)
+# SET(SRCIPFREPORTS ${SRC}/ipf_reports)
+# SET(SRCIPFTEST ${SRC}/ipf_test)
+# SET(SRCIPFPLOT ${SRC}/ipfplot)
+# SET(SRCIPFSRV ${SRC}/ipfsrv)
+# SET(SRCGUI ${SRC}/gui)
+# SET(SRCPUF ${SRC}/puf)
+# SET(SRCNETDAT ${SRC}/netdat)
+# SET(SRCCUTTING ${SRC}/cutting)
+# SET(SRCTSP ${SRC}/tsp)
 
 # Put .mod files in the lib folder
 SET(CMAKE_Fortran_MODULE_DIRECTORY ${LIB})
 
 # The source for the libraries put in the lib folder
-ADD_SUBDIRECTORY(${SRCIPF} ${LIB})
-ADD_SUBDIRECTORY(${SRCLIBTSP} ${LIB})
+ADD_SUBDIRECTORY(${SRCIPF} ${LIB}/ipf)
+ADD_SUBDIRECTORY(${SRCIPC} ${LIB}/ipc)
 
 # The source for the executables put in the bin folder
 ADD_SUBDIRECTORY(${SRCBPF} ${BIN})

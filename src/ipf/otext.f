@@ -1,4 +1,4 @@
-C    %W% %G%
+C    @(#)otext.f	20.9 5/27/99
         subroutine otext
 C
         include 'ipfinc/parametr.inc'
@@ -144,9 +144,9 @@ C
 C          11   12   13   14   15   16   17   18    19   20   21   22
 c         OUT,OUTP,OUTS,OVER, PHA, REA,REAL, RED, RELX,RELB, SET, SOL,
      &    410, 500, 510, 420, 520, 530, 540, 550, 570,  580, 590, 600,
-c          23   24    25    26    27
-c         TOL, OLD,  COM,  TRA,  NET
-     &    610, 402,10610,10620,10630) i
+c         TOL, OLD, COM, TRA
+c          23   24   25   26
+     &    610, 402,10610,10620) i
 C
 C       > ANALYSIS <
 C
@@ -265,6 +265,11 @@ C
 C       > OLD_BASE <
 C
   402   jobreq(2) = 'OLD_BASE'
+        do i = 1, nwrd
+          last = lastch (word(i))
+          write (*, 20000) i, word(i)(1:last)
+20000     format (' word(', i2, ') = (', a, ')')
+        enddo
         obasnm = word(nwrd)
         crun1(1) = ' '
         call gtbase (obasnm,crun1(1),baseok)
@@ -536,37 +541,6 @@ C       > TRENDING = OFF <
 C
 10620   trending = .false.
         if (word(2) .eq. 'ON') trending = .true.
-        readnx = .true.
-        go to 620
-C
-C       > NETWORK, ZONES = ..., BASES = ...
-C
-10630   vmin = 0.0
-        vmax = 9999.0
-        i = 2
-        do while (i .le. nwrd)
-           if (index(word(i),'ZONE') .ne. 0) then
-              do j = i+1,nwrd
-                 if (index(word(j),'BASE') .ne. 0) goto 10632
-                 if (word(j) .eq. '00') word(j) = ' '
-                 num_network = num_network + 1
-                 zn_network(num_network) = word(j)
-              enddo
-           else if (index(word(i),'BASE') .ne. 0) then
-              do j = i+1,nwrd,2
-                 if (index(word(j),'ZONE') .ne. 0) go to 10632
-                 vl_network = ftn_atof (word(j))
-                 if (j+1 .gt. nwrd) go to 10632
-                 if (index(word(j+1),'ZONE') .ne. 0) go to 10632
-                 vh_network = ftn_atof (word(j+1))
-              enddo
-           else
-              write (errbuf(1)(1:120),390) word(i)(1:10),buf(1:70)
-              call prterx ('W',1)
-              j = i + 1
-           endif
-10632      i = j 
-        enddo
         readnx = .true.
         go to 620
 C

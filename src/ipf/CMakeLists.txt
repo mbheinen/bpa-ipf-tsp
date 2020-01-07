@@ -120,6 +120,7 @@ SET(IPF_src
             ${SRCIPF}/calcflow.f
             ${SRCIPF}/calcintflo.f
             ${SRCIPF}/calsysf.f
+            ${SRCIPF}/caltme.c
             ${SRCIPF}/capdifrpt.f
             ${SRCIPF}/capital.f
             ${SRCIPF}/capqlt.f
@@ -127,6 +128,7 @@ SET(IPF_src
             ${SRCIPF}/casetxt.f
             ${SRCIPF}/cbus_dif.f
             ${SRCIPF}/cd_proc.f
+            ${SRCIPF}/cgetuser.c
             ${SRCIPF}/chacc.f
             ${SRCIPF}/chadd.f
             ${SRCIPF}/change.f
@@ -213,6 +215,7 @@ SET(IPF_src
             ${SRCIPF}/compld.f
             ${SRCIPF}/comprs.f
             ${SRCIPF}/cpu_secs.f
+            ${SRCIPF}/cputmr.c
             ${SRCIPF}/cpyinbfil.f
             ${SRCIPF}/c_redchg.f
             ${SRCIPF}/csrchn.f
@@ -282,14 +285,11 @@ SET(IPF_src
             ${SRCIPF}/ext_gedcc.f
             ${SRCIPF}/ext_gedcl.f
             ${SRCIPF}/ext_geg.f
-            ${SRCIPF}/ext_geg.for
             ${SRCIPF}/ext_geld.f
             ${SRCIPF}/ext_gel.f
-            ${SRCIPF}/ext_gel.for
             ${SRCIPF}/ext_geown.f
             ${SRCIPF}/ext_geshn.f
             ${SRCIPF}/ext_gesvd.f
-            ${SRCIPF}/ext_gesvd.for
             ${SRCIPF}/ext_getrx.f
             ${SRCIPF}/ext_gezdt.f
             ${SRCIPF}/ext_gezon.f
@@ -377,6 +377,7 @@ SET(IPF_src
             ${SRCIPF}/getdif.f
             ${SRCIPF}/getdrp.f
             ${SRCIPF}/getdte.f
+            ${SRCIPF}/getenvir.c
             ${SRCIPF}/getepr.f
             ${SRCIPF}/getid.f
             ${SRCIPF}/get_inrpt3.f
@@ -471,7 +472,6 @@ SET(IPF_src
             ${SRCIPF}/himva.f
             ${SRCIPF}/hndoff.f
             ${SRCIPF}/hotchg.f
-            ${SRCIPF}/hotchg.for
             ${SRCIPF}/hsh_ptib.f
             ${SRCIPF}/ickdic.f
             ${SRCIPF}/ickikk.f
@@ -936,11 +936,9 @@ SET(IPF_src
             ${SRCIPF}/sen_jac2.f
             ${SRCIPF}/sen_jac3.f
             ${SRCIPF}/sen_jac3.f.1
-            ${SRCIPF}/sen_jac3.for
             ${SRCIPF}/senjac.f
             ${SRCIPF}/senltc.f
             ${SRCIPF}/sen_out2.f
-            ${SRCIPF}/sen_out2.for
             ${SRCIPF}/sen_red2.f
             ${SRCIPF}/sensdq.f
             ${SRCIPF}/set_batch.f
@@ -949,6 +947,7 @@ SET(IPF_src
             ${SRCIPF}/setpqx.f
             ${SRCIPF}/sfctr.f
             ${SRCIPF}/shellsrt.f
+            ${SRCIPF}/shift.c
             ${SRCIPF}/sinput.f
             ${SRCIPF}/slnhdr.f
             ${SRCIPF}/solton.f
