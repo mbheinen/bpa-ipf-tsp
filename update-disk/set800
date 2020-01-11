@@ -1,1 +1,0 @@
-cp /etc/X11/XF86Config.regular-800x600 /etc/X11/XF86Config & 
