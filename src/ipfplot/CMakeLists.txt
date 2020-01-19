@@ -1,9 +1,11 @@
 # Add the source files
-SET(IPFPLOT_src ${SRCBPF}/ipfplot.c)
+SET(IPFPLOT_src ${SRCIPFPLOT}/ipfplot.c
+                ${SRCIPFPLOT}/ipfplot_sub.c
+)
 
 # Define the executable in terms of the source files
 ADD_EXECUTABLE(${IPFPLOTEXE} ${IPFPLOT_src})
-
+INCLUDE_DIRECTORIES(${SRCIPF})
 TARGET_LINK_LIBRARIES(${IPFPLOTEXE} ${IPFLIB} ${IPFUTILLIB} ${IPCLIB})
 
 IF(WIN32)

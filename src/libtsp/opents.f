@@ -122,9 +122,9 @@ C       UNIX version
      &       status='scratch', 
      &       access='direct', 
 c    &       disp='delete',       
-     &       form='unformatted',
+     &       form='unformatted')
 c    &       recordtype='fixed',                       
-     &       recordsize=4*4000)
+C    &       recordsize=4*4000)
 c    &       organization='relative',                      
 c    &       file = 'stab.scr01')
 
@@ -136,9 +136,9 @@ c       VAX VMS version
      &       status='scratch', 
      &       access='direct', 
 c    &       disp='delete',       
-     &       form='unformatted', 
+     &       form='unformatted') 
 c    &       recordtype='variable',                    
-     &       recordsize=4*4000) 
+c    &       recordsize=4*4000) 
 c    &       organization='relative',
 c    &       file = 'scratch.dat')                                
 
@@ -155,8 +155,8 @@ C       UNIX version
      &       status='scratch', 
      &       access='direct', 
 c    &       disp='delete',       
-     &       form='unformatted', 
-     &       recordsize=4*4065) 
+     &       form='unformatted') 
+c    &       recordsize=4*4065) 
 c    &       recordtype='fixed',       
 c    &       organization='relative', 
 c    &       file = 'stab.scr02')                                        
@@ -170,8 +170,8 @@ c
      &       status='scratch',
      &       access='direct',
 c    &       disp='delete',       
-     &       form='unformatted',
-     &       recordsize=4*4065)
+     &       form='unformatted')
+c    &       recordsize=4*4065)
 c    &       recordtype='variable',    
 c    &       organization='relative', 
 c    &       file = 'junk.dat')                                  

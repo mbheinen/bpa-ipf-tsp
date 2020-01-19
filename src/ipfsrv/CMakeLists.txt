@@ -1,5 +1,7 @@
 # Add the source files
-SET(IPFSRV_src ${SRCIPFSRV}/ipfsrv.c)
+SET(IPFSRV_src ${SRCIPFSRV}/ipfsrv.c
+               ${SRCIPFSRV}/ipfsrv_sub.c
+)
 
 # Define the executable in terms of the source files
 ADD_EXECUTABLE(${IPFSRVEXE} ${IPFSRV_src})
@@ -11,4 +13,5 @@ IF(WIN32)
 ELSE()
     SET(CMAKE_INSTALL_PREFIX /usr/local)
 ENDIF(WIN32)
+INCLUDE_DIRECTORIES(${SRCIPF})
 INSTALL(TARGETS ${IPFSRVEXE} RUNTIME DESTINATION bin)
