@@ -21,8 +21,8 @@ C               Transfer the returned values to the parameters
         cpu     =       cpu/100.0                                       
         faults  =       0                                          
         wssize  =       0                                          
-        user    =       ' '                                          
-        accnt   =       ' '                                          
+        user    =       0                                         
+        accnt   =       0                                         
                                                                         
         return                                                          
                                                                         

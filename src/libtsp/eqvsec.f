@@ -1,7 +1,8 @@
 C    %W% %G%
         subroutine eqvsec (y,yscr)                                      
         dimension y(2,2),yscr(3,3)                                      
-        complex y*8, yscr*16, z*16                                      
+        complex *8 y                               
+        complex *16 yscr, z                                   
 C                                                                       
 C*****************************************************                  
 C                                                                       
