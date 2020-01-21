@@ -1,1 +1,0 @@
-TKdiff - Utility Program to compare two files, and highlight their differences.

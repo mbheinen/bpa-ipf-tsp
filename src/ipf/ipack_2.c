@@ -1,12 +1,14 @@
 #include <stdio.h>
 #include <assert.h>
 
-#if defined(WIN32) || defined(__WATCOMC__)
-#pragma aux ipack_2 "^";
+#ifdef WIN32
+#pragma aux shift "^";
 #endif
 
 #ifdef UNDERSCORE
 int ipack_2_ (unsigned int *a1, int *a2)
+#elif DUNDERSCORE
+int ipack_2__ (unsigned int *a1, int *a2)
 #else
 int ipack_2 (unsigned int *a1, int *a2)
 #endif
@@ -30,7 +32,7 @@ char *argv[];
     printf (" Enter arg#1 arg#2 > ");
     scanf ("%d %d", &a1, &a2);
 
-#if defined(UNDERSCORE)
+#ifdef UNDERSCORE
     pack = ipack_2_ (&a1, &a2);
 #else
     pack = ipack_2 (&a1, &a2);

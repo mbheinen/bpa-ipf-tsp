@@ -6,7 +6,7 @@ SET(IPFSRV_src ${SRCIPFSRV}/ipfsrv.c
 # Define the executable in terms of the source files
 ADD_EXECUTABLE(${IPFSRVEXE} ${IPFSRV_src})
 
-TARGET_LINK_LIBRARIES(${IPFSRVEXE} ${IPFLIB} ${IPFUTILLIB} ${IPCLIB})
+TARGET_LINK_LIBRARIES(${IPFSRVEXE} ${IPFLIB} ${IPCLIB})
 
 IF(WIN32)
     SET(CMAKE_INSTALL_PREFIX "C:\\Program Files")

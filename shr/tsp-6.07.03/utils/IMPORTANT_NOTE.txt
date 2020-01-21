@@ -1,7 +1,0 @@
-Important Note:  test_gov  files in this /utils directory
-
-The "test_gov" set of sample files in this directory is an OLD preliminary
-set of test files.  Some of the features of TSP-6.07 do not work correctly
-with this set of test files.
-
-USE THEM FOR REFERENCE ONLY!

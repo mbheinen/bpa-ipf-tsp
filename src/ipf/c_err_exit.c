@@ -1,18 +1,19 @@
 /*** c_err_exit  routine ***/
 #include <stdlib.h>
 
-#if defined(WIN32) || defined(__WATCOMC__)
+#ifdef WIN32
 #pragma aux c_err_exit "^";
-void c_err_exit( void )
+#endif
 
-#elif defined(UNDERSCORE)
+#ifdef UNDERSCORE
 void c_err_exit_( void )
-
+#elif DUNDERSCORE
+void c_err_exit__( void )
 #else
 void c_err_exit( void )
 #endif
 {
-#if defined(VMS)
+#ifdef VMS
    exit( 4 );
 #else
    exit( 1 );

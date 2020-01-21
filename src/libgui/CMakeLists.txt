@@ -14,7 +14,6 @@ colorx.c
 convert.c
 crtlnlst.c
 curbus.c
-darrowxya.c
 disable_h.c
 dmgr.c
 dmgrdoc.c
@@ -80,4 +79,4 @@ utils_db.c
 vertex.c
 )
 
-ADD_LIBRARY(${GUILIB} STATIC ${LIBGUI_src})
+ADD_LIBRARY(${IPFGUILIB} STATIC ${LIBGUI_src})

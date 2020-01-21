@@ -6,6 +6,8 @@
 
 #ifdef UNDERSCORE
 int is_it_vms_()
+#elif DUNDERSCORE
+int is_it_vms__()
 #else
 int is_it_vms()
 #endif

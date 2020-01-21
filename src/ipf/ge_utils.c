@@ -70,6 +70,15 @@ char *progname;
    ===================================================================
 */
 
+FILE *efopen(file, mode) /* fopen file, die if can't */
+char *file, *mode;
+{
+  FILE *fp;
+
+  fp = fopen(file, mode);
+  return fp;
+}
+
 #if defined __WATCOMC__						/* WATCOM */
 int open_ge_file( int *file_num, char *filename, char *mode, 
                   long *filename_len, long *mode_len )

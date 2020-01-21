@@ -11,11 +11,10 @@
 #include <string.h>
 #include <ctype.h>
 
-#ifdef VMS
+#if defined VMS
 #include <descrip.h>
-#endif /* VMS */
 
-#ifdef WIN32
+#elif defined WIN32
 typedef struct descriptor {
     char          *addr;
     unsigned       len;
@@ -28,14 +27,14 @@ typedef struct descriptor {
 /* prototypes */
 
 
-#if VMS
+#if defined VMS
    void apnd_stat( struct dsc$descriptor_d *, int *,
                    struct dsc$descriptor_d * );
    int srv_fcmdprs( struct dsc$descriptor_d *, struct dsc$descriptor_d * );
    void plot_load( struct dsc$descriptor_d *, struct dsc$descriptor_d *,
                    struct dsc$descriptor_d * );
 
-#elif WIN32
+#elif defined WIN32
 #pragma aux ipf_fexit_cw "^"
 #pragma aux initlz_cw "^"
 #pragma aux pfinit_cw "^"
@@ -61,10 +60,15 @@ typedef struct descriptor {
    int srv_fcmdprs( descriptor * , descriptor *);
    void plot_load( descriptor * , descriptor *, descriptor *);
 
-#elif UNDERSCORE
+#elif defined UNDERSCORE
    void apnd_stat_( char *, int *, char *, int *, int * );
    int srv_fcmdprs_( char * , char *, int *, int * );
    void plot_load_( char * , char *, char * , int *, int *, int * );
+
+#elif defined DUNDERSCORE
+   void apnd_stat__( char *, int *, char *, int *, int * );
+   int srv_fcmdprs__( char * , char *, int *, int * );
+   void plot_load__( char * , char *, char * , int *, int *, int * );
 
 #else /* UNIX with NO Underscore */
    void apnd_stat( char *, int *, char *, int *, int * );
@@ -75,7 +79,7 @@ typedef struct descriptor {
 
 /* put any routines here that only have an "underscore" dependency */
 
-#ifdef UNDERSCORE
+#if defined UNDERSCORE
    void initlz_( int * );
    void pfinit_( void );
    void set_batch_( void );
@@ -84,6 +88,16 @@ typedef struct descriptor {
    void net_data_sub_();
    void ipf_reports_();
    void pf_cmd_();
+
+#elif defined DUNDERSCORE
+   void initlz_( int * );
+   void pfinit_( void );
+   void set_batch__( void );
+   void ipf_fexit__( void );
+   void cutting_sub__();
+   void net_data_sub__();
+   void ipf_reports__();
+   void pf_cmd__();
 
 #else /* UNDERSCORE */
    void initlz( int * );
@@ -107,8 +121,10 @@ static  int   i8k = FORT_BUFSIZE, i15 = RNAM_SZ, i60 = FNAM_SZ;
  ********************************************************************/
 void cutting_sub_cw( int argc, char *argv[]  )
 {
-#ifdef UNDERSCORE
+#if defined UNDERSCORE
    cutting_sub_();
+#elif defined DUNDERSCORE
+   cutting_sub__();
 #else
    cutting_sub();
 #endif
@@ -118,8 +134,10 @@ void cutting_sub_cw( int argc, char *argv[]  )
  ********************************************************************/
 void net_data_sub_cw( int argc, char *argv[]  )
 {
-#ifdef UNDERSCORE
+#if defined UNDERSCORE
    net_data_sub_();
+#elif defined DUNDERSCORE
+   net_data_sub__();
 #else
    net_data_sub();
 #endif
@@ -129,8 +147,10 @@ void net_data_sub_cw( int argc, char *argv[]  )
  ********************************************************************/
 void ipf_reports_cw( int argc, char *argv[]  )
 {
-#ifdef UNDERSCORE
+#if defined UNDERSCORE
    ipf_reports_();
+#elif defined DUNDERSCORE
+   ipf_reports__();
 #else
    ipf_reports();
 #endif
@@ -140,8 +160,10 @@ void ipf_reports_cw( int argc, char *argv[]  )
  ********************************************************************/
 void pf_cmd_cw( int argc, char *argv[]  )
 {
-#ifdef UNDERSCORE
+#if defined UNDERSCORE
    pf_cmd_();
+#elif defined DUNDERSCORE
+   pf_cmd__();
 #else
    pf_cmd();
 #endif
@@ -151,8 +173,10 @@ void pf_cmd_cw( int argc, char *argv[]  )
  ********************************************************************/
 void ipf_fexit_cw( void )
 {
-#ifdef UNDERSCORE
+#if defined UNDERSCORE
    ipf_fexit_();
+#elif defined DUNDERSCORE
+   ipf_fexit__();
 #else
    ipf_fexit();
 #endif
@@ -164,7 +188,9 @@ int initlz_cw( void )
 {
    static int status;
 
-#ifdef UNDERSCORE
+#if defined UNDERSCORE
+   initlz_(&status); /* init for cpyinpbuf */
+#elif defined DUNDERSCORE
    initlz_(&status); /* init for cpyinpbuf */
 #else
    initlz(&status);  /* init for cpyinpbuf */
@@ -175,7 +201,9 @@ int initlz_cw( void )
  ********************************************************************/
 void pfinit_cw( void )
 {
-#ifdef UNDERSCORE
+#if defined UNDERSCORE
+   pfinit_();
+#elif defined DUNDERSCORE
    pfinit_();
 #else
    pfinit();
@@ -186,8 +214,10 @@ void pfinit_cw( void )
  ********************************************************************/
 void set_batch_cw( void )
 {
-#ifdef UNDERSCORE
+#if defined UNDERSCORE
    set_batch_();
+#elif defined DUNDERSCORE
+   set_batch__();
 #else
    set_batch();
 #endif
@@ -198,7 +228,7 @@ void set_batch_cw( void )
 void apnd_stat_cw( char *outbuf, int status, char *rname )
 {
    char  rname_2f[RNAM_SZ+1];
-#ifdef VMS
+#if defined VMS
    struct dsc$descriptor_d dsc_rname_2f;
    struct dsc$descriptor_d dsc_outbuf;
 
@@ -212,7 +242,7 @@ void apnd_stat_cw( char *outbuf, int status, char *rname )
    dsc_outbuf.dsc$b_class = (char)DSC$K_CLASS_D;
    dsc_outbuf.dsc$a_pointer = (char *)outbuf;
 
-#elif WIN32
+#elif defined WIN32
    descriptor dsc_rname_2f, dsc_outbuf;
 
    dsc_outbuf.addr = outbuf;
@@ -226,17 +256,17 @@ void apnd_stat_cw( char *outbuf, int status, char *rname )
    memset( rname_2f, '\0', RNAM_SZ+1 );
    strcpy( rname_2f, rname );
 
-#ifdef VMS
+#if defined VMS
    apnd_stat( &dsc_outbuf, &status, &dsc_rname_2f );
-#elif WIN32
+#elif defined WIN32
    apnd_stat( &dsc_outbuf, &status, &dsc_rname_2f );
-#else /* VMS */
-#ifdef UNDERSCORE
+#elif defined UNDERSCORE
    apnd_stat_( outbuf, &status, rname_2f, &i8k, &i15 );
+#elif defined DUNDERSCORE
+   apnd_stat__( outbuf, &status, rname_2f, &i8k, &i15 );
 #else /* UNDERSCORE */
    apnd_stat( outbuf, &status, rname_2f, &i8k, &i15 );
 #endif /* UNDERSCORE */
-#endif /* VMS */
 
    return;
 }
@@ -245,7 +275,7 @@ void apnd_stat_cw( char *outbuf, int status, char *rname )
 int srv_fcmdprs_cw( char *cmdbuf, char *databuf )
 {
    int status;
-#ifdef VMS
+#if defined VMS
    struct dsc$descriptor_d dsc_cmdbuf;
    struct dsc$descriptor_d dsc_databuf;
 
@@ -260,7 +290,7 @@ int srv_fcmdprs_cw( char *cmdbuf, char *databuf )
    dsc_databuf.dsc$a_pointer = (char *)databuf;
 
    status = srv_fcmdprs( &dsc_cmdbuf, &dsc_databuf );
-#elif WIN32
+#elif defined WIN32
    descriptor dsc_cmdbuf, dsc_databuf;
 
    dsc_cmdbuf.addr = cmdbuf;
@@ -270,13 +300,13 @@ int srv_fcmdprs_cw( char *cmdbuf, char *databuf )
    dsc_databuf.len  = FORT_BUFSIZE;
 
    status = srv_fcmdprs( &dsc_cmdbuf, &dsc_databuf );
-#else /* VMS */
-#ifdef UNDERSCORE
+#elif defined UNDERSCORE
    status = srv_fcmdprs_( cmdbuf, databuf, &i8k, &i8k );
+#elif defined DUNDERSCORE
+   status = srv_fcmdprs__( cmdbuf, databuf, &i8k, &i8k );
 #else /* UNDERSCORE */
    status = srv_fcmdprs( cmdbuf, databuf, &i8k, &i8k );
 #endif /* UNDERSCORE */
-#endif /* VMS */
 
    return status;
 }
@@ -285,7 +315,7 @@ int srv_fcmdprs_cw( char *cmdbuf, char *databuf )
 void plot_load_cw( char *coord_file, char *base1_file, char *base2_file )
 {
    int status;
-#ifdef VMS
+#if defined VMS
    struct dsc$descriptor_d dsc_coord;
    struct dsc$descriptor_d dsc_base1;
    struct dsc$descriptor_d dsc_base2;
@@ -306,7 +336,7 @@ void plot_load_cw( char *coord_file, char *base1_file, char *base2_file )
    dsc_base2.dsc$a_pointer = (char *)base2_file;
 
    plot_load( &dsc_coord, &dsc_base1, &dsc_base2 );
-#elif WIN32
+#elif defined WIN32
    descriptor dsc_coord, dsc_base1, dsc_base2;
 
    dsc_coord.addr = coord_file;
@@ -319,13 +349,13 @@ void plot_load_cw( char *coord_file, char *base1_file, char *base2_file )
    dsc_base2.len  = FNAM_SZ;
 
    plot_load( &dsc_coord, &dsc_base1, &dsc_base2 );
-#else /* VMS */
-#ifdef UNDERSCORE
+#elif defined UNDERSCORE
    plot_load_(coord_file,base1_file,base2_file,&i60,&i60,&i60);
+#elif defined DUNDERSCORE
+   plot_load__(coord_file,base1_file,base2_file,&i60,&i60,&i60);
 #else /* UNDERSCORE */
    plot_load(coord_file,base1_file,base2_file,&i60,&i60,&i60);
 #endif /* UNDERSCORE */
-#endif /* VMS */
 
    return;
 }

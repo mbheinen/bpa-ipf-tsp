@@ -6,7 +6,7 @@ SET(BPF_src ${SRCBPF}/bpf_main.c
 # Define the executable in terms of the source files
 ADD_EXECUTABLE(${BPFEXE} ${BPF_src})
 
-TARGET_LINK_LIBRARIES(${BPFEXE} ${IPFLIB} ${IPFUTILLIB} ${IPCLIB})
+TARGET_LINK_LIBRARIES(${BPFEXE} ${IPFLIB} ${IPCLIB})
 
 IF(WIN32)
     SET(CMAKE_INSTALL_PREFIX "C:\\Program Files")

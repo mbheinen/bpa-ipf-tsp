@@ -7,6 +7,8 @@
 
 #ifdef UNDERSCORE
 int ipack_4_ (unsigned int *a1, int *a2, int *a3, int *a4)
+#elif DUNDERSCORE
+int ipack_4__ (unsigned int *a1, int *a2, int *a3, int *a4)
 #else
 int ipack_4 (unsigned int *a1, int *a2, int *a3, int *a4)
 #endif

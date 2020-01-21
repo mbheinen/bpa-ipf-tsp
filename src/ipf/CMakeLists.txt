@@ -117,6 +117,7 @@ SET(IPF_src
             ${SRCIPF}/bustyp.f
             ${SRCIPF}/busuvovrpt.f
             ${SRCIPF}/busuvrpt.f
+            ${SRCIPF}/c2f_wraps.c
             ${SRCIPF}/calcflow.f
             ${SRCIPF}/calcintflo.f
             ${SRCIPF}/calsysf.f
@@ -218,6 +219,7 @@ SET(IPF_src
             ${SRCIPF}/cputmr.c
             ${SRCIPF}/cpyinbfil.f
             ${SRCIPF}/c_redchg.f
+            ${SRCIPF}/c_err_exit.c
             ${SRCIPF}/csrchn.f
             ${SRCIPF}/csread.f
             ${SRCIPF}/ctlcom.f
@@ -303,6 +305,7 @@ SET(IPF_src
             ${SRCIPF}/ext_ptis.f
             ${SRCIPF}/ext_ptix.f
             ${SRCIPF}/ext_ptiz.f
+            ${SRCIPF}/f2c_wraps.c
             ${SRCIPF}/fcrvmu.f
             ${SRCIPF}/fcvadd.f
             ${SRCIPF}/fcvcmb.f
@@ -342,6 +345,7 @@ SET(IPF_src
             ${SRCIPF}/fnd_ptiq.f
             ${SRCIPF}/fnd_ptiy.f
             ${SRCIPF}/fnd_ptiz.f
+            ${SRCIPF}/fm.c
             ${SRCIPF}/frect.f
             ${SRCIPF}/frst_brp_alt.f
             ${SRCIPF}/frst_brp.f
@@ -427,6 +431,7 @@ SET(IPF_src
             ${SRCIPF}/getxsn.f
             ${SRCIPF}/getyeq.f
             ${SRCIPF}/getzkk.f
+            ${SRCIPF}/ge_utils.c
             ${SRCIPF}/glblim.f
             ${SRCIPF}/glbvlt.f
             ${SRCIPF}/gtaltopt.f
@@ -497,6 +502,8 @@ SET(IPF_src
             ${SRCIPF}/intfce.f
             ${SRCIPF}/inttierpt.f
             ${SRCIPF}/invert.f
+            ${SRCIPF}/ipack_2.c
+            ${SRCIPF}/ipack_4.c
             ${SRCIPF}/ipf_fexit.f
             ${SRCIPF}/ipf_intfce.f
             ${SRCIPF}/ipf_reports.f
@@ -505,6 +512,7 @@ SET(IPF_src
             ${SRCIPF}/ipzo.f
             ${SRCIPF}/isolton.f
             ${SRCIPF}/isopt.f
+            ${SRCIPF}/is_it_vms.c
             ${SRCIPF}/itrsum.f
             ${SRCIPF}/ivaln.f
             ${SRCIPF}/jacbfc.f
@@ -970,6 +978,7 @@ SET(IPF_src
             ${SRCIPF}/srtbrnch.f
             ${SRCIPF}/srtcord.f
             ${SRCIPF}/srv_fcmdprs.f
+            ${SRCIPF}/srv_cmdprs.c
             ${SRCIPF}/stats.f
             ${SRCIPF}/storchgs.f
             ${SRCIPF}/stor_del.f
@@ -1121,6 +1130,16 @@ SET(IPF_src
             ${SRCIPF}/zone_list.f
             ${SRCIPF}/zone_ren.f
             ${SRCIPF}/zonintchg.f
+            ${SRCIPF}/calsys.c
+            ${SRCIPF}/caltme.c
+            ${SRCIPF}/cflowsrv.c
+            ${SRCIPF}/cgetuser.c
+            ${SRCIPF}/cputmr.c
+            ${SRCIPF}/efopen.c
+            ${SRCIPF}/getenvir.c
+            ${SRCIPF}/launch_cf.c
+            ${SRCIPF}/prs_cmdfil.c
+            ${SRCIPF}/shift.c
 )
 
 ADD_LIBRARY(${IPFLIB} STATIC ${IPF_src})

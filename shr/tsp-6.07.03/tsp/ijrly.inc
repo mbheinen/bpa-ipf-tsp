@@ -1,7 +1,0 @@
-*BEGIN IJRLY
-      DIMENSION IJRLYN(3, 10), GRM(20), BRM(20), GIJRM(10),
-     1          BIJRM(10)
-      DIMENSION IJRLYC(10)
-      CHARACTER*1 IJRLYC
-      EQUIVALENCE (IJRLYN(1, 1), IJSLN(1, 1)), (GRM, GSL),
-     1                (BRM, BSL), (GIJRM, GIJS), (BIJRM, BIJS)
