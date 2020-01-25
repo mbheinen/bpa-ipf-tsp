@@ -127,7 +127,7 @@ c dlc move to swingm
 c dlc      call tapewk()
 C     
       call mpost('INPUT1')
-      call date(swdate)
+      call xdate(swdate)
       write (ch80, 10000) swcase, swdate, ver
 C     WRITE(BUFFER,140) SCASE,SWDATE,VER
 10000 format (2x, 'SWING CASE ', a10, ' EXECUTED ON ', a9,

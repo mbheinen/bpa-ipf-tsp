@@ -103,7 +103,8 @@ C
       if (flname .lt. '0') then                                           
         open (unit=lun,status='NEW',access = 'SEQUENTIAL',                
 c    1    carriagecontrol = 'LIST',                    
-     2    form = 'FORMATTED')
+     2    form = 'FORMATTED',
+     3    file = flname)                                                  
       else                                                                
         open (unit=lun,status='NEW',access = 'SEQUENTIAL',                
      1    form = 'FORMATTED',

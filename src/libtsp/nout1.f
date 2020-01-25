@@ -135,7 +135,7 @@ C     L11=11
       nus11 = 0
       ispknt = 0
       call time(time1)
-      call date(date1)
+      call xdate(date1)
 
 C     Read 1st card after "90" card
       call readin()

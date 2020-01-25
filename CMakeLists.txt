@@ -19,6 +19,7 @@ ENDIF(FCNAME STREQUAL "pgf90")
 SET(IPFLIB ipf)
 SET(IPCLIB ipc)
 SET(TSPLIB libtsp)
+SET(CFLOWLIB cflow)
 SET(IPFGUILIB ipfgui)
 
 # Define executables
@@ -43,6 +44,7 @@ SET(SRCIPF ${SRC}/ipf)
 SET(SRCIPC ${SRC}/ipc)
 SET(SRCGUI ${SRC}/gui)
 SET(SRCLIBTSP ${SRC}/libtsp)
+SET(SRCLIBCFLOW ${SRC}/cflow)
 SET(SRCLIBGUI ${SRC}/libgui)
 SET(SRCBPF ${SRC}/bpf)
 SET(SRCIPFBAT ${SRC}/ipfbat)
@@ -65,6 +67,7 @@ ADD_SUBDIRECTORY(${SRCIPF} ${LIB}/ipf)
 ADD_SUBDIRECTORY(${SRCIPC} ${LIB}/ipc)
 ADD_SUBDIRECTORY(${SRCLIBTSP} ${LIB}/libtsp)
 ADD_SUBDIRECTORY(${SRCLIBGUI} ${LIB}/libgui)
+ADD_SUBDIRECTORY(${SRCLIBCFLOW} ${LIB}/cflow)
 
 # The source for the executables put in the bin folder
 ADD_SUBDIRECTORY(${SRCBPF} ${BIN})

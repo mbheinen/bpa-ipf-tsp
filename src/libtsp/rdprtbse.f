@@ -46,13 +46,13 @@ c    4  (ktempn,brvctr(10*MAXBUS+1)), (ixn,brvctr(13*MAXBUS+1))
         write(*,'(1x,a)') '   ikmu - gkmu - bkmu'
         do i = 1, ntot
           call redecs(bsbr, kk(1,i) + kecst, kk(2,i))
-          write(*,'(1x,a,3i,2f8.3, 2f14.4, 2i4, 2f14.4, 4f8.3)')
+          write(*,'(1x,a,i4,2f8.3, 2f14.4, 2i4, 2f14.4, 4f8.3)')
      1      exnamc(indo2x(i)),i, kk(1,i), kk(2,i), bsbr(1), bsbr(2), 
      2      bsbr(3), bsbr(4),
      3      jbsbr(5), jbsbr(6), bsbr(7), bsbr(8), bsbr(9),
      4      bsbr(10), bsbr(11), bsbr(12)
             do brcnt = 13, kk(2,i) - 1, 3
-              write(*, '(1x,a10, i, 2f12.4)')
+              write(*, '(1x,a10, i4, 2f12.4)')
      1        exnamc(indo2x(jbsbr(brcnt))), jbsbr(brcnt), 
      2        bsbr(brcnt+1), bsbr(brcnt+2)
             end do
@@ -69,7 +69,7 @@ c      else if (dbg .eq. 1) then
         end do
         do i = 1, ltot
           call getchr(1,brid,jbrnch(13,i))
-          write(*, '(2a10,i,a3,i)' )
+          write(*, '(2a10,i4,a3,i4)' )
      1      exnamc(jbrnch(2,i)),exnamc(jbrnch(12,i)),
      2      jbrnch(1,i), brid, jbrnch(14,i)
         end do

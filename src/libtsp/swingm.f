@@ -233,7 +233,7 @@ C
       fichmx = 59
       lstdnl = 0
       lstdnf = 0
-      call date(rdate)
+      call xdate(rdate)
 
 C     Temporary addition to get fiche ID on listing.  (OK, no data
 C     read from control file yet.)
