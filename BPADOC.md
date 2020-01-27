@@ -1,84 +1,68 @@
 # IPF Batch Powerflow -- bpf
 
-Usage:  `bpf <controlfile.pfc> <cr>`
+Usage:  `bpf <controlfile.pfc>`
 
 	or
 
-	bpf <cr>
-	BPA POWER FLOW PROGRAM VERSION:IPF  327                     
- 	Enter Power Flow Control (PFC) file name > <controlfile.pfc> <cr>
+	`bpf`
 
 Output:  Powerflow Output file <casename.pfo>
 
 The updated version of the old BPA batch Power Flow program. It executes using the 
 commands from an old style Batch Power Flow Control (PFC) script file. 
 
-Example of use: bpf test.pfc. 
+Example of use: `bpf test.pfc`. 
 
-The PFC commands (standard filename extension of .pfc) used with BPF are
-scripts for a complete power flow run. Chapter 4 of the IPF Batch Users Guide
-(ipfbat.pdf) describes the commands available.
+The PFC commands (standard filename extension of .pfc) used with `bpf` are
+scripts for a complete power flow run. Chapter 4 of the [IPF Batch Users
+ Guide] describes the commands available.
 
-The BPF Approach: 
-When you use BPF, you must first create a PFC file with the appropriate commands 
+When you use `bpf`, you must first create a PFC file with the appropriate commands 
 to accomplish the solution task at hand. At runtime these commands are
-accepted by BPF and executed according to a logical processing order
+accepted by `bpf` and executed according to a logical processing order
 determined by the program. Hence you need not be concerned with the ordering
 of commands in your PFC file. Input commands will be processed first, and a
 solution done automatically before any output is produced. Finally, a new base
-file will be created, if you have requested one. See the IPF Batch Users
-Guide (ipfbat.pdf) for information on this approach.
+file will be created, if you have requested one. See the [IPF Batch Users 
+Guide] for information on this approach.
 
 # IPF Advanced Powerflow Analysis -- cflow
 
-Usage:  <cflow routine name> <cr>
+CFLOW is a C library (`libcflow`) for IPF. This repo contains several programs that have been
+created with CFLOW (see specific CFLOW routine HowTos for further information):
 
-	or
+* pvcurve
+* post_pvcurve
+* qvcurve
+* findout
+* mimic
+* puf
 
-	<include these routines in .PCL control files for use with IPFBAT>
-
-Output:  <depends on usage>
-
-Pre-Programmed CFLOW routines included with IPF-3.27 include the following:
-(see specific CFLOW routine HowTos for further information)
-
-pvcurve
-post_pvcurve
-qvcurve
-findout
-mimic
-puf
-
-
-The CFLOW Approach: 
 Many system planning studies entail a large number of similar runs. IPS users
 have encoded these standard operations in the COPE language; to do the same
-sort of thing with IPF, you will use the CFLOW approach. Unlike COPE, CFLOW is
+sort of thing with IPF, you will use CFLOW. Unlike COPE, CFLOW is
 not a complete language which is interpreted by the IPF program itself.
 Instead, CFLOW consists of a library of C language functions, callable from
 either C or Fortran. 
 
 To create a CFLOW program or routine, you write your routine using the C
 programming language (at least the main must be in C), including the header
-file cflowlib.h, which defines all the structures and unions which allow
+file `cflowlib.h`, which defines all the structures and unions which allow
 access to the powerflow input and solution values. To retrieve these values,
 you call various CFLOW routines. You can also pass modifications to IPFSRV,
-ask for a new solution, etc. See the IPF CFLOW Users Guide (cflow.pdf) for
-information on writing these programs.
+ask for a new solution, etc. See the [IPF CFLOW Users Guide] for information 
+on writing these programs.
 
-See section 3.4 of the IPF Advanced Users Guide (ipfadv.pdf) for information on
-including these routines in .PCL control files, along with other processes.
+See section 3.4 of the [IPF Advanced Users Guide] for information on including 
+these routines in .PCL control files, along with other processes.
 
+# IPF Cutting Program -- ipfcut
 
-# IPF Cutting Program -- cutting
-
-Usage:  cutting <controlfile.pfc> <cr>
+Usage:  `ipfcut <controlfile.pfc>`
 
 	or
 
-	cutting <cr>
-	BPA POWER FLOW PROGRAM VERSION:IPF  327                     
- 	Enter Power Flow Control (PFC) file name > <controlfile.pfc> <cr>
+	`ipfcut`
 
 Output:  Powerflow Network Data file `<cutcasename.bse>`
 
@@ -86,23 +70,24 @@ Cuts out a section of the entire system model, and prepares it to be set up for
 running with its own slack bus.
 
 This is a stand-alone program that cuts out a subsystem from a solved base
-case (.BSE) file.  Flows at the cut branches are converted into equivalent
+case (.bse) file. Flows at the cut branches are converted into equivalent
 generation or load on specially formatted +A continuation bus records. An
 ensuing power flow run should solve with internal branch flows and bus
 voltages which are identical to those quantities in the original base case. 
 
 In almost all cases, you will have to convert one of the buses in the cut
-subsystem into a slack bus, to replace the original system slack bus (COULEE).
+subsystem into a slack bus, to replace the original system slack bus.
 
 Several methods are available to define the cut system: bus names, zones,
-base kVs, and individual branches.  A pi-back feature replaces selected buses
+base kVs, and individual branches. A pi-back feature replaces selected buses
 with a passive-node sequence (lines consisting of sections) with the original
 loads pi-backed in proportion to the line admittances.
 
-Documentation is in Appendix F of the IPF Batch Users Guide (ipfbat.pdf). 
+Documentation is in Appendix F of the [IPF Batch Users Guide]. 
 
-SAMPLE CONTROL FILE: EWEBCUT1.PFC
+Sample control file:
 
+```
 ( CUTTING, PROJECT=EWEB, CASEID=EWEBCUT1 )
 >DEBUG<
 .>EXCLUDE_BUSES<
@@ -113,39 +98,34 @@ SAMPLE CONTROL FILE: EWEBCUT1.PFC
 >SAVE_ZONES NC,SAVE_BASES 500,230,115,69<
 / DEBUG, TX = ON, DC_MODEL = ON
 (STOP)
-
-# dos-linux
-Utility Program to remove carriage returns from the ends of lines for 
-data files imported to Linux from DOS/MS-Windows.  Also changes file 
-names from Capital Letters to Lower Case.
+```
 
 # IPF Batch Analysis Tool -- ipfbat
 
-Usage:  `ipfbat <controlfile.pcl> <cr>`
+Usage:  `ipfbat <controlfile.pcl>`
 
-The batch version of IPFSRV. It accepts a  new style  Power Flow Control Language (PCL) 
-script file.  
+The batch version of IPFSRV. It accepts a new style Power Flow Control Language (PCL) 
+script file.
 
 Example of use: `ipfbat test.pcl`. 
 
-The new style PCL commands used with IPFSRV and IPFBAT (standard filename
-extension of .pcl) are described in the IPF Advanced Users Guide
-(ipfadv.pdf) and in Appendix A of the CFLOW Users Guide (cflow.pdf). Many of
+The new style PCL commands used with `ipfsrv` and `ipfbat` (standard filename
+extension of `.pcl`) are described in the [IPF Advanced Users Guide]
+ and in Appendix A of the [CFLOW Users Guide]. Many of
 the BPF commands from chapter 4 of this manual are supported, but not all, and
 there are many additional new commands.
 
-
-The IPFBAT Approach: 
-IPFBAT allows you fine control over the database and solution engine (IPFSRV). 
+`ipfbat` allows you fine control over the database and solution engine (`ipfsrv`). 
 When you use the PCL approach, you first create a PCL file with the
 appropriate commands to accomplish the solution task at hand. At runtime these
 commands are interpreted by IPFBAT. The PCL file commands are processed
 sequentially. Additional PCL command files may be specified by name, so that a
-chain  of PCL files may be processed in one run. See the IPF Advanced User s
-Guide for details (ipfadv.pdf).
+chain  of PCL files may be processed in one run. See the [IPF Advanced Users
+Guide] for details.
 
-IPFBAT Command Summary:
+`ipfbat` Command Summary:
 
+```
 /INITIALIZE
 
        processed by  p_pfinit_ 
@@ -509,18 +489,18 @@ C  < case comments - three records maximum >
 /SUBDEF
 
        processed by p_subdef_
-
+```
 
 IPF Graphic User Interface -- gui
 
-Usage:  gui <cr>
+Usage:  `gui`
 
 Output:  Screen/Mouse-driven, Point-and-Click control of IPF powerflow program.
 
 The X-based (X Window System using the Motif Window Manager) push-button and
-menu-driven Graphical User Interface (gui) program that works in conjunction
-with the power flow server, IPFSRV.  Documentation is in the IPF Basic/GUI
-Users Guide (ipfgui.pdf).
+menu-driven Graphical User Interface (`gui`) program that works in conjunction
+with the power flow server, IPFSRV.  Documentation is in the [IPF Basic/GUI
+Users Guide].
 
 
 The GUI Approach:
@@ -3075,7 +3055,7 @@ This sets up one or the other of the following two symbols:
   QVcurve_Pro == "$CFPROGS:QVcurve_Pro.EXE"            (on a VAX VMS machine)
 
 Run CFLOW program by typing its name.
-> QVcurve_Pro (optionally follow with a trace (*.trc) file)
+qvcurve_pro (optionally follow with a trace (.trc) file)
 
 To implement the plotting capability, set up the symbol CFLOW_PSQ to point to a
 PostScript device (add to login file):
@@ -3092,3 +3072,8 @@ LOCATION: (Look here for the most recent updates.)
 
 
 BPA9::disk24:[psap.ipf.cfdoc]QVcurve_Pro.help
+
+[IPF Basic/GUI Users Guide]: https://github.com/mbheinen/bpa-ipf-tsp/blob/master/manuals/IPFGUI.PDF
+[IPF Batch Users Guide]: https://github.com/mbheinen/bpa-ipf-tsp/blob/master/manuals/IPFBAT.PDF
+[IPF Advanced Users Guide]: https://github.com/mbheinen/bpa-ipf-tsp/blob/master/manuals/IPFADV.PDF
+[IPF CFLOW Users Guide]: https://github.com/mbheinen/bpa-ipf-tsp/blob/master/manuals/CFLOW.PDF
