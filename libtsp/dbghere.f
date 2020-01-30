@@ -11,7 +11,7 @@ c     Indicates whether the subroutine "subname" is to be debugged.
 c
       integer la, ln
 c
-      dbghere = .false.
+      dbghere = .true.
       if (.not. anydbg) return
 c
       ln = len (subname)

@@ -1,23 +1,19 @@
 # Interactive Power Flow & Transient Stability Program
-This is a fork of the Bonneville Power Administration's Interactive Power Flow (IPF) and Transient Stability Program (TSP). Both of these are public domain and were originally obtained from ftp://ftp.bpa.gov (which no longer seems to be available). The goal is to get this codebase to a point where it can be compiled and run in hopes to use it for benchmarking future projects related to power flow or transient stability analysis.
+This is a fork of the Bonneville Power Administration's Interactive Power Flow (IPF) and Transient Stability Program (TSP). IPF and TSP were made public domain by Bonneville Power Administration back in the early 2000s. The original source code for this repo was obtained from ftp://ftp.bpa.gov, which no longer seems to be available. The goal of this project is to breathe life into this code base again. The initial goal to get the command line tools working for benchmarking future projects related to power flow or transient stability analysis.
 
-Note that the original programs had a GUI component, but given how dated it is, it is very unlikely it will ever run without significant effort. The initial goal is to get the power flow and transient programs operational enough to be able to be used from the command line and later see if original GUI components can be made to work again.
+Note that the original programs had a GUI component built with [Motif X Window], but given how dated it is, it is very unlikely it will ever run without significant effort. The initial goal is to get the power flow and transient programs operational enough to be able to be used from the command line and later see if original GUI components can be made to work again.
 
-# Documentation
-The best place for a thorough description of the original BPA IPF and TSP applications is the [manuals](https://github.com/mbheinen/bpa-ipf-tsp/tree/master/manuals) in this repo. Additionally, check out John Schaad's (one of the original creators) [website](http://members.efn.org/~jschaad/ipf-1.html).
-
-# Dependencies
-The majority of this codebase is Fortran with some links to C. Both Fortran and C compiler are needed in order to compile it. Also note that to this point it has only been test compiled on CentOS Linux.
+# Building
+The majority of this codebase is Fortran with some C. Both Fortran and C compiler are needed in order to compile it. Also, note that to this point it has only been test compiled on CentOS. To get the compilers:
 
     $ yum install gcc
     $ yum install gcc-gfortran
 
-If you will be building the GUI as well, you will also need to install Motif
+If you will be building the GUI as well, you will also need to install [Motif X Window]
 
     $ yum install motif
     $ yum install motif-devel
 
-# Building
 This project uses CMake. CMake is a multi-platform build tool that can generate build files for many different target platforms. See more info at http://www.cmake.org. CMake recommends doing "out of source" builds, that is, the build files are separated from your sources. This is convenient when doing development because there is no need to clean out compiled stuff (e.g. object files and executables) from the source tree. To do this, you create a `build/` directory at the top level of the project and everything gets built there. This allows you to just delete the `build/` directory when you're done. Doing a checkout and compile of this repository is done as follows:
 
     $ git clone https://github.com/mheinen/bpa-ipf-tsp
@@ -28,65 +24,27 @@ This project uses CMake. CMake is a multi-platform build tool that can generate 
     $ make
     $ sudo make install
     
-Libraries are created in `lib/`. The executables are created in `bin/`.  
+After building, you will see the library binaries in `lib/` and the executables in `bin/`.  
 
-# Running
-After building as shown above, test it out using the bench test case found in the `data/` directory by running. To run powerflow on the bench case just run:
+# Sample Cases
+There are a variety of sample cases in the [data](https://github.com/mbheinen/bpa-ipf-tsp/tree/master/data) directory of this repo. Some of them came from original IPF code base others came from publically available cases like Texas A&M's set of databases found [here](https://electricgrids.engr.tamu.edu/electric-grid-test-cases/). None of the data is from real power system networks since such information is generally considered confidential by Transmission Owners.
 
-    $ bpf bench.pfc
+# Documentation
+The sections below describe the various executables and libraries in this project and how to use this. The best place for a thorough description of the original IPF and TSP applications is the [manuals](https://github.com/mbheinen/bpa-ipf-tsp/tree/master/manuals) in this repo. Additionally, check out [John Schaad's website](http://members.efn.org/~jschaad/ipf-1.html) for some history on the BPA project.
 
-# Test Cases
-There are a variety of test cases in the `data/` directory. Some of them came from original IPF code base others came from public/synthetic cases like Texas A&M's set of databases found [here](https://electricgrids.engr.tamu.edu/electric-grid-test-cases/). None of the data is from live/real power system networks since such information is generally considered confidential by Transmission Owners.
-
-# IPF Batch Powerflow -- bpf
-
-Usage:  `bpf <controlfile.pfc>` or `bpf`
-Output:  Powerflow Output file `<casename.pfo>`
-
-Batch Power Flow program. It executes using commands from a Power Flow Control (`.pfc`) script file. The PFC commands used with `bpf` are scripts for a complete power flow run. Chapter 4 of the [IPF Batch Users Guide] describes the commands available. You can try it out using test cases found in the `data/` directory. To run powerflow on the bench case just run:
+## Batch Power Flow -- bpf
+Batch Power Flow program. It executes using commands from a Power Flow Control (`.pfc`) script file. Users write the commands in the `.pfc` scripts to do complete power flow runs. Chapter 4 of the [IPF Batch Users Guide] describes the commands available. You can try it out using test cases found in the `data/` directory. To run powerflow on the bench case just run `bpf <controlfile.pfc>` or `bpf`. For example,
 
     $ bpf bench.pfc
 
-When you use `bpf`, you must first create a PFC file with the appropriate commands to accomplish the solution task at hand. At runtime these commands are accepted by `bpf` and executed according to a logical processing order determined by the program. Hence you need not be concerned with the ordering of commands in your PFC file. Input commands will be processed first, and a solution done automatically before any output is produced. Finally, a new base file will be created, if you have requested one. See the [IPF Batch Users Guide] for information on this approach.
+The output is a Power Flow Output file `<casename.pfo>`. When you use `bpf`, you must first create a PFC file with the appropriate commands to accomplish the solution task at hand. At runtime these commands are accepted by `bpf` and executed according to a logical processing order determined by the program. Hence you need not be concerned with the ordering of commands in your PFC file. Input commands will be processed first, and a solution done automatically before any output is produced. Finally, a new base file will be created, if you have requested one. See the [IPF Batch Users Guide] for information on this approach.
 
-# IPF Advanced Powerflow Analysis -- cflow
-
-CFLOW is a C library (`libcflow`) for IPF. This repo contains several programs that have been
-created with CFLOW (see specific CFLOW routine HowTos for further information):
-
-* pvcurve
-* post_pvcurve
-* qvcurve
-* findout
-* mimic
-* puf
-
-Many system planning studies entail a large number of similar runs. IPS users
-have encoded these standard operations in the COPE language; to do the same
-sort of thing with IPF, you will use CFLOW. Unlike COPE, CFLOW is
-not a complete language which is interpreted by the IPF program itself.
-Instead, CFLOW consists of a library of C language functions, callable from
-either C or Fortran. 
-
-To create a CFLOW program or routine, you write your routine using the C
-programming language (at least the main must be in C), including the header
-file `cflowlib.h`, which defines all the structures and unions which allow
-access to the powerflow input and solution values. To retrieve these values,
-you call various CFLOW routines. You can also pass modifications to IPFSRV,
-ask for a new solution, etc. See the [IPF CFLOW Users Guide] for information 
-on writing these programs.
-
-See section 3.4 of the [IPF Advanced Users Guide] for information on including 
-these routines in .PCL control files, along with other processes.
-
-# IPF Cutting Program -- ipfcut
+## Cutting Program -- ipfcut
+Cuts out a section of the entire system model and prepares it to be set up for running with its own slack bus.
 
 Usage:  `ipfcut <controlfile.pfc>` or `ipfcut`
 
 Output:  Powerflow Network Data file `<cutcasename.bse>`
-
-Cuts out a section of the entire system model, and prepares it to be set up for
-running with its own slack bus.
 
 This is a stand-alone program that cuts out a subsystem from a solved base
 case (.bse) file. Flows at the cut branches are converted into equivalent
@@ -119,12 +77,10 @@ Sample control file:
 (STOP)
 ```
 
-# IPF Batch Analysis Tool -- ipfbat
+# Batch Analysis Tool -- ipfbat
+The batch version of `ipfsrv`. It accepts a Power Flow Control Language (PCL) script file. This was considered a "new" style of commands when BPA first wrote these programs.
 
 Usage:  `ipfbat <controlfile.pcl>`
-
-The batch version of `ipfsrv`. It accepts a new style Power Flow Control Language (PCL) 
-script file.
 
 Example of use: `ipfbat test.pcl`. 
 
@@ -555,6 +511,34 @@ Advanced Users Guide].
 Usage: `ipf_reports <basefile1.bse>` or `ipf_reports`
 
 Creates customized output reports and summaries.
+
+## Advanced Powerflow Analysis -- cflow
+CFLOW is a C library (`libcflow`) for IPF. This repo contains several programs that have been created with CFLOW:
+
+* pvcurve
+* post_pvcurve
+* qvcurve
+* findout
+* mimic
+* puf
+
+Many system planning studies entail a large number of similar runs. IPS users
+have encoded these standard operations in the COPE language; to do the same
+sort of thing with IPF, you will use CFLOW. Unlike COPE, CFLOW is
+not a complete language which is interpreted by the IPF program itself.
+Instead, CFLOW consists of a library of C language functions, callable from
+either C or Fortran. 
+
+To create a CFLOW program or routine, you write your routine using the C
+programming language (at least the main must be in C), including the header
+file `cflowlib.h`, which defines all the structures and unions which allow
+access to the powerflow input and solution values. To retrieve these values,
+you call various CFLOW routines. You can also pass modifications to IPFSRV,
+ask for a new solution, etc. See the [IPF CFLOW Users Guide] for information 
+on writing these programs.
+
+See section 3.4 of the [IPF Advanced Users Guide] for information on including 
+these routines in .PCL control files, along with other processes.
 
 # fastout (a CFLOW program)
 
@@ -2923,3 +2907,4 @@ in brackets [].
 [IPF Batch Users Guide]: https://github.com/mbheinen/bpa-ipf-tsp/blob/master/manuals/IPFBAT.PDF
 [IPF Advanced Users Guide]: https://github.com/mbheinen/bpa-ipf-tsp/blob/master/manuals/IPFADV.PDF
 [IPF CFLOW Users Guide]: https://github.com/mbheinen/bpa-ipf-tsp/blob/master/manuals/CFLOW.PDF
+[Motif X Window]: https://motif.ics.com/motif/downloads

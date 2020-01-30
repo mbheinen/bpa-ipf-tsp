@@ -37,7 +37,7 @@ SET(IPFCUTEXE ipfcut)
 SET(TSPEXE tsp)
 
 # Define some directories
-SET(SRC ${CMAKE_SOURCE_DIR}/src)
+SET(SRC ${CMAKE_SOURCE_DIR})
 SET(LIB ${CMAKE_SOURCE_DIR}/lib)
 SET(BIN ${CMAKE_SOURCE_DIR}/bin)
 SET(SRCIPF ${SRC}/ipf)
