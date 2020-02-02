@@ -45,9 +45,6 @@ C             ERROR - return status (0=normal/1=error)
       common /amtrx/ ikk(5,MAXBUS), ownlis(100)
       character ownlis*3
 
-      common /chgbas/ chgbas, baslod
-      logical chgbas, baslod
-
       common /is_batch / is_batch
       
       double precision  dpltot, dqltot
@@ -56,7 +53,6 @@ C             ERROR - return status (0=normal/1=error)
       character cbown * 3, cbtyp * 1, cbkyr * 2, owntmp * 3,  own * 3   
       logical found 
 
-      chgbas = .false.
       error = 0 
       pctp = 0.0
       pctq = 0.0

@@ -1,7 +1,9 @@
 # Interactive Power Flow & Transient Stability Program
-This is a fork of the Bonneville Power Administration's Interactive Power Flow (IPF) and Transient Stability Program (TSP). IPF and TSP were made public domain by Bonneville Power Administration back in the early 2000s. The original source code for this repo was obtained from ftp://ftp.bpa.gov, which no longer seems to be available. The goal of this project is to breathe life into this code base again. The initial goal to get the command line tools working for benchmarking future projects related to power flow or transient stability analysis.
+This is a fork of Bonneville Power Administration's Interactive Power Flow (IPF) and Transient Stability Program (TSP). IPF and TSP were made public domain by Bonneville Power Administration (BPA) back in 1994. The original source code for this repo was obtained from ftp://ftp.bpa.gov, which no longer seems to be available. 
 
-Note that the original programs had a GUI component built with [Motif X Window], but given how dated it is, it is very unlikely it will ever run without significant effort. The initial goal is to get the power flow and transient programs operational enough to be able to be used from the command line and later see if original GUI components can be made to work again.
+Interactive Power Flow (IPF) was developed by BPA and its contractors with about 20% of the cost supported by the Electric Power Research Institute (EPRI). By mutual agreement, as described in EPRI Agreement RP2746-03 entitled Graphical User Interface for Powerflow, March, 1992, all results of this project--including the computer program and its documentation--are to be in the public domain. In a separate Memorandum of Understanding with the Western Systems Coordinating Council (WSCC), BPA agreed in March, 1992, to keep WSCC informed of progress, to make its best effort to develop the program according to the Guidelines adopted by the WSCC Computer Program Management Subcommittee, and to make the final results available for possible further development by WSCC. 
+
+The goal is to breathe life into this codebase again. The initial step is to get the command line tools working for benchmarking future projects related to power flow or transient stability analysis. Note that the original programs had a GUI component built with [Motif X Window], but given how dated it is, it is very unlikely it will ever run without significant effort. Once the power flow and transient programs are operational, it wil be easier to see if original GUI components can be made to work again.
 
 # Building
 The majority of this codebase is Fortran with some C. Both Fortran and C compiler are needed in order to compile it. Also, note that to this point it has only been test compiled on CentOS. To get the compilers:
@@ -27,17 +29,17 @@ This project uses CMake. CMake is a multi-platform build tool that can generate 
 After building, you will see the library binaries in `lib/` and the executables in `bin/`.  
 
 # Sample Cases
-There are a variety of sample cases in the [data](https://github.com/mbheinen/bpa-ipf-tsp/tree/master/data) directory of this repo. Some of them came from original IPF code base others came from publically available cases like Texas A&M's set of databases found [here](https://electricgrids.engr.tamu.edu/electric-grid-test-cases/). None of the data is from real power system networks since such information is generally considered confidential by Transmission Owners.
+There are a variety of sample cases in the [data](https://github.com/mbheinen/bpa-ipf-tsp/tree/master/data) directory of this repo. Some of them came from original IPF codebase others came from publically available cases like Texas A&M's set of synthetic cases found [here](https://electricgrids.engr.tamu.edu/electric-grid-test-cases/). None of the data is from real power system networks since such information is generally considered confidential by Transmission Owners.
 
 # Documentation
-The sections below describe the various executables and libraries in this project and how to use this. The best place for a thorough description of the original IPF and TSP applications is the [manuals](https://github.com/mbheinen/bpa-ipf-tsp/tree/master/manuals) in this repo. Additionally, check out [John Schaad's website](http://members.efn.org/~jschaad/ipf-1.html) for some history on the BPA project.
+The sections below describe the various executables and libraries in this project and how to use them. The best place for a thorough description of the original IPF and TSP applications is the [manuals](https://github.com/mbheinen/bpa-ipf-tsp/tree/master/manuals). Additionally, check out [John Schaad's website](http://members.efn.org/~jschaad/ipf-1.html) for some history on the original BPA project.
 
 ## Batch Power Flow -- bpf
-Batch Power Flow program. It executes using commands from a Power Flow Control (`.pfc`) script file. Users write the commands in the `.pfc` scripts to do complete power flow runs. Chapter 4 of the [IPF Batch Users Guide] describes the commands available. You can try it out using test cases found in the `data/` directory. To run powerflow on the bench case just run `bpf <controlfile.pfc>` or `bpf`. For example,
+Batch Power Flow (`bpf`) executes using commands from a Power Flow Control (`.pfc`) file. Users write commands in the `.pfc` to do power flow runs. Chapter 4 of the [IPF Batch Users Guide] describes the commands available. You can try it out using test cases found in the [data](https://github.com/mbheinen/bpa-ipf-tsp/tree/master/data) directory. To run a case just run `bpf <controlfile.pfc>` or `bpf` and follow the prompts. For example,
 
     $ bpf bench.pfc
 
-The output is a Power Flow Output file `<casename.pfo>`. When you use `bpf`, you must first create a PFC file with the appropriate commands to accomplish the solution task at hand. At runtime these commands are accepted by `bpf` and executed according to a logical processing order determined by the program. Hence you need not be concerned with the ordering of commands in your PFC file. Input commands will be processed first, and a solution done automatically before any output is produced. Finally, a new base file will be created, if you have requested one. See the [IPF Batch Users Guide] for information on this approach.
+The output is a Power Flow Output file `<casename.pfo>`. When you use `bpf`, you must first create a PFC file with the appropriate commands to accomplish the solution task at hand. At runtime these commands are accepted by `bpf` and executed according to a logical processing order determined by the program. Hence you need not be concerned with the ordering of commands in your PFC file. Input commands will be processed first, and a solution done automatically before any output is produced. Finally, a new base file will be created, if you have requested one. See the [IPF Batch Users Guide] for more information.
 
 ## Cutting Program -- ipfcut
 Cuts out a section of the entire system model and prepares it to be set up for running with its own slack bus.
@@ -46,11 +48,7 @@ Usage:  `ipfcut <controlfile.pfc>` or `ipfcut`
 
 Output:  Powerflow Network Data file `<cutcasename.bse>`
 
-This is a stand-alone program that cuts out a subsystem from a solved base
-case (.bse) file. Flows at the cut branches are converted into equivalent
-generation or load on specially formatted +A continuation bus records. An
-ensuing power flow run should solve with internal branch flows and bus
-voltages which are identical to those quantities in the original base case. 
+This is a stand-alone program that cuts out a subsystem from a solved base case (.bse) file. Flows at the cut branches are converted into equivalent generation or load on specially formatted +A continuation bus records. An ensuing power flow run should solve with internal branch flows and bus voltages which are identical to those quantities in the original base case. 
 
 In almost all cases, you will have to convert one of the buses in the cut
 subsystem into a slack bus, to replace the original system slack bus.
@@ -77,20 +75,16 @@ Sample control file:
 (STOP)
 ```
 
-# Batch Analysis Tool -- ipfbat
-The batch version of `ipfsrv`. It accepts a Power Flow Control Language (PCL) script file. This was considered a "new" style of commands when BPA first wrote these programs.
+## Batch Analysis Tool -- ipfbat
+The batch version of `ipfsrv`. It accepts a Power Flow Control Language (PCL) file. This was considered a "new" style of commands when BPA first wrote these programs.
 
 Usage:  `ipfbat <controlfile.pcl>`
 
 Example of use: `ipfbat test.pcl`. 
 
-The new style PCL commands used with `ipfsrv` and `ipfbat` (standard filename
-extension of `.pcl`) are described in the [IPF Advanced Users Guide]
- and in Appendix A of the [CFLOW Users Guide]. Many of
-the BPF commands from chapter 4 of this manual are supported, but not all, and
-there are many additional new commands.
+The new style PCL commands used with `ipfsrv` and `ipfbat` (standard filename extension of `.pcl`) are described in the [IPF Advanced Users Guide] and in Appendix A of the [IPF CFLOW Users Guide]. Many of the `bpf` commands from Chapter 4 of this manual are supported, but not all, and there are many additional new commands.
 
-`ipfbat` allows you fine control over the database and solution engine (`ipfsrv`). 
+`ipfbat` allows you fine control over the case and solution engine (`ipfsrv`). 
 When you use the PCL approach, you first create a PCL file with the
 appropriate commands to accomplish the solution task at hand. At runtime these
 commands are interpreted by IPFBAT. The PCL file commands are processed
@@ -441,18 +435,6 @@ C  < case comments - three records maximum >
 
         processed by p_cflow_gui 
 
-/QUIT
-
-        processed by p_pfexit_ 
-
-/EXIT
-
-        processed by p_pfexit_ 
-
-/CFLOW_GUI
-
-        processed by p_cflow_gui 
-
 /INITDEF
 
         processed by p_initdef_ 
@@ -466,11 +448,11 @@ C  < case comments - three records maximum >
        processed by p_subdef_
 ```
 
-# IPF Graphic User Interface -- gui
+## IPF Graphic User Interface -- gui
 
 Usage:  `gui`
 
-Output:  Screen/Mouse-driven, Point-and-Click control of IPF powerflow program.
+Screen/Mouse-driven, Point-and-Click control of IPF powerflow program.
 
 The X-based (X Window System using the Motif Window Manager) push-button and
 menu-driven Graphical User Interface (`gui`) program that works in conjunction
@@ -490,7 +472,7 @@ also has a tutorial to show you how to solve straightforward power system
 cases.  However,for some more involved analysis tasks, you need to use the BPF, 
 IPFBAT, and CFLOW  approaches.  
 
-# IPF Batch Plotting Program -- ipfplot
+## IPF Batch Plotting Program -- ipfplot
 
 Usage: `ipfplot <coordinatefile.cor> <basefile1.bse> <basefile2.bse(opt)>`
 
@@ -506,13 +488,12 @@ The same coordinate files (.cor) are used by both `gui` and `ipfplot`, but not
 all capabilities are  available in the `gui`. Documentation is in the [IPF
 Advanced Users Guide].
 
-# IPF Batch Program -- ipf_reports
+## IPF Reports -- ipf_reports
+Creates customized output reports and summaries.
 
 Usage: `ipf_reports <basefile1.bse>` or `ipf_reports`
 
-Creates customized output reports and summaries.
-
-## Advanced Powerflow Analysis -- cflow
+## IPF C Library -- libcflow
 CFLOW is a C library (`libcflow`) for IPF. This repo contains several programs that have been created with CFLOW:
 
 * pvcurve
@@ -522,26 +503,18 @@ CFLOW is a C library (`libcflow`) for IPF. This repo contains several programs t
 * mimic
 * puf
 
-Many system planning studies entail a large number of similar runs. IPS users
-have encoded these standard operations in the COPE language; to do the same
-sort of thing with IPF, you will use CFLOW. Unlike COPE, CFLOW is
-not a complete language which is interpreted by the IPF program itself.
-Instead, CFLOW consists of a library of C language functions, callable from
-either C or Fortran. 
-
 To create a CFLOW program or routine, you write your routine using the C
 programming language (at least the main must be in C), including the header
 file `cflowlib.h`, which defines all the structures and unions which allow
 access to the powerflow input and solution values. To retrieve these values,
-you call various CFLOW routines. You can also pass modifications to IPFSRV,
+you call various CFLOW routines. You can also pass modifications to `ipfsrv`,
 ask for a new solution, etc. See the [IPF CFLOW Users Guide] for information 
 on writing these programs.
 
 See section 3.4 of the [IPF Advanced Users Guide] for information on including 
 these routines in .PCL control files, along with other processes.
 
-# fastout (a CFLOW program)
-
+## fastout (a CFLOW program)
 Powerflow (`ipfbat`) output report post-processor. Generates a table of the 
 loading of overloaded branches for a list of outages with data from one or 
 more `.pfo` files. Uses CFLOW library.
@@ -551,18 +524,18 @@ Original author:  William D. Rogers, BPA
 Generate a table of values showing the loading of various branches 
 under the condition of a specified outage for various cases.  For 
 each case, the "Summary of bus and line problems for each outage" 
-report in the corresponding *.pfo file is scanned for the loading, 
+report in the corresponding .pfo file is scanned for the loading, 
 percent of rating, and rating type for each branch-outage pair.  One
-input file contains a list of *.pfo file path names.  A second input
+input file contains a list of .pfo file path names.  A second input
 file contains a list of outages and branch-outage pairs.  Where 
-branch-outage pair is specified, data is collected from each *.pfo
+branch-outage pair is specified, data is collected from each .pfo
 file for that pair.  Where only an outage is specified, all of the
 overloaded branches for that outage are reported.  Data fields in 
 the output report table are character delimited to ease importing to
 MS Excel or DECwrite.
 
-## Input requirements:
-    Powerflow (IPFBAT) output report (`.pfo`) files.
+### Input requirements:
+    Powerflow (`ipfbat`) output report (`.pfo`) files.
     Text file containing a list of *.pfo file path names, 'pfo file list'.
     Text file containing overloaded and outaged branchs, 'outages  list'.
     Prompts user for file names and ouput options.  Defaults in brackets [].
@@ -571,7 +544,7 @@ MS Excel or DECwrite.
         > Enter 'output report' file spec [fastout.rpt]:
         > Enter 'output report' page width....... [132]:
 
-## Output files
+### Output files
 Text file containing a table of reported values, 'output report'.
 stdout messages.
 
@@ -648,7 +621,7 @@ A table of values is generated.  For each overloaded-branch/outaged-branch pair,
 the critical rating is given and for each case, each branch's load and percent
 of rating is given.  Critical ratings are based on the first case that is read, 
 which is assumed to be the base case.  Flags are placed in the output report in
-the |F| columns to indicate the type of rating found in the *.pfo file.
+the |F| columns to indicate the type of rating found in the .pfo file.
 
 The table is then printed to a text file.  For example (fictionalized data):
 
@@ -691,36 +664,8 @@ USAGE:
 Follow the prompts.  Just press return to use the default values which are given
 in brackets [].
 
-IMPORTING FILE TO MICROSOFT EXCEL 5.0:
-
-1.  Copy file from Vax to PC.  For example:
-  > d:\decnet\nft copy BPA9::disk23:[wdr9936]norm.rpt
-2.  Open report file with MS Excel.  The Text Import Wizard should come up.
-3.  Text Import Wizard Step 1.  Choose the Delimited option.
-4.  Text Import Wizard Step 2.  Set the Other Delimiter to vertical bar |.
-5.  Text Import Wizard Step 3.  Use the General Column Data Format.  If the
-    Rating Flag (F) columns are not desired, select these columns and set the 
-    Do Not Import Columns (Skip) option.  Click Finish.
-7.  Select entire document (highlight).
-8.  Change document to a fixed-width, TrueType font such as MS LineDraw with 9 
-    point size.
-9.  Choose Format-Columns-AutoFit Selection from Menu.
-10. For optimal alignment on Excel, use the following column widths:
-    TY=3  OWNER=3  BRANCH NAMES=25  C=1  S=1  (UNIT)=7  ( %)=5  F=1 
-11. Using the considerable power of Excel, format text any way desired.  Excel
-    provides several ways to automate formatting and importing, such as Macros,
-    Visual Application Basic, format paint brush, etc.
-
-LOCATION: (Look here for the most recent updates.)
-    BPA9::DISK24:[PSAP.IPF.CFPROGS]FASTOUT.EXE     - The VAX executable
-    BPA9::DISK24:[PSAP.IPF.CFPROGS]FASTOUT.ALF_EXE - The ALPHA executable
-    BPA9::DISK24:[PSAP.IPF.CFPROGS]FASTOUT.C       - The C source code
-    BPA9::DISK24:[PSAP.IPF.CFDOC]FASTOUT.HELP      - Latest version of this file
-
-
-# IPF Batch Program -- findout
-
-Powerflow (IPFBAT) output report post-processor. Generates a table of outages 
+## findout (a CFLOW program)
+Powerflow (`ipfbat`) output report post-processor. Generates a table of outages 
 and corresponding branch overloads or bus voltage violations from multiple `.pfo` 
 files. Sorts and screens. Uses CFLOW library.
 
@@ -959,33 +904,16 @@ L  |PPL|HOOD RVR69.0 POWERDLE69.0| |0|NB|NB| 300|N| 287.2| 96|N|    <-- overload
 L  |PPL|POWERDLE69.0 SDS TAP 69.0| |0|NB|NB| 310|N| 460.6|149|N|    <-- overload
 ```
 
-USAGE:
+Usage:
 
-Set up a symbol to point to the program executable (add to your login file):
-$ DEFINE    CFPROGS    BPA9::DISK24:[PSAP.IPF.CFPROGS]          (BPA40,50,60,70)
-$ DEFINE    CFPROGS    DISK9:[PSAP.IPF.CFPROGS]                 (MOEA Cluster)
-$ @CFPROGS:CFLOW_SYM_DEF.COM
+    $ findout 
 
-This sets up one or the other of the following two symbols:
-> SHO SYM FINDOUT
-  FINDOUT == "$CFPROGS:FINDOUT.ALF_EXE"   (if you're on an Alpha VMS machine)
-  FINDOUT == "$CFPROGS:FINDOUT.EXE"       (if you're on a VAX VMS machine)
-
-Run CFLOW program by typing its symbol.
-> FINDOUT (optionally follow with a list of *.pfo, trace, or list files)
+Optionally follow with a list of .pfo, trace, or list files
 
 Follow the prompts.  Just press return to use the default values which are given
 in brackets [].
 
-The following two symbols must be defined similar to what follows:
-> SHOW SYMBOL RUN_IPFSRV_CF
-  RUN_IPFSRV_CF == "@BPA9::DISK24:[PSAP.IPF]RUN_IPFSRV_CF.COM"
-> SHOW SYMBOL IPFSRV_CF
-  IPFSRV_CF == "$BPA9:DISK24:[PSAP.IPF]GPF.EXE_V209"
-
-
 # Coordinate File Modification for BPA Generation Studies
-
 For Generation Integration Studies, the use of Powerflow Plots showing proposed new generation facilities and 
 associated system improvements is essential. Generally the diagrams available are the Standard BPA 
 Powerflow Plots (.cor files) developed for the Budget Cases. Creation of new plots or modification of these 
@@ -1058,7 +986,7 @@ file.
 * Click the .COR file you want to use
 * Click "Apply"
 * Click "Load Selections"
-* After the .BSE and .COR files are loaded, click “View, Solution Data On”
+* After the .BSE and .COR files are loaded, click "View, Solution Data On"
 * Click "File, Save-As".  
 * For "Coordinate", click "Select" and enter your new name for this coordinate file.
 * Click "OK", then click "Save" to save the .COR file; then click "Close".
@@ -1404,18 +1332,6 @@ C  < case comments - three records maximum >
 
         processed by p_cflow_gui 
 
-/QUIT
-
-        processed by p_pfexit_ 
-
-/EXIT
-
-        processed by p_pfexit_ 
-
-/CFLOW_GUI
-
-        processed by p_cflow_gui 
-
 /INITDEF
 
         processed by p_initdef_ 
@@ -1429,20 +1345,11 @@ C  < case comments - three records maximum >
        processed by p_subdef_
 ```
 
-UTILITY:    MIMIC
-STRUCTURE:  common CFLOW architecture.
-TYPE:       Powerflow (IPFSRV) case generation and screening.
-SUMMARY:    Generate new cases and check for loading and voltage violations.
-RELATED:    LINEFLOW, FINDOUT
-SEE ALSO:   MODES.TXT
-UPDATED:    July 31, 1996
-LANGUAGE:   Standard C.  CFLOW Libraries.  CF_UTIL.H.
-DEVELOPER:  William D. Rogers, BPA, TEOS (detail), 230-3806
-REQUESTER:  Gordon Young, BPA, TEOB, 230-4430
-USERS:      Gordon Young, Paul Ferron, Berhanu Tesema, Angela DeClerck,...
-IPF:        IPFSRV version 317 or above recommended
-PURPOSE:    Automates solving and screening basecases, applying changes to
-            basecases, basecase comparisons, and plot generation.
+## mimic (CFLOW program)
+Powerflow (`ipfsrv`) case generation and screening.
+Generate new cases and check for loading and voltage violations.
+Original author:  William D. Rogers, BPA, TEOS (detail), 230-3806
+Automates solving and screening basecases, applying changes to basecases, basecase comparisons, and plot generation.
 
 INPUT REQUIREMENTS: (some or all of the following depending on user selections.)
     Powerflow basecases for IPFSRV to load, change, solve and return data from.
@@ -1607,8 +1514,6 @@ BASE.DAT
 ! The symbol '!' in column 1 indicates a comment line and is ignored.
 ! List the names of the powerflow cases one per line.
 !
-J98CY94.BSE
-J98MCY94.BSE
 --------------------------------------------------------------------------------
 
     'pri chngs/list' -
@@ -1623,26 +1528,21 @@ J98MCY94.BSE
         aux chngs list - Auxillary Changes List file.   A text file containing a
             list of change files.
 
-For example:
-J98_OPTION_A.CHG - a change file.
---------------------------------------------------------------------------------
+A change file example:
+```
 /CHANGES,FILE= *\
 . REMOVAL OF THE COL FALL 230/115-kV TRANSFORMER FROM BASE	
 . SIMULATED LOSS OF 230/115-KV INTERCONNECTION
 T D   COL FALL 230 COL FALL 115
 (END)
---------------------------------------------------------------------------------
+```
 
-For example:
-CHANGE.DAT - a list of primary changes
---------------------------------------------------------------------------------
+A list of primary changes example:
+
+```
 ! The symbol '!' in column 1 indicates a comment line and is ignored.
 ! List the names of the change files one per line.
 !
-J98_OPTION_A.CHG
-J98_OPTION_B.CHG
---------------------------------------------------------------------------------
-
     'ref base /list' -
         ref base - a Reference Basecase name. MIMIC searches the local directory
             and then the various basecase directories to find it.
@@ -1661,6 +1561,7 @@ J98_OPTION_B.CHG
         commands for /OUTAGE_SIMULATION studies.  MIMIC will send a command
         structured as follows:
         /OUTAGE_SIMULATION, FILE = <OUTG_CON_FILE>, OUTFILE = <basecase>.PFO    
+```
 
 OUTPUT REPORT FORMAT:
 
@@ -1743,18 +1644,16 @@ The TRACE FILE for the above report is give below.
 . FGROVE.BSE + FG.CHG = FGROVE_000.BSE 
 ```
 
-Run CFLOW program by typing its name.
-> MIMIC (optionally follow with a list of *.pfo, trace, or list files)
+Run by typing its name.
 
-To implement the plotting capability, set up the symbol MIMIC_PSQ to point to a
-PostScript device (add to login file):
-> MIMIC_PSQ :== PRINT/QUEUE=PS_EOFQMS
+    $ mimic 
+
+Optionally follow with a list of .pfo, trace, or list files
 
 Follow the prompts.  Just press return to use the default values which are given
 in brackets [].
 
-# IPF Network Data Extraction -- netdat
-
+## IPF Network Data Extraction -- netdat
 Usage:  
 ```
    netdat <cr>
@@ -1765,8 +1664,8 @@ Usage:
    	   enter P to extract data as a PTI_DATA file, or 
    	   enter Q to quit): 
 ```
-Output:  Converts binary base file (.BSE) to an ASCII network data base file:
-	 (.NET, .BPA, .PTI, or .GE) .
+
+Converts binary base file (.BSE) to an ASCII network data base file (.NET, .BPA, .PTI, or .GE).
 
 This is the batch version of the "save netdata file" function built into the
 GUI/IPFSRV. This program generates a WSCC-formatted network data file in any
@@ -1776,8 +1675,8 @@ restrictions and is destined for use with other programs. In the case of the
 PTI dialect, that data is preprocessed by the PTI-proprietary conversion
 program WSCFOR. Documentation is in Appendix F of the [IPF Batch Users Guide].
 
--------------------------------------------------------------------------------
-BPA NETWORK_DATA file format:
+### BPA NETWORK_DATA file format example:
+```
 netdat <cr>
 	 > Enter OLD_BASE file name (or Q to quit): <test.bse>
 	 > Enter saved network file (default is "test.net"):<cr>
@@ -1821,10 +1720,10 @@ netdat <cr>
  Replaced branch [TP    G32HIG&2 5002MID PS   5001  100  00020 00663            -3000             ]                                  
     80 records written to NETWORK_DATA file test.net                                                                                 
  > Extract another case (Y or N)? N <cr>
+```
 
-
-# GE_DATA file format:
-
+### GE_DATA file format example:
+```
 netdat <cr>
 	 > Enter OLD_BASE file name (or Q to quit): <test.bse>
 	 > Enter saved network file (default is "test.net"):test.ge <cr>
@@ -1857,9 +1756,10 @@ netdat <cr>
                       Season of IPF branch ratings = 2
 
  > Are above options correct (Y or N)? Y <cr>
+```
 
-# PTI_DATA file format:
-
+### PTI_DATA file format example:
+```
 netdat <cr>
 	 > Enter OLD_BASE file name (or Q to quit): <test.bse>
 	 > Enter saved network file (default is "test.net"):test.pti <cr>
@@ -1883,19 +1783,18 @@ netdat <cr>
   Bus records:   original     1 inserted    26
   Area records:  original     1 inserted     3
   Zone records:  original     1 inserted     3
+```
 
-
-# Path Use Factors -- puf
-
+## Path Use Factors -- puf
 A new version of 'puf' (Path Use Factors aka Line Flow Analysis) corrects a 
 factorization error and introduces new command-line options.
 
 Usage:  `puf [-x|] [-lossless] [-pv] [-ai] [-g] [-ps] [-p1] [-c <cutfile>]`
 
 
-```
 The parameters are:
 
+```
 -x<flag> : defines an Excel field separation character. 
 	<flag> is usually set to "|" (vertical bar).
 
@@ -1928,26 +1827,14 @@ You will be prompted for three files:
 * flowgate file name (.txt)
 
 The flowgate file name consists of WSCC-formatted branches which define a 
-particular cut plane. For this example, use a single but critical branch, 
+particular cut plane. For this example, use a single but critical branch, `L RAVER 500 PAUL 5001`  put in a text file, flowgate.txt
 
-`L RAVER 500 PAUL 5001`  put in a text file, flowgate.txt
+## pvcurve_pro - multiple buses perturbed in sequence
+Generates voltage reactance curves. Automates production of P-V curve plot files and plot routine setup files for multiple base cases and outages.
+
+Original author:  William D. Rogers, BPA, TOP, 230-3806, wdrogers@bpa.gov
+
 ```
-
-UTILITY:    PVcurve_pro - multiple buses perturbed in sequence
-STRUCTURE:  common CFLOW architecture.
-TYPE:       Powerflow (IPFSRV), /CHANGE_PARAMETER voltage-reactance curve.
-SUMMARY:    Generate voltage reactance curves.
-RELATED:    LINEFLOW, FINDOUT, CFUSE, MIMIC
-SEE ALSO:   QVcurve
-UPDATED:    April 9, 1997
-LANGUAGE:   Standard C.  CFLOW Libraries.  CF_UTIL.H.
-DEVELOPER:  William D. Rogers, BPA, TOP, 230-3806, wdrogers@bpa.gov
-REQUESTER:  Mark Bond
-USERS:      S Kinney, K Kohne, M Rodrigues, G Comegys, B Tesema, C Matthews,...
-IPF:        Version 318 or above recommended.
-PURPOSE:    Automates production of P-V curve plot files and plot routine setup
-            files for multiple base cases and outages.
-
 INPUT:
         Any or all data can be entered interactively when prompted for, or
         specified ahead of time in trace or data files.
@@ -2131,260 +2018,25 @@ OUTPUT FILES:
 
         Notes:  The series code is used to distinguish between multiple similar
                 data runs.
+```
 
-Run CFLOW program by typing its name.
-> PVCURVE_PRO (optionally follow with a trace (.trc) file)
+Run by typing its name.
 
-To implement the plotting capability, set up the symbol CFLOW_PSQ to point to a
-PostScript device (add to login file):
-> CFLOW_PSQ :== PRINT/QUEUE=PS_EOFQMS
+    $ pvcurve_pro 
 
-Follow the prompts.  Just press return to use the default values which are given
-in brackets [].
-
-
-
-UTILITY:    PVcurve_pro - multiple buses perturbed in sequence
-STRUCTURE:  common CFLOW architecture.
-TYPE:       Powerflow (IPFSRV), /CHANGE_PARAMETER voltage-reactance curve.
-SUMMARY:    Generate voltage reactance curves.
-RELATED:    LINEFLOW, FINDOUT, CFUSE, MIMIC
-SEE ALSO:   QVcurve
-UPDATED:    April 9, 1997
-LANGUAGE:   Standard C.  CFLOW Libraries.  CF_UTIL.H.
-DEVELOPER:  William D. Rogers, BPA, TOP, 230-3806, wdrogers@bpa.gov
-REQUESTER:  Mark Bond
-USERS:      S Kinney, K Kohne, M Rodrigues, G Comegys, B Tesema, C Matthews,...
-IPF:        Version 318 or above recommended.
-PURPOSE:    Automates production of P-V curve plot files and plot routine setup
-            files for multiple base cases and outages.
-
-INPUT:
-        Any or all data can be entered interactively when prompted for, or
-        specified ahead of time in trace or data files.
-
-    REQUIRED
-        Interactive Powerflow (IPF) binary base case(s).
-        Critical bus name and kv.
-
-    OPTIONAL
-        Text file(s) listing base case file names.
-        Text file(s) listing change file names.
-        User analysis file.
-        Text file(s) listing branches to take as outages.
-        Text file(s) listing perturbed buses.
-        Text file(s) listing monitored buses.
-        Text file(s) listing generator buses.
-        Text file(s) listing cut-planes.
-        Common-mode outage master data file.
-        Text file(s) listing common-mode outages.
-        Text file(s) containing solution parameters.
-        Trace file specifying all or some of the desired inputs.
-
-MODES OF OPERATION:
-    PVCURVE_PRO uses built in intelligence to prompt the user based on the
-    information already provided.  This serves to reduce the number of queries
-    the user must answer to run the program.
-
-    PVCURVE_PRO automates these operations:
-        1)  Running P-V studies for load or generation changes
-        2)  Applying changes to multiple base cases prior to P-V run
-        3)  Taking branch and common-mode outages
-        4)  Applying change_bus_type other controls
-        5)  Solving basecases with /SOLUTION options
-        6)  Applying user analysis file prior to P-V run
-        7)  Reporting pre-outage and post-outage quantities
-            a) dVdQ (kV/MVAR) against Pgen,Ptotal (MW) for monitored buses
-            b) Voltage (kV) against Pgen,Ptotal (MW) for monitored buses
-            c) Pin (MW) total against Pgen,Ptotal (MW) for cut-planes
-            d) Qgen, Qres (MW) against Pgen,Ptotal (MW) for generators
-            e) User-analysis quantities
-        8)  For generation perturbation, allows a list of generators to each be
-            brought up from start to stop values at specified steps.
-            (this feature is what distinguishes PVCURVE_PRO for PVCURVE)
-        9)  Building Excel-friendly report tables
-       10)  Logging all user input into a "TRACE" file
-       11)  Performing multiple similar studies
-       12)  Re-running studies with updated base cases
-
-    PVCURVE_PRO operates on these data:
-        1)  Base cases
-        2)  Change files
-        3)  Perturbed buses
-        4)  Monitored buses
-        5)  Generator buses
-        6)  Branches to take out
-        7)  Common-mode outages
-        8)  Cut-planes (grouped branch flows)
-        9)  Other IPF control cards
-       10)  User analysis files
-
-    PVCURVE_PRO reports these quantities:
-        1)  dVdQ (kV/MVAR) for monitored buses
-        2)  Voltage (kV) for monitored buses
-        3)  Pin (MW) for cut-planes
-        4)  Qgen (MW) for generators
-        5)  Qres (MW) for generators
-        6)  User-analysis quantities
-        7)  Pgen at perturbed generator buses
-        8)  Ptot of all perturbed generator buses
-        9)  Load Change (%) of perturbed load area
-
-    PVCURVE_PRO generates these reports:
-        1)  Pre- and Post-outage reports (*.txt) - examples follow
-            a) P00_0DV.TXT      dVdQ (MW/kV)  at Pgen,Ptot,  pre-outage
-            b) P00L0DV.TXT      dVdQ (MW/kV)  at Pgen,Ptot,  branch outage
-            c) P00_0KV.TXT      Voltage (kV)  at Pgen,Ptot,  pre-outage
-            d) P00L0KV.TXT      Voltage (kV)  at Pgen,Ptot,  branch outage
-            e) P00_0MW.TXT      Pin  (MW)     at Pgen,Ptot,  pre-outage
-            f) P00L0MW.TXT      Pin  (MW)     at Pgen,Ptot,  branch outage
-            g) P00_0QQ.TXT      Qgen,res (MW) at Pgen,Ptot,  pre-outage
-            h) P00L0QQ.TXT      Qgen,res (MW) at Pgen,Ptot,  branch outage
-            i) P00_0UA.TXT      User-analysis at Pgen,Ptot,  pre-outage
-            j) P00L0UA.TXT      User_analysis at Pgen,Ptot,  branch outage
-
-PROMPTS:
-    /BASECASE, /TRACE, or /INCLUDE
-     > Enter list of Basecase, *.TRC, or *.DAT files : J98CY94.BSE
-
-    /REPORT
-     > Enter default output name,    NAME = [PVCURVE]:
-     > Enter output series code,   SERIES = [P]:
-     > Enter user analysis file,     USER_ANALYSIS = :
-     > Enter auxillary control file,  CONTROL_FILE = :
-
-     Specify the type of change_parameter command to perform
-       1.  BUS Perturbation      2.  LOAD Perturbation
-     > Enter choice, PERTURBATION = [1]: 2
-
-    /PRI_CHANGE
-     > Enter list of Primary Change (or *.DAT) files :
-
-    /PERTURBED_BUS
-     > Enter file of perturbed buses for P-V analysis:
-     > Enter list of perturbed buses for P-V analysis:
-       > B-----< Bus  ><KV>     <START> <STOP > <STEP >
-       > B     JOHN DAY 500
-       > B     MAYFIELD13.8       197.0   147.0    -5.0
-
-
-    /MONITORED_BUSES
-     > Enter file of monitored buses for dvdq summary:
-     > Enter list of monitored buses for dvdq summary:
-       > B-----< Bus  ><KV>
-       >
-
-    /GENERATOR_BUSES
-     > Enter file of generator buses for Qres summary:
-     > Enter list of generator buses for Qres summary:
-       > B-----< Bus  ><KV>
-       >
-
-    /CUT_PLANE
-     > Enter file of cut-plane identifiers/branches  :
-     > Enter list of cut-plane identifiers/branches  :
-       : Lyc<O>< Bus1 ><V1> < Bus2 ><V2>C
-       : > cut-plane TEST FLOW CUT
-       : L  BPABIG EDDY 500 CELILO   5001
-       : L  BPABIG EDDY 500 CELILO   5002
-       : > cut-plane JOHNDAY-BIGEDDY-OST
-       : L  BPABIG EDDY 500 JOHN DAY 500 
-       : L  BPABIG EDDY 500 JOHN DAY 5002
-       : L  BPABIG EDDY 500 OSTRNDER 500 
-
-    /BRANCH
-     > Enter file of branches for single-line outages:
-     > Enter list of branches for single-line outages:
-       > Tyc<O>< Bus1 ><V1> < Bus2 ><V2>C
-       >
-
-    /REPORT
-     > Enter main common-mode file, COMMON_MODE_DATA=:
-
-    /LIMITS
-     P-V curve load perturbation: Enter change per step and number of steps:
-     > Load change per step (%),LOAD_P_PCT = [ 5.00] :
-     > Load change per step (%),LOAD_Q_PCT = [ 5.00] :
-     > Number of steps,            LOAD_STEPS =  [10] :
-     > Enter zones  to be perturbed, LOAD_ZONES  = [] :
-     > Enter areas  to be perturbed, LOAD_AREAS  = [] :
-     > Enter owners to be perturbed, LOAD_OWNERS = [] :
-
-    /LIMITS
-     P-V curve bus perturbation: Enter Start and Stop Generation and step size:
-     > Starting generation (MW),  GEN_START = [ 0.0] :
-     > Ending generation (MW),    GEN_STOP  = [75.0] :
-     > Generation step size (MW), GEN_STEP  = [25.0] :
-
-    /SOLUTION, /CHANGE_BUS_TYPES
-     > Enter file of sol'n and change_bus_type defaults:
-
-    /SOLUTION       (Enter /solution qualifier and parameters)
-    :
-
-    /CHANGE_BUS_TYPES (Enter /change_bus_type qualifiers and data)
-    > /CHANGE_BUS_TYPES,
-
-
-OUTPUT FILES:
-    Trace File (*.trc) - records all input parameters
-    Error File (*.log) - errors and operating messages
-    IPFSRV File (*.out) - contains output from Powerflow, ipfsrv_cf.out
-    Output FILES (*.txt) - various output quantaties
-        P00X0DV.TXT
-        ^^^^^^^
-        ||||||____ File Data Type: (KV, MW, PV, QQ, DV, or UA)
-        |||||_____ Outage Number: (0...9)
-        ||||______ Outage Type: _(pre-outage) X(none) L(branch) C(common-mode)
-        |||_______ Primary Change File Number: (0...9)
-        ||________ Basecase Number: (0...9)
-        |_________ Series Code: (A...Z)
-
-        Notes:  The series code is used to distinguish between multiple similar
-                data runs.
-
-USAGE:
-
-Add one of the following symbols to your login.com to point to the executables:
-$ DEFINE    CFPROGS    BPA9::DISK24:[PSAP.IPF.CFPROGS]          (BPA40,50,60,70)
-$ DEFINE    CFPROGS    DISK9:[PSAP.IPF.CFPROGS]                 (MOEA4)
-$ DEFINE    CFPROGS    DISK5:[PSAP.IPF.CFPROGS]                 (MOEA2)
-$ DEFINE    CFPROGS    DKA0:[PSAP.IPF.CFPROGS]                  (ALFSPO-Spokane)
-$ @CFPROGS:CFLOW_SYM_DEF.COM
-
-This sets up one or the other of the following two symbols:
-> SHO SYM PVCURVE_PRO
-  PVCURVE_PRO == "$CFPROGS:PVCURVE_PRO.ALF_EXE"        (on an Alpha VMS machine)
-  PVCURVE_PRO == "$CFPROGS:PVCURVE_PRO.EXE"            (on a VAX VMS machine)
-
-Run CFLOW program by typing its name.
-> PVCURVE_PRO (optionally follow with a trace (*.trc) file)
-
-To implement the plotting capability, set up the symbol CFLOW_PSQ to point to a
-PostScript device (add to login file):
-> CFLOW_PSQ :== PRINT/QUEUE=PS_EOFQMS
+Optionally follow with a trace (.trc) file
 
 Follow the prompts.  Just press return to use the default values which are given
 in brackets [].
 
 
+## qvcurve_pro - generate voltage reactive curves
+Automates production of Q-V curve plot files and plot routine setup
+files for multiple base cases, outages, and critical buses.
 
+Original author:  William D. Rogers, BPA, TOP, 230-3806, wdrogers@bpa.gov
 
-UTILITY:    QVcurve_Pro
-STRUCTURE:  common CFLOW architecture.
-TYPE:       Powerflow (IPFSRV), /CHANGE_PARAMETER voltage-reactance curve.
-SUMMARY:    Generate voltage reactance curves.
-RELATED:    LINEFLOW, FINDOUT, CFUSE, MIMIC
-SEE ALSO:   QVcurve
-UPDATED:    April 9, 1997
-LANGUAGE:   Standard C.  CFLOW Libraries.  CF_UTIL.H.
-DEVELOPER:  William D. Rogers, BPA, TOP, 230-3806, wdrogers@bpa.gov
-REQUESTER:  Mark Bond
-USERS:      S Kinney, K Kohne, M Rodrigues, G Comegys, B Tesema, C Matthews,...
-IPF:        Version 317 or above recommended.
-PURPOSE:    Automates production of Q-V curve plot files and plot routine setup
-            files for multiple base cases, outages, and critical buses.
-
+```
 INPUT:
         Any or all data can be entered interactively when prompted for, or
         specified ahead of time in trace or data files.
@@ -2558,10 +2210,11 @@ OUTPUT FILES:
     IPFSRV File (*.out) - contains output from Powerflow, ipfsrv_cf.out
 
 INPUT FILE FORMATS: (similar to other CFLOW programs)
+```
 
 Sample Trace File
+
 ```
-. 97AG023.trc 18-Nov-1996 10:56:17 WDR9936 $DISK1:[PSAP.IPF]GPF.EXE_V317
 /REPORT
   FILE = 97AG023.RPT
   USER_ANALYSIS = 
@@ -2623,282 +2276,11 @@ OUTPUT REPORT FORMAT:
     The data fields are delimited with vertical bars (|) to facilitate moving 
     the data into DECwrite and Excel.
 
-This sets up one or the other of the following two symbols:
-> SHO SYM QVcurve_Pro
-  QVcurve_Pro == "$CFPROGS:QVcurve_Pro.ALF_EXE"        (on an Alpha VMS machine)
-  QVcurve_Pro == "$CFPROGS:QVcurve_Pro.EXE"            (on a VAX VMS machine)
+Run by typing its name.
 
-Run CFLOW program by typing its name.
-> QVcurve_Pro (optionally follow with a trace (.trc) file)
+    $ qvcurve_pro
 
-To implement the plotting capability, set up the symbol CFLOW_PSQ to point to a
-PostScript device (add to login file):
-> CFLOW_PSQ :== PRINT/QUEUE=PS_EOFQMS
-
-Follow the prompts.  Just press return to use the default values which are given
-in brackets [].
-
-
-UTILITY:    QVcurve_Pro
-STRUCTURE:  common CFLOW architecture.
-TYPE:       Powerflow (IPFSRV), /CHANGE_PARAMETER voltage-reactance curve.
-SUMMARY:    Generate voltage reactance curves.
-RELATED:    LINEFLOW, FINDOUT, CFUSE, MIMIC
-SEE ALSO:   QVcurve
-UPDATED:    April 9, 1997
-LANGUAGE:   Standard C.  CFLOW Libraries.  CF_UTIL.H.
-DEVELOPER:  William D. Rogers, BPA, TOP, 230-3806, wdrogers@bpa.gov
-REQUESTER:  Mark Bond
-USERS:      S Kinney, K Kohne, M Rodrigues, G Comegys, B Tesema, C Matthews,...
-IPF:        Version 317 or above recommended.
-PURPOSE:    Automates production of Q-V curve plot files and plot routine setup
-            files for multiple base cases, outages, and critical buses.
-
-INPUT:
-        Any or all data can be entered interactively when prompted for, or
-        specified ahead of time in trace or data files.
-
-    REQUIRED
-        Interactive Powerflow (IPF) binary base case(s).
-        Critical bus name and kv.
-
-    OPTIONAL
-        Text file(s) listing base case file names.
-        Text file(s) listing change file names.
-        User analysis file.
-        Text file(s) listing branches to take as outages.
-        Text file(s) listing critical buses.
-        Text file(s) listing generator buses.
-        Text file(s) listing cut-planes.
-        Common-mode outage master data file.
-        Text file(s) listing common-mode outages.
-        Trace file specifying all or some of the desired inputs.
-
-MODES OF OPERATION:
-    QVcurve_Pro uses built in intelligence to prompt the user based on the
-    information already provided.  This serves to reduce the number of queries
-    the user must answer to run the program.
-
-    QVcurve_Pro automates these operations:
-        1)  Running /change_parameter of Q versus V at a bus
-        2)  Applying changes to multiple base cases prior to Q-V run
-        3)  Taking branch and common-mode outages
-        4)  Applying change_bus_type, AGC,and other controls
-        5)  Solving basecases with /SOLUTION options
-        6)  Applying user analysis file prior to Q-V run
-        7)  Generating Q-V curve plot setup files
-            a. for PSAP 22 plotter
-            b. for XYplot CFLOW program
-        8)  Generating a Q reserve summary of specified generators
-        9)  Generating a cut-plane flow summary of specified cut-planes
-       10)  Building Excel-friendly report tables
-       11)  Logging all user input into a "TRACE" file
-       12)  Performing multiple similar studies
-       13)  Re-running studies with updated base cases
-
-    QVcurve_Pro operates on these data:
-        1)  Base cases
-        2)  Change files
-        3)  Critical buses
-        4)  Branches to take out
-        5)  Common-mode outages
-        6)  Generator buses
-        7)  Branches monitored for flow
-        8)  Cut-planes (grouped branch flows)
-        9)  Other IPF control cards
-       10)  User analysis files
-
-    QVcurve_Pro reports these quantities:
-        1)  Qknee (Q minimum, approximate)
-        2)  Qlast (last value of Q obtained)
-        3)  Qmargn (Q margin)
-        4)  Vknee (Voltage at Qknee)
-        5)  Vlast (last voltage solved)
-        6)  Vop (operating voltage when Q=0)
-        7)  Qmax,basecase (maximum available Q at each specified generator)
-        8)  Qres,basecase (Qmax-Qgen at each specified generator)
-        9)  Qres,Vop (Qmax-Qgen when critical bus at Vop at each generator)
-       10)  Qres,Vknee (Qmax-Qgen when critical bus at Vknee at each generator)
-       11)  Total Qmax,basecase
-       12)  Total Qres,basecase
-       13)  Total Qres,Vop (also reported as Qres@Qop)
-       14)  Total Qres,Vknee (also reported as Qres@Qknee)
-       15)  Branch flows
-       16)  Cut-plane flows
-
-    QVcurve_Pro generates these reports:
-        1)  Critical bus with outage report (*.rpt)
-        2)  Generator reserve and cut-plane report (*.gen)
-        3)  Individual Q-V curves (*.qvpt)
-        4)  Setup files for PSAP22 (*.setup)
-	5)  Setup files for XYCURVE (*.xyc)
-
-PROMPTS (with some example inputs):
-    /BASECASE, /TRACE, or /INCLUDE
-     > Enter list of Basecase, *.TRC, or *.DAT files : 97AG023.BSE
-
-    /PRI_CHANGE
-     > Enter list of Primary Change (or *.DAT) files : QV007C.CHNG
-
-    /OUTPUT
-     > Enter list of names for .qvpt and .user files :
-
-    /BUS
-     > Enter file of critical busses for Q-V analysis:
-     > Enter list of critical busses for Q-V analysis:
-       > Btc<O>< Bus  ><KV>
-       > B     BIG EDDY500.
-       >
-
-    /GEN
-     > Enter file of generator buses for Qres summary:
-     > Enter list of generator buses for Qres summary:
-       > Btc<O>< Bus  ><KV>
-       > B     COULEE 213.8
-       >
-
-    /CUT_PLANE
-     > Enter file of monitored cut-plane descriptions:
-     > Enter list of monitored cut-plane descriptions:
-       > Lyc<O>< Bus1 ><V1> < Bus2 ><V2>C
-       > L  BPABIG EDDY500.0JOHN DAY500. 0
-       > L  BPABIG EDDY500.0JOHN DAY500.20
-       >
-
-    /BRANCH
-     > Enter file of branches for single-line outages:
-     > Enter list of branches for single-line outages:
-       > Tyc<O>< Bus1 ><V1> < Bus2 ><V2>C
-       > L  BPABUCKLEY 500.0SLATT   500.
-       >
-
-    /REPORT
-     > Enter main common-mode file, COMMON_MODE_DATA=: COMMON.DAT
-
-    /COMMON_MODE
-     > Enter file of common-mode outage identifiers  :
-     > Enter list of common-mode outage identifiers  :
-       > BFR ASHE-MARION-ALVEY
-       >
-
-    /REPORT
-     > Enter summary report name, FILE =[qvcurve.rpt]:
-     > Enter user analysis file,     USER_ANALYSIS = :
-     > Enter auxillary control file,  CONTROL_FILE = :
-     Each plot can have from 1 to 6 curves:
-     > Enter number of curves,  CURVES_PER_PLOT = [5]:
-
-    /LIMITS
-     For Q-V curve analysis: Enter Min, Max, and Delta Voltage:
-     > Max BE bus voltage in PU,  VX_MAX_PU = [1.100]:
-     > Min BE bus voltage in PU,  VX_MIN_PU = [0.900]:
-     > Max voltage change in PU,DELTA_VX_PU = [0.050]:
-
-    /SOLUTION, /CHANGE_BUS_TYPES, or /AGC
-     > Enter file of sol'n and change_bus_type defaults:
-
-    /SOLUTION       (Enter /solution qualifier and parameters)
-    : >AI_CONTROL=CON<
-    : >LTC=ON_DCONLY<
-    : >SOL_ITER,NEWTON=40<
-    :
-
-    /CHANGE_BUS_TYPES (Enter /change_bus_type qualifiers and data)
-    > /CHANGE_BUS_TYPES, BQ=B,BG=BQ,BX=B,LTC=OFF
-    : >LINE_DROP_COMPENSATION
-    : B     CENTR G1  20, 50%
-    : B     CENTR G2  20, 50%
-    : B     COULEE19  15, 50%
-    : B     COULEE20  15, 50%
-    : B     COULEE23  15, 50%
-    : B     COULEE24  15, 50%
-    :
-
-    /AGC (bus id data is fixed format, the rest is free field)
-    : B     < Bus  ><KV>   Pmin=<##>, Pmax=<##>, Pgen=<##>, =<##>
-    :
-
-OUTPUT FILES:
-    Report File (*.rpt) - critical bus with outage report
-    Auxillary Report File (*.aux) - generator and cut-plane report
-    Trace File (*.trc) - records all input parameters
-    Error File (*.log) - errors and operating messages
-    Q-V Files (*.qvpt) - list of Q and V values
-    IPFSRV File (*.out) - contains output from Powerflow, ipfsrv_cf.out
-```
-
-INPUT FILE FORMATS: (similar to other CFLOW programs)
-
-Sample Trace File
-```
-. 97AG023.trc 18-Nov-1996 10:56:17 WDR9936 $DISK1:[PSAP.IPF]GPF.EXE_V317
-/REPORT
-  FILE = 97AG023.RPT
-  USER_ANALYSIS = 
-  CONTROL_FILE = 
-  CURVES_PER_PLOT = 6
-  COMMON_MODE_DATA = COMMON.DAT
-  TRACE = YES
-/LIMITS
-  VX_MAX_PU   = 1.100
-  VX_MIN_PU   = 0.900
-  DELTA_VX_PU = 0.010
-/CHANGE_BUS_TYPES, BQ=B,BG=BQ,BX=B,LTC=OFF
->LINE_DROP_COMPENSATION
-B     CENTR G1  20, 50%
-B     CENTR G2  20, 50%
-B     COULEE19  15, 50%
-B     COULEE20  15, 50%
-B     COULEE23  15, 50%
-B     COULEE24  15, 50%
-/AGC
-/SOLUTION
->AI_CONTROL=CON<
->LTC=ON_DCONLY<
->SOL_ITER,NEWTON=40< 
-/BASECASE
-  97AG023.BSE
-/PRI_CHANGE
-  QV007C.CHNG
-/OUTPUT
-/SETUP
-/BUS
-B     BIG EDDY500.  
-B     JOHN DAY500.  
-/GENERATORS
-B     COULEE 213.8  
-B     CHIEF J213.8  
-/CUT_PLANES
->
-L  BPABIG EDDY500.0JOHN DAY500. 0
-L  BPABIG EDDY500.0JOHN DAY500.20
->
-L  BCHACK500  500.0NIC500  500.10
-L  BCHACK500  500.0NIC500  500.20
-L  BCHACK500  500.0REV500  500.10
-L  BCHACK500  500.0REV500  500.20
-L  BCHACK500  500.0SEL500  500.10
-/BRANCH
-/COMMON_MODE
-BFR ASHE-MARION-ALVEY
-./TRACE
-. 97AG023.BSE + QV007C.CHNG - {BFR#ASHE-MARION-ALVEY} @ (BIG#EDDY500.) 
-    > 97AG023-QV007C-C01-01.qvpt 
-. 97AG023.BSE + QV007C.CHNG - {BFR#ASHE-MARION-ALVEY} @ (JOHN#DAY500.)
-    > 97AG023-QV007C-C01-02.qvpt 
-```
-
-OUTPUT REPORT FORMAT:
-
-    The data fields are delimited with vertical bars (|) to facilitate moving 
-    the data into DECwrite and Excel.
-
-Run CFLOW program by typing its name.
-qvcurve_pro (optionally follow with a trace (.trc) file)
-
-To implement the plotting capability, set up the symbol CFLOW_PSQ to point to a
-PostScript device (add to login file):
-> CFLOW_PSQ :== PRINT/QUEUE=PS_EOFQMS
+Optionally follow with a trace (.trc) file
 
 Follow the prompts.  Just press return to use the default values which are given
 in brackets [].
