@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <ctype.h>
 #include <string.h>
 #include <setjmp.h>
@@ -45,8 +46,6 @@ int is_it_vms();
 #endif
 
 char *progname;
-
-int exit(int);
 
 void usage_error_exit()
 {

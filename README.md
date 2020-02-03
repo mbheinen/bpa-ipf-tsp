@@ -913,7 +913,20 @@ Optionally follow with a list of .pfo, trace, or list files
 Follow the prompts.  Just press return to use the default values which are given
 in brackets [].
 
-# Coordinate File Modification for BPA Generation Studies
+## lineflow (a CFLOW program)
+Generates a table of branch quantities in requested branches for multiple base cases.  Supports sorting, screening, and scripting.
+
+Generate a table of values showing the requested branch quantities for multiple base cases.  Selects lines by branch list, bus, kV, owner, zone, loading level, or matches to 'wild card' input. Sorts alphabetically, or by owner, zone, kV, loading (in percent), or according to input order of branches in a list.  Generates a control script that allows repetitive similar studies to be performed automatically.
+
+Reports the following quantities: loading in Amps or MVA and percent of critical rating; or, power in, power out, and losses in MW.
+
+Data fields in the output report table are character delimited to ease importing to MS Excel or DECwrite.
+
+Usage:
+
+    $ lineflow 
+
+## Coordinate File Modification for BPA Generation Studies
 For Generation Integration Studies, the use of Powerflow Plots showing proposed new generation facilities and 
 associated system improvements is essential. Generally the diagrams available are the Standard BPA 
 Powerflow Plots (.cor files) developed for the Budget Cases. Creation of new plots or modification of these 
@@ -2290,3 +2303,27 @@ in brackets [].
 [IPF Advanced Users Guide]: https://github.com/mbheinen/bpa-ipf-tsp/blob/master/manuals/IPFADV.PDF
 [IPF CFLOW Users Guide]: https://github.com/mbheinen/bpa-ipf-tsp/blob/master/manuals/CFLOW.PDF
 [Motif X Window]: https://motif.ics.com/motif/downloads
+
+SUMMARY:    Generates a table of branch quantities in requested branches for
+            multiple base cases.  Supports sorting, screening, and scripting.
+RELATED:    FINDOUT, MIMIC, CFUSE
+SEE ALSO:   TO_DECWRITE.HELP, VMS_TO_PC_TO_EXCEL.HELP
+UPDATED:    April 7, 1997
+LANGUAGE:   Standard C.  CFLOW libraries.  cf_util.h
+DEVELOPER:  William D. Rogers, BPA, TOP, 230-3806, wdrogers@bpa.gov
+REQUESTER:  Mark S. Bond
+USERS:      Kyle Kohne, Larry Stadler, Kendall Rydell, Sylvia Wiggerhaus...
+IPF:        Version 318 or above recommended.
+PURPOSE:    Generate a table of values showing the requested branch quantities
+            for multiple base cases.  Selects lines by branch list, bus, kV,
+            owner, zone, loading level, or matches to 'wild card' input.  Sorts 
+            alphabetically, or by owner, zone, kV, loading (in percent), or
+            according to input order of branches in a list.  Generates a control
+            script that allows repetitive similar studies to be performed
+            automatically.
+
+            Reports the following quantities: loading in Amps or MVA and percent
+            of critical rating; or, power in, power out, and losses in MW.
+
+            Data fields in the output report table are character delimited to 
+            ease importing to MS Excel or DECwrite.
