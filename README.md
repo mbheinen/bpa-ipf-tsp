@@ -500,6 +500,7 @@ CFLOW is a C library (`libcflow`) for IPF. This repo contains several programs t
 * post_pvcurve
 * qvcurve
 * findout
+* lineflow
 * mimic
 * puf
 
