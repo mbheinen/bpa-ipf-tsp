@@ -1,4 +1,7 @@
 # Interactive Power Flow & Transient Stability Program
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/4575f8b2a207401a9b55cf5abb6ccdcc)](https://app.codacy.com/manual/mbheinen/bpa-ipf-tsp?utm_source=github.com&utm_medium=referral&utm_content=mbheinen/bpa-ipf-tsp&utm_campaign=Badge_Grade_Dashboard)
+
 This is a fork of Bonneville Power Administration's Interactive Power Flow (IPF) and Transient Stability Program (TSP). IPF and TSP were made public domain by Bonneville Power Administration (BPA) back in 1994. The original source code for this repo was obtained from ftp://ftp.bpa.gov, which no longer seems to be available. 
 
 Interactive Power Flow (IPF) was developed by BPA and its contractors with about 20% of the cost supported by the Electric Power Research Institute (EPRI). By mutual agreement, as described in EPRI Agreement RP2746-03 entitled Graphical User Interface for Powerflow, March, 1992, all results of this project--including the computer program and its documentation--are to be in the public domain. In a separate Memorandum of Understanding with the Western Systems Coordinating Council (WSCC), BPA agreed in March, 1992, to keep WSCC informed of progress, to make its best effort to develop the program according to the Guidelines adopted by the WSCC Computer Program Management Subcommittee, and to make the final results available for possible further development by WSCC. 
