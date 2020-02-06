@@ -5,7 +5,7 @@ Interactive Power Flow (IPF) was developed by BPA and its contractors with about
 
 The goal is to breathe life into this codebase again. The initial step is to get the command line tools working for benchmarking future projects related to power flow or transient stability analysis. Note that the original programs had a GUI component built with [Motif X Window], but given how dated it is, it is very unlikely it will ever run without significant effort. Once the power flow and transient programs are operational, it wil be easier to see if original GUI components can be made to work again.
 
-# Building
+## Building
 The majority of this codebase is Fortran with some C. Both Fortran and C compiler are needed in order to compile it. Also, note that to this point it has only been test compiled on CentOS. To get the compilers:
 
     $ yum install gcc
@@ -18,7 +18,7 @@ If you will be building the GUI as well, you will also need to install [Motif X 
 
 This project uses CMake. CMake is a multi-platform build tool that can generate build files for many different target platforms. See more info at http://www.cmake.org. CMake recommends doing "out of source" builds, that is, the build files are separated from your sources. This is convenient when doing development because there is no need to clean out compiled stuff (e.g. object files and executables) from the source tree. To do this, you create a `build/` directory at the top level of the project and everything gets built there. This allows you to just delete the `build/` directory when you're done. Doing a checkout and compile of this repository is done as follows:
 
-    $ git clone https://github.com/mheinen/bpa-ipf-tsp
+    $ git clone https://github.com/mbheinen/bpa-ipf-tsp
     $ cd bpa-ipf-tsp
     $ mkdir build
     $ cd build
@@ -28,20 +28,20 @@ This project uses CMake. CMake is a multi-platform build tool that can generate 
     
 After building, you will see the library binaries in `lib/` and the executables in `bin/`.  
 
-# Sample Cases
-There are a variety of sample cases in the [data](https://github.com/mbheinen/bpa-ipf-tsp/tree/master/data) directory of this repo. Some of them came from original IPF codebase others came from publically available cases like Texas A&M's set of synthetic cases found [here](https://electricgrids.engr.tamu.edu/electric-grid-test-cases/). None of the data is from real power system networks since such information is generally considered confidential by Transmission Owners.
+## Sample Cases
+There are a variety of sample cases in the [data](https://github.com/mbheinen/bpa-ipf-tsp/tree/master/data) directory of this repo. Some of them came from original IPF codebase others came from publically available cases like Texas A&M's set of synthetic cases found [here](https://electricgrids.engr.tamu.edu/electric-grid-test-cases/). None of the data is from real power system networks since such information is generally considered confidential by Transmission System Operators.
 
-# Documentation
+## Documentation
 The sections below describe the various executables and libraries in this project and how to use them. The best place for a thorough description of the original IPF and TSP applications is the [manuals](https://github.com/mbheinen/bpa-ipf-tsp/tree/master/manuals). Additionally, check out [John Schaad's website](http://members.efn.org/~jschaad/ipf-1.html) for some history on the original BPA project.
 
-## Batch Power Flow -- bpf
+### Batch Power Flow -- bpf
 Batch Power Flow (`bpf`) executes using commands from a Power Flow Control (`.pfc`) file. Users write commands in the `.pfc` to do power flow runs. Chapter 4 of the [IPF Batch Users Guide] describes the commands available. You can try it out using test cases found in the [data](https://github.com/mbheinen/bpa-ipf-tsp/tree/master/data) directory. To run a case just run `bpf <controlfile.pfc>` or `bpf` and follow the prompts. For example,
 
     $ bpf bench.pfc
 
 The output is a Power Flow Output file `<casename.pfo>`. When you use `bpf`, you must first create a PFC file with the appropriate commands to accomplish the solution task at hand. At runtime these commands are accepted by `bpf` and executed according to a logical processing order determined by the program. Hence you need not be concerned with the ordering of commands in your PFC file. Input commands will be processed first, and a solution done automatically before any output is produced. Finally, a new base file will be created, if you have requested one. See the [IPF Batch Users Guide] for more information.
 
-## Cutting Program -- ipfcut
+### Cutting Program -- ipfcut
 Cuts out a section of the entire system model and prepares it to be set up for running with its own slack bus.
 
 Usage:  `ipfcut <controlfile.pfc>` or `ipfcut`
@@ -75,7 +75,7 @@ Sample control file:
 (STOP)
 ```
 
-## Batch Analysis Tool -- ipfbat
+### Batch Analysis Tool -- ipfbat
 The batch version of `ipfsrv`. It accepts a Power Flow Control Language (PCL) file. This was considered a "new" style of commands when BPA first wrote these programs.
 
 Usage:  `ipfbat <controlfile.pcl>`
@@ -87,7 +87,7 @@ The new style PCL commands used with `ipfsrv` and `ipfbat` (standard filename ex
 `ipfbat` allows you fine control over the case and solution engine (`ipfsrv`). 
 When you use the PCL approach, you first create a PCL file with the
 appropriate commands to accomplish the solution task at hand. At runtime these
-commands are interpreted by IPFBAT. The PCL file commands are processed
+commands are interpreted by `ipfbat`. The PCL file commands are processed
 sequentially. Additional PCL command files may be specified by name, so that a
 chain  of PCL files may be processed in one run. See the [IPF Advanced Users
 Guide] for details.
@@ -448,7 +448,7 @@ C  < case comments - three records maximum >
        processed by p_subdef_
 ```
 
-## IPF Graphic User Interface -- gui
+### IPF Graphic User Interface -- gui
 
 Usage:  `gui`
 
@@ -456,7 +456,7 @@ Screen/Mouse-driven, Point-and-Click control of IPF powerflow program.
 
 The X-based (X Window System using the Motif Window Manager) push-button and
 menu-driven Graphical User Interface (`gui`) program that works in conjunction
-with the power flow server, IPFSRV.  Documentation is in the [IPF Basic/GUI
+with the power flow server, `ipfsrv`.  Documentation is in the [IPF Basic/GUI
 Users Guide].
 
 When you use the GUI, you use the dialog boxes, menus, windows,
@@ -469,10 +469,10 @@ impedance calculations, are available.
 For information about how to work with the GUI dialog
 boxes, menus, windows, etc., see the [IPF Basic/GUI Users Guide]. This guide
 also has a tutorial to show you how to solve straightforward power system
-cases.  However,for some more involved analysis tasks, you need to use the BPF, 
-IPFBAT, and CFLOW  approaches.  
+cases. However,for some more involved analysis tasks, you need to use the `bpf`, 
+`ipfbat`, and CFLOW  approaches.  
 
-## IPF Batch Plotting Program -- ipfplot
+### IPF Batch Plotting Program -- ipfplot
 
 Usage: `ipfplot <coordinatefile.cor> <basefile1.bse> <basefile2.bse(opt)>`
 
@@ -488,12 +488,12 @@ The same coordinate files (.cor) are used by both `gui` and `ipfplot`, but not
 all capabilities are  available in the `gui`. Documentation is in the [IPF
 Advanced Users Guide].
 
-## IPF Reports -- ipf_reports
+### IPF Reports -- ipf_reports
 Creates customized output reports and summaries.
 
 Usage: `ipf_reports <basefile1.bse>` or `ipf_reports`
 
-## IPF C Library -- libcflow
+### IPF C Library -- libcflow
 CFLOW is a C library (`libcflow`) for IPF. This repo contains several programs that have been created with CFLOW:
 
 * pvcurve
@@ -502,7 +502,6 @@ CFLOW is a C library (`libcflow`) for IPF. This repo contains several programs t
 * findout
 * lineflow
 * mimic
-* puf
 
 To create a CFLOW program or routine, you write your routine using the C
 programming language (at least the main must be in C), including the header
@@ -515,7 +514,7 @@ on writing these programs.
 See section 3.4 of the [IPF Advanced Users Guide] for information on including 
 these routines in .PCL control files, along with other processes.
 
-## fastout (a CFLOW program)
+### fastout (a CFLOW program)
 Powerflow (`ipfbat`) output report post-processor. Generates a table of the 
 loading of overloaded branches for a list of outages with data from one or 
 more `.pfo` files. Uses CFLOW library.
@@ -535,7 +534,7 @@ overloaded branches for that outage are reported.  Data fields in
 the output report table are character delimited to ease importing to
 MS Excel or DECwrite.
 
-### Input requirements:
+#### Input requirements
     Powerflow (`ipfbat`) output report (`.pfo`) files.
     Text file containing a list of *.pfo file path names, 'pfo file list'.
     Text file containing overloaded and outaged branchs, 'outages  list'.
@@ -545,16 +544,16 @@ MS Excel or DECwrite.
         > Enter 'output report' file spec [fastout.rpt]:
         > Enter 'output report' page width....... [132]:
 
-### Output files
+#### Output files
 Text file containing a table of reported values, 'output report'.
 stdout messages.
 
 INPUT FILE FORMATS:
 
-    *.pfo files - Output reports generated by Powerflow (BPF) that contain the
+    *.pfo files - Output reports generated by Powerflow (`bpf`) that contain the
         "Summary of bus and line problems for each outage" report.
 
-    'pfo file list' - a text file containing a list of powerflow (BPF) output
+    'pfo file list' - a text file containing a list of powerflow (`bpf`) output
         files (*.pfo) with one file specification per line.  The symbols !,*, or
         . in the first column indicate a comment line.  The default filename is
         pfolist.dat.
@@ -665,7 +664,7 @@ USAGE:
 Follow the prompts.  Just press return to use the default values which are given
 in brackets [].
 
-## findout (a CFLOW program)
+### findout (a CFLOW program)
 Powerflow (`ipfbat`) output report post-processor. Generates a table of outages 
 and corresponding branch overloads or bus voltage violations from multiple `.pfo` 
 files. Sorts and screens. Uses CFLOW library.
@@ -914,7 +913,7 @@ Optionally follow with a list of .pfo, trace, or list files
 Follow the prompts.  Just press return to use the default values which are given
 in brackets [].
 
-## lineflow (a CFLOW program)
+### lineflow (a CFLOW program)
 Generates a table of branch quantities in requested branches for multiple base cases.  Supports sorting, screening, and scripting.
 
 Generate a table of values showing the requested branch quantities for multiple base cases.  Selects lines by branch list, bus, kV, owner, zone, loading level, or matches to 'wild card' input. Sorts alphabetically, or by owner, zone, kV, loading (in percent), or according to input order of branches in a list.  Generates a control script that allows repetitive similar studies to be performed automatically.
@@ -1359,14 +1358,14 @@ C  < case comments - three records maximum >
        processed by p_subdef_
 ```
 
-## mimic (CFLOW program)
+### mimic (CFLOW program)
 Powerflow (`ipfsrv`) case generation and screening.
 Generate new cases and check for loading and voltage violations.
 Original author:  William D. Rogers, BPA, TEOS (detail), 230-3806
 Automates solving and screening basecases, applying changes to basecases, basecase comparisons, and plot generation.
 
 INPUT REQUIREMENTS: (some or all of the following depending on user selections.)
-    Powerflow basecases for IPFSRV to load, change, solve and return data from.
+    Powerflow basecases for `ipfsrv` to load, change, solve and return data from.
     Change files to apply to base cases.
     Text files containing a list of base case file names.
     Text files containing a list of change file names.
@@ -1499,7 +1498,7 @@ OUTPUT FILES:
     Report File - text file containing table of reported values.
     Trace File - text file containing list of all input values.
     Stdout messages.
-    Text file containing output from Powerflow (IPFSRV) called ipfsrv_cf.out.
+    Text file containing output from Powerflow (`ipfsrv`) called ipfsrv_cf.out.
     MIMIC.LOG
     *.pfo files generated with /OUTAGE_SIMULATION analysis.
 
@@ -1523,12 +1522,11 @@ INPUT FILE FORMATS:
             one file specification per line.  The file name should end in .DAT.
 
 For example:
+```
 BASE.DAT
---------------------------------------------------------------------------------
 ! The symbol '!' in column 1 indicates a comment line and is ignored.
 ! List the names of the powerflow cases one per line.
 !
---------------------------------------------------------------------------------
 
     'pri chngs/list' -
         pri chngs - Primary Changes file.  Contains change records to be applied
@@ -1541,8 +1539,10 @@ BASE.DAT
             applied to the base case(s).
         aux chngs list - Auxillary Changes List file.   A text file containing a
             list of change files.
+```
 
 A change file example:
+
 ```
 /CHANGES,FILE= *\
 . REMOVAL OF THE COL FALL 230/115-kV TRANSFORMER FROM BASE	
@@ -1667,7 +1667,7 @@ Optionally follow with a list of .pfo, trace, or list files
 Follow the prompts.  Just press return to use the default values which are given
 in brackets [].
 
-## IPF Network Data Extraction -- netdat
+### IPF Network Data Extraction -- netdat
 Usage:  
 ```
    netdat <cr>
@@ -1689,7 +1689,7 @@ restrictions and is destined for use with other programs. In the case of the
 PTI dialect, that data is preprocessed by the PTI-proprietary conversion
 program WSCFOR. Documentation is in Appendix F of the [IPF Batch Users Guide].
 
-### BPA NETWORK_DATA file format example:
+#### BPA NETWORK_DATA file format example
 ```
 netdat <cr>
 	 > Enter OLD_BASE file name (or Q to quit): <test.bse>
@@ -1736,7 +1736,7 @@ netdat <cr>
  > Extract another case (Y or N)? N <cr>
 ```
 
-### GE_DATA file format example:
+#### GE_DATA file format example
 ```
 netdat <cr>
 	 > Enter OLD_BASE file name (or Q to quit): <test.bse>
@@ -1772,7 +1772,7 @@ netdat <cr>
  > Are above options correct (Y or N)? Y <cr>
 ```
 
-### PTI_DATA file format example:
+#### PTI_DATA file format example
 ```
 netdat <cr>
 	 > Enter OLD_BASE file name (or Q to quit): <test.bse>
@@ -1799,7 +1799,7 @@ netdat <cr>
   Zone records:  original     1 inserted     3
 ```
 
-## Path Use Factors -- puf
+### Path Use Factors -- puf
 A new version of 'puf' (Path Use Factors aka Line Flow Analysis) corrects a 
 factorization error and introduces new command-line options.
 
@@ -1843,7 +1843,7 @@ You will be prompted for three files:
 The flowgate file name consists of WSCC-formatted branches which define a 
 particular cut plane. For this example, use a single but critical branch, `L RAVER 500 PAUL 5001`  put in a text file, flowgate.txt
 
-## pvcurve_pro - multiple buses perturbed in sequence
+### pvcurve_pro - multiple buses perturbed in sequence
 Generates voltage reactance curves. Automates production of P-V curve plot files and plot routine setup files for multiple base cases and outages.
 
 Original author:  William D. Rogers, BPA, TOP, 230-3806, wdrogers@bpa.gov
@@ -2044,7 +2044,7 @@ Follow the prompts.  Just press return to use the default values which are given
 in brackets [].
 
 
-## qvcurve_pro - generate voltage reactive curves
+### qvcurve_pro - generate voltage reactive curves
 Automates production of Q-V curve plot files and plot routine setup
 files for multiple base cases, outages, and critical buses.
 
@@ -2304,27 +2304,3 @@ in brackets [].
 [IPF Advanced Users Guide]: https://github.com/mbheinen/bpa-ipf-tsp/blob/master/manuals/IPFADV.PDF
 [IPF CFLOW Users Guide]: https://github.com/mbheinen/bpa-ipf-tsp/blob/master/manuals/CFLOW.PDF
 [Motif X Window]: https://motif.ics.com/motif/downloads
-
-SUMMARY:    Generates a table of branch quantities in requested branches for
-            multiple base cases.  Supports sorting, screening, and scripting.
-RELATED:    FINDOUT, MIMIC, CFUSE
-SEE ALSO:   TO_DECWRITE.HELP, VMS_TO_PC_TO_EXCEL.HELP
-UPDATED:    April 7, 1997
-LANGUAGE:   Standard C.  CFLOW libraries.  cf_util.h
-DEVELOPER:  William D. Rogers, BPA, TOP, 230-3806, wdrogers@bpa.gov
-REQUESTER:  Mark S. Bond
-USERS:      Kyle Kohne, Larry Stadler, Kendall Rydell, Sylvia Wiggerhaus...
-IPF:        Version 318 or above recommended.
-PURPOSE:    Generate a table of values showing the requested branch quantities
-            for multiple base cases.  Selects lines by branch list, bus, kV,
-            owner, zone, loading level, or matches to 'wild card' input.  Sorts 
-            alphabetically, or by owner, zone, kV, loading (in percent), or
-            according to input order of branches in a list.  Generates a control
-            script that allows repetitive similar studies to be performed
-            automatically.
-
-            Reports the following quantities: loading in Amps or MVA and percent
-            of critical rating; or, power in, power out, and losses in MW.
-
-            Data fields in the output report table are character delimited to 
-            ease importing to MS Excel or DECwrite.
