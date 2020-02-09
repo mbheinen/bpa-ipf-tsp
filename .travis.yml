@@ -4,6 +4,7 @@ addons:
   apt:
     packages:
     - gfortran
+    - motif-devel
 
 script:
   - mkdir build
