@@ -2,11 +2,11 @@
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/4575f8b2a207401a9b55cf5abb6ccdcc)](https://app.codacy.com/manual/mbheinen/bpa-ipf-tsp?utm_source=github.com&utm_medium=referral&utm_content=mbheinen/bpa-ipf-tsp&utm_campaign=Badge_Grade_Dashboard)
 
-This is a fork of Bonneville Power Administration's Interactive Power Flow (IPF) and Transient Stability Program (TSP). IPF and TSP were made public domain by Bonneville Power Administration (BPA) back in 1994. The original source code for this repo was obtained from ftp://ftp.bpa.gov, which no longer seems to be available. 
+Interactive Power Flow (IPF) is a family of programs for doing power flow studies. IPF models the balanced steady-state operation of an electric power network. It is used by power system planners and design engineers to investigate electric power networks, determine bus voltage distribution, line real and reactive power flows, line overloads, system reactive requirements, area controls, effect of load shedding, generator dropping, and line outages.
 
-Interactive Power Flow (IPF) was developed by BPA and its contractors with about 20% of the cost supported by the Electric Power Research Institute (EPRI). By mutual agreement, as described in EPRI Agreement RP2746-03 entitled Graphical User Interface for Powerflow, March, 1992, all results of this project--including the computer program and its documentation--are to be in the public domain. In a separate Memorandum of Understanding with the Western Systems Coordinating Council (WSCC), BPA agreed in March, 1992, to keep WSCC informed of progress, to make its best effort to develop the program according to the Guidelines adopted by the WSCC Computer Program Management Subcommittee, and to make the final results available for possible further development by WSCC. 
+IPF was developed by Bonneville Power Administraton (BPA) and its contractors with about 20% of the cost supported by the Electric Power Research Institute (EPRI). By mutual agreement, as described in EPRI Agreement RP2746-03 entitled Graphical User Interface for Powerflow, March, 1992, all results of this project--including the computer program and its documentation--are to be in the public domain. In a separate Memorandum of Understanding with the Western Systems Coordinating Council (WSCC), BPA agreed in March, 1992, to keep WSCC informed of progress, to make its best effort to develop the program according to the Guidelines adopted by the WSCC Computer Program Management Subcommittee, and to make the final results available for possible further development by WSCC. 
 
-The goal is to breathe life into this codebase again. The initial step is to get the command line tools working for benchmarking future projects related to power flow or transient stability analysis. Note that the original programs had a GUI component built with [Motif X Window], but given how dated it is, it is very unlikely it will ever run without significant effort. Once the power flow and transient programs are operational, it wil be easier to see if original GUI components can be made to work again.
+This is a fork of Bonneville Power Administration's Interactive Power Flow (IPF) programs including the Transient Stability Program (TSP). IPF and TSP were made public domain by Bonneville Power Administration (BPA) back in 1994. The original source code for this repo was obtained from ftp://ftp.bpa.gov, which no longer seems to be available. The goal is to breathe life into this codebase again and continue enhancing it. The initial step is to get the command line tools working. Note that the original programs had a GUI component built with [Motif X Window], but given how dated it is, it is unlikely it will ever run without significant effort. Once the power flow and transient programs are operational, it wil be easier to see if original GUI components can be made to work again.
 
 ## Building
 The majority of this codebase is Fortran with some C. Both Fortran and C compiler are needed in order to compile it. Also, note that to this point it has only been test compiled on CentOS. To get the compilers:
@@ -19,7 +19,7 @@ If you will be building the GUI as well, you will also need to install [Motif X 
     $ yum install motif
     $ yum install motif-devel
 
-This project uses CMake. CMake is a multi-platform build tool that can generate build files for many different target platforms. See more info at http://www.cmake.org. CMake recommends doing "out of source" builds, that is, the build files are separated from your sources. This is convenient when doing development because there is no need to clean out compiled stuff (e.g. object files and executables) from the source tree. To do this, you create a `build/` directory at the top level of the project and everything gets built there. This allows you to just delete the `build/` directory when you're done. Doing a checkout and compile of this repository is done as follows:
+This project uses [CMake](http://www.cmake.org). CMake is a multi-platform build tool that can generate build files for many different target platforms. CMake recommends doing "out of source" builds, that is, the build files are separated from your sources. This is convenient when doing development because there is no need to clean out compiled stuff (e.g. object files and executables) from the source tree. To do this, you create a `build/` directory at the top level of the project and everything gets built there. This allows you to just delete the `build/` directory when you're done. Doing a checkout and compile of this repository is done as follows:
 
     $ git clone https://github.com/mbheinen/bpa-ipf-tsp
     $ cd bpa-ipf-tsp
@@ -42,7 +42,7 @@ Batch Power Flow (`bpf`) executes using commands from a Power Flow Control (`.pf
 
     $ bpf bench.pfc
 
-The output is a Power Flow Output file `<casename.pfo>`. When you use `bpf`, you must first create a PFC file with the appropriate commands to accomplish the solution task at hand. At runtime these commands are accepted by `bpf` and executed according to a logical processing order determined by the program. Hence you need not be concerned with the ordering of commands in your PFC file. Input commands will be processed first, and a solution done automatically before any output is produced. Finally, a new base file will be created, if you have requested one. See the [IPF Batch Users Guide] for more information.
+The output is a Power Flow Output file `<casename.pfo>`. When you use `bpf`, you must first create a PFC file with the appropriate commands to accomplish the solution task at hand. At runtime these commands are accepted by `bpf` and executed according to a logical processing order determined by the program. Hence you need not be concerned with the ordering of commands in your PFC file. Input commands will be processed first, and a solution done automatically before any output is produced. Finally, a new base (`.bse`) file will be created, if you have requested one. See the [IPF Batch Users Guide] for more information.
 
 ### Cutting Program -- ipfcut
 Cuts out a section of the entire system model and prepares it to be set up for running with its own slack bus.
@@ -51,19 +51,17 @@ Usage:  `ipfcut <controlfile.pfc>` or `ipfcut`
 
 Output:  Powerflow Network Data file `<cutcasename.bse>`
 
-This is a stand-alone program that cuts out a subsystem from a solved base case (.bse) file. Flows at the cut branches are converted into equivalent generation or load on specially formatted +A continuation bus records. An ensuing power flow run should solve with internal branch flows and bus voltages which are identical to those quantities in the original base case. 
+This is a stand-alone program that cuts out a subsystem from a solved base case (`.bse`) file. Flows at the cut branches are converted into equivalent generation or load on specially formatted +A continuation bus records. An ensuing power flow run should solve with internal branch flows and bus voltages which are identical to those quantities in the original base case. 
 
 In almost all cases, you will have to convert one of the buses in the cut
 subsystem into a slack bus, to replace the original system slack bus.
 
 Several methods are available to define the cut system: bus names, zones,
-base kVs, and individual branches. A pi-back feature replaces selected buses
-with a passive-node sequence (lines consisting of sections) with the original
-loads pi-backed in proportion to the line admittances.
+base kVs, and individual branches. A pi-back feature replaces selected buses with a passive-node sequence (lines consisting of sections) with the original loads pi-backed in proportion to the line admittances.
 
 Documentation is in Appendix F of the [IPF Batch Users Guide]. 
 
-Sample control file:
+Below is a sample control file:
 
 ```
 ( CUTTING, PROJECT=EWEB, CASEID=EWEBCUT1 )
@@ -79,23 +77,18 @@ Sample control file:
 ```
 
 ### Batch Analysis Tool -- ipfbat
-The batch version of `ipfsrv`. It accepts a Power Flow Control Language (PCL) file. This was considered a "new" style of commands when BPA first wrote these programs.
+The batch version of `ipfsrv`. It accepts a Power Flow Control Language (PCL) file. This is an alternate set of commands from PFC used by `bpf`.
 
 Usage:  `ipfbat <controlfile.pcl>`
 
 Example of use: `ipfbat test.pcl`. 
 
-The new style PCL commands used with `ipfsrv` and `ipfbat` (standard filename extension of `.pcl`) are described in the [IPF Advanced Users Guide] and in Appendix A of the [IPF CFLOW Users Guide]. Many of the `bpf` commands from Chapter 4 of this manual are supported, but not all, and there are many additional new commands.
+The PCL commands used with `ipfsrv` and `ipfbat` (standard filename extension of `.pcl`) are described in the [IPF Advanced Users Guide] and in Appendix A of the [IPF CFLOW Users Guide]. Many of the PFC commands from Chapter 4 of this manual are supported, but not all, and there are many additional new commands.
 
-`ipfbat` allows you fine control over the case and solution engine (`ipfsrv`). 
-When you use the PCL approach, you first create a PCL file with the
-appropriate commands to accomplish the solution task at hand. At runtime these
-commands are interpreted by `ipfbat`. The PCL file commands are processed
-sequentially. Additional PCL command files may be specified by name, so that a
-chain  of PCL files may be processed in one run. See the [IPF Advanced Users
-Guide] for details.
+`ipfbat` allows you fine control over the case and solution engine (`ipfsrv`). When you use the PCL approach, you first create a PCL file with the
+appropriate commands to accomplish the solution task at hand. At runtime these commands are interpreted by `ipfbat`. The PCL file commands are processed sequentially. Additional PCL command files may be specified by name, so that a chain of PCL files may be processed in one run. See the [IPF Advanced Users Guide] for details.
 
-`ipfbat` Command Summary:
+`ipfbat` command summary:
 
 ```
 /INITIALIZE
@@ -563,10 +556,9 @@ INPUT FILE FORMATS:
 
 For example:
 
+```
 ! Any of the three symbols {!*.} in column 1 indicate a commment line.
 . Names of powerflow output files listed one per line.
-disk15:[cflow.reports]j01cy94rfo.pfo
-j01cy93rfo.pfo
 
     'outages  list' - a text file containing a list of either monitored-branch 
         and outaged-branch pairs or outaged branches.  If only a single branch
@@ -585,8 +577,10 @@ j01cy93rfo.pfo
         field.  Branch types L, E, T, and TP are allowed.  The symbols !, *, or
         . in the first column indicate a comment line.  The default file name is
         outages.dat. 
+```
 
 For example:
+
 ```
 . Any of the five symbols {!*.} in column 1 indicate a commment line
 . This same file may be used by LINEFLOW in which case the Outaged Branch data
