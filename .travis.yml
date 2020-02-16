@@ -4,6 +4,8 @@ addons:
   apt:
     packages:
     - gfortran
+    - libmotif-dev
+    - libxmu-dev
 
 script:
   - mkdir build
