@@ -16,7 +16,7 @@ IF(FCNAME STREQUAL "pgf90")
 ENDIF(FCNAME STREQUAL "pgf90")
 
 # Since gcc 4.9 the LTO format is non-standard (slim), so we need the gcc-specific ar and ranlib binaries
-IF(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" AND NOT (CMAKE_CXX_COMPILER_VERSION VERSION_LESS 4.9.0) AND NOT OPENBSD AND NOT DRAGONFLY)
+IF(CMAKE_C_COMPILER_ID STREQUAL "GNU" AND NOT (CMAKE_C_COMPILER_VERSION VERSION_LESS 4.9.0) AND NOT OPENBSD AND NOT DRAGONFLY)
     # When invoking cmake on distributions on which gcc's binaries are prefixed
     # with an arch-specific triplet, the user must specify -DCHOST=<prefix>
     if (DEFINED CHOST)
