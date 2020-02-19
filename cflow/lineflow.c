@@ -874,8 +874,8 @@ Link *getByBranch(Trace *trace, Link *curCase)
     }
 
 /* ************* added stuff ***************** */
-  if (found_flg == FALSE)\
- cf_logErr("  %3s|%9s|%7.2f|%9s|%7.2f|%1s|%1d is missing in case %s \n",\
+  if (found_flg == FALSE)
+  	cf_logErr("  %3s|%9s|%7.2f|%9s|%7.2f|%1s|%1d is missing in case %s \n",\
  &brID->type,&brID->bus1_name,brID->bus1_kv, &brID->bus2_name,brID->bus2_kv\
  ,&brID->ckt_id,brID->section,curCase->data);
 /* ************* added stuff ***************** */

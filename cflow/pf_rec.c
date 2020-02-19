@@ -50,7 +50,6 @@ static char SolveRefArea[]=  "/get_data,type=load_ref_area";
 char __far pf_cflow_outbuf[CFLOW_IPC_BUFF_SIZE], __far pf_cflow_inbuf[CFLOW_IPC_BUFF_SIZE];
 int pf_cflow_ipc() {
    printf(pf_cflow_outbuf);
-/* scanf("%[^~]",pf_cflow_inbuf); */
    return 0;
 }
 #endif

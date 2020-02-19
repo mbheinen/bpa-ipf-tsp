@@ -32,7 +32,6 @@ PURPOSE:    Generate new cases given a list of base cases and a list of change
 
 #define  OK               0
 #define  MAX_IN           264
-#define  MAX_CFLOW_BUF    4096            /* note: CFLOW_IPC_BUFF_SIZE = 4096 */
 #define  MAX_CURVES       6
 #define  FF_IPF_VERSION   327            /* GPF.EXE_V327 or above recommended */
 #define  PAGE_LENGTH      61
@@ -165,10 +164,10 @@ typedef struct traceRecord {
   char   trcSpec[FILENAME_MAX];
   char   usrSpec[FILENAME_MAX];
   char   comSpec[FILENAME_MAX];
-  char   solution[MAX_CFLOW_BUF];
-  char   change_bus_types[MAX_CFLOW_BUF];
-  char   agc[MAX_CFLOW_BUF];
-  char   gen_drop[MAX_CFLOW_BUF];
+  char   solution[CFLOW_IPC_BUFF_SIZE];
+  char   change_bus_types[CFLOW_IPC_BUFF_SIZE];
+  char   agc[CFLOW_IPC_BUFF_SIZE];
+  char   gen_drop[CFLOW_IPC_BUFF_SIZE];
   float  VXmax;
   float  VXmin;
   float  dVX;
@@ -832,7 +831,7 @@ void openReport(Trace *trace)
 void  dispatchEngine(Trace *trace)
 {
   Step *step;
-  char  s[MAX_CFLOW_BUF];
+  char  s[CFLOW_IPC_BUFF_SIZE];
   Link *stepLink;
   int   go;
   pf_rec b, m;
@@ -940,7 +939,7 @@ void  buildSetup(Trace *trace)
 {
   FILE *fp;
   Plot *plot;
-  char  s[MAX_CFLOW_BUF], data[MAX_IN];
+  char  s[CFLOW_IPC_BUFF_SIZE], data[MAX_IN];
   Link *plotLink;
 
   for (plotLink = trace->plotList; plotLink != NULL; plotLink = plotLink->next){
@@ -1180,7 +1179,7 @@ int ff_curve(Trace *trace, Step *step, pf_rec *r)
 }
 int ff_ch_par_qv(char *file, char *name, char *kv, float x, float *v, float *q)
 {
-  char data[MAX_CFLOW_BUF];
+  char data[CFLOW_IPC_BUFF_SIZE];
   int  ipf_stat;
 
   sprintf(data,"/CHANGE_PARAMETER,FILE=%s,BUS=%8.8s %4.4s,VX=%f,QY=?\n(END)\n",
@@ -1193,7 +1192,7 @@ int ff_ch_par_qv(char *file, char *name, char *kv, float x, float *v, float *q)
 }
 void ff_user_analysis(Trace *trace, Step *step, char action)
 {
-  char cmd[MAX_CFLOW_BUF];
+  char cmd[CFLOW_IPC_BUFF_SIZE];
   if (strlen(trace->usrSpec)==0) return;
 
 /* apply user-analysis file */
@@ -1216,7 +1215,7 @@ void ff_user_analysis(Trace *trace, Step *step, char action)
 }
 void ff_take_como_outg(FILE *comFile, char *comOutg)
 {
-  char s[MAX_IN], cmd[MAX_CFLOW_BUF];
+  char s[MAX_IN], cmd[CFLOW_IPC_BUFF_SIZE];
   int  mode;
 
   mode = 0;                                      /* searching */
