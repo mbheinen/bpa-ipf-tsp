@@ -162,7 +162,7 @@ void unmanage_test_all();
 void system_test_pcdr();
 void test_abort();
 void system_test_c();
-void quick_exit();
+void quick_gui_exit();
 void toolbox_move_toggle();
 void edit_applyz();
 void edit_bus_closez();
@@ -439,7 +439,7 @@ static MrmRegisterArg reglist [] = {
 {"system_test_pcdr", (caddr_t)system_test_pcdr},
 {"test_abort", (caddr_t)test_abort},
 {"system_test_c", (caddr_t)system_test_c},
-{"quick_exit", (caddr_t)quick_exit},
+{"quick_gui_exit", (caddr_t)quick_gui_exit},
 {"toolbox_move_toggle", (caddr_t)toolbox_move_toggle},
 {"edit_applyz", (caddr_t)edit_applyz},
 {"edit_bus_closez", (caddr_t)edit_bus_closez},
@@ -732,7 +732,7 @@ static int reglist_num = (sizeof reglist / sizeof reglist[0]);
  * OS transfer point.  The main routine does all the one-time setup and
  * then calls XtAppMainLoop.
  */
-static char sccsid[] = "@(#)gui.c	20.70 7/10/98";
+static char sccsid[] = "%W% %G%";
 main(int argc, char *argv[])
 {
     Arg arglist[2];
@@ -762,7 +762,7 @@ main(int argc, char *argv[])
 
     app_context = XtCreateApplicationContext();
 
-    sprintf(main_window_title, "INTERACTIVE POWERFLOW GRAPHICAL USERS INTERFACE - Version JUL_10_98");
+    sprintf(main_window_title, "INTERACTIVE POWERFLOW GRAPHICAL USERS INTERFACE - Version AUG_07_98");
     display = XtOpenDisplay(
                              app_context,
                              NULL,
@@ -811,11 +811,12 @@ main(int argc, char *argv[])
     /* 
      * Open the UID files (the output of the UIL compiler) in the hierarchy
      */
-    if (MrmOpenHierarchy(db_filename_num, /* Number of files. */
-      db_filename_vec,                    /* Array of file names.  */
-      NULL,                               /* Default OS extenstion. */
-      &s_MrmHierarchy)                    /* Pointer to returned MRM ID */
-      !=MrmSUCCESS)
+    if (MrmOpenHierarchyPerDisplay( display,
+		db_filename_num,	/* Number of files. */
+		db_filename_vec,	/* Array of file names.  */
+		NULL,			/* Default OS extenstion. */
+		&s_MrmHierarchy)	/* Pointer to returned MRM ID */
+	!=MrmSUCCESS)
         s_error("can't open hierarchy");
 
 MrmRegisterNames (reglist, reglist_num);
@@ -1237,7 +1238,7 @@ void system_test_c(Widget w, XtPointer tag, XtPointer reason)
 {
 test_graphdata(w, tag, reason);
 }
-void quick_exit(Widget w, XtPointer tag, XtPointer reason)
+void quick_gui_exit(Widget w, XtPointer tag, XtPointer reason)
 {
 exit_ipf_quick(w, tag, reason);
 }

@@ -526,7 +526,6 @@ char *tag;
 XtCallbackList *list_data;
 {
 
-printf("BINGO!\n");
   active = 'A';
   unit   = 'M';
 

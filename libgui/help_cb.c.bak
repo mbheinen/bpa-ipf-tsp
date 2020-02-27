@@ -226,49 +226,6 @@ void help_key_cb(widget, client_data, cbs)
 }
 
 
-void help_dialog_context_cb(widget, client_data, cbs)
-  Widget                          widget;
-  caddr_t                         client_data;
-  XmAnyCallbackStruct             *cbs;
-{
-  RectObj rectobj;
-  RectObjClass widgetclass;
-  Cursor cursor;
-  initwin();
-  cursor = XCreateFontCursor(XtDisplay(toplevel_widget), XC_question_arrow);
-
-  if(help_widget = XmTrackingLocate(toplevel_widget,cursor,False))
-  {
-    char linkname[200];
-    CoreWidget core;
-    core = help_widget;
-    cbs->reason = XmCR_HELP;
-    XtCallCallbacks(help_widget,XmNhelpCallback, &cbs);
-    XSetForeground(display,drawing_gc, WhitePixel(display,0));
-    XFillRectangle(display,pixmap,drawing_gc,0,0,
-      pixwidth,pixheight);
-    strcpy(linkname,"gotolink widget.mif:");
-    strcat(linkname,core->core.name);
-    printf("core->name=%s,core->class=%s\n",core->core.name,core->core.widget_class);
-    if ((cpage = find_link(linkname)) != 0) {
-      XCopyArea(display,pixmap, XtWindow(drawing_widget),drawing_gc,
-        0,0,PGWIDTH,PGHEIGHT,0,0);
-      help_resize(pg[maxpg].PageSize.i1, pg[maxpg].PageSize.i2);
-      XFlush(display);
-      rectobj = (RectObj)help_widget; 
-      printf("rect obj id = %d,x = %d, y = %d\n",rectobj,
-        rectobj->rectangle.x, rectobj->rectangle.y);
-      widgetclass = (RectObjClass)rectobj->object.widget_class;
-      printf("rect obj class id = %d,class_name = %s\n",widgetclass,
-        widgetclass->rect_class.class_name);
-      printf("found widget = %d,name =%s, cursor = %d\n",help_widget,
-        core->core.name,cursor);
-    }
-  }
-  XFreeCursor(XtDisplay(toplevel_widget),cursor);
-}
-
-
 long inchtopixx(double d)
 {
   return(XmConvertUnits(drawing_widget,XmHORIZONTAL,Xm1000TH_INCHES,
