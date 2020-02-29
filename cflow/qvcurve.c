@@ -16,8 +16,8 @@ PURPOSE:    Generate new cases given a list of base cases and a list of change
             and excessive voltage and loading changes.
 \******************************************************************************/
 /******************************* #include *************************************/
-#include "cflowlib.h"
-#include "cf_util.h"
+#include <cflowlib.h>
+#include <cf_util.h>
 /***************************** end #include ***********************************/
 /******************************* #define **************************************/
 #ifdef VMS
