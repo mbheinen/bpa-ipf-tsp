@@ -15,7 +15,7 @@ PURPOSE:    Automates production of P-V curve plot files and plot routine setup
             files for multiple base cases and outages.
 \******************************************************************************/
 /******************************* #include *************************************/
-#include "cflowlib.h"
+#include <cflowlib.h>
 #include "cf_util.h"
 /***************************** end #include ***********************************/
 /******************************* #define **************************************/
@@ -32,7 +32,6 @@ PURPOSE:    Automates production of P-V curve plot files and plot routine setup
 
 #define  OK               0
 #define  MAX_IN           264
-#define  MAX_CFLOW_BUF    4096            /* note: CFLOW_IPC_BUFF_SIZE = 4096 */
 #define  MAX_CURVES       6           /* maximum number of curves for PSAP 22 */
 #define  FF_IPF_VERSION   317            /* GPF.EXE_V317 or above recommended */
 #define  FF_PAGE_LENGTH   61
@@ -165,8 +164,8 @@ typedef struct traceRecord {
   char   comSpec[FILENAME_MAX];
   char   outName[FILENAME_MAX];      /* output file names based on outName */
   char   outSeri[FILENAME_MAX];      /* output code name identifier */
-  char   solution[MAX_CFLOW_BUF];    /* solution qualifiers */
-  char   change_bus_types[MAX_CFLOW_BUF];
+  char   solution[CFLOW_IPC_BUFF_SIZE];    /* solution qualifiers */
+  char   change_bus_types[CFLOW_IPC_BUFF_SIZE];
   float  Pstart;
   float  Pstop;
   float  dP;
@@ -895,7 +894,7 @@ void  cleanUpFiles(Trace *trace)
 }
 void de_user_analysis(int *stat, char *infile, char *outfile)
 {
-  char cmd[MAX_CFLOW_BUF];
+  char cmd[CFLOW_IPC_BUFF_SIZE];
 
   if (*stat & FAIL_CRIT) return;
 
@@ -1408,7 +1407,7 @@ void de_take_brch_outg(int *stat, int type, pf_rec *brnOutg)
 }
 void de_take_como_outg(int *stat, int type, char *comOutg, FILE *comFile)
 {
-  char s[MAX_IN], cmd[MAX_CFLOW_BUF];
+  char s[MAX_IN], cmd[CFLOW_IPC_BUFF_SIZE];
   int  mode;
 
   if (*stat & FAIL_CRIT) return;
@@ -1459,7 +1458,7 @@ void de_take_como_outg(int *stat, int type, char *comOutg, FILE *comFile)
 }
 void de_command(int *stat, char *cmd, char *data)
 {
-  char s[MAX_CFLOW_BUF];
+  char s[CFLOW_IPC_BUFF_SIZE];
 
   if (*stat & FAIL_CRIT) return;
   if (strlen(cmd)==0) return;
@@ -1475,7 +1474,7 @@ void de_command(int *stat, char *cmd, char *data)
 }
 void de_solution(int *stat, char *solution, char *file)
 {
-  char s[MAX_CFLOW_BUF];
+  char s[CFLOW_IPC_BUFF_SIZE];
 
   if (*stat & FAIL_CRIT) return;
   printf("\n  Solving Base... %s\n", file);
@@ -1656,7 +1655,7 @@ void de_pv_curve(Trace *trace, Step *step)
 void de_ch_par_gen(int *stat, pf_rec *bus, char *mon_str, float *mon_val,
     char *set_str, float set_val, float *x, float *y)
 {
-  char  data[MAX_CFLOW_BUF], id[132], name[9], volt[5], xc, yc;
+  char  data[CFLOW_IPC_BUFF_SIZE], id[132], name[9], volt[5], xc, yc;
   float rx, ry;
   int   rtn;
 
@@ -1694,7 +1693,7 @@ void de_ch_par_load(int *stat, pf_rec *bus, char *mon_str, float *mon_val,
     char *P_str, float P_val, char *Q_str, float Q_val,
     char *zones, char *owners, char *areas, float *x, float *y)
 {
-  char  data[MAX_CFLOW_BUF], id[132], name[9], volt[5], xc[3], yc[3];
+  char  data[CFLOW_IPC_BUFF_SIZE], id[132], name[9], volt[5], xc[3], yc[3];
   float rx, ry;
   int   rtn;
 

@@ -727,7 +727,6 @@ static int reglist_num = (sizeof reglist / sizeof reglist[0]);
  */
 
 
-
 /*
  * OS transfer point.  The main routine does all the one-time setup and
  * then calls XtAppMainLoop.

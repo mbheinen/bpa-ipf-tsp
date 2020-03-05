@@ -476,7 +476,7 @@ void processCommandLine(Trace *trace, int argc, char *argv[])
 }
 void instructions(Trace *trace)
 {
-  printf("\n  Welcome to PVcurve_Pro Version V%s - updated 03-10-99", PV_Version);
+  printf("\n  Welcome to pvcurve_pro Version V%s - updated 03-10-99", PV_Version);
   printf("\n");
   printf("\n - Defaults in brackets [].  Press Ctrl-Y & type STOP to abort.");
   printf("\n - Use .trc, .dat, or .lis or append / to designate data files.");
@@ -793,7 +793,7 @@ void printTrace(Trace *trace)
   if (trace->trace==TRACE_NO) return;
   fp = trace->trc->file;
   if (fp == NULL) fp = stderr;
-  fprintf(fp, ". %s %s %s %s PVcurve version V%s\n", trace->trc->spec, 
+  fprintf(fp, ". %s %s %s %s pvcurve_pro version V%s\n", trace->trc->spec, 
     trace->trc->time, trace->userID, trace->IPFversion, PV_Version);
 
   fprintf(fp, "/REPORT\n");

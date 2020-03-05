@@ -32,7 +32,6 @@ PURPOSE:    Works with the .pfo output files of /OUTAGE_SIMULATION runs as a
 /***************************** end #include ***********************************/
 /******************************* #define **************************************/
 
-
 #define	 VERSN_NUM	  110
 #define  VERSN_DATE	  "06-30-99"
 #define  FF_IPF_VERSION   324           /* GPF.EXE_V324 or above recommended */
@@ -112,7 +111,7 @@ PURPOSE:    Works with the .pfo output files of /OUTAGE_SIMULATION runs as a
 #define  TYPE_BUSV_BOTH  (int)    6
 #define  REDUN_KEEP      (int)    0
 #define  REDUN_REMOVE    (int)    1
-#define	 YES		 (int)	  1
+#define	 YES             (int)    1
 #define  SKP_SOLN_PROB   (int)    0  /* skip reporting of solution problems */
 #define  INC_SOLN_PROB   (int)    1  /* include report of solution problems */
 #define  FORM_DATA_FULL  (int)    1
@@ -157,7 +156,6 @@ PURPOSE:    Works with the .pfo output files of /OUTAGE_SIMULATION runs as a
 #define  BUSV_FORM_3_PTI   "%*60c%*26c%*26c%8[^\n]%f%*c%f"
 #define  BUSV_FORMAT_316   " %8[^\n]%*c%f%*2c%3[^\n]%*2c%2[^\n]%*24c %f KV %f / %f /( %f, %f)"
 #define  BUSV_FORMAT_312   " %8[^\n]%*c%f%*2c%3[^\n]%*2c%2[^\n]%*21c %f KV %f /( %f, %f)" /* extra %f add for alignment */
-/* #define  COMO_FORMAT_314   "%*6c%2[^\n]%*2c%c%*3c%3[^\n]%*2c%2[^\n]%*c%2[^\n]%*2c%*8[^\n]%f %*8[^\n]%f" */
 #define  COMO_FORMAT_314   "%*7c%2[^\n]%*2c%c%*3c%3[^\n]%*2c%2[^\n]%*c%2[^\n]%*2c%*8[^\n]%f %*8[^\n]%f"
 #define  COMO_FORMAT_312   "%*6c%2[^\n]%*2c%c%*3c%3[^\n]%1[^\n]%1[^\n]%*8[^\n]%f %*8[^\n]%f"
 #define  OVLD_FORMAT_PTI   "%*61c%8[^\n]%f%*1c%*6c%8[^\n]%f%*1c%c %f %f %f %f"
@@ -193,7 +191,6 @@ PURPOSE:    Works with the .pfo output files of /OUTAGE_SIMULATION runs as a
 #define  HASHSIZE 30
 /***************************** end #define ************************************/
 /******************************* typedef **************************************/
-
 typedef struct {
   float  actual;  /* post-condition MVA, AMPS, or KV, or absolute (new-ref) */
   float  ratio;   /* PU, per cent, or delta (new-ref/ref) */
@@ -253,7 +250,6 @@ struct nlist {  /* table entry */
     int           keep;  /* 1 = report, 0 = ignore */
 };
 /******************************* end typedef **********************************/
-
 /* top FINDOUT  functions - called by main() **********************************/
 void     initializeTrace(Trace *trace);
 void     processCommandLine(Trace *trace, int argc, char *argv[]);
@@ -352,7 +348,6 @@ static struct nlist *hashtab[HASHSIZE]; /* pointer table or cm outages */
 /**************************** end global variable candidates ******************/
 
 cf_Style FF_mskStyl = { "",   CF_TAG_W_LIST,  1 };
-
 
 int main(int argc, char *argv[])
 /***************************************************************************\
@@ -396,7 +391,7 @@ int main(int argc, char *argv[])
 
   return 0;
 }
-
+
 void initializeTrace(Trace *trace)
 /***************************************************************************\
 * special function to do set up/init for FINDOUT 
@@ -468,7 +463,7 @@ void  instructions(Trace *trace)
   printf("\n - Powerflow version %d or later recommended.", FF_IPF_VERSION);
   printf("\n");
 }
-
+
 void promptUser(Trace *trace)
 /****************************************************************************\
 *
@@ -821,7 +816,7 @@ void openReport(cf_Out *rpt)
   rpt->file = cf_openFile(rpt->spec, "w");
   cf_exit(rpt->file==NULL, "Quitting!\n");
 }
-
+
 void printTrace(Trace *trace)
 /****************************************************************************\
 *
@@ -922,7 +917,7 @@ void queryContinue(Trace *trace)
     cf_exit(!yes, "Quitting!");
   }
 }
-
+
 void collectData(Trace *trace)
 /****************************************************************************\
 *
@@ -982,7 +977,7 @@ void tableLegend(cf_Out *rpt)
   fprintf(rpt->file,"%s", MSG_SEPAR);
   rpt->line += 9;
 }
-
+
 int buildMainTable(FILE *pfo_File, Trace *trace)
 /***************************************************************************\
 *
@@ -1013,7 +1008,7 @@ int buildMainTable(FILE *pfo_File, Trace *trace)
 
   return (state & VALID_DATA) ? 1 : 0;
 }
-
+
 int screenProb(Link *problem, Trace trace)
 /****************************************************************************\
 * return 0 if problem is to be skipped over, else non-zero
@@ -1070,7 +1065,7 @@ int screenProb(Link *problem, Trace trace)
   }
   return vp;
 }
-
+
 Link *getOutgSet(FILE *pfo_File, int *state, Link *problem, Trace *trace)
 /***************************************************************************\
 * searching the summary of bus and line problems for each outage 
@@ -1242,7 +1237,7 @@ Link *getOutgSet(FILE *pfo_File, int *state, Link *problem, Trace *trace)
 
   return NULL;
 }
-
+
 void installResult(char *s)
 {
   int convL, convT;
@@ -1262,7 +1257,7 @@ void installResult(char *s)
 /*  cf_logErr("Result Installed: [%s]\n", result); */
 }
 
-
+
 int  getCoMoRslt(char *s, char *format, Trace trace)
 /***************************************************************************\
 * return 1 keep
@@ -1326,7 +1321,6 @@ Link *getSystProb(char *s, char *format, Link *problem)
   return problem;
 }
 
-
 int  getBusvVolt(char *s, char *format, Link *problem)
 /****************************************************************************\
 *
@@ -1365,7 +1359,7 @@ int  getBusvVolt(char *s, char *format, Link *problem)
   return 0;
 }
 
-
+
 int  getOvldLoad(char *s, char *format, Link *problem)
 /****************************************************************************\
 *
@@ -1407,7 +1401,7 @@ int  getOvldLoad(char *s, char *format, Link *problem)
   memcpy(solnData, &ro, sizeof(ff_soln));
   return 0;
 }
-
+
 Link *getCoMoOutg(char *s)
 /****************************************************************************\
 *
@@ -1466,7 +1460,7 @@ Link *getBrchOutg(char *s, char *format)
 
   return brznLink;
 }
-
+
 int identifyInput(char *s)
 /****************************************************************************\
 *
@@ -1516,7 +1510,7 @@ int identifyInput(char *s)
   if (strstr(s, OUTG_ID_OWN_312 ) != NULL) return 60; /*60 = old failed sol r */
   return 0;                                           /* 0 = possible data */
 }
-
+
 void buildReport(Trace *trace, cf_Out *rpt)
 /*****************************************************************************\
 * build table for output report
@@ -1593,7 +1587,7 @@ void buildReport(Trace *trace, cf_Out *rpt)
   }
   return;
 }
-
+
 void swapReport(Trace *trace)
 /***************************************************************************\
 *  build table for output report 
@@ -1836,7 +1830,7 @@ int getIndex(Link *newLink, Link *xstLink, Link *list)
   return  1;           /* +1 & -1 seem to have same result for return value */
 }
 
-
+
 void printReport(Trace *trace, cf_Out *rpt)
 /***************************************************************************\
 *
@@ -1905,7 +1899,6 @@ void printReport(Trace *trace, cf_Out *rpt)
   }
 }
 
-
 void chkBranch(Trace *trace, Link *curID)
 /**************************************************************************\
 * deLink branches with overloads from  No O/L Log 
@@ -1952,7 +1945,7 @@ void chkBranchLog(Trace *trace, Link *curPfo)
   return;
 }
 
-
+
 void printHeader(cf_Out *rpt, Link *curPfo, Trace *trace)
 {
 
@@ -2032,7 +2025,7 @@ void printSoln(cf_Out *rpt, Link *curID, Link *curSoln, int doN)
   }
   return;
 }
-
+
 void pageFooter(cf_Out *rpt, Link *nxRow, Link *nxPfo)
 {
   if (nxRow!=NULL) {
@@ -2073,7 +2066,7 @@ void ff_printBlankLines(cf_Out *rpt, int n)
   }
   return;
 }
-
+
 void printOtBrHeader(cf_Out *rpt, Link *pfo)
 /****************************************************************************\
 *
@@ -2135,7 +2128,7 @@ void printOtBrHeader(cf_Out *rpt, Link *pfo)
   rpt->line += 5;
   return;
 }
-
+
 void printOtBsHeader(cf_Out *rpt, Link *pfo)
 /****************************************************************************\
 *
@@ -2197,7 +2190,7 @@ void printOtBsHeader(cf_Out *rpt, Link *pfo)
   rpt->line += 5;
   return;
 }
-
+
 void printOvldHeader(cf_Out *rpt, Link *pfo)
 /****************************************************************************\
 * COULD USE DEFINE STATEMENTS 
@@ -2259,7 +2252,7 @@ void printOvldHeader(cf_Out *rpt, Link *pfo)
   rpt->line += 5;
   return;
 }
-
+
 void printBusvHeader(cf_Out *rpt, Link *pfo)
 /****************************************************************************\
 * COULD USE DEFINE STATEMENTS
@@ -2321,7 +2314,7 @@ void printBusvHeader(cf_Out *rpt, Link *pfo)
   rpt->line += 5;
   return;
 }
-
+
 void printTableCases(cf_Out *rpt, Link *curPfo, char *l, char *r, char *d)
 {
   int width;
@@ -2399,7 +2392,6 @@ void printOutg(FILE *fp, Link *outgLink, int form)
   fprintf(fp, "%s", out);
 }
 
-
 void printOvld(FILE *fp, Link *ovldLink, int form)
 {
   char id[CF_STRSIZE], out[CF_STRSIZE];
@@ -2430,7 +2422,7 @@ void printOvld(FILE *fp, Link *ovldLink, int form)
   }
   fprintf(fp, "%s", out);
 }
-
+
 void printBusv(FILE *fp, Link *busvLink, int form)
 {
   char id[CF_STRSIZE], out[CF_STRSIZE];
@@ -2467,7 +2459,6 @@ void printBusv(FILE *fp, Link *busvLink, int form)
   fprintf(fp, "%s", out);
 }
 
-
 void printDiff(cf_Out *rpt, Link *solnLink, int mode)
 {
   ff_soln *varData;
@@ -2487,7 +2478,7 @@ void printDiff(cf_Out *rpt, Link *solnLink, int mode)
   }
   return;
 }
-
+
 void printLoad(cf_Out *rpt, Link *solnLink, int doN)
 /***************************************************************************\
 *
@@ -2546,7 +2537,7 @@ void printLoad(cf_Out *rpt, Link *solnLink, int doN)
 
   return;
 }
-
+
 void printVolt(cf_Out *rpt, Link *solnLink, int doN)
 /***************************************************************************\
 *
@@ -2605,7 +2596,7 @@ void printVolt(cf_Out *rpt, Link *solnLink, int doN)
 
   return;
 }
-
+
 void printProb(cf_Out *rpt, Link *probLink, int doN)
 /***************************************************************************\
 *
@@ -2667,7 +2658,6 @@ void printProb(cf_Out *rpt, Link *probLink, int doN)
   return;
 }
 
-
 int validSoln(Link *solnLink, Trace *trace )
 {
  ff_soln *solnData;
@@ -2708,13 +2698,9 @@ int validInput(Link *listPtr, cf_Branch *data)
   return 0;
 }
 
-
 int validVariance(Trace trace, Link *refLink)
 /****************************************************************************\
 * return 1 if difference with problem solving, or variation exceeds span 
-*
-*				modified: 5/28/99
-*  Called by: buildReport
 \****************************************************************************/
 {
   Link       *variLink, *solnLink;
@@ -2778,7 +2764,6 @@ int validVariance(Trace trace, Link *refLink)
   return 1;
 }
 
-
 int validLoad(Trace trace, Link *solnLink)
 {
   ff_soln *solnData;
@@ -2810,7 +2795,7 @@ int validVolt(Trace trace, Link *solnLink)
   }
   return 0;
 }
-
+
 int ff_wildBranch(pf_branch *b1, pf_branch *b2)
 /******************************************************************************\
 * ff_wildBranch: compare id data of two pf_branch records with wild card.
@@ -2835,7 +2820,7 @@ int ff_wildBranch(pf_branch *b1, pf_branch *b2)
   }
   return 0;
 }
-
+
 /* hash:  form hash value for string s */
 unsigned hash(char *s)
 {
@@ -2883,7 +2868,7 @@ struct nlist *install(char *name, int keep)
     np->keep = keep;
     return np;
 }    
-
+
 void ff_stream2List(FILE *readMe, Trace *trace, Link **expList)
 /***************************************************************************\
 *
@@ -3044,7 +3029,7 @@ void ff_stream2List(FILE *readMe, Trace *trace, Link **expList)
   }
   return;
 }
-
+
 void ff_limits(char *s, Trace *trace)
 {
   float f;
@@ -3089,12 +3074,8 @@ void ff_limits(char *s, Trace *trace)
     trace->query &= ~(QUERY_SOLN);
   }
 }
-
+
 void ff_report(char *s, Trace *trace)
-/**************************************************************************\
-*
-* Called by: ff_stream2List
-\**************************************************************************/
 {
   if (strstr(s, "NAME"           )!=NULL) {
     sscanf(s, "%*s = %s", trace->outName);
@@ -3161,7 +3142,7 @@ void ff_report(char *s, Trace *trace)
     trace->query &= ~(QUERY_SSEP);
   }
 }
-
+
 void ff_expList(Trace *trace, Link *dataList, Link **expList)
 { /* expand double-linked list */
   Link *curLink, *newList;
@@ -3201,7 +3182,7 @@ int ff_srtBranch(cf_Branch *b1, cf_Branch *b2, int sort) /* sort branch */
   }
   return cf_cmpBranch((pf_branch *) b1, (pf_branch *) b2);         /* [alpha-kv] */
 }
-
+
 int validMask(Link *maskList, cf_Name *r)
 {
   Link *maskLink;
@@ -3236,7 +3217,6 @@ int validMask(Link *maskList, cf_Name *r)
 }
 /************ documented, common CF_UTIL.H candidates prototypes **************/
 /* all documented, CF_UTIL.H candidates shall be designated, cf_name().       */
-
 void date(char *date)
 {
   int mo, yr;

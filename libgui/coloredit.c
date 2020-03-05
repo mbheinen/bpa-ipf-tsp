@@ -74,7 +74,7 @@ static unsigned long r65535[65536];
 static unsigned long g65535[65536];
 static unsigned long b65535[65536];
 
-
+
 void init_color_dialog( Widget w, XtPointer *tag,XmAnyCallbackStruct *cb_data)
 /**************************************************************************\
 * Purpose: Bring up color edit dialog - ensuring 16-color form is displayed.

@@ -943,7 +943,6 @@ SET(IPF_src
             ${SRCIPF}/seninp.f
             ${SRCIPF}/sen_jac2.f
             ${SRCIPF}/sen_jac3.f
-            ${SRCIPF}/sen_jac3.f.1
             ${SRCIPF}/senjac.f
             ${SRCIPF}/senltc.f
             ${SRCIPF}/sen_out2.f

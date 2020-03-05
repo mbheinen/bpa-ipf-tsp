@@ -84,7 +84,7 @@ extern int marker;
 #define PGHEIGHT 10000
 
 char *filename = "ipf_gui_help.mif";
-
+
 void help_expose_callback( widget, client_data, draw_struct )
   Widget                          widget;
   caddr_t                         client_data;
@@ -106,7 +106,7 @@ void help_expose_callback( widget, client_data, draw_struct )
     draw_struct->event->xexpose.y);
   XFlush( display );
 }
-
+
 void help_input_callback( widget, client_data, draw_struct )
   Widget                          widget;
   caddr_t                         client_data;
@@ -150,7 +150,7 @@ void help_input_callback( widget, client_data, draw_struct )
       printf("Other event %d\n", draw_struct->event->type);
   }
 }
-
+
 
 void help_dialog_page_up(widget, client_data, cbs)
   Widget                          widget;
@@ -179,7 +179,7 @@ void help_dialog_page_up(widget, client_data, cbs)
   if (stat == 0) help_resize(pg[maxpg].PageSize.i1, pg[maxpg].PageSize.i2);
   XFlush(display);
 }
-
+
 
 void help_dialog_page_down(widget, client_data, cbs)
   Widget                          widget;
@@ -212,7 +212,6 @@ void help_dialog_page_down(widget, client_data, cbs)
   XFlush( display );
 }
 
-
 static Widget help_widget;
 
 void help_key_cb(widget, client_data, cbs)
@@ -225,13 +224,12 @@ void help_key_cb(widget, client_data, cbs)
   printf("found widget = %d,name =%s\n",help_widget, core->core.name);
 }
 
-
 long inchtopixx(double d)
 {
   return(XmConvertUnits(drawing_widget,XmHORIZONTAL,Xm1000TH_INCHES,
     (long)(d * 1000), XmPIXELS));
 }
-
+
 long inchtopixy(double d)
 {
   return(XmConvertUnits(drawing_widget,XmVERTICAL,Xm1000TH_INCHES,
@@ -243,7 +241,7 @@ typedef struct
   XFontStruct *fstruct;
   Font fid;
 } fontlist;
-
+
 static fontlist fonts[20];
 static int maxfonts= -1;
 
@@ -309,7 +307,7 @@ ld_fnt(int fontnum)
     fonts[maxfonts].fid = f[fontnum].fontid = (f[fontnum].fontstruct)->fid;
   }
 }
-
+
 long wdth,pgx,pgy;
 long prevx=0, prevy=0;
 showtext(char *str)
@@ -371,7 +369,6 @@ showtext(char *str)
   }
 }
 
-
 /* store txt in the text widget, and, if not NULL, in the selection dialog
 						   list box. */
 new_text(char *widget_name, char *selection_box_name, char *txt)
