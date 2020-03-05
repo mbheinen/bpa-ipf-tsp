@@ -15,7 +15,7 @@ PURPOSE:    Automates production of P-V curve plot files and plot routine setup
             files for multiple base cases and outages.
 \******************************************************************************/
 /******************************* #include *************************************/
-#include "cflowlib.h"
+#include <cflowlib.h>
 #include "cf_util.h"
 /***************************** end #include ***********************************/
 /******************************* #define **************************************/
