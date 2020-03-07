@@ -32,6 +32,9 @@ extensions = [
     'sphinx_rtd_theme'
 ]
 
+# Use index.rst as master instead of default contents.rst
+master_doc = 'index'
+
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
 
