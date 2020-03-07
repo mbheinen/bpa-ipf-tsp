@@ -65,7 +65,6 @@ Since the core powerflow program was developed in 70s and 80s, it had to make ef
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
    basic/installation
    basic/architecture
 
