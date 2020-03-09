@@ -18,8 +18,8 @@ import sphinx_rtd_theme
 
 # -- Project information -----------------------------------------------------
 
-project = 'BPA Interactive Powerflow'
-copyright = '2020, Interactive Powerflow Developers'
+project = 'Interactive Power Flow'
+copyright = '2020, Interactive Power Flow Developers'
 author = 'D. Clark, B. Rogers, D. Stefonek, J. Coleman, K. Rowell, D. Szymanski, W. Powell, J. Rutis, T. Liu, M. Heinen'
 
 

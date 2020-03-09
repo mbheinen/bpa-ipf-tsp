@@ -1,6 +1,6 @@
 # Interactive Power Flow & Transient Stability Program
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/4575f8b2a207401a9b55cf5abb6ccdcc)](https://app.codacy.com/manual/mbheinen/bpa-ipf-tsp?utm_source=github.com&utm_medium=referral&utm_content=mbheinen/bpa-ipf-tsp&utm_campaign=Badge_Grade_Dashboard) [![Build Status](https://travis-ci.com/mbheinen/bpa-ipf-tsp.svg?branch=master)](https://travis-ci.com/mbheinen/bpa-ipf-tsp)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/4575f8b2a207401a9b55cf5abb6ccdcc)](https://app.codacy.com/manual/mbheinen/bpa-ipf-tsp?utm_source=github.com&utm_medium=referral&utm_content=mbheinen/bpa-ipf-tsp&utm_campaign=Badge_Grade_Dashboard) [![Build Status](https://travis-ci.com/mbheinen/bpa-ipf-tsp.svg?branch=master)](https://travis-ci.com/mbheinen/bpa-ipf-tsp) [![Documentation Status](https://readthedocs.org/projects/bpa-ipf/badge/?version=latest)](https://bpa-ipf.readthedocs.io/en/latest/?badge=latest)
 
 Interactive Power Flow (IPF) is a family of programs for doing power flow studies. IPF models the balanced steady-state operation of an electric power network. It is used by power system planners and design engineers to investigate electric power networks, determine bus voltage distribution, line real and reactive power flows, line overloads, system reactive requirements, area controls, effect of load shedding, generator dropping, and line outages.
 
