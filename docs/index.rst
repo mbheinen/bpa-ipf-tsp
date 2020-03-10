@@ -55,7 +55,7 @@ Contents
    basic/architecture
    basic/process_scenarios
    basic/history
-   basic/record_format
+   basic/record_formats
 
 Check out the :ref:`genindex`, :ref:`modindex`, or :ref:`search` if you're looking for something specific.
 

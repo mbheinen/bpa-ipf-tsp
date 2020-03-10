@@ -125,7 +125,7 @@ Simply place a “.” (period character) in the first column and the comment in
 
 .. image:: ../img/Comment_Input_Format.png
 
-====== ======== ====== =============================
+====== ======== ====== ==============================
 Column ID Field Format Content
 ====== ======== ====== ==============================
 1      yes      A1     .(period)
