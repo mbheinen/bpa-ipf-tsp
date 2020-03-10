@@ -33,7 +33,7 @@ Merging Subsystems
 ==================
 The figure below shows a ``NEW_BASE`` file being created by merging a subsystem from a case on an ``OLD_BASE`` file with another subsystem from either a second ``OLD_BASE`` or from a ``BRANCH_DATA`` and a ``NETWORK_DATA`` file. The output files PFO and PFF can be printed to paper and/or fiche.
 
-.. image:: ../img/Merging_Two_or_More_Subsytems.png
+.. image:: ../img/Merging_Two_or_More_Subsystems.png
 
 Reducing a Network
 ==================
