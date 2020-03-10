@@ -49,11 +49,13 @@ Contents
 ========
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
 
    basic/installation
    basic/architecture
+   basic/process_scenarios
    basic/history
+   basic/record_format
 
 Check out the :ref:`genindex`, :ref:`modindex`, or :ref:`search` if you're looking for something specific.
 
