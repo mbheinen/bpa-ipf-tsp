@@ -1,6 +1,6 @@
-************
-Architecture
-************
+********
+Overivew
+********
 The core powerflow program can be ran on separate machine from the graphical user interface. These two halves of the IPF program are joined by interprocess communication (IPC) routines that shuttle data and instruction messages back and forth between the GUI and powerflow program. The powerflow program serves primarily as a solution and database engine that sends and receives data when requested by the user through the GUI. Note that all of this commuication is basic socket communication so it likely doesn't work if GUI runs on one platform (Windows) and powerflow programs run on another (Linux).
 
 Executables
@@ -87,8 +87,8 @@ The following is a list of the various network input data files with description
 ========================== ====== ======================== =============== ======= =================================
 File                       Format Input/Output (I/O)       Created by      Editing Information Contained
 ========================== ====== ======================== =============== ======= =================================
-PFC                        ASCII  BPF (I)                  User            Yes     Bus, Branch, Commands, File Names
-PCL                        ASCII  GUI,IPFBAT (I)           User            Yes     Commands, File Names
+PFC                        ASCII  ``bpf`` (I)              User            Yes     Bus, Branch, Commands, File Names
+PCL                        ASCII  ``gui``, ``ipbat`` (I)   User            Yes     Commands, File Names
 NETWORK_DATA               ASCII  BPF (I) GUI,IPFBAT (I/O) User GUI IPFNET Yes     Bus, Branch
 BRANCH_DATA                ASCII  Input Only               User            Yes     Branch
 OLD_BASE                   Binary Input Only               IPF             No      Bus, Branch, Solution Values

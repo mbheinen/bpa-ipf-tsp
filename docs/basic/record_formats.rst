@@ -14,42 +14,42 @@ Some data are Fortran real numbers. For these fields, the implicit decimal point
 
 All IPF data record types are identified by the characters in columns 1 and 2. To fully specify a particular record, additional fields need to be filled in. These additional ID fields are usually the bus name and base kV. ID fields are called out in the column description tables.
 
-==== ======================= =========== =================================
-Link Record ID (columns 1-2) Field Width Description
-==== ======================= =========== =================================
-3-7  Period (``.``)          120         Comment (not printed)
-3-8  ``+``                   80          Bus continuation
-3-14 A                       80          Area interchange control
-3-16 AO                      80          Area output sort
-3-18 ``-``                   ``-``       General ac bus description
-3-22 B                       80          AC bus — load bus
-3-25 BC                      80          AC bus — voltage controlled by BG bus
-3-28 BE                      80          AC bus — constant voltage
-3-31 BF                      80          AC bus — special purpose bus for Newton-Raphson solution
-3-32 BG                      80          AC bus — generator
-3-35 BQ                      80          AC bus — constant voltage within Q limits
-3-38 BS                      80          AC bus — system slack bus
-3-41 BT                      80          AC bus — LTC transformer controlled ac bus
-3-44 BV                      80          AC bus — constant Q within V limits
-3-47 BX                      80          AC bus — attempts constant V using switched Q speciﬁed on X record
-3-50 BD                      80          Two-terminal dc bus
-3-52 BM                      80          Multi-terminal dc bus
-3-55 DA                      80          Delete buses by area
-3-56 DZ                      80          Delete buses by zones
-3-57 E                       88          Equivalent branch (has extended ratings)
-3-60 I                       80          Area intertie I record
-3-62 L                       88          Transmission line (has extended ratings)
-3-66 LD                      80          Two-terminal dc line
-3-69 LM                      80          Multi-terminal dc line
-3-72 PO PZ PN PA PB PC PD    80          Factor changes
-3-78 QN QP QX                120         Reactive capability curve
-3-82 R RV RQ RP RN RM        80          Regulating transformer
-3-86 RZ                      80          VAR compensator model
-3-88 T                       92          Transformer (has extended ratings)
-3-88 TP                      92          Phase shifter (has extended ratings)
-3-93 X                       80          Switched reactance (BX record)
-3-96 Z                       80          Zone rename
-==== ======================= =========== =================================
+==== ======================== =========== =================================
+Link Record ID (columns 1-2)  Field Width Description
+==== ======================== =========== =================================
+3-7  Period (``.``)           120         Comment (not printed)
+3-8  ``+``                    80          Bus continuation
+3-14 ``A``                    80          Area interchange control
+3-16 ``AO``                   80          Area output sort
+3-18 ``-``                    ``-``       General ac bus description
+3-22 ``B``                    80          AC bus — load bus
+3-25 ``BC``                   80          AC bus — voltage controlled by BG bus
+3-28 ``BE``                   80          AC bus — constant voltage
+3-31 ``BF``                   80          AC bus — special purpose bus for Newton-Raphson solution
+3-32 ``BG``                   80          AC bus — generator
+3-35 ``BQ``                   80          AC bus — constant voltage within Q limits
+3-38 ``BS``                   80          AC bus — system slack bus
+3-41 ``BT``                   80          AC bus — LTC transformer controlled ac bus
+3-44 ``BV``                   80          AC bus — constant Q within V limits
+3-47 ``BX``                   80          AC bus — attempts constant V using switched Q speciﬁed on X record
+3-50 ``BD``                   80          Two-terminal dc bus
+3-52 ``BM``                   80          Multi-terminal dc bus
+3-55 ``DA``                   80          Delete buses by area
+3-56 ``DZ``                   80          Delete buses by zones
+3-57 ``E``                    88          Equivalent branch (has extended ratings)
+3-60 ``I``                    80          Area intertie I record
+3-62 ``L``                    88          Transmission line (has extended ratings)
+3-66 ``LD``                   80          Two-terminal dc line
+3-69 ``LM``                   80          Multi-terminal dc line
+3-72 ``PO PZ PN PA PB PC PD`` 80          Factor changes
+3-78 ``QN QP QX``             120         Reactive capability curve
+3-82 ``R RV RQ RP RN RM``     80          Regulating transformer
+3-86 ``RZ``                   80          VAR compensator model
+3-88 ``T``                    92          Transformer (has extended ratings)
+3-88 ``TP``                   92          Phase shifter (has extended ratings)
+3-93 ``X``                    80          Switched reactance (BX record)
+3-96 ``Z``                    80          Zone rename
+==== ======================== =========== =================================
 
 System Changes
 ==============
@@ -58,13 +58,10 @@ After a base case has been established, it may be changed with the use of change
 The change records are system data records with a change code in column 3. Each of the input data forms describe the permissible types of changes under the caption CHANGE CODES. In all, there are five types of changes.
 
  * *Additions*: Change code = blank
-
    The data record identification must be unique to the system. The contents of the record must be complete as if it were being submitted to build a base case.
- 
  * *Deletions*: Change code = ``D``
-
    Only existing data may be deleted, and only the identification fields are needed. Numerical data in any other field is ignored. Special conditions are given:
- 
+
    * Deleting a bus automatically deletes all continuation bus data, switched reactance data and all branch data associated with that bus. Deleting all branches connected to a bus will result in an error. It is better to delete the bus. A bus should not be deleted and added back in the same case with the same name in a single change file.
 
    * Deleting all transformer banks between two buses will automatically delete any regulating transformer data.
@@ -131,3 +128,31 @@ Column ID Field Format Content
 1      yes      A1     .(period)
 2-120  no       A119   Text string for record comment
 ====== ======== ====== ==============================
+
+Continuation Bus Data (``+``)
+=============================
+Continuation bus data is identified with a ``+`` in column 1 and supplements the data on any AC bus record. It specifies additional generation, load and shunt admittance at the bus and permits additional classification and utilization of data. Generally, it permits a more detailed analysis of data. Its most typical application is distinguishing loads represented by several different owners at the same bus. The following fields are for identification:
+
+ * Bus name and base kV
+ * Code and code year
+ * Ownership
+
+Each bus may have more than one continuation record. However, some means of distinction must be made in the minor identification fields of code year or owner. See Figure 3-2, Table 3-3, and Table 3-5.
+
+A sample coding sheet and column descriptions for continuation bus data follows.
+
+Area Interchange Control (``A``)
+================================
+A network may be partitioned geographically by area. Similarly, areas may be partitioned by zones. The net power exported from each area can be specified with an area interchange record. Export power is controlled by varying the area slack bus generation. Interchange export is measured as the sum of the exported power on all area tie lines metered at the area boundaries. The total net export of all areas must add to zero; otherwise, the area interchange control is aborted. See Figure 3-3 and Table 3-6.
+
+Valid subtypes are blank, 1, ..., 9, with 1, ..., 9 being continuation records. This allows up to 100 zones to be defined in an area.
+
+In order for area interchange control to be activated, A records must be defined and the ``/AI_CONTROL`` option must be set to the default, ``CON`` (Control). Three slack bus restrictions pertain to each area.
+
+ * One area slack bus must be the system swing bus.
+ * Each area slack bus must be within the area it controls.
+ * For all slack buses the P generation is variable.
+
+.. note::
+  
+  Area Continuation records (A1, ..., A9) accept only area name and zones 1-10 fields.
