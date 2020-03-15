@@ -57,8 +57,7 @@ int launch_srv( char *prog_name, int sockid )
 
    sprintf( sockid_str, "%d", sockid );
 
-   strcpy( system_cmd, getenv("RUN_IPFSRV") );
-/*   strcat( system_cmd, prog_name ); */
+   strcpy( system_cmd, prog_name ? prog_name : "ipfsrv");
    strcat( system_cmd, " -socketid " );
    strcat( system_cmd, sockid_str );
 

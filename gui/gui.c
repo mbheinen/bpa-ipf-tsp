@@ -439,7 +439,7 @@ static MrmRegisterArg reglist [] = {
 {"system_test_pcdr", (caddr_t)system_test_pcdr},
 {"test_abort", (caddr_t)test_abort},
 {"system_test_c", (caddr_t)system_test_c},
-{"quick_gui_exit", (caddr_t)quick_gui_exit},
+{"quick_exit", (caddr_t)quick_gui_exit},
 {"toolbox_move_toggle", (caddr_t)toolbox_move_toggle},
 {"edit_applyz", (caddr_t)edit_applyz},
 {"edit_bus_closez", (caddr_t)edit_bus_closez},
