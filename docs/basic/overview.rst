@@ -1,13 +1,26 @@
 ********
 Overivew
 ********
+This documentation shows how to use the major features of IPF, details about data input record formats and system models as well as how to use the GUI. 
+
+Users may choose to interact with IPF through the command line tools or through the windows, menus, dialog boxes, keyboard, and mouse of the `Motif X Window`_ GUI. Many of the functions and features of the command line programs (e.g. ``ipfbat``, ``ipfcut``, etc.) are available through specially designed GUI features. The GUI simplifies running the base case solutions and printing the network diagrams but is rather dated and in need of a refresh. For this reason, many users will likely prefer the command line tools.
+
+A Domain Specific Language (DSL) called Power Flow Control Language (PCL) is directly available through a Command Dialog in the GUI. See ?? for details on the syntax. The ``bpf`` program is a command line programm that preserves all the traditional “batch run” capabilities, using an alternate but similar DSL called PFC. See ?? for details on this syntax.
+
+ .. note::
+
+  The PFC syntax was developed first and later BPA added the PCL syntax. They referred to PCL as the “new style”, and the PFC as the “old style”. These two sets of commands are not completely compatible even though the “new style” command set and syntax is closely modeled on the “old style.”
+
+The family of command line programs includes: ``bpf`` a batch powerflow program, ``ipfplot`` a batch program for outputting printed maps,
+``ipfcut`` a batch program that cuts out a subsystem from a solved base case file, and more.
+ 
 The core powerflow program can be ran on separate machine from the graphical user interface. These two halves of the IPF program are joined by interprocess communication (IPC) routines that shuttle data and instruction messages back and forth between the GUI and powerflow program. The powerflow program serves primarily as a solution and database engine that sends and receives data when requested by the user through the GUI. Note that all of this commuication is basic socket communication so it likely doesn't work if GUI runs on one platform (Windows) and powerflow programs run on another (Linux).
 
 Executables
 ===========
 IPF can be thought of as a family of programs. ``bpf`` is the batch form of the powerflow program. When the editing and displaying of buses and branches is being handled by GUI, the work of calculating solution voltages for a given power system network is done by ``ipfsrv``, which is just the batch program in a different guise. Auxiliary programs allow you to do plots in batch mode, do a save of network data in batch mode, perform a “cut” of a solved base case, etc. These command line programs are briefly described here. 
  
- * ``gui`` Launches the X-based (X Window System) push button and menu-driven Graphical User Interface program that works in conjunction with the power flow server, ``ipfsrv``.
+ * ``gui`` Launches the push button and menu-driven Graphical User Interface program built with `Motif X Window`_ that works in conjunction with the power flow server, ``ipfsrv``.
 
  * ``ipfsrv`` The power flow server to the GUI. It executes power flow commands through Power Flow Control Language (PCL) scripts dispatched from the GUI.
 
@@ -47,18 +60,22 @@ Network Data
 ============
 Network Data consists of various files of bus and branch record data. Most of the input files are ASCII text files. But one important file, the base case file, is in binary format. You can, of course, edit ASCII text files with any text editor. This is often done, but your data integrity is safer if you do all the editing you can in the dialog boxes of the GUI. The base case binary file cannot be edited with an ordinary text editor, but can in effect be edited via the GUI when you have a base case file loaded.
 
-The following is a list of the various network input data files with descriptions. Additional information about the important PFC, NETWORK_DATA, and NEW_BASE files is found under individual headings below.
+The following is a list of the various network input data files with descriptions. Additional information about the important PFC, ``NETWORK_DATA``, and ``NEW_BASE`` files is found under individual headings below.
 
 ``PFC``
 
-  This input file contains job control information for the BPF program. This file may contain a NETWORK_DATA file explicitly, but more often includes a name reference to an appropriate NETWORK_DATA file, OLD_BASE file, or other job control data to be described.
+  This input file contains job control information for the BPF program. This file may contain a ``NETWORK_DATA`` file explicitly, but more often includes a name reference to an appropriate ``NETWORK_DATA`` file, ``OLD_BASE`` file, or other job control data to be described.
   You can edit this file using any ASCII text editor to add, modify, and delete commands and data records.
 
 ``NETWORK_DATA`` 
 
   This ASCII text input file contains a series of records of bus and branch data. It must not contain modification records.
   
-  This file can be maintained by using an ASCII text editor. Or you can edit the records you want in the GUI through the various dialog boxes and then save a new NETWORK_DATA file. In the file, data records may be in random order, but actual processing is done in the following order: (1) A and I records (area interchange); (2) B, +, and X records (bus); and (3) L, R, E, and T records (branch).
+  This file can be maintained by using an ASCII text editor. Or you can edit the records you want in the GUI through the various dialog boxes and then save a new ``NETWORK_DATA`` file. In the file, data records may be in random order, but actual processing is done in the following order:
+  
+   1. ``A`` and ``I`` records (area interchange)
+   2. ``B``, ``+``, and ``X`` records (bus)
+   3. ``L``, ``R``, ``E``, and ``T`` records (branch).
 
 ``BRANCH_DATA``
   
@@ -66,15 +83,15 @@ The following is a list of the various network input data files with description
 
 ``NEW_BASE``
 
-  This program-generated, binary output file contains complete base network data and steady-state operating values for the case being processed. This file is identical in format to the OLD_BASE file. NEW_BASE simply designates the file when it is produced as the output from a recently concluded case study.
+  This program-generated, binary output file contains complete base network data and steady-state operating values for the case being processed. This file is identical in format to the ``OLD_BASE`` file. NEW_BASE simply designates the file when it is produced as the output from a recently concluded case study.
 
 ``OLD_BASE`` 
 
-  This program-generated, binary input file contains complete base network data and steady-state operating values. This file is identical in format to the NEW_BASE file. OLD_BASE simply designates the file when it functions as an already existing input file.
+  This program-generated, binary input file contains complete base network data and steady-state operating values. This file is identical in format to the NEW_BASE file. ``OLD_BASE`` simply designates the file when it functions as an already existing input file.
 
 ``CHANGE`` 
 
-  This ASCII text input file contains changes (new and modification records) to the data input from any combination of NETWORK_DATA, BRANCH_DATA, and OLD_BASE files making up the case to be studied. These change records change the input data for the base case.
+  This ASCII text input file contains changes (new and modification records) to the data input from any combination of NETWORK_DATA, BRANCH_DATA, and ``OLD_BASE`` files making up the case to be studied. These change records change the input data for the base case.
 
 ``Printout File`` 
 
@@ -103,32 +120,32 @@ Debug ﬁle (<logon>.PFD)    ASCII  Output Only              GUI             No 
 
 The NETWORK_DATA File
 =====================
-This ASCII text data file consists of area, bus, and branch records in the format used by the Western Systems Coordinating Council (WSCC). However, note that IPF supports many record types which are not recognized by IPS, and in some cases the interpretation and application of the data values entered is different. See ?? for a list of IPS-IPF differences. This file must not contain modification records, only new data.
+This ASCII text data file consists of area, bus, and branch records in the format used by the Western Systems Coordinating Council (WSCC) back in the 1990s. However, note that IPF supports many record types which are not recognized by IPS, and in some cases the interpretation and application of the data values entered is different. See ?? for a list of IPS-IPF differences. This file must not contain modification records, only new data.
 
  1. Area interchange records.
    
    Each area record identifies a composition of zones whose member (associated) buses define specific aggregate quantities that may be controlled to specified export values.
 
-   A (Area interchange records)
-   I (Area intertie records)
+   ``A`` (Area interchange records)
+   ``I`` (Area intertie records)
 
  2. Bus data record group containing at least two records.
    
    Each bus data record identifies one bus in the network. Buses are uniquely identified by their bus name and base kV.
    
-   B (Bus records) 
-   + (Continuation bus records)
-   X (Continuation bus records)
-   Q (PQ Curve data records)
+   ``B`` (Bus records) 
+   ``+`` (Continuation bus records)
+   ``X`` (Continuation bus records)
+   ``Q`` (PQ Curve data records)
 
  3. Branch data record group containing at least one record.
 
-  L (ac or dc Transmission line records)
-  E (Equivalent Branch records) 
-  T (Transformer records) 
-  R (Regulators (Automatic or LTC transformer) records)
+  ``L`` (AC or DC Transmission line records)
+  ``E`` (Equivalent Branch records) 
+  ``T`` (Transformer records) 
+  ``R`` (Regulators (Automatic or LTC transformer) records)
 
-Branch data entered in any of the ASCII files is *single-entry* or one-way only. This means, for example, that a branch connecting buses A and B has a user-submitted entry (A,B) or (B,A) but not both. The program transposes the record internally as required during execution. Normally which way the branch is entered does not matter, but it does affect the default end metered on a tie line, and the physical position of line sections. See ??, Record Formats, for a discussion of this feature.
+Branch data entered in any of the ASCII files is *single-entry* or one-way only. This means, for example, that a branch connecting buses A and B has a user-submitted entry (A,B) or (B,A) but not both. The program transposes the record internally as required during execution. Normally which way the branch is entered does not matter, but it does affect the default end metered on a tie line, and the physical position of line sections. See `Record Formats`_, for a discussion of this feature.
 
 Branches are uniquely identified by three fields:
 
@@ -144,3 +161,5 @@ This file, designated ``OLD_BASE`` if you are loading it, or ``NEW_BASE`` if you
  * The date the case was generated.
  * The program version used to generate the file (so future program versions can read the file if file structures change).
  * Up to 100 comment records.
+
+.. _Motif X Window: https://motif.ics.com/motif/downloads

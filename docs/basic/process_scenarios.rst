@@ -1,7 +1,7 @@
 *****************
 Process Scenarios
 *****************
-In order to process a case, BPF requires a program control file and a valid set of base case data, which may be a composite of ``NETWORK_DATA`` and ``BRANCH_DATA`` formatted ASCII files or an ``OLD_BASE`` file from a previous power flow case, and a ``CHANGE`` file.
+In order to process a case, ``bpf`` requires a program control file and a valid set of base case data, which may be a composite of ``NETWORK_DATA`` and ``BRANCH_DATA`` formatted ASCII files or an ``OLD_BASE`` file from a previous power flow case, and a ``CHANGE`` file.
 
 The PFC file either contains data used for the solution, or names files containing such data. The solution data is optionally saved on the file named in the ``NEW_BASE`` command.
 
@@ -25,7 +25,7 @@ The figure below depicts the initial way an IPF case is processed and how the ou
 
 Changing an Old Base Case
 =========================
-The figure below shows the most commonly used BPF process. A change case is created from an ``OLD_BASE`` file using a ``CHANGE`` file. The modified case data is saved on the ``NEW_BASE`` file. The output files PFO and PFF can be printed to paper or fiche or both.
+The figure below shows the most commonly used ``bpf`` process. A change case is created from an ``OLD_BASE`` file using a ``CHANGE`` file. The modified case data is saved on the ``NEW_BASE`` file. The output files PFO and PFF can be printed to paper or fiche or both.
 
 .. image:: ../img/Old_Base_Case_With_Changes.png
 
@@ -41,7 +41,7 @@ In the figure below, a network reduction is specified in the PFC file. Commands 
 
 .. image:: ../img/Reducing_a_Network.png
 
-For static reduction, you can use the IPFCUT program. It is described in ??.
+For static reduction, you can use the ``ipfcut`` program. It is described in ??.
 
 Simulating Outages
 ==================

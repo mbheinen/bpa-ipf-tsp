@@ -24,26 +24,16 @@ Electric power system network design encompasses the following tasks:
 
 The dynamic nature of load growth, load distribution, and generation patterns make the problem of network design one of planning. To plan for the future, power system planners and design engineers must look at the past and present. This makes Interactive Power Flow a key tool for the network design engineer. It permits a complex network structure to be modeled and evaluated at various points in time. In addition, IPF assists the engineer in documenting major design decisions and changes.
 
-The family of command line programs includes: ``bpf`` (batch powerflow), ``ipfplot`` (batch program for outputting printed maps),
-``ipfcut`` a batch program that cuts out a subsystem from a solved base case file, and more. This is also a GUI component built with `Motif X Window`_ system. The GUI simplifies running the base case solutions and printing the network diagrams. This documentation shows how to use the major features of IPF, details about data input record formats and system models as well as how to use the GUI.
-
 Features
 ========
 Interactive Power Flow (IPF) has the following high level feature set:
 
+ * Set of command line tools for running studies
  * Domain specific languages (PCL or PFC) for batch command line runs
  * Basic and extended power flow capabilities
  * Printed output reports
  * `Motif X Window`_ based graphical user interface allowing easy-to-edit graphical display of network diagram (coordinate file)
  * Extensive error messages for maximum aid to the user in troubleshooting
-
-User may choose to interact with the powerflow program through the windows, menus, dialog boxes, keyboard, and mouse of the `Motif X Window`_ GUI or through the command line tools. Many of the functions and features of the command line programs (e.g. ``ipfbat``, ``ipfcut``, etc.) are available through specially designed GUI features. A Domain Specific Language (DSL) called Power Flow Control Language (PCL) is directly available through a Command Dialog in the GUI. See ?? for details on the syntax. 
-
-The ``bpf`` program preserves all the traditional “batch run” capabilities, using control files in an alternate PFC syntax format. See ?? for details on this syntax.
- 
- .. note::
-
-  The PFC syntax was developed first and later BPA added the PCL syntax. They referred to PCL as the “new style”, and the PFC as the “old style”. These two sets of commands are not completely compatible even though the “new style” command set and syntax is closely modeled on the “old style.” 
 
 Contents
 ========

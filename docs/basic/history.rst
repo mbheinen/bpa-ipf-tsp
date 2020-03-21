@@ -13,7 +13,7 @@ Prior to the development of the Interactive Power Flow in the 1990s, BPA had dev
 
 Starting in 1991, BPA began a two-way joint development of a GUI interface for the powerflow program, based upon the X-Window System and the `Motif X Window`_ GUI. The joint partners were the `Electric Power Research Institute`_ EPRI and the Western Systems Coordinating Council (WSCC) now known as the `Western Electricity Coordinating Council`_ (WECC). The powerlow program itself was also restructured and enhanced in the process, and a ``libcflow`` library was added as a means to provide users API access to the IPF  functions for use in other programs.
 
-Since the core power flow code was developed in 70s and 80s, it had to make efficient use of computer memory space and computation time, the core engine uses advanced techniques of large power system analysis including the Newton-Raphson method of solution of algebraic equations and sparse matrix computation techniques.
+Since the core power flow code was developed in 70s and 80s, it had to make efficient use of computer memory space and computation time, the core engine uses traditional techniques of large power system analysis including the Newton-Raphson method of solution of algebraic equations and sparse matrix computation techniques.
 
 .. _Bonneville Power Administraton: https://www.bpa.gov/
 .. _Motif X Window: https://motif.ics.com/motif/downloads
