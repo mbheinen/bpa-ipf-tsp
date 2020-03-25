@@ -4,7 +4,7 @@ Record Formats
 
 Overview
 ========
-This chapter describes all data record formats recognized by BPF. Most, but not all of them are also available in the GUI interface. The record descriptions are organized alphabetically by record ID as you go through the chapter (except for the DC bus records which follow the AC bus records). The table below enables you to quickly locate a specific record format entry. The table also gives you a quick description of each record format.
+This chapter describes all data record formats recognized by IPF. Most, but not all of them are also available in the GUI interface. The record descriptions are organized alphabetically by record ID as you go through the chapter (except for the DC bus records which follow the AC bus records). The table below enables you to quickly locate a specific record format entry. The table also gives you a quick description of each record format.
 
 Each entry has a card image that shows you where to put both identification and data information and where the implicit decimal point (if any) is located. Please note that all information must be in the correct columns; you will experience processing errors otherwise. Each card image has a legend showing whether data is required, optional, or ignored.
 
@@ -204,7 +204,7 @@ In addition to the special classifications codes of column (2:2), the ``code yea
 ====== ======== ====== =================================
 Column ID Field Format Description
 ====== ======== ====== =================================
-1      yes      A1     Record type; + for all continuation bus data
+1      yes      A1     Record type; ``+`` for all continuation bus data
 2      yes      A1     Code (See code types above.)
 3      no       A1     Change code
 4-6    yes      A3     Ownership
@@ -215,9 +215,9 @@ Column ID Field Format Description
 26-30  no       F5.0   Load MVAR
 31-34  no       F4.0   Shunt Admittance Load in MW at base kV
 35-38  no       F4.0   Shunt Admittance in MVAR at base kV (+) = Capacitive (-) = Inductive
-43-47  no       F5.0   P GEN MW
-48-52  no       F5.0   Q GEN MVAR (or Q MAX) (+) = Capacitive (-) = Inductive
-53-57  no       F5.0   Q MIN in MVAR
+43-47  no       F5.0   ``P GEN`` MW
+48-52  no       F5.0   ``Q GEN`` MVAR (or ``Q MAX``) (+) = Capacitive (-) = Inductive
+53-57  no       F5.0   ``Q MIN`` in MVAR
 75-77  no       A1, A2 Energization date month and year {month = 1,2,3,4,5,6,7,8,9,O,N,D}
 ====== ======== ====== =================================
 
@@ -283,7 +283,7 @@ Column ID Field Format     Description
 
 AC Bus Data
 ===========
-Bus records identify nodes in the network. The following description applies to AC buses only; DC buses are identified by a subtype D or M and are described in ?? and ??.
+Bus records identify nodes in the network. The following description applies to AC buses only; DC buses are identified by a subtype ``D`` or ``M`` and are described in ?? and ??.
 
 Each AC bus consists of three attributes: generation, load, and shunt admittance. Various subtypes assign unique characteristics to these attributes. Some affect conditions in the solution; others affect only the allocation of quantities in the output listings.
 
@@ -308,7 +308,7 @@ Column ID Field Format Description
 43-47  no       F5.0   ``P GEN`` MW
 48-52  no       F5.0   ``Q GEN`` MVAR (+) = Capacitive (-) = Inductive
 53-57  no       F5.0   ``Q MIN`` MVAR
-58-61  no       F4.3   ``V HOLD`` — V MAX (in per unit)
+58-61  no       F4.3   ``V HOLD`` - ``V MAX`` (in per unit)
 62-65  no       F4.3   ``V MIN`` (in per unit)
 66-73  no       A8     Controlled bus name
 74-77  no       F4.0   Base kV
@@ -319,7 +319,7 @@ For all subtypes, the following diagram illustrates the reactive allocation sche
 
 .. image:: ../img/Reactive_Allocation_Scheme.png
 
-Allocation of reactive facilities is complex. These may be allocated by equality constraints (``Q_net`` is constant), inequality constraints (``Q_net`` varies between a minimum and maximum value), or no constraints.
+Allocation of reactive facilities is complex. These may be allocated by equality constraints (:math:`Q_{net}` is constant), inequality constraints (:math:`Q_{net}` varies between a minimum and maximum value), or no constraints.
 
 Let “NET” define the total line export. Then the following equation is always valid:
 
@@ -338,10 +338,10 @@ The shunt admittance is
 
 The equations above define the interrelationship between quantities and are valid for all bus types. The bus type determines which equations are also constraints.
 
-The preceding diagram illustrates the following priority scheme. In applying the equation for Q, vars are allocated to generation and variable shunt components on a priority basis. If ``Q_net`` is less than ``Q_load + Q_shunt`` fixed, then vars are allocated first to variable shunt reactors and then, if necessary, to reactive generation. If, on the other hand, ``Q_net`` is higher than ``Q_load + Q_shunt`` fixed, then vars are allocated first to the variable shunt capacitors and then, if necessary, to reactive generation. If the limits of reactive generation are exceeded, then unscheduled reactive is allocated.
+The preceding diagram illustrates the following priority scheme. In applying the equation for :math:`Q`, vars are allocated to generation and variable shunt components on a priority basis. If :math:`Q_{net}` is less than :math:`Q_{load} + Q_{shunt}` fixed, then vars are allocated first to variable shunt reactors and then, if necessary, to reactive generation. If, on the other hand, :math:`Q_{net}` is higher than :math:`Q_{load} + Q_{shunt}` fixed, then vars are allocated first to the variable shunt capacitors and then, if necessary, to reactive generation. If the limits of reactive generation are exceeded, then unscheduled reactive is allocated.
 
-AC Bus Data (B-blank)
-=====================
+AC Bus Data (``B``-blank)
+=========================
 
 Application
 -----------
@@ -349,7 +349,7 @@ This bus subtype is passive in the sense that it cannot control the voltage of a
 
 Bus characteristics
 -------------------
-Both real (P) and reactive (Q) power are held constant throughout the entire solution. This applies to generators, load and shunt devices (capacitors/reactors).
+Both real (:math:`P`) and reactive (:math:`Q`) power are held constant throughout the entire solution. This applies to generators, load and shunt devices (capacitors/reactors).
 
 A specific amount of reactive generation can be requested. This can be accomplished by entering a zero (0) in the ``Q MIN`` field and the desired amount of reactive generation in the ``Q SCHED`` field.
 
@@ -358,13 +358,13 @@ Since this bus normally has no voltage control, the voltage limits (``V MAX``, `
  * If the bus is remotely controlled by another bus (type ``BG`` or ``BX``) or by an LTC transformer (which is not standard but is accepted), the limits specify the range of acceptable voltage.
  * For accounting purposes, these limits can flag undervoltage or overvoltage situations in the analysis reports.
 
-It must be recognized that every bus has voltage limits, whether they are explicitly specified through the V MIN, V MAX fields or implicitly specified through default global voltage limits. See Appendix E.
+It must be recognized that every bus has voltage limits, whether they are explicitly specified through the ``V MIN``, ``V MAX`` fields or implicitly specified through default global voltage limits. See Appendix ??.
 
-Reactive limits are not allowed for this type of bus. If reactive limits are entered in the Q MAX and Q MIN fields, they will be ignored. However, legitimate Q GEN can be entered if Q MIN is zero.
+Reactive limits are not allowed for this type of bus. If reactive limits are entered in the ``Q MAX`` and ``Q MIN`` fields, they will be ignored. However, legitimate ``Q GEN`` can be entered if ``Q MIN`` is zero.
 
 For this subtype, :math:`Q_{net}` is constant; its Q-V characteristic is shown in format drawing below.
 
-If this bus is controlled by an LTC transformer or by a BG or BX bus, a warning diagnostic will be issued to the effect that remotely controlled buses are typically type BC or type BT and the controlled voltage is a single value, :math:`V_{sched}` and not a range :math:`V_{min} < V_{controlled} < V_{max}`.
+If this bus is controlled by an LTC transformer or by a ``BG`` or ``BX`` bus, a warning diagnostic will be issued to the effect that remotely controlled buses are typically type ``BC`` or type ``BT`` and the controlled voltage is a single value, :math:`V_{sched}` and not a range :math:`V_{min} < V_{controlled} < V_{max}`.
 
 .. image:: ../img/B-blank_Subtype_Format.png
 
@@ -402,7 +402,7 @@ This bus type has its voltage maintained by a subtype ``BG`` bus.
 
 Bus Characteristics
 -------------------
-Both real (P) and reactive (Q) power are held constant throughout the entire solution. This applies to generators, loads, and shunt devices (capacitors/reactors).
+Both real (:math:`P`) and reactive (:math:`Q`) power are held constant throughout the entire solution. This applies to generators, loads, and shunt devices (capacitors/reactors).
 
 A specific amount of reactive generation can be requested. This can be accomplished by entering a zero (0) in the ``Q MIN`` field and the desired amount of reactive generation in the ``Q SCHED`` field.
 
@@ -446,11 +446,11 @@ This subtype is used to hold the bus voltage to a specified value, regardless of
 
 Bus Characteristics
 -------------------
-Voltage magnitude (V) is held constant. Real (P) power is held constant. This applies to generators, load, and shunt devices. Reactive (Q) load is held constant for this bus type.
+Voltage magnitude (:math:`V`) is held constant. Real (:math:`P`) power is held constant. This applies to generators, load, and shunt devices. Reactive (Q) load is held constant for this bus type.
 
-Reactive (Q) shunt is variable. The amount of shunt reactance added by the program can vary from 0 to ``Qshunt``, depending upon the amount needed to maintain desired bus voltage.
+Reactive (:math:`Q`) shunt is variable. The amount of shunt reactance added by the program can vary from 0 to ``Qshunt``, depending upon the amount needed to maintain desired bus voltage.
 
-Reactive (Q) generation is variable.
+Reactive (:math:`Q`) generation is variable.
 
 Reactive constraints are allowed for this bus type. These quantities are entered in the ``Q MAX`` and ``Q MIN`` fields. If reactive constraints are imposed, “unscheduled reactive” may be added by the program to hold the bus voltage.
 
@@ -500,11 +500,11 @@ This subtype may also be used for local control. For this application, the bus w
 
 Bus Characteristics
 -------------------
-Real (P) power is held constant. This applies to generators, load and shunt devices. However, it is not required to have generation (``P GEN``) at this bus.
+Real (:math:`P`) power is held constant. This applies to generators, load and shunt devices. However, it is not required to have generation (``P GEN``) at this bus.
 
-Reactive (Q) load and shunt are held constant for this bus type.
+Reactive (:math:`Q`) load and shunt are held constant for this bus type.
 
-Reactive (Q) generation is variable.
+Reactive (:math:`Q`) generation is variable.
 
 This bus type requires reactive limits to be entered in the ``Q MAX``and ``Q MIN`` fields. The reactive limits on the subtype ``BG`` bus are used to maintain a specified voltage at a remote bus. If the remote bus voltage cannot be held with the available ``BG`` bus reactance, voltage control stops at either ``Q MAX`` or ``Q MIN``.
 
@@ -560,13 +560,15 @@ Reactive load (``Q MVAR``) load is held constant for this bus type.
 
 Reactive (``SHUNT MVAR``) shunt is variable. The amount of shunt reactance added by the program can vary from 0 to Qshunt, depending on the amount needed to maintain desired bus voltage.
 
-Reactive (Q) generation is variable.
+Reactive (:math:`Q`) generation is variable.
 
 This bus type requires adjustable reactive generation or shunt to perform as intended. If neither is available, the bus functions as a bus type ``B``-blank.
 
 A specific amount of reactive generation (``Q SCHED``) cannot be requested.
 
-Since this bus type is attempting to maintain its own voltage, a ``V HOLD`` entry is required on the record. If the voltage cannot be held at the desired level, using the reactive capability of the bus, the desired voltage will be violated and reactive will be held at the ``Q MAX`` or ``Q MIN`` limit. Note that ``V`` HOLD is not required for modifications.
+Since this bus type is attempting to maintain its own voltage, a ``V HOLD`` entry is required on the record. If the voltage cannot be held at the desired level, using the reactive capability of the bus, the desired voltage will be violated and reactive will be held at the ``Q MAX`` or ``Q MIN`` limit. Note that ``V HOLD`` is not required for modifications.
+
+.. image:: ../img/BQ_Subtype_Format.png
 
 .. note::
 
@@ -608,11 +610,11 @@ Every power flow case must have a minimum of one swing bus. In addition, each is
 
 Bus Characteristics
 --------------------
-Real (P) load is held constant. Both real (P) generation and shunt are variable. The ``P GEN`` field is updated to the base case value. The ``P MAX` field is used for reporting purposes only.
+Real (:math:`P`) load is held constant. Both real (:math:`P`) generation and shunt are variable. The ``P GEN`` field is updated to the base case value. The ``P MAX`` field is used for reporting purposes only.
 
-Reactive (Q) load is held constant for this bus type. Reactive (Q) shunt is variable. The amount of shunt reactance added by the program can vary from 0 to ``Qshunt``, depending on the amount needed to maintain desired bus voltage.
+Reactive (:math:`Q`) load is held constant for this bus type. Reactive (:math:`Q`) shunt is variable. The amount of shunt reactance added by the program can vary from 0 to ``Qshunt``, depending on the amount needed to maintain desired bus voltage.
 
-Reactive (Q) generation is variable.
+Reactive (:math:`Q`) generation is variable.
 
 Reactive constraints are allowed for this bus type. These quantities are entered in the ``Q MAX`` and ``Q MIN`` fields. If reactive constraints are imposed, "unscheduled reactive" may be added by the program to maintain the bus voltage.
 
@@ -648,3 +650,226 @@ Column ID Field Format Description
 ====== ======== ======= =====================
 
 .. image:: ../img/Q-V_Curve_for_BS_Subtype.png
+
+AC Bus Data (``BT``)
+====================
+
+Application
+-----------
+This subtype has its voltage maintained by an Load Tap Change (LTC) transformer.
+
+Bus Characteristics
+-------------------
+Both real (:math:`P`) and reactive (:math:`Q`) power are held constant throughout the entire solution. This applies to generators, load, and shunt devices (capacitors/reactors).
+
+A specific amount of reactive generation can be requested. This can be accomplished by entering a zero (0) or blank in the ``Q MIN`` field and the desired amount of reactive generation in the ``Q SCHED`` field.
+
+Reactive constraints are not allowed for this type of bus. If reactive limits are entered in the ``Q MAX`` and ``Q MIN`` fields, they will be ignored.
+
+Since this bus type has its voltage maintained by an LTC transformer, a ``V HOLD`` entry is required.
+This subtype requires an additional record, the ``R`` (Regulating Transformer) record.
+
+.. image:: ../img/BT_Subtype_Format.png
+
+====== ======== ======= =====================
+Column ID Field Format  Description
+====== ======== ======= =====================
+1-2    yes      A2      ``BT`` — LTC transformer controlled bus
+3      no       A1      Change code
+4-6    no       A3      Ownership
+7-14   yes      A8      Bus name
+15-18  yes      F4.0    Base kV
+19-20  no       A2      Zone
+21-25  no       F5.0    Load MW
+26-30  no       F5.0    Load MVAR
+31-34  no       F4.0    Shunt Admittance Load in MW at base kV
+35-38  no       F4.0    Shunt Admittance in MVAR
+39-42  no       F4.0    ``P MAX``
+43-47  no       F5.0    ``P GEN``
+48-52  no       F5.0    ``Q SCHED``
+53-57  no       F5.0    ``QMIN`` must be blank or zero for ``QSCHED`` to apply
+58-61  no       F4.3    ``V HOLD``
+62-65  no       F4.1    N/A
+66-77  no       A8,F4.0 N/A
+78-80  no       F3.0    N/A
+====== ======== ======= =====================
+
+AC Bus Data (``BV``)
+====================
+
+Application
+-----------
+This subtype maintains the bus’s net reactive (:math:`Q_{net}`) power flow as long as the bus voltage does not violate the user specified voltage range.
+
+Bus Characteristics
+-------------------
+Real (:math:`P`) power is held constant throughout the entire solution. This applies to generators, load, and shunt devices.
+
+Reactive (:math:`Q`) load and shunt are also held constant.
+
+Reactive (:math:`Q`) generation is normally constant. Although this bus type actually has infinitely adjustable reactive limits, the program attempts to hold Qnet constant. However, if either of the voltage limits are violated, :math:`Q_{net}` is changed to hold that limit. If any additional reactive generation is added by the program, it will be referred to as "unscheduled reactive" in the program output file.
+
+A specific amount of reactive generation can be requested. This is accomplished by entering a zero (0) in the ``Q MIN`` field and the desired amount of reactive generation in the ``Q SCHED`` field.
+
+Reactive constraints are not allowed for this type of bus. If reactive limits are entered in the ``Q MAX`` and ``Q MIN`` fields, they will be ignored.
+
+The ``BV`` bus record requires entries in the ``V MAX`` and ``V MIN`` fields. The program’s solution voltage will be within the range of ``V MAX`` to ``V MIN``, regardless of how much reactive is required. If voltage attempts to rise above ``V MAX``, additional negative reactive (:math:`-Q_{shunt}`) is added to bring the voltage down to ``V MAX``. Also, if the voltage is below ``V MIN``, additional reactive (:math:`+Q_{shunt}`) is added until the bus voltage has reached ``V MIN``.
+
+.. image:: ../img/BV_Subtype_Format.png
+
+====== ======== ======= =====================
+Column ID Field Format Description
+====== ======== ======= =====================
+1-2    yes      A2      ``BV`` — Constant :math:`Q` within :math:`V` limits
+3      no       A1      Change code
+4-6    no       A3      Ownership
+7-14   yes      A8      Bus name
+15-18  yes      F4.0    Base kV
+19-20  no       A2      Zone
+21-25  no       F5.0    Load MW
+26-30  no       F5.0    Load MVAR
+31-34  no       F4.0    Shunt Admittance Load in MW at base kV
+35-38  no       F4.0    Shunt Admittance in MVAR
+39-42  no       F4.0    ``P MAX``
+43-47  no       F5.0    ``P GEN``
+48-52  no       F5.0    ``Q SCHED`` or ``QMA``
+53-57  no       F5.0    ``Q MIN``
+58-61  no       F4.3    ``V MAX`` in per unit
+62-65  no       F4.1    ``V MIN`` in per unit
+66-77  no       A8,F4.0 N/A
+78-80  no       F3.0    N/A
+====== ======== ======= =====================
+
+.. image:: ../img/Q-V_Curve_for_BV_Subtype.png
+
+AC Bus Data (``BX``)
+====================
+
+Application
+-----------
+This subtype may be used for a truer representation of capacitors/reactors that are switched in discrete blocks to control bus voltages.
+The ``BX`` subtype is most often used for local voltage control. Here, the bus would maintain its own voltage within a specified range of voltages. It is recommended, but is not mandatory, that for local control the bus name should be repeated in the ``REMOTE`` field.
+This subtype may also be used for remote control, where the ``BX`` bus maintains a specified voltage level at another bus. Provide the remote bus name.
+
+Bus Characteristics
+-------------------
+The real (:math:`G`) and reactive (:math:`B`) shunt fields hold the base case values of discrete reactance. These values may be updated by the solution.
+Real (:math:`P`) power is held constant. This applies to generators and loads.
+
+Reactive (:math:`Q`) load is held constant. Reactive (:math:`Q`) generation is variable.
+
+Reactive constraints are allowed for this bus type. These quantities are entered in the ``Q MAX`` and ``Q MIN`` fields. A specific amount of reactive generation (``Q SCHED``) is available only if ``QMAX`` = ``QMIN``.
+This bus type uses ``V MAX`` and ``V MIN`` limits. If these fields are blank, global voltages are used as defaults. The voltage on the ``BG`` bus must be between ``V MIN`` and ``V MAX`` when controlling a remote bus. If not, remote voltage control will be disabled.
+
+Reactive shunt (:math:`+/- Q`) is added in discrete blocks to maintain the desired bus voltage. The capacitive/inductive blocks of reactance are identified on the ``X`` (switched reactance) record. It should be noted that actual convergence is implemented with continuous susceptance control, then discretization occurs automatically. This means that exact voltage control may not be possible.
+
+It should be noted that the program will attempt to select a discrete reactive step, which yields the highest voltage within the specified limits, so that losses can be minimized. This is the default (BPA) value, for the third level ``>MISC_CNTRL`` Program Control Statement, ``X_BUS`` option.
+
+
+.. image:: ../img/BX_Subtype_Format.png
+
+.. note::
+
+  The value on the :math:`B_{shunt}` field dictates the initial value
+
+====== ======== ======= =====================
+Column ID Field Format  Description
+====== ======== ======= =====================
+1-2    yes      A2      ``BX`` — Attempts constant V using switched Q
+3      no       A1      Change code
+4-6    no       A3      Ownership
+7-14   yes      A8      Bus name
+15-18  yes      F4.0    Base kV
+19-20  no       A2      Zone
+21-25  no       F5.0    Load MW
+26-30  no       F5.0    Load MVAR
+31-34  no       F4.0    Shunt Admittance Load in MW at base kV
+35-38  no       F4.0    Shunt Admittance in MVAR
+39-42  no       F4.0    ``P MAX``
+43-47  no       F5.0    ``P GEN``
+48-52  no       F5.0    ``Q SCHED`` or ``QMAX``
+53-57  no       F5.0    ``Q MIN``
+58-61  no       F4.3    ``V MAX`` in per unit
+62-65  no       F4.1    ``V MIN`` in per unit
+66-77  no       A8,F4.0 Controlled bus name and kV (self or remote). If blank, self is assumed.
+78-80  no       F3.0    N/A
+====== ======== ======= =====================
+
+.. image:: ../img/Q-V_Curve_for_BX_Subtype.png
+
+Two-Terminal DC Bus (``BD``)
+============================
+This record defines a DC bus to be used in conjunction with a two-terminal DC line. It is subtype ``D`` and interpreted with a different format from AC bus data records. No injections of any kind are permitted. The data contained on the record defines the rectifier or inverter valve characteristics. During the solution, the injection from the converter into the DC line is replaced with an equivalent but fictitious injection, and the DC line is removed entirely from the AC solution.
+
+The DC model determines the initial AC injections and voltage magnitude on the converter bus. If these conditions can be held in the AC solution, no further DC adjustments occur. If the conditions cannot be held, the firing or extinction angles are readjusted to interface the current voltage magnitude on the converter buses while observing the scheduled DC power in the DC line. These adjustments will change the equivalent AC injections and will require a new AC solution.
+
+The DC bus must be connected to a single AC bus through a commutating transformer. The commutating bus name is required, and the commutating transformer must be an LTC. All reactive sources supplying the harmonic filter must be connected on the commutating bus; it is not restricted in subtype.
+
+Data for the inverter and rectifier buses are identical. Identification of each is by the DC line data record which compares the sign of the DC power flow with the DC terminal buses. The rectifier and inverter buses may be interchanging the sign of the scheduled DC power.
+
+.. image:: ../img/BD_Subtype_Format.png
+
+====== ======== ======= =====================
+Column ID Field Format  Description
+====== ======== ======= =====================
+1-2 yes A2 BD — Code for direct current (dc) bus, terminal of a dc line.
+3 no A1 Change code — see System Changes
+4-6 no A3 Ownership code
+7-14 yes A8 Bus name
+15-18 yes F4.0 Base kV
+19-20 no A2 Zone
+24-25 no I2 Bridges per ckt. — Number of valves in series per circuit.
+26-30 no F5.1 Smoothing reactor (mh) — Inductance of the smoothing reactor in millihenries.
+31-35 no F5.1 Rectifier operation (alpha min.) — Minimum firing angle in degrees as a rectifier.
+36-40 no F5.1 Inverter operation (alpha stop) — Maximum firing angle in degrees. Both inverter and rectifier buses have alpha. However, only the minimum alpha on the rectifier bus is used in the power flow. The remaining valves are required for the transient stability program in event of power reversals in the dc line.
+41-45 no F5.1 Valve drop (volts) — Valve voltage drop per bridge in volts.
+46-50 no F5.1 Bridge current rating (amps) — Maximum bridge current in amperes.
+51-62 no A8,F4.0 Commutating bus — Alphanumeric name in columns 51-58 and base kV in columns 59-62. This is on the ac system side of the commutating transformer bank
+====== ======== ======= =====================
+
+Multi-Terminal DC Bus (``BM``)
+==============================
+The multi-terminal dc system introduces flexibility in network configuration which is already present in the ac system. This dc scheme is a general extension of the two-terminal dc scheme. The converter modeling itself is unchanged, but the dc converter control is more flexible.
+All N-node dc systems must have N dc constraints. These are either converter dc voltage or dc power. At least one dc voltage constraint must be specified. It is permissible to constrain both dc voltage and power on the same node. The choice of voltage or power constraints on each converter is flexible.
+It is possible to define a dc tap node. This node is passive only and is not a converter. Nevertheless, it implicitly constrains zero power on itself.
+The distinction between rectifiers and inverters is very simple. Any converter’s mode of operation is based upon the sign of the converter-calculated output power. The converter output power is positive for rectifiers and negative for inverters. Obviously, a dc tap node will have zero power.
+The range of converter angle adjustments is determined by the converters’s mode of operation.
+
+.. math::
+
+  \alpha_{min} &\leq \alpha_{stop} \\
+    \gamma_{0} &\leq \alpha_{stop}
+
+If an excessive number of DC constraints are specified, some superfluous power constraints will be omitted. If the DC system is unable to maintain the dc voltage constraints, the DC voltages will be changed to values realized by the actual commutator bus voltage and the converter angle limits.
+
+It is permissible to model two-terminal DC networks with the multi-terminal type ``M`` formats. However, it is not permissible to mix two-terminal type ``D`` data with multi-terminal type ``M`` data on the same DC circuit. The two different types of DC data may coexist in the same case, but when both types are present, they must pertain to separate DC circuits.
+
+.. image:: ../img/BM_Subtype_Format.png
+
+====== ======== ======= =====================
+Column ID Field Format  Description
+====== ======== ======= =====================
+1-2    yes      A2      ``BM`` — Code for multi-terminal dc bus
+3      no       A1      Change code — see System Changes
+4-6    no       A3      Ownership code 
+7-14ac yes      A8      Bus name
+15-18  yes      F4.0    Base kV
+19-20  no       A2      Zone code
+24-25  no       I2      Number of bridges per DC circuit — (Number of converters serially connected)
+26-30  no       F5.1    Smoothing reactor inductance in mh
+31-35  no       F5.1    Minimum ignition delay angle (:math:`\alpha_{min}`) in degrees
+36-40  no       F5.1    Maximum ignition delay angle (:math:`\alpha_{stop}`) in degrees
+41-45  no       F5.1    Converter valve drop per bridge in volts
+46-50  no       F5.1    Maximum converter current in amps
+51-62  no       A8,F4.0 Commutator bus name and base kV of commutator.
+63b    no       A1      Converter code (R1): R — Normal operation as a rectifier I — Normal operation as an Inverter M — Normal operation as an inverter with current margin Blank — A passive DC tap
+64-66  no       F3.1    Normal ignition delay angle (:math:`alpha_{N}`) if a rectifier, or normal extinction angle (:math:`\gamma_{N}`) if an inverter, in degrees
+67-69  no       F3.1    Minimum ignition angle (:math:`\alpha_{min}`) if a rectifier, or minimum extinction angle (:math:`\gamma_{0}`) in degrees if an inverter 
+70-75c no       F6.1    Scheduled net converter DC output power in MW 
+76-80d no       F5.1    Scheduled converter DC voltage in kV
+====== ======== ======= =====================
+
+a. A passive DC node has columns 24-80 all blank 
+b. If the actual converter operation does not correspond to the converter code, subsequent swing studies will abort. 
+c. If the DC power or voltage is not constrained, leave the corresponding field blank or enter a zero value. 
+d. If the DC power or voltage is not constrained, leave the corresponding field blank or enter a zero value.

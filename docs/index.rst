@@ -48,8 +48,6 @@ Contents
    basic/record_formats
    basic/pfc
 
-Check out the :ref:`genindex`, :ref:`modindex`, or :ref:`search` if you're looking for something specific.
-
 .. _Motif X Window: https://motif.ics.com/motif/downloads
 .. _Bonneville Power Administraton: https://www.bpa.gov/
 .. _Electric Power Research Institute: https://www.epri.com/
