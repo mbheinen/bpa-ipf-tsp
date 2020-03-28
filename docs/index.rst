@@ -47,6 +47,7 @@ Contents
    basic/process_scenarios
    basic/record_formats
    basic/pfc
+   basic/advanced
 
 .. _Motif X Window: https://motif.ics.com/motif/downloads
 .. _Bonneville Power Administraton: https://www.bpa.gov/
