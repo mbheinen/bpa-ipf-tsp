@@ -46,8 +46,10 @@ enum  { AREA_LIST, BUS_LIST, KV_LIST, OWNER_LIST, REC_TYPE_LIST, ZONE_LIST };
  *   This is the set of cflow structures used by the "pf_rec_..." functions
  */
 
-/****************** INPUT DATA ********************************************/
-
+/** @addtogroup input_data
+ * 
+ * The following structures are used for input to powerflow.
+ * @{ */
 typedef struct {      /* pf_AC_bus */
    char   type[3];
    char   owner[4];
@@ -460,8 +462,13 @@ typedef struct {   /* pf_xdata */
    float  seg8_delta_mva;
                                    } pf_xdata;
 
-/****************** SOLUTION DATA ********************************************/
- 
+ /** @} */
+
+/**@addtogroup solution_data
+ *
+ * The following structures are used for reaading solution (output) from powerflow 
+ * @{ */
+
 typedef struct {      /* pf_bus_AC_soln */
    char   type[3];
    float  Pgen;
@@ -494,7 +501,7 @@ typedef struct {      /* pf_bus_DC_soln */
    float  dummy5;
    float  dummy6;
    float  dummy7;
-                                   } pf_bus_DC_soln;
+} pf_bus_DC_soln;
                                    
 typedef struct {      /* pf_branch_soln */
    char   type[3];
@@ -519,7 +526,7 @@ typedef struct {      /* pf_branch_soln */
    float  tot_xfmr_load_mva;  
    float  tap1;
    float  tap2;
-                                   } pf_branch_soln;
+} pf_branch_soln;
 
 typedef struct {   /* pf_area_soln */
    char   type[3];
@@ -527,7 +534,7 @@ typedef struct {   /* pf_area_soln */
    float  Pload;
    float  Ploss;
    float  Pexport;
-                                   } pf_area_soln;
+} pf_area_soln;
 
 typedef struct {   /* pf_itie_soln */
    char   type[3];
@@ -535,7 +542,7 @@ typedef struct {   /* pf_itie_soln */
    float  Pcirc;
    int    input_exists;  /* 0= no input record (internally generated itie)
                             1=    input data is from input record         */
-                                   } pf_itie_soln;
+} pf_itie_soln;
 
 typedef struct {   /* pf_cbus_soln */
    char   type[3];
@@ -545,13 +552,13 @@ typedef struct {   /* pf_cbus_soln */
    float  Qload;
    float  Gshunt;
    float  Bshunt;
-                                   } pf_cbus_soln;
+} pf_cbus_soln;
 
 typedef struct {   /* pf_qcurve_soln */
    char   type[3];
    float  Pgen;
    float  Qgen;
-                                   } pf_qcurve_soln;
+} pf_qcurve_soln;
 
 typedef struct {   /* pf_xdata_soln */
    char   type[3];
@@ -579,15 +586,13 @@ typedef struct {   /* pf_xdata_soln */
    int    seg8_sch_units;
    int    seg8_used_units;
    float  seg8_mvar_per_unit;
-                                   } pf_xdata_soln;
-
-/**************** STRUCTURES and UNIONS ******************************************/
-
+} pf_xdata_soln;
 
 typedef pf_R  pf_RN;
 typedef pf_R  pf_RQ;
 typedef pf_R  pf_RV;
 typedef pf_RM pf_RP;
+/** @} */
 
 typedef union {                /* input data */
   pf_AC_bus           ACbus;
@@ -612,7 +617,7 @@ typedef union {                /* input data */
   pf_qcurve          qcurve;
   pf_xdata            xdata;
   char            cmnt[120];
-                                  }  input_data;
+}  input_data;
 
 typedef union {              /* solution data */
   pf_bus_AC_soln      ACbus;
@@ -623,12 +628,12 @@ typedef union {              /* solution data */
   pf_cbus_soln         cbus;
   pf_qcurve_soln     qcurve;
   pf_xdata_soln       xdata;
-                               } solution_data;
+} solution_data;
 
 typedef struct {   /* pf_rec */
   input_data    i;
   solution_data s;
-                                  } pf_rec;
+} pf_rec;
 
 
 typedef struct {   /* pf_comments */
@@ -636,39 +641,51 @@ typedef struct {   /* pf_comments */
    char   case_desc[21];   /* Changed from project_title */
    char   h[3][133];
    char   c[20][121];
-                                   } pf_comments;
+} pf_comments;
 
-typedef struct {   /* pf_case_stats      misc. data that occurs only once  */
-   char   PF_version[11];
-   float  base_mva;
-   int    num_DC_systems;
-   int    num_areas;
-   int    num_ities;
-   int    num_zones;
-   int    num_owners;
-   int    num_buses;              /* total AC and DC */
-   int    num_area_slack_buses;
-   int    num_DC_buses;
-   int    num_AGC_buses;
-   int    num_BX_buses;
-   int    num_adjustable_buses;
-   int    num_pct_var_ctrl_buses;
-   int    num_branches;           /* number of branch records */
-   int    num_circuits;           /* all parallels count as one line */
-   int    num_DC_lines;
-   int    num_LTC_xfmrs;
-   int    num_phase_shifters;
-   int    case_soln_status;       /* 0=unsolved, 1=solved */
-   int    num_diff_kv;            /* number of different KVs */
-   int    num_rec_types;          /* number of record types */
-                                   } pf_case_stats;
+/* Miscellaneous case data */
+typedef struct {
+   char   PF_version[11];         /**< Ten character string containing Powerflow version information. */
+   float  base_mva;               /**< Base MVA of the base case (normally 100.0). */
+   int    num_DC_systems;         /**< An integer count of the number of DC systems in the case. */
+   int    num_areas;              /**< An integer count of the number of areas in the case. */
+   int    num_ities;              /**< An integer count of the number of interties in the case. */
+   int    num_zones;              /**< An integer count of the number of zones in the case. */
+   int    num_owners;             /**< An integer count of the number of owners in the case. */
+   int    num_buses;              /**< An integer count of the number of buses in the case (both AC and DC) */
+   int    num_area_slack_buses;   /**< An integer count of the number of area slack buses in the case. */
+   int    num_DC_buses;           /**< An integer count of the number of dc buses in the case. */
+   int    num_AGC_buses;          /**< An integer count of the number of buses with AGC control in the case. */
+   int    num_BX_buses;           /**< An integer count of the number of BX (constant V using switched Q) buses in the case. */
+   int    num_adjustable_buses;   /**< An integer count of the number of adjustable buses in the case. */
+   int    num_pct_var_ctrl_buses; /**< An integer count of the number of buses with percent VAR control in the case. */
+   int    num_branches;           /**< An integer count of the number of branches in the case. */
+   int    num_circuits;           /**< An integer count of the number of circuits in the case. All parallel lines count as one circuit. */
+   int    num_DC_lines;           /**< An integer count of the number of DC linse in the case. */
+   int    num_LTC_xfmrs;          /**< An integer count of the number of LTC transformers in the case. */
+   int    num_phase_shifters;     /**< An integer count of the number of phase shifters in the case. */
+   int    case_soln_status;       /**< An integer containing the solution status. Corresponds to enumerated variables as follows: 
+                                    1 = NO_CASE  (no case data loaded)
+                                    2 = UNSOLVED (netdata loaded)
+                                    5 = SOLVED  (successful solution, or solved case loaded)
+                                    6 = SAVED  (solved case has been saved) 
+                                    7 = DIVERGED (unsuccessful solution - diverged) */
+   int    num_diff_kv;            /**< An integer count of the number of unique kVs in the case. */
+   int    num_rec_types;          /**< An integer count of the number of unique record types in the case. */
+} pf_case_stats;
 
-/*********** FUNCTION PROTOTYPES ****************************************/
+char *cfu_next_err_msg(void);
 
-char  *cfu_next_err_msg();
-void   pf_cflow_exit();
-void   pf_cflow_init( int argc, char *argv[] );
-int    pf_cflow_ipc();
+/** Close the data link to the powerﬂow engine (ipfsrv)
+ *
+ * Call this in to “disconnect” properly from ipfsrv.
+ *
+ * @return Has no return; it calls the exit function.
+ *
+ * @example pf_cflow_init_and_exit.c */
+void pf_cflow_exit(void);
+void pf_cflow_init( int argc, char *argv[] );
+int pf_cflow_ipc(void);
 int pf_del_area(char *area);
 int pf_del_zone(char *zone);
 int pf_rename_area(char *oldname, char *newname);
@@ -693,19 +710,48 @@ int pf_save_wscc_stab_data(char *filename, char *type);
 int pf_solution();
 int pf_init();
 int pf_get_list( char *list, int listlen, int type, char *data );
+
+/** Finds the name of the area that a zone is in.
+ *
+ * @param[out] area      A pointer to an array of 11 characters in which the area name is returned.
+ * @param[in]  zone_name A string holding a zone name.
+ *
+ * @return Returns 0 if it is successful; otherwise, it returns 1.
+ *
+ * @example pf_area_of_zone.c */
 int pf_area_of_zone(char *area, char *zone);
+
+/**  Retrieve case info
+ * 
+ * Retrieves data from a Powerflow base case and puts it in the info structure.
+ *
+ * @param[out] pf_case_stats A pointer to a structure of type pf_case_stats.
+ *
+ * @return Returns 0 if it is successful; otherwise, it returns 1.
+ *
+ * @example pf_case_info.c */
 int pf_case_info(pf_case_stats *r);
 void pf_init_rec(void *r, int rtype);
 void pf_init_qcurve(pf_rec *r, char *type, char *name, float kv);
 void pf_init_itie(pf_rec *r, char *type, char *area1, char *area2);
-void pf_init_cbus(pf_rec *r, char *type, char *owner, char *name,
-          float kv, char *year);
+void pf_init_cbus(pf_rec *r, char *type, char *owner, char *name, float kv, char *year);
 void pf_init_bus(pf_rec *r, char *type, char *name, float kv);
-void pf_init_branch(pf_rec *r, char *type, char *name1, float kv1,
-                    char *name2, float kv2, char cid, int sid);
+void pf_init_branch(pf_rec *r, char *type, char *name1, float kv1, char *name2, float kv2, char cid, int sid);
 void pf_init_area(pf_rec *r, char *type, char *name);
 
-int pf_bus_exists(char *name, float kv);   /* WDRogers 8-17-94 */
+/** Seee if a bus exists
+ * 
+ * @author William D. Rogers
+ * @date 8-17-1994
+ *
+ * @param[in] name A pointer to a string containing the name.
+ * @param[in] kv   A real value representing the bus base kV.
+ * 
+ * @return Returns 0 if the bus exists; otherwise, it returns 1.
+ *
+ * @example pf_bus_exists.c
+ */
+int pf_bus_exists(char *name, float kv);
 int pf_b2a_bus(char *net_data, pf_rec *r, char *action); /* WDRogers */
 int pf_b2a_branch(char *net_data, pf_rec *r, char *action); /* WDRogers */
 int pf_rec_a2b(char *net_data, pf_rec *r, char *action); /* WDRogers */
@@ -726,4 +772,3 @@ int pf_load_refbase(char *filename); /* wdr 7-7-95 */
 int pf_select_base(char base); /* wdr 7-21-95 */
 int pf_solve_area(char base); /* wdr 3-6-96 */
 int pf_command(char *command); /* wdr 5-6-96 */
-/*****************************************************************************/

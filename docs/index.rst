@@ -11,6 +11,7 @@ Interactive Power Flow (IPF) is a software package for doing power flow studies.
  * Determine remote-bus voltage controls
  * Plan for system reactive requirements
  * Determine effect of load shedding, generator dropping, and line outages
+ * Run transient stability studies on generator rotor dynamics
 
 .. image:: img/IPF_GUI.png
 
@@ -22,7 +23,7 @@ Electric power system network design encompasses the following tasks:
  * Determination of size and routing of new transmission lines, and size and location of terminal equipment for achieving efficient and economical reinforcements when needed.
  * Evaluation of proposed reinforcements in light of power flow capability, ability to withstand transient disturbances, reliability of overall service, economics, impact on regional economy, environment, energy conservation and operational constraints such as construction lead times, coordination of various facility ownership interests, flexibility for future growth and compatibility with other long-range plans.
 
-The dynamic nature of load growth, load distribution, and generation patterns make the problem of network design one of planning. To plan for the future, power system planners and design engineers must look at the past and present. This makes Interactive Power Flow a key tool for the network design engineer. It permits a complex network structure to be modeled and evaluated at various points in time. In addition, IPF assists the engineer in documenting major design decisions and changes.
+The dynamic nature of load growth, load distribution, and generation patterns make the problem of network design one of planning. To plan for the future, power system planners and design engineers must look at the past and present. This makes Interactive Power Flow a key tool for the network design engineer and can also be used in academic studies. It permits a complex network structure to be modeled and evaluated at various points in time.
 
 Features
 ========
@@ -48,7 +49,6 @@ Contents
    basic/record_formats
    basic/pfc
    basic/advanced
+   basic/cflow
 
 .. _Motif X Window: https://motif.ics.com/motif/downloads
-.. _Bonneville Power Administraton: https://www.bpa.gov/
-.. _Electric Power Research Institute: https://www.epri.com/

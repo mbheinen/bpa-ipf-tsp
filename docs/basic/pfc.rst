@@ -187,52 +187,51 @@ Required text is shown in ``UPPER-CASE`` while parameter values specified by the
 
 The optional underscore symbol (``_``) may be used to break up words for visual readability. The computer will read the words as though they were not broken.
 
-==== ============ ===============================
-Page Command Name Description
-==== ============ ===============================
-4-10 AGC Emulates automatic generation control.
-4-13 AI_LIST Speciﬁes detail in area interchange listing.
-4-14 ANALYSIS_SELECT Selects analysis reports for printing or microﬁche.
-4-16 BRANCH_DATA Speciﬁes a master branch and bus data ﬁle for base case.
-4-17 BUS_SENSITIVITIES Calculates system response to capacitor switching operations.
-4-22 CHANGE_BUS_TYPE Disables voltage control in system.
-4-27 CHANGE_PARAMETERS Perturbs parameters for start of new solution.
-4-33 CHANGES Speciﬁes system data change records.
-4-34 COMMENT Speciﬁes comment records.
-COMMON_MODE_ANALYSIS Analyzes the results from a series of common mode cases in the format of the OUTAGE_SIMULATION
-4-36 F_ANALYSIS_RPT Speciﬁes report of zones or owners for microﬁche.
-4-38 F_INPUT_LIST Lists input data on microﬁche.
-4-39 F_OUTPUT_LIST Lists output data on microﬁche.
-4-40 GEN_DROP Balances generation drop by picking up generation.
-4-44 HEADER Speciﬁes header information for reports.
-4-45 INCLUDE_CONTROL Speciﬁes a ﬁle for control commands.
-4-46 LINE_EFF Deﬁnes minimum percent line loading for report.
+==== ================== ===============================
+Page Command Name       Description
+==== ================== ===============================
+4-10 AGC                Emulates automatic generation control.
+4-13 AI_LIST            Speciﬁes detail in area interchange listing.
+4-14 ANALYSIS_SELECT    Selects analysis reports for printing or microﬁche.
+4-16 BRANCH_DATA        Speciﬁes a master branch and bus data ﬁle for base case.
+4-17 BUS_SENSITIVITIES  Calculates system response to capacitor switching operations.
+4-22 CHANGE_BUS_TYPE    Disables voltage control in system.
+4-27 CHANGE_PARAMETERS  Perturbs parameters for start of new solution.
+4-33 CHANGES            Speciﬁes system data change records.
+4-34 COMMENT            Speciﬁes comment records.
+COMMON_MODE_ANALYSIS    Analyzes the results from a series of common mode cases in the format of the OUTAGE_SIMULATION
+4-36 F_ANALYSIS_RPT     Speciﬁes report of zones or owners for microﬁche.
+4-38 F_INPUT_LIST       Lists input data on microﬁche.
+4-39 F_OUTPUT_LIST      Lists output data on microﬁche.
+4-40 GEN_DROP           Balances generation drop by picking up generation.
+4-44 HEADER             Speciﬁes header information for reports.
+4-45 INCLUDE_CONTROL    Speciﬁes a ﬁle for control commands.
+4-46 LINE_EFF           Deﬁnes minimum percent line loading for report.
 4-47 LINE_SENSITIVITIES Determines line sensitivity by controlling LTC and AI_CONTROL.
 4-50 %LOAD_DISTRIBUTION Converts constant power, etc., into user-speciﬁed MVA, etc.
 4-63 LOSS_SENSITIVITIES Gives information about system losses.
-4-65 MERGE_OLD_BASE and MERGE_NEW_BASE
-Extracts information from two subsystems to create a new system.
-4-71 MVA_BASE Changes base MVA to an assigned MVA.
-4-72 NETWORK_DATA Speciﬁes bus and branch data.
-4-73 NEW_BASE Deﬁnes the ﬁle name for a new case.
-4-74 OI_LIST Lists ownership interchange.
-4-75 OLD_BASE Speciﬁes a previously existing solved case as the new case to start with.
-4-76 OUTAGE_SIMULATION Simulates line outages, load dropping, generator outages and rescheduling.
-4-83 OVERLOAD_RPT Speciﬁes overload parameter limits for report.
-4-84 P_ANALYSIS_RPT Creates an analysis report.
-4-86 P_INPUT_LIST Lists input data on paper.
-4-87 P_OUTPUT_LIST Lists output on paper.
-4-89 REBUILD Rebuilds all data tables from current OLDBASE ﬁle.
-4-90 REDUCTION Reduces a network.
-4-95 RPT_SORT Sorts output data of solved network.
-4-96 SAVE_FILE Creates various output ﬁles, including the SIF (Stability Interface File).
-4-98 SOLUTION Enables solution options and post-solution processes.
-4-104 SORT_ANALYSIS Controls sort order for analysis listings.
-4-105 TRACE Monitors data to aid data veriﬁcation.
+4-65 MERGE_OLD_BASE and MERGE_NEW_BASE Extracts information from two subsystems to create a new system.
+4-71 MVA_BASE           Changes base MVA to an assigned MVA.
+4-72 NETWORK_DATA       Speciﬁes bus and branch data.
+4-73 NEW_BASE           Deﬁnes the ﬁle name for a new case.
+4-74 OI_LIST            Lists ownership interchange.
+4-75 OLD_BASE           Speciﬁes a previously existing solved case as the new case to start with.
+4-76 OUTAGE_SIMULATION  Simulates line outages, load dropping, generator outages and rescheduling.
+4-83 OVERLOAD_RPT       Speciﬁes overload parameter limits for report.
+4-84 P_ANALYSIS_RPT     Creates an analysis report.
+4-86 P_INPUT_LIST       Lists input data on paper.
+4-87 P_OUTPUT_LIST      Lists output on paper.
+4-89 REBUILD            Rebuilds all data tables from current OLDBASE ﬁle.
+4-90 REDUCTION          Reduces a network.
+4-95 RPT_SORT           Sorts output data of solved network.
+4-96 SAVE_FILE          Creates various output ﬁles, including the SIF (Stability Interface File).
+4-98 SOLUTION           Enables solution options and post-solution processes.
+4-104 SORT_ANALYSIS     Controls sort order for analysis listings.
+4-105 TRACE             Monitors data to aid data veriﬁcation.
 4-106 TRANSFER_SENSITIVITIES Causes analysis of transfer sensitivities.
-4-107 TX_EFF Compares total and core transformer losses.
-4-108 USER_ANALYSIS Generates custom analysis listings
-==== ============ ===============================
+4-107 TX_EFF            Compares total and core transformer losses.
+4-108 USER_ANALYSIS     Generates custom analysis listings
+==== ================== ===============================
 
 AGC
 ===
@@ -281,10 +280,10 @@ A maximum of 24 generators are permitted. One of the generators must be a system
 
 If any unit hits a limit, the remaining active units redistribute their percentages and continue AGC control.
 
-The results are summarized in the listing ``AGC Control``. This listing is controlled with ``/ ANALYSIS_SELECT`` command.
+The results are summarized in the listing ``AGC Control``. This listing is controlled with ``/ ANALYSIS_SELECT`` command.::
 
-  ``/ ANALYSIS_SELECT``
-  ``> SUM%VAR``
+  / ANALYSIS_SELECT
+  > SUM%VAR
 
 If area interchange control is ON, all AGC units should reside in the same area. Violations of this rule are flagged with warning diagnostics.
 AGC control will obscure the change in slack bus power shown in the tie line Summary of Area Interchange. The true slack bus effects within the area would be the aggregate effects of all AGC units. The area interchange summary obscures this effect.
@@ -324,9 +323,7 @@ The desired analysis reports are individually selected using ``>`` commands cont
 
 Each ``> (report)`` command accepts an optional ``F`` or ``P`` qualifier. This will restrict the selected report to Fiche or Print respectively. If neither appear, both ``F`` and ``P`` are presumed to be selected. For example, ``> UNSCH, P`` will print the unscheduled reactive report.
 
-A special option exists on the ``> LINEFF`` report. Its entirety is:
-
-.. literal::
+A special option exists on the ``> LINEFF`` report. Its entirety is::
 
  > LINEFF, SORT = BUS_NAME, OUTPUT=filename, FIELD_WIDTH =  132,F,P
                                                              80,F,P 
@@ -334,9 +331,7 @@ A special option exists on the ``> LINEFF`` report. Its entirety is:
      OWNER,
      ZONE,
 
-All quantities are optional.
-
-.. literal::
+All quantities are optional.::
 
   ``SORT`` Controls sorting by bus kV_name, owner_name, or name.
 
@@ -344,9 +339,7 @@ All quantities are optional.
 
   ``FIELD_WIDTH`` Controls the report width or the named file.
 
-The following is a full list of the ``/ ANALYSIS_SELECT`` command set.
-
-.. literal::
+The following is a full list of the ``/ ANALYSIS_SELECT`` command set.::
 
   / ANALYSIS_SELECT 
   > FICHE,ZONES=<zone1,...>,AREAS=<area1,...>,OWNERS=<owner1,...> 
@@ -376,7 +369,7 @@ The following is a full list of the ``/ ANALYSIS_SELECT`` command set.
 BRANCH_DATA
 ===========
 
-.. literal::
+::
 
   / BRANCH_DATA, FILE = <filespec>, DATE = <myy>,                
                  BUSDATA_FILE = * 
@@ -395,9 +388,7 @@ BUS_SENSITIVITIES
 
 The primary motive of sensitivity is to calculate the instantaneous system response to sudden capacitor switching operations. This is difficult to model in the Powerflow because all LTCs must be turned off. This may cause solution divergence because LTCs are an integral part of any DC system. This problem is circumvented using sensitivities.
 
-By recalculating the Jacobian matrix, various constraints can be changed. The flexibility of these constraints is evident in the format of the sensitivity command.
-
-.. literal::
+By recalculating the Jacobian matrix, various constraints can be changed. The flexibility of these constraints is evident in the format of the sensitivity command.::
 
   / BUS_SENSITIVITIES,LTC=ON,AI_CONTROL=CON,Q_SHUNT=ADJ,Q_GEN=ADJ
                    OFF,          OFF         FIXED     FIXED
@@ -425,7 +416,7 @@ By appropriate selection of options, the Jacobian matrix can represent nearly an
 
 Selected Buses
 --------------
-Following the BUS_SEN``SITIVITIES record, individual buses are selected for perturbation. These buses are identified by the ``B`` formatted records that follow them. A maximum of 50 buses may be specified.
+Following the ``BUS_SENSITIVITIES`` record, individual buses are selected for perturbation. These buses are identified by the ``B`` formatted records that follow them. A maximum of 50 buses may be specified.
 
 The perturbed quantity is identified by nonzero entities in one of the fields: ``P_load``, ``Q_load``, ``G_shunt``, ``B_shunt``, ``P_generation`` or ``Q_generation``.
 
@@ -439,7 +430,7 @@ Sensitivity                Column 2     PLOAD, PSHUNT, PGEN QLOAD, QSHUNT, QSCHE
 :math:`\frac{dP}{d\theta}` Not required Required            Not required
 :math:`\frac{dP}{dV}`      Literal: “V” Required            Not required
 :math:`\frac{dQ}{dV}`      Not required Not required        Required 
-:math:`\frac{dQ}{dV}`a     (blank)      (blank)             (blank)
+:math:`\frac{dQ}{dV}` a    (blank)      (blank)             (blank)
 ========================== ============ =================== =====================
 
 a. This is the default.
@@ -450,9 +441,7 @@ A powerful feature of the sensitivity process is the ability to refactor the Jac
 
 Example
 -------
-The following is an actual case. Bus ``OLYMPIA 230`` was specified for a -172 MVAR shunt application. If ``Q_Load`` or ``Q_Generator`` was specified, the actual ``Q_Perturbation`` would be -172 MVAR. For ``Q_Shunt``, the ``Q_Perturbation`` is calculated.
-
-.. literal::
+The following is an actual case. Bus ``OLYMPIA 230`` was specified for a -172 MVAR shunt application. If ``Q_Load`` or ``Q_Generator`` was specified, the actual ``Q_Perturbation`` would be -172 MVAR. For ``Q_Shunt``, the ``Q_Perturbation`` is calculated.::
 
   Delta (Q)= Q_Shunt * V**2
   = -172 * (1.067)**2
@@ -469,7 +458,7 @@ The correlation with actual Powerflow cases is very close. The calculated voltag
 Sample Deck Setup
 -----------------
 
-.. literal::
+::
   
   (POWERFLOW,...) 
   .
@@ -484,7 +473,7 @@ Sample Deck Setup
 
 Output
 
-.. literal::
+::
 
  BUS_SENSITIVITIES COMPUTED WITH THE FOLLOWING CONTROLS:
 
@@ -526,7 +515,7 @@ This command disables voltage control in selected areas of the system and perfor
 
 An example is shown below.
 
-.. literal::
+::
 
   / CHANGE_BUS_TYPE, BQ=B,  BG=BQ, BT=B , BX=B , -
                      LTC = OFF, -
@@ -570,9 +559,7 @@ The ``LIST`` parameter accepts two values -- ``ON`` and ``OFF``. The default is 
 
 Excluded Buses
 --------------
-Means are available to exempt individual buses from type changes defined in the ``/ CHANGE_BUS_TYPE`` command. These buses are excluded with the following command:
-
-.. literal::
+Means are available to exempt individual buses from type changes defined in the ``/ CHANGE_BUS_TYPE`` command. These buses are excluded with the following command::
 
   >EXCLUDE_BUS 
   B          name     base 
@@ -588,11 +575,9 @@ The target compensated voltage is defined with a computed voltage limit. That li
 
 .. math:: 
 
-  V_{max} = V_{min} = PCT * V^{base}_{BG} + (1 - PCT) * V^base_{BC}
+  V_{max} = V_{min} = PCT * V^{base}_{BG} + (1 - PCT) * V^{base}_{BC}
 
-Example:
-
-.. literal::
+Example::
 
   / CHANGE_BUS_TYPE, BQ = B, BX = B, BG = BQ 
   ... 
@@ -622,9 +607,7 @@ The target compensated voltage is defined with a computed voltage limit. That li
 
 where :math:`PCT` is the user-specified percentage and :math:`MVA_{base}` is the user-specified machine MVA.
 
-Example:
-
-.. literal::
+Example::
 
   / CHANGE_BUS_TYPE, BQ = B, BX = B, BG = BQ 
   ... 
@@ -651,9 +634,7 @@ A special summary of all line drop compensation buses is listed in the analysis 
 
 Example
 -------
-An example is shown below.
-
-.. literal::
+An example is shown below.::
 
   ( POWERFLOW, ...) 
   ...
@@ -682,7 +663,7 @@ In this example, the disabling of remote voltage control is restricted to area `
 CHANGE_PARAMETERS
 =================
 
-.. literal::
+::
 
   / CHANGE_PARAMETERS, BUS=<name, base>,V=<set_value>,Q=?
                                         VX=<set_value>,QY=?
@@ -696,7 +677,7 @@ CHANGE_PARAMETERS
 
 or
 
-.. literal::
+::
 
   / CHANGE_PARAMETERS,  BUS=<name, base),V=?, -
             %LOAD_CHANGE,%PY=<##>, %QX=<##,  -
@@ -707,7 +688,7 @@ or
 
 or
 
-.. literal::
+::
 
   / CHANGE_PARAMETERS,  BUS=<name, base),V=?, -
              %GEN_CHANGE,%PY=<##>, %QX=<##,  -
@@ -838,7 +819,7 @@ The user analysis file is processed for each encountered ``/ CHANGE_PARAMETERS``
 Example 1
 ---------
 
-.. literal::
+::
 
   / CHANGES,FILE= *
   .
@@ -943,4 +924,1588 @@ When ``bpf`` loads a base file, any previous comments are deleted, then all comm
 
 COMMON_MODE_ANALYSIS
 ====================
+
+.. literal::
+
+  /COMMON_MODE_ANALYSIS, BASE_FILE = <base_file_name>,
+                         COMMON_MODE = <common_mode_file>, 
+                         OUTAGE_FILE = <outage_file>, 
+                         OUT_FILE = <output_file>
+
+This command combines features of a common mode file used in the CFLOW program ``pvcurve`` with the output reports used in the Outage Simulation program, in effect emulating a “slow outage” program. It was written specifically to accept the ``pvcurve`` input file without modification.
+
+The outages, defined as MODE within the script in the ``COMMON_MODE`` file, typically consists of a sequence of commands ``/CHANGE_BUS_TYPES``, ``/CHANGES``, ``/SOLUTION``, and ``/GEN_DROP``. The mode itself is defined by name on a leading ``>MODE`` record; its composition is defined with the change records following a ``/CHANGES`` command.
+
+At the end of each ``>MODE`` set contaiined within the file named in the ``COMMMON_MODE`` command, the solution results (or divergence state) are analyzed: line overloads and bus under/over voltages are written to the user-specified output file in the same format for the ``OUTAGE_SIMULATION`` program.
+
+The capability to restrict the analyzed output to subsystems defined with base kV’s and zones as is now done in the ``OUTAGE_SIMULATION`` program also exists in this feature. That is the purpose of the ``OUTAGE_FILE``. The ``OUTAGE_FILE`` is a bone fide ``OUTAGE_SIMULATION`` file which processes only two of its commands: ``>OVERLOAD`` and ``>OUTAGE``. All others are ignored. (The ``>OUTAGE`` command is used only if the ``>OVERLOAD`` commnad is missing and becomes a clone of an implied ``>OVERLOAD`` command.)
+
+Description of Operation
+------------------------
+Three phases are involved.
+
+  1. Initialization phase. The ``/COMMON_MODE_ANALYSIS`` record is parsed and the relevant input and output files are opened.
+  2. The mail loop to process ``>MODE`` records. The base case in residence is reloaded and the associated processes within the ``>MODE`` set are processed exactly in the manner performed in the batch powerflow program. At the conclusion of a solution the output results (line overloads, bus under/over voltages, and any solution divergence) are tabulated in interrnal arrays.
+  3. At the conclusion of the last ``>MODE`` command, the tabulated results are cross-compiled and outputted exzactly in the form as is none in the ``OUTAGE_SIMULATION`` program.
+
+F_ANALYSIS_RPT
+==============
+
+.. literal::
+
+  / F_ANALYSIS_RPT , LEVEL =4 , *
+                            1   ZONES = <list>
+                            2   OWNERS = <list>
+                            3
+
+This command requests that an analysis report for selected zones or owners be added to the microfiche output file. Note that a separate command ``[FICHE]`` must be present in order to save anything on microfiche, regardless of printer and analysis options selected.
+
+When ``<list>`` is blank, asterisk, or null, ``ALL`` is assumed unless limited by a preceding statement.
+
+The level number determines the analysis summaries to be displayed.
+
+For ``LEVEL=1``, the following summaries are included:
+
+  * User-defined analysis (optional).
+  * Buses with unscheduled reactive.
+
+For ``LEVEL=2``, the following are displayed with summaries for ``LEVEL=1``:
+
+  * Total system generations and loads by owner.
+  * System generations, loads, losses and shunts by zones.
+  * Undervoltage-overvoltage buses.
+  * Transmission lines loaded above XX.X% of ratings.
+  * Transformers loaded above XX.X% of ratings.
+  * Transformer excited above 5% over tap.
+  * Transmission system losses.
+  * BPA industrial loads.
+  * dc system.
+  * Shunt reactive summary.
+  * Summary of LTC transformers.
+  * Summary of phase-shifters.
+  * Summary of %Var-controlled buses.
+  * Summary of type BX buses.
+  * Summary of adjustable Var compensation.
+  * Transmission lines containing series compensation.
+
+For ``LEVEL=3``, the following is displayed in addition to the ``LEVEL=2`` output:
+
+  * Bus quantities.
+
+For ``LEVEL=4``, the following are displayed in addition to the ``LEVEL=3`` display:
+
+  * Spinning reserves.
+  * Transmission line efficiency analysis. Lines loaded above XX.X% of nominal ratings.
+  * Transformer efficiency analysis. Total losses above X.XX% of nominal ratings.
+  * Transformer efficiency analysis. Core losses above X.XX% of nominal ratings.
+
+Example
+-------
+
+::
+
+  / F_ANALYSIS_RPT, LEVEL=4, OWNERS= BPA,PGE,PPL,WPS
+  / P_ANALYSIS_RPT, LEVEL=1, ZONES = NA, NB, NC
+  / F_ANALYSIS_RPT, LEVEL=4, *
+  / P_ANALYSIS_RPT, LEVEL=1, ZONES = *
+
+F_INPUT_LIST
+============
+
+::
+
+  / F_INPUT_LIST, FULL,  ERRORS = NO_LIST
+                  NONE            LIST
+                  ZONES = <list>
+                  ZONES = ALL, FULL or NONE
+
+This command lists input data on ``FICHE``. Output can be restricted to individual zones specified in ``<list>`` and separated with commas. Note that ``FULL`` or ``NONE`` may be specified in two forms.
+
+The ``ERRORS`` option is set to suppress the input fiche if any fatal (F) errors are encountered. This is the default. It can be overridden by setting ``ERRORS = LIST``.
+
+F_OUTPUT_LIST
+=============
+
+::
+
+  / F_OUTPUT_LIST, FULL, FAILED_SOL = FULL_LIST
+                   NONE               PARTIAL_LIST
+                   ZONES = <list>     NO_LIST
+                   ZONES = ALL, FULL or NONE
+
+This command lists output on ``FICHE``. Output can be restricted to individual zones specified in ``<list>`` which are separated with commas. Note that ``FULL`` or ``NONE`` may be specified in two forms.
+
+The ``FAILED_SOL`` option is set to override the output listing if a failed solution occurs. It defaults to a full listing. A ``PARTIAL_LIST`` observes zone lists.
+
+GEN_DROP
+========
+
+  ``/ GEN_DROP, ..., INITIAL_DROP=#### ...``
+
+This feature picks up generation from selected generators to balance generation drop. Generation is dropped in one of two ways:
+
+  * By system changes with the amount specified under ``INITIAL_DROP``.
+  * By ``PMIN`` and ``PMAX`` limits on selected generators. (These buses are specified with specially formatted ``B`` records which follow.)
+
+Generator dropping emulates the short-term characteristics of a system’s response where the generation deficit is automatically picked by other machines. The magnitude is presumed to be proportional to PMAX after the effects of the machine’s transients have damped out.
+
+Candidate generators that pickup are those in the area of interest with a spinning reserve (a surplus of :math:`P_{max}` over :math:`P_{gen}`). The pickup of an eligible machine “i” is allocated proportionally by the ratio
+
+.. math::
+
+  GEN_PICKUP(i) = P_{max}(i) * (TOTAL_DROPPED / TOTAL_PMAX)
+
+where :math:`TOTAL_DROPPED` is the sum of dropped MW, and :math:`TOTAL_PMAX` is the sum of all candidate machines with spinning reserve.
+
+Some machines may be driven to their :math:`P_{max}` limits during reallocation. In this case, the allocation becomes nonlinear and several iterations may be required.
+A detailed list of each command follows.::
+
+  / GEN_DROP, AI_CONTROL=CON, INITIAL_DROP= ####, TOL=####, 
+                       MON                     
+                       OFF
+            AREAS=<area_1,...> Optional. Do not use with ZONE.
+            ZONES=<zone_1,...> Optional. Do not use with AREA.
+
+Note that continuation records are acceptable here.
+
+The individual fields of the ``GEN_DROP`` command follow.
+
+Area Interchange Control
+------------------------
+If generation dropping and allocation occurs over several areas, intertie flows may be substantially affected, and it is recommended to change the area interchange from control to monitor unless the new interchange schedule is known.::
+
+  AI_CONTROL = CON : Control area interchange.
+               OFF : Turn off area interchange.
+               MON : Monitor area interchange.
+
+.. note::
+
+  One other command also affects area interchange control, the ``>AI_CONTROL`` option on the ``/SOLUTION`` record. If this follows the ``/GEN_DROP`` command above, it may overwrite the selected option.
+
+Initial Dropped Generation
+--------------------------
+This is necessary if the dropped generators are deleted or modified in a change case.
+
+  ``INITIAL_DROP = ####``
+
+The field ``####`` denotes the numerical values in MW.
+
+Initial dropped generation may be specified in an alternate method, called the “computed dropped generation.”
+
+Tolerance
+---------
+Generation reallocation continues until the mismatch between generation dropped and generation pickup is less than the tolerance. The default value is 10 MW.
+
+  ``TOL = ####``
+
+The field ``####`` denotes the numerical values in MW.
+
+Areas or Zones
+--------------
+The generation to be picked up may be either system-wide (the default) or restricted to a set of areas or zones.
+
+  ``AREAS = <area_1,...>``
+or
+
+  ``ZONES = <zone_1,...>``
+
+The individual areas are separated with a comma (``,``). If the area name contains a blank, temporarily replace the blank field with a pound sign (``#``). Continuation records may be employed for aesthetics.
+
+For example,::
+
+  AREAS =NORTHWEST, -
+     BC-HYDRO, -
+     IDAHO, -
+     MONTANA, -
+     TRANSALTA, -
+     WKOOTENA
+
+Exclude Buses
+-------------
+Means are available to contract the system or subsystem defined in the ``/GEN_DROP`` command. Individual buses may be excluded from participating in generator pick-up. These buses are selected with the following command::
+
+  >EXCLUDE_BUS 
+  B name base 
+  B name base
+
+Selected Generators To Be Dropped
+---------------------------------
+The amount of generation is defined as the sum of ``INITIAL_DROP`` plus the computed generation to be dropped. The computed generation drop is the amount of violation of P-limits on all specified buses:
+
+  ``PMIN  < PGEN  < PMAX``
+
+Obviously, only area and slack buses and AGC candidates permit the P-generation to change. Limits can be placed on these buses by specifying a + or - tolerance, or a ``PMIN`` and ``PMAX`` (in MWs). ``PMIN`` keeps slack buses within a narrow range. The special ``B`` records introduce these limits explicitly. This is illustrated with the following example::
+
+  B     MORRO 4 18.0, TOL = 20 
+  B     MORRO 4 18.0, PMIN = 147, PMAX = 167
+
+If the key words ``PTOL``, ``PMIN``, or ``PMAX`` are omitted, ``PMAX`` is taken from the ``PMAX`` field on the original or changed bus data record. Recall that on the bus record there is no corresponding field for ``PMIN``. Consequently, ``PMIN`` = 0.0. At least one ``B`` record must be present.
+
+Example
+-------
+
+::
+
+  ( POWERFLOW, ...) 
+  ... 
+  ... 
+  / CHANGES, ... 
+  ... 
+  ... (changes which drop 2450 MW of generation in the Northwest) 
+  ... 
+  / GEN_DROP, AI_CONTROL=MON, TOL=1.0, INIT=2450
+  BX    MORRO 4   18, PMIN = 147, PMAX = 167
+  / SOLUTION
+  ( END )
+
+.. note:: MORRO 4 is held between 147 and 167 MWs. Dropping 2450 MWs and picking it up elsewhere will change the generation flows and, quite likely, will alter the system losses. The system slack bus accommodates these changes in losses.
+
+HEADER
+======
+
+  ``/ HEADER``
+
+This command introduces one or two header records into the pagination. Its text will be repeated on the top of each page in the output report. Each header record begins with an ``H`` in column 1. It is used to supply the lines of text that will be printed at the top of every page of an output listing, below the standard header1, which contains the caseid, project, program version, and date. These header records are saved in the base case file, and any previous headers are deleted. This is similar to the ``/COMMENT`` command.
+
+.. image:: ../img/Header_Comment_Input_Format.png
+
+INCLUDE_CONTROL
+===============
+
+    ``/ INCLUDE_CONTROL, file = <filespec>``
+
+This command permits the input stream containing commands to be temporarily diverted to the named file. Following an end-of-file, control reverts to the normal input stream.
+Some restrictions apply. This “included” command file cannot contain any of the following commands:
+
+  ``/ INCLUDE_CON`` statement 
+  ``/ MERGE_BASE`` statement 
+  ``/ OUTAGE_SIM`` statement 
+  ``/ REDUCTION`` statement 
+  ``/ CHANGES`` statement
+
+ LINE_EFF
+=========
+
+  ``/ LINE_EFF, LOADING = <nn>, OWNERS = <list>``
+
+Use this command to list lines that are loaded above the prescribed ``LOADING``. The output can be filtered by owners. ``BPA`` is the default if no owners are specified.
+
+LINE_SENSITIVITIES
+==================
+
+  ``/ LINE_SENSITIVITIES``
+
+.. note::
+
+  Three commands are dependent on the ``SOLUTION`` command. The commands are ``CHANGE_PARAMETERS``, ``LINE_SENSITIVITIES``, and ``LOSS_SENSITIVITIES``. These three work correctly only if they immediately follow the ``SOLUTION`` command.
+
+Line sensitivities relate line immittances (impedance or admittance) to voltage, real power flow, and system losses. Six types are available.
+
+  :math:`d\frac{P_{ij}}{dX_t}` Change in lineflow :math:`P_{ij}` with respect to change in transfer reactance :math:`X_t` .
+
+  :math:`d\frac{P_{ij}}{dB_s}` Change in lineflow :math:`P_{ij}` with respect to change in shunt susceptance :math:`B_s` .
+
+  :math:`d\frac{Loss}{dX_t}` Change in system losses with respect to a change in transfer reactance :math:`X_t` .
+
+  :math:`d\frac{Loss}{dB_s}` Change in system losses with respect to a change in shunt susceptance :math:`B_s` .
+
+  :math:`d\frac{V_i}/{dX_t}` Change in bus voltage (:math:`V_i`) with respect to a change in transfer reactance math:`X_t` .
+
+  :math:`d\frac{V_i}/{dB_s}` Change in bus voltage (:math:`V_i`) with respect to a change in shunt susceptance :math:`B_s` .
+
+The change in transfer reactance :math:`X_t` or shunt susceptance :math:`B_s` pertains to an existing line. The command statement which invokes line sensitivities is::
+
+  / LINE_SENSITIVITIES, LTC =ON, AI_CONTROL = CON 
+                             OFF              MON
+                                              OFF
+
+The top line depicts default quantities. The options ``LTC`` and ``AI_CONTROL`` pertain to LTC transformers and area interchange control.
+
+The second part of the sensitivities is the perturbed quantities :math:`dX_t` or :math:`dB_s`. They are defined with specially formatted ``>`` records and are similar to ``L`` records.
+
+======= ======= ==========================
+Columns Format  Description
+======= ======= ==========================
+(1:3)   A3      ``>PB``: :math:`\frac{dP_{ij}}{dB_s} or :math:`\frac{dP_{ij}}{dX_t}`
+                ``>LB``: :math:`\frac{dLoss}{dB_s}` or :math:`\frac{dLoss}{dX_t}`
+                ``>VB``: :math:`\frac{dV_i}{dB_s}` or :math:`\frac{dV_i}{dX_t}`
+(7:18)  A8,F4.0 Bus1 name and base kV
+(20:31) A8,F4.0 Bus2 name and base kV
+(32)    A1      Circuit ID
+(33)    I1      Section number
+(45:50) F6.5    Perturbed :math:`X_t` 
+(57:62) F6.5    Perturbed :math:`B_s`
+======= ======= ==========================
+
+A maximum of 50 perturbed quantity ``>`` records may be present.
+
+The ambiguity :math:`d(.)/dB_s` or :math:`d(.)/dX_t` is resolved by non-zero entities for :math:`X_t` or :math:`B_s` . If both are zero, the default is :math:`X_t` . Non-zero entities define the magnitude of the perturbed quantity :math:`dX_t` or :math:`dB_s`. Perturbed flows, losses, or voltages will be computed using these values.
+
+The perturbed branch flows :math:`P_{ij}` are identified with the individual ``L`` records that follow. If parallel lines are present, :math:`P_{ij}` pertains to the total of all parallel flows.
+
+The perturbed voltages are the 20 largest excursions effected by the change in immittance. The perturbed losses are a simple quantity. An example setup follows::
+
+  ( POWERFLOW, ...) 
+  ... 
+  ...
+  ...
+  / SOLUTION
+  ...
+  ...
+  ...
+  / LINE_SENSITIVITIES, AI_CONTROL=ON, LTC=ON
+  >PB   RAVER    500 TACOMA   500 
+  L     RAVER    500 TACOMA   500 
+  L     GRIZZLY  500 JOHN DAY 500 
+  L     GRIZZLY  500 MALIN    500 
+  L     HANFORD  500 JOHN DAY 500 
+  L     HANFORD  500 LOW MON  500 
+  L     HANFORD  500 OSTRNDER 500 
+  L     HANFORD  500 VANTAGE  500 
+  >LB   RAVER    500 TACOMA   500 
+  >VB   RAVER    500 TACOMA   500 
+  >PB   GRIZZLY  500 JOHN DAY 500 
+  L     RAVER    500 TACOMA   500 
+  L     GRIZZLY  500 JOHN DAY 500 
+  L     GRIZZLY  500 MALIN    500 
+  L     HANFORD  500 JOHN DAY 500 
+  L     HANFORD  500 LOW MON  500 
+  L     HANFORD  500 OSTRNDER 500 
+  L     HANFORD  500 VANTAGE  500 
+  ( STOP )
+
+Notes
+-----
+The first perturbation ``>PB`` with blank :math:`X_t` and :math:`B_s` fields requests :math:`\frac{dP_{ij}}{dX_t}` (the default). The individual :math:`P_{ij}`s are identified with the following ``L`` records.
+
+The second perturbation ``>LB`` with blank :math:`X_t` and :math:`B_s` fields requests :math:`\frac{dLoss}{dX_t}` (the default). No ``L`` records follow because the monitored quantities are system losses.
+
+The third perturbation ``>VB`` with blank :math:`X_t` and :math:`B_s` fields requests :math:`\frac{dV_i}{dX_t}` (the default). No ``L`` records follow because the monitored quantities are perturbed voltages. The 20 largest excursions are listed.
+
+Sample Deck Set-up
+------------------
+
+::
+
+  (POWERFLOW,...) 
+  . . .
+  / CHANGES
+  . . .
+  / SOLUTION
+  . . . 
+  / BUS_SENSITIVITIES,LTC=ON,AI_CON=ON,Q_GEN=ON,Q_SHUNT=ON
+  B    SATSUP  230     -172 
+  B    OLYMPIA 230     -172 
+  / BUS_SENSITIVITIES,LTC=OFF,AI_CON=OFF,Q_GEN=ON,Q_SHUNT=FIXED
+  B    SATSUP  230     -172
+  B    OLYMPIA 230     -172
+  (END)
+
+%LOAD_DISTRIBUTION
+==================
+
+  ``/ %LOAD_DISTRIBUTION, DISTRIBUTED_VOLTAGE = NOMINAL_BASE``
+
+This set of commands automatically converts constant power, constant current, or constant impedance loads to a user-specified distribution of constant MVA, constant current, and constant impedance.
+
+The option ``DISTRIBUTED_VOLTAGE`` (or ``DIST`` for abbreviated form) selects either ``NOMINAL`` (all voltages are 1.0 p.u.) or ``BASE``, which is the individual bus’s voltage.
+
+Constant Current and Impedance Loads
+------------------------------------
+Constant current loads and constant impedance loads are defined by continuation bus (``+``) records using reserved ``TYPE``s and ``CODE_YR``s. Constant impedance loads differ from :math:`G_{shunt}` and :math:`B_{shunt}` quantities in the sense that these quantities are converted into loads and appear in special analysis summaries. The table below describes these special codes and their interpretations.
+
+==== ===== ======= =============== =============== =================== ==================
+Type Owner CODE_YR P_LOAD          Q_LOAD          G_SHUNT             B_SHUNT
+==== ===== ======= =============== =============== =================== ==================
++A                                                                     :math:`B_{ﬁxed}` a
++A         00                                                          :math:`B_{ﬁxed}`
++A         01      :math:`P(I)` b  :math:`Q(I)` c  :math:`P(G)` d      :math:`Q(B)` e 
++A         01      :math:`P(I)`    :math:`Q(I)`    :math:`G_{equiv}` f :math:`B_{equiv}` g
++A         02                                      :math:`P(G)`        :math:`Q(B)`
+           *I      :math:`P(I)`    :math:`Q(I)`    :math:`P(G)`        :math:`Q(B)`
+           *P                                      :math:`P(G)`        :math:`Q(B)`
+==== ===== ======= =============== =============== =================== ==================
+
+a. :math:`B_{ﬁxed}` = Shunt is pi_back shunt impedance from ``/ CUTTING``. 
+b. :math:`P(I)` = Power is a function of current (constant current). 
+c. :math:`Q(I)` = Reactive is a function of current (constant current). 
+d. :math:`P(G)` =  Power is a function of shunt :math:`G` (constant impedance). 
+e. :math:`Q(B)` = Reactive is a function of shunt :math:`B` (constant impedance). 
+f. :math:`G_{equiv}` =  Shunt is equivalent shunt impedance from ``/ REDUCTION``. 
+g. :math:`B_{equiv}` =  Shunt is equivalent shunt impedance from ``/ REDUCTION``.
+
+Description of Constant Current Load Model
+------------------------------------------
+For expositional purposes, we will call constant current :math:`A_{load}` and :math:`B_{load}`. This nomenclature is consistent with the expression for complex current:
+
+  :math:`I  = A + jB`
+
+The power at a constant current load is computed with the expression
+
+  :math:`P_{load} + jQ_{load} = complx( V ) * conjg( I )`
+
+where :math:`complx(V)` is the complex voltage and :math:`conjg(I)` is the conjugate of the complex current. The use of the conjugate expression is needlessly complicated for this simple application and has been relaxed. The quantity ``Bload`` is stored as its conjugate, that is, no sign reversal is needed to interpret the correct sign of the load in MVAR.
+
+Let :math:`V` denote the per unit base or nominal voltage magnitude - depending upon the option ``DISTRIBUTED_VOLTAGE``. The distributed constant current loads in MW and MVAR are computed as follows:
+
+.. math::
+
+  P_{load} &= A_{load} * V \\
+  Q_{load} &= B_{load} * V
+
+Readers may note that this is not true constant current. True constant current loads involve the system phase angle. The modelling here is more lenient: it is constant power factor.
+
+Description of Distribution Factors
+-----------------------------------
+Six percentage distribution factors can be specified by the user. The following example illustrates the relation.
+
+.. math::
+
+  P_{load} &= 50% P + 25% I + 25% Z  \\
+  Q_{load} &= 50% Q + 25% I + 25% Z
+
+From this command, the following quantities will be defined:
+
+.. math::
+
+  PP (%Constant P_{load}) &= 50% \\
+  PI (%Constant I_{load}) &= 25% \\
+  PZ (%Constant Z_{load}) &= 25% \\
+  QP (%Constant Q_{load}) &= 50% \\
+  QI (%Constant I_{load}) &= 25% \\
+  QZ (%Constant Z_{load}) &= 25%
+
+There are restrictions; the percentage distributions must be complete.
+
+.. math::
+
+  PP + PI + PZ &= 100.0 \\
+  QP + QI + QZ &= 100.0
+
+This means that if some load is to be unchanged, a value of 100% must be entered for :math:`P_{load}` or :math:`Q_{load}`.
+
+The following relations hold at the base voltages:
+
+::
+
+  Constant MVA     Constant MVA    Constant I    Constant Z
+
+.. math::
+
+  P_{load_old}     &=  P_{load_new}     + A_{load} * V   + G_{shunt} * V^2 \\
+  Q_{load_old}     &=  Q_{load_new}     + B_{load} * V   - B_{shunt} * V^2
+
+where
+
+  :math:`P_{load_new}` (MW) =  :math:`P_{load_old}` (MW) :math:`* PP / 100`
+  :math:`Q_{load_new}` (MVAR) =  :math:`Q_{load_old}` (MVAR)  :math:`*  QP / 100`
+  :math:`A_{load}` (MW) =  :math:`P_{load_old}` (MW) :math:`*  PI / (100 * V)`
+  :math:`B_{load}` (MVAR) =  :math:`Q_{load_old}` (MVAR)  :math:`*  QI / (100 * V)`
+  :math:`G_{shunt}` (MW) =  :math:`P_{load_old}` (MW) :math:`*  PZ / (100 * V^2)`
+  :math:`B_{shunt}` (MVAR) = :math:`--Q_{load_old}` (MVAR) :math:`*  QZ / (100 * V^2)`
+
+The negative sign for :math:`B_{shunt}` is correct. The actual expression is
+
+.. math::
+
+  P + jQ = conjg (Y) * V^2
+
+A positive value of :math:`G_{shunt}` is the same sign as load; a positive value of Bshunt is the same sign as generation.
+
+Those buses whose loads can be distributed can be selected either individually or systematically. Individually selected buses require the ``> CHANGE_BUSES`` command. Systematically selected buses require the ``> CHANGE_SYSTEM`` command.
+
+Systematically Selected Buses
+-----------------------------
+
+::
+
+  > CHANGE_SYSTEM, PLOAD  = ##% P + ##% I + ##% Z,
+                   QLOAD  = ##% Q + ##% I + ##% Z,
+                   AREAS  = area_1. ...,                 
+                   ZONES  = zones_1, ...,                 
+                   OWNERS = owner_1,
+  > EXCLUDE_BUSES 
+  B      name    base 
+  B      name    base 
+  B      name    base
+
+This example redistributes constant power loads according to the specified percentages.
+
+The redistributed constant current and constant impedance loads are transferred to a new ``+A01`` continuation bus record. The redistributed constant power loads replace the original constant power load.
+
+A special feature has been added to redistribute constant current and constant impedance loads that already have been distributed. As such, these loads are restricted to ``+A01`` and ``+A02`` continuation bus records. The table below describes these options.
+
+======================= ===================== =========================
+Type of Load to Convert Keyword for Real Part Keyword for Reactive Part
+======================= ===================== =========================
+Constant Power          PLOAD =               QLOAD =
+Constant Current        ALOAD =               BLOAD =
+Constant Impedance      RLOAD =               XLOAD =
+======================= ===================== =========================
+
+For example, to change constant current loads, the following commands are used:
+
+::
+
+  > CHANGE_SYSTEM, ALOAD = ##%  P + ##% I + ##% Z,
+                   BLOAD = ##%  Q + ##% I + ##% Z, 
+
+The network affected by the specified load change percentages can be restricted to buses within a given subsystem. This subsystem can be defined by those buses having common attributes in two sets::
+
+  { AREAS, OWNERS }
+
+or::
+
+  { ZONES, OWNERS }
+
+``ZONES`` and ``AREAS`` are mutually exclusive; only one of the above can be specified.
+
+If no owners are specified, all ownerships are implied. The selected subsystem can be further defined by excluding specific bases with the ``>EXCLUDE`` option.
+
+More than one set of ``CHANGE_SYSTEM`` commands is permitted. This would permit buses in different areas or zones to have different percentage distribution factors. In case of overlap, precedence is given to the first definition.
+
+Individually Selected Buses
+---------------------------
+
+::
+
+  > CHANGE_BUSES, CHANGE_TYPE = PLOAD 
+                                ALOAD
+                                RLOAD
+  B    ownname    base    ####  ####   ####  ####   ####  ####  PLOAD
+  B    ownname    base    ####  ####   ####  ####   ####  ####  ALOAD 
+  +x   ownname    base yr ####  ####   ####  ####   ####  #### 
+  +x   ownname    base yr ####  ####   ####  ####   ####  ####
+
+This command permits unique distribution factors to be specified for individual buses. The buses and their distribution factors are identified on fixed field records. The format of the B % load change record is shown in the figure below. ``CHANGE_TYPE`` is optional. ``ALOAD`` and ``RLOAD`` have the same interpretation given in Table 4-8. Thus, they would apply to ``+`` records, but not to ``B`` records.
+
+If the ownership field is blank or includes the bus ownership, the percentages apply only to data on the bus ``B`` record. Continuation bus data will not be affected.
+On the other hand, if the ownership is the magic code ###, the percentages apply to data on the bus ``B`` record and also to data on all associated continuation bus records.
+
+.. image:: ../img/CHANGE_BUS_Load_Input_Format_for_B_Records.png
+
+If separate % changes are to apply to bus and continuation bus records, separate ``+ %`` change records must be used—one for the bus ``B`` record and others for the specific ``+`` bus records.
+
+The identification fields for ``+ %`` bus records are identical to those for the ``+`` records as in the table below.
+
+====== ===========
+Column Quantity
+====== ===========
+1      +
+2      Type
+3- 6   Ownership
+7-18   Bus Name and Base kV
+19-20  Code Year
+====== ===========
+
+The format of the ``+ %`` load change records is shown below.
+
+.. image:: ../img/CHANGE_BUS_Load_Input_Format_for_+_Records.png
+
+Wildcards are permitted in these fields: ``TYPE``, ``OWNER``, and ``CODE_YR``. The wild card character(s) for those fields are ``#,`` ``###,`` and ``##`` respectively.
+
+The percentages apply to the distribution of ``QLOAD`` and ``PLOAD`` to ``ALOAD`` and ``BLOAD``, or to ``RLOAD`` and ``XLOAD``. They must total 100% each.
+
+If an overlap occurs with the ``CHANGE_SYSTEM`` command, precedence is given to the individually specified buses.
+
+A maximum of 2,000 buses may be specified. Once identified, that bus will be unaffected by any subsequent commands.
+
+Example 1
+^^^^^^^^^
+PLOAD, QLOAD distributions applied to a bus record. See figure below.::
+
+  PLOAD = % PL + % PI + % PZ 
+  QLOAD = % QL + % QI + % QZ
+
+.. image:: ../img/Original_B_Record.png
+
+1. Remove ``PLOAD`` and ``QLOAD`` quantities from bus record above.
+2. Calculate the following quantities::
+
+  P1 = PLOAD * %PL 
+  Q1 = QLOAD * %QL 
+  P2 = PLOAD * %PI  / VOLTAGE 
+  Q2 = QLOAD * %QI / VOLTAGE 
+  P3 = PLOAD * %PZ / VOLTAGE ** 2 
+  Q3 = QLOAD * %QZ / VOLTAGE ** 2
+
+3. Replace the load and shunt fields on the ``B`` record and on a new ``+A*I`` record.
+
+Modified ``B`` record and new ``+A*I`` record. See below.
+
+.. image:: ../img/Modified_B_Record.png
+
+Example 2
+^^^^^^^^^
+``ALOAD``, ``BLOAD`` distributions applied on a ``+X*P`` bus record.::
+
+  ALOAD = %PL + %PI + %PZ 
+  BLOAD = %QL + %QI + %QZ
+
+Note that ``ALOAD`` and ``BLOAD`` quantities are generated by prior ``%LOAD_DISTRIBUTION``. Thus, this record corresponds to a  ``+`` record having the same ``TYPE`` and ``CODE_YEAR``. See below.
+
+.. image:: ../img/Original_Continuation_Record.png
+
+1. Remove ``ALOAD`` and ``BLOAD`` quantities from the ``+X*I`` record above. Note that these quantities are constant current. Convert them into constant power::
+  
+  PLOAD = ALOAD * %PL VOLTAGE 
+  QLOAD = BLOAD * %PL VOLTAGE
+
+2. Calculate the following quantities::
+
+  P1 = PLOAD * %PL 
+  Q1 = QLOAD * %QL 
+  P2 = PLOAD * %PI  / VOLTAGE 
+  Q2 = QLOAD * %QI / VOLTAGE 
+  P3 = PLOAD * %PZ / VOLTAGE ** 2 
+  Q3 = QLOAD * %QZ / VOLTAGE ** 2
+
+3. Replace the load and shunt fields on the original ``+`` record and the load fields on the original type ``+X`` record.
+
+Modified ``+X*I`` record and new ``+A*P`` record. See below.
+
+.. image:: ../img/Modified_Continuation_Record.png
+
+Limitations, Restrictions, and Assumptions
+------------------------------------------
+The load distribution is presumed to apply to a solved base case. At the base solution, the total load in MWs and MVARs is unchanged after distribution. If the system is not otherwise changed, the solution should converge to the base solution.
+
+Each nonzero load on a bus or continuation bus record generates an associated constant current and constant impedance load on an equivalent +A*I continuation bus record.
+The continuation bus array is currently dimensioned for 3360 records.
+
+The number of generated ``+*I`` and ``+*P`` records in a typical base case averages 400 (assuming one for each continuation bus) plus one for each number of nonzero load on the bus records.
+
+BPA’s Transient Stability Program in its present form cannot accommodate the Powerflow model of constant current loads.
+
+LOAD_GE
+=======
+
+  ``/LOAD_GE, FILE=<file_name>``
+
+This command imports an ASCII coded GE-formatted network data file
+
+LOAD_GE qualiﬁers
+-----------------
+
+  ``REFFILE=<reference_file_name>``
+
+This qualifier introduces a reference base case from which to derive missing ownership and mileage information.  The GE data set is potentially richer in content than IPF’s base data file, but maybe incomplete if some optional data fields such as mileage or ownerships are omitted.
+
+  ``VERSION=<nnn>``
+
+This qualifier defines the version number of the input data. At present, only version 21 is recognized.
+
+  ``RATINGS=(TX=AABC, LN=AAC)``
+
+This option correlates the various GE branch ratings with the IPF branch ratings. Four GE transformer ratings (RATEA, RATEB, RATEC, RATED) can be assigned independently to the IPF transformer ratings in the following order -- Nominal, Thermal, Emergenty, and Bottleneck,  Simarily, three GE line ratings (RATEA, RATEB, RATEC) can be assigned independently to the IPF line ratings in the following order -- Nominal, Thermal, and Bottleneck.
+
+The default branch IPF ratings, shown in the example above, are assigned per the table below.
+
+=========== ========== ==========
+Branch      IPF Rating GE Rating
+=========== ========== ==========
+Transformer Nominal    RateA
+            Thermal    RateA
+            Emergency  RateB
+            Bottleneck RateC
+Line        Nominal    RateA
+            Thermal    RateA
+            Bottleneck RateC
+=========== ========== ==========
+
+  ``LTC=RANGE``
+
+This option defines the remotely controlled bus’ voltage assignments in the form of bus type and scheduled voltage. The table below describes all options
+
+======= ==================== ===========================================
+Type    Conditional bus type Action taken
+======= ==================== ===========================================
+HIGH                         vmax = vmax_ge vmin = vmax_ge Bb -> BT
+AVERAGE                      vmax = 0.5 * (vmax_ge + vmin_ge) vmin = 0.5 * (vmax_ge + vmin_ge) Bb -> BT
+LOW     ``BQ``               vmax = 0.5 * (vmax_ge + vmin_ge) vmin = 0.5 * (vmax_ge + vmin_ge)T
+LOW     All other types      vmax = vmax_ge vmin = vmin_ge
+RANGE   Bb                   vmax = vmax_ge vmin = vmin_ge
+RANGE   All other types      vmax = 0.5 * (vmax_ge + vmin_ge) vmin = 0.5 * (vmax_ge + vmin_ge)
+======= ==================== ===========================================
+
+LOAD_PTI
+========
+
+  ``/LOAD_GE, FILE=<file_name>``
+
+This command imports an ASCII coded PTI-formatted network data file
+
+LOAD_PTI qualiﬁers
+------------------
+
+  ``REFFILE=<reference_file_name>``
+
+This qualifier introduces a reference base case from which to derive missing ownership and mileage information.
+
+  ``VERSION=<nnn>``
+
+This qualifier defines the version number of the input data. At present, only version 3 and 4 are recognized.
+
+  ``RATINGS=(TX=AABC, LN=AAC)``
+
+This option correlates the various PTI branch ratings with the IPF branch ratings. Four PTI transformer ratings (RATEA, RATEB, RATEC, RATED) can be assigned independently to the IPF transformer ratings in the following order -- Nominal, Thermal, Emergenty, and Bottleneck,  Simarily, three PTI line ratings (RATEA, RATEB, RATEC) can be assigned independently to the IPF line ratings in the following order -- Nominal, Thermal, and Bottleneck.
+
+The default branch IPF ratings, shown in the example above, are assigned per the table below.
+
+=========== ========== ==========
+Branch      IPF Rating PTI Rating
+=========== ========== ==========
+Transformer Nominal    RateA
+            Thermal    RateA
+            Emergency  RateB
+            Bottleneck RateC
+Line        Nominal    RateA
+            Thermal    RateA
+            Bottleneck RateC
+=========== ========== ==========
+
+  ``LTC=RANGE``
+
+This option defines the remotely controlled bus’ voltage assignments in the form of bus type and scheduled voltage. The table below describes all options.
+
+======= ==================== ===========================================
+Type    Conditional bus type Action taken
+======= ==================== ===========================================
+HIGH                         vmax = vmax_pti vmin = vmax_pti Bb -> BT
+AVERAGE                      vmax = 0.5 * (vmax_pti + vmin_pti) vmin = 0.5 * (vmax_pti + vmin_pti) Bb -> BT
+LOW                          vmax = vmin_pti vmin = vmin_pti Bb -> BT
+RANGE   Bb                   vmax = 0.5 * (vmax_pti + vmin_pti) vmin = 0.5 * (vmax_pti + vmin_pti)
+RANGE   All other types      vmax = 0.5 * (vmax_pti + vmin_pti) vmin = 0.5 * (vmax_pti + vmin_pti)
+======= ==================== ===========================================
+
+LOSS_SENSITIVITIES
+==================
+
+  ``/ LOSS_SENSITIVITIES``
+
+.. note::
+
+  Three commands are dependent on the ``SOLUTION`` command. The commands are ``CHANGE_PARAMETERS``, ``LINE_SENSITIVITIES``, and ``LOSS_SENSITIVITIES``. These three work correctly only if they immediately follow the ``SOLUTION`` command.
+
+This feature provides valuable information concerning system losses with respect to scheduled active and reactive generation or loads, and to scheduled voltages. The command statement that invokes loss sensitivities is::
+
+  / LOSS_SENSITIVITIES,LTC=ON,   AI_CONTROL=CON, Q_SHUNT=ADJ, 
+                           OFF,             OFF          FIXED
+  
+                   QGEN=ADJ,
+                        FIXED
+
+                   AREAS=<area1,area2,...>,
+                   ZONES=<zone1,...>
+
+The top line depicts default quantities. The options ``LTC``, ``AI_CONTROL``, and ``Q_SHUNT`` pertain to LTC transformers, area interchange control, and :math:`B_{shunt}` on type ``BQ`` buses.
+
+Three loss sensitivities are computed: :math:`\frac{dLoss}{dP_i}`, :math:`\frac{dLoss}{dQ_i}`, and :math:`\frac{dLoss}{dV_i}`.
+
+These sensitivity computations are linearized about the solved case. For small changes, the sensitivities are extremely accurate. For larger changes, non-linearities redefine the problem. A rule of thumb is that the sensitivities are sufficiently accurate for a 0.5 per unit (p.u.) change in :math:`P_i` or :math:`Q_i`, and a 0.01 p.u. change in :math:`V_i`.
+
+Each sensitivity relates changes in the system losses to a hypothetical change of 1.0 p.u. in scheduled active generation :math:`P_i`, reactive generation :math:`Q_i`, or voltage :math:`V_i`.
+
+Ordinarily, a decrease in system losses is anticipated when :math:`P_i`, :math:`Q_i`, or :math:`V_i` increases, that is, a negative loss sensitivity.
+
+:math:`\frac{dLoss}{dP_i}`
+--------------------------
+An exception often occurs for :math:`\frac{dLoss}{dP_i}. Occasionally, :math:`\frac{dLoss}{dP_i} > 0`, that is, increasing the generation :math:`P_i` increases the losses!
+
+Recall the constraint for ``Area_i``:
+
+  ``Area export = Area generation - Area load - Area losses``
+
+(Any active bus shunt :math:`G` is presumed to be accounted for in area losses.)
+
+Within each area, the generation on the slack bus is adjustable and on all other generators is fixed. Thus, a change of 1.0 p.u. on generator “i” causes two changes in the area slack bus:
+
+  * An immediate transfer of -1.0 p.u. to balance the change in generation.
+  * An additional change to reflect the change in system losses, which are affected by the 1.0 p.u. generation transfer.
+
+Note that the system slack bus or area interchange slack bus must pick up any deficit generation needed to supply loads and system losses. Thus, the sensitivity reflects the change in losses if 1.0 p.u. MW of generation is moved from bus “i” to the system or area slack bus. If the system or area slack bus is closer to the load center, the losses will decrease with the reallocation. Consequently, :math:`\frac{dLoss}{DP_i} < 0`. Otherwise, the losses will increase.
+
+:math:`\frac{dLoss}{dQ_i}`
+-------------------------
+A change in reactive generation is quite different from a change in active generation. Changes in reactive generation strongly affect the voltage profile of the system adjacent to bus “i”. Thus, a change in losses is due primarily to the change in voltage profile.
+
+:math:`\frac{dLoss}{dV_i}`
+--------------------------
+A change in scheduled voltage for types ``BE``, ``BS``, ``BQ``, or ``BG`` buses directly affects the voltage profile of the system adjacent to bus “i”. Thus, the change in voltages directly affects system losses. In general, higher voltages are accompanied with lower branch currents and hence, lower line losses. Exceptions may occur in cables where large amounts of inductive shunt are necessary to compensate for the capacitance in cable.
+
+MERGE_OLD_BASE and MERGE_NEW_BASE
+=================================
+
+  ``/ MERGE_OLD_BASE and / MERGE_NEW_BASE``
+
+These subprocesses extract a subsystem from an old base file and merge it with another subsystem to generate a new system. The subsystems are defined by various qualifiers following the ``MERGE`` command.::
+
+  / MERGE_OLD_BASE,SUBSYSTEM_ID= <subsystem_label>,  
+    OLDBASE_FILE = <file_spec>
+
+and::
+
+  / MERGE_NEW_BASE,SUBSYSTEM_ID = <subsystem_label>,
+          BRANCH_DATA_FILE = <file_spec>, DATE = <myy>,
+          R = <n>, BUS_DATA_FILE = <file_spec>
+
+where:
+
+  * ``file_spec`` is the file specification for the pertinent file. If ``file_spec`` has the value ``*`` for either the ``BUS_DATA_FILE`` or ``BRANCH_DATA_FILE``, the data is presumed to be the Powerflow command file.
+  * ``subsystem_label`` is the identifying label for the merged subsystem.
+  * ``DATE`` is the branch extraction date. Branches selected will have their energization date on or before ``DATE`` and a de-energization date after ``DATE``.
+  * The month field (as a digit) also defines winter or summer extended ratings::
+     
+    ``m = 1`` selects winter peak ratings.
+    ``m = 8`` selects summer peak ratings.
+
+    See Table 4-11 for the complete listing.
+  
+  * For other values, it is necessary to use an additional parameter ``R`` defined in the next section.
+  * ``R`` specifies extended ratings from the branch data file. See Table 4-15 and Table 4-16. Also, see Figure 4-11 and Figure 4-12. Two modes of operation are available:
+  ** Merge a subsystem from one ``OLD_BASE`` file with another subsystem from a different old base file.
+  ** Merge a subsystem from an ``OLD_BASE`` file with another subsystem which is newly created from bus and branch records.
+
+The two merge control cards distinguish the source of the subsystem data. ``/ MERGE_OLD_BASE`` identifies an ``OLD_BASE`` file, and ``/ MERGE_NEW_BASE`` identifies the bus and branch records files from which a new subsystem will be constructed.
+
+The ``R`` code indicates which extended ratings from the branch data file should be used. For example, the ``R=2`` code in the following card indicates that extra heavy ratings should be used.
+
+  ``/MERGE_NEW_BASE,SUBSYSID-BR_BUS,BRAN=BDCY89.DAT,DATE=196,R=2,BUSD=J96EH.BUS``
+
+Powerflow uses appropriate ratings from the branch data for the peak winter (``R=1``), peak summer (``R=8``), extra heavy (``R=2``), moderate cold (``R=3``), and spring (``R=4``) choices.
+
+If the thermal or bottleneck rating on a branch is blank or zero in the columns for extra heavy or moderate cold ratings, the peak winter rating is used (if available). Similarly, if the thermal, bottleneck, or emergency rating on a branch is blank or zero in the columns for spring ratings, the peak summer rating is used (if available).
+
+The chosen ratings are moved to columns 81 through 92 on the branch record in Powerflow.
+
+.. image:: ../img/Extended_Ratings_Fields_for_L_and_E_Records.png
+
+======= ====================== =============================
+Column  Rating (“R” Selection) Field Description
+======= ====================== =============================
+81-84   1                      Winter Thermal (WT)
+85-88   1                      Winter Bottleneck (WB)
+89-92                         (not used)
+93-96   8                     Summer Thermal (ST)
+97-100  8                     Summer Bottleneck (SB)
+101-104                       (not used)
+105-108 2                     Extra Heavy Thermal (EHT)
+109-112 2                     Extra Heavy Bottleneck (EHB)
+113-116 3                     Moderate Cold Thermal (MCT)
+117-120 3                     Moderate Cold Bottleneck (MCB)
+121-124 4                     Spring Thermal (SPT)
+125-128 4                     Spring Bottleneck (SPB)
+======= ====================== =============================
+
+.. image:: ../img/Extended_Ratings_Fields_for_T_and_TP_Records.png
+
+
+======= ====================== =============================
+Column  Rating (“R” Selection) Field Description
+======= ====================== =============================
+81-84   1                      Winter Thermal (WT)
+85-88   1, 2, 3                Winter Emergency (WE)
+89-92   1                      Winter Bottleneck (WB)
+93-96   8                      Summer Thermal (ST)
+97-100  8                      Summer Emergency (SE)
+101-104 8                      Summer Bottleneck (SB)
+105-108 2                      Extra Heavy Thermal (EHT)
+109-112 2                      Extra Heavy Bottleneck (EHB)
+113-116 3                      Moderate Cold Thermal (MCT)
+117-120 3                      Moderate Cold Bottleneck (MCB)
+121-124 4                      Spring Thermal (SPT)
+125-128 4                      Spring Emergency (SPE)
+129-132 4                      Spring Bottleneck (SPB)
+======= ====================== =============================
+
+MERGE qualiﬁers
+---------------
+
+  ``>EXCLUDE_BRANCHES``
+
+Use this command to exclude from the subsystem branches following this statement. Each branch is identified with a separate ``L``, ``E``, or ``T`` formatted record.
+
+  ``>INCLUDE_BUS``
+
+Use this command to identify additional buses which are to be included in the selected subsystem. Each bus is identified with a separate ``B`` formatted record.
+
+  ``>INTERFACE_BRANCHES``
+
+Use this command to list individual interface branches. Each such interface branch is identified with a separate ``L``, ``E``, or ``T`` formatted record.::
+
+  >INTERFACE_PREF=COMP
+                  REJECT
+                  ACCEPT
+
+This command assigns preference weights on competing interface branches listed following the statement. Two subsystems to be merged are usually topologically complementary and have common branches. These branches are called interface branches. During merging, two sets of competing interface branches vie for selection in the final system. In the absence of any information supplied, the default decision is to select the interface branch with the most detail.
+
+The command above allows the user to assign preferences for the interface branches for each system. Each such interface branch is identified on a standard ``L``, ``T``, or ``E`` formatted record. ``ACCEPT`` and ``REJECT`` must complement each other, or both sets of interface branches will be accepted or rejected.
+
+``COMP`` forces comparison of common interface branches from the two subsystems. Acceptance from one subsystem and rejection from the other is determined on the basis of matching bus and branch ownerships. The assumption is that the bus owner always has better branch data. For BPA users, WSCC data is accepted when branch ownerships cannot be determined from data.::
+
+  >MERGE_RPT = SORTED
+               UNSORTED
+
+This command requests the specific level of merge report. This feature is not yet implemented.
+
+  ``>RENAME_BUS``
+
+This command provides a convenient way to resolve potential conflicts of identically named but topologically distinct buses. This command introduces ``B``-formatted records with the old name in columns 7-18 and the new name in columns 20-31.
+
+  ``>SAVE_AREAS``
+
+Use this command to save areas of the subsystem listed following this statement. Each area is identified with a separate ``A``-formatted area record.
+
+  ``>SAVE_BASES <list>``
+
+This command saves buses whose base kV’s match the list. Elements of the list are separated by commas (``,``) and terminated by a period (``.``).
+
+  ``>SAVE_BUSES``
+
+This command saves listed buses of the subsystem. Saved buses are named on separate B-formatted bus records following.
+
+  ``>SAVE_ZONES <list>``
+
+This command saves listed zones of the subsystem. Elements of the list are separated with commas. Example: ``> SAVE_ZONES NA, NB``
+
+  ``>USE_AIC``
+
+This command specifies that ``A`` records should be generated from the old base file defined by the ``OLD_BASE`` statement.
+
+MVA_BASE
+========
+
+::
+
+  / MVA_BASE =    100 
+                <number>
+
+This command changes the base MVA from the default value of 100 MVA to an assigned value.
+
+NETWORK_DATA
+============
+
+::
+
+  / NETWORK_DATA ,FILE= *,            RXCHECK = ON
+                        <filespec>,             OFF
+
+This introduces network bus and branch data into the program. No old base case is in residence. ``RXCHECK = ON`` enables :math:`R/X` ratios checking.
+If the ``FILE`` parameter value is asterisk (``*``), then bus and branch data is assumed to immediately follow this command.
+
+NEW_BASE
+========
+
+  ``/ NEW_BASE , FILE = <filespec>``
+
+This command defines the name of the new base file to save the network solved by the case run. It may be the same as the old base file, if you want to overwrite it.
+
+ OI_LIST
+ =======
+
+   / OI_LIST = NONE
+               TIELINE
+               MATRIX
+               FULL
+
+This is used to list ownership interchange. Owners are listed using the expanded owner identifications hard-coded in the program. See ?? for the complete list.
+
+OLD_BASE
+========
+
+::
+
+  / OLD_BASE, FILE = <filespec>, REBUILD = OFF 
+                                           ON
+
+This command specifies that a previously solved Powerflow case is to be loaded from the specified file and used as the base system for the current request.
+
+  ``<filespec>`` The file specification of the solved network to be re-solved.
+
+The ``REBUILD`` switch causes the program to rebuild all of the tables and starts the solution with a “flat start.”
+
+OUTAGE_SIMULATION
+=================
+
+  ``/ OUTAGE_SIMULATION``
+
+This command simulates the effect of line outages, load dropping, generator outages, and generator rescheduling. It invokes a process which modifies the base case data in residence. For this reason, this process should not be used with any other process.::
+
+  / OUTAGE_SIM 
+  > OLDBASE = filespec 
+   .......
+   .......
+   .......   Optional Outage Simulation Required Qualifiers
+   .......
+   .......
+
+where:
+
+  ``filespec`` File specification for the base file to be loaded to begin the process.
+
+OUTAGE_SIMULATION Qualiﬁers
+---------------------------
+
+::
+
+  >ANALYSIS = OFF, MINLOADING = 100
+              ON                <num>
+
+This command specifies the threshold loading of a line to be included as contingency-caused overloads. This threshold may be raised on individual branches to screen out base case overloads.::
+
+  >COMMON_MODE, FILE = *
+  >COMMON_MODE_ONLY, FILE =*
+
+These two commands introduce a script which defines one or more "common-mode" outages.  The second form restricts the outage simulation study to include only common mode outages.  In this case, it is still necessary to introduce an associated ``>OUTAGE`` record, but it is used only to define the zones and bases of interest.
+
+The simulation and analysis of any common-mode outages complements in a seamless fashion that for the ordinary single-contingency branch outages. The script associated with the common mode study can be either in a separate file (in which case a file name would be specified) or in the input stream (in which case a file name ``*`` is specified).
+
+Each common-mode outage consists of two parts: A common-mode identification record (``>MODE``) and the set of  WSCC-formatted bus an/or branch changes which are associated with that common mode outage. It is useful and recommended to annotate this script with comment text. An example will illustrate all the points mentioned.::
+
+  > MODE B/D DRISCOLT 230
+  B D   DRISCOLT 230 
+  . Above common mode outage takes out the following lines: 
+  .       DRISCOLT 230 ALLSTON  230 
+  .       DRISCOLT 230 CLATSOP  230 
+  .       DRISCOLT 230 DRISCOLL 230 
+  .
+
+Here, the name of the introduced common-mode outage is "B/D DRISCOLT 230".  The name is arbitrary; it should be sufficiently distinct to contrast it with entities associated with ordinary single contingency branch outages. The name is 40-characters long, is defined in columns (7:47) on the ``> MODE`` records, and is truncated to 31 columns in certain Outage Analysis listings where it must compete with the single contingency branch outages. A maximum of 50 ``>MODE`` records are permitted.
+
+Each ``>MODE`` record is accompanied with an set of arbitrary change records which specifically define all of the changes in the system that are effected by the common mode. If no change records are submitted, the ``>MODE`` record is meaningless, since it would not perturb the system in any manner.
+
+The common mode changes permitted are restricted to the following:
+
+  * Bus deletion (``D``) and modification (``M``).
+  * Continuation bus deletion (``D``) and modification (``M``).
+  * Branch deletion (``D``).
+
+The change methodology is identical with that used elsewhere. A bus deletion, for example, automatically deletes all components associated with it. Implementation, however, expedites the change, but in a manner designed to maximize the computational efficiency. The same bus deletion, to repeat the example, is effected by temporarily changing the impedance of all emanating branches to 10000.0 p.u. X, and preserving a small residual admittance for the bus.
+
+With judicious selection of change records, it is possible to simulate complex scenarios such as the loss of switching CAPs followed with the loss of a transformer.
+If the common mode changes isolate even a single bus in the system, the outage is skipped and the isolation is noted within the outage analysis reports.
+
+Although every attempt was made to simulate common mode outages as efficiently as possible, the highly efficient line compensation schemes that were utilized in the single contingency branch outages could not be used here. Each common mode outage requires refactorization of the associated network matrices.
+
+::
+
+  >DEBUG = OFF
+           ON
+
+This turns on debug dumps.
+
+.. note::
+
+  Caution! These dumps can be enormous.
+
+  ``>DEFAULT_RATING``
+
+This command indicates that the following text is line default data. Branches in the specified areas of interest are examined for zero rating (which is an omission of data). If the base kVs of the terminals match the kV in the following default ratings, new ratings are assigned to their branches. They then become candidates for branch overload checking following an outage.
+
+See the table below for the format of default ratings.
+
+=============== =================================================
+Column Position Content
+=============== =================================================
+1-3             (blank)
+4-7             Base kV
+10-13           Base kV if transformer; blank or zero if line
+16-19           Default rating (amps if line; MVA if transformer)
+=============== =================================================
+
+  ``>ELIM_LINE_R``
+
+This command specifies that all line resistance in the eliminated system is replaced with equivalent current injection. The equivalent network, as modified by this option, is easier to solve.::
+
+  >EXPAND_NET = 2
+                <nn>
+
+This command specifies that the border of the selected equivalent network should emanate outwards an additional number of buses. The expansion selected should be less than 100.::
+
+  >GEN_OUTAGE = NONE
+                <nn>
+
+This command specifies the maximum number of generator outages for rescheduling.
+
+  ``>INCLUDE_CON = <filespec>``
+
+Use this command to divert the input stream to an auxiliary file that contains ``/ OUTAGE_SIMULATION`` text. This auxiliary file cannot contain a recursive ``/ INCLUDE_CON`` statement.::
+
+  >LOW_VOLT_SCREEN = 80
+                     <num>
+This command specifies a contraction for overload values to compensate for effects of voltage changes. It lowers the threshold which tests for overloaded lines.::
+
+  >MIN_EQUIV_Y = .02
+                 <num>
+
+This command specifies minimum admittance of equivalent branches.::
+
+  >NO_SOLUTION, ANGLE = 3.0, DELTA_V = .5
+                        <num>          <num>
+
+This command specifies conditions for no solution (or no convergence). ANGLE is the largest excursion angle (from one iteration to another) in radians relative to the slack bus.
+
+  ``>OLD_BASE = <filespec>``
+
+``<filespec>`` is file specification of the solved network to be re-solved.
+
+Because ``/ OUTAGE_SIMULATION`` is a stand-alone process, it must begin by loading an old base file which is introduced using this command.::
+
+  >OUTAGE, ZONES = *      BASES= *
+                   <list>        <list>
+
+This command specifies the ``ZONES`` and voltage levels where outages should be taken. Elements of the list should be separated by commas.::
+
+  >OUTPUT_SORT , OVER_OUT
+                 OUT_OVER, OWNER
+                 BOTH
+
+This command specifies the sort order for output listing in terms of overloads and associated outages. The ``OWNER`` option requests ownership-bus sort order.::
+
+  >OVERLOAD, ZONES = *      BASES= *
+                     <list>        <list>
+
+To specify zones and voltage levels where overload should be monitored, use this command. Entities in list should be separated by commas.::
+
+  >PHASE_SHIFT = FIXED_POWER
+                 FIXED_ANGLE
+
+This command specifies phase-shifter representation constant branch power or constant phase shift angle.::
+
+  >REACTIVE_SOL = ON
+                  OFF
+
+This command invokes the reactive solution feature. Normally, only the P-constraints are held.::
+
+  >REALLOCATE = NONE
+                LOAD
+                LOADGEN
+
+This command specifies that load may be shed, generation changed, or both, in order to relieve overload.::
+
+  >REDUCTION = NONE,REI=OFF
+               SIMPLE   ON
+               OPTIMAL
+
+This command requests the reduction feature and specifies the type of reduction.::
+
+  >REDUCTION_DEBUG = NONE
+                     MINOR
+                     MAJOR
+
+This is used to request the debug feature.::
+
+  >RELAX_BR_RATE = ON,PERCENT=5.0
+                   OFF        <NUM>
+
+This command requests that the branch ratings be relaxed by a certain percentage.::
+
+  >SET_RATINGS, NOMINAL, FILE = <filespec>
+                SUMMER
+                WINTER
+
+This command specifies the special ratings of branches that are used for overload determinations. The number of branches whose ratings are specified in ``FILE`` is given by a records parameter. Specification records follow this qualifier if the file parameter is omitted. Rating records are described in the table below.
+
+=============== ==========================
+Column Position Content
+=============== ==========================
+7-15            bus name
+16-19           base voltage
+21-27           bus name
+28-31           base voltage
+32              parallel identiﬁcation
+34-37           nominal amps rating
+39-42           summer amps rating
+44-47           winter amps rating
+=============== ==========================
+
+::
+
+  >SOL_ITER, FIXED = 3
+                    <nn>
+
+This command sets the solution iteration limit per outage. Divergence is assumed when this limit is exceeded.
+
+::
+
+  >TOLERANCE = .005
+               <num>
+
+This specifies the convergence tolerance in per unit power. Convergence is assumed when mismatch is less than this value. Larger values (0.05) yield fast, approximate solutions; smaller values yield slower, more exact solutions.
+
+Debugging techniques
+--------------------
+The following method has proved to be a useful tool for debugging the Outage Simulation Program (OSP) interactively. In invoking this option, three events occur.
+
+  1. After the equivalent reduced system is established but before the individual branch outages are taken, the user interactively selects from the full set of branch outages one or more outages. The unselected outages will be ignored.
+  2. Debugging switches are turned on.
+  3. Salient process and status information about each outage is displayed on the screen.
+
+This is most useful to confine the study to a single questionable outage which them will to be compared with the results of an IPF change case depicting the same outage. To invoke this, enter the two following  DCL commands in a terminal window.::
+
+  $ DEBUG_OUTAGE_SIMULATION_STUDY :== ON 
+  $ RUN IPF_EXE:FSTOUT.EXE_V321
+
+The second command executes the OSP interactively. After responding to the prompted Power Flow Control file and waiting a few minutes, OSP’s special debugging in invoked.
+
+ Enter outage range (n:m), 0=Save, -1=Cancel)
+
+You must select the outage by trial and error using a binary search. Enter a candidate outage branch index (say 127). The dialog continues (using an actual case for an example).
+127 outage BELNGM P 115.0 CARILINA 115.0 1 : Select? (Y or N)
+Selecting "Y" will add this to the outage set’ "N" will ignore it. If the displayed outrage is alphabetically lower than the desired outage, respond with "N" and enter a higher outage number at the next prompt.  If it is higher do the opposite. The dialog loops for additional selections or searches.
+ Enter outage range (n:m), 0=Save, -1=Cancel)
+ 
+Eventually, when the desired ouages(s) is (are) selected, the process is exited with either option ("0", saving the selection and continuing or "-1", ignoring the selection and continuing).
+
+OVERLOAD_RPT
+============
+
+::
+
+  / OVERLOAD_RPT, TX =        90.  , LINE = 90.
+                             <num>         <num>
+
+This command sets the percentage of line and transformer ratings above which line and transformer loadings are listed in the analysis report.
+
+P_ANALYSIS_RPT
+==============
+
+::
+
+  / P_ANALYSIS_RPT , LEVEL =     2 , *
+                                 1   ZONES=<list>
+                                 3   OWNERS=<list>
+                                 4
+
+Use this command to specify the printed analysis report.
+
+When ``<list>`` is blank, asterisk or null, ``ALL`` is assumed unless limited by a preceding statement.
+
+The level number determines the analysis summaries to be displayed.
+
+For ``LEVEL=1``, the following summaries are included:
+
+  * User-defined analysis (optional).
+  * Buses with unscheduled reactive.
+
+For ``LEVEL=2``, the following are displayed with summaries for ``LEVEL=1``:
+
+  * Total system generations and loads by owner.
+  * System generations, loads, losses and shunts by zones.
+  * Undervoltage-overvoltage buses.
+  * Transmission lines loaded above XX.X% of ratings.
+  * Transformers loaded above XX.X% of ratings.
+  * Transformer excited above 5% over tap.
+  * Transmission system losses.
+  * BPA industrial loads.
+  * dc system.
+  * Shunt reactive summary.
+  * Summary of LTC transformers.
+  * Summary of phase-shifters.
+  * Summary of %Var-controlled buses.
+  * Summary of type BX buses.
+  * Summary of adjustable Var compensation.
+  * Transmission lines containing series compensation.
+
+For ``LEVEL=3``, the following is displayed in addition to the ``LEVEL=2`` output:
+
+  * Bus quantities.
+
+For ``LEVEL=4``, the following are displayed in addition to the ``LEVEL=3`` display:
+
+  * Spinning reserves.
+  * Transmission line efficiency analysis. Lines loaded above XX.X% of nominal ratings.
+  * Transformer efficiency analysis. Total losses above X.XX% of nominal ratings.
+  * Transformer efficiency analysis. Core losses above X.XX% of nominal ratings.
+
+Example
+-------
+
+::
+
+  / F_ANALYSIS_RPT, LEVEL=4, OWNERS= BPA,PGE,PPL,WPS 
+  / P_ANALYSIS_RPT, LEVEL=1, ZONES = NA, NB, NC 
+  / F_ANALYSIS_RPT, LEVEL=4, * 
+  / P_ANALYSIS_RPT, LEVEL=1, ZONES = *
+
+P_INPUT_LIST
+============
+::
+
+  / P_INPUT_LIST , NONE
+                   FULL,  ERRORS = NO_LIST
+                                   LIST
+                   ZONES = <list>
+                   ZONES = ALL, FULL, or NONE
+
+This command lists input data on ``PAPER``. Output can be restricted to individual zones specified in ``<list>``, which are separated with commas. Note that ``FULL`` or ``NONE`` may be specified in two forms.
+
+The ``ERRORS`` options can be set to ``NO_LIST`` to suppress the input listing if any Fatal (F) errors are encountered.
+
+Example: ::
+
+  PWRFLO case: 9BUS proj: TEST-CASE * * * INPUT LISTING * * * 9 BUSSES 8 EQUIVALENT BR PAGE 3 14-JUN-94
+  
+   BASIC NINE-BUS CASE 
+   FOR EXAMPLE REPORTS
+
+  BS GEN1 16.5 2 .0PL .0QL .0PS .0QS 240.0PM 306.2PG 150.0QH -100.0QL 1.040VH .0VL 
+   T 1 GEN1 HI 230.0 0 0 MVA 0 C .00000 R .05760 X .00000 G .00000 B 16.50 230.00 0 T 0 E 0 B 0IN 
+  B GEN1 HI 230.0 2 .0PL .0QL .0PS .0QS .0PM .0PG .0QH .0QL .000VH .000VL 
+   T 2 GEN1 16.5 0 0 MVA 0 C .00000 R .05760 X .00000 G .00000 B 230.00 16.50 0 T 0 E 0 B 0IN 
+   L 2 STA A 230.0 0 0 AMP 0 C .01000 R .08500 X .00000 G .08800 B .0 MI 0 T 0 B 0IN 
+   L 1 STA B 230.0 0 0 AMP 0 C .01700 R .09200 X .00000 G .07900 B .0 MI 0 T 0 B 0IN 
+  BQ GEN2 18.0 1 .0PL .0QL .0PS .0QS 180.0PM 163.0PG 120.0QH -80.0QL 1.025VH .000VL 
+   T 1 GEN2 HI 230.0 0 0 MVA 0 C .00000 R .06250 X .00000 G .00000 B 18.00 230.00 0 T 0 E 0 B 0IN 
+  B GEN2 HI 230.0 1 230.0PL .0QL .0PS .0QS .0PM .0PG .0QH .0QL .000VH .000VL 
+   T 2 GEN2 18.0 0 0 MVA 0 C .00000 R .06250 X .00000 G .00000 B 230.00 18.00 0 T 0 E 0 B 0IN 
+   L 1 STA A 230.0 0 0 AMP 0 C .03200 R .16100 X .00000 G .15300 B .0 MI 0 T 0 B 0IN 
+  BQ GEN3 13.8 2 .0PL .0QL .0PS .0QS 130.0PM 85.0PG 80.0QH -60.0QL 1.025VH .000VL 
+   T 1 GEN3 HI 230.0 0 0 MVA 0 C .00000 R .05860 X .00000 G .00000 B 13.80 230.00 0 T 0 E 0 B 0IN 
+  B GEN3 HI 230.0 2 .0PL .0QL .0PS .0QS .0PM .0PG .0QH .0QL .000VH .000VL 
+   T 2 GEN3 13.8 0 0 MVA 0 C .00000 R .05860 X .00000 G .00000 B 230.00 13.80 0 T 0 E 0 B 0IN 
+   L 1 STA B 230.0 0 0 AMP 0 C .03900 R .17000 X .00000 G .17900 B .0 MI 0 T 0 B 0IN 
+   L 1 STA C 230.0 0 0 AMP 0 C .01190 R .10080 X .00000 G .10450 B .0 MI 0 T 0 B 0IN 
+  B STA A 230.0 1 125.0PL 50.0QL .0PS .0QS .0PM .0PG .0QH .0QL .000VH .000VL 
+   L 1 GEN1 HI 230.0 0 0 AMP 0 C .01000 R .08500 X .00000 G .08800 B .0 MI 0 T 0 B 0IN 
+   L 2 GEN2 HI 230.0 0 0 AMP 0 C .03200 R .16100 X .00000 G .15300 B .0 MI 0 T 0 B 0IN 
+  B STA B 230.0 2 90.0PL 30.0QL .0PS .0QS .0PM .0PG .0QH .0QL .000VH .000VL 
+   L 2 GEN1 HI 230.0 0 0 AMP 0 C .01700 R .09200 X .00000 G .07900 B .0 MI 0 T 0 B 0IN 
+   L 2 GEN3 HI 230.0 0 0 AMP 0 C .03900 R .17000 X .00000 G .17900 B .0 MI 0 T 0 B 0IN 
+  B STA C 230.0 2 100.0PL 35.0QL .0PS .0QS .0PM .0PG .0QH .0QL .000VH .000VL 
+   L 2 GEN3 HI 230.0 0 0 AMP 0 C .01190 R .10080 X .00000 G .10450 B .0 MI 0 T 0 B 0IN
+  
+  PWRFLO case: 9BUS proj: TEST-CASE * * * INPUT LISTING * * * 9 BUSSES 8 EQUIVALENT BR PAGE 3 14-JUN-94
+
+P_OUTPUT_LIST
+=============
+
+::
+  
+  / P_OUTPUT_LIST, NONE,  FAILED_SOL = FULL_LIST
+                   FULL                PARTIAL_LIST
+                   ZONES = <list>      NO_LIST
+                   ZONES = ALL, FULL, or NONE
+
+This command lists output on ``PAPER``. Output can be restricted to individual zones specified in ``<list>``, which are separated with commas. Note that ``FULL`` or ``NONE`` may be specified in two forms.
+
+The ``FAILED_SOL`` option is set to override the output listing if a failed solution occurs. It defaults to a full listing. A ``PARTIAL_LIST`` observes zone lists.
+
+Example: ::
+
+  PWRFLO case: 9BUS proj: TEST-CASE * * * * DETAILED OUTPUT LISTING * * * * PAGE 8 14-JUN-94
+  
+  BASIC NINE-BUS CASE 
+  FOR EXAMPLE REPORTS
+
+
+  A COMPLETE OUTPUT LISTING OF ALL BUSSES WILL BE GIVEN
+
+  GEN1    16.5   17.2KV/ .0 ZONE  2 306.2PGE  72.5QCOND  .0PLOAD    .0QLOAD      1.040PU KV      BUS TYPE S       GEN1 HI   230.0                     2 306.2PIN   72.5QIN      0.0PLOSS    52.7QLOSS          16.5/230.0                                               306.2PNET  72.5QNET                                         0.0 SLACK ADJ
+
+
+REBUILD
+=======
+::
+
+  / REBUILD = OFF
+              ON
+
+This command requests that all internal data tables be rebuilt using the current specified ``OLDBASE`` file. This has the same effect in a case as the ``REBUILD`` parameter on the ``/ OLD_BASE`` statement.
+
+REDUCTION
+=========
+
+  ``/ REDUCTION``
+
+This command reduces the network in residence to a desired size and solves the reduced network. It can be saved or processed further as an ordinary base case. For more detail on the methods used, see ??.::
+
+  / REDUCTION
+  .......
+  .......
+  ....... Optional Reduction Qualifiers
+  .......
+  .......
+
+Reduction Qualiﬁers
+-------------------
+
+  ``>COHERENT_CLUSTERS, <name> <base kV>``
+
+This identifies row-coherent generators (or load) of an REI subsystem. The name must be unique, containing 1-7 characters without blanks and be left-justified. The REI components, which will have their generation and/or load transferred to the coherent generator, are identified with ordinary WSCC-formatted bus (Type B) records which follow.
+
+The named constituent buses which comprise each coherent cluster may be either retained or eliminated buses. In either case, the constituent buses will be eliminated.
+
+Special codes on each bus permit individual dispositions of generator and load quantities. Generation and/or load may be converted to constant current, constant admittance, or converted to an REI coherent unit. The codes are show in the table below.
+
+============== =======================
+Column         Value
+============== =======================
+3 (Generation) 0 - Constant Current
+3 (Generation) 1 - Constant Admittance
+3 (Generation) Blank or 2 - REI
+4 (Load)       0 - Constant Current
+4 (Load)       1 - Constant Admittance
+4 (Load)       Blank or 2 - REI
+============== =======================
+::
+  
+  >DEBUG = NONE
+           MINOR
+           MAJOR
+           ORDERING
+
+Use this to request the debug feature.
+
+======== ===============================================================================
+Debug    Effect
+======== ===============================================================================
+Minor    Minimal debug.
+Major    Includes dump of intermittent reduction steps.
+Ordering Includes full dump of reordering arrays during each nodal elimination step.
+======== ===============================================================================
+::
+
+  >ELIM_MODE, GEN = CURRENT, LOAD = CURRENT, SHUNT_Y = ADMITT
+                    ADMITT          ADMITT             CURRENT
+                    REI,PMIN=<n>    REI                REI
+
+This command determines how the nodal generation, load, and shunt admittance on eliminated nodes is to be processed. It does not affect the original quantities of the interior or envelop (border) nodes. The disposal options are to convert selected quantities to nodal current, to nodal shunt admittance, or to append them to an REI node.
+>ENVELOPE_BUSES = BE
+This command, when elected, changes the subtypes of all envelope node to type BE. Its primary merit is to secure the voltages of the terminal buses at their base case values an improve the solvability of the reduced equivalent system. The default option is to leave the envelope buses in their original subtype.
+>EXCLUDE_BUSES
+This command excludes from the retained network the buses listed on the bus-formatted records following this statement. Its purpose is to allow more flexibility in the definition than allowed with a simple SAVE_BASES or SAVE_ZONES. Obviously, the retained system must already be defined by a prior SAVE_BASES or SAVE_ZONES command.
+>INCLUDE_BUSES
+This command includes in the retained network additional buses listed on the bus-formatted records following this statement. Its purpose is to allow more flexibility in the definition than allowed with a simple SAVE_BASES or SAVE_ZONES. Obviously, the retained system must already be defined by a prior SAVE_BASES or SAVE_ZONES command.
+>INCLUDE_CON = <filespec>
+Use this command to include a set of user-specified default command qualifiers, which is stored in a file. Such a default command file should not contain this / INCLUDE_CON statement.
+>KEEP_AI_SYS = ON               OFF
+This command requests that the equivalent network will retain all of the attributes of area interchange control. This includes all area slack nodes and all tie line terminal nodes.
+>MIN_EQUIV_Y = .02               <num>
+This command specifies the minimum admittance of equivalent branches that are retained. Its purpose is to reduce the large number of equivalent branches which are generated, some of which have such large impedances that their contribution to the flows are marginal. A smaller value of 1.0 is recommended. Equivalent branches which have lower admittances (or what is the same, higher impedances) will be replaced with equivalent shunt admittances at both terminals.
+>OPTIMAL_REDU = ON                OFF
+This command switches the optimal network determination feature, which precedes the actual network reduction. When the optimal network selection is ON, it may enlarge the user-specified retained system with optimally selected nodes such that the overall size of the reduced system will be minimized. In essence, it expands the boundary into the eliminated system in a manner which will topologically result in an equivalent network having more buses but fewer branches overall. Thus, the user defines a fuzzy retained system containing the minimum desired configuration, and the optimal network selection will enlarge the network if feasible.
+>RETAIN_GEN = OFF, PMIN = 100.0              ON          <num>
+This command selected all generators with generation > PMIN to be in the retained network.
+>REI_CLUSTERS, VOLT_DIFF =.25, ANGLE_DIFF = 20.                          <num>            <num>
+This command works in conjunction with the REI option on the ELIM_MODE command. An attempt is made to automatically consolidate REI clusters which may have only a single node. However, their consolidation may result in an equivalent REI node whose voltages are too bizarre. It is electrically correct, but may cause solution problems since voltages are initialized about 1.0. By restricting the voltage differences of REI consolidation candidates to those whose voltage differences are less than the user-prescribed value, the resultant consolidated REI cluster will have a more feasible voltage.
+>SAVE_BASES = <list>
+This command defined the retained network as consisting of those buses which have the base kvs in list. Elements of list are separated with commas (,).
+>SAVE_BUSES
+This command defines the retained network as consisting of all buses identified on the following bus-formatted records. It is a brute force method to define the retained network. It cannot be used in conjunction with SAVE_ZONES or SAVE_BASES. See INCLUDE_BUSES.
+>SAVE_ZONES = <list>, BASES = <list>
+This command defines the retained network as consisting of those buses which have zones in the first list, with the optional, additional provision that their base kvs must be in the second list. Elements of the list are separated with commas (,).
+>STARTING_VOLTAGES = FLAT                     HOT
+This command defines the starting voltages which will be used in the ensuing rebuilding and solution of the reduced equivalent base. The default is FLAT, meaning that the solution will use flat starting voltages. There are two separate applications for this option.
+The first application is to verify the integrity of the equivalent bus and branch data structures from the complex reduction processing. When used in conjunction a another solution option
+/ SOLUTION > BASE_SOLUTION
+the ensuing convergence checks performed in output report independently verify the validity of the reduced bus and branch data.
+The second application is to assist in a solution of a reduced equivalent system if such assistance becomes necessary.
+>ULT_MODE, GEN = CURRENT, LOAD = CURRENT,SHUNT_Y = ADMITT                 ADMITT          ADMITT            CURRENT                 POWER           POWER             POWER
+This command defines the ultimate form which the currents distributed from the eliminated nodes to the border nodes will attain. It affects only the border nodes. Note that before the elimination, the generation, load, and shunt of each eliminated node is disposed as defined by the command ELIM_MODE. Those quantities, which were distributed as three separate current vectors during the network reduction, are now to be transformed into their ultimate form. The distributed currents (generation, load, and shunt) will be encoded into special types of ``+A`` continuation buses with ownership ``***``.
+
+======= ====================== ========= ===============================================
+Option  Meaning                Code year Comment
+======= ====================== ========= ===============================================
+CURRENT Constant current model 01        The load ﬁelds are interpreted as constant current, constant power factor
+ADMITT  Constant admittance    01        The shunt ﬁelds are interpreted in the ordinary manner.
+POWER   Constant MVA           02        The generation ﬁelds are interpreted in the ordinary manner.
+====== ====================== ========== ====================================
+
+It should be noted that the special continuation records ``+A`` with ownership ``***`` will always be generated to hold the equivalent shunt admittance which results from the admittance to ground in the eliminated system.
+
+RPT_SORT
+========
+::
+
+  / RPT_SORT = BUS
+               ZONE
+               AREA
+               OWNER
+
+This command sorts output information of a solved network by bus, zone, area, or ownership. The area sort is by ``AO`` records, not by ``A`` records. See section :ref:`Area Output Sort`.
+
+SAVE_FILE
+=========
+::
+
+  / SAVE_FILE, TYPE = WSCC_ASCII,  FILE = <filespec>
+                      WSCC_BINARY
+  
+  / SAVE_FILE, TYPE = NEW_BASE, FILE = <filespec>
+  
+  / SAVE_FILE, TYPE = NETWORK_DATA, FILE = <filespec>,
+               DIALECTS = BPA,
+                          WSCC,
+                          WSCC1,
+                          PTI,
+               SIZE = 120,
+                       80,
+               RATINGS = EXTENDED
+                         MINIMUM
+                         NOMINAL
+  
+  / SAVE_FILE, TYPE = CHANGES, FILE = <filespec>
+
+These commands request that the identified file type be written to the named file.
+Type = WSCC_ASCII or type = WSCC_BINARY writes an interface file which can be read by the WSCC Stability Program (version 9 or greater) in lieu of an IPS history file. The filename must be specified. The file can be written in either formatted ASCII or unformatted binary format. The binary format is more compact, but the ASCII file can be freely transferred between platforms with unlike hardware and/or operating systems. The file contains only that powerflow information which is required by the Stability Program; it is not a complete base case.
+Type = NEW_BASE is identical in function to the command /NEW_BASE, file = <filename>
+Type = NETWORK_DATA writes the complete network data file in various WSCC-formatted dialects.
+
+  * The BPA dialect writes the network data in the form most identical to its originally submitted form.
+  * The WSCC dialect ignores Interarea "I" records, consolidates all "+" bus records (with the exception of +A INT records) with the associated B-record; writes types L,E,T,TP,LM, and RZ branch records in the order of their original submittal; writes type R records in the order adjustable tap side to fixed tap side, or hi-low; writes type LD records in the order rectifier-inverter; writes all branch data with a minimum of X  = 0.0005 p.u.; sets Vmin on bus types BV, BX, BD, and BM to 0.0, sets non-zero Qmin on bus types B , BC, BV, and BT to zero; changes type BE buses with non-zero Q-limits to type BQ; and changes zero Qmin and Qmax on type BE buses to type B.
+  * The WSCC1 dialect includes all of the WSCC dialect mentioned above, and includes consolidating all branches consisting of sections into a single equivalent branch.
+  * The PTI dialect ignores Interarea "I" records, consolidates all "+"  bus records with the associated B-record; sets Vmin on bus types BV, BX, BD, and BM to 0.0, sets non-zero Qmin on bus types B , BC, BV, and BT to zero; changes type BE buses with non-zero Q-limits to type BQ; and changes zero Qmin and Qmax on type BE buses to type B.writes types L, E, T, TP, and RZ (ignores type LM) branch records in the order of their original submittal; writes type R records in the order adjustable tap side to fixed tap side, or hi-low; writes type LD records in the order rectifier-inverter.
+
+In addition, type = NETWORK_DATA writes the MINIMUM or NOMINAL branch current rating in the NOMINAL field if that option is selected; the EXTENDED ratings are written to columns 81:92 only if the BPA dialect, the EXTENDED rating, and the 120-character record size are all selected (all are defaults).
+Type = CHANGES writes the complete set of network changes to the named file.
+
+SOLUTION
+========
+
+  ``/ SOLUTION``
+
+This command enables solution options and special post-solution processes.::
+
+  >AI_CONTROL = CON
+                MON
+                OFF
+
+This command sets the switches for area interchange to CONtrol, MONitor, or OFF.
+
+The alternate voltages and LTC taps are encoded on type ``B`` and ``T`` records. See Figure 4-13 and Figure 4-14.
+
+SOLUTION Qualiﬁers
+------------------
+>BASE_SOLUTION
+This command completely bypasses the solution routine and uses the base voltages in residence. It is useful for debugging purposes, such as validating Network Reduction, or for examining the actual old solution quantities directly from a base case.
+>DEBUG,TX=OFF,BUS=OFF,AI=OFF,DCMODEL=OFF          ON      ON     ON          ON
+This command turns on the following various program debug switches. See the table below.
+
+======== ==============
+Switch   Meaning
+======== ==============
+TX:      LTC
+BUS:     Bus Switching
+AI:      Area Interchange
+DCMODEL: DC Modeling
+======== ==============
+
+>LIMITS, QRES= 0.10 ,PHA= 45.001,DEL_ANG= 1.000, DEL_VOLT= .150               <num>      <num>           <num>            <num>
+
+To set limits, the statement >LIMITS may be used as many times as is needed.
+
+QRES p.u. MVAR by which a BQ, BG, or BX bus must be perturbed to revert from a state of Q-max control to a state of V control.
+PHA Minimum angle in degrees for which fixed-tap phase shifters are modeled as ideal (no loss) devices in the decoupled starting routine.
+DEL_ANG Maximum angle adjustment in radians permitted in one Newton-Raphson iteration.
+DEL_VOLT Maximum voltage adjustment in per unit permitted in one Newton-Raphson iteration.
+
+  > LOAD_SOLUTION, VOLTAGES =RECTANGULAR, FILE = file_name POLAR DEBUG = OFF, SOLUTION = BASE ON     HOTSTART
+  
+``>LOAD_SOLUTION`` loads an alternate set of voltages and LTC taps for either the base solution (SOLUTION = BASE)or for a hot start (SOLUTION = HOTSTART). The purpose of this command is to validate other Powerflow programs (PTI, SVSPP) using similar base case data or to assist difficult solutions by providing an alternate starting point.
+The contents of data in file_name are shown below.
+
+.. image:: ../img/Alternate_Voltages_and_LTC_Taps_for_B_Records.png
+
+
 

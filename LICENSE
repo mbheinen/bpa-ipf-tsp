@@ -1,27 +1,26 @@
-The BPA Powerflow software (IPF) is Public Domain; here is a copy of the License. 
+Copyright 2020 Mike Heinen
 
+https://opensource.org/licenses/MIT
 
-IMPORTANT NOTE:
-IPF is in the public domain and certain conditions apply. The terms in which it is released are described in the section "Notice to Non-BPA Users" in each of the IPF manuals.
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to
+ deal in the Software without restriction, including without limitation the
+ rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+ sell copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
 
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
 
-NOTICE TO NON-BPA USERS:
-The Bonneville Power Administration (BPA) releases BPA-developed computer programs under the following conditions:
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+ IN THE SOFTWARE.
 
-1. BPA does not charge for program development costs; however, a fee to cover costs incurred in answering inquiries is assessed against the organization receiving the material. This fee typically includes costs for personnel and computer resources, reproduction, shipping, and postage.
-
-2. BPA cannot provide assistance with conversion to other computers or consulting services to the program users.
-
-3. In consideration of receipt and acceptance of these programs or portions thereof, if sold, assigned, or transferred to another organization, you and your organization agree to advise any third-party recipient in writing that the program(s) and/or documentation are in the public domain and available from BPA. The intent of this agreement is to ensure that BPA-developed or supplied programs, and/or documentation, whether in whole or in part, that are in the public domain, are identified as such to recipients.
-
-"LEGAL NOTICE"
-
-Neither BPA nor any person acting on behalf of BPA:
-
-1. Makes any warranty or representation, expressed or implied, with respect to the accuracy, completeness, or usefulness of the information contained in this report, or that the use of any information, apparatus, method, or process disclosed in this report may not infringe upon privately owned rights; or
-
-2. Assumes any liability with respect to the use of, or for damages resulting from the use of any information, apparatus, method or process disclosed in this report.
-
-
-9/20/95
-
+ Note that Bonneville Power Administratoin (BPA) released original software under 
+ a public license and the original sources from which this project was forked
+ can be obtained from BPA. Additioanlly, you can find a copy of the original
+ license in the documentation on "History" page.
