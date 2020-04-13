@@ -1,44 +1,62 @@
 ********
 Overivew
 ********
-This documentation shows how to use all features of IPF. It contains details about data input record formats and system models, command like tools, how to use the `libcflow` library, how to use the GUI, and more.
-
-Users may choose to interact with IPF through the command line tools, the `libcflow` C library, or through the windows, menus, dialog boxes, keyboard, and mouse of the `Motif X Window`_ GUI. Many of the functions and features of the command line programs (e.g. ``ipfbat``, ``ipfcut``, etc.) are available through specially designed GUI features. The GUI simplifies running the base case solutions and printing the network diagrams but is rather dated and in need of a refresh. For this reason, many users will likely prefer the command line tools.
+Users may choose to interact with IPF through the command line tools, the ``libcflow`` C API, or through the `Motif X Window`_ GUI. Many of the functions and features of the command line tools (e.g. ``bpf``, ``ipfbat``, ``ipfcut``, etc.) are available through specially designed GUI features. The GUI simplifies running the base case solutions and printing the network diagrams but is rather dated and in need of a refresh. For this reason, many users will likely prefer the command line tools.
 
 Executables
 ===========
-IPF can be thought of as a family of programs. ``bpf`` is the batch form of the powerflow program. When the editing and displaying of buses and branches is being handled by GUI, the work of calculating solution voltages for a given power system network is done by ``ipfsrv``, which is just the ``bpf`` batch program in a different guise. Auxiliary programs allow you to do plots in batch mode, do a save of network data in batch mode, perform a “cut” of a solved base case, etc. These command line programs are briefly described here. 
+IPF can be thought of as a family of programs. ``bpf`` is the batch form of the powerflow program. When the editing and displaying of buses and branches is being handled by GUI, the work of calculating solution voltages for a given power system network is done by ``ipfsrv``, which is just the ``bpf`` batch program in a different guise. Auxiliary programs allow you to do plots in batch mode, do a save of network data in batch mode, perform a "cut" of a solved base case, etc. These command line programs are briefly described here. 
  
- * ``gui`` Launches the push button and menu-driven Graphical User Interface program built with `Motif X Window`_ that works in conjunction with the power flow server, ``ipfsrv``.
+  ``gui``
+  
+    Launches the push button and menu-driven Graphical User Interface program built with `Motif X Window`_ that works in conjunction with the power flow server, ``ipfsrv``.
 
- * ``ipfsrv`` The power flow server to the GUI. It executes power flow commands through Power Flow Control Language (PCL) scripts dispatched from the GUI.
+  ``ipfsrv``
+  
+    The power flow server to the GUI. It executes power flow commands through Power Flow Control Language (PCL) scripts dispatched from the GUI.
 
- * ``ipfbat`` The batch version of IPFSRV. It accepts a “new style” Power Flow Control Language (PCL) script file. Plotting can be done with a control file; however, for most plots ``ipfplot`` is easier to use. Example of use: ``ipfbat test.pcl``. The “new style” PCL commands used with IPFSRV and IPFBAT (pseudo standard of .pcl) are described in ??.
+  ``ipfbat``
+   
+    The batch version of ``ipfsrv``. It accepts a "new style" Power Flow Control Language (PCL) script file. Plotting can be done with a control file; however, for most plots ``ipfplot`` is easier to use. Example of use: ``ipfbat test.pcl``. The “new style” PCL commands used with ``ipfsrv`` and ``ipfbat`` (pseudo standard of .pcl) are described in ??.
 
- * ``bpf`` The updated version of the old BPA batch Power Flow program. It executes using the commands from an “old style” Power Flow Control (PFC) script file. Example of use: ``bpf test.pfc.`` The PFC commands (.pfc) used with ``bpf`` are scripts for a complete power flow run. ?? describes the commands available.
+  ``bpf``
+   
+    The updated version of the old BPA batch Power Flow program. It executes using the commands from an "old style" Power Flow Control (PFC) script file. Example of use: ``bpf test.pfc.`` The PFC commands (.pfc) used with ``bpf`` are scripts for a complete power flow run. ?? describes the commands available.
 
- * ``ipfplot`` Batch plotting program to produce printed maps. The program accepts a coordinate file and a base case file on the command line, as well as an optional second base case file. When the second base case file is specified, a difference plot is produced. You can also use ``ipfplot`` to produce bubble diagrams. The same coordinate files are used for both ``gui`` and ``ipfplot``, but not all capabilities are available in GUI. Documentation is in ??.
+  ``ipfplot``
+   
+    Batch plotting program to produce printed maps. The program accepts a coordinate file and a base case file on the command line, as well as an optional second base case file. When the second base case file is specified, a difference plot is produced. You can also use ``ipfplot`` to produce bubble diagrams. The same coordinate files are used for both ``gui`` and ``ipfplot``, but not all capabilities are available in GUI. Documentation is in ??.
 
- * ``ipfnet`` The batch version of the “save netdata file” function built into the ``gui``/``ipfsrv``. This program generates a WSCC-formatted network data file in any of the following dialects: BPA, WSCC, or PTI. “Dialects” means that the file is still WSCC, but the data is generated with special processing or restrictions and is destined for use with other programs. In the case of the PTI dialect, that data is preprocessed by the PTI-proprietary conversion program WSCFOR. Documentation is in ??.
+  ``ipfnet``
+  
+    The batch version of the "save netdata file" function built into the ``gui``/``ipfsrv``. This program generates a WSCC-formatted network data file in any of the following dialects: BPA, WSCC, or PTI. "Dialects" means that the file is still WSCC, but the data is generated with special processing or restrictions and is destined for use with other programs. In the case of the PTI dialect, that data is preprocessed by the PTI-proprietary conversion program WSCFOR. Documentation is in ??.
 
- * ``ipfcut`` The stand-alone program that cuts out a subsystem from a solved base case file. Flows at the cut branches are converted into equivalent generation or load on specially formatted +A continuation bus records. An ensuing power flow run should solve with internal branch flows and bus voltages which are identical to those quantities in the original base case. Documentation is in ??. Several methods are available to define the cut system: bus names, zones, base kVs, and individual branches.A pi-back feature replaces selected buses with a passive-node sequence (lines consisting of sections) with the original loads pi-backed in proportion to the line admittances.
+  ``ipfcut``
+  
+    The stand-alone program that cuts out a subsystem from a solved base case file. Flows at the cut branches are converted into equivalent generation or load on specially formatted +A continuation bus records. An ensuing power flow run should solve with internal branch flows and bus voltages which are identical to those quantities in the original base case. Documentation is in ??. Several methods are available to define the cut system: bus names, zones, base kVs, and individual branches.A pi-back feature replaces selected buses with a passive-node sequence (lines consisting of sections) with the original loads pi-backed in proportion to the line admittances.
 
- * ``ips2ipf`` The program that converts a network data file from IPS to IPF. Duplicate buses are renamed; LTC steps are converted to taps, shunt susceptance on slack and BQ buses are transferred to +A records; sectionalized lines containing a section 0 are renumbered 1, 2, . . . ; BX, X, and remote controlled bus data are converted to IPF format, etc. Documentation is in ??.
+  ``ips2ipf``
+  
+    The program that converts a network data file from IPS to IPF. Duplicate buses are renamed; LTC steps are converted to taps, shunt susceptance on slack and ``BQ`` buses are transferred to +A records; sectionalized lines containing a section 0 are renumbered 1, 2, . . . ; ``BX``, ``X``, and remote controlled bus data are converted to IPF format, etc. Documentation is in ??.
 
-  * ``tsp`` The transient stability program that models power system network distrubances and affects on power system dynamnics include key data points like generator rotor angle. This toolk can be used to evaluate nearterm (e.g. t0 - 2 minutes) stability for these disturbances.
+  ``tsp``
+  
+    The transient stability program that models power system network distrubances and affects on power system dynamnics include key data points like generator rotor angle. This tool can be used to evaluate short term (seconds/minutes) affects of these disturbances.
 
 IPF Interaction Model
 =====================
-The conceptual model of IPF is quite simple. You load power system network data into the IPF database and solution “engine” (PF); IPF performs the calculations for the solution, and then outputs this solution data.
+The conceptual model of IPF is quite simple. You load power system network data into the IPF input files; the IPF solution "engine" performs the calculations for the solution, and then outputs this solution data.
 
 IPF offers two different approaches to accomplish power system solutions. Their style of interaction and processing are quite different.
 
  * The Graphical User Interface (GUI) approach. This is command oriented – you click a button or enter a command, and it is executed immediately.
  * The traditional batch (``bpf``) approach. This is an Input-Process-Output approach. You write a command file containing all of the "orders" that you want filled, and the program performs the actions it determines are necessary to produce the ordered results.
 
-.. image:: ../img/PCL_Information_Flow_Model.png
+.. figure:: ../img/PCL_Information_Flow_Model.png
 
-Two Domain Specific Languages (DSL) called Power Flow Control Language (PCL) and Power Flow Control (PFC) allow users to define these "orders". PCL is directly available through a Command Dialog in the GUI. The ``bpf`` program is a command line program that preserves all the traditional “batch run” capabilities, using an alternate but similar DSL called PFC. See :ref:`Power Flow Control Language` for details on the syntax for PCL and PFC.
+   PCL Information Flow Model
+
+Two Domain Specific Languages (DSLs) called Power Flow Control Language (PCL) and Power Flow Control (PFC) allow users to define these "orders". PCL is directly available through a Command Dialog in the GUI. The ``bpf`` program is a command line program that preserves all the "batch run" capabilities, using an alternate but similar DSL called PFC. See :ref:`Power Flow Control Language` for details on the syntax for PCL and PFC.
 
  .. note::
 
@@ -53,11 +71,13 @@ The GUI Approach
 ----------------
 When you use the GUI approach, you use the dialog boxes, menus, windows, etc., of the GUI. This makes data input, output, and manipulation easy. In addition to allowing basic case solution tasks to be accomplished, certain specialized tasks such as line impedance calculations are available. However, for more involved tasks, you need to use the ``bpf`` approach. For information about how to work with the GUI dialog boxes, menus, windows, etc., see ??. This guide also has a tutorial to show you how to solve straightforward power system cases.
 
-The IPFBAT Approach
--------------------
+The ``ipfbat`` Approach
+-----------------------
 ``ipfbat`` allows you fine control over the database and solution "engine" (``ipfsrv``). You first create a PCL file with the appropriate commands, in the right order, to accomplish the solution task at hand. At runtime these commands are interpreted by ``ipfbat``. The PCL file commands are processed sequentially. Additional PCL command files may be specified by name, so that a “chain” of PCL files may be processed in one run.
 
-.. image:: ../img/BPF_Information_Flow_Model.png
+.. figure:: ../img/BPF_Information_Flow_Model.png
+
+   BPF Information Flow Model
 
 Network Data
 ============
@@ -104,22 +124,24 @@ The following is a list of the various network input data files with description
 
   This is a special format output file that contains bus, branch, and solution data from a completed case study and is intended for microfiche format.
 
-========================== ====== ============================ =============== ======= =================================
-File                       Format Input/Output (I/O)           Created by      Editing Information Contained
-========================== ====== ============================ =============== ======= =================================
-PFC                        ASCII  ``bpf`` (I)                  User            Yes     Bus, Branch, Commands, File Names
-PCL                        ASCII  ``gui``, ``ipbat`` (I)       User            Yes     Commands, File Names
-NETWORK_DATA               ASCII  ``bpf`` (I) GUI,IPFBAT (I/O) User gui ipfnet Yes     Bus, Branch
-BRANCH_DATA                ASCII  Input Only                   User            Yes     Branch
-OLD_BASE                   Binary Input Only                   IPF             No      Bus, Branch, Solution Values
-CHANGES                    ASCII  Input or Output              User ``gui``    Yes     Bus, Branch, Modiﬁcations
-NEW_BASE                   Binary Output Only                  IPF             No      Bus, Branch, Solution Values
-Printout ﬁle (<name>.PFO)  ASCII  Output Only                  ``bpf``         No      Input Data and Solution Reports, User Analysis
-Microﬁche ﬁle (<name>.PFF) ASCII  Output Only                  ``bpf``         No      Input Data and Solution Reports, User Analysis
-Debug ﬁle (<name>.PFD)     ASCII  Output Only                  ``bpf``         No      Solution arrays and iteration processing
-Printout ﬁle (<logon>.PFO) ASCII  Output Only                  ``gui``         No      Messages, Iteration Summary
-Debug ﬁle (<logon>.PFD)    ASCII  Output Only                  ``gui``         No      Solution arrays and iteration processing
-========================== ====== ============================ =============== ======= =================================
+.. table:: IPF Input/Output Files
+
+   ========================== ====== ============================ =============== ======= =================================
+   File                       Format Input/Output (I/O)           Created by      Editing Information Contained
+   ========================== ====== ============================ =============== ======= =================================
+   PFC                        ASCII  ``bpf`` (I)                  User            Yes     Bus, Branch, Commands, File Names
+   PCL                        ASCII  ``gui``, ``ipbat`` (I)       User            Yes     Commands, File Names
+   NETWORK_DATA               ASCII  ``bpf`` (I) GUI,IPFBAT (I/O) User gui ipfnet Yes     Bus, Branch
+   BRANCH_DATA                ASCII  Input Only                   User            Yes     Branch
+   OLD_BASE                   Binary Input Only                   IPF             No      Bus, Branch, Solution Values
+   CHANGES                    ASCII  Input or Output              User ``gui``    Yes     Bus, Branch, Modiﬁcations
+   NEW_BASE                   Binary Output Only                  IPF             No      Bus, Branch, Solution Values
+   Printout ﬁle (<name>.PFO)  ASCII  Output Only                  ``bpf``         No      Input Data and Solution Reports, User Analysis
+   Microﬁche ﬁle (<name>.PFF) ASCII  Output Only                  ``bpf``         No      Input Data and Solution Reports, User Analysis
+   Debug ﬁle (<name>.PFD)     ASCII  Output Only                  ``bpf``         No      Solution arrays and iteration processing
+   Printout ﬁle (<logon>.PFO) ASCII  Output Only                  ``gui``         No      Messages, Iteration Summary
+   Debug ﬁle (<logon>.PFD)    ASCII  Output Only                  ``gui``         No      Solution arrays and iteration processing
+   ========================== ====== ============================ =============== ======= =================================
 
 The NETWORK_DATA File
 =====================
@@ -130,6 +152,7 @@ This ASCII text data file consists of area, bus, and branch records in the forma
    Each area record identifies a composition of zones whose member (associated) buses define specific aggregate quantities that may be controlled to specified export values.
 
    ``A`` (Area interchange records)
+
    ``I`` (Area intertie records)
 
  2. Bus data record group containing at least two records.
@@ -137,18 +160,24 @@ This ASCII text data file consists of area, bus, and branch records in the forma
    Each bus data record identifies one bus in the network. Buses are uniquely identified by their bus name and base kV.
    
    ``B`` (Bus records) 
+
    ``+`` (Continuation bus records)
+
    ``X`` (Continuation bus records)
+
    ``Q`` (PQ Curve data records)
 
  3. Branch data record group containing at least one record.
 
   ``L`` (AC or DC Transmission line records)
+
   ``E`` (Equivalent Branch records) 
+
   ``T`` (Transformer records) 
+
   ``R`` (Regulators (Automatic or LTC transformer) records)
 
-Branch data entered in any of the ASCII files is *single-entry* or one-way only. This means, for example, that a branch connecting buses A and B has a user-submitted entry (A,B) or (B,A) but not both. The program transposes the record internally as required during execution. Normally which way the branch is entered does not matter, but it does affect the default end metered on a tie line, and the physical position of line sections. See :ref:`Record Formats`, for a discussion of this feature.
+Branch data entered in any of the ASCII files is *single-entry* or one-way only. This means, for example, that a branch connecting buses A and B has a user-submitted entry (A,B) or (B,A) but not both. The program transposes the record internally as required during execution. Normally which way the branch is entered does not matter, but it does affect the default end metered on a tie line, and the physical position of line sections. See :ref:`record-formats`, for a discussion of this feature.
 
 Branches are uniquely identified by three fields:
 

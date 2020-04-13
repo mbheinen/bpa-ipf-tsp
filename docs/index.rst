@@ -23,7 +23,7 @@ Electric power system network design encompasses the following tasks:
  * Determination of size and routing of new transmission lines, and size and location of terminal equipment for achieving efficient and economical reinforcements when needed.
  * Evaluation of proposed reinforcements in light of power flow capability, ability to withstand transient disturbances, reliability of overall service, economics, impact on regional economy, environment, energy conservation and operational constraints such as construction lead times, coordination of various facility ownership interests, flexibility for future growth and compatibility with other long-range plans.
 
-The dynamic nature of load growth, load distribution, and generation patterns make the problem of network design one of planning. To plan for the future, power system planners and design engineers must look at the past and present. This makes Interactive Power Flow a key tool for the network design engineer and can also be used in academic studies. It permits a complex network structure to be modeled and evaluated at various points in time.
+The dynamic nature of load growth, load distribution, and generation patterns make the problem of network design one of planning. To plan for the future, power system planners and design engineers must look at the past and present. This makes Interactive Power Flow a key tool for the network design engineer, but it can also be used by students for academic studies. It permits a complex network structure to be modeled and evaluated at various points in time.
 
 Features
 ========
@@ -31,7 +31,7 @@ Interactive Power Flow (IPF) has the following high level feature set:
 
  * Set of command line tools for running studies
  * Domain specific languages (PCL or PFC) for batch command line runs
- * Basic and extended power flow capabilities
+ * Basic power flow capabilities and advanced capabilities like REI reduction and transient stability
  * Printed output reports
  * `Motif X Window`_ based graphical user interface allowing easy-to-edit graphical display of network diagram (coordinate file)
  * Extensive error messages for maximum aid to the user in troubleshooting

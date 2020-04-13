@@ -21,25 +21,31 @@ Creating a New Base Case
 The figure below depicts the initial way an IPF case is processed and how the output is saved on a NEW_BASE file, which may then become an OLD_BASE file for subsequent change studies. The contents of the print file (PFO) are defined by the ``P_INPUT``, ``P_OUTPUT``, and ``P_ANALYSIS`` commands. Likewise, the contents of the fiche file (PFF) are defined by the ``F_INPUT``, ``F_OUTPUT``, and
 ``F_ANALYSIS`` commands.
 
-.. image:: ../img/New_Base_Creation_Process.png
+.. figure:: ../img/New_Base_Creation_Process.png
+
+   New Base Creation Process
 
 Changing an Old Base Case
 =========================
 The figure below shows the most commonly used ``bpf`` process. A change case is created from an ``OLD_BASE`` file using a ``CHANGE`` file. The modified case data is saved on the ``NEW_BASE`` file. The output files PFO and PFF can be printed to paper or fiche or both.
 
-.. image:: ../img/Old_Base_Case_With_Changes.png
+.. figure:: ../img/Old_Base_Case_With_Changes.png
+
+   Old Base Case With Changes
 
 Merging Subsystems
 ==================
 The figure below shows a ``NEW_BASE`` file being created by merging a subsystem from a case on an ``OLD_BASE`` file with another subsystem from either a second ``OLD_BASE`` or from a ``BRANCH_DATA`` and a ``NETWORK_DATA`` file. The output files PFO and PFF can be printed to paper and/or fiche.
 
-.. image:: ../img/Merging_Two_or_More_Subsystems.png
+.. figure:: ../img/Merging_Two_or_More_Subsystems.png
 
 Reducing a Network
 ==================
 In the figure below, a network reduction is specified in the PFC file. Commands within this file define the retained system. The actual network reduction dynamically changes the base data in memory, and the reduced base case is saved on the ``NEW_BASE`` file. These output files (.PFO and .PFF) can be printed to paper and/or fiche.
 
-.. image:: ../img/Reducing_a_Network.png
+.. figure:: ../img/Reducing_a_Network.png
+
+   Reducing a Network
 
 For static reduction, you can use the ``ipfcut`` program. It is described in ??.
 
@@ -47,5 +53,7 @@ Simulating Outages
 ==================
 The figure below shows an outage simulation being processed directly from an ``OLD_BASE`` file. Only printed analysis is output; no data files are generated. This printed output can be directed to either fiche or paper. Simulating outages is a special power flow function that subjects a subsystem of interest to a series of single contingency branch outages and tabulates the consequences of each outage or the cause of each overload.
 
-.. image:: ../img/An_Outage_Simulation.png
+.. figure:: ../img/An_Outage_Simulation.png
+
+   An Outage Simulation
 

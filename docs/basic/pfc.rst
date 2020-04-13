@@ -1392,17 +1392,17 @@ The following relations hold at the base voltages:
 
 .. math::
 
-  P_{load_old}     &=  P_{load_new}     + A_{load} * V   + G_{shunt} * V^2 \\
-  Q_{load_old}     &=  Q_{load_new}     + B_{load} * V   - B_{shunt} * V^2
+  P_{load_{old}}     &=  P_{load_{new}}     + A_{load} * V   + G_{shunt} * V^2 \\
+  Q_{load_{old}}     &=  Q_{load_{new}}     + B_{load} * V   - B_{shunt} * V^2
 
 where
 
-  :math:`P_{load_new}` (MW) =  :math:`P_{load_old}` (MW) :math:`* PP / 100`
-  :math:`Q_{load_new}` (MVAR) =  :math:`Q_{load_old}` (MVAR)  :math:`*  QP / 100`
-  :math:`A_{load}` (MW) =  :math:`P_{load_old}` (MW) :math:`*  PI / (100 * V)`
-  :math:`B_{load}` (MVAR) =  :math:`Q_{load_old}` (MVAR)  :math:`*  QI / (100 * V)`
-  :math:`G_{shunt}` (MW) =  :math:`P_{load_old}` (MW) :math:`*  PZ / (100 * V^2)`
-  :math:`B_{shunt}` (MVAR) = :math:`--Q_{load_old}` (MVAR) :math:`*  QZ / (100 * V^2)`
+  :math:`P_{load_{new}}` (MW) =  :math:`P_{load_{old}}` (MW) :math:`* PP / 100`
+  :math:`Q_{load_{new}}` (MVAR) =  :math:`Q_{load_{old}}` (MVAR)  :math:`*  QP / 100`
+  :math:`A_{load}` (MW) =  :math:`P_{load_{old}}` (MW) :math:`*  PI / (100 * V)`
+  :math:`B_{load}` (MVAR) =  :math:`Q_{load_{old}}` (MVAR)  :math:`*  QI / (100 * V)`
+  :math:`G_{shunt}` (MW) =  :math:`P_{load_{old}}` (MW) :math:`*  PZ / (100 * V^2)`
+  :math:`B_{shunt}` (MVAR) = :math:`--Q_{load_{old}}` (MVAR) :math:`*  QZ / (100 * V^2)`
 
 The negative sign for :math:`B_{shunt}` is correct. The actual expression is
 
@@ -2477,35 +2477,84 @@ The alternate voltages and LTC taps are encoded on type ``B`` and ``T`` records.
 
 SOLUTION Qualiﬁers
 ------------------
->BASE_SOLUTION
-This command completely bypasses the solution routine and uses the base voltages in residence. It is useful for debugging purposes, such as validating Network Reduction, or for examining the actual old solution quantities directly from a base case.
->DEBUG,TX=OFF,BUS=OFF,AI=OFF,DCMODEL=OFF          ON      ON     ON          ON
+
+  ``>BASE_SOLUTION``
+
+This command completely bypasses the solution routine and uses the base voltages in residence. It is useful for debugging purposes, such as validating Network Reduction, or for examining the actual old solution quantities directly from a base case.::
+
+  >DEBUG,TX=OFF,BUS=OFF,AI=OFF,DCMODEL=OFF
+            ON      ON     ON          ON
+
 This command turns on the following various program debug switches. See the table below.
 
-======== ==============
+======== ================
 Switch   Meaning
-======== ==============
+======== ================
 TX:      LTC
 BUS:     Bus Switching
 AI:      Area Interchange
 DCMODEL: DC Modeling
-======== ==============
+======== ================
 
->LIMITS, QRES= 0.10 ,PHA= 45.001,DEL_ANG= 1.000, DEL_VOLT= .150               <num>      <num>           <num>            <num>
+::
 
-To set limits, the statement >LIMITS may be used as many times as is needed.
+  >LIMITS, QRES= 0.10 ,PHA= 45.001,DEL_ANG= 1.000, DEL_VOLT= .150
+                 <num>      <num>           <num>            <num>
 
-QRES p.u. MVAR by which a BQ, BG, or BX bus must be perturbed to revert from a state of Q-max control to a state of V control.
-PHA Minimum angle in degrees for which fixed-tap phase shifters are modeled as ideal (no loss) devices in the decoupled starting routine.
-DEL_ANG Maximum angle adjustment in radians permitted in one Newton-Raphson iteration.
-DEL_VOLT Maximum voltage adjustment in per unit permitted in one Newton-Raphson iteration.
+To set limits, the statement ``>LIMITS`` may be used as many times as is needed.
 
-  > LOAD_SOLUTION, VOLTAGES =RECTANGULAR, FILE = file_name POLAR DEBUG = OFF, SOLUTION = BASE ON     HOTSTART
+``QRES`` p.u. MVAR by which a ``BQ``, ``BG``, or ``BX`` bus must be perturbed to revert from a state of Q-max control to a state of V control.
+
+``PHA`` Minimum angle in degrees for which fixed-tap phase shifters are modeled as ideal (no loss) devices in the decoupled starting routine.
+
+``DEL_ANG`` Maximum angle adjustment in radians permitted in one Newton-Raphson iteration.
+
+``DEL_VOLT`` Maximum voltage adjustment in per unit permitted in one Newton-Raphson iteration.
+
+::
+
+  > LOAD_SOLUTION, VOLTAGES =RECTANGULAR, FILE = file_name
+                             POLAR 
+                   DEBUG = OFF, SOLUTION = BASE 
+                           ON              HOTSTART
   
-``>LOAD_SOLUTION`` loads an alternate set of voltages and LTC taps for either the base solution (SOLUTION = BASE)or for a hot start (SOLUTION = HOTSTART). The purpose of this command is to validate other Powerflow programs (PTI, SVSPP) using similar base case data or to assist difficult solutions by providing an alternate starting point.
-The contents of data in file_name are shown below.
+``>LOAD_SOLUTION`` loads an alternate set of voltages and LTC taps for either the base solution (``SOLUTION = BASE``) or for a hot start (``SOLUTION = HOTSTART``). The purpose of this command is to validate other Powerflow programs (PTI, SVSPP) using similar base case data or to assist difficult solutions by providing an alternate starting point.
+The contents of data in ``file_name`` are shown below.
 
 .. image:: ../img/Alternate_Voltages_and_LTC_Taps_for_B_Records.png
 
+.. image:: ../img/Alternate_Voltages_and_LTC_Taps_for_T_Records.png
 
+The formats of the voltages and taps are "free-field," meaning that the information must begin at least in the column noted and that additional entities are separated with a blank space.
+
+On the ``T`` record, tap is in per unit (``TAP1/BASE1``)/(``TAP2/BASE2``) or in radians for an LTC phase shifter.
+
+Restrictions
+^^^^^^^^^^^^
+The following restrictions apply:
+
+  * All sets of ``B`` records must include all buses.
+  * The voltages must be within global limits.
+  * Only LTC transformers can have tap changes.
+  * The taps must be within LTC tap limits.
+
+::
+
+  >LTC = ON
+         ON_NV
+         ON_NPS
+         OFF
+         ON_DCONLY
+
+This is used with the following to set the control of LTC transformers.
+
+  ``ON`` Full LTC control.
+  
+  ``ON_NV`` Partial LTC control (P and Q only).
+  
+  ``ON_NPS`` Full LTC voltage control, no LTC phase shifter control.
+
+  ``OFF`` No LTC control.
+  
+  ``ON_DCONLY`` No LTC control (except for DC commutating transformer).
 

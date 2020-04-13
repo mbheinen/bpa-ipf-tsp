@@ -1,26 +1,22 @@
-/*****************************************************************************
- * file:  cflowlib.h
- * author: Jay Coleman   May 1993
- * purpose: This is the header file used both by the CFLOW library and all
- *          CFLOW programs to define structures, constants, etc.
- *****************************************************************************
+/**
+ * @file  cflowlib.h
+ * @author: Jay Coleman   May 1993
+ * 
+ * This is the header file used both by the CFLOW library and all CFLOW 
+ * programs to define structures, constants, etc. */
+
+/** This is the set of cflow global buffers and assiciated data used by
+ * the cflow to powerflow inter-process communication
  */
-
-
-/*****************************************************************************
- *   This is the set of cflow global buffers and assiciated data used by
- *   the cflow to powerflow inter-process communication
- */
-
 #define CFLOW_IPC_BUFF_SIZE 4096
 
 #ifdef CFLOW_GLOBAL_DATA
-            char  pf_cflow_inbuf[CFLOW_IPC_BUFF_SIZE];
-            char  pf_cflow_outbuf[CFLOW_IPC_BUFF_SIZE];
-            char  err_buf[CFLOW_IPC_BUFF_SIZE];
-            char  reply_pf[CFLOW_IPC_BUFF_SIZE];
-            int   pf_cflow_socket;
-            int   cf_debug=0;
+      char  pf_cflow_inbuf[CFLOW_IPC_BUFF_SIZE];
+      char  pf_cflow_outbuf[CFLOW_IPC_BUFF_SIZE];
+      char  err_buf[CFLOW_IPC_BUFF_SIZE];
+      char  reply_pf[CFLOW_IPC_BUFF_SIZE];
+      int   pf_cflow_socket;
+      int   cf_debug=0;
 #else
    extern   char  pf_cflow_inbuf[];
    extern   char  pf_cflow_outbuf[];
@@ -30,25 +26,21 @@
    extern   int   cf_debug;
 #endif
 
-/*****************************************************************************/
 
-
-/*****************************************************************************
- *   This is the set of cflow constants used in pf_get_list
- */
-
-enum  { AREA_LIST, BUS_LIST, KV_LIST, OWNER_LIST, REC_TYPE_LIST, ZONE_LIST };
-
-/*****************************************************************************/
-
-
-/*****************************************************************************
- *   This is the set of cflow structures used by the "pf_rec_..." functions
- */
+/** This is the set of options used in pf_get_list */
+enum pf_list_type { 
+   AREA_LIST,     /**< A list of the different area names in the case. String length 11. Max size 50. */
+   BUS_LIST,      /**< A list of the different bus names in the case. */
+   KV_LIST,       /**< A list of the different bus kV's in the case. String length 4. Max size 150. */
+   OWNER_LIST,    /**< A list of the different owners in the case. String length 4. Max size 450. */
+   REC_TYPE_LIST, /**< A list of the different record types in the case. String length 3. Max size 50. */
+   ZONE_LIST      /**< A list of the different zones in the case.. String length 3. Max size 150. */
+};
 
 /** @addtogroup input_data
  * 
- * The following structures are used for input to powerflow.
+ * The following structures are used for input to powerflow. This is the set of
+ * CFLOW structures used by the "pf_rec_..." functions
  * @{ */
 typedef struct {      /* pf_AC_bus */
    char   type[3];
@@ -71,7 +63,7 @@ typedef struct {      /* pf_AC_bus */
    float  rmt_kv;
    char   dummy2;
    float  pct_vars;
-                                   } pf_AC_bus;
+} pf_AC_bus;
 
 typedef struct {  /* pf_DC_bus */
    char   type[3];
@@ -94,7 +86,7 @@ typedef struct {  /* pf_DC_bus */
    float  commutating_bus_kv;
    char   converter_code;
    float  dummy2;
-                                   } pf_DC_bus;
+} pf_DC_bus;
 
 typedef struct {        /* pf_branch  -- generic branch record */
    char   type[3];
@@ -122,7 +114,7 @@ typedef struct {        /* pf_branch  -- generic branch record */
    float  thermal_rating;
    float  bottleneck_rating;
    float  emergency_rating;
-                                   } pf_branch;
+} pf_branch;
 
 typedef struct {  /* pf_LD */
    char   type[3];
@@ -150,7 +142,7 @@ typedef struct {  /* pf_LD */
    float  thermal_rating;
    float  bottleneck_rating;
    float  dummy6;
-                                   } pf_LD;
+} pf_LD;
 
 typedef struct {  /* pf_LM */
    char   type[3];
@@ -178,7 +170,7 @@ typedef struct {  /* pf_LM */
    float  thermal_rating;
    float  bottleneck_rating;
    float  dummy9;
-                                   } pf_LM;
+} pf_LM;
 
 typedef struct {   /* pf_E */
    char   type[3];
@@ -206,7 +198,7 @@ typedef struct {   /* pf_E */
    float  thermal_rating;
    float  bottleneck_rating;
    float  dummy4;
-                                   } pf_E;
+} pf_E;
 
 typedef struct {      /* pf_L */
    char   type[3];
@@ -234,7 +226,7 @@ typedef struct {      /* pf_L */
    float  thermal_rating;
    float  bottleneck_rating;
    float  dummy4;
-                                   } pf_L;
+} pf_L;
 
 typedef struct {    /* pf_T */
    char   type[3];
@@ -262,7 +254,7 @@ typedef struct {    /* pf_T */
    float  thermal_rating;
    float  bottleneck_rating;
    float  emergency_rating;
-                                   } pf_T;
+} pf_T;
 
 typedef struct {    /* pf_TP */
    char   type[3];
@@ -290,7 +282,7 @@ typedef struct {    /* pf_TP */
    float  thermal_rating;
    float  bottleneck_rating;
    float  emergency_rating;
-                                   } pf_TP;
+} pf_TP;
 
 typedef struct {           /* pf_R  --  for R, RN, RQ, RV */
    char   type[3];
@@ -318,7 +310,7 @@ typedef struct {           /* pf_R  --  for R, RN, RQ, RV */
    float  rmt_bus_kv;
    float  Qmax;
    float  Qmin;
-                                   } pf_R;
+} pf_R;
 
 typedef struct {     /* pf_RM  --  for RM, RP */
    char   type[3];
@@ -346,7 +338,7 @@ typedef struct {     /* pf_RM  --  for RM, RP */
    float  rmt_bus_kv;
    float  Pmax;
    float  Pmin;
-                                   } pf_RM;
+} pf_RM;
 
 typedef struct {     /* pf_RZ */
    char   type[3];
@@ -374,7 +366,7 @@ typedef struct {     /* pf_RZ */
    float  dummy6;
    float  dummy7;
    float  dummy8;
-                                   } pf_RZ;
+} pf_RZ;
 
 typedef struct {   /* pf_area */
    char   type[3];
@@ -394,14 +386,14 @@ typedef struct {   /* pf_area */
    char   zone9[3];
    float  max_Vpu;
    float  min_Vpu;
-                                   } pf_area;
+} pf_area;
 
 typedef struct {   /* pf_itie */
    char   type[3];
    char   area1_name[11];
    char   area2_name[11];
    float  sched_export;
-                                   } pf_itie;
+} pf_itie;
 
 
 typedef struct {   /* pf_cbus */
@@ -417,7 +409,7 @@ typedef struct {   /* pf_cbus */
    float  Pgen;
    float  Qgen_Qmax;
    float  Qmin;
-                                   } pf_cbus;
+} pf_cbus;
 
 typedef struct {   /* pf_qcurve */
    char   type[3];
@@ -435,7 +427,7 @@ typedef struct {   /* pf_qcurve */
    float  Pgen7;
    float  Pgen8;
    float  Pgen9;
-                                   } pf_qcurve;
+} pf_qcurve;
 
 typedef struct {   /* pf_xdata */
    char   type[3];
@@ -460,9 +452,8 @@ typedef struct {   /* pf_xdata */
    float  seg7_delta_mva;
    int    seg8_num_steps;
    float  seg8_delta_mva;
-                                   } pf_xdata;
-
- /** @} */
+} pf_xdata;
+/** @} */
 
 /**@addtogroup solution_data
  *
@@ -484,7 +475,7 @@ typedef struct {      /* pf_bus_AC_soln */
    float  Bshunt_used_rx;
    float  Bshunt_sch_rx;
    float  Qunsch;
-                                   } pf_bus_AC_soln;
+} pf_bus_AC_soln;
 
 typedef struct {      /* pf_bus_DC_soln */
    char   type[3];
@@ -630,20 +621,21 @@ typedef union {              /* solution data */
   pf_xdata_soln       xdata;
 } solution_data;
 
-typedef struct {   /* pf_rec */
+/** Record data */
+typedef struct {
   input_data    i;
   solution_data s;
 } pf_rec;
 
-
-typedef struct {   /* pf_comments */
+/** Comment card data */
+typedef struct {
    char   case_name[11];
-   char   case_desc[21];   /* Changed from project_title */
+   char   case_desc[21];   /**< Case description */
    char   h[3][133];
    char   c[20][121];
 } pf_comments;
 
-/* Miscellaneous case data */
+/** Miscellaneous case data */
 typedef struct {
    char   PF_version[11];         /**< Ten character string containing Powerflow version information. */
    float  base_mva;               /**< Base MVA of the base case (normally 100.0). */
@@ -684,32 +676,265 @@ char *cfu_next_err_msg(void);
  *
  * @example pf_cflow_init_and_exit.c */
 void pf_cflow_exit(void);
-void pf_cflow_init( int argc, char *argv[] );
+
+/** Initialize the data link to the powerﬂow engine (ipfsrv)
+ *
+ * Establishes a socket connection with the Powerflow process (ipfsrv). Other 
+ * command line arguments that have been collected by the argv mechanism may be
+ * used by the CFLOW program. The command line arguments are "shifted left" 
+ * such that *argv[1] contains the first command line argument intended for 
+ * the CFLOW program and argc is updated to reflect the count of those 
+ * arguments only.
+ *
+ * @return Returns 0 if it is successful; otherwise, it calls the exit function.
+ *
+ * @example pf_cflow_init_and_exit.c */
+void pf_cflow_init(int argc, char *argv[]);
+
+/** Buffer interface to powerﬂow
+ *
+ * A low-level interface to the interprocess communication that uses two global
+ * buffers pf_cflow_inbuf and pf_cflow_outbuf. This routine is used by most of 
+ * the other pf functions; however, you can also use it directly. You put valid 
+ * PCL commands and associated WSCC-formatted data records into 
+ * pf_cflow_outbuf, call pf_cflow_ipc, then look for the results in 
+ * pf_cflow_inbuf. 
+ * 
+ * A list and description of the valid PCL commands is in the documentation. 
+ *
+ * @return Returns 0 if it is successful; otherwise, it calls the exit function. */
 int pf_cflow_ipc(void);
+
+/** Delete area by name
+ *
+ * Delete an Area along will all buses and all associated branches in the area.
+ *
+ * @param[in] area A string representing an area name. 
+ *
+ * @return Returns 0 (zero) if it is successful; otherwise, it returns 1.
+ *
+ * @see pf_del_zone
+ *
+ * @code error = pf_del_area("ARIZONA"); @endcode */
 int pf_del_area(char *area);
+
+/** Delete zone by name
+ *
+ * Delete a Zone along will all buses and all associated branches in the zone.
+ *
+ * @param[in] zone  A string representing a zone name. 
+ *
+ * @return Returns 0 (zero) if it is successful; otherwise, it returns 1.
+ *
+ * @see pf_del_area
+ *
+ * @code error = pf_del_zone("NA"); @endcode */
 int pf_del_zone(char *zone);
+
+/** 
+ *
+ * @param
+ * 
+ * @return 
+ *
+ * @example */
 int pf_rename_area(char *oldname, char *newname);
+
+/** 
+ *
+ * @param
+ * 
+ * @return 
+ *
+ * @example */
 int pf_rename_bus(char *oldname, float oldkv, char *newname, float newkv);
+
+/** 
+ *
+ * @param
+ * 
+ * @return 
+ *
+ * @example */
 int pf_rename_zone(char *oldname, char *newname);
+
+/** 
+ *
+ * @param
+ * 
+ * @return 
+ *
+ * @example */
 int pf_load_changes(char *filename);
+
+/** 
+ *
+ * @param
+ * 
+ * @return 
+ *
+ * @example */
 int pf_load_netdata(char *filename);
+
+/** 
+ *
+ * @param
+ * 
+ * @return 
+ *
+ * @example */
 int pf_load_oldbase(char *filename);
+
+/** 
+ *
+ * @param
+ * 
+ * @return 
+ *
+ * @example */
 int pf_put_inrec(char *record);
+
+/** 
+ *
+ * @param
+ * 
+ * @return 
+ *
+ * @example */
 int pf_rec_area(pf_rec *r, char *action);
+/** 
+ *
+ * @param
+ * 
+ * @return 
+ *
+ * @example */
 int pf_rec_branch(pf_rec *r, char *action);
+
+/** 
+ *
+ * @param
+ * 
+ * @return 
+ *
+ * @example */
 int pf_rec_bus(pf_rec *r, char *action);
+
+/** 
+ *
+ * @param
+ * 
+ * @return 
+ *
+ * @example */
 int pf_rec_cbus(pf_rec *r, char *action);
+
+/** 
+ *
+ * @param
+ * 
+ * @return 
+ *
+ * @example */
 int pf_rec_comments(pf_comments *r, char *action);
+
+/** 
+ *
+ * @param
+ * 
+ * @return 
+ *
+ * @example */
 int pf_rec_itie(pf_rec *r, char *action);
+
+/** 
+ *
+ * @param
+ * 
+ * @return 
+ *
+ * @example */
 int pf_rec_qcurve(pf_rec *r, char *action);
+
+/** 
+ *
+ * @param
+ * 
+ * @return 
+ *
+ * @example */
 int pf_rec_xdata(pf_rec *r, char *action);
+
+/** 
+ *
+ * @param
+ * 
+ * @return 
+ *
+ * @example */
 int pf_save_changes(char *filename);
+
+/** 
+ *
+ * @param
+ * 
+ * @return 
+ *
+ * @example */
 int pf_save_netdata(char *filename, char *dialect, char *ratings, int size);
+
+/** 
+ *
+ * @param
+ * 
+ * @return 
+ *
+ * @example */
 int pf_save_newbase(char *filename);
+
+/** 
+ *
+ * @param
+ * 
+ * @return 
+ *
+ * @example */
 int pf_save_wscc_stab_data(char *filename, char *type);
+
+/** 
+ *
+ * @param
+ * 
+ * @return 
+ *
+ * @example */
 int pf_solution();
+
+/** 
+ *
+ * @param
+ * 
+ * @return 
+ *
+ * @example */
 int pf_init();
-int pf_get_list( char *list, int listlen, int type, char *data );
+
+/** Retrieve various lists: owners, areas, etc.
+ * 
+ * char *list should be a two dimensional character array. For example, for 
+ * AREA_LIST, the array might be declared as char area_names[20][11] if you 
+ * know that there are not more than 20 area names in the case. pf_case_info
+ * gives information on the number of areas, zones, owners, etc. The listlen 
+ * argument prevents the routine from exceeding the bounds of your array.
+ *
+ * @param[in] list    A pointer to a two dimensional character array of appropriate size.
+ * @param[in] listlen An integer specifying the maximum number of list elements.
+ * @param[in] type    An integer specifying the type of list.
+ *
+ * @return Returns 0 if it is successful; otherwise, it returns 1. 
+ *
+ * @example pf_get_list.c */
+int pf_get_list( char *list, int listlen, enum pf_list_type type, char *data );
 
 /** Finds the name of the area that a zone is in.
  *
@@ -731,12 +956,87 @@ int pf_area_of_zone(char *area, char *zone);
  *
  * @example pf_case_info.c */
 int pf_case_info(pf_case_stats *r);
+
+/** 
+ *
+ * @param
+ * 
+ * @return 
+ *
+ * @example */
 void pf_init_rec(void *r, int rtype);
+
+/** 
+ *
+ * @param
+ * 
+ * @return 
+ *
+ * @example */
 void pf_init_qcurve(pf_rec *r, char *type, char *name, float kv);
+
+/** 
+ *
+ * @param
+ * 
+ * @return 
+ *
+ * @example */
 void pf_init_itie(pf_rec *r, char *type, char *area1, char *area2);
+
+/** 
+ *
+ * @param
+ * 
+ * @return 
+ *
+ * @example */
 void pf_init_cbus(pf_rec *r, char *type, char *owner, char *name, float kv, char *year);
+
+/** Initialize all bus data fields
+ *
+ * Initializes all bus data fields to 0 except ID fields which are initialized 
+ * to the values passed as parameters. This function is used to store ID fields
+ * for a specific bus before calling pf_rec_bus to retrieve the values for that
+ * bus.
+ *
+ * @param[out] r   A pointer to a structure of type pf_rec, supplied by the calling routine.
+ * @param[in] type A string that specifies the record type (either B or any bus type is legal).
+ * @param[in] name A string that contains the bus name.
+ * @param[in] kv   A floating point value representing the base kV.  
+ *
+ * @example pf_init_bus.c */
 void pf_init_bus(pf_rec *r, char *type, char *name, float kv);
+
+/** Initialize all branch data fields
+ *
+ * Initializes all branch data fields to 0 except ID fields which are 
+ * initialized to the values passed as parameters. This function is used to 
+ * store ID fields for a specific branch before calling pf_rec_branch to 
+ * retrieve the values for that branch
+ *
+ * @param[out] r      A pointer to a structure of type pf_rec, supplied by the calling routine.
+ * @param[in]  type   A string which specifies the record type (L, T, E, or specific R-type).
+ * @param[in]  name1  A string that contains the bus 1 name.
+ * @param[in]  kv1    A floating point value representing the base kV for bus 1.
+ * @param[in]  name2  A string that contains the bus 2 name.
+ * @param[in]  kv2    A floating point value representing the base kV for bus 2.
+ * @param[in]  cid    A string that contains the circuit ID. For solution data, '*' will retrieve the sum of all parallel circuits.
+ * @param[in]  sid    A integer value representing the section id. For solution data, a value of 0 will retrieve the total equivalent line.
+ *
+ * @example pf_init_branch.c */
 void pf_init_branch(pf_rec *r, char *type, char *name1, float kv1, char *name2, float kv2, char cid, int sid);
+
+/** Initialize data structure 
+ *
+ * Initializes all area data fields to 0 except ID fields which are initialized
+ * to the values passed as parameters. This function is used to store ID fields
+ * for a specific area before calling pf_rec_area to retrieve the values for 
+ * that area.
+ *
+ * @param[in] r    A pointer to a structure of type pf_rec, supplied by the calling routine.
+ * @param[in] type A string that specifies the record type (must be A).
+ * @param[in] name A string that contains the area name. */
 void pf_init_area(pf_rec *r, char *type, char *name);
 
 /** Seee if a bus exists
@@ -749,26 +1049,243 @@ void pf_init_area(pf_rec *r, char *type, char *name);
  * 
  * @return Returns 0 if the bus exists; otherwise, it returns 1.
  *
- * @example pf_bus_exists.c
- */
+ * @example pf_bus_exists.c */
 int pf_bus_exists(char *name, float kv);
-int pf_b2a_bus(char *net_data, pf_rec *r, char *action); /* WDRogers */
-int pf_b2a_branch(char *net_data, pf_rec *r, char *action); /* WDRogers */
-int pf_rec_a2b(char *net_data, pf_rec *r, char *action); /* WDRogers */
-int pf_rec_b2a(char *net_data, pf_rec *r, char *action); /* WDRogers 1-23-95 */
-int pf_user_init_def(); /* wdr 1-6-95 */
-int pf_user_load_def(char *definitions); /* wdr 1-6-95 */
-int pf_user_sub_def(char *base); /* wdr 1-6-95 */
-int pf_user_report(char *filename, char *output, char action); /* wdr 1-6-95, 5-21-96 */
-int pf_user_define(char *symbol, char *id, char *type); /* wdr 1-30-95 */
-int pf_user_comment(char *symbol, char *suffix, char *format); /* wdr 1-30-95 */
-int pf_user_quantity(char *symbol, char *suffix, float *quantity);/*wdr1-30-95*/
-int pf_user_string(char *symbol, int length, char *info); /* wdr 1-31-95 */
-int pf_user_branch(char *symbol, pf_rec *r, char *type); /* wdr 1-31-95 */
-int pf_user_itie(char *symbol, pf_rec *r, char *type);  /* wdr 1-31-95 */
-int pf_user_bus(char *symbol, pf_rec *r, char *suffix); /* wdr 1-31-95 */
-int pf_plot(char *cor_filename, char *ps_filename, char *options);/*wdr 7-6-95*/
-int pf_load_refbase(char *filename); /* wdr 7-7-95 */
-int pf_select_base(char base); /* wdr 7-21-95 */
-int pf_solve_area(char base); /* wdr 3-6-96 */
-int pf_command(char *command); /* wdr 5-6-96 */
+
+/** 
+ * 
+ * @author William D. Rogers
+ * @date 8-17-1994
+ *
+ * @param
+ * 
+ * @return 
+ *
+ * @example */
+int pf_b2a_bus(char *net_data, pf_rec *r, char *action);
+
+/** 
+ * 
+ * @author William D. Rogers
+ * @date 8-17-1994
+ *
+ * @param
+ * 
+ * @return 
+ *
+ * @example */
+int pf_b2a_branch(char *net_data, pf_rec *r, char *action);
+
+/** 
+ * 
+ *
+ * @param
+ * 
+ * @return 
+ *
+ * @example */
+int pf_rec_a2b(char *net_data, pf_rec *r, char *action);
+
+/** 
+ * 
+ * @author William D. Rogers
+ * @date 1-23-1995
+ *
+ * @param
+ * 
+ * @return 
+ *
+ * @example */
+int pf_rec_b2a(char *net_data, pf_rec *r, char *action);
+
+/** 
+ * 
+ * @author William D. Rogers
+ * @date 1-6-1995
+ *
+ * @param
+ * 
+ * @return 
+ *
+ * @example */
+int pf_user_init_def();
+
+/** 
+ * 
+ * @author William D. Rogers
+ * @date 1-6-1995
+ *
+ * @param
+ * 
+ * @return 
+ *
+ * @example */
+int pf_user_load_def(char *definitions);
+
+/** 
+ * 
+ * @author William D. Rogers
+ * @date 1-6-1995
+ *
+ * @param
+ * 
+ * @return 
+ *
+ * @example */
+int pf_user_sub_def(char *base);
+
+/** 
+ * 
+ * @author William D. Rogers
+ * @date 1-6-1995
+ *
+ * @param
+ * 
+ * @return 
+ *
+ * @example */
+int pf_user_report(char *filename, char *output, char action);
+
+/** 
+ * 
+ * @author William D. Rogers
+ * @date 1-30-1995
+ *
+ * @param
+ * 
+ * @return 
+ *
+ * @example */
+int pf_user_define(char *symbol, char *id, char *type);
+
+/** 
+ * 
+ * @author William D. Rogers
+ * @date 1-30-1995
+ *
+ * @param
+ * 
+ * @return 
+ *
+ * @example */
+int pf_user_comment(char *symbol, char *suffix, char *format);
+
+/** 
+ * 
+ * @author William D. Rogers
+ * @date 1-30-1995
+ *
+ * @param
+ * 
+ * @return 
+ *
+ * @example */
+int pf_user_quantity(char *symbol, char *suffix, float *quantity);
+
+/** 
+ * 
+ * @author William D. Rogers
+ * @date 1-31-1995
+ *
+ * @param
+ * 
+ * @return 
+ *
+ * @example */
+int pf_user_string(char *symbol, int length, char *info);
+
+/** 
+ * 
+ * @author William D. Rogers
+ * @date 1-31-1995
+ *
+ * @param
+ * 
+ * @return 
+ *
+ * @example */
+int pf_user_branch(char *symbol, pf_rec *r, char *type);
+
+/** 
+ * 
+ * @author William D. Rogers
+ * @date 1-31-1995
+ *
+ * @param
+ * 
+ * @return 
+ *
+ * @example */
+int pf_user_itie(char *symbol, pf_rec *r, char *type);
+
+/** 
+ * 
+ * @author William D. Rogers
+ * @date 1-31-1995
+ *
+ * @param
+ * 
+ * @return 
+ *
+ * @example */
+int pf_user_bus(char *symbol, pf_rec *r, char *suffix);
+
+/** 
+ * 
+ * @author William D. Rogers
+ * @date 7-6-1995
+ *
+ * @param
+ * 
+ * @return 
+ *
+ * @example */
+int pf_plot(char *cor_filename, char *ps_filename, char *options);
+
+/** 
+ * 
+ * @author William D. Rogers
+ * @date 7-7-1995
+ *
+ * @param
+ * 
+ * @return 
+ *
+ * @example */
+int pf_load_refbase(char *filename);
+
+/** 
+ * 
+ * @author William D. Rogers
+ * @date 7-21-1995
+ *
+ * @param
+ * 
+ * @return 
+ *
+ * @example */
+int pf_select_base(char base);
+
+/** 
+ * 
+ * @author William D. Rogers
+ * @date 3-6-1996
+ *
+ * @param
+ * 
+ * @return 
+ *
+ * @example */
+int pf_solve_area(char base);
+
+/** 
+ * 
+ * @author William D. Rogers
+ * @date 5-6-1996
+ *
+ * @param
+ * 
+ * @return 
+ *
+ * @example */
+int pf_command(char *command);
