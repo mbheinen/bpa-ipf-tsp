@@ -4,13 +4,13 @@ Power Flow Control Language
 
 Overview
 ========
-This section describes the batch Power Flow Control Language (PFC) and its syntax, commands and subcommands. Command entries follow the PFC description in alphabetical order. The table below helps you turn quickly to a specific command entry. The table also gives you a quick description of all of the commands.
+This section describes the batch Power Flow Control language (PFC) and its syntax, commands and subcommands. Command entries follow the PFC description in alphabetical order. The table below helps you turn quickly to a specific command entry. The table also gives you a quick description of all of the commands.
 
 Each command entry explains the meaning of the command and gives its syntax. Some commands have subcommands, which are also described. Many entries have additional discussion, and some have examples, particularly where a command’s usage may not be immediately obvious.
 
-The BPF Control Language
-========================
-The BPF Power Flow Control Language (PFC) consists of a sequence of program control statements, each of which in turn consists of commands, subcommands, keywords, and values. All statements have a reserved symbol in column 1 to identify a command or subcommand.
+The ``bpf`` Control Language
+============================
+The ``bpf`` Power Flow Control language (PFC) consists of a sequence of program control statements, each of which in turn consists of commands, subcommands, keywords, and values. All statements have a reserved symbol in column 1 to identify a command or subcommand.
 
 Every statement is scanned, and each command or subcommand found is compared with a dictionary in the program to find the relevant instructions. With the exception of the identifier in column 1 of each statement, PFC is free-form. All statements must be in the PFC file.
 
@@ -187,51 +187,51 @@ Required text is shown in ``UPPER-CASE`` while parameter values specified by the
 
 The optional underscore symbol (``_``) may be used to break up words for visual readability. The computer will read the words as though they were not broken.
 
-==== ================== ===============================
-Page Command Name       Description
-==== ================== ===============================
-4-10 AGC                Emulates automatic generation control.
-4-13 AI_LIST            Speciﬁes detail in area interchange listing.
-4-14 ANALYSIS_SELECT    Selects analysis reports for printing or microﬁche.
-4-16 BRANCH_DATA        Speciﬁes a master branch and bus data ﬁle for base case.
-4-17 BUS_SENSITIVITIES  Calculates system response to capacitor switching operations.
-4-22 CHANGE_BUS_TYPE    Disables voltage control in system.
-4-27 CHANGE_PARAMETERS  Perturbs parameters for start of new solution.
-4-33 CHANGES            Speciﬁes system data change records.
-4-34 COMMENT            Speciﬁes comment records.
-COMMON_MODE_ANALYSIS    Analyzes the results from a series of common mode cases in the format of the OUTAGE_SIMULATION
-4-36 F_ANALYSIS_RPT     Speciﬁes report of zones or owners for microﬁche.
-4-38 F_INPUT_LIST       Lists input data on microﬁche.
-4-39 F_OUTPUT_LIST      Lists output data on microﬁche.
-4-40 GEN_DROP           Balances generation drop by picking up generation.
-4-44 HEADER             Speciﬁes header information for reports.
-4-45 INCLUDE_CONTROL    Speciﬁes a ﬁle for control commands.
-4-46 LINE_EFF           Deﬁnes minimum percent line loading for report.
-4-47 LINE_SENSITIVITIES Determines line sensitivity by controlling LTC and AI_CONTROL.
-4-50 %LOAD_DISTRIBUTION Converts constant power, etc., into user-speciﬁed MVA, etc.
-4-63 LOSS_SENSITIVITIES Gives information about system losses.
-4-65 MERGE_OLD_BASE and MERGE_NEW_BASE Extracts information from two subsystems to create a new system.
-4-71 MVA_BASE           Changes base MVA to an assigned MVA.
-4-72 NETWORK_DATA       Speciﬁes bus and branch data.
-4-73 NEW_BASE           Deﬁnes the ﬁle name for a new case.
-4-74 OI_LIST            Lists ownership interchange.
-4-75 OLD_BASE           Speciﬁes a previously existing solved case as the new case to start with.
-4-76 OUTAGE_SIMULATION  Simulates line outages, load dropping, generator outages and rescheduling.
-4-83 OVERLOAD_RPT       Speciﬁes overload parameter limits for report.
-4-84 P_ANALYSIS_RPT     Creates an analysis report.
-4-86 P_INPUT_LIST       Lists input data on paper.
-4-87 P_OUTPUT_LIST      Lists output on paper.
-4-89 REBUILD            Rebuilds all data tables from current OLDBASE ﬁle.
-4-90 REDUCTION          Reduces a network.
-4-95 RPT_SORT           Sorts output data of solved network.
-4-96 SAVE_FILE          Creates various output ﬁles, including the SIF (Stability Interface File).
-4-98 SOLUTION           Enables solution options and post-solution processes.
-4-104 SORT_ANALYSIS     Controls sort order for analysis listings.
-4-105 TRACE             Monitors data to aid data veriﬁcation.
+==== ======================= ===============================
+Page Command Name            Description
+==== ======================= ===============================
+4-10 AGC                     Emulates automatic generation control.
+4-13 AI_LIST                 Speciﬁes detail in area interchange listing.
+4-14 ANALYSIS_SELECT         Selects analysis reports for printing or microﬁche.
+4-16 BRANCH_DATA             Speciﬁes a master branch and bus data ﬁle for base case.
+4-17 BUS_SENSITIVITIES       Calculates system response to capacitor switching operations.
+4-22 CHANGE_BUS_TYPE         Disables voltage control in system.
+4-27 CHANGE_PARAMETERS       Perturbs parameters for start of new solution.
+4-33 CHANGES                 Speciﬁes system data change records.
+4-34 COMMENT                 Speciﬁes comment records.
+     COMMON_MODE_ANALYSIS    Analyzes the results from a series of common mode cases in the format of the OUTAGE_SIMULATION
+4-36 F_ANALYSIS_RPT          Speciﬁes report of zones or owners for microﬁche.
+4-38 F_INPUT_LIST            Lists input data on microﬁche.
+4-39 F_OUTPUT_LIST           Lists output data on microﬁche.
+4-40 GEN_DROP                Balances generation drop by picking up generation.
+4-44 HEADER                  Speciﬁes header information for reports.
+4-45 INCLUDE_CONTROL         Speciﬁes a ﬁle for control commands.
+4-46 LINE_EFF                Deﬁnes minimum percent line loading for report.
+4-47 LINE_SENSITIVITIES      Determines line sensitivity by controlling LTC and AI_CONTROL.
+4-50 %LOAD_DISTRIBUTION      Converts constant power, etc., into user-speciﬁed MVA, etc.
+4-63 LOSS_SENSITIVITIES      Gives information about system losses.
+4-65 MERGE_OLD_BASE and      MERGE_NEW_BASE Extracts information from two subsystems to create a new system.
+4-71 MVA_BASE                Changes base MVA to an assigned MVA.
+4-72 NETWORK_DATA            Speciﬁes bus and branch data.
+4-73 NEW_BASE                Deﬁnes the ﬁle name for a new case.
+4-74 OI_LIST                 Lists ownership interchange.
+4-75 OLD_BASE                Speciﬁes a previously existing solved case as the new case to start with.
+4-76 OUTAGE_SIMULATION       Simulates line outages, load dropping, generator outages and rescheduling.
+4-83 OVERLOAD_RPT            Speciﬁes overload parameter limits for report.
+4-84 P_ANALYSIS_RPT          Creates an analysis report.
+4-86 P_INPUT_LIST            Lists input data on paper.
+4-87 P_OUTPUT_LIST           Lists output on paper.
+4-89 REBUILD                 Rebuilds all data tables from current OLDBASE ﬁle.
+4-90 REDUCTION               Reduces a network.
+4-95 RPT_SORT                Sorts output data of solved network.
+4-96 SAVE_FILE               Creates various output ﬁles, including the SIF (Stability Interface File).
+4-98 SOLUTION                Enables solution options and post-solution processes.
+4-104 SORT_ANALYSIS          Controls sort order for analysis listings.
+4-105 TRACE                  Monitors data to aid data veriﬁcation.
 4-106 TRANSFER_SENSITIVITIES Causes analysis of transfer sensitivities.
-4-107 TX_EFF            Compares total and core transformer losses.
-4-108 USER_ANALYSIS     Generates custom analysis listings
-==== ================== ===============================
+4-107 TX_EFF                 Compares total and core transformer losses.
+4-108 USER_ANALYSIS          Generates custom analysis listings
+==== ======================= ===============================
 
 AGC
 ===
@@ -627,7 +627,7 @@ The following restrictions apply to reactive compensation are identical to those
 **Output Reports**
 A special summary of all line drop compensation buses is listed in the analysis group under the title Summary of Line Drop Compensation. It is available either as a level 4 option on the ``/P_ANALYSIS`` or ``/F_ANALYSIS`` command or as the SUM%VAR option on the ``/ANALYSIS_SELECT`` command.
 
-.. literal::
+::
 
   /ANALYSIS_SELECT
   SUM%VAR
@@ -925,7 +925,7 @@ When ``bpf`` loads a base file, any previous comments are deleted, then all comm
 COMMON_MODE_ANALYSIS
 ====================
 
-.. literal::
+::
 
   /COMMON_MODE_ANALYSIS, BASE_FILE = <base_file_name>,
                          COMMON_MODE = <common_mode_file>, 
@@ -951,7 +951,7 @@ Three phases are involved.
 F_ANALYSIS_RPT
 ==============
 
-.. literal::
+::
 
   / F_ANALYSIS_RPT , LEVEL =4 , *
                             1   ZONES = <list>
@@ -1105,6 +1105,7 @@ Areas or Zones
 The generation to be picked up may be either system-wide (the default) or restricted to a set of areas or zones.
 
   ``AREAS = <area_1,...>``
+
 or
 
   ``ZONES = <zone_1,...>``
@@ -1177,14 +1178,18 @@ INCLUDE_CONTROL
 This command permits the input stream containing commands to be temporarily diverted to the named file. Following an end-of-file, control reverts to the normal input stream.
 Some restrictions apply. This “included” command file cannot contain any of the following commands:
 
-  ``/ INCLUDE_CON`` statement 
-  ``/ MERGE_BASE`` statement 
+  ``/ INCLUDE_CON`` statement
+
+  ``/ MERGE_BASE`` statement
+
   ``/ OUTAGE_SIM`` statement 
+
   ``/ REDUCTION`` statement 
+
   ``/ CHANGES`` statement
 
- LINE_EFF
-=========
+LINE_EFF
+========
 
   ``/ LINE_EFF, LOADING = <nn>, OWNERS = <list>``
 
@@ -1726,7 +1731,7 @@ Within each area, the generation on the slack bus is adjustable and on all other
 Note that the system slack bus or area interchange slack bus must pick up any deficit generation needed to supply loads and system losses. Thus, the sensitivity reflects the change in losses if 1.0 p.u. MW of generation is moved from bus “i” to the system or area slack bus. If the system or area slack bus is closer to the load center, the losses will decrease with the reallocation. Consequently, :math:`\frac{dLoss}{DP_i} < 0`. Otherwise, the losses will increase.
 
 :math:`\frac{dLoss}{dQ_i}`
--------------------------
+--------------------------
 A change in reactive generation is quite different from a change in active generation. Changes in reactive generation strongly affect the voltage profile of the system adjacent to bus “i”. Thus, a change in losses is due primarily to the change in voltage profile.
 
 :math:`\frac{dLoss}{dV_i}`
@@ -1785,16 +1790,16 @@ Column  Rating (“R” Selection) Field Description
 ======= ====================== =============================
 81-84   1                      Winter Thermal (WT)
 85-88   1                      Winter Bottleneck (WB)
-89-92                         (not used)
-93-96   8                     Summer Thermal (ST)
-97-100  8                     Summer Bottleneck (SB)
-101-104                       (not used)
-105-108 2                     Extra Heavy Thermal (EHT)
-109-112 2                     Extra Heavy Bottleneck (EHB)
-113-116 3                     Moderate Cold Thermal (MCT)
-117-120 3                     Moderate Cold Bottleneck (MCB)
-121-124 4                     Spring Thermal (SPT)
-125-128 4                     Spring Bottleneck (SPB)
+89-92                          (not used)
+93-96   8                      Summer Thermal (ST)
+97-100  8                      Summer Bottleneck (SB)
+101-104                        (not used)
+105-108 2                      Extra Heavy Thermal (EHT)
+109-112 2                      Extra Heavy Bottleneck (EHB)
+113-116 3                      Moderate Cold Thermal (MCT)
+117-120 3                      Moderate Cold Bottleneck (MCB)
+121-124 4                      Spring Thermal (SPT)
+125-128 4                      Spring Bottleneck (SPB)
 ======= ====================== =============================
 
 .. image:: ../img/Extended_Ratings_Fields_for_T_and_TP_Records.png
@@ -2410,7 +2415,7 @@ Option  Meaning                Code year Comment
 CURRENT Constant current model 01        The load ﬁelds are interpreted as constant current, constant power factor
 ADMITT  Constant admittance    01        The shunt ﬁelds are interpreted in the ordinary manner.
 POWER   Constant MVA           02        The generation ﬁelds are interpreted in the ordinary manner.
-====== ====================== ========== ====================================
+======= ====================== ========= ===============================================
 
 It should be noted that the special continuation records ``+A`` with ownership ``***`` will always be generated to hold the equivalent shunt admittance which results from the admittance to ground in the eliminated system.
 
@@ -2558,3 +2563,72 @@ This is used with the following to set the control of LTC transformers.
   
   ``ON_DCONLY`` No LTC control (except for DC commutating transformer).
 
+.. note::
+
+  To obtain meaningful results with the options ``ON_NV``, ``ON_NPS``, or ``ON_DCONLY``, the taps of the other LTC’s should not change. Recall that normally with a flat start (``VFLATSTART=ON``) all LTC’s, including those turned off, start at the mid tap value. To represent this action, invoke the additional command::
+
+  >MISC_CNTRL, VFLATSTART =ON, DCLP = ON, X_BUS = BPA,
+                           OFF        OFF         WSCC
+
+                           ITER_SUM = OFF, TSTART =0.5
+                                      ON 
+                          NUMVSTEPS = 3
+                          PHASE_SHIFTER_BIAS = BPA
+                                               WSCC
+                          BRIDGE_CURRENT_RATING = ON
+                                                  OFF
+
+These commands and options set the solution controls.::
+
+  X_BUS = BPA
+          VMAX
+          WSCC
+
+Solution option for type ``BX`` buses. The ``BPA`` option accepts any discrete reactance step on a ``BX`` bus when its solution voltage :math:`V` lies in the range of :math:`V_{min} \leq V \leq V_{max}`. The ``VMAX`` option attempts to find the switched reactance step on each ``BX`` such that its solution voltage is the largest voltage :math:`V \leq V_{max}`. The WSCC option adjusts discrete steps on a ``BX`` bus (using as an initial value the B_shunt entered on the input record) only when the voltage violates the limits :math:`V_{min} or :math:`V_{max}`.
+
+``DCLP`` 
+  
+  DC solution technique for multi-terminal DC lines. ``OFF`` uses old version. ``ON`` uses linear programming (LP) routines — default is ``ON``, and it should not be changed except in extraordinary circumstances.
+
+``VFLATSTART = ON
+               OFF``
+
+  Starting option. ``ON`` = flat start. Initialization under flat start invokes the following conditions.
+    * All voltages are set :math:`V + j0` where :math:`V` is either the controlled voltage or a value between :math:`V_{min}` and :math:`V_{max}`.
+    * All special bus types ``BV``, ``BQ``, ``BG``, and ``BX`` are in nominal state. (See options X_BUS.)
+    * All LTCs are set to a uniform starting value. All LTS phase shifters are set to a value closest to zero, but within top limits. (See option ``TSTART``.)
+    * All DC quantities invoke AC terminal conditions.
+
+``TSTART = 0.50``
+
+  This sets the LTC transformer starting tap. The starting tap is based on this value together with the relative magnitude of the variable-tap side and fixed-tap side base kVs.
+
+  If Base_varible_tap_side < Base_fixed_tap_side then
+  
+  Tap = (1-TSTART) * Tmin + TSTART * Tmax
+
+  Otherwise, it is
+  
+  Tap < TSTART * Tmin + (1-TSTART) * Tmax
+
+``ITER_SUM = OFF 
+             ON``
+
+  This switch controls printout of the solution iteration detail report.
+
+  ``OFF`` = Print out report only if a failed solution occurs.
+  
+  ``ON``  = Print out report unconditionally.
+
+``PHASE_SHIFTER_BIAS = BPA
+                       WSCC``
+
+This switch determines the phase shifter angle bias for type RM phase shifters. The BPA option biases the angle to zero degrees (in recognization that non-zero degree phase shifts cause real-power loop flow and that biasing the angle to zero effectively bias the system to lower losses since the additional loses in the loop are minimized).  The WSCC option biases the angle to the original angle specified on the TP record)
+BRIDGE_CURRENT_RATING = ON OFF
+This switch determines whether the converter bridge current rating is applied to the DC circuit rating.  ON implies that the bridge current rating does apply; OFF implies that it doesn’t.
+>SOL_ITER, DECOUPLED = 2, NEWTON = 30 <n> <nn>
+This command sets the solution and iteration limits with the following:
+DECOUPLED Uses decoupled method to iterate from flat start. INITIAL prefixes the solution iteration count.
+NEWTON Uses Newton-Raphson method. At least three iterations must be specified. This is the final solution.
+>TOLERANCE, BUS = 0.001 ,AIPOWER = 0.001, TX = 0.001, Q = 0.001                  <num>           <num>       <num>      <num>             V = 0.001                 <num>
+This command sets the tolerances in per unit (p.u.) for convergence testing. BUS pertains to both Pnet and Qnet (in per unit), AI_POWER to net area interchange export (in per unit), TX to Pkm for type RP or RM LTC phase shifters or for Qkm for type RQ and RN LTC transformers, Q to the violation of Qmax or Qmin for special bus types BQ, BG, and BX, and V to the desired controlled voltage by type BG buses or by type R transformers.

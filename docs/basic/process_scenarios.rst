@@ -39,6 +39,8 @@ The figure below shows a ``NEW_BASE`` file being created by merging a subsystem 
 
 .. figure:: ../img/Merging_Two_or_More_Subsystems.png
 
+   Merging Two or More Subsystems
+
 Reducing a Network
 ==================
 In the figure below, a network reduction is specified in the PFC file. Commands within this file define the retained system. The actual network reduction dynamically changes the base data in memory, and the reduced base case is saved on the ``NEW_BASE`` file. These output files (.PFO and .PFF) can be printed to paper and/or fiche.

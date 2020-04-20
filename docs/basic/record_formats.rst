@@ -26,22 +26,22 @@ All IPF data record types are identified by the characters in columns 1 and 2. T
    3-14 ``A``                    80          Area interchange control
    3-16 ``AO``                   80          Area output sort
    3-18 ``-``                    ``-``       General AC bus description
-   3-22 ``B``                    80          AC bus — load bus
-   3-25 ``BC``                   80          AC bus — voltage controlled by ``BG`` bus
-   3-28 ``BE``                   80          AC bus — constant voltage
-   3-31 ``BF``                   80          AC bus — special purpose bus for Newton-Raphson solution
-   3-32 ``BG``                   80          AC bus — generator
-   3-35 ``BQ``                   80          AC bus — constant voltage within Q limits
-   3-38 ``BS``                   80          AC bus — system slack bus
-   3-41 ``BT``                   80          AC bus — LTC transformer controlled ac bus
-   3-44 ``BV``                   80          AC bus — constant Q within V limits
-   3-47 ``BX``                   80          AC bus — attempts constant V using switched Q speciﬁed on X record
+   3-22 ``B``                    80          AC bus - load bus
+   3-25 ``BC``                   80          AC bus - voltage controlled by ``BG`` bus
+   3-28 ``BE``                   80          AC bus - constant voltage
+   3-31 ``BF``                   80          AC bus - special purpose bus for Newton-Raphson solution
+   3-32 ``BG``                   80          AC bus - generator
+   3-35 ``BQ``                   80          AC bus - constant voltage within Q limits
+   3-38 ``BS``                   80          AC bus - system slack bus
+   3-41 ``BT``                   80          AC bus - LTC transformer controlled AC bus
+   3-44 ``BV``                   80          AC bus - constant Q within V limits
+   3-47 ``BX``                   80          AC bus - attempts constant V using switched Q speciﬁed on ``X`` record
    3-50 ``BD``                   80          Two-terminal DC bus
    3-52 ``BM``                   80          Multi-terminal DC bus
    3-55 ``DA``                   80          Delete buses by area
    3-56 ``DZ``                   80          Delete buses by zones
    3-57 ``E``                    88          Equivalent branch (has extended ratings)
-   3-60 ``I``                    80          Area intertie I record
+   3-60 ``I``                    80          Area intertie ``I`` record
    3-62 ``L``                    88          Transmission line (has extended ratings)
    3-66 ``LD``                   80          Two-terminal DC line
    3-69 ``LM``                   80          Multi-terminal DC line
@@ -62,8 +62,11 @@ After a base case has been established, it may be changed with the use of change
 The change records are system data records with a change code in column 3. Each of the input data forms describe the permissible types of changes under the caption CHANGE CODES. In all, there are five types of changes.
 
  * *Additions*: Change code = blank
+   
    The data record identification must be unique to the system. The contents of the record must be complete as if it were being submitted to build a base case.
+
  * *Deletions*: Change code = ``D``
+
    Only existing data may be deleted, and only the identification fields are needed. Numerical data in any other field is ignored. Special conditions are given:
 
    * Deleting a bus automatically deletes all continuation bus data, switched reactance data and all branch data associated with that bus. Deleting all branches connected to a bus will result in an error. It is better to delete the bus. A bus should not be deleted and added back in the same case with the same name in a single change file.
@@ -72,11 +75,11 @@ The change records are system data records with a change code in column 3. Each 
 
    * A line composed of sections may be deleted in its entirety by deleting section 0 (zero) or blank. The alternative is to delete each section with a separate change record. If a section is deleted the line is reconnected without that section. Transformer sections cannot be deleted.
    
-   * A branch composed of parallel lines between two buses may be deleted in its entirety by entering a * in place of CKT ID. This provides a means of disconnecting two directly connected buses from each other. The branches may also be deleted individually.
+   * A branch composed of parallel lines between two buses may be deleted in its entirety by entering a ``*`` in place of CKT ID. This provides a means of disconnecting two directly connected buses from each other. The branches may also be deleted individually.
    
    * A blank branch ID is legitimate identification.
    
-   * Changing a bus from type X to any other type will delete all switched-reactance data automatically. No separate X delete record should be included.
+   * Changing a bus from type ``X`` to any other type will delete all switched-reactance data automatically. No separate ``X`` delete record should be included.
 
  * *Elimination*: Change code = ``E``
 
@@ -187,19 +190,19 @@ In addition to the special classifications codes of column (2:2), the code year 
 |      |           | negative)           | negative)           |                     |                     | equivalent shunt           |
 |      |           |                     |                     |                     |                     | admittances                |
 +------+-----------+---------------------+---------------------+---------------------+---------------------+----------------------------+
-|      | *I        | Constant current MW | Constant current    | Not applicable      | Not applicable      | Quantity generated by      |
+|      | \*I       | Constant current MW | Constant current    | Not applicable      | Not applicable      | Quantity generated by      |
 |      |           | load (generation if | conjugate MVAR load |                     |                     | %LOAD_DISTRIBUTION         |
 |      |           | negative) evaluated | (generation if      |                     |                     |                            |
 |      |           | at nominal voltage  | negative) evaluated |                     |                     |                            |
 |      |           |                     | at nominal voltage  |                     |                     |                            |
 +------+-----------+---------------------+---------------------+---------------------+---------------------+----------------------------+
-|      | *Z        | Constant power MW   | Constant power MVAR | Constant admittance | Constant admittance | Quantity generated by      |
+|      | \*Z       | Constant power MW   | Constant power MVAR | Constant admittance | Constant admittance | Quantity generated by      |
 |      |           | load (generation    | load (generation    | MW load (generation | MVAR load           | %LOAD_DISTRIBUTION         |
 |      |           | if negative)        | if negative)        | if negative)        | (generation if      |                            |
 |      |           |                     |                     | evaluated at        | negative) evaluated |                            |
 |      |           |                     |                     | nominal voltage     | at nominal voltage  |                            |
 +------+-----------+---------------------+---------------------+---------------------+---------------------+----------------------------+
-|      | *P        | Constant power      | Constant power      | Not applicable      | Not applicable      | Quantity generated by      |
+|      | \*P       | Constant power      | Constant power      | Not applicable      | Not applicable      | Quantity generated by      |
 |      |           | MW load (generation | MVAR load           |                     |                     | %LOAD_DISTRIBUTION         |
 |      |           | if negative)        | (generation if      |                     |                     |                            |
 |      |           |                     | negative)           |                     |                     |                            |
@@ -225,7 +228,7 @@ Column ID Field Format Description
 75-77  no       A1, A2 Energization date month and year {month = 1,2,3,4,5,6,7,8,9,O,N,D}
 ====== ======== ====== =================================
 
-a.  If the Code (column 2) is A and the Code year (column 19-20) is 01, the load quantities are constant current-constant power factors and are: 
+a.  If the Code (column 2) is ``A`` and the Code year (column 19-20) is ``01``, the load quantities are constant current-constant power factors and are: 
   
   1. Interpreted as MW and MVAR evaluated at base kV (+) = Inductive (-) = Capacitive
   2. Evaluated as: :math:`P + jQ = (I*)|V|`
@@ -610,7 +613,7 @@ Application
 -----------
 This subtype designates the system swing or slack bus. The generators at the swing bus supply the difference between the specified power flowing into the system at the other buses and the total system output plus losses. Thus, real and reactive power are determined as part of the solution for this subtype.
 
-Every power flow case must have a minimum of one swing bus. In addition, each isolated ac system must have its own swing bus. The maximum numbers of swing buses allowed for a single power flow case is ten.
+Every power flow case must have a minimum of one swing bus. In addition, each isolated AC system must have its own swing bus. The maximum numbers of swing buses allowed for a single power flow case is ten.
 
 Bus Characteristics
 --------------------
@@ -631,7 +634,7 @@ The ``V MIN`` field is used to specify the angle of the swing bus for this appli
 .. image:: ../img/BS_Subtype_Format.png
 
 ====== ======== ======= =====================
-Column ID Field Format Description
+Column ID Field Format  Description
 ====== ======== ======= =====================
 1-2    yes      A2      ``BS`` — System swing or slack bus
 3      no       A1      Change code
@@ -722,7 +725,7 @@ The ``BV`` bus record requires entries in the ``V MAX`` and ``V MIN`` fields. Th
 .. image:: ../img/BV_Subtype_Format.png
 
 ====== ======== ======= =====================
-Column ID Field Format Description
+Column ID Field Format  Description
 ====== ======== ======= =====================
 1-2    yes      A2      ``BV`` — Constant :math:`Q` within :math:`V` limits
 3      no       A1      Change code
@@ -828,12 +831,12 @@ Column ID Field Format  Description
 36-40  no       F5.1    Inverter operation (alpha stop) — Maximum firing angle in degrees. Both inverter and rectifier buses have alpha. However, only the minimum alpha on the rectifier bus is used in the power flow. The remaining valves are required for the transient stability program in event of power reversals in the dc line.
 41-45  no       F5.1    Valve drop (volts) — Valve voltage drop per bridge in volts.
 46-50  no       F5.1    Bridge current rating (amps) — Maximum bridge current in amperes.
-51-62  no       A8,F4.0 Commutating bus — Alphanumeric name in columns 51-58 and base kV in columns 59-62. This is on the ac system side of the commutating transformer bank
+51-62  no       A8,F4.0 Commutating bus — Alphanumeric name in columns 51-58 and base kV in columns 59-62. This is on the AC system side of the commutating transformer bank
 ====== ======== ======= =====================
 
 Multi-Terminal DC Bus (``BM``)
 ==============================
-The multi-terminal DC system introduces flexibility in network configuration which is already present in the ac system. This DC scheme is a general extension of the two-terminal DC scheme. The converter modeling itself is unchanged, but the DC converter control is more flexible.
+The multi-terminal DC system introduces flexibility in network configuration which is already present in the AC system. This DC scheme is a general extension of the two-terminal DC scheme. The converter modeling itself is unchanged, but the DC converter control is more flexible.
 All N-node DC systems must have N DC constraints. These are either converter DC voltage or DC power. At least one DC voltage constraint must be specified. It is permissible to constrain both DC voltage and power on the same node. The choice of voltage or power constraints on each converter is flexible.
 
 It is possible to define a DC tap node. This node is passive only and is not a converter. Nevertheless, it implicitly constrains zero power on itself.
@@ -1247,13 +1250,13 @@ There are separate factors for :math:`P` and :math:`Q`. If the :math:`Q` factor 
 Six different subtypes are permitted. Different subtypes may be submitted together. (Their formats are shown on the following pages.)
 
 
-  Subtype ``O`` Factor change by ownerships (20 maximum). All ac bus and continuation bus loads and generation with the given ownership will be changed by the specified factors.
+  Subtype ``O`` Factor change by ownerships (20 maximum). All AC bus and continuation bus loads and generation with the given ownership will be changed by the specified factors.
 
-  Subtype ``Z`` Factor change by zones (20 maximum). All ac bus and continuation bus loads and generation within the depicted zones will be changed by the specified factors.
+  Subtype ``Z`` Factor change by zones (20 maximum). All AC bus and continuation bus loads and generation within the depicted zones will be changed by the specified factors.
 
-  Subtype ``N`` Factor change by zone on all nonindustrial loads and generation (20 maximum). All ac bus and continuation bus data except +A, +F, +I or +P continuation bus data within the designated zones will be changed by the specified factors. All zones may be changed with one record having a key zone 00 (zero-zero).
+  Subtype ``N`` Factor change by zone on all nonindustrial loads and generation (20 maximum). All AC bus and continuation bus data except +A, +F, +I or +P continuation bus data within the designated zones will be changed by the specified factors. All zones may be changed with one record having a key zone 00 (zero-zero).
   
-  Subtype ``A`` Factor change on all loads and generation on all ac bus and continuation bus data (1 only).
+  Subtype ``A`` Factor change on all loads and generation on all AC bus and continuation bus data (1 only).
   
   Subtype ``B`` Factor change by ownerships (20 maximum). All constant impedance and constant current distributed (``+ A01``, ``+ *I``, ``+ *P``) loads with the given ownership will be changed by the specified factor.
   

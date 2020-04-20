@@ -1,22 +1,21 @@
 /**
  * @file  cflowlib.h
- * @author: Jay Coleman   May 1993
+ * @author Jay Coleman   May 1993
  * 
  * This is the header file used both by the CFLOW library and all CFLOW 
  * programs to define structures, constants, etc. */
 
 /** This is the set of cflow global buffers and assiciated data used by
- * the cflow to powerflow inter-process communication
- */
+ * the cflow to powerflow inter-process communication */
 #define CFLOW_IPC_BUFF_SIZE 4096
 
 #ifdef CFLOW_GLOBAL_DATA
-      char  pf_cflow_inbuf[CFLOW_IPC_BUFF_SIZE];
-      char  pf_cflow_outbuf[CFLOW_IPC_BUFF_SIZE];
-      char  err_buf[CFLOW_IPC_BUFF_SIZE];
-      char  reply_pf[CFLOW_IPC_BUFF_SIZE];
-      int   pf_cflow_socket;
-      int   cf_debug=0;
+   char  pf_cflow_inbuf[CFLOW_IPC_BUFF_SIZE];
+   char  pf_cflow_outbuf[CFLOW_IPC_BUFF_SIZE];
+   char  err_buf[CFLOW_IPC_BUFF_SIZE];
+   char  reply_pf[CFLOW_IPC_BUFF_SIZE];
+   int   pf_cflow_socket;
+   int   cf_debug=0;
 #else
    extern   char  pf_cflow_inbuf[];
    extern   char  pf_cflow_outbuf[];
@@ -455,7 +454,7 @@ typedef struct {   /* pf_xdata */
 } pf_xdata;
 /** @} */
 
-/**@addtogroup solution_data
+/** @addtogroup solution_data
  *
  * The following structures are used for reaading solution (output) from powerflow 
  * @{ */
@@ -629,7 +628,7 @@ typedef struct {
 
 /** Comment card data */
 typedef struct {
-   char   case_name[11];
+   char   case_name[11];   /**< Case name */
    char   case_desc[21];   /**< Case description */
    char   h[3][133];
    char   c[20][121];
@@ -674,7 +673,7 @@ char *cfu_next_err_msg(void);
  *
  * @return Has no return; it calls the exit function.
  *
- * @example pf_cflow_init_and_exit.c */
+ * @example pf_main.c */
 void pf_cflow_exit(void);
 
 /** Initialize the data link to the powerﬂow engine (ipfsrv)
@@ -688,7 +687,7 @@ void pf_cflow_exit(void);
  *
  * @return Returns 0 if it is successful; otherwise, it calls the exit function.
  *
- * @example pf_cflow_init_and_exit.c */
+ * @example pf_main.c */
 void pf_cflow_init(int argc, char *argv[]);
 
 /** Buffer interface to powerﬂow
@@ -733,7 +732,7 @@ int pf_del_zone(char *zone);
 
 /** 
  *
- * @param
+ * @param 
  * 
  * @return 
  *
@@ -758,22 +757,34 @@ int pf_rename_bus(char *oldname, float oldkv, char *newname, float newkv);
  * @example */
 int pf_rename_zone(char *oldname, char *newname);
 
-/** 
+/** Load changes into case
  *
- * @param
+ * Passes an ASCII change file name to ipfsrv so that it can read and interpret
+ * the file or @p filename contains an "*\n" followed by change records which 
+ * are to be processed by ipfsrv. The records must be separated by "\n".
+ *
+ * @param[in] filename A string representing a file name, or  "*\n", followed by valid change records.
  * 
- * @return 
+ * @return Returns 0 if it is successful; otherwise, it returns 1.
  *
- * @example */
+ * @example pf_load_functions.c */
 int pf_load_changes(char *filename);
 
-/** 
+/** Load network data
  *
- * @param
+ * Passes a network data file name to the ipfsrv process so that it can read 
+ * and interpret the network data file. Or contains an "*\n" followed by bus 
+ * and branch records which are to be processed by ipfsrv. The records must be
+ * separated by "\n". If a case is currently loaded, it is overwritten and the
+ * data is lost. The case loaded is not usable by GUI after CFLOW has 
+ * completed.
+ *
+ * @param[in] filename A string representing a file name or an "*\n" followed 
+ *                     by bus and branch records.
  * 
- * @return 
+ * @return Returns 0 if it is successful; otherwise, it returns 1.
  *
- * @example */
+ * @example pf_load_functions.c */
 int pf_load_netdata(char *filename);
 
 /** 
@@ -957,40 +968,63 @@ int pf_area_of_zone(char *area, char *zone);
  * @example pf_case_info.c */
 int pf_case_info(pf_case_stats *r);
 
-/** 
+/** Initialize pf_rec data  
  *
- * @param
- * 
- * @return 
+ * Initializes a data buffer of type pf_rec to blanks and zeros, in order to 
+ * clear out old data before calling one of the pf_rec routines to store new 
+ * data in it. Its use is not necessary, but is recommended.
  *
- * @example */
+ * @param r     A pointer to a structure of type pf_rec, supplied by the calling routine.
+ * @param rtype An enumerated variable defined in ft.h
+ *
+ * @example pf_init_functions.c */
 void pf_init_rec(void *r, int rtype);
 
-/** 
+/** Initialize all P-Q curve data fields
  *
- * @param
- * 
- * @return 
+ * Initializes all P-Q curve data fields to 0 except ID fields that are 
+ * initialized to the values passed as parameters. This function is used to
+ * store ID fields for a specific bus before calling pf_rec_qcurve() to 
+ * retrieve the generator capability curve values for that bus.
  *
- * @example */
+ * @param[out] r   A pointer to a structure of type pf_rec supplied by the calling routine.
+ * @param[in] type A string that specifies the record type (must be "QP").
+ * @param[in] name A string that contains the bus name.
+ * @param[in] kv   A floating point value representing the base kV.
+ *
+ * @example pf_init_functions.c */
 void pf_init_qcurve(pf_rec *r, char *type, char *name, float kv);
 
-/** 
+/** Initialize all intertie data fields
  *
- * @param
- * 
- * @return 
+ * Initializes all intertie data fields to 0 except ID fields that are 
+ * initialized to the values passed as parameters.  This function is used to 
+ * store ID fields for a specific tie line before calling pf_rec_itie() to 
+ * retrieve the values for that line.
  *
- * @example */
+ * @param r     A pointer to a structure of type pf_rec, supplied by the calling routine.
+ * @param type  A string that specifies the record type (must be "I").
+ * @param area1 A string which contains the area 1 name.
+ * @param area2 A string which contains the area 2 name.
+ *
+ * @example pf_init_functions.c */
 void pf_init_itie(pf_rec *r, char *type, char *area1, char *area2);
 
-/** 
+/** Initialize all continuation bus fields
  *
- * @param
- * 
- * @return 
+ * Initializes all continuation bus data fields to 0 except ID fields which are
+ * initialized to the values passed as parameters. This function is used to 
+ * store ID fields for a specific bus before calling pf_rec_cbus() to retrieve
+ * the continuation record values for that bus.
  *
- * @example */
+ * @param[out] r     A pointer to a structure of type pf_rec, supplied by the calling routine.
+ * @param[in] type   A string that specifies the record type (must be "+").
+ * @param[in] owner  A string that contains the owner name.
+ * @param[in] name   A string that contains the bus name.
+ * @param[in] kv     A floating point value representing the base kV.
+ * @param[in] year   A two character string that contains the code year
+ *
+ * @example pf_init_functions.c */
 void pf_init_cbus(pf_rec *r, char *type, char *owner, char *name, float kv, char *year);
 
 /** Initialize all bus data fields
@@ -1005,7 +1039,7 @@ void pf_init_cbus(pf_rec *r, char *type, char *owner, char *name, float kv, char
  * @param[in] name A string that contains the bus name.
  * @param[in] kv   A floating point value representing the base kV.  
  *
- * @example pf_init_bus.c */
+ * @example pf_init_functions.c */
 void pf_init_bus(pf_rec *r, char *type, char *name, float kv);
 
 /** Initialize all branch data fields
@@ -1013,7 +1047,7 @@ void pf_init_bus(pf_rec *r, char *type, char *name, float kv);
  * Initializes all branch data fields to 0 except ID fields which are 
  * initialized to the values passed as parameters. This function is used to 
  * store ID fields for a specific branch before calling pf_rec_branch to 
- * retrieve the values for that branch
+ * retrieve the values for that branch.
  *
  * @param[out] r      A pointer to a structure of type pf_rec, supplied by the calling routine.
  * @param[in]  type   A string which specifies the record type (L, T, E, or specific R-type).
@@ -1022,9 +1056,9 @@ void pf_init_bus(pf_rec *r, char *type, char *name, float kv);
  * @param[in]  name2  A string that contains the bus 2 name.
  * @param[in]  kv2    A floating point value representing the base kV for bus 2.
  * @param[in]  cid    A string that contains the circuit ID. For solution data, '*' will retrieve the sum of all parallel circuits.
- * @param[in]  sid    A integer value representing the section id. For solution data, a value of 0 will retrieve the total equivalent line.
+ * @param[in]  sid    A integer value representing the section ID. For solution data, a value of 0 will retrieve the total equivalent line.
  *
- * @example pf_init_branch.c */
+ * @example pf_init_functions.c */
 void pf_init_branch(pf_rec *r, char *type, char *name1, float kv1, char *name2, float kv2, char cid, int sid);
 
 /** Initialize data structure 
@@ -1036,7 +1070,9 @@ void pf_init_branch(pf_rec *r, char *type, char *name1, float kv1, char *name2, 
  *
  * @param[in] r    A pointer to a structure of type pf_rec, supplied by the calling routine.
  * @param[in] type A string that specifies the record type (must be A).
- * @param[in] name A string that contains the area name. */
+ * @param[in] name A string that contains the area name.
+ *
+ * @example pf_init_functions.c */
 void pf_init_area(pf_rec *r, char *type, char *name);
 
 /** Seee if a bus exists
