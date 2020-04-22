@@ -1,9 +1,8 @@
 /**
  * @file  cflowlib.h
- * @author Jay Coleman   May 1993
  * 
  * This is the header file used both by the CFLOW library and all CFLOW 
- * programs to define structures, constants, etc. */
+ * programs to define structures, constants, etc. in the libcflow library. */
 
 /** This is the set of cflow global buffers and assiciated data used by
  * the cflow to powerflow inter-process communication */
@@ -42,26 +41,26 @@ enum pf_list_type {
  * CFLOW structures used by the "pf_rec_..." functions
  * @{ */
 typedef struct {      /* pf_AC_bus */
-   char   type[3];
-   char   owner[4];
-   char   name[9];
-   float  kv;
-   char   zone[3];
-   int    dummy1;
-   float  Pload;
-   float  Qload;
-   float  Pshunt;
-   float  Qshunt;
-   float  Pmax;
-   float  Pgen;
-   float  Qsch_Qmax;
-   float  Qmin;
-   float  Vhold_Vmax;
-   float  Vmin_Vdeg;
-   char   rmt_name[9];
-   float  rmt_kv;
-   char   dummy2;
-   float  pct_vars;
+   char   type[3];     /**< Two character bus record type, for example, B, BS, BQ, etc. */
+   char   owner[4];    /**< Three character bus owner. */
+   char   name[9];     /**< Eight character bus name. */
+   float  kv;          /**< Base kV of the bus. */
+   char   zone[3];     /**< Two character zone name. */
+   int    dummy1;      /**< Ingnore */
+   float  Pload;       /**< Real load in MW. */
+   float  Qload;       /**< Reactive load in MVAR. */
+   float  Pshunt;      /**< Real shunt in MW. */
+   float  Qshunt;      /**< Reactive shunt in MVAR. */
+   float  Pmax;        /**< Maximum real load in MW. */
+   float  Pgen;        /**< Scheduled real power in MW. */
+   float  Qsch_Qmax;   /**< Scheduled reactive load in MVAR (Qsch) or a real number designating maximum reactive power in MVAR (Qmax).*/
+   float  Qmin;        /**< Minimum reactive power in MVAR.*/
+   float  Vhold_Vmax;  /**< */
+   float  Vmin_Vdeg;   /**< */
+   char   rmt_name[9]; /**< */
+   float  rmt_kv;      /**< */
+   char   dummy2;      /**< */
+   float  pct_vars;    /**< */
 } pf_AC_bus;
 
 typedef struct {  /* pf_DC_bus */
@@ -787,27 +786,51 @@ int pf_load_changes(char *filename);
  * @example pf_load_functions.c */
 int pf_load_netdata(char *filename);
 
-/** 
+/** Load a base case
  *
- * @param
+ * Passes a base case filename to the ipfsrv process so that it can read and 
+ * interpret the file as an "oldbase". If a case is currently loaded, it is 
+ * overwritten and the data is lost.
+ *
+ * @param[in] filename A string representing a file name followed by an optional, "rebuild = ON|OFF".
+
  * 
- * @return 
+ * @return Returns 0 if it is successful; otherwise, it returns 1.
  *
- * @example */
+ * @example pf_load_functions.c */
 int pf_load_oldbase(char *filename);
 
-/** 
+/** Send WSCC change record to powerﬂow
  *
- * @param
+ * Changes, adds, or deletes an input data record for Powerflow. See Record 
+ * Format section for a description of input record types and rules for adding,
+ * changing, and deleting. This function provides a means of inputting records
+ * for which there is not a specific function such as factor change (P), 
+ * although it can be used for inputting any WSCC input record
+ *
+ * @param record A string containing WSCC formatted data for a Powerflow input 
+ *               data record.
  * 
- * @return 
+ * @return Returns 0 (zero) if it is successful; otherwise, it returns 1.
  *
- * @example */
+ * @example pf_put_inrec.c */
 int pf_put_inrec(char *record);
 
+/** @addtogroup pf_rec 
+ * Manipulate powerﬂow records
+ *
+ * The pf_rec_ functions allow powerflow input (network data) and output 
+ * (solution) data to be retrieved, as well as allowing input data (network 
+ * data) to be added, modified, or deleted.
+ *
+ * @{ */
 /** 
  *
- * @param
+ * @param[in] r      A pointer to a structure of type pf_rec supplied by the 
+ *                   calling routine.
+ * @param[in] action A string designating the action to be performed on an area
+ *                   record. See Table 4-15 for the codes and their meanings. 
+ *                   Either upper or lower case is acceptable
  * 
  * @return 
  *
@@ -875,6 +898,35 @@ int pf_rec_qcurve(pf_rec *r, char *action);
  *
  * @example */
 int pf_rec_xdata(pf_rec *r, char *action);
+
+/** Converts an ASCII record in WSCC format to a pf_rec.
+ * 
+ * 
+ * @param[in] net_data A pointer to a source string of network or output data.
+ * @param[in] r        A pointer to a structure of type pf_rec.
+ * @param[in] action   A pointer to a string designating the action to be 
+ *                     performed. "I" Converts network data string to binary 
+ *                     input data. "O" Converts output data string to binary 
+ *                     solution data.
+ * 
+ * @return Returns 0 if it is successful; otherwise, it returns -1.
+ *
+ * @example pf_rec.c */
+int pf_rec_a2b(char *net_data, pf_rec *r, char *action);
+
+/** 
+ * 
+ * @author William D. Rogers
+ * @date 1-23-1995
+ *
+ * @param
+ * 
+ * @return 
+ *
+ * @example */
+int pf_rec_b2a(char *net_data, pf_rec *r, char *action);
+
+/** @} */
 
 /** 
  *
@@ -1114,28 +1166,6 @@ int pf_b2a_branch(char *net_data, pf_rec *r, char *action);
 
 /** 
  * 
- *
- * @param
- * 
- * @return 
- *
- * @example */
-int pf_rec_a2b(char *net_data, pf_rec *r, char *action);
-
-/** 
- * 
- * @author William D. Rogers
- * @date 1-23-1995
- *
- * @param
- * 
- * @return 
- *
- * @example */
-int pf_rec_b2a(char *net_data, pf_rec *r, char *action);
-
-/** 
- * 
  * @author William D. Rogers
  * @date 1-6-1995
  *
@@ -1266,26 +1296,49 @@ int pf_user_itie(char *symbol, pf_rec *r, char *type);
  * @example */
 int pf_user_bus(char *symbol, pf_rec *r, char *suffix);
 
-/** 
+/** Create a plot
  * 
+ * Causes powerflow (IPF) to generate a plot. Difference plots may be made by
+ * first loading an reference (alternate) base case with pf_load_refbase() and
+ * providing a difference plot coordinate file. pf_plot sends a command 
+ * constructed as follows:
+ * 
+ @code
+ /plot
+ <cor_filename> 
+ <ps_filename>
+ <options>
+ @endcode
+ *
  * @author William D. Rogers
  * @date 7-6-1995
  *
- * @param
+ * @param[in] cor_filename A string representing the name of a coordinate file.
+ * @param[in] ps_filename  A string representing the name of the postscript 
+  *                        file to be created.
+ * @param[in] options      An optional string (may be NULL), representing a list
+ *                         of comments and options, separated by newline ("\n"). 
+ *                         Each option must begin with an "@"" character.
  * 
- * @return 
+ * @return Returns 0 if it is successful; otherwise, it returns 1.
  *
- * @example */
+ * @example pf_plot.c*/
 int pf_plot(char *cor_filename, char *ps_filename, char *options);
 
-/** 
+/** Load a reference base case
+ *
+ * Passes a base case filename to the ipfsrv process so that it can read and 
+ * interpret the file as a "reference base" (also referred to as an "alternate
+ * base"). This is done prior to requesting difference plots or comparison 
+ * (difference) reports. If a reference case is currently loaded, it is 
+ * overwritten and the data is lost.
  * 
  * @author William D. Rogers
  * @date 7-7-1995
  *
- * @param
+ * @param[in] filename A string representing a file name.
  * 
- * @return 
+ * @return Returns 0 if it is successful; otherwise, it returns 1.
  *
  * @example */
 int pf_load_refbase(char *filename);

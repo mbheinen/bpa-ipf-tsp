@@ -439,6 +439,7 @@ increased, that of the other bus decreased, area intertie schedules are adjusted
 is solved, and the flow is retrieved for all the branches in the first input file and stored in an array.
 The report goes to a file; it consists mostly of a matrix showing the effect of the generation changes
 on the monitored line flows.
+
 The COPE procedure used the IPS feature INCREM to accomplish this task. IPF has no built-in
 incrementals function, so the CFLOW program just does what is described in the paragraph above.
 It is not a general-use incremental program mimicking the IPS function.
