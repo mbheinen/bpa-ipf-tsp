@@ -8,7 +8,7 @@ Overview
 ========
 This section describes all data record formats recognized by IPF. Most, but not all of them are also available in the GUI interface. The record descriptions are organized alphabetically by record ID as you go through the section (except for the DC bus records which follow the AC bus records). The table below enables you to quickly locate a specific record format entry. The table also gives you a quick description of each record format.
 
-Each entry has a card image that shows you where to put both identification and data information and where the implicit decimal point (if any) is located. Please note that all information must be in the correct columns; you will experience processing errors otherwise. Each card image has a legend showing whether data is required, optional, or ignored.
+Each entry has a card image that shows you where to put both identification and data information and where the implicit decimal point (if any) is located. These card images are artifacts from the old days of punchcards for mainframes, but they do provide good visual represenation of the data for each record format Please note that all information must be in the correct columns; you will experience processing errors otherwise. Each card image has a legend showing whether data is required, optional, or ignored.
 
 Each entry also has a table of column descriptions and data formats. This supplements the card image. Additional text accompanies any record formats that need extended discussion.
 

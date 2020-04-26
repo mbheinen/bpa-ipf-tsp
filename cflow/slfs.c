@@ -49,7 +49,7 @@ main ( int argc, char *argv[] )
     char card[82], cout[31];
     char skv1[5], skv2[5];
     char direc;
-    int error, lin, tot, head;
+    int error, lin, tot;
     float brflow, totalflow = 0.0;
     float kv1, kv2;
     pf_cflow_init( argc, argv );
@@ -77,7 +77,7 @@ main ( int argc, char *argv[] )
         exit(0);
     }
     /* Retrieve caseid and description, and print heading */
-    error = pf_rec_comments( &comments, "G" );
+    pf_rec_comments( &comments, "G" );
     fprintf(out,"\n%s\n\n", &comments.h[0][33] );
     totalflow = 0.0;
     /* Loop for every line in the data file
@@ -92,6 +92,8 @@ main ( int argc, char *argv[] )
     */
     while ( freadln( dat, &card[1], sizeof( card ) - 1 ) )
     {
+        int head;
+        
         lin = (!( strncmp( &card[1], "LIN", 3 )) );
         tot = (!( strncmp( &card[1], "TOT", 3 )) );
         head = lin + tot; /* = 0 if not either */
@@ -102,9 +104,9 @@ main ( int argc, char *argv[] )
         if (lin) /* LIN data card - process line */
         {
             /* Using CFLOW pf_init_branch function; bus kv’s must be real numbers */
-            strncpy(skv1, &card[15], 4 );
+            strncpy(skv1, &card[15], sizeof(skv1));
             skv1[4] = '\0';
-            strncpy(skv2, &card[28], 4 );
+            strncpy(skv2, &card[28], sizeof(skv2));
             skv2[4] = '\0';
             kv1 = atof(skv1);
             kv2 = atof(skv2);
