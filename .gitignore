@@ -1,4 +1,5 @@
 bin
 build
 lib
-
+docs/_build
+docs/doxygen

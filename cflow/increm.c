@@ -201,7 +201,7 @@ main(int argc, char *argv[])
 
   fprintf (fp_outfile, " Base case from history file %s \n", basefile);
   for (i=0; i < 3; i++) {
-    if (strlen (c.h[i]) > 0) 
+    if (strnlen (c.h[i], sizeof(c.h[0])) > 0) 
       fprintf (fp_outfile, " %s \n", &c.h[i][1]);
   }  
  /*
@@ -264,7 +264,7 @@ main(int argc, char *argv[])
     id = string[31];
     if (id  == '\n' || id == '\t' || id == '\0') id = ' ';
     br.i.branch.ckt_id = id;
-    if (strlen (string) > 32) {
+    if (strnlen (string) > 32) {
       base[0] = string[32];
       base[1] = NULLC;
       section = atoi (base);
@@ -317,7 +317,7 @@ monitored branch %s %s \n", br_flow[numbr].bus1, br_flow[numbr].bus2);
 
   while ( fgets (string, 80, fp_busfile) != NULL) {
 
-    strncpy (busname2, string, 12);
+    strncpy (busname2, string, sizeof(busname2));
     busname2[12] = NULLC;
     status = increment (busname1, busname2, 100.0, intertie_flag);
     if (!status) {

@@ -534,7 +534,7 @@ int pf_init() {
    query_pf(Initialize,"");
    return ipf_status;
 }
-int pf_get_list( char *list, int listlen, int type, char *data ) {
+int pf_get_list( char *list, int listlen, enum pf_list_type type, char *data ) {
    char *cmd, *buf, *listend;
    int  len;
    switch ( type ) {

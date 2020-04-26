@@ -58,15 +58,14 @@ static char node_name[128];
 * function: pf_usage_exit
 * author: Jay Coleman
 ******************************************************************************/
-
-void pf_usage_exit(void)
+void pf_usage_exit(char *program_name)
 {
    printf("Warning - improper use of function - usage: \n");
-   printf("<cfprog> [cfprog args] \n");
+   printf("%s [cfprog args] \n", program_name);
    printf("   --  OR -- \n");
-   printf("<cfprog> -connect <socknum> [cfprog args] \n");
+   printf("%s -connect <socknum> [cfprog args] \n", program_name);
    printf("   --  OR for cflowlib debugging -- \n");
-   printf("<cfprog> [-noserver] [-wait <seconds>] [cfprog args] \n");
+   printf("%s [-noserver] [-wait <seconds>] [cfprog args] \n", program_name);
    exit(1);
 }
 
@@ -77,10 +76,6 @@ void pf_usage_exit(void)
 * purpose: initialize the cflow client program for socket communication
 *          with the IPF server
 ******************************************************************************/
-
-/*
- * int pf_cflow_init( int argc, char *argv[], char *envp[] )
- */
 void pf_cflow_init( int argc, char *argv[] )
 {
    int  socknum;
@@ -96,22 +91,6 @@ void pf_cflow_init( int argc, char *argv[] )
    }
 #endif
 
-/* *************** debug stuff ***
-   for(i = 0; i < 3; i++) {
-     printf("argv[%d] = %s \n", i, argv[i]);
-   }
-     printf("Here we are \n");
-
-* **************** debug stuff ***/
-
-
-
-/*
-   }
-*/
-/*  to upcase a string
-**  for ( p=argv[i]; *p != '\0'; p++ ) *p = (char) toupper( (int) *p );
-*/
    pf_connect = FALSE;
    pf_server = TRUE;
    pf_wait = 30;
@@ -138,7 +117,7 @@ void pf_cflow_init( int argc, char *argv[] )
             argc -= 2;
             break;
          default:
-            pf_usage_exit();
+            pf_usage_exit(argv[0]);
             break;
          }
       } else {
@@ -148,7 +127,7 @@ void pf_cflow_init( int argc, char *argv[] )
    if ( pf_connect ) {
       if ( socknum < 1024  ||  socknum > 5000 ) {
       printf("socket number not in range 1024-5000\n");
-      pf_usage_exit();
+      pf_usage_exit(argv[0]);
       }
       memset( node_name, '\0', sizeof( node_name ) );
       error = connect_to_socket( node_name, socknum, &pf_cflow_socket );

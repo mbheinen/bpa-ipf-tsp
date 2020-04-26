@@ -1,0 +1,2 @@
+# Need to add the breathe extension to allow doxygen XML to be rendered inside Sphinx project
+breathe
