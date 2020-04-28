@@ -405,35 +405,35 @@ typedef struct {
 } pf_area;
 
 typedef struct {
-   char   type[3];        /**< */
-   char   area1_name[11]; /**< */
-   char   area2_name[11]; /**< */
-   float  sched_export;   /**< */
+   char   type[3];        /**< Two character record type, here "I" for intertie record. */
+   char   area1_name[11]; /**< Ten character area1 name. */
+   char   area2_name[11]; /**< Ten character area2 name. */
+   float  sched_export;   /**< Scheduled export power. */
 } pf_itie;
 
 
 typedef struct {
-   char   type[3];      /**< */
-   char   owner[4];     /**< */
-   char   name[9];      /**< */
-   float  kv;           /**< */
-   char   code_year[3]; /**< */
-   float  Pload;        /**< */
-   float  Qload;        /**< */
-   float  Gshunt;       /**< */
-   float  Bshunt;       /**< */
-   float  Pgen;         /**< */
-   float  Qgen_Qmax;    /**< */
-   float  Qmin;         /**< */
+   char   type[3];      /**< Two character bus record type, for example, "+"", "+A", etc.*/
+   char   owner[4];     /**< Three character bus owner. */
+   char   name[9];      /**< Eight character bus name. */
+   float  kv;           /**< Base kV of the bus. */
+   char   code_year[3]; /**< Two character extension of type. */
+   float  Pload;        /**< Real load in MW belonging to this owner. */
+   float  Qload;        /**< Reactive load in MVAR belonging to this owner. */
+   float  Gshunt;       /**< Fixed real shunt in MW. */
+   float  Bshunt;       /**< Fixed reactive shunt in MVAR. */
+   float  Pgen;         /**< Scheduled real power in MW for this owner. */
+   float  Qgen_Qmax;    /**< Scheduled reactive power in MVAR (Qgen) or  maximum reactive power in MVAR (Qmax). */
+   float  Qmin;         /**< Minimum reactive power in MVAR.*/
 } pf_cbus;
 
 typedef struct {
-   char   type[3];     /**< */
-   char   PU_code[3];  /**< */
-   char   active;      /**< */
-   char   bus_name[9]; /**< */
-   float  bus_kv;      /**< */
-   float  Pgen0;       /**< Value is Qmin0 for QN records, Qmax0 for QM cards, and Pgen0 for QP cards, but is always named Pgen0, etc. */
+   char   type[3];     /**< Two character record type - here "QP", "QM", or "QN". */
+   char   PU_code[3];  /**< Two character code – PU for per unit or blank for kV values. */
+   char   active;      /**< One character code – "A" for active or "*"" for inactive. */
+   char   bus_name[9]; /**< Eight character bus name. */
+   float  bus_kv;      /**< Base kV of the bus. */
+   float  Pgen0;       /**< Real power levels in MW, for the reactive capability curve. Value is Qmin0 for QN records, Qmax0 for QM cards, and Pgen0 for QP cards, but is always named Pgen0, etc. */
    float  Pgen1;       /**< */
    float  Pgen2;       /**< */
    float  Pgen3;       /**< */
@@ -547,26 +547,27 @@ typedef struct {
 
 typedef struct {
    char   type[3];      /**< Two character record type. */
-   float  Pexport;
-   float  Pcirc;
-   int    input_exists; /**< 0= no input record (internally generated itie) <br>
-                             1=    input data is from input record         */
+   float  Pexport;      /**< Solution export power. */
+   float  Pcirc;        /**< Solution circulating current. */
+   int    input_exists; /**< An integer indicating whether intertie values are internally or externally generated <br>
+                               0= no input record (internally generated itie)<br>
+                               1= input data is from input record. */
 } pf_itie_soln;
 
 typedef struct {
-   char   type[3]; /**< */
-   float  Pgen;    /**< */
-   float  Qgen;    /**< */
-   float  Pload;   /**< */
-   float  Qload;   /**< */
-   float  Gshunt;  /**< */
-   float  Bshunt;  /**< */
+   char   type[3]; /**< Two character bus record type, for example, "+"", "+A", etc. */
+   float  Pgen;    /**< Solved real power generation in MW. */
+   float  Qgen;    /**< Solved reactive power generation in MVAR. */
+   float  Pload;   /**< Solved real load (same as input). */
+   float  Qload;   /**< Solved reactive load (same as input). */
+   float  Gshunt;  /**< Solved real shunt. */
+   float  Bshunt;  /**< Solved reactive shunt. */
 } pf_cbus_soln;
 
 typedef struct {
-   char   type[3]; /**< */
-   float  Pgen;    /**< */
-   float  Qgen;    /**< */
+   char   type[3]; /**< Two character record type – here "QP", "QM", or "QN". */
+   float  Pgen;    /**< Real power levels in MW. */
+   float  Qgen;    /**< Reactive power levels in MVAR. */
 } pf_qcurve_soln;
 
 typedef struct {
@@ -649,10 +650,12 @@ typedef struct {
 
 /** Comment card data */
 typedef struct {
-   char   case_name[11];   /**< Case name */
-   char   case_desc[21];   /**< Case description */
-   char   h[3][133];       /**< Case header information */
-   char   c[20][121];      /**< Case comments */
+   char   case_name[11];   /**< Ten character string containing caseid. */
+   char   case_desc[21];   /**< Twenty character string containing case description. */
+   char   h[3][133];       /**< A character array containing case headers. The first one, h[0], 
+                                is generated by IPF, and contains the program version, the caseid
+                                and description, and the date of the run. The other two are user-specified. */
+   char   c[20][121];      /**< A character array containing case comments. */
 } pf_comments;
 
 /** Miscellaneous case data */
@@ -910,53 +913,85 @@ int pf_rec_branch(pf_rec *r, char *action);
  * @param[in|out] r      A pointer to a structure of type pf_rec supplied by the calling routine.
  * @param[in]     action A string designating the action to be performed on an 
  *                       intertie record. See below for the codes and their 
- *                       meanings. Either upper or lower case is acceptable
- *                         "F" Retrieves the first bus record.
- *                         "N" Retrieves the next bus record. (Name and kV must be valid.)
- *                         "G" Retrieves the rest of the bus record. (Name and kV must be valid.)
- *                         "D" Deletes a bus record. (Name and kV must be valid.)
- *                         "A" Adds a bus record. (All data fields must be valid. See the Record Formats section.)
- *                         "M" Modifies a bus record. (All data fields must be valid. See the Record Formats section.)
+ *                       meanings. Either upper or lower case is acceptable.<br>
+ *                         "F" Retrieves the first bus record.<br>
+ *                         "N" Retrieves the next bus record. (Name and kV must be valid.)<br>
+ *                         "G" Retrieves the rest of the bus record. (Name and kV must be valid.)<br>
+ *                         "D" Deletes a bus record. (Name and kV must be valid.)<br>
+ *                         "A" Adds a bus record. (All data fields must be valid. See the Record Formats section.)<br>
+ *                         "M" Modifies a bus record. (All data fields must be valid. See the Record Formats section.)<br>
  *                         "O" Retrieves the solution output data. (The case must be solved and name and kV must be valid.)
  * 
  * @return Returns 0 if it is successful; otherwise, it returns 1. */
 int pf_rec_bus(pf_rec *r, char *action);
 
-/** 
-
+/** Retrieves, modifies, adds, or deletes continuation bus (+) data.  Note that 
+* cbus data is always associated with particular buses.
  *
  * @param[in|out] r      A pointer to a structure of type pf_rec, supplied by 
  *                       the calling routine.
  * @param[in]     action A string designating the action to be performed on a 
-                         continuation bus record. See the table below for the codes and their meanings. Either upper or lower case is acceptable.
- * 
- * @return */
+ *                       continuation bus record. See the table below for the 
+ *                       codes and their meanings. Either upper or lower case
+ *                       is acceptable.<br>
+ *                         "F1" Retrieves the first continuation bus record associated with a given bus (name, kV).<br>
+ *                         "N1" Retrieves the next cbus record associated with a given bus. (All ID fields must be valid. See the Record Formats section.)<br>
+ *                         "G" Retrieves the rest of the cbus record. (All ID fields must be valid. See the Record Formats section.)<br>
+ *                         "D" Deletes a cbus record. (All ID fields must be valid. See the Record Formats section.)<br>
+ *                         "A" Adds a cbus record. (All data fields must be valid. See the Record Formats section.)<br>
+ *                         "M" Modifies a cbus record. (All data fields must be valid. See the Record Formats section.)<br>
+ *                         "O" Retrieves the output data. (The case must be solved; all ID fields must be valid. See the Record Formats section.)
+ *
+ * @return Returns 0 if it is successful; otherwise, it returns 1. */
 int pf_rec_cbus(pf_rec *r, char *action);
 
-/** 
+/** Retrieves or modifies the case name, project title, and case comments.
  *
- * @param
+ * @param[in] r      A pointer to a structure of type pf_comments.
+ * @param[in] action A string designating the action to be performed. See 
+                     below for the codes and their meanings. Either upper or 
+                     lower case is acceptable.<br>
+ *                     "G" Retrieves the case comments.<br>
+ *                     "M" Modifies the case comments. All data is updated 
+ *                     with the contents of the record.
  * 
- * @return  */
+ * @return Returns 0 if it is successful; otherwise, it returns 1. */
 int pf_rec_comments(pf_comments *r, char *action);
 
-/** 
+/** Retrieves, adds, modifies, and deletes intertie data.
  *
- * @param
+ * @param[in|out] it     A pointer to a structure of type pf_rec, supplied by the calling routine.
+ * @param[in]     action A string designating the action to be performed on an intertie record. 
+ *                       See below for the codes and their meanings. Either upper or lower case is
+ *                       acceptable.<br>
+ *                         "F" Retrieves the first intertie record.<br>
+ *                         "N" Retrieves the next intertie record. (Name1 and Name2 must be valid.)<br>
+ *                         "G" Retrieves the rest of the intertie record. (Name1 and Name2 must be valid.)<br>
+ *                         "D" Deletes an intertie record. (Name1 and Name2 must be valid.)<br>
+ *                         "A" Adds an intertie record. (All data fields must be valid. See the Record Formats section.)<br>
+ *                         "M" Modifies an intertie record. (All data fields must be valid. See the Record Formats section.)<br>
+ *                         "O" Retrieves the solution output. (The case must be solved and name1 and name2 must be valid.)
  * 
- * @return */
+ * @return Returns 0 if it is successful; otherwise, it returns 1. */
 int pf_rec_itie(pf_rec *r, char *action);
 
-/** 
+/** Retrieves, modifies, adds, or deletes reactive power capability curve data.
  *
- * @param
+ * @param[in|out] r      A pointer to a calling routine-supplied structure of type pf_rec.
+ * @param[in]     action A string designating the action to be performed on 
+ *                       qcurve record. See below for the codes and their meanings. 
+ *                       Either upper or lower case is acceptable.<br>
+ *                         "G" Retrieves the rest of the Q curve records associated with a given bus. (Name and kV must be valid. See the Record Formats section.)<br>
+ *                         "D" Deletes a Q curve record. (Name and kV must be valid. See the Record Formats section.)<br>
+ *                         "M" Modifies a Q curve record. (Valid only for activation or inactivation. See the Record Formats section.)
  * 
- * @return  */
+ * @return Returns 0 if it is successful; otherwise, it returns 1. */
 int pf_rec_qcurve(pf_rec *r, char *action);
 
 /** 
  *
- * @param
+ * @param[in|out] r   A pointer to a structure of type pf_rec, supplied by the calling routine.
+ * @param[]
  * 
  * @return */
 int pf_rec_xdata(pf_rec *r, char *action);

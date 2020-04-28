@@ -1,3 +1,4 @@
+.. _power_flow_control_language:
 ***************************
 Power Flow Control Language
 ***************************
@@ -491,20 +492,20 @@ Output
                  Q_GENERATION CONTROL     (X)   ADJUSTABLE
                  ------------ -------     ( )   FIXED
 
-0 MONROE    500.0 A  316.0 MVAR CHANGE IN SHUNT AT THIS BUS WILL CAUSE THE FOLLOWING VOLTAGE CHANGES
+  0 MONROE    500.0 A  316.0 MVAR CHANGE IN SHUNT AT THIS BUS WILL CAUSE THE FOLLOWING VOLTAGE CHANGES
 
-0       BUS       BASE    BUS       BASE    ----- DVOLT/DQ  -----   ------ BASE VOLTAGE -------    ------ NEW VOLTAGE ------
-                                            (P.U./P.U.)   (KV/MVAR) (P.U. KV)             (KV)     (P.U.KV)            (KV)
-        MV-SVC    19.6                      -0.0106     -0.0023        1.118             21.92      1.081             21.10        
-        MONROE   500.0                       0.0061      0.0321        1.052            525.84      1.073            537.05        
-        WRK 25    25.2                       0.0040      0.0010        1.041             26.22      1.054             26.59        
-        MONROE   230.0                       0.0039      0.0092        1.037            238.54      1.051            241.77        
-        GDK 4      4.0                       0.0039      0.0002        1.049              4.20      1.063              4.25        
-        MONROE T 230.0                       0.0038      0.0090        1.035            237.98      1.048            241.12        
-        RIM 12    12.6                       0.0037      0.0005        1.041             13.11      1.054             13.29        
-        RYL 12    12.6                       0.0037      0.0005        0.996             12.55      1.009             12.71        
-        WRK 60B2  60.0                       0.0037      0.0023        1.020             61.17      1.033             61.97        
-        WRK 60B1  60.0                       0.0037      0.0023        1.020             61.22      1.033             62.01
+  0       BUS       BASE    BUS       BASE    ----- DVOLT/DQ  -----   ------ BASE VOLTAGE -------    ------ NEW VOLTAGE ------
+                                              (P.U./P.U.)   (KV/MVAR) (P.U. KV)             (KV)     (P.U.KV)            (KV)
+          MV-SVC    19.6                      -0.0106     -0.0023        1.118             21.92      1.081             21.10        
+          MONROE   500.0                       0.0061      0.0321        1.052            525.84      1.073            537.05        
+          WRK 25    25.2                       0.0040      0.0010        1.041             26.22      1.054             26.59        
+          MONROE   230.0                       0.0039      0.0092        1.037            238.54      1.051            241.77        
+          GDK 4      4.0                       0.0039      0.0002        1.049              4.20      1.063              4.25        
+          MONROE T 230.0                       0.0038      0.0090        1.035            237.98      1.048            241.12        
+          RIM 12    12.6                       0.0037      0.0005        1.041             13.11      1.054             13.29        
+          RYL 12    12.6                       0.0037      0.0005        0.996             12.55      1.009             12.71        
+          WRK 60B2  60.0                       0.0037      0.0023        1.020             61.17      1.033             61.97        
+          WRK 60B1  60.0                       0.0037      0.0023        1.020             61.22      1.033             62.01
 
 CHANGE_BUS_TYPE
 ===============
@@ -1053,7 +1054,7 @@ Candidate generators that pickup are those in the area of interest with a spinni
 
 .. math::
 
-  GEN_PICKUP(i) = P_{max}(i) * (TOTAL_DROPPED / TOTAL_PMAX)
+  GEN\_PICKUP(i) = P_{max}(i) * (TOTAL_DROPPED / TOTAL_PMAX)
 
 where :math:`TOTAL_DROPPED` is the sum of dropped MW, and :math:`TOTAL_PMAX` is the sum of all candidate machines with spinning reserve.
 
@@ -1804,7 +1805,6 @@ Column  Rating (“R” Selection) Field Description
 
 .. image:: ../img/Extended_Ratings_Fields_for_T_and_TP_Records.png
 
-
 ======= ====================== =============================
 Column  Rating (“R” Selection) Field Description
 ======= ====================== =============================
@@ -2376,38 +2376,76 @@ Ordering Includes full dump of reordering arrays during each nodal elimination s
                     REI,PMIN=<n>    REI                REI
 
 This command determines how the nodal generation, load, and shunt admittance on eliminated nodes is to be processed. It does not affect the original quantities of the interior or envelop (border) nodes. The disposal options are to convert selected quantities to nodal current, to nodal shunt admittance, or to append them to an REI node.
->ENVELOPE_BUSES = BE
-This command, when elected, changes the subtypes of all envelope node to type BE. Its primary merit is to secure the voltages of the terminal buses at their base case values an improve the solvability of the reduced equivalent system. The default option is to leave the envelope buses in their original subtype.
->EXCLUDE_BUSES
-This command excludes from the retained network the buses listed on the bus-formatted records following this statement. Its purpose is to allow more flexibility in the definition than allowed with a simple SAVE_BASES or SAVE_ZONES. Obviously, the retained system must already be defined by a prior SAVE_BASES or SAVE_ZONES command.
->INCLUDE_BUSES
-This command includes in the retained network additional buses listed on the bus-formatted records following this statement. Its purpose is to allow more flexibility in the definition than allowed with a simple SAVE_BASES or SAVE_ZONES. Obviously, the retained system must already be defined by a prior SAVE_BASES or SAVE_ZONES command.
->INCLUDE_CON = <filespec>
-Use this command to include a set of user-specified default command qualifiers, which is stored in a file. Such a default command file should not contain this / INCLUDE_CON statement.
->KEEP_AI_SYS = ON               OFF
-This command requests that the equivalent network will retain all of the attributes of area interchange control. This includes all area slack nodes and all tie line terminal nodes.
->MIN_EQUIV_Y = .02               <num>
-This command specifies the minimum admittance of equivalent branches that are retained. Its purpose is to reduce the large number of equivalent branches which are generated, some of which have such large impedances that their contribution to the flows are marginal. A smaller value of 1.0 is recommended. Equivalent branches which have lower admittances (or what is the same, higher impedances) will be replaced with equivalent shunt admittances at both terminals.
->OPTIMAL_REDU = ON                OFF
-This command switches the optimal network determination feature, which precedes the actual network reduction. When the optimal network selection is ON, it may enlarge the user-specified retained system with optimally selected nodes such that the overall size of the reduced system will be minimized. In essence, it expands the boundary into the eliminated system in a manner which will topologically result in an equivalent network having more buses but fewer branches overall. Thus, the user defines a fuzzy retained system containing the minimum desired configuration, and the optimal network selection will enlarge the network if feasible.
->RETAIN_GEN = OFF, PMIN = 100.0              ON          <num>
-This command selected all generators with generation > PMIN to be in the retained network.
->REI_CLUSTERS, VOLT_DIFF =.25, ANGLE_DIFF = 20.                          <num>            <num>
-This command works in conjunction with the REI option on the ELIM_MODE command. An attempt is made to automatically consolidate REI clusters which may have only a single node. However, their consolidation may result in an equivalent REI node whose voltages are too bizarre. It is electrically correct, but may cause solution problems since voltages are initialized about 1.0. By restricting the voltage differences of REI consolidation candidates to those whose voltage differences are less than the user-prescribed value, the resultant consolidated REI cluster will have a more feasible voltage.
->SAVE_BASES = <list>
-This command defined the retained network as consisting of those buses which have the base kvs in list. Elements of list are separated with commas (,).
->SAVE_BUSES
-This command defines the retained network as consisting of all buses identified on the following bus-formatted records. It is a brute force method to define the retained network. It cannot be used in conjunction with SAVE_ZONES or SAVE_BASES. See INCLUDE_BUSES.
->SAVE_ZONES = <list>, BASES = <list>
+
+  ``>ENVELOPE_BUSES = BE``
+
+This command, when elected, changes the subtypes of all envelope node to type ``BE``. Its primary merit is to secure the voltages of the terminal buses at their base case values an improve the solvability of the reduced equivalent system. The default option is to leave the envelope buses in their original subtype.
+
+  ``>EXCLUDE_BUSES``
+
+This command excludes from the retained network the buses listed on the bus-formatted records following this statement. Its purpose is to allow more flexibility in the definition than allowed with a simple ``SAVE_BASES`` or ``SAVE_ZONES``. Obviously, the retained system must already be defined by a prior ``SAVE_BASES`` or ``SAVE_ZONES`` command.
+
+  ``>INCLUDE_BUSES``
+
+This command includes in the retained network additional buses listed on the bus-formatted records following this statement. Its purpose is to allow more flexibility in the definition than allowed with a simple ``SAVE_BASES`` or ``SAVE_ZONES``. Obviously, the retained system must already be defined by a prior ``SAVE_BASES`` or ``SAVE_ZONES`` command.
+
+  ``>INCLUDE_CON = <filespec>``
+
+Use this command to include a set of user-specified default command qualifiers, which is stored in a file. Such a default command file should not contain this / INCLUDE_CON statement.::
+
+  >KEEP_AI_SYS = ON
+                 OFF
+
+This command requests that the equivalent network will retain all of the attributes of area interchange control. This includes all area slack nodes and all tie line terminal nodes.::
+
+  >MIN_EQUIV_Y = .02
+                 <num>
+
+This command specifies the minimum admittance of equivalent branches that are retained. Its purpose is to reduce the large number of equivalent branches which are generated, some of which have such large impedances that their contribution to the flows are marginal. A smaller value of 1.0 is recommended. Equivalent branches which have lower admittances (or what is the same, higher impedances) will be replaced with equivalent shunt admittances at both terminals.::
+
+  >OPTIMAL_REDU = ON
+                  OFF
+
+This command switches the optimal network determination feature, which precedes the actual network reduction. When the optimal network selection is ON, it may enlarge the user-specified retained system with optimally selected nodes such that the overall size of the reduced system will be minimized. In essence, it expands the boundary into the eliminated system in a manner which will topologically result in an equivalent network having more buses but fewer branches overall. Thus, the user defines a fuzzy retained system containing the minimum desired configuration, and the optimal network selection will enlarge the network if feasible.::
+
+  >RETAIN_GEN = OFF, PMIN = 100.0
+                ON          <num>
+
+This command selected all generators with generation > PMIN to be in the retained network.::
+
+  >REI_CLUSTERS, VOLT_DIFF =.25, ANGLE_DIFF = 20.
+                            <num>            <num>
+
+This command works in conjunction with the REI option on the ELIM_MODE command. An attempt is made to automatically consolidate REI clusters which may have only a single node. However, their consolidation may result in an equivalent REI node whose voltages are too bizarre. It is electrically correct, but may cause solution problems since voltages are initialized about 1.0. By restricting the voltage differences of REI consolidation candidates to those whose voltage differences are less than the user-prescribed value, the resultant consolidated REI cluster will have a more feasible voltage.::
+
+  >SAVE_BASES = <list>
+
+This command defined the retained network as consisting of those buses which have the base kvs in list. Elements of list are separated with commas (,).::
+
+  >SAVE_BUSES
+
+This command defines the retained network as consisting of all buses identified on the following bus-formatted records. It is a brute force method to define the retained network. It cannot be used in conjunction with ``SAVE_ZONES`` or ``SAVE_BASES``. See ``INCLUDE_BUSES``.::
+
+  >SAVE_ZONES = <list>, BASES = <list>
+
 This command defines the retained network as consisting of those buses which have zones in the first list, with the optional, additional provision that their base kvs must be in the second list. Elements of the list are separated with commas (,).
->STARTING_VOLTAGES = FLAT                     HOT
+
+  >STARTING_VOLTAGES = FLAT
+                       HOT
+
 This command defines the starting voltages which will be used in the ensuing rebuilding and solution of the reduced equivalent base. The default is FLAT, meaning that the solution will use flat starting voltages. There are two separate applications for this option.
-The first application is to verify the integrity of the equivalent bus and branch data structures from the complex reduction processing. When used in conjunction a another solution option
-/ SOLUTION > BASE_SOLUTION
+The first application is to verify the integrity of the equivalent bus and branch data structures from the complex reduction processing. When used in conjunction a another solution option::
+
+  / SOLUTION > BASE_SOLUTION
+
 the ensuing convergence checks performed in output report independently verify the validity of the reduced bus and branch data.
-The second application is to assist in a solution of a reduced equivalent system if such assistance becomes necessary.
->ULT_MODE, GEN = CURRENT, LOAD = CURRENT,SHUNT_Y = ADMITT                 ADMITT          ADMITT            CURRENT                 POWER           POWER             POWER
-This command defines the ultimate form which the currents distributed from the eliminated nodes to the border nodes will attain. It affects only the border nodes. Note that before the elimination, the generation, load, and shunt of each eliminated node is disposed as defined by the command ELIM_MODE. Those quantities, which were distributed as three separate current vectors during the network reduction, are now to be transformed into their ultimate form. The distributed currents (generation, load, and shunt) will be encoded into special types of ``+A`` continuation buses with ownership ``***``.
+The second application is to assist in a solution of a reduced equivalent system if such assistance becomes necessary.::
+
+  >ULT_MODE, GEN = CURRENT, LOAD = CURRENT, SHUNT_Y = ADMITT
+                   ADMITT          ADMITT             CURRENT
+                   POWER           POWER              POWER
+
+This command defines the ultimate form which the currents distributed from the eliminated nodes to the border nodes will attain. It affects only the border nodes. Note that before the elimination, the generation, load, and shunt of each eliminated node is disposed as defined by the command ``ELIM_MODE``. Those quantities, which were distributed as three separate current vectors during the network reduction, are now to be transformed into their ultimate form. The distributed currents (generation, load, and shunt) will be encoded into special types of ``+A`` continuation buses with ownership ``***``.
 
 ======= ====================== ========= ===============================================
 Option  Meaning                Code year Comment
@@ -2623,12 +2661,206 @@ Solution option for type ``BX`` buses. The ``BPA`` option accepts any discrete r
 ``PHASE_SHIFTER_BIAS = BPA
                        WSCC``
 
-This switch determines the phase shifter angle bias for type RM phase shifters. The BPA option biases the angle to zero degrees (in recognization that non-zero degree phase shifts cause real-power loop flow and that biasing the angle to zero effectively bias the system to lower losses since the additional loses in the loop are minimized).  The WSCC option biases the angle to the original angle specified on the TP record)
+This switch determines the phase shifter angle bias for type ``RM`` phase shifters. The BPA option biases the angle to zero degrees (in recognization that non-zero degree phase shifts cause real-power loop flow and that biasing the angle to zero effectively bias the system to lower losses since the additional loses in the loop are minimized). The WSCC option biases the angle to the original angle specified on the ``TP`` record)::
+
 BRIDGE_CURRENT_RATING = ON OFF
-This switch determines whether the converter bridge current rating is applied to the DC circuit rating.  ON implies that the bridge current rating does apply; OFF implies that it doesn’t.
->SOL_ITER, DECOUPLED = 2, NEWTON = 30 <n> <nn>
+
+This switch determines whether the converter bridge current rating is applied to the DC circuit rating. ``ON`` implies that the bridge current rating does apply; ``OFF`` implies that it doesn't.::
+
+  >SOL_ITER, DECOUPLED = 2, NEWTON = 30
+                        <n>         <nn>
+
 This command sets the solution and iteration limits with the following:
-DECOUPLED Uses decoupled method to iterate from flat start. INITIAL prefixes the solution iteration count.
-NEWTON Uses Newton-Raphson method. At least three iterations must be specified. This is the final solution.
->TOLERANCE, BUS = 0.001 ,AIPOWER = 0.001, TX = 0.001, Q = 0.001                  <num>           <num>       <num>      <num>             V = 0.001                 <num>
-This command sets the tolerances in per unit (p.u.) for convergence testing. BUS pertains to both Pnet and Qnet (in per unit), AI_POWER to net area interchange export (in per unit), TX to Pkm for type RP or RM LTC phase shifters or for Qkm for type RQ and RN LTC transformers, Q to the violation of Qmax or Qmin for special bus types BQ, BG, and BX, and V to the desired controlled voltage by type BG buses or by type R transformers.
+
+  ``DECOUPLED`` Uses decoupled method to iterate from flat start. INITIAL prefixes the solution iteration count.
+
+  ``NEWTON`` Uses Newton-Raphson method. At least three iterations must be specified. This is the final solution.
+
+::
+
+  >TOLERANCE, BUS = 0.001, AIPOWER = 0.001, TX = 0.001, Q = 0.001, V = 0.001
+                    <num>            <num>       <num>      <num>      <num>
+                  
+
+This command sets the tolerances in per unit (p.u.) for convergence testing. ``BUS`` pertains to both :math:`P_{net}` and :math:`Q_{net}` (in per unit), ``AI_POWER`` to net area interchange export (in per unit), TX to Pkm for type ``RP`` or ``RM`` LTC phase shifters or for Qkm for type ``RQ`` and ``RN`` LTC transformers, Q to the violation of :math:`Q_{max}` or :math:`Q_{min}` for special bus types ``BQ``, ``BG``, and ``BX``, and :math:`V` to the desired controlled voltage by type BG buses or by type ``R`` transformers.
+
+SORT_ANALYSIS
+=============
+
+::
+
+  / SORT_ANALYSIS , OVERLOAD = < BUS >, OVERVOLTAGE = < BUS >
+                               < OWNER >              < OWNER >
+                               < ZONE >               < ZONE >
+                               < AREA >               < AREA >
+
+This controls the sort order of selected analysis listings:
+
+  * Overloaded transmission lines.
+  * Overloaded transformers.
+  * Undervoltage/overvoltage buses.
+
+The defaults are determined by RPT_SORT options:
+
+  * Sort by ``<ZONE>`` if ``RPT_SORT = <ZONE>``.
+  * Sort by ``<AREA>``  if ``RPT_SORT = <AREA>``.
+  * Sort by ``<OWNER>`` if ``RPT_SORT`` is defaulted.
+
+TRACE
+=====
+
+::
+
+  / TRACE, REORDER = OFF, X_REF = OFF, AUTO = OFF, Y_MATRIX = OFF, -
+                     ON           PART        ON              ON
+                                  FULL
+  
+               OUTPUT = OFF, MERGE = OFF, CHANGE = OFF
+                        ON           ON            ON
+
+Use this command to monitor data used by the program in various functional applications. This is an aid to user data verification.
+
+TRANSFER_SENSITIVITIES
+======================
+::
+
+  / TRANSFER_SENSITIVITIES
+    > OUTAGE
+    L  ...
+    E  ...  1 to 100 branch records in WSCC format identifying outages
+    T  ...  
+    > OVERLOAD
+    L  ...
+    E  ...  1 to 100 branch records in WSCC format identifying lines
+    T  ...  
+    checked for overloads.
+    > TRANSFER
+    I  ...
+    I  ...  1 to 100 intertie records identifying transfer between
+    I  ...  two areas which will alleviate any line overloads.
+    I
+
+This feature is similar to the outage simulation analysis, but with an important difference. Each overloaded line resulting from a contingency is quantified as to the amount of area transfer (shifting of generation from one area to another) that is necessary to alleviate the overload.
+
+Because the problem contains three nested loops (contingency loop, line overload monitoring loop, and inter-area transfer loop), the inter-area transfer loop is restricted to user-specified sets of transfers. Even with the present limits, the number of transfers can be large (100 outages * 100 overloads * 100 transfers = 1,000,000).
+
+Limitations and restrictions.
+
+  * Each / TRANSFER_SENSITIVITIES must include all three components:
+    
+    > OVERLOAD 
+    > OUTAGE 
+    > TRANSFER
+  
+  * Each ``> OVERLOAD``, ``> OUTAGE``, and ``> TRANSFER`` component must be followed with relevant branch records of type ``L``, ``E``, or ``T``, or relevant intertie records of type ``I``.
+  
+  The individual limits are:
+
+  Limit of ``OVERLOAD`` branches: 100
+  Limit of ``OUTAGE`` branches: 100 
+  Limit of inter-area TRANSFER: 100
+
+  * Lines monitored for overload must have rating (nominal) > 0.0. Extended ratings are not used.
+  
+  * Lines that are candidates for overloads or outages must have ``R < X``.
+
+TX_EFF
+======
+::
+
+  / TX_EFF, TOTAL_LOSS = <0.04>, CORE_LOSS = <0.02>, OWNERS = < BPA >
+                         <nn>                <nn>             < list >
+
+Use this command to compare total and core transformer losses. The output can be filtered by owners. "BPA" is the default if no owners are specified.
+
+USER_ANALYSIS
+=============
+::
+
+  / USER_ANALYSIS, FILE = <file_name>, DEBUG = OFF, OUTPUT = <filename>
+                                               ON
+
+This command generates customized analysis listings.
+
+``USER_ANALYSIS`` provides a simple macro-like programming language to perform algebraic operations involving quantities available or used in the base case in residence. This capability is not related in any way to the CFLOW programming library, which is much more powerful and flexible. However, ``USER_ANALYSIS`` provides an easy way to generate simple reports without C programming.
+
+If ``FILE`` in the above command is omitted, or ``<file_name>`` is ``*``, the user-defined text follows in the input stream. Otherwise, the named file becomes the input stream for this command.
+
+DEBUG enables the debug switch. Its output appears in an output file with the extension ``.pfd``.
+
+``OUTPUT = <filename>`` places a copy of the user defined output into the file selected in ``<filename>``.
+
+The following quantities are available from the solved base case in residence:
+
+  * Line flows, P_in or Q_in, measured at either bus1 or bus2 terminal.
+  * Intertie flows, P_in or Q_in, measured at metering points.
+  * Scheduled intertie flow, P_sched.
+  * Losses by Zones, Ownerships, Areas or system totals.
+  * All bus quantities: P_gen, P_max, Q_gen, Q_max, Q_min, P_load, Q_load, Caps_scheduled, Caps_used, Reactors_scheduled, Reactors_used, Susceptance_used, Susceptance_scheduled, Q_unscheduled. Voltage in per unit or in kV.
+
+Example
+-------
+A simple example illustrates this concept. The records following the / USER_ANALYSIS have not been introduced. However, the scheme is simple, and the purpose of the records is fairly obvious.
+
+In the example, it is desired to list the sums (P_in and Q_in) of two selected branches.
+
+/ USER_ANALYSIS, FILE = * . . The following symbols define P_in. . > DEFINE_TYPE BRANCH_P LET A1 = ELDORADO 500*LUGO        500 1
+LET A2 = MOHAVE   500*LUGO        500 1 > DEFINE_TYPE FUNCTION LET S1 = A1 + A2 . . The following symbols define Q_in. . > DEFINE_TYPE BRANCH_Q LET B1 = ELDORADO 500*LUGO        500 1 LET B2 = MOHAVE   500*LUGO        500 1 > DEFINE_TYPE FUNCTION LET S2 = B1 + B2 H C Branch                        P_in    Q_in C                               (MW)    (MVAR) C C ELDORADO/LUGO        500. 1 = $A1     $B1 C MOHAVE  /LUGO        500. 1 = $A2     $B2 C C Total                       = $S1     $S2
+Notice that this example contains two types of data: definitions and comments.
+The definitions > DEFINE_TYPE BRANCH_P, > DEFINE_TYPE BRANCH_Q, and > DEFINE_TYPE FUNCTION identify the type of symbols that follow.
+The symbols A1, A2, S1, B1, B2, and S2 are assigned to specific quantities in the network. They are evaluated after the case is solved.
+In the analysis phase, the user-defined report is compiled first. The report consists of a single pass through the comment text, substituting symbols for evaluated quantities before the line is printed. The symbols are identified with a leading $ followed by a valid symbol name.
+Let us make the assumption that the symbols above are evaluated as follows:
+A1 = 859.2 A2 = 901.8 S1 = 1761.0 B1 = 245.1 B2 = 254.2 S2 = 499.3
+Immediately before printing, these values are encoded into the symbol fields into the comment text. Their default format is F6.0. The output report appears as follows.
+Branch                      P_in    Q_in                            (MW)   (MVAR)
+ELDORADO/LUGO   500. 1 =    859.    245.
+MOHAVE  /LUGO   500. 1 =    902.    254.
+Total                  =   1761.    499.
+Three types of text follow the / USER_ANALYSIS record: pagination specifications, symbol definitions, and user-defined comment text. They are described in more detail in the following sections and are then illustrated with a second example.
+
+Symbol Deﬁnitions
+-----------------
+Symbol definitions have either a one-line or multiple-line format.
+
+The one-line format is:
+
+> DEFINE_TYPE <symbol_type><symbol_name>=<id_of_computed_quantity>
+
+The multiple-line format is:
+
+> DEFINE_TYPE <symbol_type> <symbol_name> = <id_of_computed_quantity> <symbol_name> = <id_of_computed_quantity> <symbol_name> = <id_of_computed_quantity>
+
+Some simple rules must be followed:
+
+  * All > DEFINE_TYPE data is free-field. Blanks and commas are delimiters. If a blank character is part of a name, substitute a pound sign (#).
+  Example: JOHN DAY 500.0 --> JOHN#DAY 500.0
+
+  A blank circuit ID in a multicircuit line must also be entered as a pound sign (#).
+  
+  Example: B = ELDORADO 500 LUGO 500 #
+  
+  * All > DEFINE_TYPE data is case-insensitive. No distinction is made between upper and lower case symbol characters. The case, however, is preserved in the analysis report as it was entered.
+
+  * The symbol names are limited to six characters.
+
+  * The symbol quantities are encoded with a default format of F6.0. The field begins in the column position of the $ and continues the necessary field width (default is six) as specified by the format. This default format may be changed by appending the new format to the symbol name using the FORTRAN convention, as shown below.
+
+C Total                   = $S1/F8.1 $S2/F8.1
+
+>DEFINE_TYPE BRANCH_P and >DEFINE_TYPE BRANCH_Q
+-----------------------------------------------
+This defines line flows, both P_in and Q_in, computed at the bus1 terminal (default) or at bus2 if an asterisk (*) immediately follows the base kV. Below, square brackets “[” and “]” denote enclosed optional quantities.
+>DEFINE_TYPE BRANCH_P (Branch flow in MW) LET P1 = BUS1 BASE1[*] BUS2 BASE2[*] ID LET P2 = BUS3 BASE3[*] BUS3 BASE4[*] ID ... LET PN = BUSM BASEM[*] BUSN BASEN[*] ID >DEFINE_TYPE BRANCH_Q (Branch flow in MW) LET Q1 = BUS1 BASE1[*] BUS2 BASE2[*] ID LET Q2 = BUS3 BASE3[*] BUS3 BASE4[*] ID ... LET QN = BUSM BASEM[*] BUSN BASEN[*] ID
+
+>DEFINE_TYPE INTERTIE_P or DEFINE_TYPE INTERTIE_Q
+-------------------------------------------------
+This defines the area interchange flow, either P_in (MW) or Q_in (MVAR). Either quantity is computed at the tie-line metering points.
+>DEFINE_TYPE INTERTIE_P (Interchange flow in MW) LET I1 = AREA_1 AREA_2 LET I2 = AREA_3 AREA_4 ... LET IN = AREA_M AREA_N
+>DEFINE_TYPE INTERTIE_Q (Interchange flow in MVAR) LET J1 = AREA_1 AREA_2 LET J2 = AREA_3 AREA_4 ... LET JN = AREA_M AREA_N
+
+> DEFINE_TYPE INTERTIE_P_SCHEDULED
+----------------------------------
+This defines the scheduled area intertie flow (I records) as P_in (MW).
+
+>DEFINE_TYPE INTERTIE_P_SCHEDULED (Scheduled Interchange flow in MW) LET I1 = AREA_1 AREA_2 LET I2 = AREA_3 AREA_4 ... LET IN = AREA_M AREA_N

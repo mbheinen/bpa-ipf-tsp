@@ -1,4 +1,4 @@
-pf_rec a, bus, branch; 
+pf_rec c, a, bus, branch; 
 int error, status;
 char net_data[80]; 
 FILE *out;
@@ -12,7 +12,18 @@ pf_rec_b2a(net_data, &bus, "I");
 printf("%s\n", net_data);
 
 pf_cflow_init( argc, argv );
-out = fopen ("misc.rpt", "w");
+out = fopen ("ipf_report.txt", "w");
+
+/* Obtain case comments */ 
+error = pf_rec_comments (&c, "G");
+fprintf (out, "Current case is: %s Description: %s\n\n", c.case_name, c.case_descrip);
+
+fprintf (out, "%s\n", c.h[0]); 
+fprintf (out, "%s\n", c.h[1]);
+fprintf (out, "%s\n\n", c.h[2]);
+fprintf (out, "%s\n", c.c[0]);
+fprintf (out, "%s\n", c.c[1]);
+fprintf (out, "%s\n\n", c.c[2]);
 
 pf_rec_branch(&branch, "O");
 
@@ -36,6 +47,9 @@ while ( !error && !status )
     status = pf_rec_area( &a, “O” ); /* get next area output*/
 }
 
+pf_init_itie("I ", areaname1, areaname2);
+status = pf_rec_itie (&itie, "G");
+
 for (error = pf_rec_branch(&branch,"f1"); error == 0; error = pf_rec_branch(&branch,"n1"))
 {
     printf("      %s, kv= %6.1f,name2= %s, kv2= %6.1f\n", 
@@ -49,3 +63,22 @@ for (error = pf_rec_bus(&bus, "f"); error == 0; error = pf_rec_bus(&bus, "n"))
         bus.i.ACbus.name, bus.i.ACbus.kv, bus.s.ACbus.Vmag, bus.s.ACbus.Vdeg);
 }
 
+/* CBUS DATA */
+fprintf (out,”\n******** CBUS DATA ********\n\n”);      error = pf_rec_bus( &r, “F” );           /* get first bus in case */     status = pf_rec_cbus( &r, “F1” );  /* is there a cbus record?  */
+while (!error) {
+    do {
+        error = pf_rec_bus( &r, “N” ); /* get next bus in case */
+        status = pf_rec_cbus( &r, “F1” ); /* is there a cbus record? */
+    } while (status);
+
+    while ( !status )  /* loop on bus with cbus record(s) */ {
+        status = pf_rec_cbus( &r, “O” );
+        fprintf (out, "Type Own  Bus Name         Pload  Qload  Gshunt Bshunt    Pgen  Qgn-mx    Qmin  \n");
+        fprintf (out, " %s %s  %s%5.1f %7.1f %7.1f %7.1f %7.1f %7.1f %7.1f %7.1f\n\n", 
+          r.i.cbus.type, r.i.cbus.owner,r.i.cbus.name,r.i.cbus.kv, r.s.cbus.Pload,r.s.cbus.Qload,r.s.cbus.Gshunt,r.s.cbus.Bshunt, r.i.cbus.Pgen ,r.i.cbus.Qgen_Qmax,r.i.cbus.Qmin);
+        status = pf_rec_cbus( &r, “N1” );
+    }
+}
+
+
+close(out);

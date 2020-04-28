@@ -127,7 +127,9 @@ This comment text is used to annotate the program control file, network data fil
 
 Simply place a ``.`` (period character) in the first column and the comment in the rest of the columns. This is also handy to temporarily deactivate a command or data line.
 
-.. image:: ../img/Comment_Input_Format.png
+.. figure:: ../img/Comment_Input_Format.png
+
+   Comment Input Format
 
 ====== ======== ====== ==============================
 Column ID Field Format Content
@@ -148,7 +150,9 @@ Each bus may have more than one continuation record. However, some means of dist
 
 A sample coding sheet and column descriptions for continuation bus data follows.
 
-.. image:: ../img/Continuation_Bus_Data_Input_Format.png
+.. figure:: ../img/Continuation_Bus_Data_Input_Format.png
+
+   Continuation Bus Data Input Format
 
 ===== ===================================================
 Code  Description
