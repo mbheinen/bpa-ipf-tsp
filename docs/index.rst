@@ -50,15 +50,19 @@ Contents
    basic/process_scenarios
    basic/record_formats
    basic/pfc
-   basic/typical_examples
+   basic/pcl
+   basic/pfc_examples
+   basic/application_examples
    basic/dc_line_modeling
    basic/ipfcut
    basic/ipfnet
+   basic/x_window_gui
    basic/network_diagrams
    basic/advanced
    basic/cflow
    basic/voltage_limits_starts
    basic/ownership_codes
    basic/developer
+   basic/ips_ipf_differences
 
 .. _Motif X Window: https://motif.ics.com/motif/downloads

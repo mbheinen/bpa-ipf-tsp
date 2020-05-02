@@ -13,6 +13,8 @@ Prior to the development of the Interactive Power Flow in the 1990s, BPA had dev
 
 These programs were designed for character-based terminals connected to mainframes. However, the 1980s and 90s saw the creation and maturation of graphical user interfaces (GUI) based on the mouse, windows, and menus. Studies showed that GUIs were more intuitive and easier-to-use interface than the older character/keyboard-based interfaces. Starting in 1991, BPA began a two-way joint development of a GUI interface for the powerflow program, based upon the X-Window System and the `Motif X Window`_ GUI. The joint partners were the `Electric Power Research Institute`_ EPRI and the Western Systems Coordinating Council (WSCC) now known as the `Western Electricity Coordinating Council`_ (WECC). The powerlow program itself was also restructured and enhanced in the process, and a ``libcflow`` library was added as a means to provide users API access to the IPF  functions for use in other programs.
 
+Original License
+================
 Below is a copy of the original license notice from BPA.::
 
   The BPA Powerflow software (IPF) is Public Domain; here is a copy of the License. 
@@ -59,20 +61,22 @@ Below is a copy of the original license notice from BPA.::
 
   9/20/95
 
-In keeping with the license, please know that original code is in public domain. Also, you should be able to obtain the original code released by BPA by contacting `Bonneville Power Administration`_ . However, for convenience the `v0.0.1 release of this project <https://github.com/mbheinen/bpa-ipf-tsp/releases/tag/v0.0.1>`_ is the original code.
+In keeping with the license, please know that original code is in public domain. Also, you should be able to obtain the original code released by BPA by contacting `Bonneville Power Administration`_ . However, for your convenience the `v0.0.1 release of this project <https://github.com/mbheinen/bpa-ipf-tsp/releases/tag/v0.0.1>`_ contains the original code released by BPA.
 
+Original Contributors
+=====================
 The original project is the result of a lot of hard work from engineers at BPA and EPRI. These include, but are not limited to:
 
   * Dan L. Clark
   * Jay G. Coleman
+  * Tsu-huei Liu
   * Walter L. Powell
   * Bill E. Rogers
-  * William D. Rogers (wdrogers@bpa.gov)
+  * William D. Rogers
   * K E Rowell
   * John L Rutis
   * D M Stefonik
   * D M Syzmanski
-  * Tsu-huei Liu
 
 .. _Bonneville Power Administration: https://www.bpa.gov/
 .. _Motif X Window: https://motif.ics.com/motif/downloads

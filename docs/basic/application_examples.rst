@@ -1,6 +1,6 @@
-****************
-Typical Examples
-****************
+********************
+Application Examples
+********************
 
 Introduction
 ============
@@ -87,11 +87,11 @@ Possible Uses of IPF
 --------------------
 IPF will be used to study the power flows, voltage regulation and reliability of service utilizing the proposed facility.
 
-.. figure:: ../img/A-SUB-New-SUB-230-kV-Line
+.. figure:: ../img/A-SUB_New_SUB_230_kV_Line.png
 
    A-SUB - New SUB 230 kV Line
 
-The processes ``(POWERFLOW)`` and ``(OUTAGE_SIM)`` will be used to check power flow as well as reliability. Refer to :ref:`power-flow-control-language`, for complete description of these processes.
+The processes ``(POWERFLOW)`` and ``(OUTAGE_SIM)`` will be used to check power flow as well as reliability. Refer to :ref:`power-flow-control`, for complete description of these processes.
 
 Suppose the base network which the proposed new facility will amend has been described in an old base file named ``BASENET.BSE``. The following program control file can be built for this case:
 
@@ -131,3 +131,67 @@ In this example, the major point to monitor is the impact of tapping lines since
 
 Reconductoring
 ==============
+The purpose of this example is to cure poor voltage regulation at delivery point C occurring when lines AB, BC or DE are out of service, and to improve energy conservation.
+
+Proposed New Facility
+---------------------
+Lines AB, BC and DE will be reconductored to reduce series impedances using higher capacity lines. The higher capacity lines will give rise to acceptable voltages and save energy otherwise lost in transmission.
+
+Possible Uses of Powerﬂow
+-------------------------
+IPF can be used to study the power flows, voltage regulation and reliability of service utilizing the proposed facility. In reference to the Program Control Language:
+
+  1. The base case is run to determine power flows, voltage levels and transmission losses.
+  2. The change case is run to modify the data for lines AB, BC and DE reflecting the new conductors used. Power flows, voltages and losses will again be reviewed.
+  3. The outage simulations case is run to verify the effect of certain lines being out of service on power flows, voltage levels, line loading and line losses. If the base network to be amended by the proposed new facility is described in an old-base file named BASENET.BSE, the program control file following the diagram of the reconductoring can be built for this project.::
+
+  ( POWERFLOW, CASEID = EXAMPLE30, PROJECT = RECONDUCT ) 
+  / OLD_BASE, FILE = BASENET.BSE 
+  . . . 
+  . . .  Optional network solution qualifiers. 
+  . . . 
+  ( NEXTCASE, CASEID = EXAMPLE31, PROJECT = RECONDUCT ) 
+  / NEW_BASE, FILE = EXAMPLE31.CAS 
+  . . .  Optional qualifiers to override options 
+  . . .  already selected above.  This should be 
+  . . .  an empty set. 
+  / CHANGES 
+  L - record to modify line AB 
+  L - record to modify line BC 
+  L - record to modify line DE 
+  ( NEXTCASE, CASEID = EXAMPLE32, PROJECT = RECONDUCT ) 
+  / OUTAGE_SIM 
+  . . . 
+  . . .  Optional simulation qualifiers. 
+  . . . 
+  ( STOP )
+
+Series Compsensation
+====================
+The purpose of this example is to add series compensation to existing parallel lines so as to cause more power to be shifted to these lines from lines with less loss-reduction.
+
+Proposed New Facility
+---------------------
+A 540 MVAR series capacitor at Station C is installed (270 MVAR per line), along with additional control and protective equipment. Station C is sited 72 miles from Station A and 102 miles from Station B.
+
+Possible Uses of Powerﬂow
+-------------------------
+IPF will be used to study the power flows utilizing the proposed facility.
+
+If the base network amended by the proposed new facility is described in an old-base file named ``BASENET.BSE``, then the following program control file can be built for this case::
+
+  ( POWERFLOW, CASEID = EXAMPLE4, PROJECT = SERIES COMP ) 
+  / OLD_BASE, FILE = BASENET.BSE 
+  . . . 
+  . . .  Optional solution qualifiers. 
+  . . . 
+  / CHANGES 
+  L - record to delete line AB circuit 1 
+  L - record to delete line AB circuit 2 
+  L - record to add Ckt circuit 1 section 1 (line AC) 
+  L - record to add Ckt circuit 1 section 2 (capacitor) 
+  L - record to add Ckt circuit 1 section 3 (line CB) 
+  L - record to add Ckt circuit 2 section 1 (line AC) 
+  L - record to add Ckt circuit 2 section 2 (capacitor) 
+  L - record to add Ckt circuit 2 section 3 (line CB) 
+  ( STOP )

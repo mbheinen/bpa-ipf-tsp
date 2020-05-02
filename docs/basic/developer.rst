@@ -1,15 +1,45 @@
 ***************
 Developer Notes
 ***************
-Below are notes about the codebase that developers might be find helpful when working with, enhancing, or debugging the IPF codebase. 
+This section contains notes for developers working with, enhancing, or debugging the IPF codebase. 
 
 Debugging
 =========
-You can list names of routines to debug in ``DBGIN`` file in .fil passed to tsp. Debug output is printed to file defined by ``DBGOUT``. For example, the following routines can be listed: CNTRL, CNTRLA, FFREAD, INITL1, INITL4, INPUT1, INT3FA, LSREAD, MATMOD, NAMBAS, NOUT1, NOUT2, RVREAD, SOLN, SWINGM, TAPEWK, WRTHIS. These Fortran subroutines will have their debug enabled.
+You can list names of functions or subroutines to debug in a ``DBGIN`` file in .fil passed to tsp. Debug output is printed to file defined by ``DBGOUT``. For example, the following routines can be listed: CNTRL, CNTRLA, FFREAD, INITL1, INITL4, INPUT1, INT3FA, LSREAD, MATMOD, NAMBAS, NOUT1, NOUT2, RVREAD, SOLN, SWINGM, TAPEWK, WRTHIS. These Fortran subroutines will have their debug enabled.
+
+``tsp`` Flowchart
+=================
+.. image:: ../img/IPF-tsp-flowchart.png
 
 Variables
 =========
-Reading the code can be challenging not only because Fortran 77 is the programming language used and there are fewer developers that know Fortran since it is the programming language of the 70s and 80s but also because the style of the code uses very condensed variable names to make sure they fit in the 80 character limit.
+Reading IPF code can be challenging. Fortran 77 was the programming language of the 70s and 80s. Today there are small percentage of developers that know Fortran and even fewer that have experience writing significant amounts of it. Though it is important to note that the language is still used in several well known projects such as the `Linear Algebra PACKage (LAPACK) <http://performance.netlib.org/lapack/>`_ . 
+
+Fortran developers must use very concise variable and function/subroutine names to make sure lines fit in the 80 character limit and original limitations on 8 character file names. Additionally, IPF code base makes heavy use of ``common`` blocks to pass data between functions (these are basically like blocks of data since Fortran has no concept of an object or even a struct as in C) as well as goto statements. This can make any given piece of code overwhelming to a newcomer. For example, you might encounter something like this and feel completely lost:
+
+.. code::
+
+  kbrknt = mptr / 2
+  next1 = mptr + 1
+  next2 = mptr + 1
+  last1 = nsize
+  last2 = nsize
+  do k = next1, last1
+     kolum1(k) = 0
+     kordr1(k) = k+1
+  enddo
+  kordr1(last1) = 0
+  do k = 1, ntot
+     jorder(k) = kownt(2,k)
+     loc2(k) = loc1(k)
+  enddo
+  do k = 1, nsize
+     kordr2(k) = kordr1(k)
+     kolum2(k) = kolum1(k)
+  enddo
+
+
+The table below contains a list of more descriptive names for variables. This can be used as a reference when getting started.
 
 ============ ==========================================================================================
 Variable     Description
@@ -30,10 +60,6 @@ Variable     Description
 ``isg``      Number of synchronous generators
 ``idsw``     Discontinuity state
 ============ ==========================================================================================
-
-Flowchart
-=========
-.. image:: img/IPF-tsp-flowchart.png
 
 Command Subroutines
 ===================
@@ -210,13 +236,13 @@ This section has a information about which Fortran subroutines to take a look at
   /GET_DATA, TYPE = LOAD_DEFINE
   > DEFINE ...
 
-
        processed by cmd_parse.c 
                    p_gtdata.f
                    p_loaddef.f
 
   /GET_DATA, TYPE = SUB_DEFINE, SOURCE = BASE
                                        ALTERNATE_BASE
+
        processed by cmd_parse.c 
                    p_gtdata.f
                    p_subdef.f
@@ -294,6 +320,7 @@ This section has a information about which Fortran subroutines to take a look at
        processed by cmd_parse.c
                     p_newbse.f
                     ctlpow.f
+
   /QUIT
 
         processed by p_pfexit_ 
