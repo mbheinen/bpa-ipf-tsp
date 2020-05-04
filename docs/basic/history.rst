@@ -1,5 +1,6 @@
+*******
 History
-=======
+*******
 IPF was developed by `Bonneville Power Administration`_ (BPA) and its contractors in the 1990s with about 20% of the cost 
 supported by the `Electric Power Research Institute`_ (EPRI). By mutual agreement, as described in EPRI Agreement RP2746-03 entitled *Graphical User Interface for Powerflow*, March, 1992, 
  

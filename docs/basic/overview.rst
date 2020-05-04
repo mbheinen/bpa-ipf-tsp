@@ -1,7 +1,7 @@
 ********
 Overivew
 ********
-Users may choose to interact with IPF through the command line tools (``bpf``, ``ipfbat``, ``ipfcut``, etc.), the ``libcflow`` C API, or through the `Motif X Window`_ GUI. Many of the functions and features of the command line tools are available through specially designed GUI features. The GUI simplifies creating network data, running the base case solutions, and graphically visualizing the network diagrams but is rather dated and in need of a refresh. For this reason, many users will likely prefer the command line tools.
+You can interact with IPF through the command line tools (``bpf``, ``ipfbat``, ``ipfcut``, etc.), the ``libcflow`` C API, or through the `Motif X Window`_ GUI. Many of the functions and features of the command line tools are available through specially designed GUI features. The GUI simplifies creating network data, running the base case solutions, and graphically visualizing the network diagrams but is rather dated and in need of a refresh. For this reason, many users will likely prefer the command line tools.
 
 Executables
 ===========

@@ -189,51 +189,51 @@ Required text is shown in ``UPPER-CASE`` while parameter values specified by the
 
 The optional underscore symbol (``_``) may be used to break up words for visual readability. The computer will read the words as though they were not broken.
 
-==== ======================= ===============================
-Page Command Name            Description
-==== ======================= ===============================
-4-10 AGC                     Emulates automatic generation control.
-4-13 AI_LIST                 Speciﬁes detail in area interchange listing.
-4-14 ANALYSIS_SELECT         Selects analysis reports for printing or microﬁche.
-4-16 BRANCH_DATA             Speciﬁes a master branch and bus data ﬁle for base case.
-4-17 BUS_SENSITIVITIES       Calculates system response to capacitor switching operations.
-4-22 CHANGE_BUS_TYPE         Disables voltage control in system.
-4-27 CHANGE_PARAMETERS       Perturbs parameters for start of new solution.
-4-33 CHANGES                 Speciﬁes system data change records.
-4-34 COMMENT                 Speciﬁes comment records.
-     COMMON_MODE_ANALYSIS    Analyzes the results from a series of common mode cases in the format of the OUTAGE_SIMULATION
-4-36 F_ANALYSIS_RPT          Speciﬁes report of zones or owners for microﬁche.
-4-38 F_INPUT_LIST            Lists input data on microﬁche.
-4-39 F_OUTPUT_LIST           Lists output data on microﬁche.
-4-40 GEN_DROP                Balances generation drop by picking up generation.
-4-44 HEADER                  Speciﬁes header information for reports.
-4-45 INCLUDE_CONTROL         Speciﬁes a ﬁle for control commands.
-4-46 LINE_EFF                Deﬁnes minimum percent line loading for report.
-4-47 LINE_SENSITIVITIES      Determines line sensitivity by controlling LTC and AI_CONTROL.
-4-50 %LOAD_DISTRIBUTION      Converts constant power, etc., into user-speciﬁed MVA, etc.
-4-63 LOSS_SENSITIVITIES      Gives information about system losses.
-4-65 MERGE_OLD_BASE and      MERGE_NEW_BASE Extracts information from two subsystems to create a new system.
-4-71 MVA_BASE                Changes base MVA to an assigned MVA.
-4-72 NETWORK_DATA            Speciﬁes bus and branch data.
-4-73 NEW_BASE                Deﬁnes the ﬁle name for a new case.
-4-74 OI_LIST                 Lists ownership interchange.
-4-75 OLD_BASE                Speciﬁes a previously existing solved case as the new case to start with.
-4-76 OUTAGE_SIMULATION       Simulates line outages, load dropping, generator outages and rescheduling.
-4-83 OVERLOAD_RPT            Speciﬁes overload parameter limits for report.
-4-84 P_ANALYSIS_RPT          Creates an analysis report.
-4-86 P_INPUT_LIST            Lists input data on paper.
-4-87 P_OUTPUT_LIST           Lists output on paper.
-4-89 REBUILD                 Rebuilds all data tables from current OLDBASE ﬁle.
-4-90 REDUCTION               Reduces a network.
-4-95 RPT_SORT                Sorts output data of solved network.
-4-96 SAVE_FILE               Creates various output ﬁles, including the SIF (Stability Interface File).
-4-98 SOLUTION                Enables solution options and post-solution processes.
-4-104 SORT_ANALYSIS          Controls sort order for analysis listings.
-4-105 TRACE                  Monitors data to aid data veriﬁcation.
-4-106 TRANSFER_SENSITIVITIES Causes analysis of transfer sensitivities.
-4-107 TX_EFF                 Compares total and core transformer losses.
-4-108 USER_ANALYSIS          Generates custom analysis listings
-==== ======================= ===============================
+===== ======================= ===============================
+Page  Command Name            Description
+===== ======================= ===============================
+4-10  AGC                     Emulates automatic generation control.
+4-13  AI_LIST                 Speciﬁes detail in area interchange listing.
+4-14  ANALYSIS_SELECT         Selects analysis reports for printing or microﬁche.
+4-16  BRANCH_DATA             Speciﬁes a master branch and bus data ﬁle for base case.
+4-17  BUS_SENSITIVITIES       Calculates system response to capacitor switching operations.
+4-22  CHANGE_BUS_TYPE         Disables voltage control in system.
+4-27  CHANGE_PARAMETERS       Perturbs parameters for start of new solution.
+4-33  CHANGES                 Speciﬁes system data change records.
+4-34  COMMENT                 Speciﬁes comment records.
+      COMMON_MODE_ANALYSIS    Analyzes the results from a series of common mode cases in the format of the OUTAGE_SIMULATION
+4-36  F_ANALYSIS_RPT          Speciﬁes report of zones or owners for microﬁche.
+4-38  F_INPUT_LIST            Lists input data on microﬁche.
+4-39  F_OUTPUT_LIST           Lists output data on microﬁche.
+4-40  GEN_DROP                Balances generation drop by picking up generation.
+4-44  HEADER                  Speciﬁes header information for reports.
+4-45  INCLUDE_CONTROL         Speciﬁes a ﬁle for control commands.
+4-46  LINE_EFF                Deﬁnes minimum percent line loading for report.
+4-47  LINE_SENSITIVITIES      Determines line sensitivity by controlling LTC and AI_CONTROL.
+4-50  %LOAD_DISTRIBUTION      Converts constant power, etc., into user-speciﬁed MVA, etc.
+4-63  LOSS_SENSITIVITIES      Gives information about system losses.
+4-65  MERGE_OLD_BASE and      MERGE_NEW_BASE Extracts information from two subsystems to create a new system.
+4-71  MVA_BASE                Changes base MVA to an assigned MVA.
+4-72  NETWORK_DATA            Speciﬁes bus and branch data.
+4-73  NEW_BASE                Deﬁnes the ﬁle name for a new case.
+4-74  OI_LIST                 Lists ownership interchange.
+4-75  OLD_BASE                Speciﬁes a previously existing solved case as the new case to start with.
+4-76  OUTAGE_SIMULATION       Simulates line outages, load dropping, generator outages and rescheduling.
+4-83  OVERLOAD_RPT            Speciﬁes overload parameter limits for report.
+4-84  P_ANALYSIS_RPT          Creates an analysis report.
+4-86  P_INPUT_LIST            Lists input data on paper.
+4-87  P_OUTPUT_LIST           Lists output on paper.
+4-89  REBUILD                 Rebuilds all data tables from current OLDBASE ﬁle.
+4-90  REDUCTION               Reduces a network.
+4-95  RPT_SORT                Sorts output data of solved network.
+4-96  SAVE_FILE               Creates various output ﬁles, including the SIF (Stability Interface File).
+4-98  SOLUTION                Enables solution options and post-solution processes.
+4-104 SORT_ANALYSIS           Controls sort order for analysis listings.
+4-105 TRACE                   Monitors data to aid data veriﬁcation.
+4-106 TRANSFER_SENSITIVITIES  Causes analysis of transfer sensitivities.
+4-107 TX_EFF                  Compares total and core transformer losses.
+4-108 USER_ANALYSIS           Generates custom analysis listings
+===== ======================= ===============================
 
 AGC
 ===
@@ -847,7 +847,7 @@ Subsequent ``/ CHANGE_PARAMETERS`` commands will perform additional perturbation
 Example 2
 ---------
 
-.. literal::
+::
 
   / USER_ANALYSIS,FILE=DRB2:[EOFBMJL]USANLINE.DAT
   / CHANGE_BUS_TYPES, BQ=B,BX=B,BG=BQ,LTC=OFF,AREA=NORTHWEST,BC-HYDRO
@@ -887,6 +887,8 @@ Example 2
 Miscellaneous Notes
 -------------------
 If the system is severely perturbed, ``/ CHANGE_PARAMETERS`` will cause divergence. If this happens, it is assumed that subsequent perturbations will be severe, so divergence will cause them to be ignored. A diagnostic will be issued.
+
+.. _CHANGES:
 
 CHANGES
 =======
@@ -1319,7 +1321,7 @@ The option ``DISTRIBUTED_VOLTAGE`` (or ``DIST`` for abbreviated form) selects ei
 
 Constant Current and Impedance Loads
 ------------------------------------
-Constant current loads and constant impedance loads are defined by continuation bus (``+``) records using reserved ``TYPE``s and ``CODE_YR``s. Constant impedance loads differ from :math:`G_{shunt}` and :math:`B_{shunt}` quantities in the sense that these quantities are converted into loads and appear in special analysis summaries. The table below describes these special codes and their interpretations.
+Constant current loads and constant impedance loads are defined by continuation bus (``+``) records using reserved ``TYPE`` s and ``CODE_YR`` s. Constant impedance loads differ from :math:`G_{shunt}` and :math:`B_{shunt}` quantities in the sense that these quantities are converted into loads and appear in special analysis summaries. The table below describes these special codes and their interpretations.
 
 ==== ===== ======= =============== =============== =================== ==================
 Type Owner CODE_YR P_LOAD          Q_LOAD          G_SHUNT             B_SHUNT
@@ -1329,8 +1331,8 @@ Type Owner CODE_YR P_LOAD          Q_LOAD          G_SHUNT             B_SHUNT
 +A         01      :math:`P(I)` b  :math:`Q(I)` c  :math:`P(G)` d      :math:`Q(B)` e 
 +A         01      :math:`P(I)`    :math:`Q(I)`    :math:`G_{equiv}` f :math:`B_{equiv}` g
 +A         02                                      :math:`P(G)`        :math:`Q(B)`
-           *I      :math:`P(I)`    :math:`Q(I)`    :math:`P(G)`        :math:`Q(B)`
-           *P                                      :math:`P(G)`        :math:`Q(B)`
+           \*I     :math:`P(I)`    :math:`Q(I)`    :math:`P(G)`        :math:`Q(B)`
+           \*P                                     :math:`P(G)`        :math:`Q(B)`
 ==== ===== ======= =============== =============== =================== ==================
 
 a. :math:`B_{ﬁxed}` = Shunt is pi_back shunt impedance from ``/ CUTTING``. 
@@ -1524,23 +1526,29 @@ PLOAD, QLOAD distributions applied to a bus record. See figure below.::
   PLOAD = % PL + % PI + % PZ 
   QLOAD = % QL + % QI + % QZ
 
-.. image:: ../img/Original_B_Record.png
+.. figure:: ../img/Original_B_Record.png
+
+  Original B Record
 
 1. Remove ``PLOAD`` and ``QLOAD`` quantities from bus record above.
-2. Calculate the following quantities::
+2. Calculate the following quantities
+  
+  ::
 
-  P1 = PLOAD * %PL 
-  Q1 = QLOAD * %QL 
-  P2 = PLOAD * %PI  / VOLTAGE 
-  Q2 = QLOAD * %QI / VOLTAGE 
-  P3 = PLOAD * %PZ / VOLTAGE ** 2 
-  Q3 = QLOAD * %QZ / VOLTAGE ** 2
+    P1 = PLOAD * %PL 
+    Q1 = QLOAD * %QL 
+    P2 = PLOAD * %PI  / VOLTAGE 
+    Q2 = QLOAD * %QI / VOLTAGE 
+    P3 = PLOAD * %PZ / VOLTAGE ** 2 
+    Q3 = QLOAD * %QZ / VOLTAGE ** 2
 
 3. Replace the load and shunt fields on the ``B`` record and on a new ``+A*I`` record.
 
 Modified ``B`` record and new ``+A*I`` record. See below.
 
-.. image:: ../img/Modified_B_Record.png
+.. figure:: ../img/Modified_B_Record.png
+
+  Modified B Record
 
 Example 2
 ^^^^^^^^^
@@ -1571,7 +1579,9 @@ Note that ``ALOAD`` and ``BLOAD`` quantities are generated by prior ``%LOAD_DIST
 
 Modified ``+X*I`` record and new ``+A*P`` record. See below.
 
-.. image:: ../img/Modified_Continuation_Record.png
+.. figure:: ../img/Modified_Continuation_Record.png
+
+  Modified Continuation Record
 
 Limitations, Restrictions, and Assumptions
 ------------------------------------------
@@ -2467,7 +2477,7 @@ RPT_SORT
                AREA
                OWNER
 
-This command sorts output information of a solved network by bus, zone, area, or ownership. The area sort is by ``AO`` records, not by ``A`` records. See section :ref:`Area Output Sort`.
+This command sorts output information of a solved network by bus, zone, area, or ownership. The area sort is by ``AO`` records, not by ``A`` records. See section :ref:`area-output-sort`.
 
 SAVE_FILE
 =========

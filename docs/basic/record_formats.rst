@@ -18,42 +18,42 @@ All IPF data record types are identified by the characters in columns 1 and 2. T
 
 .. table:: Record Types
 
-   ==== ======================== =========== =================================
-   Link Record ID (columns 1-2)  Field Width Description
-   ==== ======================== =========== =================================
-   3-7  Period (``.``)           120         Comment (not printed)
-   3-8  ``+``                    80          Bus continuation
-   3-14 ``A``                    80          Area interchange control
-   3-16 ``AO``                   80          Area output sort
-   3-18 ``-``                    ``-``       General AC bus description
-   3-22 ``B``                    80          AC bus - load bus
-   3-25 ``BC``                   80          AC bus - voltage controlled by ``BG`` bus
-   3-28 ``BE``                   80          AC bus - constant voltage
-   3-31 ``BF``                   80          AC bus - special purpose bus for Newton-Raphson solution
-   3-32 ``BG``                   80          AC bus - generator
-   3-35 ``BQ``                   80          AC bus - constant voltage within Q limits
-   3-38 ``BS``                   80          AC bus - system slack bus
-   3-41 ``BT``                   80          AC bus - LTC transformer controlled AC bus
-   3-44 ``BV``                   80          AC bus - constant Q within V limits
-   3-47 ``BX``                   80          AC bus - attempts constant V using switched Q speciﬁed on ``X`` record
-   3-50 ``BD``                   80          Two-terminal DC bus
-   3-52 ``BM``                   80          Multi-terminal DC bus
-   3-55 ``DA``                   80          Delete buses by area
-   3-56 ``DZ``                   80          Delete buses by zones
-   3-57 ``E``                    88          Equivalent branch (has extended ratings)
-   3-60 ``I``                    80          Area intertie ``I`` record
-   3-62 ``L``                    88          Transmission line (has extended ratings)
-   3-66 ``LD``                   80          Two-terminal DC line
-   3-69 ``LM``                   80          Multi-terminal DC line
-   3-72 ``PO PZ PN PA PB PC PD`` 80          Factor changes
-   3-78 ``QN QP QX``             120         Reactive capability curve
-   3-82 ``R RV RQ RP RN RM``     80          Regulating transformer
-   3-86 ``RZ``                   80          VAR compensator model
-   3-88 ``T``                    92          Transformer (has extended ratings)
-   3-88 ``TP``                   92          Phase shifter (has extended ratings)
-   3-93 ``X``                    80          Switched reactance (BX record)
-   3-96 ``Z``                    80          Zone rename
-   ==== ======================== =========== =================================
+   ======================== =========== =================================
+   Record ID (columns 1-2)  Field Width Description
+   ======================== =========== =================================
+   Period (``.``)           120         Comment (not printed)
+   ``+``                    80          Bus continuation
+   ``A``                    80          Area interchange control
+   ``AO``                   80          Area output sort
+   ``-``                    ``-``       General AC bus description
+   ``B``                    80          AC bus - load bus
+   ``BC``                   80          AC bus - voltage controlled by ``BG`` bus
+   ``BE``                   80          AC bus - constant voltage
+   ``BF``                   80          AC bus - special purpose bus for Newton-Raphson solution
+   ``BG``                   80          AC bus - generator
+   ``BQ``                   80          AC bus - constant voltage within Q limits
+   ``BS``                   80          AC bus - system slack bus
+   ``BT``                   80          AC bus - LTC transformer controlled AC bus
+   ``BV``                   80          AC bus - constant Q within V limits
+   ``BX``                   80          AC bus - attempts constant V using switched Q speciﬁed on ``X`` record
+   ``BD``                   80          Two-terminal DC bus
+   ``BM``                   80          Multi-terminal DC bus
+   ``DA``                   80          Delete buses by area
+   ``DZ``                   80          Delete buses by zones
+   ``E``                    88          Equivalent branch (has extended ratings)
+   ``I``                    80          Area intertie ``I`` record
+   ``L``                    88          Transmission line (has extended ratings)
+   ``LD``                   80          Two-terminal DC line
+   ``LM``                   80          Multi-terminal DC line
+   ``PO PZ PN PA PB PC PD`` 80          Factor changes
+   ``QN QP QX``             120         Reactive capability curve
+   ``R RV RQ RP RN RM``     80          Regulating transformer
+   ``RZ``                   80          VAR compensator model
+   ``T``                    92          Transformer (has extended ratings)
+   ``TP``                   92          Phase shifter (has extended ratings)
+   ``X``                    80          Switched reactance (BX record)
+   ``Z``                    80          Zone rename
+   ======================== =========== =================================
 
 System Changes
 ==============
@@ -131,12 +131,14 @@ Simply place a ``.`` (period character) in the first column and the comment in t
 
    Comment Input Format
 
-====== ======== ====== ==============================
-Column ID Field Format Content
-====== ======== ====== ==============================
-1      yes      A1     ``.`` (period)
-2-120  no       A119   Text string for record comment
-====== ======== ====== ==============================
+.. table:: Column Descriptions for Comment Format
+
+  ====== ======== ====== ==============================
+  Column ID Field Format Content
+  ====== ======== ====== ==============================
+  1      yes      A1     ``.`` (period)
+  2-120  no       A119   Text string for record comment
+  ====== ======== ====== ==============================
 
 Continuation Bus Data (``+``)
 =============================
@@ -154,83 +156,89 @@ A sample coding sheet and column descriptions for continuation bus data follows.
 
    Continuation Bus Data Input Format
 
-===== ===================================================
-Code  Description
-===== ===================================================
-A     Equivalent injection data from network reduction. Note that data associated with this code is not subject to the effect of factor change (``P``) records.
-C     Shunt MW or MVAR
-F     Industrial ﬁrm load
-I     Industrial interruptible load
-N     Nonindustrial ﬁrm load (bus ownership differs from load ownership)
-P     Industrial potential load
-S     Nonindustrial secondary load
-Blank Nonindustrial ﬁrm load (bus ownership = load ownership)
-===== ===================================================
+.. table:: Classiﬁcation Codes
+
+  ===== ===================================================
+  Code  Description
+  ===== ===================================================
+  A     Equivalent injection data from network reduction. Note that data associated with this code is not subject to the effect of factor change  (``P``) records.
+  C     Shunt MW or MVAR
+  F     Industrial ﬁrm load
+  I     Industrial interruptible load
+  N     Nonindustrial ﬁrm load (bus ownership differs from load ownership)
+  P     Industrial potential load
+  S     Nonindustrial secondary load
+  Blank Nonindustrial ﬁrm load (bus ownership = load ownership)
+  ===== ===================================================
 
 In addition to the special classifications codes of column (2:2), the code year may convey special meaning or models to the continuation bus records. The table below summarizes the features.
 
-+------+-----------+---------------------+---------------------+---------------------+---------------------+----------------------------+
-| Code | Code year | P_load              | Q_load              | G_shunt             | B_shunt             | Description                |
-+======+===========+=====================+=====================+=====================+=====================+============================+
-| +A   |           | Constant power MW   | Constant power      | Constant admittance | Constant admittance | Quantity generated by      |
-|      |           | load (generation if | MVAR load           | MW evaluated at     | MVAR evaluated at   | Network Data or Cutting    |
-|      |           | negative)           | (generation if      | nominal voltage     | nominal voltage     | routines                   |
-|      |           |                     | negative)           |                     |                     |                            |
-+------+-----------+---------------------+---------------------+---------------------+---------------------+----------------------------+
-| +A   | 00        | Constant power MW   | Constant power      | Constant admittance | Constant admittance | Quantity generated by      |
-|      |           | load (generation if | MVAR load           | MW evaluated at     | MVAR evaluated at   | Network Data routine       |
-|      |           | negative)           | (generation if      | nominal voltage     | nominal voltage     |                            |
-|      |           |                     | negative)           |                     |                     |                            |
-+------+-----------+---------------------+---------------------+---------------------+---------------------+----------------------------+
-| +A   | 01        | Distributed constant| Distributed constant| Equivalent MW       | Equivalent MVAR     | Quantity generated by      |
-|      |           | current MW load     | current conjugate   | shunt admittance    | shunt admittance    | Network Reduction routines |
-|      |           | (generation if      | MVAR load           |                     |                     |                            |
-|      |           | negative) evaluated | (generation if      |                     |                     |                            |
-|      |           | at nominal voltage  | negative) evaluated |                     |                     |                            |
-|      |           |                     | at nominal voltage  |                     |                     |                            |
-+------+-----------+---------------------+---------------------+---------------------+---------------------+----------------------------+
-| +A   | 02        | Distributed MW load | Distributed MVAR    | Equivalent MW       | Equivalent MVAR     | Quantity generated by      |
-|      |           | (generation if      | load (generation if | shunt admittance    | shunt admittance    | Network Reduction; denote  |
-|      |           | negative)           | negative)           |                     |                     | equivalent shunt           |
-|      |           |                     |                     |                     |                     | admittances                |
-+------+-----------+---------------------+---------------------+---------------------+---------------------+----------------------------+
-|      | \*I       | Constant current MW | Constant current    | Not applicable      | Not applicable      | Quantity generated by      |
-|      |           | load (generation if | conjugate MVAR load |                     |                     | %LOAD_DISTRIBUTION         |
-|      |           | negative) evaluated | (generation if      |                     |                     |                            |
-|      |           | at nominal voltage  | negative) evaluated |                     |                     |                            |
-|      |           |                     | at nominal voltage  |                     |                     |                            |
-+------+-----------+---------------------+---------------------+---------------------+---------------------+----------------------------+
-|      | \*Z       | Constant power MW   | Constant power MVAR | Constant admittance | Constant admittance | Quantity generated by      |
-|      |           | load (generation    | load (generation    | MW load (generation | MVAR load           | %LOAD_DISTRIBUTION         |
-|      |           | if negative)        | if negative)        | if negative)        | (generation if      |                            |
-|      |           |                     |                     | evaluated at        | negative) evaluated |                            |
-|      |           |                     |                     | nominal voltage     | at nominal voltage  |                            |
-+------+-----------+---------------------+---------------------+---------------------+---------------------+----------------------------+
-|      | \*P       | Constant power      | Constant power      | Not applicable      | Not applicable      | Quantity generated by      |
-|      |           | MW load (generation | MVAR load           |                     |                     | %LOAD_DISTRIBUTION         |
-|      |           | if negative)        | (generation if      |                     |                     |                            |
-|      |           |                     | negative)           |                     |                     |                            |
-+------+-----------+---------------------+---------------------+---------------------+---------------------+----------------------------+
+.. table:: Special Constant Current and Constant Impedance Loads
 
-====== ======== ====== =================================
-Column ID Field Format Description
-====== ======== ====== =================================
-1      yes      A1     Record type; ``+`` for all continuation bus data
-2      yes      A1     Code (See code types above.)
-3      no       A1     Change code
-4-6    yes      A3     Ownership
-7-14   yes      A8     Bus name
-15-18  yes      F4.0   Base kV
-19-20  yes      A2     Code year—alphanumeric subtype of code 
-21-25a no       F5.0   Load MW
-26-30  no       F5.0   Load MVAR
-31-34  no       F4.0   Shunt Admittance Load in MW at base kV
-35-38  no       F4.0   Shunt Admittance in MVAR at base kV (+) = Capacitive (-) = Inductive
-43-47  no       F5.0   ``P GEN`` MW
-48-52  no       F5.0   ``Q GEN`` MVAR (or ``Q MAX``) (+) = Capacitive (-) = Inductive
-53-57  no       F5.0   ``Q MIN`` in MVAR
-75-77  no       A1, A2 Energization date month and year {month = 1,2,3,4,5,6,7,8,9,O,N,D}
-====== ======== ====== =================================
+  +------+-----------+---------------------+---------------------+---------------------+---------------------+----------------------------+
+  | Code | Code year | P_load              | Q_load              | G_shunt             | B_shunt             | Description                |
+  +======+===========+=====================+=====================+=====================+=====================+============================+
+  | +A   |           | Constant power MW   | Constant power      | Constant admittance | Constant admittance | Quantity generated by      |
+  |      |           | load (generation if | MVAR load           | MW evaluated at     | MVAR evaluated at   | Network Data or Cutting    |
+  |      |           | negative)           | (generation if      | nominal voltage     | nominal voltage     | routines                   |
+  |      |           |                     | negative)           |                     |                     |                            |
+  +------+-----------+---------------------+---------------------+---------------------+---------------------+----------------------------+
+  | +A   | 00        | Constant power MW   | Constant power      | Constant admittance | Constant admittance | Quantity generated by      |
+  |      |           | load (generation if | MVAR load           | MW evaluated at     | MVAR evaluated at   | Network Data routine       |
+  |      |           | negative)           | (generation if      | nominal voltage     | nominal voltage     |                            |
+  |      |           |                     | negative)           |                     |                     |                            |
+  +------+-----------+---------------------+---------------------+---------------------+---------------------+----------------------------+
+  | +A   | 01        | Distributed constant| Distributed constant| Equivalent MW       | Equivalent MVAR     | Quantity generated by      |
+  |      |           | current MW load     | current conjugate   | shunt admittance    | shunt admittance    | Network Reduction routines |
+  |      |           | (generation if      | MVAR load           |                     |                     |                            |
+  |      |           | negative) evaluated | (generation if      |                     |                     |                            |
+  |      |           | at nominal voltage  | negative) evaluated |                     |                     |                            |
+  |      |           |                     | at nominal voltage  |                     |                     |                            |
+  +------+-----------+---------------------+---------------------+---------------------+---------------------+----------------------------+
+  | +A   | 02        | Distributed MW load | Distributed MVAR    | Equivalent MW       | Equivalent MVAR     | Quantity generated by      |
+  |      |           | (generation if      | load (generation if | shunt admittance    | shunt admittance    | Network Reduction; denote  |
+  |      |           | negative)           | negative)           |                     |                     | equivalent shunt           |
+  |      |           |                     |                     |                     |                     | admittances                |
+  +------+-----------+---------------------+---------------------+---------------------+---------------------+----------------------------+
+  |      | \*I       | Constant current MW | Constant current    | Not applicable      | Not applicable      | Quantity generated by      |
+  |      |           | load (generation if | conjugate MVAR load |                     |                     | %LOAD_DISTRIBUTION         |
+  |      |           | negative) evaluated | (generation if      |                     |                     |                            |
+  |      |           | at nominal voltage  | negative) evaluated |                     |                     |                            |
+  |      |           |                     | at nominal voltage  |                     |                     |                            |
+  +------+-----------+---------------------+---------------------+---------------------+---------------------+----------------------------+
+  |      | \*Z       | Constant power MW   | Constant power MVAR | Constant admittance | Constant admittance | Quantity generated by      |
+  |      |           | load (generation    | load (generation    | MW load (generation | MVAR load           | %LOAD_DISTRIBUTION         |
+  |      |           | if negative)        | if negative)        | if negative)        | (generation if      |                            |
+  |      |           |                     |                     | evaluated at        | negative) evaluated |                            |
+  |      |           |                     |                     | nominal voltage     | at nominal voltage  |                            |
+  +------+-----------+---------------------+---------------------+---------------------+---------------------+----------------------------+
+  |      | \*P       | Constant power      | Constant power      | Not applicable      | Not applicable      | Quantity generated by      |
+  |      |           | MW load (generation | MVAR load           |                     |                     | %LOAD_DISTRIBUTION         |
+  |      |           | if negative)        | (generation if      |                     |                     |                            |
+  |      |           |                     | negative)           |                     |                     |                            |
+  +------+-----------+---------------------+---------------------+---------------------+---------------------+----------------------------+
+
+.. table:: Column Description for Continuation Bus Data
+
+  ====== ======== ====== =================================
+  Column ID Field Format Description
+  ====== ======== ====== =================================
+  1      yes      A1     Record type; ``+`` for all continuation bus data
+  2      yes      A1     Code (See code types above.)
+  3      no       A1     Change code
+  4-6    yes      A3     Ownership
+  7-14   yes      A8     Bus name
+  15-18  yes      F4.0   Base kV
+  19-20  yes      A2     Code year—alphanumeric subtype of code 
+  21-25a no       F5.0   Load MW
+  26-30  no       F5.0   Load MVAR
+  31-34  no       F4.0   Shunt Admittance Load in MW at base kV
+  35-38  no       F4.0   Shunt Admittance in MVAR at base kV (+) = Capacitive (-) = Inductive
+  43-47  no       F5.0   ``P GEN`` MW
+  48-52  no       F5.0   ``Q GEN`` MVAR (or ``Q MAX``) (+) = Capacitive (-) = Inductive
+  53-57  no       F5.0   ``Q MIN`` in MVAR
+  75-77  no       A1, A2 Energization date month and year {month = 1,2,3,4,5,6,7,8,9,O,N,D}
+  ====== ======== ====== =================================
 
 a.  If the Code (column 2) is ``A`` and the Code year (column 19-20) is ``01``, the load quantities are constant current-constant power factors and are: 
   
@@ -257,21 +265,27 @@ In order for area interchange control to be activated, A records must be defined
   
   Area Continuation records (A1, ..., A9) accept only area name and zones 1-10 fields.
   
-.. image:: ../img/Area_Interchange_Control_Input_Format.png
+.. figure:: ../img/Area_Interchange_Control_Input_Format.png
 
-====== ======== ========= ==========================
-Column ID Field Format    Description
-====== ======== ========= ==========================
-1      yes      A1        Record type — A
-2      yes      A1        Subtype — blank, 1, ..., 9
-3      no       A1        Change code — see System Changes
-4-13   yes      A10       Interchange area name — Name of area consisting of one or more zones. Alphanumeric entries are permitted.
-14-25  no       A8,F4.0   Area slack bus name and base kV. (Does not apply to subtypes A1, ..., A9.)
-27-34  no       F8.0      Scheduled export — MW ﬂow scheduled (+) out of area or (-) into area. If I (interchange) records are present for this area, the net schedule will be overwritten with the netting computed from the I records. (Does not apply to subtypes A1, ..., A9.)
-36-64  no       10(A2,1X) Zones to be included in the interchange area named in columns 4-13. A blank zone terminates the scan unless it is zone 1. All zones must be listed within some area, but no zone may be common to more than one area.
-73-76  no       F4.3      Maximum per unit voltage. (Does not apply to subtypes A1, ..., A9.)
-77-80  no       F4.3      Minimum per unit voltage. (Does not apply to subtypes A1, ..., A9.)
-====== ======== ========= ==========================
+  Area Interchange Control Input Format
+
+.. table:: Column Description for Area Interchange
+
+  ====== ======== ========= ==========================
+  Column ID Field Format    Description
+  ====== ======== ========= ==========================
+  1      yes      A1        Record type — A
+  2      yes      A1        Subtype — blank, 1, ..., 9
+  3      no       A1        Change code — see System Changes
+  4-13   yes      A10       Interchange area name — Name of area consisting of one or more zones. Alphanumeric entries are permitted.
+  14-25  no       A8,F4.0   Area slack bus name and base kV. (Does not apply to subtypes A1, ..., A9.)
+  27-34  no       F8.0      Scheduled export — MW ﬂow scheduled (+) out of area or (-) into area. If I (interchange) records are present for this area, the net schedule will be overwritten with the netting computed from the I records. (Does not apply to subtypes A1, ..., A9.)
+  36-64  no       10(A2,1X) Zones to be included in the interchange area named in columns 4-13. A blank zone terminates the scan unless it is zone 1. All zones must be listed within some area, but no zone may be common to more than one area.
+  73-76  no       F4.3      Maximum per unit voltage. (Does not apply to subtypes A1, ..., A9.)
+  77-80  no       F4.3      Minimum per unit voltage. (Does not apply to subtypes A1, ..., A9.)
+  ====== ======== ========= ==========================
+
+.. _area-output-sort:
 
 Area Output Sort (``AO``)
 =========================
@@ -300,41 +314,47 @@ Each AC bus consists of three attributes: generation, load, and shunt admittance
 
 The various subtypes permit different models to represent the operation of the system. Most buses have constant real injection. Exceptions are the system slack bus and any area interchange slack buses.
 
-.. image:: ../img/Bus_Data_Input_Format.png
+.. figure:: ../img/Bus_Data_Input_Format.png
 
-====== ======== ====== ====================
-Column ID Field Format Description
-====== ======== ====== ====================
-1      yes      A1     AC ``B`` type record
-2      no       A1     Subtype
-3      no       A1     Change code
-4-6    no       A3     Ownership
-7-14   yes      A8     Bus name
-15-18  yes      F4.0   Base kV
-19-20  no       A2     Zone
-21-26  no       F5.0   Load MW
-26-30  no       F5.0   Load MVAR
-31-34  no       F4.0   Shunt Admittance Load in MW at base kV
-35-38  no       F4.0   Shunt Admittance in MVAR at base kV (+) = Capacitive (-) = Inductive
-43-47  no       F5.0   ``P GEN`` MW
-48-52  no       F5.0   ``Q GEN`` MVAR (+) = Capacitive (-) = Inductive
-53-57  no       F5.0   ``Q MIN`` MVAR
-58-61  no       F4.3   ``V HOLD`` - ``V MAX`` (in per unit)
-62-65  no       F4.3   ``V MIN`` (in per unit)
-66-73  no       A8     Controlled bus name
-74-77  no       F4.0   Base kV
-78-80  no       F3.0   Percent of vars supplied for remote bus voltage control.
-====== ======== ====== ====================
+  Bus Data Input Format
+
+.. table:: Column Description for AC Bus Data
+
+  ====== ======== ====== ====================
+  Column ID Field Format Description
+  ====== ======== ====== ====================
+  1      yes      A1     AC ``B`` type record
+  2      no       A1     Subtype
+  3      no       A1     Change code
+  4-6    no       A3     Ownership
+  7-14   yes      A8     Bus name
+  15-18  yes      F4.0   Base kV
+  19-20  no       A2     Zone
+  21-26  no       F5.0   Load MW
+  26-30  no       F5.0   Load MVAR
+  31-34  no       F4.0   Shunt Admittance Load in MW at base kV
+  35-38  no       F4.0   Shunt Admittance in MVAR at base kV (+) = Capacitive (-) = Inductive
+  43-47  no       F5.0   ``P GEN`` MW
+  48-52  no       F5.0   ``Q GEN`` MVAR (+) = Capacitive (-) = Inductive
+  53-57  no       F5.0   ``Q MIN`` MVAR
+  58-61  no       F4.3   ``V HOLD`` - ``V MAX`` (in per unit)
+  62-65  no       F4.3   ``V MIN`` (in per unit)
+  66-73  no       A8     Controlled bus name
+  74-77  no       F4.0   Base kV
+  78-80  no       F3.0   Percent of vars supplied for remote bus voltage control.
+  ====== ======== ====== ====================
 
 For all subtypes, the following diagram illustrates the reactive allocation scheme. 
 
-.. image:: ../img/Reactive_Allocation_Scheme.png
+.. figure:: ../img/Reactive_Allocation_Scheme.png
+
+  Reactive Allocation Scheme
 
 Allocation of reactive facilities is complex. These may be allocated by equality constraints (:math:`Q_{net}` is constant), inequality constraints (:math:`Q_{net}` varies between a minimum and maximum value), or no constraints.
 
-Let “NET” define the total line export. Then the following equation is always valid:
+Let :math:`Net` define the total line export. Then the following equation is always valid:
 
-.. math:: NET = GENERATION - LOAD - Y_{shunt} * VOLTAGE^2
+.. math:: Net = Generation - Load - Y_{shunt} * Voltage^2
 
 The equation is complex; the real and reactive components are balanced separately. The separate equations are:
 
@@ -377,32 +397,38 @@ For this subtype, :math:`Q_{net}` is constant; its Q-V characteristic is shown i
 
 If this bus is controlled by an LTC transformer or by a ``BG`` or ``BX`` bus, a warning diagnostic will be issued to the effect that remotely controlled buses are typically type ``BC`` or type ``BT`` and the controlled voltage is a single value, :math:`V_{sched}` and not a range :math:`V_{min} < V_{controlled} < V_{max}`.
 
-.. image:: ../img/B-blank_Subtype_Format.png
+.. figure:: ../img/B-blank_Subtype_Format.png
 
-====== ======== ======= ====================
-Column ID Field Format  Description
-====== ======== ======= ====================
-1-2    yes      A2      ``B`` — Generic load bus
-3      no       A1      Change code
-4-6    no       A3      Ownership
-7-14   yes      A8      Bus name
-15-18  yes      F4.0    Base kV
-19-20  no       A2      Zone
-21-25  no       F5.0    Load MW
-26-30  no       F5.0    Load MVAR
-31-34  no       F4.0    Shunt Admittance Load in MW at base kV
-35-38  no       F4.0    Shunt Admittance in MVAR
-39-42  no       F4.0    ``P MAX``
-43-47  no       F5.0    ``P GEN``
-48-52  no       F5.0    ``Q SCHED`` in MVAR
-53-57  no       F5.0    ``Q MIN`` — Must be blank or zero for ``Q SCHED`` to apply
-58-61  no       F4.3    ``VMAX``. If blank, then limits default to global limits as outlined in ??.
-62-65  no       F4.3    ``VMIN``. If blank, then limits default to global limits as outlined in ??.
-66-77  no       A8,F4.0 N/A
-78-80  no       F3.0    N/A
-====== ======== ======= ====================
+  B-blank Subtype Format
 
-.. image:: ../img/Q-V_Curve_for_B-blank_Subtype.png
+.. table:: Column Description for B Bus Data
+
+  ====== ======== ======= ====================
+  Column ID Field Format  Description
+  ====== ======== ======= ====================
+  1-2    yes      A2      ``B`` — Generic load bus
+  3      no       A1      Change code
+  4-6    no       A3      Ownership
+  7-14   yes      A8      Bus name
+  15-18  yes      F4.0    Base kV
+  19-20  no       A2      Zone
+  21-25  no       F5.0    Load MW
+  26-30  no       F5.0    Load MVAR
+  31-34  no       F4.0    Shunt Admittance Load in MW at base kV
+  35-38  no       F4.0    Shunt Admittance in MVAR
+  39-42  no       F4.0    ``P MAX``
+  43-47  no       F5.0    ``P GEN``
+  48-52  no       F5.0    ``Q SCHED`` in MVAR
+  53-57  no       F5.0    ``Q MIN`` — Must be blank or zero for ``Q SCHED`` to apply
+  58-61  no       F4.3    ``VMAX``. If blank, then limits default to global limits as outlined in ??.
+  62-65  no       F4.3    ``VMIN``. If blank, then limits default to global limits as outlined in ??.
+  66-77  no       A8,F4.0 N/A
+  78-80  no       F3.0    N/A
+  ====== ======== ======= ====================
+
+.. figure:: ../img/Q-V_Curve_for_B-blank_Subtype.png
+
+  Q-V Curve for B-blank Subtype
 
 AC Bus Data (``BC``)
 ====================
@@ -922,7 +948,9 @@ This branch representation is useful for modeling transmission line components t
 
 Following is a sample of a coding sheet for equivalent branch data along with descriptions of its various columns.
 
-.. image:: ../img/Equivalent_Branch_Data_Input_Format.png
+.. figure:: ../img/Equivalent_Branch_Data_Input_Format.png
+
+  Equivalent Branch Data Input Format
 
 +--------+----------+--------+---------------------------------------+
 | Column | ID Field | Format | Description                           |
@@ -1403,6 +1431,8 @@ Before solution of the case, each ``BE``, ``BG``, ``BQ``, ``BX``, and ``BS`` bus
 
 .. image:: ../img/Reactive_Capability_Curve_QP_Record.png
 
+.. _regulating-transformer:
+
 Regulating Transformer (``R``, ``RV``, ``RQ``, ``RP``, ``RN``, ``RM``)
 ======================================================================
 This record gives a fixed transformer or phase shifter automatic regulating or control status, provided the proper LTC options on the LTC control record are specified to activate these controls.
@@ -1567,7 +1597,7 @@ This record is applied to two-winding transformers and phase shifters. An equiva
 
   :math:`B` Magnetizing susceptance (always assumed negative; any sign is overridden).
 
-Transformer taps are specified as fixed values for each voltage level or variable (LTC) taps with control over voltage, real power or reactive power. Variable tap transformers are defined with the addition of a regulating transformer data record (``R``) described in :ref:`Regulating Transformer`.
+Transformer taps are specified as fixed values for each voltage level or variable (LTC) taps with control over voltage, real power or reactive power. Variable tap transformers are defined with the addition of a regulating transformer data record (``R``) described in :ref:`regulating-transformer`.
 
 The following three assumptions are made:
 
