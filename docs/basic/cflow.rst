@@ -54,6 +54,7 @@ Running a CFLOW Program
 =======================
 
 .. _from-the-command-line:
+
 From the command line
 ---------------------
 To run your CFLOW program from the command line, simply run the program as you would any other program from a terminal/command prompt. For example, the following could be used::
@@ -138,61 +139,38 @@ Examples of simple functions are ``pf_area_of_zone``, ``pf_del_zone``, ``pf_rena
 
 Record Oriented Functions
 -------------------------
-Examples of record-oriented functions are ``pf_rec_bus`` and ``pf_rec_cbus``. These functions use C language structures to manipulate a Powerflow record. Both generic and record-type specific structure definitions are provided, so that field names specific to the record type can be used for a
-little better "self-documenting" code. For example, the variable containing TAP2 for a transformer contains B2 for an ``E`` type line, and the minimum phase shift for a type ``RM`` regulating phase shifter. This same variable can be accessed by using the names ``r.i.branch.tap2``, ``r.i.pf_E.b2``, and ``r.i.pf_RM.min_phase_shift_deg``. The table below gives comlete details. The columns represent the input values that are defined for branch records. In the table, "N/A" means that the data item does not apply to that record type; “-” means the variable name is the same as the generic variable name (left most column). See the :ref:`record-formats` section for descriptions of the various branch records.
+Examples of record-oriented functions are ``pf_rec_bus`` and ``pf_rec_cbus``. These functions use C language structures to manipulate a record. Both generic and record-type specific structure definitions are provided, so that field names specific to the record type can be used for a
+little better "self-documenting" code. For example, the variable containing TAP2 for a transformer contains B2 for an ``E`` type line, and the minimum phase shift for a type ``RM`` regulating phase shifter. This same variable can be accessed by using the names ``r.i.branch.tap2``, ``r.i.pf_E.b2``, and ``r.i.pf_RM.min_phase_shift_deg``. The table below gives comlete details. The columns represent the input values that are defined for branch records. In the table, "N/A" means that the data item does not apply to that record type; "-" means the variable name is the same as the generic variable name (left most column). See the :ref:`record-formats` section for descriptions of the various branch records.
 
-===================================== === === === === ========== ===== === === === 
-Generic branch variable name and type E   L   T   TP  R,RN,RQ,RV RM,RP RZ  LD  LM
-===================================== === === === === ========== ===== === === ===
-char type[3]                          E   L   T   TP  R,RN.RQ,RV RM,RP RZ  LD  LM
-char owner[4]                         -   -   -   -   -          -     -   -   -
-char bus1_name[9]                     -   -   -   -   -          -     -   -   -
-float bus1_kv                         -   -   -   -   -          -     -   -   -
-int meter                             -   - - - var_tap_side var_tap_side  var_tap_side -  -
-char bus2_name[9] - - - - - - - - 
-float bus2_kv - - - - - - - - 
-char ckt_id - - - - N/A N/A - I_or_R_control
-N/A
-int section - - - - N/A N/A - N/A N/A
-float total_rating - - - - N/A N/A I_rate - 
-int num_ckts - - - - num_ taps
-num_ taps
-rani _type
-N/A N/A
-float r - - - - N/A N/A Pc_ max
-RR
-float x - - - - N/A N/A Pc_ min
-L_mh L_mh
-float g g1 - - - N/A N/A Xij _max
-C_uf C_uf
-float b b1 - - - N/A N/A Xij_min P_ sched
-N/A
-float tap1 g2 miles tap1 phase _shift _deg
-max _tap
-max _phase _shift _deg
-Bis _max
-V_ sched
-N/A
-float tap2 b2 N/A tap2 tap2 min _tap
-min _phase _shift _deg
-Bis _min
-miles miles
-float alpha_N_deg N/A N/A N/A N/A N/A N/A N/A - N/A
-float gamma_0_deg N/A N/A N/A N/A N/A N/A N/A - N/A
-char descrip[9] N/A descrip [9]
-N/A N/A rmt_ bus_ name [9]
-rmt_ bus_ name [9]
-N/A N/A N/A
-char date_in[4] - - - - - - N/A N/A 
-char date_out[4] - - - - - - N/A N/A 
-float thermal_rating - - - - rmt _bus _kv
-rmt _bus _kv
-N/A - 
-float bottleneck_rating
-- - - - Qmax Pmax N/A - 
-float emergency _rating
-N/A N/A - - Qmin Pmin N/A N/A N/A
-===================================== === === === === ========== ===== === === ===
+===================================== === ========== ==== ================ ============ =================== ============ ============== ====
+Generic branch variable name and type E   L          T    TP               R,RN,RQ,RV   RM,RP               RZ           LD             LM
+===================================== === ========== ==== ================ ============ =================== ============ ============== ====
+char type[3]                          E   L          T    TP               R,RN.RQ,RV   RM,RP               RZ           LD             LM
+char owner[4]                         -   -          -    -                -            -                   -            -              -
+char bus1_name[9]                     -   -          -    -                -            -                   -            -              -
+float bus1_kv                         -   -          -    -                -            -                   -            -              -
+int meter                             -   -          -    -                var_tap_side var_tap_side        var_tap_side -              -
+char bus2_name[9]                     -   -          -    -                -            -                   -            -              -
+float bus2_kv                         -   -          -    -                -            -                   -            -              -
+char ckt_id                           -   -          -    -                N/A          N/A                 -            I_or_R_control N/A
+int section                           -   -          -    -                N/A          N/A                 -            N/A            N/A
+float total_rating                    -   -          -    -                N/A          N/A                 I_rate       -              - 
+int num_ckts                          -   -          -    -                num_taps     num_taps            rani_type    N/A            N/A
+float r                               -   -          -    -                N/A          N/A                 Pc_max       R              R
+float x                               -   -          -    -                N/A          N/A                 Pc_min       L_mh           L_mh
+float g                               g1  -          -    -                N/A          N/A                 Xij_max      C_uf           C_uf
+float b                               b1  -          -    -                N/A          N/A                 Xij_min      P_sched        N/A
+float tap1                            g2  miles      tap1 phase_shift_deg  max_tap      max_phase_shift_deg Bis_max      V_sched        N/A
+float tap2                            b2  N/A        tap2 tap2             min_tap      min_phase_shift_deg Bis_min      miles          miles
+float alpha_N_deg                     N/A N/A        N/A  N/A              N/A          N/A                 N/A          -              N/A
+float gamma_0_deg                     N/A N/A        N/A  N/A              N/A          N/A                 N/A          -              N/A
+char descrip[9]                       N/A descrip[9] N/A  N/A              rmt_bus_name rmt_bus_name        N/A          N/A            N/A
+char date_in[4]                       -   -          -    -                -            -                   N/A          N/A            - 
+char date_out[4]                      -   -          -    -                -            -                   N/A          N/A            - 
+float thermal_rating                  -   -          -    -                rmt_bus_kv   rmt_bus_kv          N/A          -              -
+float bottleneck_rating               -   -          -    -                Qmax         Pmax                N/A          -              -
+float emergency _rating               N/A N/A        -    -                Qmin         Pmin                N/A          N/A            N/A
+===================================== === ========== ==== ================ ============ =================== ============ ============== ====
 
 The functions all use an action code to specify what is to be done with the record, such as ``D`` for delete, ``F2`` to retrieve the first branch record associated with two named buses, and ``O`` to retrieve solution (output) data for a bus or branch.
 
@@ -369,4 +347,6 @@ The COPE procedure used the IPS feature INCREM to accomplish this task. IPF has 
 
 libcflow API Reference
 ======================
+The header file (``cflowlib.h``) used both by all CFLOW programs to define structures, constants, etc. in the ``libcflow`` library. 
+
 .. doxygenindex:: ipfdoxygen

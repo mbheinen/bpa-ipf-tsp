@@ -26,8 +26,12 @@ subprocess.call('doxygen', shell=True)
 
 project = 'Interactive Power Flow'
 copyright = '2020, Interactive Power Flow Developers'
-author = 'D. Clark, B. Rogers, D. Stefonek, J. Coleman, K. Rowell, D. Szymanski, W. Powell, J. Rutis, T. Liu, M. Heinen'
+author = 'IPF Developers'
 
+numfig = True
+math_numfig = True
+numfig_secnum_depth = 2
+math_eqref_format = "Eq.{number}"
 
 # -- General configuration ---------------------------------------------------
 

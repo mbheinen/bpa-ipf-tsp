@@ -13,7 +13,9 @@ Interactive Power Flow (IPF) is a software package for doing power flow studies.
  * Determine effect of load shedding, generator dropping, and line outages
  * Run transient stability studies on generator rotor dynamics
 
-.. image:: img/IPF_GUI.png
+.. figure:: img/IPF_GUI.png
+
+   Interactive Power Flow X Window GUI
 
 Electric power system network design encompasses the following tasks:
 
@@ -30,11 +32,11 @@ Features
 Interactive Power Flow (IPF) has the following high level feature set:
 
  * Set of command line tools for running studies
- * Domain specific languages (PCL or PFC) for batch command line runs
  * Basic power flow capabilities and advanced capabilities like REI reduction and transient stability
- * Printed output reports
+ * Domain specific languages for "batch" command line runs in which various scenarios are studied
+ * Output reports
  * `Motif X Window`_ based graphical user interface allowing easy-to-edit graphical display of network diagram (coordinate file)
- * Extensive error messages for maximum aid to the user in troubleshooting
+ * Extensive log messages for maximum aid to the user in troubleshooting
 
 Contents
 ========
@@ -48,7 +50,19 @@ Contents
    basic/process_scenarios
    basic/record_formats
    basic/pfc
+   basic/pfc_examples
+   basic/pcl
+   basic/application_examples
+   basic/dc_line_modeling
+   basic/ipfcut
+   basic/ipfnet
+   basic/x_window_gui
+   basic/network_diagrams
    basic/advanced
    basic/cflow
+   basic/voltage_limits_starts
+   basic/ownership_codes
+   basic/developer
+   basic/ips_ipf_differences
 
 .. _Motif X Window: https://motif.ics.com/motif/downloads
