@@ -51,10 +51,11 @@ IPF Interaction Model
 =====================
 The conceptual model of IPF is quite simple. You load power system network data into IPF; the IPF solution "engine" performs the calculations for the solution, and then outputs this solution data.
 
-IPF offers two different approaches to accomplish power system solutions. Their style of interaction and processing are quite different.
+IPF offers different approaches to accomplish power system solutions. Their style of interaction and processing are quite different.
 
  * The Graphical User Interface (``gui``) approach. This is command oriented – you click a button or enter a command, and it is executed immediately.
  * The batch power flow (``bpf``) approach. This is an Input-Process-Output approach. You write a command file containing all of the "orders" that you want filled, and the program performs the actions it determines are necessary to produce the ordered results.
+ * 
 
 Two Domain Specific Languages (DSLs) called  Powerflow Command Language (PCL) and Power Flow Control (PFC) allow users to define the "orders". PCL is directly available through a Command Dialog in the GUI. PFC is used with the ``bpf`` program. See :ref:`power-flow-control` for details on the syntax for PFC and :ref:`powerflow-command-language`.
 
@@ -70,11 +71,11 @@ When you use the ``gui`` approach, you use a graphical interface with dialog box
 
    PCL Information Flow Model
 
-The core powerflow program can be ran on separate machine from the graphical user interface. These two halves of the IPF program are joined by interprocess communication (IPC) routines that shuttle data and instruction messages back and forth between the GUI and powerflow program. The powerflow program serves primarily as a solution and database engine that sends and receives data when requested by the user through the GUI. Note that all of this commuication is basic socket communication so it likely doesn't work if GUI runs on one platform (Windows) and powerflow programs run on another (Linux).
+The core powerflow program can be ran on separate machine from the graphical user interface. These two halves of the IPF program are joined by interprocess communication (IPC) routines that shuttle data and instruction messages back and forth between the GUI and powerflow program. The powerflow program serves primarily as a solution and data engine that sends and receives data when requested by the user through the GUI. Note that all of this commuication is basic socket communication so it likely doesn't work if GUI runs on one platform (Windows) and powerflow programs run on another (Linux).
 
 The ``ipfbat`` Approach
 -----------------------
-``ipfbat`` allows you fine control over the database and solution "engine" (``ipfsrv``). You first create a PCL file with the appropriate commands, in the right order, to accomplish the solution task at hand. At runtime these commands are interpreted by ``ipfbat``. The PCL file commands are processed sequentially. Additional PCL command files may be specified by name, so that a "chain" of PCL files may be processed in one run.
+``ipfbat`` allows you fine control over the data and solution "engine" (``ipfsrv``). You first create a PCL file with the appropriate commands, in the right order, to accomplish the solution task at hand. At runtime these commands are interpreted by ``ipfbat``. The PCL file commands are processed sequentially. Additional PCL command files may be specified by name, so that a "chain" of PCL files may be processed in one run.
 
 The ``bpf`` Approach
 --------------------
@@ -83,6 +84,10 @@ When you use ``bpf``, you must first create a PFC file with the appropriate comm
 .. figure:: ../img/BPF_Information_Flow_Model.png
 
    BPF Information Flow Model
+
+The CFLOW Approach
+------------------
+Many times userse need to do a large number of similar runs or they need to process data from another system before running studies. CFLOW is a C library API for IPF. To use CFLOW, you write your program (at least the main must be in C), including the header file ``cflowlib.h``, which defines all the structures and unions which allow access to the powerflow input and solution values. To retrieve these values, you call various CFLOW functions. You can also pass modifications to ``ipfsrv``, ask for a new solution, etc. See the IPF CFLOW User’s Guide for information on writing these programs.
 
 Network Data
 ============
@@ -107,7 +112,7 @@ The following is a list of the various network data input files with description
 
 ``BRANCH_DATA``
   
-  This ASCII text input file contains the branch database of all branches coded with in-service date and out-of-service date. This file is searched for branches in service on the date requested. BPF selects the appropriate branches.
+  This ASCII text input file contains the branch data of all branches coded with in-service date and out-of-service date. This file is searched for branches in service on the date requested. BPF selects the appropriate branches.
 
 ``NEW_BASE``
 

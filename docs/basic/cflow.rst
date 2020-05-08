@@ -4,7 +4,7 @@ libcflow C Library
 
 Overview
 ========
-CLFOW is a C Application Programming Interface (API) for IPF. The library name is ``libcflow``. With CFLOW, users can access the bus and branch data within the power flow data structures in a highly flexible way. Once data is retrieved from the IPF "database engine", it can be manipulated within the user-written C program and either output to a file, screen, or plotter, or sent back to the IPF "database engine" itself. A CFLOW program is a totally separate process running concurrently with the "powerflow solution and database server" process and communicates with it via an IPC (Inter Process Communication) protocol, so CFLOW requires an
+CLFOW is a C Application Programming Interface (API) for IPF. The library name is ``libcflow``. With CFLOW, users can access the bus and branch data within the power flow data structures in a highly flexible way. Once data is retrieved from the IPF "data engine", it can be manipulated within the user-written C program and either output to a file, screen, or plotter, or sent back to the IPF "data engine" itself. A CFLOW program is a totally separate process running concurrently with the "powerflow solution and data server" process and communicates with it via an IPC (Inter Process Communication) protocol, so CFLOW requires an
 operating system capable of multi-processing and that supports “sockets” for IPC.
 
 In order to use CFLOW, you must have some knowledge of the C language and a C compiler. Once a CFLOW program has been written, compiled, linked, and debugged, it is stored as an executable which can be run from the command line or from the IPF GUI using the “PROCESS -- CFLOW” menu option.
@@ -257,7 +257,7 @@ CFLOW routines do not have to be written in C, except for the main program.  If 
 
 Simple Report Example
 =====================
-The ANSI C program listed below was derived from a COPE program. This program illustrates how the CFLOW library and ANSI standard C may accomplish many of the same tasks as COPE programs. Detailed discussion follows the program code. The following program outputs a Shunt Reactive Summary report to the screen. A loaded base case in the Powerflow "database engine" provides the data for the report.
+The ANSI C program listed below was derived from a COPE program. This program illustrates how the CFLOW library and ANSI standard C may accomplish many of the same tasks as COPE programs. Detailed discussion follows the program code. The following program outputs a Shunt Reactive Summary report to the screen. A loaded base case in the Powerflow "data engine" provides the data for the report.
 
 .. literalinclude:: ../../cflow/shreac.c
 

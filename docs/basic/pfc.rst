@@ -24,7 +24,9 @@ PFC has three levels of control, which are identified by one of three identifier
 
 In addition to the foregoing syntactic units, a command enabling a microfiche option is available. Its control symbol is the left square bracket (``[``)
 
- .. image:: ../img/Hierarchical_Levels_of_PFC_Statements.png
+ .. figure:: ../img/Hierarchical_Levels_of_PFC_Statements.png
+
+  Hierarchical Levels of PFC Statements
 
 Almost every PFC statement fits one of the following formats, and the few that do not are very similar.
 
@@ -85,9 +87,9 @@ Each general format is followed by an example.
 
      / command data record 
      / NETWORK_DATA 
-     B     GEN1 HI    230  2  -0.0  -0.0  0.0  0.0     -0.0 -0.0 -0.0 
+     B     GEN1 HI    230  2  -0.0  -0.0  0.0 0.0      -0.0 -0.0 -0.0 
      B     GEN2 HI    230  1  -0.0  -0.0  0.0 0.0      -0.0 -0.0 -0.0 
-     B     GEN3 HI  230   2  -0.0  -0.0  0.0 0.0      -0.0 -0.0 -0.0
+     B     GEN3 HI    230  2  -0.0  -0.0  0.0 0.0      -0.0 -0.0 -0.0
   
   * A subcommand followed by a comma with multiple comma-separated values.
 
@@ -114,7 +116,7 @@ Two special characters are available to document the control stream or to improv
  
 .. note::
 
-  The hyphen or minus sign “-” and the underscore “_” symbol are different characters! Thus, ``P_O_W_E_R_F_L_O_W`` is the same as ``POWER_FLOW`` which is the equivalent of ``POWERFLOW``. ``OLD_BASE`` is the same as ``OLDBASE`` but not the same as ``OLD-BASE``, etc.
+  The hyphen or minus sign "-"�and the underscore "_"� symbol are different characters! Thus, ``P_O_W_E_R_F_L_O_W`` is the same as ``POWER_FLOW`` which is the equivalent of ``POWERFLOW``. ``OLD_BASE`` is the same as ``OLDBASE`` but not the same as ``OLD-BASE``, etc.
 
 Default Convention
 ==================
@@ -189,51 +191,53 @@ Required text is shown in ``UPPER-CASE`` while parameter values specified by the
 
 The optional underscore symbol (``_``) may be used to break up words for visual readability. The computer will read the words as though they were not broken.
 
-===== ======================= ===============================
-Page  Command Name            Description
-===== ======================= ===============================
-4-10  AGC                     Emulates automatic generation control.
-4-13  AI_LIST                 Speciﬁes detail in area interchange listing.
-4-14  ANALYSIS_SELECT         Selects analysis reports for printing or microﬁche.
-4-16  BRANCH_DATA             Speciﬁes a master branch and bus data ﬁle for base case.
-4-17  BUS_SENSITIVITIES       Calculates system response to capacitor switching operations.
-4-22  CHANGE_BUS_TYPE         Disables voltage control in system.
-4-27  CHANGE_PARAMETERS       Perturbs parameters for start of new solution.
-4-33  CHANGES                 Speciﬁes system data change records.
-4-34  COMMENT                 Speciﬁes comment records.
-      COMMON_MODE_ANALYSIS    Analyzes the results from a series of common mode cases in the format of the OUTAGE_SIMULATION
-4-36  F_ANALYSIS_RPT          Speciﬁes report of zones or owners for microﬁche.
-4-38  F_INPUT_LIST            Lists input data on microﬁche.
-4-39  F_OUTPUT_LIST           Lists output data on microﬁche.
-4-40  GEN_DROP                Balances generation drop by picking up generation.
-4-44  HEADER                  Speciﬁes header information for reports.
-4-45  INCLUDE_CONTROL         Speciﬁes a ﬁle for control commands.
-4-46  LINE_EFF                Deﬁnes minimum percent line loading for report.
-4-47  LINE_SENSITIVITIES      Determines line sensitivity by controlling LTC and AI_CONTROL.
-4-50  %LOAD_DISTRIBUTION      Converts constant power, etc., into user-speciﬁed MVA, etc.
-4-63  LOSS_SENSITIVITIES      Gives information about system losses.
-4-65  MERGE_OLD_BASE and      MERGE_NEW_BASE Extracts information from two subsystems to create a new system.
-4-71  MVA_BASE                Changes base MVA to an assigned MVA.
-4-72  NETWORK_DATA            Speciﬁes bus and branch data.
-4-73  NEW_BASE                Deﬁnes the ﬁle name for a new case.
-4-74  OI_LIST                 Lists ownership interchange.
-4-75  OLD_BASE                Speciﬁes a previously existing solved case as the new case to start with.
-4-76  OUTAGE_SIMULATION       Simulates line outages, load dropping, generator outages and rescheduling.
-4-83  OVERLOAD_RPT            Speciﬁes overload parameter limits for report.
-4-84  P_ANALYSIS_RPT          Creates an analysis report.
-4-86  P_INPUT_LIST            Lists input data on paper.
-4-87  P_OUTPUT_LIST           Lists output on paper.
-4-89  REBUILD                 Rebuilds all data tables from current OLDBASE ﬁle.
-4-90  REDUCTION               Reduces a network.
-4-95  RPT_SORT                Sorts output data of solved network.
-4-96  SAVE_FILE               Creates various output ﬁles, including the SIF (Stability Interface File).
-4-98  SOLUTION                Enables solution options and post-solution processes.
-4-104 SORT_ANALYSIS           Controls sort order for analysis listings.
-4-105 TRACE                   Monitors data to aid data veriﬁcation.
-4-106 TRANSFER_SENSITIVITIES  Causes analysis of transfer sensitivities.
-4-107 TX_EFF                  Compares total and core transformer losses.
-4-108 USER_ANALYSIS           Generates custom analysis listings
-===== ======================= ===============================
+.. table:: PFC Commands
+
+  ======================= ===============================
+  Command Name            Description
+  ======================= ===============================
+  AGC                     Emulates automatic generation control.
+  AI_LIST                 Speciﬁes detail in area interchange listing.
+  ANALYSIS_SELECT         Selects analysis reports for printing or microﬁche.
+  BRANCH_DATA             Speciﬁes a master branch and bus data ﬁle for base case.
+  BUS_SENSITIVITIES       Calculates system response to capacitor switching operations.
+  CHANGE_BUS_TYPE         Disables voltage control in system.
+  CHANGE_PARAMETERS       Perturbs parameters for start of new solution.
+  CHANGES                 Speciﬁes system data change records.
+  COMMENT                 Speciﬁes comment records.
+  COMMON_MODE_ANALYSIS    Analyzes the results from a series of common mode cases in the format of the OUTAGE_SIMULATION
+  F_ANALYSIS_RPT          Speciﬁes report of zones or owners for microﬁche.
+  F_INPUT_LIST            Lists input data on microﬁche.
+  F_OUTPUT_LIST           Lists output data on microﬁche.
+  GEN_DROP                Balances generation drop by picking up generation.
+  HEADER                  Speciﬁes header information for reports.
+  INCLUDE_CONTROL         Speciﬁes a ﬁle for control commands.
+  LINE_EFF                Deﬁnes minimum percent line loading for report.
+  LINE_SENSITIVITIES      Determines line sensitivity by controlling LTC and AI_CONTROL.
+  %LOAD_DISTRIBUTION      Converts constant power, etc., into user-speciﬁed MVA, etc.
+  LOSS_SENSITIVITIES      Gives information about system losses.
+  MERGE_OLD_BASE and      MERGE_NEW_BASE Extracts information from two subsystems to create a new system.
+  MVA_BASE                Changes base MVA to an assigned MVA.
+  NETWORK_DATA            Speciﬁes bus and branch data.
+  NEW_BASE                Deﬁnes the ﬁle name for a new case.
+  OI_LIST                 Lists ownership interchange.
+  OLD_BASE                Speciﬁes a previously existing solved case as the new case to start with.
+  OUTAGE_SIMULATION       Simulates line outages, load dropping, generator outages and rescheduling.
+  OVERLOAD_RPT            Speciﬁes overload parameter limits for report.
+  P_ANALYSIS_RPT          Creates an analysis report.
+  P_INPUT_LIST            Lists input data on paper.
+  P_OUTPUT_LIST           Lists output on paper.
+  REBUILD                 Rebuilds all data tables from current OLDBASE ﬁle.
+  REDUCTION               Reduces a network.
+  RPT_SORT                Sorts output data of solved network.
+  SAVE_FILE               Creates various output ﬁles, including the SIF (Stability Interface File).
+  SOLUTION                Enables solution options and post-solution processes.
+  SORT_ANALYSIS           Controls sort order for analysis listings.
+  TRACE                   Monitors data to aid data veriﬁcation.
+  TRANSFER_SENSITIVITIES  Causes analysis of transfer sensitivities.
+  TX_EFF                  Compares total and core transformer losses.
+  USER_ANALYSIS           Generates custom analysis listings
+  ======================= ===============================
 
 AGC
 ===
@@ -259,23 +263,27 @@ General Description
 -------------------
 An example illustrates the concept. In Case 1, there are two generators, GEN1 and GEN2, with initial and final values shown in the table below.
 
-============ ========= ======= ===========
-Bus          Initial P Final P Excursion
-============ ========= ======= ===========
-GEN1 (slack) 1000      1442    442
-GEN2         1000      1000    0
-TOTAL        2000      2442    442
-============ ========= ======= ===========
+.. table:: Values Without AGC
+  
+  ============ ========= ======= ===========
+  Bus          Initial P Final P Excursion
+  ============ ========= ======= ===========
+  GEN1 (slack) 1000      1442    442
+  GEN2         1000      1000    0
+  TOTAL        2000      2442    442
+  ============ ========= ======= ===========
 
 In Case 2, we apply AGC with 50% on each machine. Presuming that losses are unchanged (for simplicity), the initial and final values are shown in the table below.
 
-============ ========= === ======= ===========
-Bus          Initial P %   Final P Excursion
-============ ========= === ======= ===========
-GEN1 (slack) 1000      50  1221    221
-GEN2         1000      50  1221    221
-TOTAL        2000      100 2442    442
-============ ========= === ======= ===========
+.. table:: Values With AGC
+  
+  ============ ========= === ======= ===========
+  Bus          Initial P %   Final P Excursion
+  ============ ========= === ======= ===========
+  GEN1 (slack) 1000      50  1221    221
+  GEN2         1000      50  1221    221
+  TOTAL        2000      100 2442    442
+  ============ ========= === ======= ===========
 
 **Notes and Restrictions**
 A maximum of 24 generators are permitted. One of the generators must be a system slack bus or an area interchange bus. Recall that the dynamics which drive AGC comes from slack bus P excursions.
@@ -424,16 +432,20 @@ The perturbed quantity is identified by nonzero entities in one of the fields: `
 
 The fields on the ``B``-blank record determine which sensitivity :math:`\frac{dP}{d\theta}`, :math:`\frac{dP}{dV}`, or :math:`\frac{dQ}{dV}` is computed.
 
-.. image:: ../img/B-blank_Record_Sensitivity_Fields.png
+.. figure:: ../img/B-blank_Record_Sensitivity_Fields.png
 
-========================== ============ =================== =====================
-Sensitivity                Column 2     PLOAD, PSHUNT, PGEN QLOAD, QSHUNT, QSCHED
-========================== ============ =================== =====================
-:math:`\frac{dP}{d\theta}` Not required Required            Not required
-:math:`\frac{dP}{dV}`      Literal: “V” Required            Not required
-:math:`\frac{dQ}{dV}`      Not required Not required        Required 
-:math:`\frac{dQ}{dV}` a    (blank)      (blank)             (blank)
-========================== ============ =================== =====================
+  B-blank Record Sensitivity Fields
+
+.. table:: Field Values for Sensitivities
+
+  ========================== ============ =================== =====================
+  Sensitivity                Column 2     PLOAD, PSHUNT, PGEN QLOAD, QSHUNT, QSCHED
+  ========================== ============ =================== =====================
+  :math:`\frac{dP}{d\theta}` Not required Required            Not required
+  :math:`\frac{dP}{dV}`      Literal: “V” Required            Not required
+  :math:`\frac{dQ}{dV}`      Not required Not required        Required 
+  :math:`\frac{dQ}{dV}` a    (blank)      (blank)             (blank)
+  ========================== ============ =================== =====================
 
 a. This is the default.
 
@@ -531,21 +543,23 @@ Four types of buses may be changed: ``BQ``, ``BG``, ``BT`` and ``BX``. All possi
 
 The full repertoire is listed in the table below. (Note that some restrictions apply.)
 
-========== ==================================
-Change     Restriction
-========== ==================================
-BQ --> B   If PGEN = 0.0 and QGEN =0.0
-BQ --> BF  If PGEN <= 0.0.
-BQ --> BF* Unconditional.
-BG --> BQ  If PGEN > 0.0.
-BG --> B   If PGEN <= 0.0.
-BG --> BF  If PGEN = 0.0.
-BG --> BF* Unconditional.
-BT --> B   (This deletes any adjacent LTCs which are controlling BT nodes.)
-BX --> B
-BX --> BF
-BX --> BF*
-========== ==================================
+.. table:: Bus Type Changes
+
+  ========== ==================================
+  Change     Restriction
+  ========== ==================================
+  BQ --> B   If PGEN = 0.0 and QGEN =0.0
+  BQ --> BF  If PGEN <= 0.0.
+  BQ --> BF* Unconditional.
+  BG --> BQ  If PGEN > 0.0.
+  BG --> B   If PGEN <= 0.0.
+  BG --> BF  If PGEN = 0.0.
+  BG --> BF* Unconditional.
+  BT --> B   (This deletes any adjacent LTCs which are controlling BT nodes.)
+  BX --> B
+  BX --> BF
+  BX --> BF*
+  ========== ==================================
 
 LTC Transformer Control
 -----------------------
@@ -791,18 +805,20 @@ Each ``/ CHANGE_PARAMETERS`` command generates an x,y plot point in a file with 
 
 The composition of these points is dependent upon the composition of the ``CHANGE_PARAMETERS`` command. The table below summarizes the output.
 
-========= =============== ======= ========
-Set Point Monitored Point X Value Y Value
-========= =============== ======= ========
-V=<##>    Q=?             Q       V 
-Q=<##>    V=?             Q       V 
-P=<##>    Q=?             Q       P
-P=<##>    V=?             P       V
-%P=<##>   V=?             P_Load  V
-%P=<##>   Q=?             P_Load  Q
-%Q=<##>   V=?             Q_L0ad  V
-%Q=<##>   Q=?             Q_Load  Q
-========= =============== ======= ========
+.. table:: CHANGE_PARAMETERS Values in .QVPT File
+
+  ========= =============== ======= ========
+  Set Point Monitored Point X Value Y Value
+  ========= =============== ======= ========
+  V=<##>    Q=?             Q       V 
+  Q=<##>    V=?             Q       V 
+  P=<##>    Q=?             Q       P
+  P=<##>    V=?             P       V
+  %P=<##>   V=?             P_Load  V
+  %P=<##>   Q=?             P_Load  Q
+  %Q=<##>   V=?             Q_L0ad  V
+  %Q=<##>   Q=?             Q_Load  Q
+  ========= =============== ======= ========
 
 Each line in the ``QVPT`` file is interpreted in the ``.PFO`` (power flow output) file.
 
@@ -1172,7 +1188,9 @@ HEADER
 
 This command introduces one or two header records into the pagination. Its text will be repeated on the top of each page in the output report. Each header record begins with an ``H`` in column 1. It is used to supply the lines of text that will be printed at the top of every page of an output listing, below the standard header1, which contains the caseid, project, program version, and date. These header records are saved in the base case file, and any previous headers are deleted. This is similar to the ``/COMMENT`` command.
 
-.. image:: ../img/Header_Comment_Input_Format.png
+.. figure:: ../img/Header_Comment_Input_Format.png
+  
+  Header Comment Input Format
 
 INCLUDE_CONTROL
 ===============
@@ -1232,19 +1250,21 @@ The top line depicts default quantities. The options ``LTC`` and ``AI_CONTROL`` 
 
 The second part of the sensitivities is the perturbed quantities :math:`dX_t` or :math:`dB_s`. They are defined with specially formatted ``>`` records and are similar to ``L`` records.
 
-======= ======= ==========================
-Columns Format  Description
-======= ======= ==========================
-(1:3)   A3      ``>PB``: :math:`\frac{dP_{ij}}{dB_s} or :math:`\frac{dP_{ij}}{dX_t}`
-                ``>LB``: :math:`\frac{dLoss}{dB_s}` or :math:`\frac{dLoss}{dX_t}`
-                ``>VB``: :math:`\frac{dV_i}{dB_s}` or :math:`\frac{dV_i}{dX_t}`
-(7:18)  A8,F4.0 Bus1 name and base kV
-(20:31) A8,F4.0 Bus2 name and base kV
-(32)    A1      Circuit ID
-(33)    I1      Section number
-(45:50) F6.5    Perturbed :math:`X_t` 
-(57:62) F6.5    Perturbed :math:`B_s`
-======= ======= ==========================
+.. table:: Line Sensitivities
+
+  ======= ======= ==========================
+  Columns Format  Description
+  ======= ======= ==========================
+  (1:3)   A3      ``>PB``: :math:`\frac{dP_{ij}}{dB_s} or :math:`\frac{dP_{ij}}{dX_t}`
+                  ``>LB``: :math:`\frac{dLoss}{dB_s}` or :math:`\frac{dLoss}{dX_t}`
+                  ``>VB``: :math:`\frac{dV_i}{dB_s}` or :math:`\frac{dV_i}{dX_t}`
+  (7:18)  A8,F4.0 Bus1 name and base kV
+  (20:31) A8,F4.0 Bus2 name and base kV
+  (32)    A1      Circuit ID
+  (33)    I1      Section number
+  (45:50) F6.5    Perturbed :math:`X_t` 
+  (57:62) F6.5    Perturbed :math:`B_s`
+  ======= ======= ==========================
 
 A maximum of 50 perturbed quantity ``>`` records may be present.
 
@@ -1323,17 +1343,19 @@ Constant Current and Impedance Loads
 ------------------------------------
 Constant current loads and constant impedance loads are defined by continuation bus (``+``) records using reserved ``TYPE`` s and ``CODE_YR`` s. Constant impedance loads differ from :math:`G_{shunt}` and :math:`B_{shunt}` quantities in the sense that these quantities are converted into loads and appear in special analysis summaries. The table below describes these special codes and their interpretations.
 
-==== ===== ======= =============== =============== =================== ==================
-Type Owner CODE_YR P_LOAD          Q_LOAD          G_SHUNT             B_SHUNT
-==== ===== ======= =============== =============== =================== ==================
-+A                                                                     :math:`B_{ﬁxed}` a
-+A         00                                                          :math:`B_{ﬁxed}`
-+A         01      :math:`P(I)` b  :math:`Q(I)` c  :math:`P(G)` d      :math:`Q(B)` e 
-+A         01      :math:`P(I)`    :math:`Q(I)`    :math:`G_{equiv}` f :math:`B_{equiv}` g
-+A         02                                      :math:`P(G)`        :math:`Q(B)`
-           \*I     :math:`P(I)`    :math:`Q(I)`    :math:`P(G)`        :math:`Q(B)`
-           \*P                                     :math:`P(G)`        :math:`Q(B)`
-==== ===== ======= =============== =============== =================== ==================
+.. table:: Special Continuation Bus Types
+
+  ==== ===== ======= =============== =============== =================== ==================
+  Type Owner CODE_YR P_LOAD          Q_LOAD          G_SHUNT             B_SHUNT
+  ==== ===== ======= =============== =============== =================== ==================
+  +A                                                                     :math:`B_{ﬁxed}` a
+  +A         00                                                          :math:`B_{ﬁxed}`
+  +A         01      :math:`P(I)` b  :math:`Q(I)` c  :math:`P(G)` d      :math:`Q(B)` e 
+  +A         01      :math:`P(I)`    :math:`Q(I)`    :math:`G_{equiv}` f :math:`B_{equiv}` g
+  +A         02                                      :math:`P(G)`        :math:`Q(B)`
+             \*I     :math:`P(I)`    :math:`Q(I)`    :math:`P(G)`        :math:`Q(B)`
+             \*P                                     :math:`P(G)`        :math:`Q(B)`
+  ==== ===== ======= =============== =============== =================== ==================
 
 a. :math:`B_{ﬁxed}` = Shunt is pi_back shunt impedance from ``/ CUTTING``. 
 b. :math:`P(I)` = Power is a function of current (constant current). 
@@ -1444,13 +1466,15 @@ The redistributed constant current and constant impedance loads are transferred 
 
 A special feature has been added to redistribute constant current and constant impedance loads that already have been distributed. As such, these loads are restricted to ``+A01`` and ``+A02`` continuation bus records. The table below describes these options.
 
-======================= ===================== =========================
-Type of Load to Convert Keyword for Real Part Keyword for Reactive Part
-======================= ===================== =========================
-Constant Power          PLOAD =               QLOAD =
-Constant Current        ALOAD =               BLOAD =
-Constant Impedance      RLOAD =               XLOAD =
-======================= ===================== =========================
+.. table:: Constant Power, Current, and Impedance Keywords
+  
+  ======================= ===================== =========================
+  Type of Load to Convert Keyword for Real Part Keyword for Reactive Part
+  ======================= ===================== =========================
+  Constant Power          PLOAD =               QLOAD =
+  Constant Current        ALOAD =               BLOAD =
+  Constant Impedance      RLOAD =               XLOAD =
+  ======================= ===================== =========================
 
 For example, to change constant current loads, the following commands are used:
 
@@ -1491,25 +1515,31 @@ This command permits unique distribution factors to be specified for individual 
 If the ownership field is blank or includes the bus ownership, the percentages apply only to data on the bus ``B`` record. Continuation bus data will not be affected.
 On the other hand, if the ownership is the magic code ###, the percentages apply to data on the bus ``B`` record and also to data on all associated continuation bus records.
 
-.. image:: ../img/CHANGE_BUS_Load_Input_Format_for_B_Records.png
+.. figure:: ../img/CHANGE_BUS_Load_Input_Format_for_B_Records.png
+
+  CHANGE_BUS % Load Input Format for B Records
 
 If separate % changes are to apply to bus and continuation bus records, separate ``+ %`` change records must be used—one for the bus ``B`` record and others for the specific ``+`` bus records.
 
 The identification fields for ``+ %`` bus records are identical to those for the ``+`` records as in the table below.
 
-====== ===========
-Column Quantity
-====== ===========
-1      +
-2      Type
-3- 6   Ownership
-7-18   Bus Name and Base kV
-19-20  Code Year
-====== ===========
+.. table:: Identification Fields for +% Records
+
+  ====== ===========
+  Column Quantity
+  ====== ===========
+  1      +
+  2      Type
+  3- 6   Ownership
+  7-18   Bus Name and Base kV
+  19-20  Code Year
+  ====== ===========
 
 The format of the ``+ %`` load change records is shown below.
 
-.. image:: ../img/CHANGE_BUS_Load_Input_Format_for_+_Records.png
+.. figure:: ../img/CHANGE_BUS_Load_Input_Format_for_+_Records.png
+
+  CHANGE_BUS % Load Input Format for + Records
 
 Wildcards are permitted in these fields: ``TYPE``, ``OWNER``, and ``CODE_YR``. The wild card character(s) for those fields are ``#,`` ``###,`` and ``##`` respectively.
 
@@ -1559,7 +1589,9 @@ Example 2
 
 Note that ``ALOAD`` and ``BLOAD`` quantities are generated by prior ``%LOAD_DISTRIBUTION``. Thus, this record corresponds to a  ``+`` record having the same ``TYPE`` and ``CODE_YEAR``. See below.
 
-.. image:: ../img/Original_Continuation_Record.png
+.. figure:: ../img/Original_Continuation_Record.png
+
+  Original Continuation Record
 
 1. Remove ``ALOAD`` and ``BLOAD`` quantities from the ``+X*I`` record above. Note that these quantities are constant current. Convert them into constant power::
   
@@ -1618,32 +1650,36 @@ This option correlates the various GE branch ratings with the IPF branch ratings
 
 The default branch IPF ratings, shown in the example above, are assigned per the table below.
 
-=========== ========== ==========
-Branch      IPF Rating GE Rating
-=========== ========== ==========
-Transformer Nominal    RateA
-            Thermal    RateA
-            Emergency  RateB
-            Bottleneck RateC
-Line        Nominal    RateA
-            Thermal    RateA
-            Bottleneck RateC
-=========== ========== ==========
+.. table:: Default Branch Rating Assignments
+
+  =========== ========== ==========
+  Branch      IPF Rating GE Rating
+  =========== ========== ==========
+  Transformer Nominal    RateA
+              Thermal    RateA
+              Emergency  RateB
+              Bottleneck RateC
+  Line        Nominal    RateA
+              Thermal    RateA
+              Bottleneck RateC
+  =========== ========== ==========
 
   ``LTC=RANGE``
 
 This option defines the remotely controlled bus’ voltage assignments in the form of bus type and scheduled voltage. The table below describes all options
 
-======= ==================== ===========================================
-Type    Conditional bus type Action taken
-======= ==================== ===========================================
-HIGH                         vmax = vmax_ge vmin = vmax_ge Bb -> BT
-AVERAGE                      vmax = 0.5 * (vmax_ge + vmin_ge) vmin = 0.5 * (vmax_ge + vmin_ge) Bb -> BT
-LOW     ``BQ``               vmax = 0.5 * (vmax_ge + vmin_ge) vmin = 0.5 * (vmax_ge + vmin_ge)T
-LOW     All other types      vmax = vmax_ge vmin = vmin_ge
-RANGE   Bb                   vmax = vmax_ge vmin = vmin_ge
-RANGE   All other types      vmax = 0.5 * (vmax_ge + vmin_ge) vmin = 0.5 * (vmax_ge + vmin_ge)
-======= ==================== ===========================================
+.. table:: Remotely controlled bus assigned voltages
+
+  ======= ==================== ===========================================
+  Type    Conditional bus type Action taken
+  ======= ==================== ===========================================
+  HIGH                         vmax = vmax_ge vmin = vmax_ge Bb -> BT
+  AVERAGE                      vmax = 0.5 * (vmax_ge + vmin_ge) vmin = 0.5 * (vmax_ge + vmin_ge) Bb -> BT
+  LOW     ``BQ``               vmax = 0.5 * (vmax_ge + vmin_ge) vmin = 0.5 * (vmax_ge + vmin_ge)T
+  LOW     All other types      vmax = vmax_ge vmin = vmin_ge
+  RANGE   Bb                   vmax = vmax_ge vmin = vmin_ge
+  RANGE   All other types      vmax = 0.5 * (vmax_ge + vmin_ge) vmin = 0.5 * (vmax_ge + vmin_ge)
+  ======= ==================== ===========================================
 
 LOAD_PTI
 ========
@@ -1669,31 +1705,35 @@ This option correlates the various PTI branch ratings with the IPF branch rating
 
 The default branch IPF ratings, shown in the example above, are assigned per the table below.
 
-=========== ========== ==========
-Branch      IPF Rating PTI Rating
-=========== ========== ==========
-Transformer Nominal    RateA
-            Thermal    RateA
-            Emergency  RateB
-            Bottleneck RateC
-Line        Nominal    RateA
-            Thermal    RateA
-            Bottleneck RateC
-=========== ========== ==========
+.. table:: Default Branch Rating Assignments
 
+  =========== ========== ==========
+  Branch      IPF Rating PTI Rating
+  =========== ========== ==========
+  Transformer Nominal    RateA
+              Thermal    RateA
+              Emergency  RateB
+              Bottleneck RateC
+  Line        Nominal    RateA
+              Thermal    RateA
+              Bottleneck RateC
+  =========== ========== ==========
+  
   ``LTC=RANGE``
 
-This option defines the remotely controlled bus’ voltage assignments in the form of bus type and scheduled voltage. The table below describes all options.
+This option defines the remotely controlled bus' voltage assignments in the form of bus type and scheduled voltage. The table below describes all options.
 
-======= ==================== ===========================================
-Type    Conditional bus type Action taken
-======= ==================== ===========================================
-HIGH                         vmax = vmax_pti vmin = vmax_pti Bb -> BT
-AVERAGE                      vmax = 0.5 * (vmax_pti + vmin_pti) vmin = 0.5 * (vmax_pti + vmin_pti) Bb -> BT
-LOW                          vmax = vmin_pti vmin = vmin_pti Bb -> BT
-RANGE   Bb                   vmax = 0.5 * (vmax_pti + vmin_pti) vmin = 0.5 * (vmax_pti + vmin_pti)
-RANGE   All other types      vmax = 0.5 * (vmax_pti + vmin_pti) vmin = 0.5 * (vmax_pti + vmin_pti)
-======= ==================== ===========================================
+.. table:: Remotely controlled bus assigned voltages
+
+  ======= ==================== ===========================================
+  Type    Conditional bus type Action taken
+  ======= ==================== ===========================================
+  HIGH                         vmax = vmax_pti vmin = vmax_pti Bb -> BT
+  AVERAGE                      vmax = 0.5 * (vmax_pti + vmin_pti) vmin = 0.5 * (vmax_pti + vmin_pti) Bb -> BT
+  LOW                          vmax = vmin_pti vmin = vmin_pti Bb -> BT
+  RANGE   Bb                   vmax = 0.5 * (vmax_pti + vmin_pti) vmin = 0.5 * (vmax_pti + vmin_pti)
+  RANGE   All other types      vmax = 0.5 * (vmax_pti + vmin_pti) vmin = 0.5 * (vmax_pti + vmin_pti)
+  ======= ==================== ===========================================
 
 LOSS_SENSITIVITIES
 ==================
@@ -1727,7 +1767,7 @@ Ordinarily, a decrease in system losses is anticipated when :math:`P_i`, :math:`
 
 :math:`\frac{dLoss}{dP_i}`
 --------------------------
-An exception often occurs for :math:`\frac{dLoss}{dP_i}. Occasionally, :math:`\frac{dLoss}{dP_i} > 0`, that is, increasing the generation :math:`P_i` increases the losses!
+An exception often occurs for :math:`\frac{dLoss}{dP_i}`. Occasionally, :math:`\frac{dLoss}{dP_i} > 0`, that is, increasing the generation :math:`P_i` increases the losses!
 
 Recall the constraint for ``Area_i``:
 
@@ -1795,47 +1835,55 @@ If the thermal or bottleneck rating on a branch is blank or zero in the columns 
 
 The chosen ratings are moved to columns 81 through 92 on the branch record in Powerflow.
 
-.. image:: ../img/Extended_Ratings_Fields_for_L_and_E_Records.png
+.. figure:: ../img/Extended_Ratings_Fields_for_L_and_E_Records.png
 
-======= ====================== =============================
-Column  Rating (“R” Selection) Field Description
-======= ====================== =============================
-81-84   1                      Winter Thermal (WT)
-85-88   1                      Winter Bottleneck (WB)
-89-92                          (not used)
-93-96   8                      Summer Thermal (ST)
-97-100  8                      Summer Bottleneck (SB)
-101-104                        (not used)
-105-108 2                      Extra Heavy Thermal (EHT)
-109-112 2                      Extra Heavy Bottleneck (EHB)
-113-116 3                      Moderate Cold Thermal (MCT)
-117-120 3                      Moderate Cold Bottleneck (MCB)
-121-124 4                      Spring Thermal (SPT)
-125-128 4                      Spring Bottleneck (SPB)
-======= ====================== =============================
+  Extended Ratings Fields for L and E Records
 
-.. image:: ../img/Extended_Ratings_Fields_for_T_and_TP_Records.png
+.. table:: L and E Record Extended Fields Column Descriptions
 
-======= ====================== =============================
-Column  Rating (“R” Selection) Field Description
-======= ====================== =============================
-81-84   1                      Winter Thermal (WT)
-85-88   1, 2, 3                Winter Emergency (WE)
-89-92   1                      Winter Bottleneck (WB)
-93-96   8                      Summer Thermal (ST)
-97-100  8                      Summer Emergency (SE)
-101-104 8                      Summer Bottleneck (SB)
-105-108 2                      Extra Heavy Thermal (EHT)
-109-112 2                      Extra Heavy Bottleneck (EHB)
-113-116 3                      Moderate Cold Thermal (MCT)
-117-120 3                      Moderate Cold Bottleneck (MCB)
-121-124 4                      Spring Thermal (SPT)
-125-128 4                      Spring Emergency (SPE)
-129-132 4                      Spring Bottleneck (SPB)
-======= ====================== =============================
+  ======= ======================= =============================
+  Column  Rating ("R"� Selection) Field Description
+  ======= ======================= =============================
+  81-84   1                       Winter Thermal (WT)
+  85-88   1                       Winter Bottleneck (WB)
+  89-92                           (not used)
+  93-96   8                       Summer Thermal (ST)
+  97-100  8                       Summer Bottleneck (SB)
+  101-104                         (not used)
+  105-108 2                       Extra Heavy Thermal (EHT)
+  109-112 2                       Extra Heavy Bottleneck (EHB)
+  113-116 3                       Moderate Cold Thermal (MCT)
+  117-120 3                       Moderate Cold Bottleneck (MCB)
+  121-124 4                       Spring Thermal (SPT)
+  125-128 4                       Spring Bottleneck (SPB)
+  ======= ======================= =============================
 
-MERGE qualiﬁers
----------------
+.. figure:: ../img/Extended_Ratings_Fields_for_T_and_TP_Records.png
+
+  Extended Ratings Fields for T and TP Records
+
+.. table:: T and TP Record Extended Fields Column Descriptions
+
+  ======= ======================= =============================
+  Column  Rating ("R"� Selection) Field Description
+  ======= ======================= =============================
+  81-84   1                       Winter Thermal (WT)
+  85-88   1, 2, 3                 Winter Emergency (WE)
+  89-92   1                       Winter Bottleneck (WB)
+  93-96   8                       Summer Thermal (ST)
+  97-100  8                       Summer Emergency (SE)
+  101-104 8                       Summer Bottleneck (SB)
+  105-108 2                       Extra Heavy Thermal (EHT)
+  109-112 2                       Extra Heavy Bottleneck (EHB)
+  113-116 3                       Moderate Cold Thermal (MCT)
+  117-120 3                       Moderate Cold Bottleneck (MCB)
+  121-124 4                       Spring Thermal (SPT)
+  125-128 4                       Spring Emergency (SPE)
+  129-132 4                       Spring Bottleneck (SPB)
+  ======= ======================= =============================
+
+MERGE qualifiers
+----------------
 
   ``>EXCLUDE_BRANCHES``
 
@@ -2020,14 +2068,16 @@ This command indicates that the following text is line default data. Branches in
 
 See the table below for the format of default ratings.
 
-=============== =================================================
-Column Position Content
-=============== =================================================
-1-3             (blank)
-4-7             Base kV
-10-13           Base kV if transformer; blank or zero if line
-16-19           Default rating (amps if line; MVA if transformer)
-=============== =================================================
+.. table:: Format of Default Branch Ratings
+
+  =============== =================================================
+  Column Position Content
+  =============== =================================================
+  1-3             (blank)
+  4-7             Base kV
+  10-13           Base kV if transformer; blank or zero if line
+  16-19           Default rating (amps if line; MVA if transformer)
+  =============== =================================================
 
   ``>ELIM_LINE_R``
 
@@ -2122,18 +2172,20 @@ This command requests that the branch ratings be relaxed by a certain percentage
 
 This command specifies the special ratings of branches that are used for overload determinations. The number of branches whose ratings are specified in ``FILE`` is given by a records parameter. Specification records follow this qualifier if the file parameter is omitted. Rating records are described in the table below.
 
-=============== ==========================
-Column Position Content
-=============== ==========================
-7-15            bus name
-16-19           base voltage
-21-27           bus name
-28-31           base voltage
-32              parallel identiﬁcation
-34-37           nominal amps rating
-39-42           summer amps rating
-44-47           winter amps rating
-=============== ==========================
+.. table:: Fields for Rating Records
+
+  =============== ==========================
+  Column Position Content
+  =============== ==========================
+  7-15            bus name
+  16-19           base voltage
+  21-27           bus name
+  28-31           base voltage
+  32              parallel identiﬁcation
+  34-37           nominal amps rating
+  39-42           summer amps rating
+  44-47           winter amps rating
+  =============== ==========================
 
 ::
 
@@ -2343,8 +2395,8 @@ This command reduces the network in residence to a desired size and solves the r
   .......
   .......
 
-Reduction Qualiﬁers
--------------------
+Reduction Qualifiers
+--------------------
 
   ``>COHERENT_CLUSTERS, <name> <base kV>``
 
@@ -2354,16 +2406,19 @@ The named constituent buses which comprise each coherent cluster may be either r
 
 Special codes on each bus permit individual dispositions of generator and load quantities. Generation and/or load may be converted to constant current, constant admittance, or converted to an REI coherent unit. The codes are show in the table below.
 
-============== =======================
-Column         Value
-============== =======================
-3 (Generation) 0 - Constant Current
-3 (Generation) 1 - Constant Admittance
-3 (Generation) Blank or 2 - REI
-4 (Load)       0 - Constant Current
-4 (Load)       1 - Constant Admittance
-4 (Load)       Blank or 2 - REI
-============== =======================
+.. table:: Reduction Quali?er Codes
+
+  ============== =======================
+  Column         Value
+  ============== =======================
+  3 (Generation) 0 - Constant Current
+  3 (Generation) 1 - Constant Admittance
+  3 (Generation) Blank or 2 - REI
+  4 (Load)       0 - Constant Current
+  4 (Load)       1 - Constant Admittance
+  4 (Load)       Blank or 2 - REI
+  ============== =======================
+
 ::
   
   >DEBUG = NONE
@@ -2373,13 +2428,16 @@ Column         Value
 
 Use this to request the debug feature.
 
-======== ===============================================================================
-Debug    Effect
-======== ===============================================================================
-Minor    Minimal debug.
-Major    Includes dump of intermittent reduction steps.
-Ordering Includes full dump of reordering arrays during each nodal elimination step.
-======== ===============================================================================
+.. table:: Reduction Debug Codes
+
+  ======== ===============================================================================
+  Debug    Effect
+  ======== ===============================================================================
+  Minor    Minimal debug.
+  Major    Includes dump of intermittent reduction steps.
+  Ordering Includes full dump of reordering arrays during each nodal elimination step.
+  ======== ===============================================================================
+
 ::
 
   >ELIM_MODE, GEN = CURRENT, LOAD = CURRENT, SHUNT_Y = ADMITT
@@ -2458,13 +2516,15 @@ The second application is to assist in a solution of a reduced equivalent system
 
 This command defines the ultimate form which the currents distributed from the eliminated nodes to the border nodes will attain. It affects only the border nodes. Note that before the elimination, the generation, load, and shunt of each eliminated node is disposed as defined by the command ``ELIM_MODE``. Those quantities, which were distributed as three separate current vectors during the network reduction, are now to be transformed into their ultimate form. The distributed currents (generation, load, and shunt) will be encoded into special types of ``+A`` continuation buses with ownership ``***``.
 
-======= ====================== ========= ===============================================
-Option  Meaning                Code year Comment
-======= ====================== ========= ===============================================
-CURRENT Constant current model 01        The load ﬁelds are interpreted as constant current, constant power factor
-ADMITT  Constant admittance    01        The shunt ﬁelds are interpreted in the ordinary manner.
-POWER   Constant MVA           02        The generation ﬁelds are interpreted in the ordinary manner.
-======= ====================== ========= ===============================================
+.. table:: Ultimate Form of Distributed Currents
+
+  ======= ====================== ========= ===============================================
+  Option  Meaning                Code year Comment
+  ======= ====================== ========= ===============================================
+  CURRENT Constant current model 01        The load ﬁelds are interpreted as constant current, constant power factor
+  ADMITT  Constant admittance    01        The shunt ﬁelds are interpreted in the ordinary manner.
+  POWER   Constant MVA           02        The generation ﬁelds are interpreted in the ordinary manner.
+  ======= ====================== ========= ===============================================
 
 It should be noted that the special continuation records ``+A`` with ownership ``***`` will always be generated to hold the equivalent shunt admittance which results from the admittance to ground in the eliminated system.
 
@@ -2541,14 +2601,16 @@ This command completely bypasses the solution routine and uses the base voltages
 
 This command turns on the following various program debug switches. See the table below.
 
-======== ================
-Switch   Meaning
-======== ================
-TX:      LTC
-BUS:     Bus Switching
-AI:      Area Interchange
-DCMODEL: DC Modeling
-======== ================
+.. table:: Debug Switches
+
+  ======== ================
+  Switch   Meaning
+  ======== ================
+  TX:      LTC
+  BUS:     Bus Switching
+  AI:      Area Interchange
+  DCMODEL: DC Modeling
+  ======== ================
 
 ::
 
@@ -2575,9 +2637,13 @@ To set limits, the statement ``>LIMITS`` may be used as many times as is needed.
 ``>LOAD_SOLUTION`` loads an alternate set of voltages and LTC taps for either the base solution (``SOLUTION = BASE``) or for a hot start (``SOLUTION = HOTSTART``). The purpose of this command is to validate other Powerflow programs (PTI, SVSPP) using similar base case data or to assist difficult solutions by providing an alternate starting point.
 The contents of data in ``file_name`` are shown below.
 
-.. image:: ../img/Alternate_Voltages_and_LTC_Taps_for_B_Records.png
+.. figure:: ../img/Alternate_Voltages_and_LTC_Taps_for_B_Records.png
 
-.. image:: ../img/Alternate_Voltages_and_LTC_Taps_for_T_Records.png
+  Alternate Voltages and LTC Taps for B Records
+
+.. figure:: ../img/Alternate_Voltages_and_LTC_Taps_for_T_Records.png
+
+  Alternate Voltages and LTC Taps for T Records
 
 The formats of the voltages and taps are "free-field," meaning that the information must begin at least in the column noted and that additional entities are separated with a blank space.
 
@@ -2815,63 +2881,161 @@ A simple example illustrates this concept. The records following the / USER_ANAL
 
 In the example, it is desired to list the sums (P_in and Q_in) of two selected branches.
 
-/ USER_ANALYSIS, FILE = * . . The following symbols define P_in. . > DEFINE_TYPE BRANCH_P LET A1 = ELDORADO 500*LUGO        500 1
-LET A2 = MOHAVE   500*LUGO        500 1 > DEFINE_TYPE FUNCTION LET S1 = A1 + A2 . . The following symbols define Q_in. . > DEFINE_TYPE BRANCH_Q LET B1 = ELDORADO 500*LUGO        500 1 LET B2 = MOHAVE   500*LUGO        500 1 > DEFINE_TYPE FUNCTION LET S2 = B1 + B2 H C Branch                        P_in    Q_in C                               (MW)    (MVAR) C C ELDORADO/LUGO        500. 1 = $A1     $B1 C MOHAVE  /LUGO        500. 1 = $A2     $B2 C C Total                       = $S1     $S2
-Notice that this example contains two types of data: definitions and comments.
-The definitions > DEFINE_TYPE BRANCH_P, > DEFINE_TYPE BRANCH_Q, and > DEFINE_TYPE FUNCTION identify the type of symbols that follow.
-The symbols A1, A2, S1, B1, B2, and S2 are assigned to specific quantities in the network. They are evaluated after the case is solved.
-In the analysis phase, the user-defined report is compiled first. The report consists of a single pass through the comment text, substituting symbols for evaluated quantities before the line is printed. The symbols are identified with a leading $ followed by a valid symbol name.
-Let us make the assumption that the symbols above are evaluated as follows:
-A1 = 859.2 A2 = 901.8 S1 = 1761.0 B1 = 245.1 B2 = 254.2 S2 = 499.3
-Immediately before printing, these values are encoded into the symbol fields into the comment text. Their default format is F6.0. The output report appears as follows.
-Branch                      P_in    Q_in                            (MW)   (MVAR)
-ELDORADO/LUGO   500. 1 =    859.    245.
-MOHAVE  /LUGO   500. 1 =    902.    254.
-Total                  =   1761.    499.
-Three types of text follow the / USER_ANALYSIS record: pagination specifications, symbol definitions, and user-defined comment text. They are described in more detail in the following sections and are then illustrated with a second example.
+::
 
-Symbol Deﬁnitions
------------------
+  / USER_ANALYSIS, FILE = *
+  . 
+  . The following symbols define P_in. 
+  . 
+  > DEFINE_TYPE BRANCH_P 
+  LET A1 = ELDORADO 500*LUGO        500 1
+  LET A2 = MOHAVE   500*LUGO        500 1 
+  > DEFINE_TYPE FUNCTION 
+  LET S1 = A1 + A2 
+  . 
+  . The following symbols define Q_in. 
+  . 
+  > DEFINE_TYPE BRANCH_Q
+  LET B1 = ELDORADO 500*LUGO        500 1
+  LET B2 = MOHAVE   500*LUGO        500 1 
+  > DEFINE_TYPE FUNCTION 
+  LET S2 = B1 + B2 
+  H 
+  C Branch                        P_in    Q_in 
+  C                               (MW)    (MVAR) 
+  C 
+  C ELDORADO/LUGO        500. 1 = $A1     $B1 
+  C MOHAVE  /LUGO        500. 1 = $A2     $B2 
+  C 
+  C Total                       = $S1     $S2
+
+Notice that this example contains two types of data: definitions and comments.
+
+The definitions ``> DEFINE_TYPE BRANCH_P``, ``> DEFINE_TYPE BRANCH_Q``, and ``> DEFINE_TYPE FUNCTION`` identify the type of symbols that follow.
+
+The symbols ``A1``, ``A2``, ``S1``, ``B1``, ``B2``, and ``S2`` are assigned to specific quantities in the network. They are evaluated after the case is solved.
+
+In the analysis phase, the user-defined report is compiled first. The report consists of a single pass through the comment text, substituting symbols for evaluated quantities before the line is printed. The symbols are identified with a leading $ followed by a valid symbol name.
+
+Let us make the assumption that the symbols above are evaluated as follows::
+
+  A1 = 859.2 
+  A2 = 901.8 
+  S1 = 1761.0 
+  B1 = 245.1 
+  B2 = 254.2 
+  S2 = 499.3
+
+Immediately before printing, these values are encoded into the symbol fields into the comment text. Their default format is F6.0. The output report appears as follows.::
+
+  Branch                      P_in    Q_in
+                              (MW)   (MVAR)
+  ELDORADO/LUGO   500. 1 =    859.    245.
+  MOHAVE  /LUGO   500. 1 =    902.    254.
+  Total                  =   1761.    499.
+
+Three types of text follow the ``/ USER_ANALYSIS`` record: pagination specifications, symbol definitions, and user-defined comment text. They are described in more detail in the following sections and are then illustrated with a second example.
+
+Symbol Definitions
+------------------
 Symbol definitions have either a one-line or multiple-line format.
 
-The one-line format is:
+The one-line format is::
 
-> DEFINE_TYPE <symbol_type><symbol_name>=<id_of_computed_quantity>
+  > DEFINE_TYPE <symbol_type><symbol_name>=<id_of_computed_quantity>
 
-The multiple-line format is:
+The multiple-line format is::
 
-> DEFINE_TYPE <symbol_type> <symbol_name> = <id_of_computed_quantity> <symbol_name> = <id_of_computed_quantity> <symbol_name> = <id_of_computed_quantity>
+  > DEFINE_TYPE <symbol_type> <symbol_name> = <id_of_computed_quantity> <symbol_name> = <id_of_computed_quantity> <symbol_name> = <id_of_computed_quantity>
 
 Some simple rules must be followed:
 
-  * All > DEFINE_TYPE data is free-field. Blanks and commas are delimiters. If a blank character is part of a name, substitute a pound sign (#).
-  Example: JOHN DAY 500.0 --> JOHN#DAY 500.0
+  * All ``> DEFINE_TYPE`` data is free-field. Blanks and commas are delimiters. If a blank character is part of a name, substitute a pound sign (#).
+  Example: ``JOHN DAY 500.0 --> JOHN#DAY 500.0``
 
   A blank circuit ID in a multicircuit line must also be entered as a pound sign (#).
   
-  Example: B = ELDORADO 500 LUGO 500 #
+  Example: ``B = ELDORADO 500 LUGO 500 #``
   
-  * All > DEFINE_TYPE data is case-insensitive. No distinction is made between upper and lower case symbol characters. The case, however, is preserved in the analysis report as it was entered.
+  * All ``> DEFINE_TYPE`` data is case-insensitive. No distinction is made between upper and lower case symbol characters. The case, however, is preserved in the analysis report as it was entered.
 
   * The symbol names are limited to six characters.
 
   * The symbol quantities are encoded with a default format of F6.0. The field begins in the column position of the $ and continues the necessary field width (default is six) as specified by the format. This default format may be changed by appending the new format to the symbol name using the FORTRAN convention, as shown below.
-
-C Total                   = $S1/F8.1 $S2/F8.1
+  ``C Total                   = $S1/F8.1 $S2/F8.1``
 
 >DEFINE_TYPE BRANCH_P and >DEFINE_TYPE BRANCH_Q
 -----------------------------------------------
-This defines line flows, both P_in and Q_in, computed at the bus1 terminal (default) or at bus2 if an asterisk (*) immediately follows the base kV. Below, square brackets “[” and “]” denote enclosed optional quantities.
->DEFINE_TYPE BRANCH_P (Branch flow in MW) LET P1 = BUS1 BASE1[*] BUS2 BASE2[*] ID LET P2 = BUS3 BASE3[*] BUS3 BASE4[*] ID ... LET PN = BUSM BASEM[*] BUSN BASEN[*] ID >DEFINE_TYPE BRANCH_Q (Branch flow in MW) LET Q1 = BUS1 BASE1[*] BUS2 BASE2[*] ID LET Q2 = BUS3 BASE3[*] BUS3 BASE4[*] ID ... LET QN = BUSM BASEM[*] BUSN BASEN[*] ID
+This defines line flows, both P_in and Q_in, computed at the bus1 terminal (default) or at bus2 if an asterisk (*) immediately follows the base kV. Below, square brackets "["� and "]"�denote enclosed optional quantities.::
+
+  >DEFINE_TYPE BRANCH_P (Branch flow in MW) 
+  LET P1 = BUS1 BASE1[*] BUS2 BASE2[*] ID 
+  LET P2 = BUS3 BASE3[*] BUS3 BASE4[*] ID 
+  ... 
+  LET PN = BUSM BASEM[*] BUSN BASEN[*] ID 
+  >DEFINE_TYPE BRANCH_Q (Branch flow in MW) 
+  LET Q1 = BUS1 BASE1[*] BUS2 BASE2[*] ID 
+  LET Q2 = BUS3 BASE3[*] BUS3 BASE4[*] ID 
+  ... 
+  LET QN = BUSM BASEM[*] BUSN BASEN[*] ID
 
 >DEFINE_TYPE INTERTIE_P or DEFINE_TYPE INTERTIE_Q
 -------------------------------------------------
-This defines the area interchange flow, either P_in (MW) or Q_in (MVAR). Either quantity is computed at the tie-line metering points.
->DEFINE_TYPE INTERTIE_P (Interchange flow in MW) LET I1 = AREA_1 AREA_2 LET I2 = AREA_3 AREA_4 ... LET IN = AREA_M AREA_N
->DEFINE_TYPE INTERTIE_Q (Interchange flow in MVAR) LET J1 = AREA_1 AREA_2 LET J2 = AREA_3 AREA_4 ... LET JN = AREA_M AREA_N
+This defines the area interchange flow, either :math:`P_{in}` (MW) or :math:`Q_{in}` (MVAR). Either quantity is computed at the tie-line metering points.::
+
+  >DEFINE_TYPE INTERTIE_P (Interchange flow in MW) 
+  LET I1 = AREA_1 AREA_2 
+  LET I2 = AREA_3 AREA_4 
+  ... 
+  LET IN = AREA_M AREA_N
+  >DEFINE_TYPE INTERTIE_Q (Interchange flow in MVAR) 
+  LET J1 = AREA_1 AREA_2 
+  LET J2 = AREA_3 AREA_4 
+  ... 
+  LET JN = AREA_M AREA_N
 
 > DEFINE_TYPE INTERTIE_P_SCHEDULED
 ----------------------------------
-This defines the scheduled area intertie flow (I records) as P_in (MW).
+This defines the scheduled area intertie flow (``I`` records) as :math:`P_{in}` (MW).::
 
->DEFINE_TYPE INTERTIE_P_SCHEDULED (Scheduled Interchange flow in MW) LET I1 = AREA_1 AREA_2 LET I2 = AREA_3 AREA_4 ... LET IN = AREA_M AREA_N
+  >DEFINE_TYPE INTERTIE_P_SCHEDULED (Scheduled Interchange flow in MW) 
+  LET I1 = AREA_1 AREA_2 
+  LET I2 = AREA_3 AREA_4 
+  ... 
+  LET IN = AREA_M AREA_N
+
+>DEFINE_TYPE OWNER_LOSS AREA_LOSS ZONE_LOSS SYSTEM_LOSS
+-------------------------------------------------------
+
+::
+
+  >DEFINE_TYPE OWNER_LOSS
+  LET O1 = BPA, O2 = PGE,  etc.
+  >DEFINE_TYPE AREA_LOSS,  
+  LET A1 = NORTHWEST, etc.
+  >DEFINE_TYPE ZONE_LOSS,  
+  LET Z1 = NA, Z2 = NB, etc.
+  >DEFINE_TYPE SYSTEM_LOSS,
+  LET SYSTOT
+
+This defines losses by Area, Zone, Ownership, or total system.
+
+>DEFINE_TYPE FUNCTION
+---------------------
+This defines the following records as containing algebraic operators:
++, -, *, /, **, <, >, (, and ).
+>DEFINE_TYPE FUNCTION LET T1 = (Z1 ** 2 + Z2 ** 2 ) ** 0.5 LET T2 = (Z1 > 1200.0) * 100.0
+T1 evaluates as the square root of the sum of the squares Z1 and Z2. T2 evaluates as 100 times the excess of Z1 over 1200.0.
+Some simple rules must be followed:
+� All symbols referenced on the right-hand side must be defined prior to reference.
+� Parentheses can be nested to any level. Operation begins inside the innermost level.
+� A single function is limited to 30 symbols and operators.
+� Operators have the following precedence (highest to lowest):
+** *,/ >,< +,
+FUNCTION admits simple trigonometric  (and one absolute value) functions where the relevant arguments or returned values are expressed in radians:
+   sin(), cos(), tan(), arcsin(), arccos(), arctan(), and abs().
+Here is an example: compute the voltage angle difference between two buses, KEELER 500 and PAUL 500.
+> DEFINE_TYPE BUS_INDEX  LET A = KEELER  500  LET B = PAUL       500 > DEFINE_TYPE FUNCTION LET DIF = 57.29578 * (ARCTAN(A.VI/A.VR) - ARCTAN(B.VI/B.VR))
+
+Here, A.VR and A.VI are the real and imaginary components to the per unit voltage at KEELER 500. Similarly, B.VR and B.VI for PAUL 500. The ARCTAN function returns the angle in radians. The difference is then converted to degrees.
+
