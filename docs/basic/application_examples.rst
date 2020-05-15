@@ -341,6 +341,11 @@ Ignoring long-line effect, reactance for 100-mile line is 52.2 ohms:
   &= \frac{52.5}{2500}pu \\
   &= 0.02100pu
 
+Derivation of Line Rpu on 500 kV, 100MVA:
+
+  All four lines are the same:
+
+  
 New Facilities
 ==============
 The purpose of this example is to provide new generating facilities to serve the growing loads near the town of Keller and Mount Tolman.
