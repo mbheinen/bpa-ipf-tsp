@@ -48,7 +48,7 @@ Here is a basic powerflow run that contains all data in the control file (``nine
   T     GEN3 HI   230 GEN3        13.8                  5860 23000 1380
   (STOP)
 
-A more convenient method to perform the preceding setup is to use a NETWORK_DATA file. The PFC file would look like this::
+A more convenient method to perform the preceding setup is to use a ``NETWORK_DATA`` command and provide the network data portion (the power system network) in a separate file and similarly a ``INCLUDE_CONTROL`` command and provide the control comands in a separate file as well. The PFC file would look like this::
 
   (  POWERFLOW,CASEID=NINEBUS,  PROJECT = EXAMPLES  ) 
   / HEADER 
@@ -190,6 +190,8 @@ Here is an example of merging two topologically overlapping networks into one co
   ..... 
   (STOP)
 
+.. _reduction-case-exmaple:
+
 Reduction Case Example
 ======================
 Here is an example of reducing an existing network to a desired size and solving the reduced network. Reduction is achieved by retaining only specified zones from the original system. Produce full input/output listings on microfiche. Partial input/output listings (restricted to certain specified zones) will be printed on paper. Give full analysis report on both paper and fiche. In solving the network, regulating transformers will be activated and area-interchange control will be switched to control mode. Provide full listing of area interchange flows.::
@@ -208,4 +210,5 @@ Here is an example of reducing an existing network to a desired size and solving
   /AI_LIST = FULL 
   /P_ANALYSIS_RPT, LEVEL = 4 
   (STOP)
+
 

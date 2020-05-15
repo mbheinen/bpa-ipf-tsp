@@ -1,3 +1,5 @@
+.. _libcflow-c-library:
+
 ******************
 libcflow C Library
 ******************

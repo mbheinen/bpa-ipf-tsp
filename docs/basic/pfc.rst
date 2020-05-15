@@ -116,7 +116,7 @@ Two special characters are available to document the control stream or to improv
  
 .. note::
 
-  The hyphen or minus sign "-"ùand the underscore "_"ù symbol are different characters! Thus, ``P_O_W_E_R_F_L_O_W`` is the same as ``POWER_FLOW`` which is the equivalent of ``POWERFLOW``. ``OLD_BASE`` is the same as ``OLDBASE`` but not the same as ``OLD-BASE``, etc.
+  The hyphen or minus sign "-"ÔøΩand the underscore "_"ÔøΩ symbol are different characters! Thus, ``P_O_W_E_R_F_L_O_W`` is the same as ``POWER_FLOW`` which is the equivalent of ``POWERFLOW``. ``OLD_BASE`` is the same as ``OLDBASE`` but not the same as ``OLD-BASE``, etc.
 
 Default Convention
 ==================
@@ -1842,7 +1842,7 @@ The chosen ratings are moved to columns 81 through 92 on the branch record in Po
 .. table:: L and E Record Extended Fields Column Descriptions
 
   ======= ======================= =============================
-  Column  Rating ("R"ù Selection) Field Description
+  Column  Rating ("R"ÔøΩ Selection) Field Description
   ======= ======================= =============================
   81-84   1                       Winter Thermal (WT)
   85-88   1                       Winter Bottleneck (WB)
@@ -1865,7 +1865,7 @@ The chosen ratings are moved to columns 81 through 92 on the branch record in Po
 .. table:: T and TP Record Extended Fields Column Descriptions
 
   ======= ======================= =============================
-  Column  Rating ("R"ù Selection) Field Description
+  Column  Rating ("R"ÔøΩ Selection) Field Description
   ======= ======================= =============================
   81-84   1                       Winter Thermal (WT)
   85-88   1, 2, 3                 Winter Emergency (WE)
@@ -2966,7 +2966,7 @@ Some simple rules must be followed:
 
 >DEFINE_TYPE BRANCH_P and >DEFINE_TYPE BRANCH_Q
 -----------------------------------------------
-This defines line flows, both P_in and Q_in, computed at the bus1 terminal (default) or at bus2 if an asterisk (*) immediately follows the base kV. Below, square brackets "["ù and "]"ùdenote enclosed optional quantities.::
+This defines line flows, both P_in and Q_in, computed at the bus1 terminal (default) or at bus2 if an asterisk (*) immediately follows the base kV. Below, square brackets "["ÔøΩ and "]"ÔøΩdenote enclosed optional quantities.::
 
   >DEFINE_TYPE BRANCH_P (Branch flow in MW) 
   LET P1 = BUS1 BASE1[*] BUS2 BASE2[*] ID 
@@ -3023,19 +3023,310 @@ This defines losses by Area, Zone, Ownership, or total system.
 >DEFINE_TYPE FUNCTION
 ---------------------
 This defines the following records as containing algebraic operators:
-+, -, *, /, **, <, >, (, and ).
->DEFINE_TYPE FUNCTION LET T1 = (Z1 ** 2 + Z2 ** 2 ) ** 0.5 LET T2 = (Z1 > 1200.0) * 100.0
-T1 evaluates as the square root of the sum of the squares Z1 and Z2. T2 evaluates as 100 times the excess of Z1 over 1200.0.
+
+  ``+``, ``-``, ``*``, ``/``, ``**``, ``<``, ``>``, ``(``, and ``)``.
+
+::
+
+  >DEFINE_TYPE FUNCTION
+   LET T1 = (Z1 ** 2 + Z2 ** 2 ) ** 0.5 
+   LET T2 = (Z1 > 1200.0) * 100.0
+
+``T1`` evaluates as the square root of the sum of the squares ``Z1`` and ``Z2``. ``T2`` evaluates as 100 times the excess of ``Z1`` over 1200.0.
 Some simple rules must be followed:
-ï All symbols referenced on the right-hand side must be defined prior to reference.
-ï Parentheses can be nested to any level. Operation begins inside the innermost level.
-ï A single function is limited to 30 symbols and operators.
-ï Operators have the following precedence (highest to lowest):
-** *,/ >,< +,
-FUNCTION admits simple trigonometric  (and one absolute value) functions where the relevant arguments or returned values are expressed in radians:
-   sin(), cos(), tan(), arcsin(), arccos(), arctan(), and abs().
-Here is an example: compute the voltage angle difference between two buses, KEELER 500 and PAUL 500.
-> DEFINE_TYPE BUS_INDEX  LET A = KEELER  500  LET B = PAUL       500 > DEFINE_TYPE FUNCTION LET DIF = 57.29578 * (ARCTAN(A.VI/A.VR) - ARCTAN(B.VI/B.VR))
 
-Here, A.VR and A.VI are the real and imaginary components to the per unit voltage at KEELER 500. Similarly, B.VR and B.VI for PAUL 500. The ARCTAN function returns the angle in radians. The difference is then converted to degrees.
+  * All symbols referenced on the right-hand side must be defined prior to reference.
+  * Parentheses can be nested to any level. Operation begins inside the innermost level.
+  * A single function is limited to 30 symbols and operators.
+  * Operators have the following precedence (highest to lowest):
 
+::
+
+  ** 
+  *,/
+  >,<
+  +,-
+
+``FUNCTION`` admits simple trigonometric  (and one absolute value) functions where the relevant arguments or returned values are expressed in radians::
+
+  sin(), cos(), tan(), arcsin(), arccos(), arctan(), and abs().
+
+Here is an example: compute the voltage angle difference between two buses, ``KEELER 500`` and ``PAUL 500``.
+
+::
+
+  > DEFINE_TYPE BUS_INDEX  
+  LET A = KEELER  500  
+  LET B = PAUL       500 
+  > DEFINE_TYPE FUNCTION 
+  LET DIF = 57.29578 * (ARCTAN(A.VI/A.VR) - ARCTAN(B.VI/B.VR))
+
+Here, ``A.VR`` and ``A.VI`` are the real and imaginary components to the per unit voltage at ``KEELER 500``. Similarly, ``B.VR`` and ``B.VI`` for ``PAUL 500``. The ``ARCTAN`` function returns the angle in radians. The difference is then converted to degrees.
+
+>DEFINE_TYPE OLDBASE
+---------------------
+This defines pertinent information from the retrieved OLD_BASE data file. An example will demonstrate the use of these symbols.
+
+::
+
+  >DEFINE_TYPE OLDBASE 
+   LET A = DISK 
+   LET B = DIR 
+   LET C = FILE 
+   LET D = CASE 
+   LET E = DATE 
+   LET F = TIME 
+   LET G = DESC 
+   LET H = PFVER 
+   LET I = USER
+  
+  C OLD_BASE CASE = $D/A10 
+  C DESCRIPTION $G/A20 
+  C 
+  C GENERATED ON $E/A10 $F/A10 
+  C OWNER $I/A10 
+  C POWERFLOW VERSION $H/A10
+
+> DEFINE_TYPE BUS_INDEX
+-----------------------
+This defines the following records as bus indices. This index is used in conjunction with a coded suffix to obtain specific bus quantities.
+
+Valid suffixes and their associated bus quantities are shown the table below.
+
+.. table:: Suffixes for Bus Quantities
+
+===== ===================================================================================================
+SufÔ¨Åx Quantity
+===== ===================================================================================================
+.PL   P_load in MW
+.QL   Q_load in MVAR
+.PG   P_gen in MW
+.PM   P_max in MW
+.QG   Q_gen in MVAR
+.QM   Q_max in MVAR
+.QN   Q_min in MVAR
+.RKK  Real part of driving point admittance (YKK=RKK+jXKK). Also known as short circuit admittance.
+.XKK  Imaginary part of driving point admittance (YKK=RKK+jXKK). Also known as short circuit admittance.
+.V    V in per unit
+.VA   Voltage angle in degrees
+.VR   V in per unit, real component
+.VI   V in per unit, imaginary component
+.VK   V in kV
+.VM   V_max in per unit
+.VN   V_min in per unit
+.C    Q_caps used in MVAR
+.CM   Q_caps scheduled in MVAR
+.R    Q_reactors used in MVAR
+.RM   Q_reactors scheduled in MVAR
+.QU   Q_unscheduled in MVAR
+.DVQ  dV/dQ sensitivity kV/MVAR
+.DVP  dV/dP sensitivity in kV/MW.
+.S    Total reactive used (Capacitors or Reactors) in MVAR.
+.SM   Total reactive available (Capacitors or Reactors) in MVAR
+===== ===================================================================================================
+
+An example will demonstrate these concepts.
+
+Compute the generator current (in amps) of ``Paul 500.0``.
+
+::
+
+  > DEFINE_TYPE BUS_INDEX 
+  LET A = PAUL 500.0 
+  > DEFINE_TYPE FUNCTION 
+  LET B = (A.PG ** 2 + A.QG ** 2) ** 0.5 
+  LET C = 1000.0 * B / (3.0 ** 0.5 * A.VK)
+
+Here symbol ``B`` contains the generation in MVA, and ``C`` contains the current in amps.
+
+> DEFINE_TYPE BRANCH_INDEX
+--------------------------
+This defines the following records as branch  indices. This index is used in conjunction with a coded suffix to obtain specific branch  quantities.
+
+Valid suffixes and their associated branch  quantities are shown in the table below.
+
+.. table:: Suffixes for Branch Quantities
+
+===== ==============================================================
+SufÔ¨Åx Quantity
+===== ==============================================================
+.TAP1 Tap1 in kV for a T or in degrees for a TP record
+.TAP2 Tap2 in kV for a T or TP record
+.TAP  The discrete tap number (lowest tap = 1) for an LTC transformer.
+.TAPS The total number of discrete taps for a LTC transformer.
+===== ==============================================================
+
+An example will demonstrate these concepts.
+
+Show the tap, the discrete tap number, and the number of discrete taps for a transformer ``FRANKLIN 115/230``
+
+::
+
+  >DEFINE_TYPE LINE_INDEX 
+  LET FR = FRANKLIN 115.0 FRANKLIN 230.0 
+  C  TX AT     TAP         TAP #        # OF TAPS 
+  C FRANKLIN $FR.TAP2/F7.3  $FR.TAP/F3.0  $FR.TAPS/F3.0
+
+Here symbol B contains the generation in MVA, and C contains the current in amps.
+
+> DEFINE_TYPE  ZONE_INDEX
+-------------------------
+This defines the following records as zone indices. This index is used in conjunction with a coded suffix to obtain specific zone quantities.
+
+Valid suffixes and their associated zonal quantities are shown in the table below.
+
+.. table::  Suffixes for Zonal Quantities
+
+===== ========================================
+SufÔ¨Åx Zonal Quantity
+===== ========================================
+.PG   P_gen in MW
+.QG   Q_gen in MVAR
+.PL   P_load in MW
+.QL   Q_load in MVAR
+.PLS  P_loss in MW
+.QLS  Q_loss in MVAR
+.PSH  Installed (Scheduled)  P_shunt in MW
+.QSH  Installed (Scheduled) Q_shunt in MVAR
+.SCAP Installed  (Scheduled) Q_cap in MVAR
+.SREK Installed (Scheduled) Q_reactors in MVAR
+.UCAP Used  Q_cap in MVAR
+.UREK IUsed Q_reactors in MVAR
+===== ========================================
+
+The following example illustrates these concepts.
+
+::
+
+  > DEFINE_TYPE ZONE_INDEX  LET  ZA = NA LET  ZB = NB  LET  TP = ZA.PLS + ZB.PLS  LET TQ = ZA.QLS + ZB.QLS C C Zone       Ploss Qloss C (MW)       (MVAR) C C NA        $ZA.PLS   $ZA.QLS C NB $ZB.PLS   $ZB.QLS C- - - - - - - - - - - - - - - - - - - - - - - - - C Total      $TP $TQ C
+
+The symbol ZA.PLS contains the losses in MWs for zone NA.
+
+> DEFINE_TYPE  OWNER_INDEX
+--------------------------
+This defines the following records as owner indices. This index is used in conjunction with a coded suffix to obtain specific owner quantities.
+
+Valid suffixes and their associatedownership quantities are shown in the table below.
+
+.. table:: Suffixes for Ownership  Quantities
+
+===== ========================================
+SufÔ¨Åx Onwership Quantity
+===== ========================================
+.PG   P_gen in MW
+.QG   Q_gen in MVAR
+.PL   P_load in MW
+.QL   Q_load in MVAR
+.PLS  P_loss in MW
+.QLS  Q_loss in MW
+.PSH  Installed (Scheduled) P_shunt in MW
+.QSH  Installed (Scheduled) Q_shunt in MVAR
+.SCAP Installed  (Scheduled) Q_cap in MVAR
+.SREK Installed (Scheduled) Q_reactors in MVAR
+.UCAP Used Q_cap in MVAR
+.UREK IUsed Q_reactors in MVAR
+===== ========================================
+
+The following example illustrates these concepts.
+
+::
+
+  > DEFINE_TYPE OWNER_INDEX  
+  LET  ZA = BPA  
+  LET  ZB = PPL  
+     DEFINE_TYPE FUNCTION  
+     LET TP = ZA.PLS + ZB.PLS  
+     LET TQ = ZA.QLS + ZB.QLS 
+  C 
+  C Onwer       Ploss Qloss 
+  C (MW)       (MVAR) 
+  C 
+  C BPA       $ZA.PLS   $ZA.QLS 
+  C PPL       $ZB.PLS   $ZB.QLS 
+  C- - - - - - - - - - - - - - - - - - - - - - - - - 
+  C Total      $TP       $TQ 
+  C
+
+The symbol ``ZA.PLS`` contains the losses in MWs for owner BPA.
+
+There are three remaining types of indices::
+
+  > DEFINE_TYPE SYSTEM 
+  > DEFINE_TYPE INTERTIE_INDEX 
+  > DEFINE_TYPE AREA_INDEX
+
+These commands define following records as system, intertie, and area indices, respectively. Their use is similar to the bus and zone indices.
+
+> DEFINE_TYPE TRANSFER_INDEX
+----------------------------
+This defines the following records as transfer indices. This index is used in conjunction with a coded suffix to obtain specific transfer quantities.
+
+Valid suffixes and their associated transfer quantities are shown in the table below.
+
+.. table::
+
+===== ==========================================
+SufÔ¨Åx Quantity
+===== ==========================================
+.RKM  Real part of transfer impedance (p.u.)
+.XKM  Imaginary part of transfer impedance (p.u.)
+.DVP  Sensitivity d(V1-V2)/dP in kV/MW
+.DVQ  Sensitivity d(V1-V2)/dQ in kV/MVAR
+.DTP  Sensitivity d( )/dP in degrees/MW
+===== ==========================================
+
+The transfer impedance is the point-to-point impedance between two buses. It would represent the incremental (complex) voltage change due to a 1.0 p.u. current injection into bus1 in conjunction with a -1.0 injection out of bus2. It represents the impedance of the entire network with respect to the two terminal nodes.
+
+The transfer sensitivity is the sensitivity of the voltage or angle difference between two buses with respect to a 1 MW or MVAR change in injection between two buses.
+
+The following example obtains the transfer impedance and transfer sensitivities between COULEE 2 13.8 - JOHN DAY 500 and between JOHN DAY 500 - MALIN 500.
+
+::
+
+  > DEFINE_TYPE TRANSFER_INDEX  
+  LET TX1 = COULEE   500 JOHN#DAY  500  
+  LET TX2 = JOHN#DAY 500 MALIN     500 
+  C 
+  C TRANSFER IMPEDANCES       R (P.U.)        X (P.U.) 
+  C 
+  C COULEE   500 JOHN DAY 500 $TX1.RKM/E12.5  $TX1.XKM/E12.5 
+  C JOHN DAY 500 MALIN    500 $TX2.RKM/E12.5  $TX2.XKM/E12.5 
+  C 
+  C TRANSFER SENSITIVITIES    dV/dP (kV/MW)   dV/dQ (kV/MVAR) dT/dP (deg/MW) 
+  C 
+  C COULEE   500 JOHN DAY 500 $TX1.DVP/E12.5  $TX1.DVQ/E12.5  $TX1.DTP/E12.5 
+  C JOHN DAY 500 MALIN    500 $TX2.DVP/E12.5  $TX2.DVQ/E12.5  $TX1.DTP/E12.5
+
+Pagination SpeciÔ¨Åcations
+------------------------
+Pagination specifications pertain to headers and subheaders. The Header record is the most important record. It has an ``H`` in column 1.
+
+Each user-defined report must begin with a separate header record. The contents of this record become the first subheader. Additional subheaders can be appended to the report.
+
+The header and subheaders are listed at the top of each page on the user-defined analysis report.
+
+Following the header and optional subheader records are 120-character user-formatted comment text, identified with a ``C`` in column 1. These records define the user-defined analysis report.
+
+Only columns 3-120 are used. Column 1 (containing the ``C``) is ignored in the report, while column 2 is interpreted as Fortran carriage control:
+
+  " " = single line spacing
+
+  "0" = double line spacing
+
+Symbols whose character fields are to be encoded with numerical values computed from the solved case in residence are prefixed with a ``$`` and suffixed optionally with a format specification.
+
+Examples
+
+::
+
+  C WEST-OF-RIVER FLOW/NORTH= $T1/F8.0   WEST-OF RIVER FLOW/SOUTH= $T2/F8.0 
+  C ------------------------             -----------------------
+  C ELDORADO/LUGO    500. 1 = $A1/F8.0   PALOVRDE/DEVERS  500. 1 = $A9/F8.0
+
+There are two symbol substitutions in the first comment line: ``T1`` and ``T2``. Both elect an optional format, which is ``F8.0``. By coincidence, the symbol field with ``$T1/F8.0`` is eight characters, the same as the Format specification. If the Format was larger, substitution would overwrite additional columns on the right. If the format was smaller, only the left-most characters would be used with a blank fill on the remaining (unused) field.
+
+The second comment line has no substitution. The third has two symbol substitutions, similar to the first comment line.
+
+If no format specification is used, the default (F6.0) is used. In this instance, it would be plausible to use five-character symbol names. When the $ is included, the substituted text is the same field width as the original text. The program limits are 500 comment lines including headers and subheaders. No symbol substitution occurs on headers or subheaders.
+
+If a comment refers to an undefined symbol, a warning is issued, with the questionable fields flagged with a string of ``??????``s. The limits are 500 lines of symbol definition and 1000 symbols. Comment text (``.`` in column 1) is excluded.
