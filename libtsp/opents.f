@@ -119,28 +119,28 @@ C
 C       UNIX version
 
         open(unit=l1, 
-     &       status='scratch', 
+     &       status=type_open, 
      &       access='direct', 
 c    &       disp='delete',       
-     &       form='unformatted')
+     &       form='unformatted',
 c    &       recordtype='fixed',                       
-C    &       recordsize=4*4000)
+     &       recl=4*4000,
 c    &       organization='relative',                      
-c    &       file = 'stab.scr01')
+     &       file = 'scratch1')
 
       else
 
 c       VAX VMS version
 
         open(unit=l1, 
-     &       status='scratch', 
+     &       status=type_open, 
      &       access='direct', 
 c    &       disp='delete',       
-     &       form='unformatted') 
+     &       form='unformatted', 
 c    &       recordtype='variable',                    
-c    &       recordsize=4*4000) 
+     &       recl=4*4000, 
 c    &       organization='relative',
-c    &       file = 'scratch.dat')                                
+     &       file = 'scratch1')                                
 
 
       endif
@@ -152,14 +152,14 @@ C
 C       UNIX version
 
         open(unit=l2, 
-     &       status='scratch', 
+     &       status=type_open, 
      &       access='direct', 
 c    &       disp='delete',       
-     &       form='unformatted') 
-c    &       recordsize=4*4065) 
+     &       form='unformatted', 
+     &       recl=4*4065, 
 c    &       recordtype='fixed',       
 c    &       organization='relative', 
-c    &       file = 'stab.scr02')                                        
+     &       file = 'scratch2')                                        
 
       else
 
@@ -167,14 +167,14 @@ c       VAX VMS version
 c
 
         open(unit=l2,
-     &       status='scratch',
+     &       status=type_open,
      &       access='direct',
 c    &       disp='delete',       
-     &       form='unformatted')
-c    &       recordsize=4*4065)
+     &       form='unformatted',
+     &       recl=4*4065,
 c    &       recordtype='variable',    
 c    &       organization='relative', 
-c    &       file = 'junk.dat')                                  
+     &       file = 'scratch2')                                  
 
       endif
       return                                                            

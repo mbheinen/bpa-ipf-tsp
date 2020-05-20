@@ -13,7 +13,7 @@ c     -
      &        MXPOOL, MAXMAC, GOVSLOTS, TURBSLOTS, MAXCV, CVSLOTS,
      &        HCCVS
       parameter (MAXBUS    = 13000)
-      parameter (MAXGEN    = MAXBUS*3/20)
+      parameter (MAXGEN    = MAXBUS/10)
       parameter (MAXBRN    = MAXBUS*5/2)
       parameter (MAXWRK    = MAXBUS/5)
       parameter (MXLSFR    = 50)
