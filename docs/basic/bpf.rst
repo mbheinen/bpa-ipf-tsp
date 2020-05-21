@@ -1,6 +1,6 @@
-*************************
-``bpf`` Process Scenarios
-*************************
+*******
+``bpf``
+*******
 In order to process a case, ``bpf`` requires a program control file and a valid set of base case data, which may be a composite of ``NETWORK_DATA`` and ``BRANCH_DATA`` formatted ASCII files or an ``OLD_BASE`` file from a previous power flow case, and a ``CHANGE`` file.
 
 The PFC file either contains data used for the solution, or names files containing such data. The solution data is optionally saved on the file named in the ``NEW_BASE`` command.
@@ -10,9 +10,9 @@ Types of Processing
 Input files used vary with the type of IPF processing, so it is important that you have a good understanding of the purpose of each type of file. Different program functions use the files to perform specific processes. Some major processes are:
  
  * Basic Processing ``(POWER FLOW)``
- * Merge Base ``/MERGE_BASE\``
- * Network Reduction ``/REDUCTION\``
- * Outage Simulation ``/OUTAGE_SIM\``
+ * Merge Base ``/MERGE_BASE``
+ * Network Reduction ``/REDUCTION``
+ * Outage Simulation ``/OUTAGE_SIM``
  
 Sample PFC file setups for each of the following solution processes are given in ??.
 

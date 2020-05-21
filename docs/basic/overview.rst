@@ -1,3 +1,5 @@
+.. _overview:
+
 ********
 Overivew
 ********
@@ -9,7 +11,7 @@ IPF can be thought of as a family of programs. ``bpf`` is the batch form of the 
 
   ``bpf``
    
-    Command line based power flow program. It executes using the commands from Power Flow Control (PFC) file. Example usage: ``bpf test.pfc.`` The PFC commands (.pfc) used with ``bpf`` allow for complete power flow runs including defining the model and commands to perform various operations. The :ref:`power-flow-control` section describes the commands available.
+    Command line based power flow program. It executes using the commands from a Power Flow Control (PFC) file. Example usage: ``bpf bench.pfc.`` The PFC commands (.pfc) used with ``bpf`` allow for complete power flow runs including defining the network model and commands to perform various operations. The :ref:`record-formats` section describes the network model records available and the :ref:`power-flow-control` section describes the commands available.
 
   ``ipfcut``
   
@@ -21,7 +23,7 @@ IPF can be thought of as a family of programs. ``bpf`` is the batch form of the 
 
   ``tsp``
   
-    The transient stability program that models power system network distrubances and affects on power system dynamnics include key data points like generator rotor angle. This tool can be used to evaluate short term (seconds/minutes) affects of these disturbances.
+    The transient stability command line program. It models power system network distrubances and affects on power system dynamnics including key data points like generator rotor angle. This tool can be used to evaluate short term (on order of seconds) affects of these disturbances.
 
   ``ipfnet``
   
@@ -79,7 +81,7 @@ The ``ipfbat`` Approach
 
 The ``bpf`` Approach
 --------------------
-When you use ``bpf``, you must first create a PFC file with the appropriate commands to accomplish the solution task at hand. At runtime these commands are accepted by BPF and executed according to a logical processing order determined by the program. Hence you need not be concerned with the ordering of commands in your PFC file. Input commands will be processed first, and a solution done automatically before any output is produced. Finally, a new base file will be created, if you have requested one. See :ref:`pfc-examples` for examples of PFC files.
+When you use ``bpf``, you must first create a PFC file with the appropriate commands to accomplish the solution task at hand. At runtime these commands are accepted by ``bpf`` and executed according to a logical processing order determined by the program. Hence you need not be concerned with the ordering of commands in your PFC file. Input commands will be processed first, and a solution done automatically before any output is produced. Finally, a new base file will be created, if you have requested one. See :ref:`pfc-examples` for examples of PFC files.
 
 .. figure:: ../img/BPF_Information_Flow_Model.png
 
@@ -91,7 +93,7 @@ Many times users need to do a large number of similar runs or they need to proce
 
 Network Data
 ============
-A core component to any power system analysis problem is the power system network. In IPF this is referred to as Network Data. Network Data defines the structure (connectivity) and properties (Base voltage, real power injections, real and reactive power loads, transformer tap settings, etc.) of the power system network. This data is defined in files that contain bus (notes) and branch (lines, transformers, etc.) records. Most of the input files are ASCII text files. But one important file, the base case file, is in binary format. You can, of course, edit ASCII text files with any text editor. This is often done, but your data integrity is safer if you do all the editing you can in the ``gui``. The base case binary file cannot be edited with an ordinary text editor, but can in effect be edited via the ``gui`` when you have a base case file loaded.
+A core component to any power system analysis problem is the power system network. In IPF, this is referred to as Network Data. Network Data defines the structure (connectivity) and properties (base voltage, real power injections, real and reactive power loads, transformer tap settings, etc.) of the power system network. This data is defined in files that contain bus (nodes) and branch (lines, transformers, etc.) records. Most of the input files are ASCII text files. But one important file, the base case file, is in binary format. You can, of course, edit ASCII text files with any text editor. This is often done, but your data integrity is safer if you do all the editing you can in the ``gui``. The base case binary file cannot be edited with an ordinary text editor, but can in effect be edited via the ``gui`` when you have a base case file loaded.
 
 The following is a list of the various network data input files with descriptions. Additional information about the important PFC, ``NETWORK_DATA``, and ``NEW_BASE`` files is found under individual headings below.
 

@@ -18,11 +18,106 @@ PCL has some overlap with the PFC command language used in the batch Powerflow (
 
 .. table:: IPC Commands Quick Descriptions
 
-  +------------+--------------------------------------------------+---------------+
-  | Command    | Description                                      | Reference     |
-  +------------+--------------------------------------------------+---------------+
-  | (END)      | Terminates a data stream following a command.    |               |
-  +------------+--------------------------------------------------+---------------+
-  | *[EOM]     | Used in the Command Dialog to launch a command   |               |
-  |            | stream.                                          |               |
-  +------------+--------------------------------------------------+---------------+
+  +------------+--------------------------------------------------+
+  | Command    | Description                                      |
+  +------------+--------------------------------------------------+
+  | (END)      | Terminates a data stream following a command.    |
+  +------------+--------------------------------------------------+
+  | *[EOM]     | Used in the Command Dialog to launch a command   |
+  |            | stream.                                          |
+  +------------+--------------------------------------------------+
+  | CFLOW      | Launches a CFLOW program.                        |
+  CHANGES Introduces system data change records. 3-10
+GET_DATA Fetches data from the Powerﬂow process. 3-12
+GET_DATA, TYPE = A_DATA Retrieves all type A input data records in WSCC format.
+3-12
+GET_DATA, TYPE = AREA_DATA Initializes the user analysis arrays. 3-13
+GET_DATA, TYPE = AREA_LIST Loads the area list dialog into the Network Data Edit Dialog and the Reports Dialog.
+3-13
+GET_DATA, TYPE = BSEKV_LIST Loads the base kV list dialog into the Network Data Edit Dialog and Reports Dialog.
+3-14
+GET_DATA, TYPE = BUS_EXISTS Inquires whether a given bus exists. 3-15
+GET_DATA, TYPE = BUS_LIST Loads the bus list dialog in the Alpha Search, Network Data Edit, and Reports Dialogs.
+3-15
+GET_DATA, TYPE = BUS_VOLTAGES Returns a list of all bus voltages. 3-16
+GET_DATA, TYPE = CONNECTION Retrieves the network connection diagram for a given set of buses.
+3-17
+GET_DATA, TYPE = COUNT Computes the number of network data records satisfying the ﬁlter criteria in a NETWORK_DATA command.
+3-18
+GET_DATA, TYPE = FILE_EXISTS Inquires whether a named ﬁles exists. 3-19
+GET_DATA, TYPE = INITIALIZE_DEF Initializes the user analysis arrays. 3-19
+GET_DATA, TYPE = INPUT Retrieves the full network data for a bus. 3-20
+GET_DATA, TYPE = I_DATA Retrieves all I type data in WSCC format. 3-19
+GET_DATA, TYPE = LINE_IMPEDANCE_CALCULATION
+Computes transmission line impedance data given tower geometry and conductor characteristics.
+3-20
+GET_DATA, TYPE = LOAD_AREA Initializes arrays associated with area interchange data.
+3
+GET_DATA, TYPE = SUB_DEFINE Loads the user analysis arrays. 3-39
+GET_DATA, TYPE = LOAD_REF_AREA Initializes arrays associated with area interchange data.
+3-22
+GET_DATA, TYPE = LOAD_REF_BASE Loads a reference base case history ﬁle for the purpose of base case comparison or plot comparisons.
+3-22
+GET_DATA, TYPE = NETWORK_DATA Filters network data records. 3-22
+GET_DATA, TYPE = OUTAGES Retrieves the list of outaged data for the Report Dialog.
+3-23
+GET_DATA, TYPE = OUTPUT General purpose command for accessing virtually the entire network data base.
+3-23
+GET_DATA, TYPE = OWNER_LIST Loads the ownership list dialog into the Reports Dialog and the Network Data Edit Dialog.
+3-29
+GET_DATA, TYPE = RECORD_LIST Loads the record type list dialog into the Reports Dialog and the Network Data Edit Dialog.
+3-30
+GET_DATA, TYPE = COMMENTS Obtains the area interchange output data from the WSCC-formatted input area records.
+3-17
+GET_DATA, TYPE = REF_OUTPUT General purpose command for accessing virtually the entire network data base.
+3-32
+GET_DATA, TYPE = STATUS Retrieves the case description. 3-39
+GET_DATA, TYPE = SUB_DEFINE Performs character string substitution using computed base case quantities.
+3-39
+GET_DATA, TYPE = COMMENTS Retrieves all IPF system parameters describing the case in residence.
+3-17
+GET_DATA, TYPE = ZONE_LIST Loads the zone list dialog into the Reports Dialog and the Network Data Edit Dialog.
+3-40
+INITIALIZE Starts up the Powerﬂow process. 3-6
+NETWORK_DATA Speciﬁes that a network data ﬁle is to be loaded into the Powerﬂow process.
+3-8
+NEW_BASE Saves the solved, resident base case. 3-8
+OLD_BASE Loads a previously solved Powerﬂow case ﬁle. 3-8
+PLOT Plots a Powerﬂow coordinate file
+PUT_DATA, TYPE = COMMENTS Deﬁnes IPF system parameters which either describe the case in residence or modify parameters which will inﬂuence certain processes (solution, debugging).
+3-42
+QUIT, EXIT Executes closing procedures and exits the Powerﬂow process.
+3-6
+REPORTS, SELECT AI_SUMMARY Retrieves ﬁltered area interchange output data. 3-44
+REPORTS, SELECT BUS_BR_INPUT Retrieves ﬁltered WSCC-formatted bus and branch input data records.
+3-46
+REPORTS, SELECT BUS_BR_OUTPUT Retrieves ﬁltered bus and branch output records.
+3-47
+REPORTS, SELECT BUS_INPUT Retrieves ﬁltered WSCC-formatted bus input data records.
+3-45
+REPORTS, SELECT BUS_UVOV Retrieves ﬁltered under/over voltage bus output data.
+3-48
+REPORTS, SELECT LINE_COMPARISON Retrieves ﬁltered line loading differences between the base case in residence and a selected base case history data ﬁle.
+3-49
+REPORTS, SELECT NETWORK_CHANGES Retrieves the list of all accumulated changes performed on the base case in residence.
+3-50
+REPORTS, SELECT NETWORK_DELETIONS
+Retrieves the list of all deleted network data in WSCC format.
+3-51
+REPORTS, SELECT OVERLOADED_LINES Retrieves ﬁltered overloaded branch output data.
+3-52
+REPORTS, SELECT OVERLOADED_TXS Retrieves ﬁltered overloaded transformer output data.
+3-53
+REPORTS, SELECT PHASE_SHIFTER Retrieves the phase shifter report. 3-54
+REPORTS, SELECT TIE_LINE_SUMMARY Retrieves ﬁltered area tie line ﬂows. 3-55
+REPORTS, SELECT VOLTAGE_COMPARISON
+Retrieves ﬁltered voltage differences between the resident base case and a selected base case history data ﬁle.
+3-56
+SAVE_FILE Saves the solved resident base case in a named ﬁle.
+3-9
+SOLUTION Causes the Powerﬂow process to solve the currently resident base case.
+SYSCAL Passes a system command to the operating system.
+3-7
+
+General
+=======

@@ -116,7 +116,7 @@ Two special characters are available to document the control stream or to improv
  
 .. note::
 
-  The hyphen or minus sign "-"�and the underscore "_"� symbol are different characters! Thus, ``P_O_W_E_R_F_L_O_W`` is the same as ``POWER_FLOW`` which is the equivalent of ``POWERFLOW``. ``OLD_BASE`` is the same as ``OLDBASE`` but not the same as ``OLD-BASE``, etc.
+  The hyphen or minus sign "-" and the underscore "_" symbol are different characters! Thus, ``P_O_W_E_R_F_L_O_W`` is the same as ``POWER_FLOW`` which is the equivalent of ``POWERFLOW``. ``OLD_BASE`` is the same as ``OLDBASE`` but not the same as ``OLD-BASE``, etc.
 
 Default Convention
 ==================
@@ -783,7 +783,7 @@ If no ``ZONES``, ``OWNERS``, or ``AREAS`` are specified, the percentage change a
 
 Note that the %P or %Q quantities in the output file correspond to the generation that is changed. It may not be the total system generation.
 
-The inclusion of O``WNERS with either ``ZONES`` or ``AREAS`` select candidates that are mutually inclusive.
+The inclusion of ``OWNERS`` with either ``ZONES`` or ``AREAS`` select candidates that are mutually inclusive.
 
 Note that continuation records are accepted here.
 
@@ -1842,7 +1842,7 @@ The chosen ratings are moved to columns 81 through 92 on the branch record in Po
 .. table:: L and E Record Extended Fields Column Descriptions
 
   ======= ======================= =============================
-  Column  Rating ("R"� Selection) Field Description
+  Column  Rating ("R" Selection)  Field Description
   ======= ======================= =============================
   81-84   1                       Winter Thermal (WT)
   85-88   1                       Winter Bottleneck (WB)
@@ -1865,7 +1865,7 @@ The chosen ratings are moved to columns 81 through 92 on the branch record in Po
 .. table:: T and TP Record Extended Fields Column Descriptions
 
   ======= ======================= =============================
-  Column  Rating ("R"� Selection) Field Description
+  Column  Rating ("R" Selection)  Field Description
   ======= ======================= =============================
   81-84   1                       Winter Thermal (WT)
   85-88   1, 2, 3                 Winter Emergency (WE)
@@ -1883,7 +1883,7 @@ The chosen ratings are moved to columns 81 through 92 on the branch record in Po
   ======= ======================= =============================
 
 MERGE qualifiers
-----------------
+ ----------------
 
   ``>EXCLUDE_BRANCHES``
 
@@ -3095,36 +3095,36 @@ Valid suffixes and their associated bus quantities are shown the table below.
 
 .. table:: Suffixes for Bus Quantities
 
-===== ===================================================================================================
-Sufﬁx Quantity
-===== ===================================================================================================
-.PL   P_load in MW
-.QL   Q_load in MVAR
-.PG   P_gen in MW
-.PM   P_max in MW
-.QG   Q_gen in MVAR
-.QM   Q_max in MVAR
-.QN   Q_min in MVAR
-.RKK  Real part of driving point admittance (YKK=RKK+jXKK). Also known as short circuit admittance.
-.XKK  Imaginary part of driving point admittance (YKK=RKK+jXKK). Also known as short circuit admittance.
-.V    V in per unit
-.VA   Voltage angle in degrees
-.VR   V in per unit, real component
-.VI   V in per unit, imaginary component
-.VK   V in kV
-.VM   V_max in per unit
-.VN   V_min in per unit
-.C    Q_caps used in MVAR
-.CM   Q_caps scheduled in MVAR
-.R    Q_reactors used in MVAR
-.RM   Q_reactors scheduled in MVAR
-.QU   Q_unscheduled in MVAR
-.DVQ  dV/dQ sensitivity kV/MVAR
-.DVP  dV/dP sensitivity in kV/MW.
-.S    Total reactive used (Capacitors or Reactors) in MVAR.
-.SM   Total reactive available (Capacitors or Reactors) in MVAR
-===== ===================================================================================================
-
+  ====== ===================================================================================================
+  Suffix Quantity
+  ====== ===================================================================================================
+  .PL    P_load in MW
+  .QL    Q_load in MVAR
+  .PG    P_gen in MW
+  .PM    P_max in MW
+  .QG    Q_gen in MVAR
+  .QM    Q_max in MVAR
+  .QN    Q_min in MVAR
+  .RKK   Real part of driving point admittance (YKK=RKK+jXKK). Also known as short circuit admittance.
+  .XKK   Imaginary part of driving point admittance (YKK=RKK+jXKK). Also known as short circuit admittance.
+  .V     V in per unit
+  .VA    Voltage angle in degrees
+  .VR    V in per unit, real component
+  .VI    V in per unit, imaginary component
+  .VK    V in kV
+  .VM    V_max in per unit
+  .VN    V_min in per unit
+  .C     Q_caps used in MVAR
+  .CM    Q_caps scheduled in MVAR
+  .R     Q_reactors used in MVAR
+  .RM    Q_reactors scheduled in MVAR
+  .QU    Q_unscheduled in MVAR
+  .DVQ   dV/dQ sensitivity kV/MVAR
+  .DVP   dV/dP sensitivity in kV/MW.
+  .S     Total reactive used (Capacitors or Reactors) in MVAR.
+  .SM    Total reactive available (Capacitors or Reactors) in MVAR
+  ====== ===================================================================================================
+  
 An example will demonstrate these concepts.
 
 Compute the generator current (in amps) of ``Paul 500.0``.
@@ -3147,14 +3147,14 @@ Valid suffixes and their associated branch  quantities are shown in the table be
 
 .. table:: Suffixes for Branch Quantities
 
-===== ==============================================================
-Sufﬁx Quantity
-===== ==============================================================
-.TAP1 Tap1 in kV for a T or in degrees for a TP record
-.TAP2 Tap2 in kV for a T or TP record
-.TAP  The discrete tap number (lowest tap = 1) for an LTC transformer.
-.TAPS The total number of discrete taps for a LTC transformer.
-===== ==============================================================
+  ====== ==============================================================
+  Suffix Quantity
+  ====== ==============================================================
+  .TAP1  Tap1 in kV for a T or in degrees for a TP record
+  .TAP2  Tap2 in kV for a T or TP record
+  .TAP   The discrete tap number (lowest tap = 1) for an LTC transformer.
+  .TAPS  The total number of discrete taps for a LTC transformer.
+  ====== ==============================================================
 
 An example will demonstrate these concepts.
 
@@ -3177,28 +3177,41 @@ Valid suffixes and their associated zonal quantities are shown in the table belo
 
 .. table::  Suffixes for Zonal Quantities
 
-===== ========================================
-Sufﬁx Zonal Quantity
-===== ========================================
-.PG   P_gen in MW
-.QG   Q_gen in MVAR
-.PL   P_load in MW
-.QL   Q_load in MVAR
-.PLS  P_loss in MW
-.QLS  Q_loss in MVAR
-.PSH  Installed (Scheduled)  P_shunt in MW
-.QSH  Installed (Scheduled) Q_shunt in MVAR
-.SCAP Installed  (Scheduled) Q_cap in MVAR
-.SREK Installed (Scheduled) Q_reactors in MVAR
-.UCAP Used  Q_cap in MVAR
-.UREK IUsed Q_reactors in MVAR
-===== ========================================
+  ====== ========================================
+  Suffix Zonal Quantity
+  ====== ========================================
+  .PG    P_gen in MW
+  .QG    Q_gen in MVAR
+  .PL    P_load in MW
+  .QL    Q_load in MVAR
+  .PLS   P_loss in MW
+  .QLS   Q_loss in MVAR
+  .PSH   Installed (Scheduled)  P_shunt in MW
+  .QSH   Installed (Scheduled) Q_shunt in MVAR
+  .SCAP  Installed  (Scheduled) Q_cap in MVAR
+  .SREK  Installed (Scheduled) Q_reactors in MVAR
+  .UCAP  Used  Q_cap in MVAR
+  .UREK  IUsed Q_reactors in MVAR
+  ====== ========================================
 
 The following example illustrates these concepts.
 
 ::
 
-  > DEFINE_TYPE ZONE_INDEX  LET  ZA = NA LET  ZB = NB  LET  TP = ZA.PLS + ZB.PLS  LET TQ = ZA.QLS + ZB.QLS C C Zone       Ploss Qloss C (MW)       (MVAR) C C NA        $ZA.PLS   $ZA.QLS C NB $ZB.PLS   $ZB.QLS C- - - - - - - - - - - - - - - - - - - - - - - - - C Total      $TP $TQ C
+  > DEFINE_TYPE ZONE_INDEX  
+  LET  ZA = NA 
+  LET  ZB = NB  
+  LET  TP = ZA.PLS + ZB.PLS  
+  LET TQ = ZA.QLS + ZB.QLS 
+  C 
+  C Zone       Ploss Qloss 
+  C (MW)       (MVAR) 
+  C 
+  C NA        $ZA.PLS   $ZA.QLS 
+  C NB        $ZB.PLS   $ZB.QLS 
+  C- - - - - - - - - - - - - - - - - - - - - - - - - 
+  C Total      $TP       $TQ 
+  C
 
 The symbol ZA.PLS contains the losses in MWs for zone NA.
 
@@ -3208,24 +3221,24 @@ This defines the following records as owner indices. This index is used in conju
 
 Valid suffixes and their associatedownership quantities are shown in the table below.
 
-.. table:: Suffixes for Ownership  Quantities
+.. table:: Suffixes for Ownership Quantities
 
-===== ========================================
-Sufﬁx Onwership Quantity
-===== ========================================
-.PG   P_gen in MW
-.QG   Q_gen in MVAR
-.PL   P_load in MW
-.QL   Q_load in MVAR
-.PLS  P_loss in MW
-.QLS  Q_loss in MW
-.PSH  Installed (Scheduled) P_shunt in MW
-.QSH  Installed (Scheduled) Q_shunt in MVAR
-.SCAP Installed  (Scheduled) Q_cap in MVAR
-.SREK Installed (Scheduled) Q_reactors in MVAR
-.UCAP Used Q_cap in MVAR
-.UREK IUsed Q_reactors in MVAR
-===== ========================================
+  ====== ========================================
+  Suffix Onwership Quantity
+  ====== ========================================
+  .PG    P_gen in MW
+  .QG    Q_gen in MVAR
+  .PL    P_load in MW
+  .QL    Q_load in MVAR
+  .PLS   P_loss in MW
+  .QLS   Q_loss in MW
+  .PSH   Installed (Scheduled) P_shunt in MW
+  .QSH   Installed (Scheduled) Q_shunt in MVAR
+  .SCAP  Installed  (Scheduled) Q_cap in MVAR
+  .SREK  Installed (Scheduled) Q_reactors in MVAR
+  .UCAP  Used Q_cap in MVAR
+  .UREK  IUsed Q_reactors in MVAR
+  ====== ========================================
 
 The following example illustrates these concepts.
 
@@ -3263,17 +3276,17 @@ This defines the following records as transfer indices. This index is used in co
 
 Valid suffixes and their associated transfer quantities are shown in the table below.
 
-.. table::
+.. table:: Suffixes for Branch Quantities
 
-===== ==========================================
-Sufﬁx Quantity
-===== ==========================================
-.RKM  Real part of transfer impedance (p.u.)
-.XKM  Imaginary part of transfer impedance (p.u.)
-.DVP  Sensitivity d(V1-V2)/dP in kV/MW
-.DVQ  Sensitivity d(V1-V2)/dQ in kV/MVAR
-.DTP  Sensitivity d( )/dP in degrees/MW
-===== ==========================================
+  ====== ==========================================
+  Suffix Quantity
+  ====== ==========================================
+  .RKM   Real part of transfer impedance (p.u.)
+  .XKM   Imaginary part of transfer impedance (p.u.)
+  .DVP   Sensitivity d(V1-V2)/dP in kV/MW
+  .DVQ   Sensitivity d(V1-V2)/dQ in kV/MVAR
+  .DTP   Sensitivity d( )/dP in degrees/MW
+  ====== ==========================================
 
 The transfer impedance is the point-to-point impedance between two buses. It would represent the incremental (complex) voltage change due to a 1.0 p.u. current injection into bus1 in conjunction with a -1.0 injection out of bus2. It represents the impedance of the entire network with respect to the two terminal nodes.
 
@@ -3297,8 +3310,8 @@ The following example obtains the transfer impedance and transfer sensitivities 
   C COULEE   500 JOHN DAY 500 $TX1.DVP/E12.5  $TX1.DVQ/E12.5  $TX1.DTP/E12.5 
   C JOHN DAY 500 MALIN    500 $TX2.DVP/E12.5  $TX2.DVQ/E12.5  $TX1.DTP/E12.5
 
-Pagination Speciﬁcations
-------------------------
+Pagination Specifications
+-------------------------
 Pagination specifications pertain to headers and subheaders. The Header record is the most important record. It has an ``H`` in column 1.
 
 Each user-defined report must begin with a separate header record. The contents of this record become the first subheader. Additional subheaders can be appended to the report.

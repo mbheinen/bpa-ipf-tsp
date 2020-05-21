@@ -225,13 +225,13 @@ The recommended disposition is therefore summarized in the table below.
 
 .. table:: Disposition of Components
 
-================ ============== ===============
-Quantity         Reduction Mode Ultimate Mode
-================ ============== ===============
-Generation       I              I
-Load             I              I
-Shunt Admittance Y              Y
-================ ============== ===============
+  ================ ============== ===============
+  Quantity         Reduction Mode Ultimate Mode
+  ================ ============== ===============
+  Generation       I              I
+  Load             I              I
+  Shunt Admittance Y              Y
+  ================ ============== ===============
 
 REI Equivalent
 --------------
