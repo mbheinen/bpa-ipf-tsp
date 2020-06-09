@@ -375,6 +375,8 @@ The equations above define the interrelationship between quantities and are vali
 
 The preceding diagram illustrates the following priority scheme. In applying the equation for :math:`Q`, vars are allocated to generation and variable shunt components on a priority basis. If :math:`Q_{net}` is less than :math:`Q_{load} + Q_{shunt}` fixed, then vars are allocated first to variable shunt reactors and then, if necessary, to reactive generation. If, on the other hand, :math:`Q_{net}` is higher than :math:`Q_{load} + Q_{shunt}` fixed, then vars are allocated first to the variable shunt capacitors and then, if necessary, to reactive generation. If the limits of reactive generation are exceeded, then unscheduled reactive is allocated.
 
+.. _ac-bus-data-b-blank:
+
 AC Bus Data (``B``-blank)
 =========================
 
@@ -434,6 +436,8 @@ If this bus is controlled by an LTC transformer or by a ``BG`` or ``BX`` bus, a 
 
   Q-V Curve for ``B``-blank Subtype
 
+.. _ac-bus-data-bc:
+
 AC Bus Data (``BC``)
 ====================
 
@@ -483,6 +487,8 @@ Since this bus type has its voltage maintained by a generator bus, a ``V HOLD`` 
 .. figure:: ../img/Q-V_Curve_for_BC_Subtype.png
 
   Q-V Curve for ``BC`` Subtype
+
+.. _ac-bus-data-be:
 
 AC Bus Data (``BE``)
 ====================
@@ -537,6 +543,8 @@ Since this bus type maintains its own voltage, a ``V HOLD`` entry is required on
 .. figure:: ../img/Q-V_Curve_for_BE_Subtype.png
 
   Q-V Curve for ``BE`` Subtype
+
+.. _ac-bus-data-bf:
 
 AC Bus Data (``BF``)
 ====================
@@ -604,6 +612,8 @@ If the bus is controlling itself, its own name must appear in the ``REMOTE BUS``
 
   Q-V Curve for ``BG`` Subtype
 
+.. _ac-bus-data-bq:
+
 AC Bus Data (``BQ``)
 ====================
 
@@ -664,6 +674,8 @@ Since this bus type is attempting to maintain its own voltage, a ``V HOLD`` entr
 
   Q-V Curve for ``BQ`` Subtype
 
+.. _ac-bus-data-bs:
+
 AC Bus Data (``BS``)
 ====================
 
@@ -722,6 +734,8 @@ The ``V MIN`` field is used to specify the angle of the swing bus for this appli
 
   Q-V Curve for ``BS`` Subtype
 
+.. _ac-bus-data-bt:
+
 AC Bus Data (``BT``)
 ====================
 
@@ -766,6 +780,8 @@ This subtype requires an additional record, the ``R`` (Regulating Transformer) r
   66-77  no       A8,F4.0 N/A
   78-80  no       F3.0    N/A
   ====== ======== ======= =====================
+
+.. _ac-bus-data-bv:
 
 AC Bus Data (``BV``)
 ====================
@@ -820,6 +836,8 @@ The ``BV`` bus record requires entries in the ``V MAX`` and ``V MIN`` fields. Th
 .. figure:: ../img/Q-V_Curve_for_BV_Subtype.png
 
   Q-V Curve for ``BV`` Subtype
+
+.. _ac-bus-data-bx:
 
 AC Bus Data (``BX``)
 ====================
@@ -882,6 +900,8 @@ It should be noted that the program will attempt to select a discrete reactive s
 
   Q-V Curve for ``BX`` Subtype
 
+.. _ac-bus-data-bd:
+
 Two-Terminal DC Bus (``BD``)
 ============================
 This record defines a DC bus to be used in conjunction with a two-terminal DC line. It is subtype ``D`` and interpreted with a different format from AC bus data records. No injections of any kind are permitted. The data contained on the record defines the rectifier or inverter valve characteristics. During the solution, the injection from the converter into the DC line is replaced with an equivalent but fictitious injection, and the DC line is removed entirely from the AC solution.
@@ -915,6 +935,8 @@ Data for the inverter and rectifier buses are identical. Identification of each 
   46-50  no       F5.1    Bridge current rating (amps) — Maximum bridge current in amperes.
   51-62  no       A8,F4.0 Commutating bus — Alphanumeric name in columns 51-58 and base kV in columns 59-62. This is on the AC system side of the commutating transformer bank
   ====== ======== ======= =====================
+
+.. _ac-bus-data-bm:
 
 Multi-Terminal DC Bus (``BM``)
 ==============================
@@ -1724,7 +1746,7 @@ The following three assumptions are made:
 
 The base kV is used to calculate the equivalent pi. Complications arise when step-up/step-down transformers are represented as sections in passive node sequence; there is no means to identify the base of the intermittent terminals. This combination is therefore illegal and will abort with fatal diagnostics.
 
-A transformer is identified by subtype blank and a viable entry for ``TAP 2.`` A phase shifter is identified either by a subtype ``P or by a blank field for ``TAP 2``. However, the program always adds the subtype P for distinction and convenience in data changes. The ANGLE is TAP 1 interpreted in degrees. If ``TAP 2`` is blank, a nominal tap is presumed. A phase shifter assumes a pure voltage rotation and an optional transformation. Increasing the ANGLE will decrease the power flowing from bus 1 and bus 2.
+A transformer is identified by subtype blank and a viable entry for ``TAP 2.`` A phase shifter is identified either by a subtype ``P`` or by a blank field for ``TAP 2``. However, the program always adds the subtype P for distinction and convenience in data changes. The ANGLE is TAP 1 interpreted in degrees. If ``TAP 2`` is blank, a nominal tap is presumed. A phase shifter assumes a pure voltage rotation and an optional transformation. Increasing the ANGLE will decrease the power flowing from bus 1 and bus 2.
 
 Four MVA ratings are used to flag overloaded transformers: nominal, thermal, emergency, and bottleneck. The latter three are “extended ratings”, which supersede nominal ratings. Other entries are similar to the type L record. A sample of the format and explanations follow.
 

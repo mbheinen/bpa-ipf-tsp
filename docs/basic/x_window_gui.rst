@@ -5,9 +5,9 @@ X Window Graphical Interface
 ****************************
 This section presents information about the X Window graphical user interface (GUI) for IPF.
 
-IPFâ€™s GUI interface makes data entry and modification easy. It also simplifies the running of base case solutions and the printing of network diagrams. This guide shows how to use the major features of IPF. Users who need details about data input record formats or system models should consult the :ref:`record-formats` section.
+IPF's X Window GUI interface makes data entry and modification easy. It also simplifies the running of base case solutions and the printing of network diagrams. This guide shows how to use the major features of IPF. Users who need details about data input record formats or system models should consult the :ref:`record-formats` section.
 
-IPFâ€™s GUI uses the X Window System and the OSF/Motif window manager interface. The graphical user interface features an interface that will be familiar to people who use an X Window System before, but it will feel a bit cumbersome compared to modern day applications.
+IPF's GUI uses the X Window System and the OSF/Motif window manager interface. The graphical user interface features an interface that will be familiar to people who use an X Window System before, but it will feel a bit cumbersome compared to modern day applications.
 
 Audience
 ========
@@ -349,6 +349,8 @@ Editing Base Case Data
 ======================
 Editing a base case file is one of the primary activities in the X Window GUI. This involves a number of tasks: adding new buses or branches, modifying existing bus or branch values, and deleting existing buses or branches. These tasks are all accomplished in the main window toolbox and display area. 
 
+.. _adding-a-bus-and-related-components:
+
 Adding a Bus and Related Components
 -----------------------------------
 You can add a bus to a resident base case or to IPF itself with no base case loaded. The procedure is the same for both. Adding a bus means in effect to create a new bus record within IPF’s memory. You can add as many as you want up to IPF’s maximum limit. Bus-related components are such items as continuation, transformer, line, and Q records. The method of adding these components is very similar to adding a bus record.
@@ -372,6 +374,76 @@ To modify a bus:
 
 Adding a Branch
 ---------------
+You can add a branch to a resident base case. Adding a branch means to create a new connection between existing buses, which adds a new branch record within IPF’s data structure. You can add as many as you want up to IPF’s maximum limit. Branches are always associated with their terminating buses, so you access branches through buses.
+
+To add a branch:
+
+  1. Make sure you have system data loaded. See Opening Files to find out how to do this.
+  2. Click the New Branch icon in the toolbox in the main window. This puts you in the Add Branch mode.
+  3. Move into the display area where you will note that the cursor changes to a right pointing arrow. Click the first bus that you want to connect the branch to. Move to the second bus that you want the branch to connect to and click on it. A line appears on the display connecting the two bus icons. Also, the Input Data Edit Box appears.
+  4. Fill in the values for the new branch as appropriate. See :ref:`record-formats` for more information.
+  5. Click the Add button to add the new branch record to the currently resident base case data.
+
+Modifying a Branch
+------------------
+Modifying a branch means to alter any of its associated values as they exist in the currently loaded base case data. This is done through the Input Data Edit Box. Refer to :ref:`bus-and-branch-editing` to find out more about the Input Data Edit Box.
+
+To modify a branch:
+
+  1. Make sure you have system data loaded. See :ref:`opening-files` to find out how to do this.
+  2. Click the Input Data Edit button in the toolbox. You are now in Input Data Edit mode.
+  3. Find a bus that is connected to the branch you want to modify, move the cursor over the bus, and click the left mouse button. The Input Data Edit Box appears with data text boxes filled with the values associated with the bus you clicked. But you want a branch.
+  4. Find the option menu button (labeled "Bus") at the upper right of the dialog box. This menu contains records associated with the currently selected bus. You will find continuation, transformer, branch, and other records on this menu.
+  5. Press this option button to show the associated items. Drag down to the branch record of your choice and release the mouse button. Note that the Input Data Edit Box now reflects data associated with the branch you chose.
+  6. Change any of the text box data to new values. When you have values correctly typed (there is some data entry checking), click the Apply button at the bottom of the box to modify the branch data in the resident base case data.
+
+Adding, Modifying, or Deleting an Area or Intertie
+--------------------------------------------------
+For area or intertie studies, you can add, modify, or delete areas or interties, by using the main window Edit - Area/Interchange command. You can do this at any time. See figures below.
+
+.. figure:: ../img/Area_Intertie_Selection_Dialog_Box.png
+
+  Area Intertie Selection Dialog Box
+
+To add an area:
+  
+  1. Click Area/Interchange on the Edit menu in main window. The Area/Intertie Selection dialog box appears.
+  2. Click the Create New button. A small box appears, asking whether you want to create an Area Control (``A``) record or an Intertie (``I``) record. Click Area Control.
+  3. The Area/Interchange dialog box appears. Fill in the required text boxes.
+  4. Click the Add button at the bottom. The Area/Interchange dialog box closes and the new data you typed into the Area/Intertie dialog box now appears in the Area/Intertie Selection dialog box.
+
+.. figure:: ../img/Area_Interchange_Dialog_Box.png
+
+  Area Interchange Dialog Box
+
+To modify an area intertie:
+
+  1. Click Area/Interchange on the Edit menu in the main window. The Area/Intertie Selection dialog box appears.
+  2. Select an item in the list window by clicking it. This action puts the selected item in the Selection text box.
+  3. Click the Edit Area/Intertie button. The Area/Interchange dialog box appears.
+  4. Change the data in the text boxes.
+  5. Click the Modify button. The Area/Interchange dialog box closes and the new data you typed into the Area/Intertie dialog box now appears in the Area/Intertie Selection dialog box.
+
+To delete an area:
+
+  1. Click Area/Interchange on the Edit menu in main window. The Area/Intertie Selection dialog box appears.
+  2. Select an item in the list window by clicking it. This action puts the selected item in the Selection text box.
+  3. Click the Edit Area/Intertie button. The Area/Interchange dialog box appears.
+  4. Click the Delete button.
+
+To create an area continuation record:
+
+  1. Click Area/Interchange on the Edit menu in the main window. The Area/Intertie Selection dialog box appears.
+  2. Select an item in the list window by clicking it. This action puts the selected item in the Selection text box.
+  3. Click the Edit Area/Intertie button. The Area/Interchange dialog box appears.
+  4. Change the data in the text boxes if you need to.
+  5. Click the Create Area Continuation Card button. The dialog box appears.
+  6. Add zone data to the Zone text boxes.
+  7. Click the Add button. The Area/Interchange dialog box closes and the new data you typed into the Area/Intertie dialog box now appears in the Area/Intertie Selection dialog box.
+
+.. figure:: ../img/Area_Continuation_Card_Dialog_Box.png
+
+  Area Continuation Card Dialog Box
 
 .. _exploring-base-case-connectivity:
 
@@ -382,13 +454,15 @@ Sometimes you may want to explode a portion of a large network to see how buses 
 The Explode icon in the toolbox allows you to explore base case connectivity.
 
 To explore a base case:
-1. Load just a base case file to demonstrate this function. See Opening Files to find out how to do this.
-2. Click the New Bus icon in the toolbox to enter Add Bus mode. The Input Data Edit box will come up; just close it without entering any data.
-3. Select Alpha Search on the View menu. In the Alpha Search dialog box, type the first few letters of a bus name. The alphabetical list automatically scrolls to find the bus of interest in the list. See the Alpha Search command entry in Chapter 4 for more information.
-4. Click the bus name of interest. It may already be highlighted, but you must click on it to make it the currently selected bus.
-5. Move to the blank display area. (You should still be in Add Bus mode.) Click once to make the bus icon and name appear.
-6. Move back to the toolbox and click the Explode icon. You previously established a bus that you can now explore bus connectivity with.
-7. Click the bus. You will note that any buses that are connected to your bus of interest are now shown on the display with connecting lines representing branches. You can continue exploring the network by clicking any new buses that show up. You can reveal the entire network in this way if you like (although it will probably look like a mess!)
+
+  1. Load just a base case file to demonstrate this function. See :ref:`opening-files` to find out how to do this.
+  2. Click the New Bus icon in the toolbox to enter Add Bus mode. The Input Data Edit box will come up; just close it without entering any data.
+  3. Select Alpha Search on the View menu. In the Alpha Search dialog box, type the first few letters of a bus name. The alphabetical list automatically scrolls to find the bus of interest in the list. See the Alpha Search command entry in Chapter 4 for more information.
+  4. Click the bus name of interest. It may already be highlighted, but you must click on it to make it the currently selected bus.
+  5. Move to the blank display area. (You should still be in Add Bus mode.) Click once to make the bus icon and name appear.
+  6. Move back to the toolbox and click the Explode icon. You previously established a bus that you can now explore bus connectivity with.
+  7. Click the bus. You will note that any buses that are connected to your bus of interest are now shown on the display with connecting lines representing branches. You can continue exploring the network by clicking any new buses that show up. You can reveal the entire network in this way if you like (although it will probably look like a mess!)
+
 The buses and branches are positioned by an internal algorithm since you have not loaded any underlying coordinate data. You can click the Move icon and then move the buses around the screen if you want to clean things up.
 
 Sectionalizing a Bus
@@ -397,7 +471,7 @@ Sectionalizing a bus separates a bus into two buses and rearranges its branches 
 
 To sectionalize a bus:
 
-  1. Make sure you have system data loaded. See Opening Files to find out how to do this.
+  1. Make sure you have system data loaded. See :ref:`opening-files` to find out how to do this.
   2. Click the Input Data Edit mode button in the toolbox. You are now in Input Data Edit mode.
   3. Select a bus by clicking it. This brings up the Input Data Edit Box. At the center bottom of the dialog box is the Sectionalize button. Click it to cause the Bus Sectionalize dialog box to appear. Note that the bus name of the currently selected bus appears in two places.
   4. Type a new bus name over the existing Bus 2 name to create a new bus.
@@ -410,7 +484,269 @@ To sectionalize a bus:
   
   7. Sometimes you may want to connect the old and new buses making up the sectionalized bus. Click on the Bus Tie button to create a line with impedance of 0.0 + j0.00001. You may modify this line later, if you wish
 
+.. figure:: ../img/Sectionalize_Operation_Completed.png
+
+  Sectionalize Operation Completed
+
+Tapping a Line
+--------------
+Tapping a line means to service a new load by creating a new tap point bus on an existing line. The tapped line is effectively segmented into two lines, separated with a newly created bus. If the load is remote from the tapped point, an additional line and bus will be necessary. The new load and the new bus are connected by a new line. As with many line operations, you access line tapping through a bus that the line is connected to.
+
+To tap a line:
+
+  1. Make sure you have system data loaded. See :ref:`opening-files` to find out how to do this.
+  2. Click the Input Data Edit mode button in the toolbox.
+  3. Click a bus icon that is connected to the line you want to tap. This brings up the Input Data Edit Box which is loaded with input data pertaining to the selected bus. Click and hold the option button opposite the bus name at the top of the Input Data Edit Box. The cascading menu lists all branches connected to the current bus. Drag down to the line you are interested in tapping. Be sure that this is a line and not a transformer. Selecting this item brings up the Input Data Edit Box for your line of interest. Near the center bottom of this dialog box is the Tap Line button. Click it to cause the Tap Line dialog box to appear.
+  4. Initially the dialog box displays data from a previous invocation. If this is the first time it is displayed, all fields are blank. Enter the name of the bus you want to create in the dialog field Tapped Bus Name and press the Apply button. The selected line is tapped at the point depicting 50% of the total line’s reactance. You can horizontally scroll the line data within the Bus 1 side and the Bus 2 side to verify that the line resistance and reactance is split according to the sliding scale selected. Pressing the Apply button recomputes the line impedance on each side of the tapped bus without affecting any data in the Powerflow base case.
+  5. Change the units (Percentage, Miles, Kilometers, or Section) to reflect your tapping criteria. Adjust the horizontal slider as necessary. Move the slider by moving the mouse cursor over it, pressing the left mouse button, and moving left or right till you find the point of the line you want to tap. Release the mouse button.The line tapping slider just above the Reverse Scale button shows the tap point according to the tapping criteria (length of the line in kilometers or miles, or percent of reactance). The line tapping slider also shows any sections the line may be divided into. Again press Apply to update the line’s impedance to reflect the slider’s current value.
+  6. If the values are acceptable, click OK to export these changes to Powerflow.
+  7. Click Close to cause the dialog box to disappear.
+
+Solving a Network Case
+======================
+Solving a network case (or base case) causes IPF to calculate bus voltages that satisfy the network constraints as they exist within the currently resident base case data. This is usually done after you have loaded a base case and made some modifications to reflect the conditions of the system you want to study. However, you may solve as soon as you have loaded any system data. You do not need to load a coordinate or change file to solve a case. See figure below for a typical display after a case solution.
+
+.. figure:: ../img/Network_Display_After_Solution.png
+
+  Network Display After Solution
+
+To solve a base case:
+
+  1. Make sure that you have previously loaded a base case or netdata file. See :ref:`opening-files` if you have not.
+  2. Choose Solve Case from the Process menu in the IPF main window. The Solve dialog box opens and you are presented with a number of options. See the figure below. Note that default values are set for you. If these suit your case, click the Solve button. If the defaults are not appropriate for your case, change them. Then solve the case. See Chapter 4 for a discussion of the options.
+The solution may take anywhere from a few seconds to minutes depending on the number of buses in the base case. After the solution is complete, the display shows some of the calculated data.
+
 .. _bus-and-branch-editing:
 
 Bus and Branch Editing
 ======================
+Bus and branch data editing are most often accomplished through the Input Data Edit Box.  This dialog box is brought up on the display whenever you click a bus displayed in the main window. The specific data associated with the bus you click fills the text boxes of the Input Data Edit Box. You can change any of the values to new values. You can then store the changed data in the memory-resident bus and branch database, solve the case with the new data values, and optionally save the changes permanently in a file.
+
+.. note::
+
+  See the Network Data Edit menu item entry in this chapter for another way to edit bus and branch data.
+
+Each of the text box fields in a given instance of the Input Data Edit Box corresponds to a record field for a bus, line, or transformer type as documented in the :ref:`record-formats` section.  If you are unsure of the meaning of the fields for a particular bus, line, or transformer type, look it up in that section.
+
+In the :ref:`record-formats` section, field width, decimal point placement, and sign are specified for each field. Real number fields have a position where a decimal point is implied, i.e. as long as you correctly position your digits, you need not enter a decimal point a a .pfc file or NETWORK_DATA file. However, in the Input Data Edit Box you should always enter a decimal point.  Sufficient room has been allowed for this in each field. The GUI will format your data correctly so it fits the field on a standard input record.
+
+When you enter data into the Input Data Edit Box text boxes, the GUI checks to see whether you have entered values correctly. Specifically, it checks for all characters being numeric, having a minus sign (in the proper place), or having a decimal point (period). All other characters are rejected and a warning bell sounds. Other basic checks for valid data are also operating in during data entry. However, it may still be possible to enter invalid data that only shows up when a power flow solution is attempted.
+
+Bus Editing
+-----------
+Bus input data dialogs are accessed directly by clicking on a bus icon in the display, or by selecting a bus name on the Alpha List.  Their appearance varies according to the type of the bus. To change the bus type of a bus, click the button labeled Type, near the Owner and Zone fields. This option button pops up a menu showing all the bus types accepted by IPF. If you click on a different type than was originally displayed, the dialog will change into one appropriate to that bus type.  If you click the Modify button, the bus will be changed to a different type. You may have to supply more (or different) data in other fields in order for the change to be legal.
+
+Branch and Other Component Editing
+----------------------------------
+You cannot select a branch directly. Branch data is accessed by selecting a bus that is connected to the line or transformer you want to edit. Then, once the Input Data Edit Box shows a bus connected to your line of interest, you pick the line by using the option button labeled Bus, in the upper right corner of the box. Press and drag down to select the one you want. The dialog box changes to reflect the fields and parameters characteristic of lines.
+
+The Bus option menu also contains other bus-related components, or records, such as switched reactance (``X``) data, bus continuation data, PQ curves, etc. Drag down and release to select any of these you want to edit.
+
+Adding New Components
+---------------------
+New buses are added by using the New Bus tool in the main menu toolbox. See :ref:`adding-a-bus-and-related-components` for details on this process. New branches can be added only if both terminal buses exist. You can add branches graphically by using the New Branch tool, or by going through the Input Data Edit Box for one of the terminal buses. Other bus-related components can only be added through the dialog box. To add components to a bus, press the option button labeled New Component and drag down to the desired item.  Items which are grayed out are not appropriate for this type of bus.  For example, switched reactance (``X``) data can only be added to a ``BX`` type bus.
+
+When you release the mouse button, the data dialog for the selected item will appear. You fill in the desired data fields, and click the Add button at the bottom to add it to the currently resident base case data. Notice that the Modify button is grayed out on this dialog.
+
+Input Data Edit Dialog Boxes
+============================
+The following dialog boxes are all accessed from the Input Data Edit Dialog Box. The dialog boxes are arranged with buses first and branch components last.
+
+.. table:: Input Data Edit Dialog Boxes
+
+  ====================== ====================================================================
+  Dialog                 Box Description
+  ====================== ====================================================================
+  B-BLANK BUS            Adds bus data for modeling load bus.
+  BC BUS                 Adds bus data for a bus controlled by a BG bus.
+  BD BUS                 Supplies data for a two terminal dc bus.
+  BE BUS                 Adds bus data for a bus that holds its voltage to a specified value.
+  BF BUS                 Supplies data for a special-purpose bus for the NewtonRaphson solution method.
+  BG BUS                 Adds bus data for a bus that controls the voltage of a remote BC bus.
+  BM BUS                 Supplies data for a multi-terminal dc bus.
+  BQ BUS                 Adds bus data for a bus that holds its voltage to a specified value within reactive limits.
+  BS BUS                 Adds bus data for the slack (or swing) bus.
+  BT BUS                 Adds bus data for a bus that maintains its voltage with an LTC transformer.
+  BV BUS                 Adds bus data for a bus that holds its net reactive power within a user-specified voltage range.
+  BX BUS                 Adds bus data for a bus that controls its local voltage by switching capacitors/reactors in and out.
+  CONTINUATION BUS       Adds additional data to an existing bus record.
+  SWITCHED REACTANCE     Adds data for voltage controlled shunt device installations.
+  PQ CURVE               Adds PQ curve data for calculation of Q limits.
+  SECTIONALIZATION       Provides for the sectionalization of a bus.
+  LINE TAPPING           (Not yet available) Provides for tapping of lines.
+  TRANSMISSION LINE      Adds data for a balanced transmission line.
+  PHASE SHIFTER          Adds data for phase shifting transformers.
+  TRANSFORMER            Adds data for two-winding transformers.
+  REGULATING TRANSFORMER Adds data to give fixed transformers or phase shifters automatic regulating or control status.
+  EQUIVALENT NETWORK     Adds data for an asymmetrical pi type line.
+  ====================== ====================================================================
+
+AC Bus Input Data Boxes
+=======================
+This box will look slightly different, depending on the bus type. All of the AC bus data fields are described below; specific differences are covered under the various bus types. You must click separately in each field that you want to alter. Text entry is always in Insert mode, meaning that you cannot type over a character or number; you must delete it first. Note that when a field is described as a "real number," you should *always* enter a decimal point. See below for an example of a typical bus input data dialog box.
+
+.. figure:: ../img/Input_Data_Edit_Box_Showing_B-Blank_Bus_Data.png
+
+  Input Data Edit Box Showing B-Blank Bus Data.png
+
+**Name**. An eight character maximum, alphanumeric string designating a bus name. The string must start with an alpha character. The name should be unique. This name is placed in the first text box from the left. The right text box should have a five character maximum numeric string representing the bus's base kV rating.
+
+**Bus**. An option button that allows you access to other records that are associated with the currently displayed bus. Press on this button and drag down to select an existing branch or other component. The dialog box transforms into the dialog for the selected component.
+
+**Owner**. Three character maximum, alphanumeric string designating a bus owner.
+
+**Zone**. Two character maximum, alphanumeric string designating the zone the bus is in.
+
+**Type**. An option button that changes the dialog box to reflect different bus types. The types are: ``B `` (B-blank), ``BC``, ``BE``, ``BF``, ``BG``, ``BQ``, ``BS``, ``BT``, ``BV``, and ``BX``. You cannot change an AC bus into a DC bus using this button.
+
+**Load P**. Five character maximum, real number designating real load in megawatts (MW).
+
+**Load Q**. Five character maximum, real number designating reactive load in megavoltamperes reactive (MVAR).
+
+**Shunt P**. Four character maximum, real number designating the shunt admittance load in megawatts (MW) at the base kV of the bus.
+
+**Shunt Q**. Four character maximum, real number designating shunt admittance in megavoltamperes reactive (MVAR). A positive value is capacitive; a negative value is inductive.  The minus sign goes in front of the number.
+
+**P Max**. Four character maximum, real number designating the maximum real power generation in megawatts (MW).
+
+**P Gen**. Five character maximum, real number designating scheduled real power generation in megawatts (MW).
+
+**Q Sched**. Five character maximum, real number designating scheduled reactive power in megavoltamperes reactive (MVAR). May be positive or negative.
+
+**Q Max**. Five character maximum, real number designating maximum reactive power in megavoltamperes reactive (MVAR). Generally positive.
+
+**Q Min**. Five character maximum, real number designating minimum reactive power in megavoltamperes reactive (MVAR). Generally negative. The minus sign goes in front of the number.
+
+**V Hold**. Four character maximum, real number designating a voltage to hold for the bus, in per unit.
+
+**V Max**. Four character maximum, real number designating a maximum voltage limit in per unit.
+
+**V Min**. Four character maximum, real number designating a minimum voltage limit in per unit.
+
+**Sectionalize**. A button that brings up the Sectionalize dialog box. See Sectionalize Dialog Box in this section.
+
+**New Component**. A tag for the option button that allows you to add a new bus-related component such as a branch, X data, etc.
+Add. A button that adds a new record to the database.
+
+**Modify**. A button that modifies the record.
+
+**Reset**. A button that restores text box displays to their original values (before any changes were made).
+
+**Delete**. A button that deletes (removes) a record from the database.
+
+**Outage**. (Not yet implemented.)
+
+**Close**. A button that causes the dialog box to close and disappear from the display without making any modifications to the record.
+
+``B``-Blank Bus
+---------------
+The ``B``-blank dialog box supplies data for modeling the typical load bus. See the ``B``-blank record in :ref:`ac-bus-data-b-blank`.
+
+**V Max**. Four character maximum, real number designating a maximum voltage limit in per unit.
+
+**V Min**. Four character maximum, real number designating a minimum voltage limit in per unit.
+
+The voltage limit fields take effect only if the voltage of the ``B``-blank bus is being controlled by a remote device.
+
+``BC`` Bus
+----------
+The ``BC`` dialog box supplies data for a bus controlled by one or more ``BG`` type buses. See the ``BC`` record in :ref:`ac-bus-data-bc`.
+
+**V Hold**. Four character maximum, real number designating a voltage to hold for the bus, in per unit.
+
+``BE`` Bus
+----------
+The ``BE`` dialog box supplies data for a bus that holds its voltage to a specified value. See the ``BE`` record in :ref:`ac-bus-data-be`.
+
+**Q Max**. Five character maximum, real number designating maximum reactive power in megavoltamperes reactive (MVAR). Generally positive.
+
+**Q Min**. Five character maximum, real number designating minimum reactive power in megavoltamperes reactive (MVAR). Generally negative. The minus sign goes in front of the number.
+
+**V Hold**. Four character maximum, real number designating a voltage to hold for the bus, in per unit.
+
+``BF`` Bus
+----------
+The ``BF`` dialog box supplies data for a special-purpose bus for the Newton-Raphson solution method. It holds the specified voltage until the P-solution has converged, then acts like an ordinary load bus (``B``-blank). See the ``BF`` record in :ref:`ac-bus-data-bf`.
+
+**Q Max**. Five character maximum, real number designating maximum reactive power in megavoltamperes reactive (Mvar). Generally positive.
+
+**Q Min**. Five character maximum, real number designating minimum reactive power in megavoltamperes reactive (Mvar).  Generally negative. The minus sign goes in front of the number.
+
+**V Hold**. Four character maximum, real number designating a voltage to hold for the bus, in per unit.
+
+``BG`` Bus
+----------
+The ``BG`` dialog box supplies data for a bus that controls the voltage of a remote ``BC`` bus. See the ``BG`` record in :ref:`ac-bus-data-bg`.
+
+**Q Max**. Five character maximum, real number designating maximum reactive power in megavoltamperes reactive (MVAR). Generally positive.
+
+**Q Min**. Five character maximum, real number designating minimum reactive power in megavoltamperes reactive (MVAR). Generally negative. The minus sign goes in front of the number.
+
+**V Max**. Four character maximum, real number designating a maximum voltage limit in per unit.
+
+**V Min**. Four character maximum, real number designating a minimum voltage limit in per unit
+
+**Remote Bus**. An eight character maximum, alphanumeric string designating the remote bus to be voltage controlled (a ``BC`` type bus).
+
+**PCS**. A three character maximum, numeric string designating the percentage of VARS supplied by this bus to control the remote bus voltage.
+
+``BQ`` Bus
+----------
+The ``BQ`` dialog box supplies data for a bus that holds its voltage to a specified value within reactive limits. See the ``BQ`` record in :ref:`ac-bus-data-bq`.
+
+**Q Max**. Five character maximum, real number designating maximum reactive power in megavoltamperes reactive (MVAR). Generally positive.
+
+**Q Min**. Five character maximum, real number designating minimum reactive power in megavoltamperes reactive (MVAR). Generally negative. The minus sign goes in front of the number.
+
+**V Hold**. Four character maximum, real number designating a voltage to hold for the bus, in per unit.
+
+BS Bus
+------
+The ``BS`` dialog box supplies data for the system slack (or swing) bus. See the ``BS`` record in :ref:`ac-bus-data-bs`.
+
+**Q Sched**. Five character maximum, real number designating scheduled reactive power in megavoltamperes reactive (MVAR). May be positive or negative.
+
+**V Hold**. Four character maximum, real number designating a voltage to hold for the bus, in per unit.
+
+**Angle**. Four character maximum, real number designating a voltage phase angle in degrees. Blank is translated to an angle of zero.
+
+``BT`` Bus
+----------
+The ``BT`` dialog box supplies data for a bus that maintains its voltage with an LTC transformer. See the ``BT`` record in :ref:`ac-bus-data-bt`.
+
+**Q Sched**. Five character maximum, real number designating scheduled reactive power in megavoltamperes reactive (MVAR). May be positive or negative.
+
+**V Hold**. Four character maximum, real number designating a voltage to hold for the bus, in per unit.
+
+``BV`` Bus
+----------
+The ``BV`` dialog box supplies data for a bus that holds its net reactive power within a user-specified voltage range. See the ``BV`` record in :ref:`ac-bus-data-bv`.
+
+**Q Sched**. Five character maximum, real number designating scheduled reactive power in megavoltamperes reactive (MVAR).  May be positive or negative.
+
+**V Max**. Four character maximum, real number designating a maximum voltage limit in per unit.
+
+**V Min**. Four character maximum, real number designating a minimum voltage limit in per unit.
+
+``BX`` Bus
+----------
+The ``BX`` dialog box supplies data for a bus that controls its own or a remote bus’s voltage by switching capacitors or reactors in and out. See the BX record in :ref:`ac-bus-data-bx`.
+
+**Q Max**. Five character maximum, real number designating maximum reactive power in megavoltamperes reactive (MVAR). Generally positive.
+
+**Q Min**. Five character maximum, real number designating minimum reactive power in megavoltamperes reactive (MVAR). Generally negative.  The minus sign goes in front of the number.
+
+**V Max**. Four character maximum, real number designating a maximum voltage limit in per unit.
+
+**V Min**. Four character maximum, real number designating a minimum voltage limit in per unit.
+
+**Remote Bus**. An eight character maximum, alphanumeric string designating the remote bus to be voltage controlled.
+
+``BD`` Bus
+----------
+The ``BD`` dialog box supplies data for a two-terminal DC bus. See the ``BD`` record in :ref:`ac-bus-data-bd`.
+
+.. figure:: ../img/Input_Data_Edit_Box_Showing_BD_Bus.png
+
+  Input Data Edit Box Showing BD Bus
+
