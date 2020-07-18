@@ -7,7 +7,7 @@ You can interact with IPF using the command line tools (``bpf``, ``ipfbat``, ``i
 
 Executables
 ===========
-IPF can be thought of as a family of programs. ``bpf`` is the batch form of the powerflow program. When the editing and displaying of buses and branches is being handled by ``gui``, the work of calculating solution voltages for a given power system network is done by ``ipfsrv``, which is just the ``bpf`` batch program in a different guise. Auxiliary programs allow you to do plots in batch mode, do a save of network data in batch mode, perform a "cut" of a solved base case, etc. Each of the executables are briefly described below. 
+IPF can be thought of as a family of executable programs. ``bpf`` is the batch form of the powerflow program allowing one or more scenarios to be defined in input files and run all at once via a call to ``bpf``. When the editing and displaying of buses and branches is being handled by ``gui``, the work of calculating solution voltages for a given power system network is done by ``ipfsrv``, which is just the ``bpf`` program in a different guise. Auxiliary programs allow you to do plots in batch mode, do a save of network data in batch mode, perform a "cut" of a solved base case, etc. Each of the executables are briefly described below. 
 
   ``bpf``
    
