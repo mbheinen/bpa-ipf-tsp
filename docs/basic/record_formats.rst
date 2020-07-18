@@ -140,6 +140,8 @@ Simply place a ``.`` (period character) in the first column and the comment in t
   2-120  no       A119   Text string for record comment
   ====== ======== ====== ==============================
 
+.. _continuation-bus-data:
+
 Continuation Bus Data (``+``)
 =============================
 Continuation bus data is identified with a ``+`` in column 1 and supplements the data on any AC bus record. It specifies additional generation, load and shunt admittance at the bus and permits additional classification and utilization of data. Generally, it permits a more detailed analysis of data. Its most typical application is distinguishing loads represented by several different owners at the same bus. The following fields are for identification:

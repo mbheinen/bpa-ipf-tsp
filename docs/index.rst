@@ -9,7 +9,7 @@ Interactive Power Flow (IPF) is a software package for doing power flow studies.
  * Plan area interchange control
  * Determine transformer tap settings
  * Determine remote-bus voltage controls
- * Plan for system reactive requirements
+ * Plan for system reactive power requirements
  * Determine effect of load shedding, generator dropping, and line outages
  * Run transient stability studies on generator rotor dynamics
 
@@ -32,11 +32,12 @@ Features
 Interactive Power Flow has the following high level feature set:
 
  * Set of command line tools for running studies
- * Basic power flow capabilities and advanced capabilities like REI reduction and transient stability
- * Domain specific languages for "batch" command line runs in which various scenarios are studied
+ * Set of C API functions for running studies
+ * `Motif X Window`_ based graphical user interface allowing easy-to-edit graphical display of the network diagram
+ * Basic power flow and advanced capabilities like REI reduction and transient stability
+ * Domain specific languages for "batch" command line runs in which multiple scenarios can be studied
  * Output reports
- * `Motif X Window`_ based graphical user interface allowing easy-to-edit graphical display of network diagram (coordinate file)
- * Extensive log messages for maximum aid to the user in troubleshooting
+ * Extensive log messages for aiding the user in troubleshooting
 
 Contents
 ========
