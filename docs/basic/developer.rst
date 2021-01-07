@@ -347,6 +347,7 @@ This section has a information about which Fortran subroutines to take a look at
 
 Additional Resources
 ====================
-Below are some great books if you're looking to learn more about power flow, transient stability, and other subjects related to this project.
+Below are some great resources if you're looking to learn more about power flow, transient stability, and other subjects related to this project.
 
   * Kundur, Prabha. *Power System Stability and Control*. McGraw-Hill, Inc. 1994
+  * http://home.engineering.iastate.edu/~jdm/ee553/Tinney1.pdf

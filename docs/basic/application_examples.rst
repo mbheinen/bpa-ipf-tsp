@@ -4,7 +4,7 @@ Application Examples
 
 Introduction
 ============
-Some typical power system design application examples are given in this section to demonstrate possible applications of the core power flow programs. Each example indicates possible uses of the program relative to some stated network planning objectives.
+Some typical power system design application examples are given in this section to demonstrate possible applications of the core power flow programs IPF provides. Each example indicates possible uses of the program relative to some stated network planning objectives.
 
 Setting Up a Network Data File
 ==============================
@@ -47,8 +47,8 @@ The preparation of the network data will be presented in the following steps:
   
       GEN 22 
       GEN HI 500 
-      INF BUS 
-      500 MID 500
+      INF BUS 500
+      MID 500
  
     a. Data for GEN 22
 
@@ -75,6 +75,277 @@ The preparation of the network data will be presented in the following steps:
       Remote Bus kV:   500 
       % VARS Supplied: blank (defaults to 100)
 
+    b. Data for GEN HI 500
+
+    .. code::
+  
+      Record Type:     B 
+      Sub Type:        C  (remotely controlled)
+      Change Code:     blank 
+      Owner:           blank 
+      Name:            GEN HI 
+      kV:              500 
+      Zone:            blank 
+      Load P MW:       blank  (or zero) 
+      Load Q MVAR:     blank  (or zero) 
+      Shunt Load MW:   blank 
+      Shunt Load MVAR: blank 
+      P MAX:           blank 
+      P GEN MW:        blank  (or zero) 
+      Q MAX MVAR:      blank 
+      Q MIN MVAR:      blank 
+      V Hold PU:       1.08 
+      V MIN PU:        blank  (not used) 
+      Remote Bus Name: blank (none)
+      Remote Bus kV:   blank (none) 
+      % VARS Supplied: blank (not applicable)
+    
+    c. Data for INF BUS 500
+
+    .. code::
+    
+      Record Type:     B 
+      Subtype:         S 
+      Change Code:     blank 
+      Owner:           blank 
+      Name:            INF BUS 
+      kV:              500 
+      Zone:            blank 
+      Load P MW:       blank 
+      Load Q MVAR:     blank 
+      Shunt Load MW:   blank 
+      Shunt Load MVAR: blank 
+      P MAX:           blank 
+      P GEN MW:        blank 
+      Q SCHED MVAR:    blank 
+      Q MIN MVAR:      blank
+      V Hold PU:       1.05 
+      V MIN PU:        blank 
+      Remote Bus Name: blank 
+      Remote Bus kV:   blank 
+      % VARS Supplied: blank
+    
+    d. Data for MID 500
+
+    .. code::
+
+      Record Type:      B 
+      Sub Type:         blank 
+      Change Code:      blank 
+      Owner:            blank (not known) 
+      Name:             MID 
+      kV:               500 
+      Zone:             blank 
+      Load P MW:        blank (zero) 
+      Load Q MVAR:      blank (zero) 
+      Shunt Load MW:    blank (zero) 
+      Shunt React MVAR: -300 
+      P MAX:            blank 
+      P GEN MW:         blank 
+      Q MAX MVAR:       blank (fixed) 
+      Q MIN MVAR:       blank (fixed = Q MAX) 
+      MAX PU:         blank (defaults to global limit) 
+      V MIN PU:         blank (defaults to global limit) 
+      Remote Bus Name:  blank 
+      Remote Bus kV:    blank 
+      % VARS Supplied:  blank (not applicable)
+
+.. note::
+
+  A bus can only be of one subtype. The subtype of a bus is suggested by information given about the bus. Therefore, the user should try to be familiar with various bus subtypes and when and how they are indicated by descriptive information given
+
+2. Prepare the branch data group.
+
+.. code::
+
+  Transformer:  GEN 22               GEN HI 500 
+  Line:         GEN HI 500           MID 500 circuit 1 
+  Line:         GEN HI 500           MID 500 circuit 2 
+  Line:         INF BUS 500          MID 500 circuit 1 
+  Line:         INF BUS 500          MID 500 circuit 2
+
+.. note::
+
+  1 and 2 designations are arbitrary identifications for parallel branches. Letters A-Z and digits 0-9 are acceptable.
+
+  a. Data for Transformer GEN 22 GEN HI 500
+  
+  .. code::
+
+    Record Type:      T 
+    Sub Type:         blank 
+    Change Code:      blank 
+    Owner:            blank (not known) 
+    Name 1:           GEN 
+    kV 1:             22 
+    Meter:            blank 
+    Name 2:           GEN HI 
+    kV 2:             500 
+    ID:               blank 
+    Section:          blank 
+    Total MVA RATE:   1770 
+    No of CKT:        blank 
+    Z_pi 
+    Rpu(100MVA):  blank (or zero)
+    Xpu(100MVA):  .01246 
+    Y_pi 
+    Gpu(100MVA):  blank (or zero)
+    Bpu(100MVA):  blank (or zero)
+    Tap 1 kV:         22
+    Tap 2 kV:         525
+    Date In:          blank (in) 
+    Date Out:         blank (not out)
+
+  b. Data for Line GEN HI 500 MID 500 circuit 1
+
+  .. code::
+
+    Record Type:      L 
+    Sub Type:         blank 
+    Change Code:      blank 
+    Owner:            blank (not known) 
+    Name 1:           GEN HI 
+    kV 1:             500 
+    Name 2:           MID 
+    kV 2:             500 
+    ID:               1 
+    Section:          blank 
+    Total AMP RATING: 3000 
+    No of CKT:        blank (means 1) 
+    Z_pi
+    Rpu:          .00117 
+    Xpu:          .02100 
+    Y_pi
+    Gpu:          blank (zero) 
+    Bpu:          1.024 
+    Miles:            100 
+    DESC DATA:        blank 
+    Date In:          blank (in) 
+    Date Out:         blank (not out)
+
+  c. Data for Line GEN HI 500 MID 500 circuit 2
+
+  .. code::
+
+    Record Type:      L 
+    Sub Type:         blank 
+    Change Code:      blank 
+    Owner:            blank (not known) 
+    Name 1:           GEN HI 
+    kV 1:             500 
+    Meter:            blank 
+    Name 2:           MID 
+    kV 2:             500 
+    ID:               2 
+    Section:          blank 
+    Total AMP RATING: 3000 
+    No of CKT:        blank (means 1) 
+    Z_pi 
+    Rpu:          .00117 
+    Xpu:          .02100 
+    Y_pi 
+    Gpu:          blank 
+    Bpu:          1.024 
+    Miles:            100 
+    DESC DATA:        blank 
+    Date In:          blank (in) 
+    Date Out:         blank (not out)
+ 
+  d. Data for Line INF BUS 500 MID 500 circuit 1
+
+  .. code::
+
+    Record Type:      L 
+    Sub Type:         blank 
+    Change Code:      blank 
+    Owner:            blank (not known) 
+    Name 1:           INF BUS 
+    kV 1:             500 
+    Meter:            blank 
+    Name 2:           MID 
+    kV 2:             500 
+    ID:               1 
+    Section:          blank 
+    Total AMP RATING: 3000 
+    No of CKT:        blank (means 1) 
+    Z_pi 
+    Rpu:          .00117 
+    Xpu:          .02100 
+    Y_pi 
+    Gpu:          blank (zero) 
+    Bpu:          1.024 
+    Miles:            100 
+    DESC DATA:        blank 
+    Date In:          blank (in)
+    Date Out:         blank (not out)
+
+  e. Data for Line INF BUS 500 MID 500 circuit 2
+
+  .. code::
+
+    Record Type:      L 
+    Sub Type:         blank 
+    Change Code:      blank 
+    Owner:            blank (not known) 
+    Name 1:           INF BUS 
+    kV 1:             500 
+    Meter:            blank 
+    Name 2:           MID 
+    kV 2:             500 
+    ID:               2 
+    Section:          blank 
+    Total AMP RATING: 3000 
+    No of CKT:        blank (means 1) 
+    Z_pi 
+    Rpu:          .00117 
+    Xpu:          .02100 
+    Y_pi 
+    Gpu:          blank (zero) 
+    Bpu:          1.024 
+    Miles:            100 
+    DESC DATA:        blank 
+    Date In:          blank (in) 
+    Date Out:         blank (not out)
+
+.. note::
+
+  The most difficult task in setting up branch data is determining the per unit (pu) values of R, X, G and B.
+
+
+.. note::
+
+  In this example, some preliminary information has been furnished on a per-mile basis. We have multiplied the per-mile quantities by the line lengths in order to obtain the data entered in the record. The reader should generally use detailed line constant calculation procedures to obtain more accurate values for high-voltage long lines. At 500 kV, 100 miles should be considered a long line. Energy conservation analysis is sensitive to the accuracy of high-voltage long-line branch data and transformer branch data.
+
+Derivation of Transformer Xpu on 500kV, 100 MVA:
+
+.. math::
+
+  (Xpu on 500kV 100 MVA) &= (Xpu on 525kV 1770 MVA) * \frac{525 * 525}{500 * 500} * \frac{100}{1770} \\
+  &= 0.20 * \frac{525 * 525}{500 * 500} * \frac{100}{1770} \\
+  &= 0.012458
+
+Derivation of Line Xpu on 500 kV, 100 MVA:
+ 
+All four lines are the same:
+
+.. math::
+
+  Base inpedance in ohms &= \frac{Base kV * Base kV}{Base MVA} \\
+  &= \frac{(500)(500)}{100}
+  &= 2500 ohms
+
+Ignoring long-line effect, reactance for 100-mile line is 52.2 ohms:
+
+.. math::
+
+  &= \frac{52.5}{2500}pu \\
+  &= 0.02100pu
+
+Derivation of Line Rpu on 500 kV, 100MVA:
+
+  All four lines are the same:
+
+  
 New Facilities
 ==============
 The purpose of this example is to provide new generating facilities to serve the growing loads near the town of Keller and Mount Tolman.

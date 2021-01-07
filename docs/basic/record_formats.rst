@@ -6,13 +6,13 @@ Record Formats
 
 Overview
 ========
-This section describes all data record formats recognized by IPF. Most, but not all of them are also available in the GUI interface. The record descriptions are organized alphabetically by record ID as you go through the section (except for the DC bus records which follow the AC bus records). The table below enables you to quickly locate a specific record format entry. The table also gives you a quick description of each record format.
+This section describes all data record formats recognized by IPF. Records are used to represent buses, lines, transformers, reactive devices, area interchange control, and more. Records defined in the input files for the command line tools (``bpf``, ``ipfbat``, ``ipfcut``, etc.) are fixed column format. Please note that all information must be in the correct columns; you will experience processing errors otherwise. Most records are also available in the X Window GUI interface via forms and in ``libcflow`` via C structs. The record descriptions in this section are organized alphabetically by record ID as you go through the section (except for the DC bus records which follow the AC bus records). The table below enables you to quickly locate a specific record format entry. The table also gives you a quick description of each record format.
 
-Each entry has a card image that shows you where to put both identification and data information and where the implicit decimal point (if any) is located. These card images are artifacts from the old days of punchcards for mainframes, but they do provide good visual represenation of the data for each record format Please note that all information must be in the correct columns; you will experience processing errors otherwise. Each card image has a legend showing whether data is required, optional, or ignored.
+Each record description in this section has a "card" figure that shows you where to put record identification and the other fields and properties of the record. These "card" figures are artifacts from the days of punchcards and mainframes, but they do provide good visual represenation of the data for each record format when manually creating intput files for IPF. Each card figure has a legend showing whether each fields is required, optional, or ignored.
 
-Each entry also has a table of column descriptions and data formats. This supplements the card image. Additional text accompanies any record formats that need extended discussion.
+Each entry also has a table of column descriptions and data formats. This supplements the ca.. figure. Additional text accompanies any record formats that need extended discussion.
 
-Some data are real numbers. For these fields, the implicit decimal point is shown as a black dot on the card image, just above the information entry row. Note that you can enter data with an explicit decimal point in any position within the field. A black dot that appears at the extreme right side of a field represents a decimal point at the right end (least significant digit) of a number. All other black dots appear above a line, indicating that the decimal point will fall between the digits on either side.
+Some data are real numbers. For these fields, the implicit decimal point is shown as a black dot on the ca.. figure, just above the information entry row. Note that you can enter data with an explicit decimal point in any position within the field. A black dot that appears at the extreme right side of a field represents a decimal point at the right end (least significant digit) of a number. All other black dots appear above a line, indicating that the decimal point will fall between the digits on either side.
 
 All IPF data record types are identified by the characters in columns 1 and 2. To fully specify a particular record, additional fields need to be filled in. These additional ID fields are usually the bus name and base kV. ID fields are called out in the column description tables.
 
@@ -140,6 +140,8 @@ Simply place a ``.`` (period character) in the first column and the comment in t
   2-120  no       A119   Text string for record comment
   ====== ======== ====== ==============================
 
+.. _continuation-bus-data:
+
 Continuation Bus Data (``+``)
 =============================
 Continuation bus data is identified with a ``+`` in column 1 and supplements the data on any AC bus record. It specifies additional generation, load and shunt admittance at the bus and permits additional classification and utilization of data. Generally, it permits a more detailed analysis of data. Its most typical application is distinguishing loads represented by several different owners at the same bus. The following fields are for identification:
@@ -156,7 +158,7 @@ A sample coding sheet and column descriptions for continuation bus data follows.
 
    Continuation Bus Data Input Format
 
-.. table:: Classiﬁcation Codes
+.. table:: Classification Codes
 
   ===== ===================================================
   Code  Description
@@ -293,18 +295,22 @@ The order of buses in the input and output listings may be grouped into areas wi
 
 These records permit an area to be defined independently of any area interchange. Once introduced, these records become a permanent part of the base case file. A coding sheet and description of the record columns follows:
 
-.. image:: ../img/Listing_by_Sorted_Areas_Input_Format.png
+.. figure:: ../img/Listing_by_Sorted_Areas_Input_Format.png
 
-====== ======== ========== ====================
-Column ID Field Format     Description
-====== ======== ========== ====================
-1      yes      A1         Record type — A
-2      yes      A1         Subtype — O
-3      no       A1         Change code — see System Changes
-4-13   yes      A10        Area Name — These names are independent of area interchange names but may be identical.
-15-79  no       22(A2,1X)  Zone composition list — a blank zone terminates the zone scan unless it is zone 1.
-80     no       blank
-====== ======== ========== ====================
+  Listing by Sorted Areas Input Format
+
+.. table:: Column Description for Area Output Sort
+  
+  ====== ======== ========== ====================
+  Column ID Field Format     Description
+  ====== ======== ========== ====================
+  1      yes      A1         Record type — A
+  2      yes      A1         Subtype — O
+  3      no       A1         Change code — see System Changes
+  4-13   yes      A10        Area Name — These names are independent of area interchange names but may be identical.
+  15-79  no       22(A2,1X)  Zone composition list — a blank zone terminates the zone scan unless it is zone 1.
+  80     no       blank
+  ====== ======== ========== ====================
 
 AC Bus Data
 ===========
@@ -371,6 +377,8 @@ The equations above define the interrelationship between quantities and are vali
 
 The preceding diagram illustrates the following priority scheme. In applying the equation for :math:`Q`, vars are allocated to generation and variable shunt components on a priority basis. If :math:`Q_{net}` is less than :math:`Q_{load} + Q_{shunt}` fixed, then vars are allocated first to variable shunt reactors and then, if necessary, to reactive generation. If, on the other hand, :math:`Q_{net}` is higher than :math:`Q_{load} + Q_{shunt}` fixed, then vars are allocated first to the variable shunt capacitors and then, if necessary, to reactive generation. If the limits of reactive generation are exceeded, then unscheduled reactive is allocated.
 
+.. _ac-bus-data-b-blank:
+
 AC Bus Data (``B``-blank)
 =========================
 
@@ -378,7 +386,7 @@ Application
 -----------
 This bus subtype is passive in the sense that it cannot control the voltage of another bus. Its primary use is for modeling load buses.
 
-Bus characteristics
+Bus Characteristics
 -------------------
 Both real (:math:`P`) and reactive (:math:`Q`) power are held constant throughout the entire solution. This applies to generators, load and shunt devices (capacitors/reactors).
 
@@ -399,14 +407,14 @@ If this bus is controlled by an LTC transformer or by a ``BG`` or ``BX`` bus, a 
 
 .. figure:: ../img/B-blank_Subtype_Format.png
 
-  B-blank Subtype Format
+  ``B``-blank Subtype Format
 
-.. table:: Column Description for B Bus Data
+.. table:: Column Description for ``B`` Bus Data
 
   ====== ======== ======= ====================
   Column ID Field Format  Description
   ====== ======== ======= ====================
-  1-2    yes      A2      ``B`` — Generic load bus
+  1-2    yes      A2      ``B`` - Generic load bus
   3      no       A1      Change code
   4-6    no       A3      Ownership
   7-14   yes      A8      Bus name
@@ -428,7 +436,9 @@ If this bus is controlled by an LTC transformer or by a ``BG`` or ``BX`` bus, a 
 
 .. figure:: ../img/Q-V_Curve_for_B-blank_Subtype.png
 
-  Q-V Curve for B-blank Subtype
+  Q-V Curve for ``B``-blank Subtype
+
+.. _ac-bus-data-bc:
 
 AC Bus Data (``BC``)
 ====================
@@ -447,32 +457,40 @@ Reactive constraints are not allowed for this type of bus. If reactive limits ar
 
 Since this bus type has its voltage maintained by a generator bus, a ``V HOLD`` entry is strongly recommended on the bus record. However, if that field is blank, the global default limits apply, in effect, using ``VMAX`` for the ``VHOLD``. See ??
 
-.. image:: ../img/BC_Subtype_Format.png
+.. figure:: ../img/BC_Subtype_Format.png
 
-====== ======== ======= ======================
-Column ID Field Format  Description
-====== ======== ======= ======================
-1-2    yes      A2      ``BC`` — Voltage controlled by BG bus
-3      no       A1      Change code
-4-6    no       A3      Ownership
-7-18   yes              Bus name and base kV
-15-18  yes      F4.0    Base kV
-19-20  no       A2      Zone
-21-25  no       F5.0    Load MW
-26-30  no       F5.0    Load MVAR
-31-34  no       F4.0    Shunt Admittance Load in MW at base kV
-35-38  no       F4.0    Shunt Admittance in MVAR
-39-42  no       F4.0    ``P MAX``
-43-47  no       F5.0    ``P GEN``
-48-52  no       F5.0    ``Q SCHED`` in MVAR
-53-57  no       F5.0    ``Q MIN`` — Must be blank or zero for ``Q SCHED`` to apply
-58-61  no       F4.3    ``V HOLD`` in per unit
-62-65  no       F4.3    N/A
-66-77  no       A8,F4.0 N/A
-78-80  no       F3.0    N/A
-====== ======== ======= ======================
+  ``BC`` Subtype Format
 
-.. image:: ../img/Q-V_Curve_for_BC_Subtype.png
+.. table:: Column Description for ``BC`` Bus Data
+
+  ====== ======== ======= ======================
+  Column ID Field Format  Description
+  ====== ======== ======= ======================
+  1-2    yes      A2      ``BC`` - Voltage controlled by BG bus
+  3      no       A1      Change code
+  4-6    no       A3      Ownership
+  7-18   yes              Bus name and base kV
+  15-18  yes      F4.0    Base kV
+  19-20  no       A2      Zone
+  21-25  no       F5.0    Load MW
+  26-30  no       F5.0    Load MVAR
+  31-34  no       F4.0    Shunt Admittance Load in MW at base kV
+  35-38  no       F4.0    Shunt Admittance in MVAR
+  39-42  no       F4.0    ``P MAX``
+  43-47  no       F5.0    ``P GEN``
+  48-52  no       F5.0    ``Q SCHED`` in MVAR
+  53-57  no       F5.0    ``Q MIN`` — Must be blank or zero for ``Q SCHED`` to apply
+  58-61  no       F4.3    ``V HOLD`` in per unit
+  62-65  no       F4.3    N/A
+  66-77  no       A8,F4.0 N/A
+  78-80  no       F3.0    N/A
+  ====== ======== ======= ======================
+
+.. figure:: ../img/Q-V_Curve_for_BC_Subtype.png
+
+  Q-V Curve for ``BC`` Subtype
+
+.. _ac-bus-data-be:
 
 AC Bus Data (``BE``)
 ====================
@@ -495,32 +513,40 @@ A specific amount of reactive generation (``Q SCHED``) cannot be requested.
 
 Since this bus type maintains its own voltage, a ``V HOLD`` entry is required on the record. The voltage is held fixed at this value, regardless of the amount of reactive required. Note that ``V HOLD`` is not required for type “M” changes.
 
-.. image:: ../img/BE_Subtype_Format.png
+.. figure:: ../img/BE_Subtype_Format.png
 
-====== ======== ======= =====================
-Column ID Field Format  Description
-====== ======== ======= =====================
-1-2    yes      A2      ``BE`` — Constant voltage bus
-3      no       A1      Change code
-4-6    no       A3      Ownership
-7-14   yes      A8      Bus name
-15-18  yes      F4.0    Base kV
-19-20  no       A2      Zone
-21-25  no       F5.0    Load MW
-26-30  no       F5.0    Load MVAR
-31-34  no       F4.0    Shunt Admittance Load in MW at base kV
-35-38  no       F4.0    Shunt Admittance in MVAR
-39-42  no       F4.0    ``P MAX``
-43-47  no       F5.0    ``P GEN``
-48-52  no       F5.0    ``Q MAX`` in MVAR
-53-57  no       F5.0    ``Q MIN`` in MVAR
-58-61  no       F4.3    ``V HOLD`` in per unit
-62-65  no       F4.3    N/A
-66-77  no       A8,F4.0 N/A
-78-80  no       F3.0    N/A
-====== ======== ======= =====================
+  ``BE`` Subtype Format
 
-.. image:: ../img/Q-V_Curve_for_BE_Subtype.png
+.. table:: Column Description for ``BE`` Bus Data
+
+  ====== ======== ======= =====================
+  Column ID Field Format  Description
+  ====== ======== ======= =====================
+  1-2    yes      A2      ``BE`` - Constant voltage bus
+  3      no       A1      Change code
+  4-6    no       A3      Ownership
+  7-14   yes      A8      Bus name
+  15-18  yes      F4.0    Base kV
+  19-20  no       A2      Zone
+  21-25  no       F5.0    Load MW
+  26-30  no       F5.0    Load MVAR
+  31-34  no       F4.0    Shunt Admittance Load in MW at base kV
+  35-38  no       F4.0    Shunt Admittance in MVAR
+  39-42  no       F4.0    ``P MAX``
+  43-47  no       F5.0    ``P GEN``
+  48-52  no       F5.0    ``Q MAX`` in MVAR
+  53-57  no       F5.0    ``Q MIN`` in MVAR
+  58-61  no       F4.3    ``V HOLD`` in per unit
+  62-65  no       F4.3    N/A
+  66-77  no       A8,F4.0 N/A
+  78-80  no       F3.0    N/A
+  ====== ======== ======= =====================
+
+.. figure:: ../img/Q-V_Curve_for_BE_Subtype.png
+
+  Q-V Curve for ``BE`` Subtype
+
+.. _ac-bus-data-bf:
 
 AC Bus Data (``BF``)
 ====================
@@ -555,32 +581,40 @@ If the ``% VARS SUPPLIED`` is left blank, the program computes these values base
 
 If the bus is controlling itself, its own name must appear in the ``REMOTE BUS`` field.
 
-.. image:: ../img/BG_Subtype_Format.png
+.. figure:: ../img/BG_Subtype_Format.png
 
-====== ======== ======= =====================
-Column ID Field Format  Description
-====== ======== ======= =====================
-1-2    yes      A2      ``BG`` — Maintains the voltage of a remote bus
-3      no       A1      Change code
-4-6    no       A3      Ownership
-7-14   yes      A8      Bus name
-15-18  yes      F4.0    Base kV
-19-20  no       A2      Zone
-21-25  no       F5.0    Load MW
-26-30  no       F5.0    Load MVAR
-31-34  no       F4.0    Shunt Admittance Load in MW at base kV
-35-38  no       F4.0    Shunt Admittance in MVAR
-39-42  no       F4.0    ``P MAX``
-43-47  no       F5.0    ``P GEN``
-48-52  no       F5.0    ``Q MAX`` in MVAR
-53-57  no       F5.0    ``Q MIN`` — Must be blank or zero for ``Q SCHED`` to apply
-58-61  no       F4.3    ``V MAX``
-62-65  no       F4.3    ``V MIN``
-66-77  no       A8,F4.0 Controlled bus name and base kV (self or remote)
-78-80  no       F3.0    Percent of vars supplied for remote bus voltage control.
-====== ======== ======= =====================
+  ``BG`` Subtype Format
 
-.. image:: ../img/Q-V_Curve_for_BG_Subtype.png
+.. table:: Column Description for ``BG`` Bus Data
+
+  ====== ======== ======= =====================
+  Column ID Field Format  Description
+  ====== ======== ======= =====================
+  1-2    yes      A2      ``BG`` - Maintains the voltage of a remote bus
+  3      no       A1      Change code
+  4-6    no       A3      Ownership
+  7-14   yes      A8      Bus name
+  15-18  yes      F4.0    Base kV
+  19-20  no       A2      Zone
+  21-25  no       F5.0    Load MW
+  26-30  no       F5.0    Load MVAR
+  31-34  no       F4.0    Shunt Admittance Load in MW at base kV
+  35-38  no       F4.0    Shunt Admittance in MVAR
+  39-42  no       F4.0    ``P MAX``
+  43-47  no       F5.0    ``P GEN``
+  48-52  no       F5.0    ``Q MAX`` in MVAR
+  53-57  no       F5.0    ``Q MIN`` — Must be blank or zero for ``Q SCHED`` to apply
+  58-61  no       F4.3    ``V MAX``
+  62-65  no       F4.3    ``V MIN``
+  66-77  no       A8,F4.0 Controlled bus name and base kV (self or remote)
+  78-80  no       F3.0    Percent of vars supplied for remote bus voltage control.
+  ====== ======== ======= =====================
+
+.. figure:: ../img/Q-V_Curve_for_BG_Subtype.png
+
+  Q-V Curve for ``BG`` Subtype
+
+.. _ac-bus-data-bq:
 
 AC Bus Data (``BQ``)
 ====================
@@ -605,36 +639,44 @@ A specific amount of reactive generation (``Q SCHED``) cannot be requested.
 
 Since this bus type is attempting to maintain its own voltage, a ``V HOLD`` entry is required on the record. If the voltage cannot be held at the desired level, using the reactive capability of the bus, the desired voltage will be violated and reactive will be held at the ``Q MAX`` or ``Q MIN`` limit. Note that ``V HOLD`` is not required for modifications.
 
-.. image:: ../img/BQ_Subtype_Format.png
+.. figure:: ../img/BQ_Subtype_Format.png
+
+  ``BQ`` Subtype Format
 
 .. note::
 
    For a type ``BQ`` bus to be viable, it needs a source of adjustable reactive. This may be the B_shunt field or the ``Q MIN`` - ``Q MAX`` fields. The necessary reactive component may be provided on the bus record, or it may be provided on an accompanying continuation (``+``) bus record or both
 
-====== ======== ======= =====================
-Column ID Field Format  Description
-====== ======== ======= =====================
-1-2    yes      A2      ``BQ`` — Constant voltage within Q limits
-3      no       A1      Change code
-4-6    no       A3      Ownership
-7-14   yes      A8      Bus name
-15-18  yes      F4.0    Base kV
-19-20  no       A2      Zone
-21-25  no       F5.0    Load MW
-26-30  no       F5.0    Load MVAR
-31-34  no       F4.0    Shunt Admittance Load in MW at base kV
-35-38  no       F4.0    Shunt Admittance in MVAR
-39-42  no       F4.0    ``P MAX``
-43-47  no       F5.0    ``P GEN``
-48-52  no       F5.0    ``Q MAX``
-53-57  no       F5.0    ``Q MIN``
-58-61  no       F4.3    ``V HOLD``
-62-65  no       F4.3    N/A
-66-77  no       A8,F4.0 N/A
-78-80  no       F3.0    N/A
-====== ======== ======= =====================
+.. table:: Column Description for ``BQ`` Bus Data
 
-.. image:: ../img/Q-V_Curve_for_BQ_Subtype.png
+  ====== ======== ======= =====================
+  Column ID Field Format  Description
+  ====== ======== ======= =====================
+  1-2    yes      A2      ``BQ`` - Constant voltage within Q limits
+  3      no       A1      Change code
+  4-6    no       A3      Ownership
+  7-14   yes      A8      Bus name
+  15-18  yes      F4.0    Base kV
+  19-20  no       A2      Zone
+  21-25  no       F5.0    Load MW
+  26-30  no       F5.0    Load MVAR
+  31-34  no       F4.0    Shunt Admittance Load in MW at base kV
+  35-38  no       F4.0    Shunt Admittance in MVAR
+  39-42  no       F4.0    ``P MAX``
+  43-47  no       F5.0    ``P GEN``
+  48-52  no       F5.0    ``Q MAX``
+  53-57  no       F5.0    ``Q MIN``
+  58-61  no       F4.3    ``V HOLD``
+  62-65  no       F4.3    N/A
+  66-77  no       A8,F4.0 N/A
+  78-80  no       F3.0    N/A
+  ====== ======== ======= =====================
+
+.. figure:: ../img/Q-V_Curve_for_BQ_Subtype.png
+
+  Q-V Curve for ``BQ`` Subtype
+
+.. _ac-bus-data-bs:
 
 AC Bus Data (``BS``)
 ====================
@@ -661,32 +703,40 @@ The ``BS`` bus record requires an entry in the ``V HOLD`` field.
 
 The ``V MIN`` field is used to specify the angle of the swing bus for this application. It should be noted that an implied decimal point exists between columns 64 and 65. For example, an angle of 3.7 degrees can be specified with a 3 in column 64 and a 7 in column 65.
 
-.. image:: ../img/BS_Subtype_Format.png
+.. figure:: ../img/BS_Subtype_Format.png
 
-====== ======== ======= =====================
-Column ID Field Format  Description
-====== ======== ======= =====================
-1-2    yes      A2      ``BS`` — System swing or slack bus
-3      no       A1      Change code
-4-6    no       A3      Ownership
-7-14   yes      A8      Bus name
-15-18  yes      F4.0    Base kV
-19-20  no       A2      Zone
-21-25  no       F5.0    Load MW
-26-30  no       F5.0    Load MVAR
-31-34  no       F4.0    Shunt Admittance Load in MW at base kV
-35-38  no       F4.0    Shunt Admittance in MVAR
-39-42  no       F4.0    ``P MAX``
-43-47  no       F5.0    ``P GEN``
-48-52  no       F5.0    ``Q MAX``
-53-57  no       F5.0    ``Q MIN``
-58-61  no       F4.3    ``V HOLD``
-62-65  no       F4.1    Voltage angle (blank implies zero degrees)
-66-77  no       A8,F4.0 N/A
-78-80  no       F3.0    N/A
-====== ======== ======= =====================
+  BS Subtype Format
 
-.. image:: ../img/Q-V_Curve_for_BS_Subtype.png
+.. table:: Column Description for ``BS`` Bus Data
+
+  ====== ======== ======= =====================
+  Column ID Field Format  Description
+  ====== ======== ======= =====================
+  1-2    yes      A2      ``BS`` - System swing or slack bus
+  3      no       A1      Change code
+  4-6    no       A3      Ownership
+  7-14   yes      A8      Bus name
+  15-18  yes      F4.0    Base kV
+  19-20  no       A2      Zone
+  21-25  no       F5.0    Load MW
+  26-30  no       F5.0    Load MVAR
+  31-34  no       F4.0    Shunt Admittance Load in MW at base kV
+  35-38  no       F4.0    Shunt Admittance in MVAR
+  39-42  no       F4.0    ``P MAX``
+  43-47  no       F5.0    ``P GEN``
+  48-52  no       F5.0    ``Q MAX``
+  53-57  no       F5.0    ``Q MIN``
+  58-61  no       F4.3    ``V HOLD``
+  62-65  no       F4.1    Voltage angle (blank implies zero degrees)
+  66-77  no       A8,F4.0 N/A
+  78-80  no       F3.0    N/A
+  ====== ======== ======= =====================
+
+.. figure:: ../img/Q-V_Curve_for_BS_Subtype.png
+
+  Q-V Curve for ``BS`` Subtype
+
+.. _ac-bus-data-bt:
 
 AC Bus Data (``BT``)
 ====================
@@ -706,30 +756,34 @@ Reactive constraints are not allowed for this type of bus. If reactive limits ar
 Since this bus type has its voltage maintained by an LTC transformer, a ``V HOLD`` entry is required.
 This subtype requires an additional record, the ``R`` (Regulating Transformer) record.
 
-.. image:: ../img/BT_Subtype_Format.png
+.. figure:: ../img/BT_Subtype_Format.png
 
-====== ======== ======= =====================
-Column ID Field Format  Description
-====== ======== ======= =====================
-1-2    yes      A2      ``BT`` — LTC transformer controlled bus
-3      no       A1      Change code
-4-6    no       A3      Ownership
-7-14   yes      A8      Bus name
-15-18  yes      F4.0    Base kV
-19-20  no       A2      Zone
-21-25  no       F5.0    Load MW
-26-30  no       F5.0    Load MVAR
-31-34  no       F4.0    Shunt Admittance Load in MW at base kV
-35-38  no       F4.0    Shunt Admittance in MVAR
-39-42  no       F4.0    ``P MAX``
-43-47  no       F5.0    ``P GEN``
-48-52  no       F5.0    ``Q SCHED``
-53-57  no       F5.0    ``QMIN`` must be blank or zero for ``QSCHED`` to apply
-58-61  no       F4.3    ``V HOLD``
-62-65  no       F4.1    N/A
-66-77  no       A8,F4.0 N/A
-78-80  no       F3.0    N/A
-====== ======== ======= =====================
+.. table:: Column Description for ``BT`` Bus Data
+
+  ====== ======== ======= =====================
+  Column ID Field Format  Description
+  ====== ======== ======= =====================
+  1-2    yes      A2      ``BT`` - LTC transformer controlled bus
+  3      no       A1      Change code
+  4-6    no       A3      Ownership
+  7-14   yes      A8      Bus name
+  15-18  yes      F4.0    Base kV
+  19-20  no       A2      Zone
+  21-25  no       F5.0    Load MW
+  26-30  no       F5.0    Load MVAR
+  31-34  no       F4.0    Shunt Admittance Load in MW at base kV
+  35-38  no       F4.0    Shunt Admittance in MVAR
+  39-42  no       F4.0    ``P MAX``
+  43-47  no       F5.0    ``P GEN``
+  48-52  no       F5.0    ``Q SCHED``
+  53-57  no       F5.0    ``QMIN`` must be blank or zero for ``QSCHED`` to apply
+  58-61  no       F4.3    ``V HOLD``
+  62-65  no       F4.1    N/A
+  66-77  no       A8,F4.0 N/A
+  78-80  no       F3.0    N/A
+  ====== ======== ======= =====================
+
+.. _ac-bus-data-bv:
 
 AC Bus Data (``BV``)
 ====================
@@ -752,32 +806,40 @@ Reactive constraints are not allowed for this type of bus. If reactive limits ar
 
 The ``BV`` bus record requires entries in the ``V MAX`` and ``V MIN`` fields. The program’s solution voltage will be within the range of ``V MAX`` to ``V MIN``, regardless of how much reactive is required. If voltage attempts to rise above ``V MAX``, additional negative reactive (:math:`-Q_{shunt}`) is added to bring the voltage down to ``V MAX``. Also, if the voltage is below ``V MIN``, additional reactive (:math:`+Q_{shunt}`) is added until the bus voltage has reached ``V MIN``.
 
-.. image:: ../img/BV_Subtype_Format.png
+.. figure:: ../img/BV_Subtype_Format.png
 
-====== ======== ======= =====================
-Column ID Field Format  Description
-====== ======== ======= =====================
-1-2    yes      A2      ``BV`` — Constant :math:`Q` within :math:`V` limits
-3      no       A1      Change code
-4-6    no       A3      Ownership
-7-14   yes      A8      Bus name
-15-18  yes      F4.0    Base kV
-19-20  no       A2      Zone
-21-25  no       F5.0    Load MW
-26-30  no       F5.0    Load MVAR
-31-34  no       F4.0    Shunt Admittance Load in MW at base kV
-35-38  no       F4.0    Shunt Admittance in MVAR
-39-42  no       F4.0    ``P MAX``
-43-47  no       F5.0    ``P GEN``
-48-52  no       F5.0    ``Q SCHED`` or ``QMA``
-53-57  no       F5.0    ``Q MIN``
-58-61  no       F4.3    ``V MAX`` in per unit
-62-65  no       F4.1    ``V MIN`` in per unit
-66-77  no       A8,F4.0 N/A
-78-80  no       F3.0    N/A
-====== ======== ======= =====================
+  ``BV`` Subtype Format
 
-.. image:: ../img/Q-V_Curve_for_BV_Subtype.png
+.. table:: Column Description for ``BV`` Bus Data
+
+  ====== ======== ======= =====================
+  Column ID Field Format  Description
+  ====== ======== ======= =====================
+  1-2    yes      A2      ``BV`` - Constant :math:`Q` within :math:`V` limits
+  3      no       A1      Change code
+  4-6    no       A3      Ownership
+  7-14   yes      A8      Bus name
+  15-18  yes      F4.0    Base kV
+  19-20  no       A2      Zone
+  21-25  no       F5.0    Load MW
+  26-30  no       F5.0    Load MVAR
+  31-34  no       F4.0    Shunt Admittance Load in MW at base kV
+  35-38  no       F4.0    Shunt Admittance in MVAR
+  39-42  no       F4.0    ``P MAX``
+  43-47  no       F5.0    ``P GEN``
+  48-52  no       F5.0    ``Q SCHED`` or ``QMA``
+  53-57  no       F5.0    ``Q MIN``
+  58-61  no       F4.3    ``V MAX`` in per unit
+  62-65  no       F4.1    ``V MIN`` in per unit
+  66-77  no       A8,F4.0 N/A
+  78-80  no       F3.0    N/A
+  ====== ======== ======= =====================
+
+.. figure:: ../img/Q-V_Curve_for_BV_Subtype.png
+
+  Q-V Curve for ``BV`` Subtype
+
+.. _ac-bus-data-bx:
 
 AC Bus Data (``BX``)
 ====================
@@ -803,36 +865,44 @@ Reactive shunt (:math:`+/- Q`) is added in discrete blocks to maintain the desir
 It should be noted that the program will attempt to select a discrete reactive step, which yields the highest voltage within the specified limits, so that losses can be minimized. This is the default (BPA) value, for the third level ``>MISC_CNTRL`` Program Control Statement, ``X_BUS`` option.
 
 
-.. image:: ../img/BX_Subtype_Format.png
+.. figure:: ../img/BX_Subtype_Format.png
+
+  ``BX`` Subtype Format
 
 .. note::
 
   The value on the :math:`B_{shunt}` field dictates the initial value
 
-====== ======== ======= =====================
-Column ID Field Format  Description
-====== ======== ======= =====================
-1-2    yes      A2      ``BX`` — Attempts constant V using switched Q
-3      no       A1      Change code
-4-6    no       A3      Ownership
-7-14   yes      A8      Bus name
-15-18  yes      F4.0    Base kV
-19-20  no       A2      Zone
-21-25  no       F5.0    Load MW
-26-30  no       F5.0    Load MVAR
-31-34  no       F4.0    Shunt Admittance Load in MW at base kV
-35-38  no       F4.0    Shunt Admittance in MVAR
-39-42  no       F4.0    ``P MAX``
-43-47  no       F5.0    ``P GEN``
-48-52  no       F5.0    ``Q SCHED`` or ``QMAX``
-53-57  no       F5.0    ``Q MIN``
-58-61  no       F4.3    ``V MAX`` in per unit
-62-65  no       F4.1    ``V MIN`` in per unit
-66-77  no       A8,F4.0 Controlled bus name and kV (self or remote). If blank, self is assumed.
-78-80  no       F3.0    N/A
-====== ======== ======= =====================
+.. table:: Column Description for BX Bus Data
 
-.. image:: ../img/Q-V_Curve_for_BX_Subtype.png
+  ====== ======== ======= =====================
+  Column ID Field Format  Description
+  ====== ======== ======= =====================
+  1-2    yes      A2      ``BX`` — Attempts constant V using switched Q
+  3      no       A1      Change code
+  4-6    no       A3      Ownership
+  7-14   yes      A8      Bus name
+  15-18  yes      F4.0    Base kV
+  19-20  no       A2      Zone
+  21-25  no       F5.0    Load MW
+  26-30  no       F5.0    Load MVAR
+  31-34  no       F4.0    Shunt Admittance Load in MW at base kV
+  35-38  no       F4.0    Shunt Admittance in MVAR
+  39-42  no       F4.0    ``P MAX``
+  43-47  no       F5.0    ``P GEN``
+  48-52  no       F5.0    ``Q SCHED`` or ``QMAX``
+  53-57  no       F5.0    ``Q MIN``
+  58-61  no       F4.3    ``V MAX`` in per unit
+  62-65  no       F4.1    ``V MIN`` in per unit
+  66-77  no       A8,F4.0 Controlled bus name and kV (self or remote). If blank, self is assumed.
+  78-80  no       F3.0    N/A
+  ====== ======== ======= =====================
+
+.. figure:: ../img/Q-V_Curve_for_BX_Subtype.png
+
+  Q-V Curve for ``BX`` Subtype
+
+.. _ac-bus-data-bd:
 
 Two-Terminal DC Bus (``BD``)
 ============================
@@ -844,25 +914,31 @@ The DC bus must be connected to a single AC bus through a commutating transforme
 
 Data for the inverter and rectifier buses are identical. Identification of each is by the DC line data record which compares the sign of the DC power flow with the DC terminal buses. The rectifier and inverter buses may be interchanging the sign of the scheduled DC power.
 
-.. image:: ../img/BD_Subtype_Format.png
+.. figure:: ../img/BD_Subtype_Format.png
 
-====== ======== ======= =====================
-Column ID Field Format  Description
-====== ======== ======= =====================
-1-2    yes      A2      ``BD`` — Code for direct current (DC) bus, terminal of a DC line.
-3      no       A1      Change code — see System Changes
-4-6    no       A3      Ownership code
-7-14   yes      A8      Bus name
-15-18  yes      F4.0    Base kV
-19-20  no       A2      Zone
-24-25  no       I2      Bridges per ckt. — Number of valves in series per circuit.
-26-30  no       F5.1    Smoothing reactor (mh) — Inductance of the smoothing reactor in millihenries.
-31-35  no       F5.1    Rectifier operation (alpha min.) — Minimum firing angle in degrees as a rectifier.
-36-40  no       F5.1    Inverter operation (alpha stop) — Maximum firing angle in degrees. Both inverter and rectifier buses have alpha. However, only the minimum alpha on the rectifier bus is used in the power flow. The remaining valves are required for the transient stability program in event of power reversals in the dc line.
-41-45  no       F5.1    Valve drop (volts) — Valve voltage drop per bridge in volts.
-46-50  no       F5.1    Bridge current rating (amps) — Maximum bridge current in amperes.
-51-62  no       A8,F4.0 Commutating bus — Alphanumeric name in columns 51-58 and base kV in columns 59-62. This is on the AC system side of the commutating transformer bank
-====== ======== ======= =====================
+  ``BD`` Subtype Format
+
+.. table:: Column Description for BD Bus Data
+
+  ====== ======== ======= =====================
+  Column ID Field Format  Description
+  ====== ======== ======= =====================
+  1-2    yes      A2      ``BD`` — Code for direct current (DC) bus, terminal of a DC line.
+  3      no       A1      Change code — see System Changes
+  4-6    no       A3      Ownership code
+  7-14   yes      A8      Bus name
+  15-18  yes      F4.0    Base kV
+  19-20  no       A2      Zone
+  24-25  no       I2      Bridges per ckt. — Number of valves in series per circuit.
+  26-30  no       F5.1    Smoothing reactor (mh) — Inductance of the smoothing reactor in millihenries.
+  31-35  no       F5.1    Rectifier operation (alpha min.) — Minimum firing angle in degrees as a rectifier.
+  36-40  no       F5.1    Inverter operation (alpha stop) — Maximum firing angle in degrees. Both inverter and rectifier buses have alpha. However, only the minimum alpha on the rectifier bus is used in the power flow. The remaining valves are required for the transient stability program in event of power reversals in the dc line.
+  41-45  no       F5.1    Valve drop (volts) — Valve voltage drop per bridge in volts.
+  46-50  no       F5.1    Bridge current rating (amps) — Maximum bridge current in amperes.
+  51-62  no       A8,F4.0 Commutating bus — Alphanumeric name in columns 51-58 and base kV in columns 59-62. This is on the AC system side of the commutating transformer bank
+  ====== ======== ======= =====================
+
+.. _ac-bus-data-bm:
 
 Multi-Terminal DC Bus (``BM``)
 ==============================
@@ -884,30 +960,34 @@ If an excessive number of DC constraints are specified, some superfluous power c
 
 It is permissible to model two-terminal DC networks with the multi-terminal type ``M`` formats. However, it is not permissible to mix two-terminal type ``D`` data with multi-terminal type ``M`` data on the same DC circuit. The two different types of DC data may coexist in the same case, but when both types are present, they must pertain to separate DC circuits.
 
-.. image:: ../img/BM_Subtype_Format.png
+.. figure:: ../img/BM_Subtype_Format.png
 
-====== ======== ======= =====================
-Column ID Field Format  Description
-====== ======== ======= =====================
-1-2    yes      A2      ``BM`` - Code for multi-terminal dc bus
-3      no       A1      Change code - see System Changes
-4-6    no       A3      Ownership code 
-7-14ac yes      A8      Bus name
-15-18  yes      F4.0    Base kV
-19-20  no       A2      Zone code
-24-25  no       I2      Number of bridges per DC circuit - (Number of converters serially connected)
-26-30  no       F5.1    Smoothing reactor inductance in mh
-31-35  no       F5.1    Minimum ignition delay angle (:math:`\alpha_{min}`) in degrees
-36-40  no       F5.1    Maximum ignition delay angle (:math:`\alpha_{stop}`) in degrees
-41-45  no       F5.1    Converter valve drop per bridge in volts
-46-50  no       F5.1    Maximum converter current in amps
-51-62  no       A8,F4.0 Commutator bus name and base kV of commutator.
-63b    no       A1      Converter code (R1): R — Normal operation as a rectifier I — Normal operation as an Inverter M — Normal operation as an inverter with current margin Blank — A passive DC tap
-64-66  no       F3.1    Normal ignition delay angle (:math:`\alpha_{N}`) if a rectifier, or normal extinction angle (:math:`\gamma_{N}`) if an inverter, in degrees
-67-69  no       F3.1    Minimum ignition angle (:math:`\alpha_{min}`) if a rectifier, or minimum extinction angle (:math:`\gamma_{0}`) in degrees if an inverter 
-70-75c no       F6.1    Scheduled net converter DC output power in MW 
-76-80d no       F5.1    Scheduled converter DC voltage in kV
-====== ======== ======= =====================
+  ``BM`` Subtype Format
+
+.. table:: Column Description for ``BM`` Bus Data
+
+  ====== ======== ======= =====================
+  Column ID Field Format  Description
+  ====== ======== ======= =====================
+  1-2    yes      A2      ``BM`` - Code for multi-terminal dc bus
+  3      no       A1      Change code - see System Changes
+  4-6    no       A3      Ownership code 
+  7-14ac yes      A8      Bus name
+  15-18  yes      F4.0    Base kV
+  19-20  no       A2      Zone code
+  24-25  no       I2      Number of bridges per DC circuit - (Number of converters serially connected)
+  26-30  no       F5.1    Smoothing reactor inductance in mh
+  31-35  no       F5.1    Minimum ignition delay angle (:math:`\alpha_{min}`) in degrees
+  36-40  no       F5.1    Maximum ignition delay angle (:math:`\alpha_{stop}`) in degrees
+  41-45  no       F5.1    Converter valve drop per bridge in volts
+  46-50  no       F5.1    Maximum converter current in amps
+  51-62  no       A8,F4.0 Commutator bus name and base kV of commutator.
+  63b    no       A1      Converter code (R1): R — Normal operation as a rectifier I — Normal operation as an Inverter M — Normal operation as an inverter with current margin Blank — A passive DC tap
+  64-66  no       F3.1    Normal ignition delay angle (:math:`\alpha_{N}`) if a rectifier, or normal extinction angle (:math:`\gamma_{N}`) if an inverter, in degrees
+  67-69  no       F3.1    Minimum ignition angle (:math:`\alpha_{min}`) if a rectifier, or minimum extinction angle (:math:`\gamma_{0}`) in degrees if an inverter 
+  70-75c no       F6.1    Scheduled net converter DC output power in MW 
+  76-80d no       F5.1    Scheduled converter DC voltage in kV
+  ====== ======== ======= =====================
 
 a. A passive DC node has columns 24-80 all blank 
 b. If the actual converter operation does not correspond to the converter code, subsequent swing studies will abort. 
@@ -918,27 +998,35 @@ Delete Buses by Area (``DA``)
 =============================
 This command deletes all buses that reside in the area named in columns 4-13. Place a ``DA`` in the first two columns. Format of the input is shown below. This is a change record and must be preceded with a ``/CHANGES`` command or otherwise reside in a change set.
 
-.. image:: ../img/Area_Delete_Input_Format.png
+.. figure:: ../img/Area_Delete_Input_Format.png
 
-====== ======== ====== ====================
-Column ID Field Format Content
-====== ======== ====== ====================
-1-2    yes      A2     Record type - ``DA``
-4-13   yes      A10    Area Name
-====== ======== ====== ====================
+  Area Delete Input Format
+
+.. table:: Column Description for Delete Buses by Area Format
+
+  ====== ======== ====== ====================
+  Column ID Field Format Content
+  ====== ======== ====== ====================
+  1-2    yes      A2     Record type - ``DA``
+  4-13   yes      A10    Area Name
+  ====== ======== ====== ====================
 
 Delete Buses by Zone (``DZ``)
 =============================
 This command deletes all buses that reside in the zone named in columns 4-5. Place a ``DZ`` in the first two columns. Format for input is shown below. This is a change record and must be preceded with a ``/CHANGES`` command or otherwise reside in a change set.
 
-.. image:: ../img/Zone_Delete_Input_Format.png
+.. figure:: ../img/Zone_Delete_Input_Format.png
 
-====== ======== ====== ====================
-Column ID Field Format Content
-====== ======== ====== ====================
-1-2    yes      A2     Record type - ``DZ``
-4-5    yes      A2     Zone Name
-====== ======== ====== ====================
+  Zone Delete Input Format
+
+.. table:: Column Description for Delete Buses by Zone Format
+
+  ====== ======== ====== ====================
+  Column ID Field Format Content
+  ====== ======== ====== ====================
+  1-2    yes      A2     Record type - ``DZ``
+  4-5    yes      A2     Zone Name
+  ====== ======== ====== ====================
 
 Equivalent Transmission Line Branch (``E``)
 ===========================================
@@ -952,78 +1040,81 @@ Following is a sample of a coding sheet for equivalent branch data along with de
 
   Equivalent Branch Data Input Format
 
-+--------+----------+--------+---------------------------------------+
-| Column | ID Field | Format | Description                           |
-+========+==========+========+=======================================+
-| 1      | yes      | A1     | Record type - ``E for equivalent      |
-+--------+----------+--------+---------------------------------------+
-| 2      | no       | A1     | Blank                                 |
-+--------+----------+--------+---------------------------------------+
-| 3      | no       | A1     | Change code - see System Changes      |
-+--------+----------+--------+---------------------------------------+
-| 4-6    | no       | A3     | Ownership code - Line and transformer |
-|        |          |        | losses will be summarized by ownership|
-|        |          |        | at end of final area summary.         |
-+--------+----------+--------+---------------------------------------+
-| 7-14   | yes      | A8     | Bus name 1                            |
-+--------+----------+--------+---------------------------------------+
-| 15-18  | yes      | F4.0   | Base kV 1                             |
-+--------+----------+--------+---------------------------------------+
-| 19     | no       | I1     | Tie line metering point flag for area |
-|        |          |        | tie lines. 1 in column 19 provides for|
-|        |          |        | metering at bus name 1 2 in column 19 |
-|        |          |        | provides for metering at bus name 2   |
-|        |          |        | Blank allows for program assumption as|
-|        |          |        | follows:                              |
-|        |          |        |                                       |
-|        |          |        | Metering point will be identified (1) |
-|        |          |        | by location where line ownership      |
-|        |          |        | differs from bus ownership or (2)     |
-|        |          |        | when buses at end of tie line have    |
-|        |          |        | same ownership, then the bus Name 1   |
-|        |          |        | will be the metering point.           |
-+--------+----------+--------+---------------------------------------+
-| 20-27  | yes      | A8     | Bus name 2                            |
-+--------+----------+--------+---------------------------------------+
-| 29-31  | yes      | F4.0   | Base kV 2                             |
-+--------+----------+--------+---------------------------------------+
-| 32     | yes      | A1     | Circuit identification                |
-+--------+----------+--------+---------------------------------------+
-| 33     | yes      | I1     | Section number for making an          |
-|        |          |        | equivalent for series elements.       |
-|        |          |        | (numeric)                             |
-+--------+----------+--------+---------------------------------------+
-| 34-37  | no       | F4.0   | Total ampere rating for all lines     |
-|        |          |        | represented by this record.           |
-+--------+----------+--------+---------------------------------------+
-| 38     | no       | I1     | Number of parallel circuits           |
-|        |          |        | represented by this record, for       |
-|        |          |        | information purposes only. The        |
-|        |          |        | equivalent impedance is entered in    |
-|        |          |        | columns 39-74 for lines with unequal  |
-|        |          |        | legs.                                 |
-+--------+----------+--------+---------------------------------------+
-| 39-50  | no       | 2F6.5  | Per unit R and X on base kV and base  |
-|        |          |        | MVA.                                  |
-+--------+----------+--------+---------------------------------------+
-| 51-62  | no       | 2F6.5  | Per unit G and B at bus name 1 end of |
-|        |          |        | line.                                 |
-+--------+----------+--------+---------------------------------------+
-| 63-74  | no       | 2F6.5  | Per unit G and B at bus name 2 end of | 
-|        |          |        | line.                                 |
-+--------+----------+--------+---------------------------------------+
-| 75-77  | no       | A1,I2  | Energization Date - MYY               |
-|        |          |        |   M = {1,2,3,4,5,6,7,8,9,O,N,D}       |
-|        |          |        |   YY = last two digits of year        |
-+--------+----------+--------+---------------------------------------+
-| 78-80  | no       | A1,I2  | De-energization Data - MYY            |
-|        |          |        |   M = {0,1,2,3,4,5,6,7,8,9,O,N,D}     |
-|        |          |        |   YY = last two digits of year        |
-+--------+----------+--------+---------------------------------------+
-| 81-84  | no       | F4.0   | Thermal ratings in Amps               |
-+--------+----------+--------+---------------------------------------+
-| 85-88  | no       | F4.0   | Bottleneck rating in Amps             |
-+--------+----------+--------+---------------------------------------+
+.. table:: Column Description for Equivalent Branch Data
+
+  +--------+----------+--------+---------------------------------------+
+  | Column | ID Field | Format | Description                           |
+  +========+==========+========+=======================================+
+  | 1      | yes      | A1     | Record type - ``E`` for equivalent    |
+  +--------+----------+--------+---------------------------------------+
+  | 2      | no       | A1     | Blank                                 |
+  +--------+----------+--------+---------------------------------------+
+  | 3      | no       | A1     | Change code - see System Changes      |
+  +--------+----------+--------+---------------------------------------+
+  | 4-6    | no       | A3     | Ownership code - Line and transformer |
+  |        |          |        | losses will be summarized by ownership|
+  |        |          |        | at end of final area summary.         |
+  +--------+----------+--------+---------------------------------------+
+  | 7-14   | yes      | A8     | Bus name 1                            |
+  +--------+----------+--------+---------------------------------------+
+  | 15-18  | yes      | F4.0   | Base kV 1                             |
+  +--------+----------+--------+---------------------------------------+
+  | 19     | no       | I1     | Tie line metering point flag for area |
+  |        |          |        | tie lines. 1 in column 19 provides for|
+  |        |          |        | metering at bus name 1 2 in column 19 |
+  |        |          |        | provides for metering at bus name 2   |
+  |        |          |        | Blank allows for program assumption as|
+  |        |          |        | follows:                              |
+  |        |          |        |                                       |
+  |        |          |        | Metering point will be identified (1) |
+  |        |          |        | by location where line ownership      |
+  |        |          |        | differs from bus ownership or (2)     |
+  |        |          |        | when buses at end of tie line have    |
+  |        |          |        | same ownership, then the bus Name 1   |
+  |        |          |        | will be the metering point.           |
+  +--------+----------+--------+---------------------------------------+
+  | 20-27  | yes      | A8     | Bus name 2                            |
+  +--------+----------+--------+---------------------------------------+
+  | 29-31  | yes      | F4.0   | Base kV 2                             |
+  +--------+----------+--------+---------------------------------------+
+  | 32     | yes      | A1     | Circuit identification                |
+  +--------+----------+--------+---------------------------------------+
+  | 33     | yes      | I1     | Section number for making an          |
+  |        |          |        | equivalent for series elements.       |
+  |        |          |        | (numeric)                             |
+  +--------+----------+--------+---------------------------------------+
+  | 34-37  | no       | F4.0   | Total ampere rating for all lines     |
+  |        |          |        | represented by this record.           |
+  +--------+----------+--------+---------------------------------------+
+  | 38     | no       | I1     | Number of parallel circuits           |
+  |        |          |        | represented by this record, for       |
+  |        |          |        | information purposes only. The        |
+  |        |          |        | equivalent impedance is entered in    |
+  |        |          |        | columns 39-74 for lines with unequal  |
+  |        |          |        | legs.                                 |
+  +--------+----------+--------+---------------------------------------+
+  | 39-50  | no       | 2F6.5  | Per unit R and X on base kV and base  |
+  |        |          |        | MVA.                                  |
+  +--------+----------+--------+---------------------------------------+
+  | 51-62  | no       | 2F6.5  | Per unit G and B at bus name 1 end of |
+  |        |          |        | line.                                 |
+  +--------+----------+--------+---------------------------------------+
+  | 63-74  | no       | 2F6.5  | Per unit G and B at bus name 2 end of | 
+  |        |          |        | line.                                 |
+  +--------+----------+--------+---------------------------------------+
+  | 75-77  | no       | A1,I2  | Energization Date - MYY               |
+  |        |          |        |   M = {1,2,3,4,5,6,7,8,9,O,N,D}       |
+  |        |          |        |   YY = last two digits of year        |
+  +--------+----------+--------+---------------------------------------+
+  | 78-80  | no       | A1,I2  | De-energization Data - MYY            |
+  |        |          |        |   M = {0,1,2,3,4,5,6,7,8,9,O,N,D}     |
+  |        |          |        |   YY = last two digits of year        |
+  +--------+----------+--------+---------------------------------------+
+  | 81-84  | no       | F4.0   | Thermal ratings in Amps               |
+  +--------+----------+--------+---------------------------------------+
+  | 85-88  | no       | F4.0   | Bottleneck rating in Amps             |
+  +--------+----------+--------+---------------------------------------+
+
 
 Scheduled Area Intertie (``I``)
 ===============================
@@ -1031,17 +1122,21 @@ Intertie is the power flowing between two areas. Scheduled Area Intertie are the
 
 A coding sheet and column descriptions follow.
 
-.. image:: ../img/Area_Intertie_Input_Format.png
+.. figure:: ../img/Area_Intertie_Input_Format.png
 
-====== ======== ====== =============================================
-Column ID Field Format Description
-====== ======== ====== =============================================
-1      yes      A1     Record type - ``I``
-3      no       A1     Change code - see System Changes
-4-13   yes      A10    Area 1
-15-24  yes      A10    Area 2
-27-34  no       F8.0   Area 1 - Area 2 export in MW. (Import will be negative.) Blanks are interpreted as 0.0 scheduled export
-====== ======== ====== =============================================
+  Area Intertie Input Format
+
+.. table:: Column Description for Scheduled Area Intertie
+
+  ====== ======== ====== =============================================
+  Column ID Field Format Description
+  ====== ======== ====== =============================================
+  1      yes      A1     Record type - ``I``
+  3      no       A1     Change code - see System Changes
+  4-13   yes      A10    Area 1
+  15-24  yes      A10    Area 2
+  27-34  no       F8.0   Area 1 - Area 2 export in MW. (Import will be negative.) Blanks are interpreted as 0.0 scheduled export
+  ====== ======== ====== =============================================
 
 "Scheduled" is actually misapplied because no direct controls are available to regulate the intertie flow between two areas. Net area export can be controlled using area slack buses, but not interarea export, which requires additional but unavailable intertie slack buses. Therefore, without direct control of intertie, the scheduled flow can never be maintained. The term circulating flow is introduced to reconcile the discrepancy between the scheduled and the actual flow:
 
@@ -1060,7 +1155,9 @@ This record defines the identification and the electrical characteristics of a l
 
 Lines can be divided into equivalent series elements identified with unique section numbers. Section numbers need not be consecutive, but must be unique. Sections are presumed to be physically ordered such that the lowest numbered section is connected to bus 1 and the highest is connected to bus 2.
 
-.. image:: ../img/Balanced_Transmission_Line_Branch.png
+.. figure:: ../img/Balanced_Transmission_Line_Branch.png
+
+  Balanced Transmission Line Branch
 
 The entries in ``RATING`` and ``MILES`` are used in output to flag overloaded lines and produce a MW-Miles listing by ownership and voltage class if requested.
 
@@ -1072,81 +1169,85 @@ To simulate a bus tie or bus sectionalizing breaker normally closed, a line impe
 
 A sample coding sheet with column explanations follows.
 
-.. image:: ../img/Transmission_Line_Data_Input_Format.png
+.. figure:: ../img/Transmission_Line_Data_Input_Format.png
 
-+--------+----------+--------+---------------------------------------------------------+
-| Column | ID Field | Format | Description                                             |
-+========+==========+========+=========================================================+
-| 1      | yes      | A1     | Record type - ``L`` for branch                          |
-+--------+----------+--------+---------------------------------------------------------+
-| 2      | no       | A1     | Blank                                                   |
-+--------+----------+--------+---------------------------------------------------------+
-| 3      | no       | A1     | Change code - see System Changes                        |
-+--------+----------+--------+---------------------------------------------------------+
-| 4-6    | no       | A3     | Ownership code - Line and transformer losses will be    |
-|        |          |        | summarized by ownership at end of final area summary.   |
-+--------+----------+--------+---------------------------------------------------------+
-| 7-14   | yes      | A8     | Bus name 1                                              |
-+--------+----------+--------+---------------------------------------------------------+
-| 15-18  | yes      | F4.0   | Base kV 1                                               |
-+--------+----------+--------+---------------------------------------------------------+
-| 19     | no       | I1     | The line metering point for area tie lines. 1 in column |
-|        |          |        | 19 provides for metering at bus name 1 end. 2 in column |
-|        |          |        | 19 provides for metering at bus name 2 end. Blank allows|
-|        |          |        | for program assumption as follows:                      |
-|        |          |        |                                                         |
-|        |          |        | Metering point will be identified (1) by location where |
-|        |          |        | line ownership differs from bus ownership or (2) when   |
-|        |          |        | buses at end of tie line have same ownership, then the  |
-|        |          |        | bus name 1 will be the metering point.                  |
-+--------+----------+--------+---------------------------------------------------------+
-| 20-27  | yes      | A8     | Bus name 2                                              |
-+--------+----------+--------+---------------------------------------------------------+
-| 29-31  | yes      | F4.0   | Base kV 2                                               |
-+--------+----------+--------+---------------------------------------------------------+
-| 32     | no       | A1     | Circuit identification if more than one parallel branch |
-|        |          |        | exists.                                                 |
-+--------+----------+--------+---------------------------------------------------------+
-| 33     | no       | I1     | Section number for making an equivalent for series      |
-|        |          |        | elements (numeric). Program assembles series elements in|
-|        |          |        | numerical order of section numbers (need not be         |
-|        |          |        | consecutive).                                           |
-+--------+----------+--------+---------------------------------------------------------+
-| 34-37  | no       | F4.0   | Total ampere rating for all lines.                      |
-+--------+----------+--------+---------------------------------------------------------+
-| 38     | no       | I1     | Number of parallel circuits represented by this record, | 
-|        |          |        | for information purposes only. The equivalent impedance |
-|        |          |        | is entered in columns 39-62 for lines with equal legs.  |
-+--------+----------+--------+---------------------------------------------------------+
-| 39-44  | no       | F6.5   | Per unit R at base kV and base MVA (normally 100).      |
-+--------+----------+--------+---------------------------------------------------------+
-| 45-50  | no       | F6.5   | Per unit X at base kV and base MVA (normally 100).      |
-+--------+----------+--------+---------------------------------------------------------+
-| 51-56  | no       | F6.5   | Per unit G_pi/2 at base kV and MVA (normally 100). This |
-|        |          |        | format is for balanced lines when Y_pi sending equals   |
-|        |          |        | Y_pi receiving and only Y_pi needs to be input.         |
-+--------+----------+--------+---------------------------------------------------------+
-| 57-62  | no       | F6.5   | Per unit B_pi/2 at base kV and MVA (normally 100). This |
-|        |          |        | format is for balanced lines when Y_pi sending equals   |
-|        |          |        | Y_pi receiving and only Y_pi needs to be input.         |
-+--------+----------+--------+---------------------------------------------------------+
-| 63-66  | no       | F4.1   | Circuit miles of line or section.                       |
-+--------+----------+--------+---------------------------------------------------------+
-| 67-74  | no       | A8     | Descriptive data (alphanumeric, for example 6-wire).    |
-+--------+----------+--------+---------------------------------------------------------+
-| 75-77  | no       | A1,I2  | Energization Date - MYY                                 |
-|        |          |        |   M = {1,2,3,4,5,6,7,8,9,O,N,D}                         |
-|        |          |        |   YY = last two digits of year                          |
-+--------+----------+--------+---------------------------------------------------------+
-| 78-80  | no       | A1,I2  | De-energization Data - MYY                              |
-|        |          |        |   M = {0,1,2,3,4,5,6,7,8,9,O,N,D}                       |
-|        |          |        |   YY = last two digits of year                          |
-+--------+----------+--------+---------------------------------------------------------+
-| 81-84  | no       | F4.0   | Thermal rating in Amps                                  |
-+--------+----------+--------+---------------------------------------------------------+
-| 85-88  | no       | F4.0   | Bottleneck rating in Amps                               |
-+--------+----------+--------+---------------------------------------------------------+
+  Transmission Line Data Input Format
 
+.. table:: 
+
+  +--------+----------+--------+---------------------------------------------------------+
+  | Column | ID Field | Format | Description                                             |
+  +========+==========+========+=========================================================+
+  | 1      | yes      | A1     | Record type - ``L`` for branch                          |
+  +--------+----------+--------+---------------------------------------------------------+
+  | 2      | no       | A1     | Blank                                                   |
+  +--------+----------+--------+---------------------------------------------------------+
+  | 3      | no       | A1     | Change code - see System Changes                        |
+  +--------+----------+--------+---------------------------------------------------------+
+  | 4-6    | no       | A3     | Ownership code - Line and transformer losses will be    |
+  |        |          |        | summarized by ownership at end of final area summary.   |
+  +--------+----------+--------+---------------------------------------------------------+
+  | 7-14   | yes      | A8     | Bus name 1                                              |
+  +--------+----------+--------+---------------------------------------------------------+
+  | 15-18  | yes      | F4.0   | Base kV 1                                               |
+  +--------+----------+--------+---------------------------------------------------------+
+  | 19     | no       | I1     | The line metering point for area tie lines. 1 in column |
+  |        |          |        | 19 provides for metering at bus name 1 end. 2 in column |
+  |        |          |        | 19 provides for metering at bus name 2 end. Blank allows|
+  |        |          |        | for program assumption as follows:                      |
+  |        |          |        |                                                         |
+  |        |          |        | Metering point will be identified (1) by location where |
+  |        |          |        | line ownership differs from bus ownership or (2) when   |
+  |        |          |        | buses at end of tie line have same ownership, then the  |
+  |        |          |        | bus name 1 will be the metering point.                  |
+  +--------+----------+--------+---------------------------------------------------------+
+  | 20-27  | yes      | A8     | Bus name 2                                              |
+  +--------+----------+--------+---------------------------------------------------------+
+  | 29-31  | yes      | F4.0   | Base kV 2                                               |
+  +--------+----------+--------+---------------------------------------------------------+
+  | 32     | no       | A1     | Circuit identification if more than one parallel branch |
+  |        |          |        | exists.                                                 |
+  +--------+----------+--------+---------------------------------------------------------+
+  | 33     | no       | I1     | Section number for making an equivalent for series      |
+  |        |          |        | elements (numeric). Program assembles series elements in|
+  |        |          |        | numerical order of section numbers (need not be         |
+  |        |          |        | consecutive).                                           |
+  +--------+----------+--------+---------------------------------------------------------+
+  | 34-37  | no       | F4.0   | Total ampere rating for all lines.                      |
+  +--------+----------+--------+---------------------------------------------------------+
+  | 38     | no       | I1     | Number of parallel circuits represented by this record, | 
+  |        |          |        | for information purposes only. The equivalent impedance |
+  |        |          |        | is entered in columns 39-62 for lines with equal legs.  |
+  +--------+----------+--------+---------------------------------------------------------+
+  | 39-44  | no       | F6.5   | Per unit R at base kV and base MVA (normally 100).      |
+  +--------+----------+--------+---------------------------------------------------------+
+  | 45-50  | no       | F6.5   | Per unit X at base kV and base MVA (normally 100).      |
+  +--------+----------+--------+---------------------------------------------------------+
+  | 51-56  | no       | F6.5   | Per unit G_pi/2 at base kV and MVA (normally 100). This |
+  |        |          |        | format is for balanced lines when Y_pi sending equals   |
+  |        |          |        | Y_pi receiving and only Y_pi needs to be input.         |
+  +--------+----------+--------+---------------------------------------------------------+
+  | 57-62  | no       | F6.5   | Per unit B_pi/2 at base kV and MVA (normally 100). This |
+  |        |          |        | format is for balanced lines when Y_pi sending equals   |
+  |        |          |        | Y_pi receiving and only Y_pi needs to be input.         |
+  +--------+----------+--------+---------------------------------------------------------+
+  | 63-66  | no       | F4.1   | Circuit miles of line or section.                       |
+  +--------+----------+--------+---------------------------------------------------------+
+  | 67-74  | no       | A8     | Descriptive data (alphanumeric, for example 6-wire).    |
+  +--------+----------+--------+---------------------------------------------------------+
+  | 75-77  | no       | A1,I2  | Energization Date - MYY                                 |
+  |        |          |        |   M = {1,2,3,4,5,6,7,8,9,O,N,D}                         |
+  |        |          |        |   YY = last two digits of year                          |
+  +--------+----------+--------+---------------------------------------------------------+
+  | 78-80  | no       | A1,I2  | De-energization Data - MYY                              |
+  |        |          |        |   M = {0,1,2,3,4,5,6,7,8,9,O,N,D}                       |
+  |        |          |        |   YY = last two digits of year                          |
+  +--------+----------+--------+---------------------------------------------------------+
+  | 81-84  | no       | F4.0   | Thermal rating in Amps                                  |
+  +--------+----------+--------+---------------------------------------------------------+
+  | 85-88  | no       | F4.0   | Bottleneck rating in Amps                               |
+  +--------+----------+--------+---------------------------------------------------------+
+ 
 Two-Terminal DC Line (``LD``)
 =============================
 This record is used in conjunction with the two dc bus records; collectively they define the dc model. The dc line data contains pertinent information describing the electrical characteristics of the line, the scheduled dc power and voltage, and the initial firing and extinction angles.
@@ -1154,56 +1255,60 @@ This record is used in conjunction with the two dc bus records; collectively the
 Distinction between the inverter and rectifier buses is made with the dc line record using the sign of the scheduled dc power. The direction of power flow is always from rectifier to inverter, and the criteria assumes positive values from bus 1 to bus 2 on the record. Thus, simple modifications in the line data permit power reversals to be modeled with a minimum of data changes.
 A sample dc line data coding form and column descriptions follow. See Figure 3-33 and Table 3-25.
 
-.. image:: ../img/DC_Line_Data_Input_Format.png
+.. figure:: ../img/DC_Line_Data_Input_Format.png
 
-+---------+----------+--------+---------------------------------------------------------+
-| Columns | ID Field | Format | Descriptions                                            |
-+=========+==========+========+=========================================================+
-| 1-2     | yes      | A2     | Record code - ``LD`` for DC line                        |
-+---------+----------+--------+---------------------------------------------------------+
-| 3       | no       | A1     | Change code - see System Changes                        |
-+---------+----------+--------+---------------------------------------------------------+
-| 4-6     | no       | A3     | Ownership code, same as on Bus record                   |
-+---------+----------+--------+---------------------------------------------------------+
-| 7-14    | yes      | A8     | Converter bus name 1 (conventionally the rectiﬁer)      |
-+---------+----------+--------+---------------------------------------------------------+
-| 15-18   | yes      | F4.0   | Base kV 1                                               |
-+---------+----------+--------+---------------------------------------------------------+
-| 20-27   | yes      | A8     | Converter bus name 2 (conventionally the inverter)      |
-+---------+----------+--------+---------------------------------------------------------+
-| 29-31   | yes      | F4.0   | Base kV 2                                               |
-+---------+----------+--------+---------------------------------------------------------+
-| 34-37   | no       | F4.0   | I rating (amps) - Maximum DC line current in amperes.   |
-+---------+----------+--------+---------------------------------------------------------+
-| 38-43   | no       | F6.2   | R (ohms) - DC line resistance, ohms.                    |
-+---------+----------+--------+---------------------------------------------------------+
-| 44-49   | no       | F6.2   | L (mH) - DC line inductance, millihenries               |
-+---------+----------+--------+---------------------------------------------------------+
-| 50-55   | no       | F6.2   | C (uF) - DC line capacitance, microfarads.              |
-+---------+----------+--------+---------------------------------------------------------+
-| 56      | no       | A1     | Inverter or rectiﬁer control - Enter ``R`` for rectiﬁer |
-|         |          |        | control or ``I`` for inverter control (point of DC line |
-|         |          |        | in which scheduled power is measured).                  |
-+---------+----------+--------+---------------------------------------------------------+
-| 57-61   | no       | F5.1   | Schedule DC power (MW) - Scheduled DC power in megawatts|
-|         |          |        | from converter 1 to 2 metered at the end indicated by   |
-|         |          |        | ``I`` or ``R`` in column 56.                            |
-+---------+----------+--------+---------------------------------------------------------+
-| 62-66   | no       | F5.1   | Schedule DC line volts (kV) - at rectiﬁer end of DC     |
-|         |          |        | line.                                                   |
-+---------+----------+--------+---------------------------------------------------------+
-| 67-70   | no       | F4.1   | Rectiﬁer (:math:`\alphaN`) - Initial firing angle in    |
-|         |          |        | degrees at rectifier.                                   |
-+---------+----------+--------+---------------------------------------------------------+
-| 71-74   | no       | F4.1   | Inverter (:math:`\gamma0') - Minimum margin angle in    |
-|         |          |        | degrees at inverter.                                    |
-+---------+----------+--------+---------------------------------------------------------+
-| 75-78   | no       | F4.0   | Miles - Descriptive information only.                   |
-+---------+----------+--------+---------------------------------------------------------+
-| 81-84   | no       | F4.0   | Thermal rating in Amps                                  |
-+---------+----------+--------+---------------------------------------------------------+
-| 85-88   | no       |  F4.0  | Bottleneck rating in Amps                               |
-+---------+----------+--------+---------------------------------------------------------+
+  DC Line Data Input Format
+
+.. table:: Column Description for DC Line Data
+
+  +---------+----------+--------+-----------------------------------------------------------+
+  | Columns | ID Field | Format | Descriptions                                              |
+  +=========+==========+========+===========================================================+
+  | 1-2     | yes      | A2     | Record code - ``LD`` for DC line                          |
+  +---------+----------+--------+-----------------------------------------------------------+
+  | 3       | no       | A1     | Change code - see System Changes                          |
+  +---------+----------+--------+-----------------------------------------------------------+
+  | 4-6     | no       | A3     | Ownership code, same as on Bus record                     |
+  +---------+----------+--------+-----------------------------------------------------------+
+  | 7-14    | yes      | A8     | Converter bus name 1 (conventionally the rectifier)       |
+  +---------+----------+--------+-----------------------------------------------------------+
+  | 15-18   | yes      | F4.0   | Base kV 1                                                 |
+  +---------+----------+--------+-----------------------------------------------------------+
+  | 20-27   | yes      | A8     | Converter bus name 2 (conventionally the inverter)        |
+  +---------+----------+--------+-----------------------------------------------------------+
+  | 29-31   | yes      | F4.0   | Base kV 2                                                 |
+  +---------+----------+--------+-----------------------------------------------------------+
+  | 34-37   | no       | F4.0   | I rating (amps) - Maximum DC line current in amperes.     |
+  +---------+----------+--------+-----------------------------------------------------------+
+  | 38-43   | no       | F6.2   | R (ohms) - DC line resistance, ohms.                      |
+  +---------+----------+--------+-----------------------------------------------------------+
+  | 44-49   | no       | F6.2   | L (mH) - DC line inductance, millihenries                 |
+  +---------+----------+--------+-----------------------------------------------------------+
+  | 50-55   | no       | F6.2   | C (uF) - DC line capacitance, microfarads.                |
+  +---------+----------+--------+-----------------------------------------------------------+
+  | 56      | no       | A1     | Inverter or rectifier control - Enter ``R`` for rectifier |
+  |         |          |        | control or ``I`` for inverter control (point of DC line   |
+  |         |          |        | in which scheduled power is measured).                    |
+  +---------+----------+--------+-----------------------------------------------------------+
+  | 57-61   | no       | F5.1   | Schedule DC power (MW) - Scheduled DC power in megawatts  |
+  |         |          |        | from converter 1 to 2 metered at the end indicated by     |
+  |         |          |        | ``I`` or ``R`` in column 56.                              |
+  +---------+----------+--------+-----------------------------------------------------------+
+  | 62-66   | no       | F5.1   | Schedule DC line volts (kV) - at rectiﬁer end of DC     |
+  |         |          |        | line.                                                     |
+  +---------+----------+--------+-----------------------------------------------------------+
+  | 67-70   | no       | F4.1   | Rectiﬁer (:math:`\alpha_N`) - Initial firing angle in   |
+  |         |          |        | degrees at rectifier.                                     |
+  +---------+----------+--------+-----------------------------------------------------------+
+  | 71-74   | no       | F4.1   | Inverter (:math:`\gamma_0`) - Minimum margin angle in     |
+  |         |          |        | degrees at inverter.                                      |
+  +---------+----------+--------+-----------------------------------------------------------+
+  | 75-78   | no       | F4.0   | Miles - Descriptive information only.                     |
+  +---------+----------+--------+-----------------------------------------------------------+
+  | 81-84   | no       | F4.0   | Thermal rating in Amps                                    |
+  +---------+----------+--------+-----------------------------------------------------------+
+  | 85-88   | no       |  F4.0  | Bottleneck rating in Amps                                 |
+  +---------+----------+--------+-----------------------------------------------------------+
 
 Multiterminal DC Line (``LM``)
 ==============================
@@ -1213,53 +1318,55 @@ Two-terminal (type ``D``) and multiterminal (type ``M``) data may coexist within
 
 The following shows the multiterminal DC line data coding form format. It is followed by explanations of its various columns.
 
-.. image:: ../img/Multiterminal_DC_Line_Data_Input_Format.png
+.. figure:: ../img/Multiterminal_DC_Line_Data_Input_Format.png
 
-+---------+----------+--------+---------------------------------------------------------+
-| Column  | ID Field | Format | Description                                             |
-+=========+==========+========+=========================================================+
-| 1-2     | yes      | A2     | Record Code - ``LM`` for multiterminal DC line          |
-+---------+----------+--------+---------------------------------------------------------+
-| 3       | no       | A1     | Change code - see System Changes                        |
-+---------+----------+--------+---------------------------------------------------------+
-| 4-6     | no       | A3     | Ownership code, same as on bus data record              |
-+---------+----------+--------+---------------------------------------------------------+
-| 7-14    | yes      | A8     | DC bus name 1                                           |
-+---------+----------+--------+---------------------------------------------------------+
-| 15-18   | yes      | F4.0   | Base kV 1                                               |
-+---------+----------+--------+---------------------------------------------------------+
-| 19      | no       | I1     | Tie line metering point for area tie lines. 1 in column |
-|         |          |        | 19 provides for metering at bus name 1 end. 2 in column |
-|         |          |        | 19 provides for metering at bus name 2 end. Blank allows|
-|         |          |        | for program assumption as follows:                      |
-|         |          |        |                                                         |
-|         |          |        | Metering point will be identiﬁed (1) by location where  | 
-|         |          |        | line ownership differs from bus ownership or (2) when   |
-|         |          |        | buses at end of tie line have same ownership, then the  |
-|         |          |        | bus name 1 will be the metering point                   |
-+---------+----------+--------+---------------------------------------------------------+
-| 20-27   | yes      | A8     | DC bus name 2                                           |
-+---------+----------+--------+---------------------------------------------------------+
-| 29-31   | yes      | F4.0   | Base kV 2                                               |
-+---------+----------+--------+---------------------------------------------------------+
-| 34-37   | no       | F4.0   | I Rating (Amps) - Maximum DC line current in amperes    |
-+---------+----------+--------+---------------------------------------------------------+
-| 38-43   | no       | F6.2   | R (Ohms) - DC line resistance in ohms                   |
-+---------+----------+--------+---------------------------------------------------------+
-| 44-49   | no       | F6.2   | L (mH) - DC line inductance in millihenries             |
-+---------+----------+--------+---------------------------------------------------------+
-| 50-55   | no       |F6.2    | C (uF) - DC line capacitance in microfarads             |
-+---------+----------+--------+---------------------------------------------------------+
-| 71-74   | no       | F4.0   | Miles - Descriptive information only                    |
-+---------+----------+--------+---------------------------------------------------------+
-| 75-77   | no       | A1,I2  | Energization Date - MYY                                 |
-|         |          |        |  M = {1,2,3,4,5,6,7,8,9,O,N,D}                          |
-|         |          |        |  YY = last two digits of year                           |
-+---------+----------+--------+---------------------------------------------------------+
-| 78-80   | no       | A1,I2  | De-energization Data - MYY                              |
-|         |          |        |  M = {0,1,2,3,4,5,6,7,8,9,O,N,D}                        |
-|         |          |        |  YY = last two digits of year                           |
-+---------+----------+--------+---------------------------------------------------------+
+.. table:: Column Description for Multiterminal DC Line Type ``LM``
+
+  +---------+----------+--------+---------------------------------------------------------+
+  | Column  | ID Field | Format | Description                                             |
+  +=========+==========+========+=========================================================+
+  | 1-2     | yes      | A2     | Record Code - ``LM`` for multiterminal DC line          |
+  +---------+----------+--------+---------------------------------------------------------+
+  | 3       | no       | A1     | Change code - see System Changes                        |
+  +---------+----------+--------+---------------------------------------------------------+
+  | 4-6     | no       | A3     | Ownership code, same as on bus data record              |
+  +---------+----------+--------+---------------------------------------------------------+
+  | 7-14    | yes      | A8     | DC bus name 1                                           |
+  +---------+----------+--------+---------------------------------------------------------+
+  | 15-18   | yes      | F4.0   | Base kV 1                                               |
+  +---------+----------+--------+---------------------------------------------------------+
+  | 19      | no       | I1     | Tie line metering point for area tie lines. 1 in column |
+  |         |          |        | 19 provides for metering at bus name 1 end. 2 in column |
+  |         |          |        | 19 provides for metering at bus name 2 end. Blank allows|
+  |         |          |        | for program assumption as follows:                      |
+  |         |          |        |                                                         |
+  |         |          |        | Metering point will be identified (1) by location where | 
+  |         |          |        | line ownership differs from bus ownership or (2) when   |
+  |         |          |        | buses at end of tie line have same ownership, then the  |
+  |         |          |        | bus name 1 will be the metering point                   |
+  +---------+----------+--------+---------------------------------------------------------+
+  | 20-27   | yes      | A8     | DC bus name 2                                           |
+  +---------+----------+--------+---------------------------------------------------------+
+  | 29-31   | yes      | F4.0   | Base kV 2                                               |
+  +---------+----------+--------+---------------------------------------------------------+
+  | 34-37   | no       | F4.0   | I Rating (Amps) - Maximum DC line current in amperes    |
+  +---------+----------+--------+---------------------------------------------------------+
+  | 38-43   | no       | F6.2   | R (Ohms) - DC line resistance in ohms                   |
+  +---------+----------+--------+---------------------------------------------------------+
+  | 44-49   | no       | F6.2   | L (mH) - DC line inductance in millihenries             |
+  +---------+----------+--------+---------------------------------------------------------+
+  | 50-55   | no       | F6.2   | C (uF) - DC line capacitance in microfarads             |
+  +---------+----------+--------+---------------------------------------------------------+
+  | 71-74   | no       | F4.0   | Miles - Descriptive information only                    |
+  +---------+----------+--------+---------------------------------------------------------+
+  | 75-77   | no       | A1,I2  | Energization Date - MYY                                 |
+  |         |          |        |  M = {1,2,3,4,5,6,7,8,9,O,N,D}                          |
+  |         |          |        |  YY = last two digits of year                           |
+  +---------+----------+--------+---------------------------------------------------------+
+  | 78-80   | no       | A1,I2  | De-energization Data - MYY                              |
+  |         |          |        |  M = {0,1,2,3,4,5,6,7,8,9,O,N,D}                        |
+  |         |          |        |  YY = last two digits of year                           |
+  +---------+----------+--------+---------------------------------------------------------+
 
 Factor Change (``PO``, ``PZ``, ``PN``, ``PA``, ``PB``, ``PC``, ``PD``)
 ======================================================================
@@ -1296,67 +1403,83 @@ Six different subtypes are permitted. Different subtypes may be submitted togeth
   
   Subtype ``D`` Factor change by zones (20 maximum). all non-industrial loads within the given zones and optional ownership will be converted into constant impedance and constant current loads.
 
-.. image:: ../img/Factor_Change_by_Ownerships.png
+.. figure:: ../img/Factor_Change_by_Ownerships.png
 
-.. image:: ../img/Factor_Change_by_Zones.png
+  Factor Changen by Ownerships
 
-.. image:: ../img/Factor_Change_by_Nonindustrial_Loads.png
+.. figure:: ../img/Factor_Change_by_Zones.png
 
-.. image:: ../img/Factor_Change_on_All_Loads_and_Generation.png
+  Factor Change by Zones
 
-.. image:: ../img/Factor_Change_by_Ownerships_of_Constant_Current_and_Impedance_Loads.png
+.. figure:: ../img/Factor_Change_by_Nonindustrial_Loads.png
 
-.. image:: ../img/Factor_Change_by_Zones_of_Constant_Current_and_Impedance_Loads.png
+  Factor Change by Nonindustrial Loads
 
-.. image:: ../img/Factor_Change_by_Nonindustrial_Loads_of_Constant_Current_and_Impedance_Loads.png
+.. figure:: ../img/Factor_Change_on_All_Loads_and_Generation.png
 
-+--------+-------+----------+------------------------------------------------------+
-| Column |       | Format   | Description                                          |
-+========+=======+==========+======================================================+
-| 1      | yes   | A1       | Record type - ``P`` factor change (``P`` represents  |
-|        |       |          | its former name Percentage Changes)                  |
-+--------+-------+----------+------------------------------------------------------+
-| 2      | yes   | A1       | Subtype                                              |
-|        |       |          |   ``O`` for ownerships                               |
-|        |       |          |   ``Z`` for all loads in selected zones              |
-|        |       |          |   ``N`` for nonindustrial loads in selected zones    |
-|        |       |          |   ``A`` for all loads and generatives                |
-|        |       |          |   ``B`` for constant current and constant impedance  |
-|        |       |          |      loads by ownership                              |
-|        |       |          |   ``C`` for constant current and constant impedance  |
-|        |       |          |      loads by zones                                  |
-+--------+-------+----------+------------------------------------------------------+
-| 10-14  | no    | F5.0     | P factor (decimal fraction) for load                 |
-+--------+-------+----------+------------------------------------------------------+
-| 16-20  | no    | F5.0     | Q factor (decimal fraction) for load                 |
-+--------+-------+----------+------------------------------------------------------+
-| 22-26  | no    | F5.0     | P factor (decimal fraction) for generation or        |
-|        |       |          | constant impedance loads                             |
-+--------+-------+----------+------------------------------------------------------+
-| 28-32  | no    | F5.0     | Q factor (decimal fraction) for generation or        |
-|        |       |          | constant impedance loads                             |
-+--------+-------+----------+------------------------------------------------------+
-| Subtypes O and B - record |                                                      |
-+--------+-------+----------+------------------------------------------------------+
-| 4-6    | yes   | A3       | Owner code                                           |
-+--------+-------+----------+------------------------------------------------------+
-| 35-80  | no    | (A2,1X)  | Optional list of zone codes separated by single      |
-|        |       |          | blanks. Change will be restricted to these listed    |
-|        |       |          | zones. If no list, all zones are assumed. Note:      |
-|        |       |          | Subtype C is restricted to the following types of    |
-|        |       |          | continuation buses: +A01, +A02, *P, *I.              |
-+--------+-------+----------+------------------------------------------------------+
-| Subtypes Z, C, and N      |                                                      |
-+--------+-------+----------+------------------------------------------------------+
-| 4-5    | yes   | A2       | Zone code                                            |
-+--------+-------+----------+------------------------------------------------------+
-| 35-80  | no    | (A3,1X)  | Optional list of ownership codes separated by single |
-|        |       |          | blanks. Change will be restricted to these listed    |
-|        |       |          | owners, if no list, all owners are assumed. Note:    |
-|        |       |          | Subtype C is restricted to the following types of    |
-|        |       |          | continuation buses: ``+A01``, ```+A02```, ``*P``,    |
-|        |       |          | ``*I.``                                              |
-+--------+-------+----------+------------------------------------------------------+
+  Factor Change on All Loads and Generation
+
+.. figure:: ../img/Factor_Change_by_Ownerships_of_Constant_Current_and_Impedance_Loads.png
+
+  Factor Change by Ownerships of Constant Current and Impeadance Loads
+
+.. figure:: ../img/Factor_Change_by_Zones_of_Constant_Current_and_Impedance_Loads.png
+
+  Factor Change by Zones of Constant Current and Impedance Loads
+
+.. figure:: ../img/Factor_Change_by_Nonindustrial_Loads_of_Constant_Current_and_Impedance_Loads.png
+
+  Factor Change by Nonindustrial Loads of Constant Current and Impedance Loads
+
+.. table:: Column Description of Factor Change Record
+
+  +--------+-------+----------+------------------------------------------------------+
+  | Column |       | Format   | Description                                          |
+  +========+=======+==========+======================================================+
+  | 1      | yes   | A1       | Record type - ``P`` factor change (``P`` represents  |
+  |        |       |          | its former name Percentage Changes)                  |
+  +--------+-------+----------+------------------------------------------------------+
+  | 2      | yes   | A1       | Subtype                                              |
+  |        |       |          |   ``O`` for ownerships                               |
+  |        |       |          |   ``Z`` for all loads in selected zones              |
+  |        |       |          |   ``N`` for nonindustrial loads in selected zones    |
+  |        |       |          |   ``A`` for all loads and generatives                |
+  |        |       |          |   ``B`` for constant current and constant impedance  |
+  |        |       |          |      loads by ownership                              |
+  |        |       |          |   ``C`` for constant current and constant impedance  |
+  |        |       |          |      loads by zones                                  |
+  +--------+-------+----------+------------------------------------------------------+
+  | 10-14  | no    | F5.0     | P factor (decimal fraction) for load                 |
+  +--------+-------+----------+------------------------------------------------------+
+  | 16-20  | no    | F5.0     | Q factor (decimal fraction) for load                 |
+  +--------+-------+----------+------------------------------------------------------+
+  | 22-26  | no    | F5.0     | P factor (decimal fraction) for generation or        |
+  |        |       |          | constant impedance loads                             |
+  +--------+-------+----------+------------------------------------------------------+
+  | 28-32  | no    | F5.0     | Q factor (decimal fraction) for generation or        |
+  |        |       |          | constant impedance loads                             |
+  +--------+-------+----------+------------------------------------------------------+
+  | Subtypes O and B - record |                                                      |
+  +--------+-------+----------+------------------------------------------------------+
+  | 4-6    | yes   | A3       | Owner code                                           |
+  +--------+-------+----------+------------------------------------------------------+
+  | 35-80  | no    | (A2,1X)  | Optional list of zone codes separated by single      |
+  |        |       |          | blanks. Change will be restricted to these listed    |
+  |        |       |          | zones. If no list, all zones are assumed. Note:      |
+  |        |       |          | Subtype C is restricted to the following types of    |
+  |        |       |          | continuation buses: +A01, +A02, \*P, \*I.            |
+  +--------+-------+----------+------------------------------------------------------+
+  | Subtypes Z, C, and N      |                                                      |
+  +--------+-------+----------+------------------------------------------------------+
+  | 4-5    | yes   | A2       | Zone code                                            |
+  +--------+-------+----------+------------------------------------------------------+
+  | 35-80  | no    | (A3,1X)  | Optional list of ownership codes separated by single |
+  |        |       |          | blanks. Change will be restricted to these listed    |
+  |        |       |          | owners, if no list, all owners are assumed. Note:    |
+  |        |       |          | Subtype C is restricted to the following types of    |
+  |        |       |          | continuation buses: ``+A01``, ``+A02``, ``*P``,    |
+  |        |       |          | ``*I.``                                              |
+  +--------+-------+----------+------------------------------------------------------+
 
 Reactive Capability Curves (``QP``, ``QX``, ``QN``)
 ===================================================
@@ -1372,64 +1495,70 @@ If the optional constant MVA representation is invoked, it takes precedence over
 
 If the minimum absolute value for :math:`P` is less than the first entered value (:math:`P_1`), then the model will set the values for :math:`Q_{max}` and :math:`Q_{min}` equal to :math:`Q_{max1}` and :math:`Q_{min1}`. For any point :math:`ABS (P_{gen})` between :math:`P_1` and :math:`MMVA`, the model will linearly interpolate between the :math:`Q` values for :math:`P_j` just greater than and :math:`P_{j-1}` just less than :math:`ABS(P_{gen})`. :math:`P_{gen}` greater than :math:`MMVA` generates a fatal data error.
 
-.. image:: ../img/Generator_Capability_Curve_Model.png
+.. figure:: ../img/Generator_Capability_Curve_Model.png
+
+  Generator Capability Curve Model
 
 Processing
 ----------
 Before solution of the case, each ``BE``, ``BG``, ``BQ``, ``BX``, and ``BS`` bus is checked to see if a PQ curve is to be used to set its Q limits. If not, the :math:`Q_{min}` and :math:`Q_{max}` already stored are used, that is, those read from the bus record or calculated from a prior solution. If a curve is active, the values calculated using it replace those formerly stored. Original input values from the bus record are not saved. 
 
-+--------+----------+--------+-----------------------------------------------+
-| Column | ID Field | Format | Description                                   |
-+--------+----------+--------+-----------------------------------------------+
-| 1-2    | yes      | A2     | Record Code -                                 |
-|        |          |        |   QP for Pgen values (positive values only)   |
-|        |          |        |   QX for Qmax values (positive values)        |
-|        |          |        |   QN for Qmin values (negative values)        |
-+--------+----------+--------+-----------------------------------------------+
-| 3      | no       | A1     | Change code - For QP record only:             |
-|        |          |        |   D = Delete curve for this bus.              |
-|        |          |        |   M = Change p.u. code or activity ﬂag.       |
-|        |          |        |   *This cannot be used to alter curve data.*  |
-|        |          |        |                                               |
-|        |          |        | To change curve data, enter a complete new    |
-|        |          |        | set. It is not necessary to delete the curve  |
-|        |          |        | ﬁrst; new data will replace the old. Column   |
-|        |          |        | 3 must be blank.                              |
-+--------+----------+--------+-----------------------------------------------+
-| 4-5    | no       | A2     | Unit ID (for informational purposes)          |
-+--------+----------+--------+-----------------------------------------------+
-| 6      | no       | A1     | Activity ﬂag — For QP record only:            |
-|        |          |        |   Blank = Curve active (default when data     |
-|        |          |        |   is entered).                                |
-|        |          |        |   *  = Inactivate curve.                      |
-|        |          |        |   A  = Activate formerly inactive curve.      |
-+--------+----------+--------+-----------------------------------------------+
-| 7-14   | yes      | A8     | Bus name                                      |
-+--------+----------+--------+-----------------------------------------------+
-| 15-18  | yes      | F4.0   | Base kV                                       |
-+--------+----------+--------+-----------------------------------------------+
-| 19-20  | no       | I2     | Number of units. Total used is number of      |
-|        |          |        | units times the values speciﬁed (             |
-|        |          |        | :math:`P_{gen}`, :math:`Q_{max}`,             |
-|        |          |        | :math:`Q_{min}` ))                            |
-+--------+----------+--------+-----------------------------------------------+
-| 21-25  | no       | F5.2   | QP - Maximum MVA                              |
-|        |          |        | QX - Positive (leading) power factor for Qmax |
-|        |          |        | QN - Negative (lagging) power factor for Qmin |
-+--------+----------+--------+-----------------------------------------------+
-| 26-30  | no       | F5.2   | Maximum Pgen (MW/unit). This is an optional   |
-|        |          |        | hard limit, designating a maximum operating   |
-|        |          |        | limit.                                        |
-+--------+----------+--------+-----------------------------------------------+
-| 31-120 | no       | 15F6.2 | Up to 15 values for Pgen, Qmax , or Qmin      |
-|        |          |        | depending on the card type. The values for    |
-|        |          |        | Pgen can be in any order, but the related     |
-|        |          |        | Qmin, Qmax values must correspond. Entries    |
-|        |          |        | must be in consecutive ﬁelds with no blank    |
-|        |          |        | entries between. Pgen (1) must be 0.0.        |
-+--------+----------+--------+-----------------------------------------------+
+.. table:: Column Description for Reactive Capability Curves
 
-.. image:: ../img/Reactive_Capability_Curve_QP_Record.png
+  +--------+----------+--------+-----------------------------------------------+
+  | Column | ID Field | Format | Description                                   |
+  +--------+----------+--------+-----------------------------------------------+
+  | 1-2    | yes      | A2     | Record Code -                                 |
+  |        |          |        |   QP for Pgen values (positive values only)   |
+  |        |          |        |   QX for Qmax values (positive values)        |
+  |        |          |        |   QN for Qmin values (negative values)        |
+  +--------+----------+--------+-----------------------------------------------+
+  | 3      | no       | A1     | Change code - For QP record only:             |
+  |        |          |        |   D = Delete curve for this bus.              |
+  |        |          |        |   M = Change p.u. code or activity flag.      |
+  |        |          |        |   *This cannot be used to alter curve data.*  |
+  |        |          |        |                                               |
+  |        |          |        | To change curve data, enter a complete new    |
+  |        |          |        | set. It is not necessary to delete the curve  |
+  |        |          |        | first; new data will replace the old. Column  |
+  |        |          |        | 3 must be blank.                              |
+  +--------+----------+--------+-----------------------------------------------+
+  | 4-5    | no       | A2     | Unit ID (for informational purposes)          |
+  +--------+----------+--------+-----------------------------------------------+
+  | 6      | no       | A1     | Activity flag For ``QP`` record only:         |
+  |        |          |        |   Blank = Curve active (default when data     |
+  |        |          |        |   is entered).                                |
+  |        |          |        |   *  = Inactivate curve.                      |
+  |        |          |        |   A  = Activate formerly inactive curve.      |
+  +--------+----------+--------+-----------------------------------------------+
+  | 7-14   | yes      | A8     | Bus name                                      |
+  +--------+----------+--------+-----------------------------------------------+
+  | 15-18  | yes      | F4.0   | Base kV                                       |
+  +--------+----------+--------+-----------------------------------------------+
+  | 19-20  | no       | I2     | Number of units. Total used is number of      |
+  |        |          |        | units times the values specified (            |
+  |        |          |        | :math:`P_{gen}`, :math:`Q_{max}`,             |
+  |        |          |        | :math:`Q_{min}` ))                            |
+  +--------+----------+--------+-----------------------------------------------+
+  | 21-25  | no       | F5.2   | QP - Maximum MVA                              |
+  |        |          |        | QX - Positive (leading) power factor for Qmax |
+  |        |          |        | QN - Negative (lagging) power factor for Qmin |
+  +--------+----------+--------+-----------------------------------------------+
+  | 26-30  | no       | F5.2   | Maximum Pgen (MW/unit). This is an optional   |
+  |        |          |        | hard limit, designating a maximum operating   |
+  |        |          |        | limit.                                        |
+  +--------+----------+--------+-----------------------------------------------+
+  | 31-120 | no       | 15F6.2 | Up to 15 values for Pgen, Qmax , or Qmin      |
+  |        |          |        | depending on the card type. The values for    |
+  |        |          |        | Pgen can be in any order, but the related     |
+  |        |          |        | Qmin, Qmax values must correspond. Entries    |
+  |        |          |        | must be in consecutive fields with no blank   |
+  |        |          |        | entries between. Pgen (1) must be 0.0.        |
+  +--------+----------+--------+-----------------------------------------------+
+
+.. figure:: ../img/Reactive_Capability_Curve_QP_Record.png
+
+  Reactive Capability Curve ``QP`` Record
 
 .. _regulating-transformer:
 
@@ -1466,124 +1595,132 @@ Several subtypes are available:
 
   Subtype ``M`` This specifies an LTC phase shifter that provides constraints on the active power flow through itself. Ordinarily, it provides no control, but if its active power limits are exceeded, it becomes a type ``P`` LTC phase shifter and holds the MW flow within the inequality constraints assigned. The controlled real power flow is within limits :math:`P_{min} \leq P_{max}` (:math:`P_{min}` = ``MIN SCHED``; :math:`P_{max}` = ``MAX SCHED``).
 
-.. image:: ../img/Regulating_Transformer_Data_Input_Format.png
+.. figure:: ../img/Regulating_Transformer_Data_Input_Format.png
 
-+--------+----------+--------+------------------------------------------------------+
-| Column | ID Field | Format | Description                                          |
-+========+==========+========+======================================================+
-| 1      | yes      | A1     | Record type - ``R`` for LTC and automatic            |
-|        |          |        | phase-shifter data. A record type ``T`` must be in   |
-|        |          |        | same system to provide full data required.           |
-+--------+----------+--------+------------------------------------------------------+
-| 2      | no       | A1     | Subtype - See regulating transformer and             |
-|        |          |        | phase-shifter subtypes.                              |
-+--------+----------+--------+------------------------------------------------------+
-| 3      | no       | A1     | Change code - see System Changes                     |
-+--------+----------+--------+------------------------------------------------------+
-| 4-6    | no       | A3     | Ownership code                                       |
-+--------+----------+--------+------------------------------------------------------+
-| 7-14   | yes      | A8     | Bus name 1                                           |
-+--------+----------+--------+------------------------------------------------------+
-| 15-18  | yes      | F4.0   | Base kV 1                                            |
-+--------+----------+--------+------------------------------------------------------+
-| 19     | no       | I1     | Variable tap side if T_max and T_min cannot orient   |
-|        |          |        | T_x. 0 - Low alpha is ﬁxed 1 - Bus 1 is variable 2 - |
-|        |          |        | Bus 2 is variable                                    |
-+--------+----------+--------+------------------------------------------------------+
-| 20-27  | yes      | A8     | Bus name 2                                           |
-+--------+----------+--------+------------------------------------------------------+
-| 29-31  | yes      | F4.0   | Base kV 2                                            |
-+--------+----------+--------+------------------------------------------------------+
-| 34-45  | no       | A8,F4.0| Controlled bus name and base kV                      |
-+--------+----------+--------+------------------------------------------------------+
-| Multiple Use of columns 46-67 For subtypes blank, ``V``, ``Q`` and ``N``          |
-+--------+----------+--------+------------------------------------------------------+
-| 46-55  | no       | 2F5.2  | Maximum and minimum kV taps. Data must be entered.   |
-+--------+----------+--------+------------------------------------------------------+
-| 56-57  | no       | I2     | Total number of LTC taps. If blank, program assumes  |
-|        |          |        | continuous action.                                   |
-+--------+----------+--------+------------------------------------------------------+
-| 58-67  | no       | 2F5.0  | Scheduled MVAR ﬂow (subtype ``Q``) or maximum and    |
-|        |          |        | minimum MVAR ﬂow (subtype ``N``) through transformer.|
-|        |          |        | Metered at bus name 1 on this record.                |
-+--------+----------+--------+------------------------------------------------------+
-| For subtypes P and M                                                              |
-+--------+----------+--------+------------------------------------------------------+
-| 46-55  | no       | 2F5.2  | Maximum and minimum angle in degrees. Data must be   |
-|        |          |        | entered.                                             |
-+--------+----------+--------+------------------------------------------------------+
-| 56-57  | no       | I2     | Total number of phase shift positions available. If  |
-|        |          |        | blank, program assumes continuous action.            |
-+--------+----------+--------+------------------------------------------------------+
-| 58-67  | no       | 2F5.0  | Scheduled MW ﬂow (subtype ``P``) or maximum and      |
-|        |          |        | minimum MW ﬂow (subtype ``M``) through transformer.  |
-|        |          |        | Metered at bus name 1 on this record.                |
-+--------+----------+--------+------------------------------------------------------+
-| For all subtypes                                                                  |
-+--------+----------+--------+------------------------------------------------------+
-| 75-77  | no       | A1,I2  | Energization Date - MYY                              |
-|        |          |        |   M = {1,2,3,4,5,6,7,8,9,O,N,D}                      |
-|        |          |        |   YY = last two digits                               |
-+--------+----------+--------+------------------------------------------------------+
-| 78-80  | no       | A1,I2  | De-energization Date - MYY                           |
-|        |          |        |   M = {1,2,3,4,5,6,7,8,9,O,N,D}                      |
-|        |          |        |   YY = last two digits                               |
-+--------+----------+--------+------------------------------------------------------+
+  Regulating Transformer Data Input Input Format
+
+.. table:: Column Description for Regulating Transformer Data
+
+  +--------+----------+--------+------------------------------------------------------+
+  | Column | ID Field | Format | Description                                          |
+  +========+==========+========+======================================================+
+  | 1      | yes      | A1     | Record type - ``R`` for LTC and automatic            |
+  |        |          |        | phase-shifter data. A record type ``T`` must be in   |
+  |        |          |        | same system to provide full data required.           |
+  +--------+----------+--------+------------------------------------------------------+
+  | 2      | no       | A1     | Subtype - See regulating transformer and             |
+  |        |          |        | phase-shifter subtypes.                              |
+  +--------+----------+--------+------------------------------------------------------+
+  | 3      | no       | A1     | Change code - see System Changes                     |
+  +--------+----------+--------+------------------------------------------------------+
+  | 4-6    | no       | A3     | Ownership code                                       |
+  +--------+----------+--------+------------------------------------------------------+
+  | 7-14   | yes      | A8     | Bus name 1                                           |
+  +--------+----------+--------+------------------------------------------------------+
+  | 15-18  | yes      | F4.0   | Base kV 1                                            |
+  +--------+----------+--------+------------------------------------------------------+
+  | 19     | no       | I1     | Variable tap side if T_max and T_min cannot orient   |
+  |        |          |        | T_x. 0 - Low alpha is fixed 1 - Bus 1 is variable 2  |
+  |        |          |        | - Bus 2 is variable                                  |
+  +--------+----------+--------+------------------------------------------------------+
+  | 20-27  | yes      | A8     | Bus name 2                                           |
+  +--------+----------+--------+------------------------------------------------------+
+  | 29-31  | yes      | F4.0   | Base kV 2                                            |
+  +--------+----------+--------+------------------------------------------------------+
+  | 34-45  | no       | A8,F4.0| Controlled bus name and base kV                      |
+  +--------+----------+--------+------------------------------------------------------+
+  | Multiple Use of columns 46-67 For subtypes blank, ``V``, ``Q`` and ``N``          |
+  +--------+----------+--------+------------------------------------------------------+
+  | 46-55  | no       | 2F5.2  | Maximum and minimum kV taps. Data must be entered.   |
+  +--------+----------+--------+------------------------------------------------------+
+  | 56-57  | no       | I2     | Total number of LTC taps. If blank, program assumes  |
+  |        |          |        | continuous action.                                   |
+  +--------+----------+--------+------------------------------------------------------+
+  | 58-67  | no       | 2F5.0  | Scheduled MVAR flow (subtype ``Q``) or maximum and   |
+  |        |          |        | minimum MVAR flow (subtype ``N``) through transformer|
+  |        |          |        | Metered at bus name 1 on this record.                |
+  +--------+----------+--------+------------------------------------------------------+
+  | For subtypes P and M                                                              |
+  +--------+----------+--------+------------------------------------------------------+
+  | 46-55  | no       | 2F5.2  | Maximum and minimum angle in degrees. Data must be   |
+  |        |          |        | entered.                                             |
+  +--------+----------+--------+------------------------------------------------------+
+  | 56-57  | no       | I2     | Total number of phase shift positions available. If  |
+  |        |          |        | blank, program assumes continuous action.            |
+  +--------+----------+--------+------------------------------------------------------+
+  | 58-67  | no       | 2F5.0  | Scheduled MW flow (subtype ``P``) or maximum and     |
+  |        |          |        | minimum MW flow (subtype ``M``) through transformer. |
+  |        |          |        | Metered at bus name 1 on this record.                |
+  +--------+----------+--------+------------------------------------------------------+
+  | For all subtypes                                                                  |
+  +--------+----------+--------+------------------------------------------------------+
+  | 75-77  | no       | A1,I2  | Energization Date - MYY                              |
+  |        |          |        |   M = {1,2,3,4,5,6,7,8,9,O,N,D}                      |
+  |        |          |        |   YY = last two digits                               |
+  +--------+----------+--------+------------------------------------------------------+
+  | 78-80  | no       | A1,I2  | De-energization Date - MYY                           |
+  |        |          |        |   M = {1,2,3,4,5,6,7,8,9,O,N,D}                      |
+  |        |          |        |   YY = last two digits                               |
+  +--------+----------+--------+------------------------------------------------------+
 
 Series Compensated RANI Model (``RZ``)
 ======================================
 RANI stands for Rapid Adjustment of Network Impedance and represents a series connected thyristor which changes its series impedance to control power or voltage. See table below.
 
-.. image:: ../img/RANI_Thyristor_Data_Input_Format.png
+.. figure:: ../img/RANI_Thyristor_Data_Input_Format.png
 
-+--------+----------+--------+------------------------------------------------------+
-| Column | ID Field | Format | Description                                          |
-+--------+----------+--------+------------------------------------------------------+
-| 1-2    | yes      | A2     | Record type - ``RZ``                                 |
-+--------+----------+--------+------------------------------------------------------+
-| 3      | no       | A1     | Change Code                                          |
-|        |          |        |  Blank - add                                         |
-|        |          |        |  ``M`` - modify                                      |
-|        |          |        |  ``D`` - delete                                      |
-|        |          |        |  ``R`` — restore                                     |
-+--------+----------+--------+------------------------------------------------------+
-| 7-14   | yes      | A8     | Bus name 1                                           |
-+--------+----------+--------+------------------------------------------------------+
-| 15-18  | yes      | F4.0   | Base kV 1                                            |
-+--------+----------+--------+------------------------------------------------------+
-| 19     | no       | I1     | Variable tap side if T_max and T_min cannot orient   |
-|        |          |        | T_x.                                                 |
-|        |          |        | 0 - Low alpha is ﬁxed                                |
-|        |          |        | 1 - Bus 1 is variable                                |
-|        |          |        | 2 - Bus 2 is variable                                |
-+--------+----------+--------+------------------------------------------------------+
-| 20-27  | yes      | A8     | Bus name 2                                           |
-+--------+----------+--------+------------------------------------------------------+
-| 29-31  | yes      | F4.0   | Base kV 2                                            |
-+--------+----------+--------+------------------------------------------------------+
-| 32     | yes      | A1     | ID                                                   |
-+--------+----------+--------+------------------------------------------------------+
-| 33     | yes      | I1     | SECTION                                              |
-+--------+----------+--------+------------------------------------------------------+
-| 34     | no       | A1     | TYPE 1, 2, or 3                                      |
-|        |          |        |  TYPE 1 - Control Pc using Xij                       |
-|        |          |        |  TYPE 2 - Control V using Xij                        |
-|        |          |        |  TYPE 3 — Control V using Bis                        |
-+--------+----------+--------+------------------------------------------------------+
-| 35-39  | no       | F5.0   | Pcmax(MW)                                            |
-+--------+----------+--------+------------------------------------------------------+
-| 40-44  | no       | F5.0   | Pcmin(MW)                                            |
-+--------+----------+--------+------------------------------------------------------+
-| 45-48  | no       | F4.0   | Irate(amps)                                          |
-+--------+----------+--------+------------------------------------------------------+
-| 49-54  | no       | F6.5   | Xijmax(p.u.)                                         |
-+--------+----------+--------+------------------------------------------------------+
-| 55-60  | no       | F6.5   | Xijmin(p.u.)                                         |
-+--------+----------+--------+------------------------------------------------------+
-| 61-66  | no       | F6.5   | Bismax (p.u.)                                        |
-+--------+----------+--------+------------------------------------------------------+
-| 67-72  | no       | F6.5   | Bismin (p.u.)                                        |
-+--------+----------+--------+------------------------------------------------------+
+  RANI Thyristor Data Input Format
+
+.. table:: Column Description for Series Compensated RANI Model
+
+  +--------+----------+--------+------------------------------------------------------+
+  | Column | ID Field | Format | Description                                          |
+  +--------+----------+--------+------------------------------------------------------+
+  | 1-2    | yes      | A2     | Record type - ``RZ``                                 |
+  +--------+----------+--------+------------------------------------------------------+
+  | 3      | no       | A1     | Change Code                                          |
+  |        |          |        |  Blank - add                                         |
+  |        |          |        |  ``M`` - modify                                      |
+  |        |          |        |  ``D`` - delete                                      |
+  |        |          |        |  ``R`` - restore                                     |
+  +--------+----------+--------+------------------------------------------------------+
+  | 7-14   | yes      | A8     | Bus name 1                                           |
+  +--------+----------+--------+------------------------------------------------------+
+  | 15-18  | yes      | F4.0   | Base kV 1                                            |
+  +--------+----------+--------+------------------------------------------------------+
+  | 19     | no       | I1     | Variable tap side if T_max and T_min cannot orient   |
+  |        |          |        | T_x.                                                 |
+  |        |          |        | 0 - Low alpha is fixed                               |
+  |        |          |        | 1 - Bus 1 is variable                                |
+  |        |          |        | 2 - Bus 2 is variable                                |
+  +--------+----------+--------+------------------------------------------------------+
+  | 20-27  | yes      | A8     | Bus name 2                                           |
+  +--------+----------+--------+------------------------------------------------------+
+  | 29-31  | yes      | F4.0   | Base kV 2                                            |
+  +--------+----------+--------+------------------------------------------------------+
+  | 32     | yes      | A1     | ID                                                   |
+  +--------+----------+--------+------------------------------------------------------+
+  | 33     | yes      | I1     | SECTION                                              |
+  +--------+----------+--------+------------------------------------------------------+
+  | 34     | no       | A1     | TYPE 1, 2, or 3                                      |
+  |        |          |        |  TYPE 1 - Control Pc using Xij                       |
+  |        |          |        |  TYPE 2 - Control V using Xij                        |
+  |        |          |        |  TYPE 3 - Control V using Bis                        |
+  +--------+----------+--------+------------------------------------------------------+
+  | 35-39  | no       | F5.0   | Pcmax(MW)                                            |
+  +--------+----------+--------+------------------------------------------------------+
+  | 40-44  | no       | F5.0   | Pcmin(MW)                                            |
+  +--------+----------+--------+------------------------------------------------------+
+  | 45-48  | no       | F4.0   | Irate(amps)                                          |
+  +--------+----------+--------+------------------------------------------------------+
+  | 49-54  | no       | F6.5   | Xijmax(p.u.)                                         |
+  +--------+----------+--------+------------------------------------------------------+
+  | 55-60  | no       | F6.5   | Xijmin(p.u.)                                         |
+  +--------+----------+--------+------------------------------------------------------+
+  | 61-66  | no       | F6.5   | Bismax (p.u.)                                        |
+  +--------+----------+--------+------------------------------------------------------+
+  | 67-72  | no       | F6.5   | Bismin (p.u.)                                        |
+  +--------+----------+--------+------------------------------------------------------+
 
 Transformer Data (``T``, ``TP``)
 ================================
@@ -1599,6 +1736,10 @@ This record is applied to two-winding transformers and phase shifters. An equiva
 
 Transformer taps are specified as fixed values for each voltage level or variable (LTC) taps with control over voltage, real power or reactive power. Variable tap transformers are defined with the addition of a regulating transformer data record (``R``) described in :ref:`regulating-transformer`.
 
+.. figure:: ../img/Transformer_Data.png
+
+  Transformer Data
+
 The following three assumptions are made:
 
   * Nominal base kV of transformer is identical to that of the bus.
@@ -1607,85 +1748,89 @@ The following three assumptions are made:
 
 The base kV is used to calculate the equivalent pi. Complications arise when step-up/step-down transformers are represented as sections in passive node sequence; there is no means to identify the base of the intermittent terminals. This combination is therefore illegal and will abort with fatal diagnostics.
 
-A transformer is identified by subtype blank and a viable entry for ``TAP 2.`` A phase shifter is identified either by a subtype ``P or by a blank field for ``TAP 2``. However, the program always adds the subtype P for distinction and convenience in data changes. The ANGLE is TAP 1 interpreted in degrees. If ``TAP 2`` is blank, a nominal tap is presumed. A phase shifter assumes a pure voltage rotation and an optional transformation. Increasing the ANGLE will decrease the power flowing from bus 1 and bus 2.
+A transformer is identified by subtype blank and a viable entry for ``TAP 2.`` A phase shifter is identified either by a subtype ``P`` or by a blank field for ``TAP 2``. However, the program always adds the subtype P for distinction and convenience in data changes. The ANGLE is TAP 1 interpreted in degrees. If ``TAP 2`` is blank, a nominal tap is presumed. A phase shifter assumes a pure voltage rotation and an optional transformation. Increasing the ANGLE will decrease the power flowing from bus 1 and bus 2.
 
 Four MVA ratings are used to flag overloaded transformers: nominal, thermal, emergency, and bottleneck. The latter three are “extended ratings”, which supersede nominal ratings. Other entries are similar to the type L record. A sample of the format and explanations follow.
 
-.. image:: ../img/Transformer_Data_Input_Format.png
+.. figure:: ../img/Transformer_Data_Input_Format.png
 
-+--------+----------+--------+------------------------------------------------------+
-| Column | ID Field | Format | Description                                          |
-+--------+----------+--------+------------------------------------------------------+
-| 1      | yes      | A1     | Record type - ``T`` for transformer or phase shifter |
-+--------+----------+--------+------------------------------------------------------+
-| 2      | no       | A1     | Blank or ``P``                                       |
-+--------+----------+--------+------------------------------------------------------+
-| 3      | no       | A1     | Change code - see System Changes                     |
-+--------+----------+--------+------------------------------------------------------+
-| 4-6    | no       | A3     | Ownership code — Line and transformer losses will be |
-|        |          |        | summarized by ownership at end of ﬁnal Area Summary. |
-+--------+----------+--------+------------------------------------------------------+
-| 7-14   | yes      | A8     | Bus name 1                                           |
-+--------+----------+--------+------------------------------------------------------+
-| 15-18  | yes      | F4.0   | Base kV 1                                            |
-+--------+----------+--------+------------------------------------------------------+
-| 19     | no       | I1     | Tie line metering point ﬂag for area tie lines. 1 in |
-|        |          |        | column 19 provides for metering at bus 1 end. 2 in   |
-|        |          |        | column 19 provides for metering at bus 2 end.        |
-|        |          |        |                                                      |
-|        |          |        | Blank allows for program assumption as follows:      |
-|        |          |        | Metering point will be identiﬁed (1) by location     |
-|        |          |        | where line ownership differs from bus ownership or   |
-|        |          |        | (2) when buses at end of tie line have same          |
-|        |          |        | ownership, then bus 1 will be the metering point.    |
-+--------+----------+--------+------------------------------------------------------+
-| 20-27  | yes      | A8     | Bus name 2                                           |
-+--------+----------+--------+------------------------------------------------------+
-| 29-31  | yes      | F4.0   | Base kV 2                                            |
-+--------+----------+--------+------------------------------------------------------+
-| 32     | yes      | A1     |  Circuit identiﬁcation                               |
-+--------+----------+--------+------------------------------------------------------+
-| 33     | yes      | I1     | Section number for making an equivalent for series   |
-|        |          |        | elements (numeric)                                   |
-+--------+----------+--------+------------------------------------------------------+
-| 34-37  | no       | F4.0   | Total MVA rating for all transformers represented by |
-|        |          |        | this record.                                         |
-+--------+----------+--------+------------------------------------------------------+
-| 38     | no       | I1     | Number of parallel transformer banks represented by  |
-|        |          |        | this record, for information purposes only. The      |
-|        |          |        | equivalent impedance is entered in columns 39-62.    |
-+--------+----------+--------+------------------------------------------------------+
-| 39-44  | no       | F6.5   | Per unit impedance R through transformer from bus 1  |
-|        |          |        | to bus 2 on the system base MVA for both windings.   |
-+--------+----------+--------+------------------------------------------------------+
-| 45-50  | no       | F6.5   | Per unit impedance X through transformer from bus 1  |
-|        |          |        | to bus 2 on the system base MVA for both windings.   |
-+--------+----------+--------+------------------------------------------------------+
-| 51-56  | no       | F6.5   | Per unit G of iron losses on the system base MVA.    |
-+--------+----------+--------+------------------------------------------------------+
-| 57-62  | no       | F6.5   | Per unit B magnetizing current on the system base    |
-|        |          |        | MVA. Note that any sign is ignored. This quantity    |
-|        |          |        | will always be processed as a negative value.        |
-+--------+----------+--------+------------------------------------------------------+
-| 63-67  | no       | F5.2   | Fixed bus 1 TAP or ﬁxed phase shift in degrees which |
-|        |          |        | describe bus 1 relative to bus 2.                    |
-+--------+----------+--------+------------------------------------------------------+
-| 68-72  | no       | F5.2   | Fixed bus 2 TAP or blank for ﬁxed phase shifter.     |
-+--------+----------+--------+------------------------------------------------------+
-| 75-77  | no       | A1,I2  | Energization Date - MYY                              |
-|        |          |        |  M = {1,2,3,4,5,6,7,8,9,O,N,D}                       |
-|        |          |        |  YY = last two digits                                |
-+--------+----------+--------+------------------------------------------------------+
-| 78-80  | no       | A1,I2  | De-energization Date - MYY                           |
-|        |          |        |  M = {1,2,3,4,5,6,7,8,9,O,N,D}                       |
-|        |          |        |  YY = last two digits                                |
-+--------+----------+--------+------------------------------------------------------+
-| 81-84  | no       | F4.0   | Thermal rating in MVA                                |
-+--------+----------+--------+------------------------------------------------------+
-| 85-88  | no       | F4.0   | Emergency rating in MVA                              |
-+--------+----------+--------+------------------------------------------------------+
-| 89-92  | no       | F4.0   | Bottleneck rating in MVA                             |
-+--------+----------+--------+------------------------------------------------------+
+  Transformer Data Input Format
+
+.. table:: Column Description for Transformer Data
+
+  +--------+----------+--------+------------------------------------------------------+
+  | Column | ID Field | Format | Description                                          |
+  +--------+----------+--------+------------------------------------------------------+
+  | 1      | yes      | A1     | Record type - ``T`` for transformer or phase shifter |
+  +--------+----------+--------+------------------------------------------------------+
+  | 2      | no       | A1     | Blank or ``P``                                       |
+  +--------+----------+--------+------------------------------------------------------+
+  | 3      | no       | A1     | Change code - see System Changes                     |
+  +--------+----------+--------+------------------------------------------------------+
+  | 4-6    | no       | A3     | Ownership code - Line and transformer losses will be |
+  |        |          |        | summarized by ownership at end of final Area Summary.|
+  +--------+----------+--------+------------------------------------------------------+
+  | 7-14   | yes      | A8     | Bus name 1                                           |
+  +--------+----------+--------+------------------------------------------------------+
+  | 15-18  | yes      | F4.0   | Base kV 1                                            |
+  +--------+----------+--------+------------------------------------------------------+
+  | 19     | no       | I1     | Tie line metering point flag for area tie lines. 1 in|
+  |        |          |        | column 19 provides for metering at bus 1 end. 2 in   |
+  |        |          |        | column 19 provides for metering at bus 2 end.        |
+  |        |          |        |                                                      |
+  |        |          |        | Blank allows for program assumption as follows:      |
+  |        |          |        | Metering point will be identified (1) by location    |
+  |        |          |        | where line ownership differs from bus ownership or   |
+  |        |          |        | (2) when buses at end of tie line have same          |
+  |        |          |        | ownership, then bus 1 will be the metering point.    |
+  +--------+----------+--------+------------------------------------------------------+
+  | 20-27  | yes      | A8     | Bus name 2                                           |
+  +--------+----------+--------+------------------------------------------------------+
+  | 29-31  | yes      | F4.0   | Base kV 2                                            |
+  +--------+----------+--------+------------------------------------------------------+
+  | 32     | yes      | A1     |  Circuit identification                              |
+  +--------+----------+--------+------------------------------------------------------+
+  | 33     | yes      | I1     | Section number for making an equivalent for series   |
+  |        |          |        | elements (numeric)                                   |
+  +--------+----------+--------+------------------------------------------------------+
+  | 34-37  | no       | F4.0   | Total MVA rating for all transformers represented by |
+  |        |          |        | this record.                                         |
+  +--------+----------+--------+------------------------------------------------------+
+  | 38     | no       | I1     | Number of parallel transformer banks represented by  |
+  |        |          |        | this record, for information purposes only. The      |
+  |        |          |        | equivalent impedance is entered in columns 39-62.    |
+  +--------+----------+--------+------------------------------------------------------+
+  | 39-44  | no       | F6.5   | Per unit impedance R through transformer from bus 1  |
+  |        |          |        | to bus 2 on the system base MVA for both windings.   |
+  +--------+----------+--------+------------------------------------------------------+
+  | 45-50  | no       | F6.5   | Per unit impedance X through transformer from bus 1  |
+  |        |          |        | to bus 2 on the system base MVA for both windings.   |
+  +--------+----------+--------+------------------------------------------------------+
+  | 51-56  | no       | F6.5   | Per unit G of iron losses on the system base MVA.    |
+  +--------+----------+--------+------------------------------------------------------+
+  | 57-62  | no       | F6.5   | Per unit B magnetizing current on the system base    |
+  |        |          |        | MVA. Note that any sign is ignored. This quantity    |
+  |        |          |        | will always be processed as a negative value.        |
+  +--------+----------+--------+------------------------------------------------------+
+  | 63-67  | no       | F5.2   | Fixed bus 1 TAP or fixed phase shift in degrees which|
+  |        |          |        | describe bus 1 relative to bus 2.                    |
+  +--------+----------+--------+------------------------------------------------------+
+  | 68-72  | no       | F5.2   | Fixed bus 2 TAP or blank for fixed phase shifter.    |
+  +--------+----------+--------+------------------------------------------------------+
+  | 75-77  | no       | A1,I2  | Energization Date - MYY                              |
+  |        |          |        |  M = {1,2,3,4,5,6,7,8,9,O,N,D}                       |
+  |        |          |        |  YY = last two digits                                |
+  +--------+----------+--------+------------------------------------------------------+
+  | 78-80  | no       | A1,I2  | De-energization Date - MYY                           |
+  |        |          |        |  M = {1,2,3,4,5,6,7,8,9,O,N,D}                       |
+  |        |          |        |  YY = last two digits                                |
+  +--------+----------+--------+------------------------------------------------------+
+  | 81-84  | no       | F4.0   | Thermal rating in MVA                                |
+  +--------+----------+--------+------------------------------------------------------+
+  | 85-88  | no       | F4.0   | Emergency rating in MVA                              |
+  +--------+----------+--------+------------------------------------------------------+
+  | 89-92  | no       | F4.0   | Bottleneck rating in MVA                             |
+  +--------+----------+--------+------------------------------------------------------+
 
 Switched Reactance (``X``)
 ==========================
@@ -1695,7 +1840,9 @@ This data record must be used with a type ``BX`` bus record. The data on the ``X
 
 The discrete segments are specified in steps and increments. Steps defines the number of switchable susceptance units. The MVAR value of each unit is given in increments. Normally, each unit has a unique MVAR value. In general, when both reactive and capacitive blocks coexist, two switching lists are given. The reactors are switched first in the following order: unit 1, unit 2,..., unit k, where k is the unit number of last reactor. Similarly, the capacitors are switched next in the following order: unit k+1, unit k+2,..., unit (last). When reactors are switched in, all capacitors are removed and vice versa. Units are sequentially disconnected in the reverse order. For example, the following one line diagram depicts a capacitor installation requiring discrete switching.
 
-.. image:: ../img/Capacitor_Installation_Requiring_Discrete_Switching.png
+.. figure:: ../img/Capacitor_Installation_Requiring_Discrete_Switching.png
+
+  Capacitor Installation Requiring Discrete Switching
 
 For this example the sequential operation would be as follows. Increment 1, 10 MVAR, would be added up to the number of steps specified (4). If the bus voltage is below the scheduled value after a total of 40 MVARS have been added to the bus, increment 2 would be added to the number of steps specified, and so on until the scheduled voltage is achieved. These statics would be disconnected in a similar fashion, but in the reverse order, to reduce the bus voltage.
 
@@ -1707,63 +1854,67 @@ The format for inputting switched reactance data follows; and then descriptions 
 
   Negative MVARs must be listed first
 
-.. image:: ../img/Switched_Reactance_Data_Input_Format.png
+.. figure:: ../img/Switched_Reactance_Data_Input_Format.png
 
-+--------+----------+--------+------------------------------------------------------+
-| Column | ID Field | Format |Description                                           |
-+--------+----------+--------+------------------------------------------------------+
-| 1      | yes      | A1     |Record code — X for switched reactance                |
-+--------+----------+--------+------------------------------------------------------+
-| 2      | no       |        | Blank                                                |
-+--------+----------+--------+------------------------------------------------------+
-| 3      | no       | A1     | Change code — see System Changes                     |
-+--------+----------+--------+------------------------------------------------------+
-| 4-6    | no       | A3     | Ownership code                                       |
-+--------+----------+--------+------------------------------------------------------+
-| 7-14   | yes      | A8     | Bus name 1. This is the bus to which the switched    |
-|        |          |        | reactances are connected. Must be a type BX bus.     |
-+--------+----------+--------+------------------------------------------------------+
-| 15-18  | yes      | F4.0   | Base kV 1                                            |
-+--------+----------+--------+------------------------------------------------------+
-| 21-28  | yes      | A8     | Bus name 2. Controlled bus name — This bus may be    |
-|        |          |        | local or remote.                                     |
-+--------+----------+--------+------------------------------------------------------+
-| 30-32  | yes      | F4.0   | Base kV 2                                            |
-+--------+----------+--------+------------------------------------------------------+
-| Increment 1:                                                                      |
-+--------+----------+--------+------------------------------------------------------+
-| 33     | no       | I1     | Number of steps - Number of repetitions (from 1      |
-|        |          |        | to 9) to be performed using the value given in       |
-|        |          |        | columns 34-38.                                       |
-+--------+----------+--------+------------------------------------------------------+
-| 34-38  | no       | F5.0   | MVAR — Value at base kV of each step of Increment 1. |
-+--------+----------+--------+------------------------------------------------------+
-|Increment 2:                                                                       |
-+--------+----------+--------+------------------------------------------------------+
-| 39     | no       | I1     | Number of steps — Number of times the value given in |
-|        |          |        | columns 40-44 will be connected. (Will not begin     |
-|        |          |        | until Increment 1 is completed.)                     |
-+--------+----------+--------+------------------------------------------------------+
-| 40-44  | no       | F5.0   | MVAR — Value at base kV of each step of Increment 2. |
-+--------+----------+--------+------------------------------------------------------+
-| Increment 3:                                                                      |
-+--------+----------+--------+------------------------------------------------------+
-| 45     | no       | I1     | Number of steps — Number of times the value given in |
-|        |          |        | columns 46-50 will be connected. (Will not begin     |
-|        |          |        | until Increment 2 is completed.)                     |
-+--------+----------+--------+------------------------------------------------------+
-| 46-50  | no       | F5.0   | MVAR — Value at base kV of each step of Increment 3. |
-+--------+----------+--------+------------------------------------------------------+
-| Increment 4:                                                                      |
-+--------+----------+--------+------------------------------------------------------+
-| 51     | no       | I1     | Number of steps — Number of times the value given in |
-|        |          |        | columns 52-56 will be connected. (Will not begin     |
-|        |          |        | until Increment 3 is completed.)                     |
-+--------+----------+--------+------------------------------------------------------+
-| 52-56  | no       | F5.0   | MVAR — Value at base kV of each step of Increment 4. |
-+--------+----------+--------+------------------------------------------------------+
-| 57-80  | no       | Add data for Increments 5 through 8 in a similar fashion.     |
-+--------+----------+--------+------------------------------------------------------+
+  Switched Reactance Data Input Format
+
+.. table:: Column Description for Switched Reactance Data
+
+  +--------+----------+--------+------------------------------------------------------+
+  | Column | ID Field | Format | Description                                          |
+  +--------+----------+--------+------------------------------------------------------+
+  | 1      | yes      | A1     | Record code - ``X`` for switched reactance           |
+  +--------+----------+--------+------------------------------------------------------+
+  | 2      | no       |        | Blank                                                |
+  +--------+----------+--------+------------------------------------------------------+
+  | 3      | no       | A1     | Change code - see System Changes                     |
+  +--------+----------+--------+------------------------------------------------------+
+  | 4-6    | no       | A3     | Ownership code                                       |
+  +--------+----------+--------+------------------------------------------------------+
+  | 7-14   | yes      | A8     | Bus name 1. This is the bus to which the switched    |
+  |        |          |        | reactances are connected. Must be a type BX bus.     |
+  +--------+----------+--------+------------------------------------------------------+
+  | 15-18  | yes      | F4.0   | Base kV 1                                            |
+  +--------+----------+--------+------------------------------------------------------+
+  | 21-28  | yes      | A8     | Bus name 2. Controlled bus name - This bus may be    |
+  |        |          |        | local or remote.                                     |
+  +--------+----------+--------+------------------------------------------------------+
+  | 30-32  | yes      | F4.0   | Base kV 2                                            |
+  +--------+----------+--------+------------------------------------------------------+
+  | Increment 1:                                                                      |
+  +--------+----------+--------+------------------------------------------------------+
+  | 33     | no       | I1     | Number of steps - Number of repetitions (from 1      |
+  |        |          |        | to 9) to be performed using the value given in       |
+  |        |          |        | columns 34-38.                                       |
+  +--------+----------+--------+------------------------------------------------------+
+  | 34-38  | no       | F5.0   | MVAR - Value at base kV of each step of Increment 1. |
+  +--------+----------+--------+------------------------------------------------------+
+  | Increment 2:                                                                      |
+  +--------+----------+--------+------------------------------------------------------+
+  | 39     | no       | I1     | Number of steps - Number of times the value given in |
+  |        |          |        | columns 40-44 will be connected. (Will not begin     |
+  |        |          |        | until Increment 1 is completed.)                     |
+  +--------+----------+--------+------------------------------------------------------+
+  | 40-44  | no       | F5.0   | MVAR - Value at base kV of each step of Increment 2. |
+  +--------+----------+--------+------------------------------------------------------+
+  | Increment 3:                                                                      |
+  +--------+----------+--------+------------------------------------------------------+
+  | 45     | no       | I1     | Number of steps - Number of times the value given in |
+  |        |          |        | columns 46-50 will be connected. (Will not begin     |
+  |        |          |        | until Increment 2 is completed.)                     |
+  +--------+----------+--------+------------------------------------------------------+
+  | 46-50  | no       | F5.0   | MVAR - Value at base kV of each step of Increment 3. |
+  +--------+----------+--------+------------------------------------------------------+
+  | Increment 4:                                                                      |
+  +--------+----------+--------+------------------------------------------------------+
+  | 51     | no       | I1     | Number of steps - Number of times the value given in |
+  |        |          |        | columns 52-56 will be connected. (Will not begin     |
+  |        |          |        | until Increment 3 is completed.)                     |
+  +--------+----------+--------+------------------------------------------------------+
+  | 52-56  | no       | F5.0   | MVAR - Value at base kV of each step of Increment 4. |
+  +--------+----------+--------+------------------------------------------------------+
+  | 57-80  | no       | Add data for Increments 5 through 8 in a similar fashion.     |
+  +--------+----------+--------+------------------------------------------------------+
 
 Zone Rename (``Z``)
 ===================
@@ -1773,23 +1924,27 @@ Several old zones may be consolidated into a single new zone name. However, an o
 
 Any ``Z`` record must be the first change record encountered. The zones are immediately renamed. Following these records, additional system changes may be entered in the normal way, and all data are assumed to conform with the new zone names.
 
-.. image:: ../img/Zone_Rename_Data_Input_Format.png
+.. figure:: ../img/Zone_Rename_Data_Input_Format.png
 
-====== ======== ====== ===========================
-Column ID Field Format Description
-====== ======== ====== ===========================
-1      yes      A1     Record type - ``Z``
-2-3    no       A2     Blank
-4-5    no       A2     Old zone name - any blank zone to be changed must appear in this column. Otherwise, blank "old zones," terminate the scan.
-6-7    no       A2     New zone name
-8      no       A2     Blank
-9-10   no       A2     Old zone name
-11-12  no       A2     New zone name
-13     no       A1     Blank
-14-15  no       A2     Old zone name
-16-17  no       A2     New zone name
-18-77  no       -      Repeat of the above format sequence: one blank followed by two columns for old zone name and two more columns for new zone name.
-====== ======== ====== ===========================
+  Zone Rename Data Input Format
+
+.. table:: Column Description for Zone Rename
+
+  ====== ======== ====== ===========================
+  Column ID Field Format Description
+  ====== ======== ====== ===========================
+  1      yes      A1     Record type - ``Z``
+  2-3    no       A2     Blank
+  4-5    no       A2     Old zone name - any blank zone to be changed must appear in this column. Otherwise, blank "old zones," terminate the scan.
+  6-7    no       A2     New zone name
+  8      no       A2     Blank
+  9-10   no       A2     Old zone name
+  11-12  no       A2     New zone name
+  13     no       A1     Blank
+  14-15  no       A2     Old zone name
+  16-17  no       A2     New zone name
+  18-77  no       -      Repeat of the above format sequence: one blank followed by two columns for old zone name and two more columns for new zone name.
+  ====== ======== ====== ===========================
 
 Area Rename (``ZA``)
 ====================
@@ -1797,18 +1952,22 @@ This is a specialized change record that permits area names to be changed. Each 
 
 The new name must be unique. If the new name exists, the rename is ignored. Thus, Area Rename cannot be used to consolidate areas.
 
-.. image:: ../img/Area_Rename_Data_Input_Format.png
+.. figure:: ../img/Area_Rename_Data_Input_Format.png
 
-====== ======== ====== ====================
-Column ID Field Format Description
-====== ======== ====== ====================
-1-2    yes      A2     Record type - ``ZA``
-3                      NA
-4-13   no              A10 Old area name
-14-15                  NA
-16-25  no       A10    New area name
-26-80                  NA
-====== ======== ====== ====================
+  Area Rename Data Input Format
+
+.. table:: Column Description for Area Rename
+
+  ====== ======== ====== ====================
+  Column ID Field Format Description
+  ====== ======== ====== ====================
+  1-2    yes      A2     Record type - ``ZA``
+  3                      NA
+  4-13   no              A10 Old area name
+  14-15                  NA
+  16-25  no       A10    New area name
+  26-80                  NA
+  ====== ======== ====== ====================
 
 Bus Rename (``ZB``)
 ===================
@@ -1816,17 +1975,21 @@ This is a specialized change record that permits bus names and base kV’s as we
 
 The new name must be unique. If the new name exists, the rename is ignored. Thus, Bus Rename cannot be used to consolidate buses.
 
-.. image:: ../img/Bus_Rename_Data_Input_Format.png
+.. figure:: ../img/Bus_Rename_Data_Input_Format.png
 
-====== ======== ====== =====================
-Column ID Field Format Description
-====== ======== ====== =====================
-1-2    yes      A2     Record type - ``ZB``
-3-6                    NA
-7-14   no       A8     Old bus name
-15-18  no       F4.0   Old base kV
-19-20                  NA
-21-28  no       A8     New bus name
-29-32  no       F4.0   New base kV
-33-80                  NA
-====== ======== ====== =====================
+  Bus Rename Data Input Format
+
+.. table:: Column Description for Bus Rename
+
+  ====== ======== ====== =====================
+  Column ID Field Format Description
+  ====== ======== ====== =====================
+  1-2    yes      A2     Record type - ``ZB``
+  3-6                    NA
+  7-14   no       A8     Old bus name
+  15-18  no       F4.0   Old base kV
+  19-20                  NA
+  21-28  no       A8     New bus name
+  29-32  no       F4.0   New base kV
+  33-80                  NA
+  ====== ======== ====== =====================
