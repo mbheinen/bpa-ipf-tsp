@@ -1,5 +1,11 @@
+# Directories containing binary build artifacts
 bin
 build
 lib
+
+# Documentation build artifacts
 docs/_build
 docs/doxygen
+
+# ctags index file from running "ctags -R"
+tags
