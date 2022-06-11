@@ -3,6 +3,31 @@ Installation
 ************
 The majority of this codebase is Fortran with some C. Both Fortran and C compiler are needed in order to compile it. Also, note that to this point it has only been test compiled on CentOS/RHEL 7 and Ubuntu. 
 
+Docker
+======
+You can use docker to build and run this project. Just build the container:
+
+.. code::
+
+    $ git clone https://github.com/mbheinen/bpa-ipf-tsp
+    $ cd bpa-ipf-tsp
+    $ docker build -t bpa-ipf-tsp .
+
+Then run it, the container will run ``bpf`` by default. So once the container is started, you can just type the name of the file in the ``data`` directory that you'd like to run (e.g. ``bench.pfc``):
+
+.. code::
+
+    $ docker run -it --rm bpa-ipf-tsp
+     BPA POWER FLOW PROGRAM VERSION:IPF  327
+     Enter Power Flow Control (PFC) file name > bench.pfc
+
+Otherwise start an interactive tty with ``bash`` to run other processes.
+
+.. code::
+
+    $ docker run -it --rm bpa-ipf-tsp bash
+    [root@e9d28ac4f070 data]# bpf bench.pfc
+
 CentOS/RHEL
 ===========
 To get the compilers:
