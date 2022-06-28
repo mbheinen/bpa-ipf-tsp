@@ -1,5 +1,5 @@
 # Add the source files
-SET(NETDAT_src ${SRCNETDAT}/net_data.f)
+SET(NETDAT_src ${SRCNETDAT}/net_data.c)
 
 # Define the executable in terms of the source files
 ADD_EXECUTABLE(${NETDATEXE} ${NETDAT_src})

@@ -3,6 +3,10 @@ bin
 build
 lib
 
+# Windows silliness
+*.un~
+*.*~
+
 # Documentation build artifacts
 docs/_build
 docs/doxygen
