@@ -1,5 +1,5 @@
 C    %W% %G%
-      subroutine write(isgg)
+      subroutine writem(isgg)
 
 C     THIS SUBROUTINE FORMS AND PRINTS A STATEMENT FOR EACH MACHINE 
 C     IN THE SWING PROGRAM WHICH DESCRIBES THE MACHINE REPRESENTATION.  

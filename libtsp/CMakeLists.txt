@@ -324,7 +324,7 @@ SET(LIBTSP_src
               ${SRCLIBTSP}/wgscal.f
               ${SRCLIBTSP}/wgvcal.f
               ${SRCLIBTSP}/whrec1.f
-              ${SRCLIBTSP}/write.f
+              ${SRCLIBTSP}/writem.f
               ${SRCLIBTSP}/writmp.f
               ${SRCLIBTSP}/wrthis.f
               ${SRCLIBTSP}/wrtver.f

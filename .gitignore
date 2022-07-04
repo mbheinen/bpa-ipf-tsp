@@ -3,6 +3,18 @@ bin
 build
 lib
 
+# Random files BPA likes to create
+*.SCR
+*.bse
+*.pfo
+*.pfd
+*.pff
+*.out
+*.pdf
+*.sol
+scratch1
+fort.*
+
 # Windows silliness
 *.un~
 *.*~

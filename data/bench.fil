@@ -1,0 +1,12 @@
+ PFBASE    bench.bse
+ CTRL      bench.swi
+ SOL       bench.sol
+ PLTOUT    bench.pdf
+ PRTOUT    bench.out
+ AUXOUT    bench.swx
+ SAVIN  0
+ SAVOUT 0 
+!DBGIN     0 
+!DBGOUT    0
+ DBGIN     bench.dbi 
+ DBGOUT    bench.dbo

@@ -238,7 +238,7 @@ C       *** end wlp
 	  endif
 	endif
 	if (imchn .eq. 0) then
-	  if (noprnt .ne. 0) call write(isgg)
+	  if (noprnt .ne. 0) call writem(isgg)
 	  goto 130
 	endif
       endif

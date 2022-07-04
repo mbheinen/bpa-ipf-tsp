@@ -74,6 +74,6 @@ This project uses `CMake`_. CMake is a multi-platform build tool that can genera
     $ make
     $ sudo make install
     
-After building, you will see the library binaries in ``lib/`` and the executables in ``bin/``.
+After building, you will see the library binaries in ``lib/`` and the executables in ``bin/``. To build with debug symbols, do `cmake -DCMAKE_BUILD_TYPE=Debug ..` instead.
 
 .. _CMake: http://www.cmake.org
