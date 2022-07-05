@@ -46,7 +46,7 @@ int rewind_ge_file__( int * );
 
 #else								/* others */
 
-int open_ge_file( int *, char *, char *, long *, long * );
+int open_ge_file( int *, char *, char *);
 int close_ge_file( int * );
 int read_ge_file( int *, char *, long * );
 int write_ge_file( int *, char *, long * );
@@ -170,12 +170,10 @@ int open_ge_file__( int *file_num, char *filename, char *mode )
 }
 
 #else								/* others */
-int open_ge_file( int *file_num, char *filename, char *mode, long *len, 
-                  long *mode_len )
+int open_ge_file( int *file_num, char *filename, char *mode )
 {
   char tempfile[80];
-  strncpy (tempfile, filename, *len);
-  tempfile[*len] = '\0';
+  strcpy (tempfile, filename);
   if (strncmp (mode, "r", 1) == 0) {
     ge_fp[*file_num] = efopen(tempfile, "r");
     strcpy (file[*file_num], tempfile);

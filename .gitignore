@@ -3,7 +3,7 @@ bin
 build
 lib
 
-# Random files BPA likes to create
+# Various files BPA programs create at runtime
 *.SCR
 *.bse
 *.pfo
@@ -12,6 +12,8 @@ lib
 *.out
 *.pdf
 *.sol
+*.dbo
+*.swx
 scratch1
 fort.*
 
