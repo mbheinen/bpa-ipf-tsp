@@ -20,24 +20,3 @@ main( int argc, char *argv[] )
     pf_cmd ();
 #endif
 }
-#if defined VMS
-   void fstout( )
-{
-  fprintf (stderr, "IPF cannot execute /OUTAGE_SIMULATION\n");
-}
-#elif defined UNDERSCORE
-   void fstout_( )
-{
-  fprintf (stderr, "IPF cannot execute /OUTAGE_SIMULATION\n");
-}
-#elif defined DUNDERSCORE
-   void fstout__( )
-{
-  fprintf (stderr, "IPF cannot execute /OUTAGE_SIMULATION\n");
-}
-#else
-   void fstout( )
-{
-  fprintf (stderr, "IPF cannot execute /OUTAGE_SIMULATION\n");
-}
-#endif
