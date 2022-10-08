@@ -1271,7 +1271,7 @@ c     ENCOUNTERED
         if (igentn(1,ij).eq.igbn) go to 2554                             
  2544 continue                                                          
  2554 ilow=ij                                                           
- 2620 call gendrp(igenl,dmpg(ils),igbn,iecs,idm)                      
+ 2620 call gendrop(igenl,dmpg(ils),igbn,iecs,idm)                      
       if (igl.lt.lfrst) lfrst=igl                                        
  2600 go to(120,1800), i840                                             
 C                                                                       

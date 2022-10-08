@@ -1,5 +1,5 @@
 C    %W% %G%
-      subroutine gendrp(ig, pgdrop, igbn, igecs, idm)               
+      subroutine gendrop(ig, pgdrop, igbn, igecs, idm)               
 c
 c     Debugged for new type GW governors only!
 c

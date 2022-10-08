@@ -10,7 +10,7 @@
    void pf_cmd ();
 #endif
 
-main( int argc, char *argv[] )
+int main( int argc, char *argv[] )
 {
 #if defined UNDERSCORE
    pf_cmd_ ();

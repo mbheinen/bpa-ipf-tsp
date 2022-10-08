@@ -63,7 +63,7 @@ SET(LIBTSP_src
               ${SRCLIBTSP}/gdifot.f
               ${SRCLIBTSP}/gdifrd.f
               ${SRCLIBTSP}/gencur.f
-              ${SRCLIBTSP}/gendrp.f
+              ${SRCLIBTSP}/gendrop.f
               ${SRCLIBTSP}/genname.f
               ${SRCLIBTSP}/genout.f
               ${SRCLIBTSP}/genupd.f

@@ -4,7 +4,7 @@ void ipf_reports__( );
 void ipf_reports( );
 #endif
 
-main( int argc, char *argv[] )
+int main( int argc, char *argv[] )
 {
 #if defined UNDERSCORE || DUNDERSCORE
    ipf_reports__();

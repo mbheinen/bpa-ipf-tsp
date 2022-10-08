@@ -119,7 +119,7 @@ C
 10000     format ('0', 5x, 'UNDERFREQ RELAY GEN DROP AT', 5x, a8, 1x,
      &     f5.1, 1x, a1, ' AT ', f6.1, ' CYCLES')
           gndrop = 0
-          call gendrp(igind, gndrop, indt(1), indt(2), indc)
+          call gendrop(igind, gndrop, indt(1), indt(2), indc)
         endif
   110   continue
       enddo

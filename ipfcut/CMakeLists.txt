@@ -1,5 +1,5 @@
 # Add the source files
-SET(IPFCUT_src ${SRCIPFCUT}/cutting.f)
+SET(IPFCUT_src ${SRCIPFCUT}/ipfcut)
 
 # Define the executable in terms of the source files
 ADD_EXECUTABLE(${IPFCUTEXE} ${IPFCUT_src})

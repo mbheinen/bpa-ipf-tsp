@@ -12,7 +12,7 @@ C       for J = 1 to N
 C       Thus ECQ is the overflow parking lot for ECNN
 C       -
         include 'tspinc/params.inc' 
-        include 'tspinc/space.inc' 
+        include 'tspinc/space0.inc' 
         include 'tspinc/prt.inc' 
 
         parameter (MAXECQ = 200000)                             !DEM

@@ -42,7 +42,7 @@ C     gdifot, wstfeq, wstvlt, prtwst, and badz.
       include 'tspinc/brnch.inc'
       include 'tspinc/nb.inc'
       include 'tspinc/kka.inc'
-      include 'tspinc/space.inc'
+      include 'tspinc/space0.inc'
       include 'tspinc/space1.inc'
       include 'tspinc/angle.inc'
       include 'tspinc/mtbl.inc'

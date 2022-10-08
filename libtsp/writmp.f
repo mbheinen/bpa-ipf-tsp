@@ -13,7 +13,7 @@ C
       include 'tspinc/comn56.inc'
       include 'tspinc/link56.inc'
       include 'tspinc/prt.inc'
-      include 'tspinc/space.inc'
+      include 'tspinc/space0.inc'
  
       dimension ifunit(14)
       logical debug
