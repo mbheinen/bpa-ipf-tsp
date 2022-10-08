@@ -28,8 +28,11 @@ Otherwise start an interactive tty with ``bash`` to run other processes.
     $ docker run -it --rm bpa-ipf-tsp bash
     [root@e9d28ac4f070 data]# bpf bench.pfc
 
+Standard
+========
+
 CentOS/RHEL
-===========
+-----------
 To get the compilers:
 
 .. code::
@@ -45,7 +48,7 @@ If you will be building the GUI as well, you will also need to install Motif X W
     $ yum install motif-devel
 
 Ubuntu
-======
+------
 To get the compilers:
 
 .. code::
@@ -61,7 +64,7 @@ If you will be building the GUI as well, you will also need to install Motif X W
     $ apt-get install libxmu-dev
 
 Compiling
-=========
+---------
 This project uses `CMake`_. CMake is a multi-platform build tool that can generate build files for many different target platforms. CMake recommends doing "out of source" builds, that is, the build files and artifacts are separated from the source files. This is convenient when doing development because there is no need to clean out compiled stuff (e.g. object files, libraries, executables, etc.) from the source tree. To do this, you create a ``build/`` directory at the top level of the project and everything gets built there. This allows you to just delete the ``build/`` directory when you're done. Doing a checkout and compile of this repository is done as follows:
 
 .. code::
