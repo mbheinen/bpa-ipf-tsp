@@ -110,5 +110,17 @@ ADD_SUBDIRECTORY(${SRCTSP})
 
 # Tests
 enable_testing()
-add_test(NAME "Powerflow"
+add_test(NAME "bpf-bench.pfc"
          COMMAND bpf bench.pfc WORKING_DIRECTORY ../data)
+
+add_test(NAME "bpf-new_system1.pfc"
+         COMMAND bpf new_system1.pfc WORKING_DIRECTORY ../data)
+
+add_test(NAME "bpf-new_system2.pfc"
+         COMMAND bpf new_system2.pfc WORKING_DIRECTORY ../data)
+
+add_test(NAME "bpf-test_gov.pfc"
+         COMMAND bpf test_gov.pfc WORKING_DIRECTORY ../data)
+
+add_test(NAME "bpf-testdc3.pfc"
+         COMMAND bpf testdc3.pfc WORKING_DIRECTORY ../data)

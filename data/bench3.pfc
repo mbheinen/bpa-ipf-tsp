@@ -1,0 +1,3 @@
+( POWERFLOW, CASEID = BENCH3, PROJECT = TEST-WSCC-DATA )                      
+/ LOAD_PTI, FILE = bench3.raw
+( END )

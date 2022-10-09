@@ -79,4 +79,12 @@ This project uses `CMake`_. CMake is a multi-platform build tool that can genera
     
 After building, you will see the library binaries in ``lib/`` and the executables in ``bin/``. To build with debug symbols, do `cmake -DCMAKE_BUILD_TYPE=Debug ..` instead.
 
+Testing
+-------
+You can run test suite with `ctest -C <Build Type>`:
+
+.. code::
+
+    $ ctest -C Release
+
 .. _CMake: http://www.cmake.org

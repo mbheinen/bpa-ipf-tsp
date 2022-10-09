@@ -4,7 +4,7 @@
  File test_gov.pfo successfully opened and written to
  File test_gov.pff does not exist, opened on unit 15 with status "UNKNOWN"
  File test_gov.pff successfully opened and written to
-0 BPA powerflow version IPF  325
+0 BPA powerflow version IPF  327
  * Power Flow Control (PFC) file is : (test_gov.pfc                                                )                                 
  File test_gov.bse exists, opened on unit 17 with status "UNKNOWN"
  File test_gov.bse successfully opened and written to
@@ -35,9 +35,9 @@
 0   NO   KM LENGTH BUS               GKM        BKM      PNET     QNET   NTYP  EMIN EMAX      PLOAD     QLOAD     INETR   INETI 
 
 
-     1     8    1  SLACK    500.0     0.0000    -0.1000    0.000    0.000  3 1.0000 1.1000   10.000    0.000    0.000    0.000
+     1     8    1  SLACK    500.0     0.0000    -0.1000    0.000   -0.000  3 1.0000 1.1000   10.000    0.000    0.000    0.000
            5    8  CTY TD1  500.0     0.0000     0.1000
-     2     3    1  GEN TD1   20.0     0.0000   -10.0000    2.090    0.000  7 1.1000 1.1000    0.000    0.000    0.000    0.000
+     2     3    1  GEN TD1   20.0     0.0000   -10.0000    2.090   -0.000  7 1.1000 1.1000    0.000    0.000    0.000    0.000
            3    3  HS  TD1  500.0     0.0000    10.0000
      3     4    2  HS  TD1  500.0     0.4950   -14.5505    0.000    0.000  1 1.0000 1.1000    0.000    0.000    0.000    0.000
            2    4  GEN TD1   20.0     0.0000    10.0000

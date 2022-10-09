@@ -1,4 +1,4 @@
-( POWERFLOW, CASEID = TEST-DC3, PROJECT = TEST-WSCC-DATA )                      
+( POWERFLOW, CASEID = BENCH, PROJECT = TEST-WSCC-DATA )                      
 / P_INPUTLIST,FULL                                                              
 / P_OUTPUTLIST,FULL                                                             
 / P_ANALYSIS_RPT,LEVEL=4                                                        
