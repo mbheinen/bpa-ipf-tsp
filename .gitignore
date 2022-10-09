@@ -15,6 +15,7 @@ Testing
 *.sol
 scratch1
 fort.*
+for014.dat
 
 # Windows silliness
 *.un~

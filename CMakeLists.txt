@@ -124,3 +124,12 @@ add_test(NAME "bpf-test_gov.pfc"
 
 add_test(NAME "bpf-testdc3.pfc"
          COMMAND bpf testdc3.pfc WORKING_DIRECTORY ../data)
+
+add_test(NAME "ipf_reports-bench-selected-bus-branches"
+         COMMAND echo -e "bench.bse\nO\nT\n1\nBUS1,230,1\nQ\nQ\nQ" | ipf_reports )
+
+add_test(NAME "ipf_reports-bench-transmission-line-loadings"
+         COMMAND echo -e "bench.bse\nO\nT\n5\nAll\n95\n\nQ\nQ\nQ" | ipf_reports )
+
+add_test(NAME "ipf_reports-bench-transformer-loadings"
+         COMMAND echo -e "bench.bse\nO\nT\n6\nAll\n95\n0\nQ\nQ\nQ" | ipf_reports )

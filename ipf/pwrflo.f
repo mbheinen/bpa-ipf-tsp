@@ -14,6 +14,7 @@ C    @(#)pwrflo.f	20.5 2/28/00
 
         common /dependency/ dependency_flag
         integer dependency_flag
+        integer chkerr
 
         character null*1, ctemp*60
         logical finished
@@ -97,5 +98,6 @@ C
         enddo
  
         call pflend
-        return
+        iercnt = chkerr('F') + chkerr('A')
+        call exit(iercnt)
         end
