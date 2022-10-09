@@ -2,6 +2,7 @@
 bin
 build
 lib
+Testing
 
 # Random files BPA likes to create
 *.SCR

@@ -109,5 +109,6 @@ ADD_SUBDIRECTORY(${SRCNETDAT})
 ADD_SUBDIRECTORY(${SRCTSP})
 
 # Tests
-add_test(NAME "Powerflow bench test"
-         COMMAND bpf bench.pfc WORKING_DIRECTORY data)
+enable_testing()
+add_test(NAME "Powerflow"
+         COMMAND bpf bench.pfc WORKING_DIRECTORY ../data)
