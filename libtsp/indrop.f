@@ -83,7 +83,7 @@ C
 10030       format ('0', 5x, 'INDUCTION MTR DROP DUE TO LOW VOLTS FOR',
      &       5x, a8, 1x, f5.1, 1x, a1, ' AT ', f6.1, ' CYCLES')
             gndrop = 0.0
-            call gendrp(imi, gndrop, igm, iecs, imid)
+            call gendrop(imi, gndrop, igm, iecs, imid)
           elseif (timerm .ne. 0.0) then
             timerm = 0.0
             name1c = bname(igm)

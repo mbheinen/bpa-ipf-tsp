@@ -2,6 +2,7 @@
 bin
 build
 lib
+Testing
 
 # Various files BPA programs create at runtime
 *.SCR
@@ -16,6 +17,7 @@ lib
 *.swx
 scratch1
 fort.*
+for014.dat
 
 # Windows silliness
 *.un~

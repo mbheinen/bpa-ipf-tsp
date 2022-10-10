@@ -61,7 +61,7 @@ c     nbnew, nbold
       include 'tspinc/nb.inc'
 
 c     buf4k
-      include 'tspinc/space.inc'
+      include 'tspinc/space0.inc'
 
 c     kka
       include 'tspinc/kka.inc'

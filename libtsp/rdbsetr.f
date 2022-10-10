@@ -35,7 +35,7 @@ c     kk,vold1,vold2 - share these with reformat modules
 c     nbnew, nbold
       include 'tspinc/nb.inc'
 c     buf4k
-      include 'tspinc/space.inc'
+      include 'tspinc/space0.inc'
 c     kka
       include 'tspinc/kka.inc'
 c     counters used by nout1.f

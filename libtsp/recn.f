@@ -5,7 +5,7 @@ C       -  Sets AM(KK,I) <-- ECN(K+I,KK)
 C       -     for KK = 1 to L and I = 1 to N                            
 C       -
       include 'tspinc/params.inc' 
-      include 'tspinc/space.inc' 
+      include 'tspinc/space0.inc' 
         dimension am(l,*)
         do 200 kk=1,l                                                   
            do 100 i=1,n                                                 

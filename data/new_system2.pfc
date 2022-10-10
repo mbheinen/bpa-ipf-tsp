@@ -1,0 +1,4 @@
+( POWERFLOW, CASEID = NEW_SYSTEM2, PROJECT = TEST-WSCC-DATA )                      
+/ NETWORK_DATA, FILE = new_system2.net
+( END )
+

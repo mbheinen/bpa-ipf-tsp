@@ -310,7 +310,7 @@ C
  1804 continue                                                          
       go to 1812                                                        
  1810 ilow=ij                                                           
- 1812 call gendrp(indx, gndrop, indt(1), indt(2), indc)                 
+ 1812 call gendrop(indx, gndrop, indt(1), indt(2), indc)                 
       ivpc=2                                                            
       if (ibus.lt.lfrst) lfrst=ibus                                     
       name1c = bname(ibus)                                              

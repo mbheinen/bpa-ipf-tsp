@@ -6,8 +6,6 @@
 #include <descrip.h>
 #endif /* VMS */
 
-char progname[21];
-
 #ifdef VMS
    void pwrflo( struct dsc$descriptor_d * );
 #elif WIN32
@@ -64,7 +62,7 @@ void bpf_sub( int argc, char *argv[] )
          i++;
       }
    }
-   strcpy( progname, argv[0] );
+   
 #ifdef VMS
    pwrflo( &dsc_pfc_file );
 #elif WIN32
