@@ -4,7 +4,7 @@
 ``ipfcut``
 **********
 
-The stand-alone program that cuts out a subsystem from a solved base case file is called ``ipfcut``. The full system resides in a base case file; the cut system is a card image Bus/Branch data file. Flows at the cut branches are converted into equivalent generation or load on specially formatted ``+A`` continuation bus records. An ensuing power flow run should solve with internal branch flows and bus voltages which are identical to those quantities in the original base case.
+``ipfcut`` is a command line program that cuts out a subsystem from a solved base case file. The full system resides in a base case file; the cut system is a card image Bus/Branch data file. Flows at the cut branches are converted into equivalent generation or load on specially formatted ``+A`` continuation bus records. An ensuing power flow run should solve with internal branch flows and bus voltages which are identical to those quantities in the original base case.
 
   * Several methods are available to define the cut system: specifying individual buses, zones, base kVs, or individual branches.
   * A pi-back feature replaces selected buses with a passive-node sequence (lines consisting of sections) with the original loads, generation, and shunts, pi-backed in proportion to the line admittances.

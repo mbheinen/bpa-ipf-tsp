@@ -1,7 +1,7 @@
 ************
 Installation
 ************
-The majority of this codebase is Fortran with some C. Both Fortran and C compiler are needed in order to compile it. Also, note that to this point it has only been test compiled on CentOS/RHEL 7 (gcc 4.8.5) and Ubuntu. 
+The majority of this codebase is Fortran with some C. Both Fortran and C compiler are needed in order to compile it. Also, note that to this point it has only been test compiled on CentOS/RHEL 7 (gcc 4.8.5) and Ubuntu 20.04 (gcc 9.4.0).
 
 Docker
 ======

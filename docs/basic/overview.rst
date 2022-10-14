@@ -11,7 +11,7 @@ IPF can be thought of as a family of executable programs. ``bpf`` is the batch f
 
   ``bpf``
    
-    Command line program that performs power flow. It executes using the commands from a Power Flow Control (PFC) file. Example usage: ``bpf bench.pfc.`` The PFC commands (.pfc) used with ``bpf`` allow for complete power flow runs including defining the network model and commands to perform various operations. The :ref:`record-formats` section describes the network model records available and the :ref:`power-flow-control` section describes the PFC syntax and commands available. Example of use: ``tsp bench.pfc``
+    Command line program that performs power flow. It executes using the commands from a Power Flow Control (PFC) file. Example usage: ``bpf bench.pfc.`` The PFC commands (.pfc) used with ``bpf`` allow for complete power flow runs including defining the network model and commands to perform various operations. The :ref:`record-formats` section describes the network model records available and the :ref:`power-flow-control` section describes the PFC syntax and commands available. More documentation about this program is in :ref:`bpf` section.
 
   ``ipfcut``
   
@@ -19,23 +19,23 @@ IPF can be thought of as a family of executable programs. ``bpf`` is the batch f
 
   ``ipfplot``
    
-    Command line plotting program to produce printed maps. The program accepts a coordinate file (.cor) and a base case file (.bse) on the command line, as well as an optional second base case file. When the second base case file is specified, a difference plot is produced. You can also use ``ipfplot`` to produce bubble diagrams. The same coordinate files are used for both ``gui`` and ``ipfplot``, but not all capabilities are available in ``gui``. Documentation is in :ref:`ipf-network-diagrams`.
+    Command line plotting program to produce printed maps. The program accepts a coordinate file (.cor) and a base case file (.bse) on the command line, as well as an optional second base case file. When the second base case file is specified, a difference plot is produced. You can also use ``ipfplot`` to produce bubble diagrams. The same coordinate files are used for both ``gui`` and ``ipfplot``, but not all capabilities are available in ``gui``. Documentation is in :ref:`ipf-network-diagrams`.  More documentation about this program is in :ref:`ipfplot` section.
 
   ``tsp``
   
-    Command line program that performs transient stability studies. Users specify power system network distrubances (line faults, generator trips), and the program simulates the affects on power system dynamics including key data points like generator rotor angle. This tool can be used to evaluate short term (on order of seconds) affects of these disturbances. Example of use: ``tsp bench.fil``
+    Command line program that performs transient stability studies. Users specify power system network distrubances (line faults, generator trips), and the program simulates the affects on power system dynamics including key data points like generator rotor angle. This tool can be used to evaluate short term (on order of seconds) affects of these disturbances. Example of use: ``tsp bench.fil``.  More documentation about this program is in :ref:`tsp` section.
 
   ``ipfnet``
   
-    The command line batch version of the "save netdata file" command built into the ``gui``/``ipfsrv``. This program generates a WSCC-formatted network data file in any of the following dialects: BPA, WSCC, or PTI. "Dialects" means that the file is still WSCC, but the data is generated with special processing or restrictions and is destined for use with other programs. In the case of the PTI dialect, that data is preprocessed by the PTI-proprietary conversion program WSCFOR. Documentation is in :ref:`ipfnet`.
+    The command line batch version of the "save netdata file" command built into the ``gui``/``ipfsrv``. This program generates a WSCC-formatted network data file in any of the following dialects: BPA, WSCC, or PTI. "Dialects" means that the file is still WSCC, but the data is generated with special processing or restrictions and is destined for use with other programs. In the case of the PTI dialect, that data is preprocessed by the PTI-proprietary conversion program WSCFOR. Documentation is in :ref:`ipfnet`.  More documentation about this program is in :ref:`ipfnet` section.
 
   ``gui``
   
-    Launches the push button and menu-driven Graphical User Interface program built with `Motif X Window`_ that works in conjunction with the power flow server, ``ipfsrv``.
+    Launches the push button and menu-driven Graphical User Interface program built with `Motif X Window`_ that works in conjunction with the power flow server, ``ipfsrv``.  More documentation about this program is in :ref:`gui` section.
 
   ``ipfsrv``
   
-    The power flow server which the backend component of the ``gui``. It executes power flow commands through :ref:`powerflow-command-language` scripts dispatched from the ``gui``. It gets launched automatically by the ``gui``.
+    The power flow service daemon which runs as the backend component of the ``gui``. It executes power flow commands through :ref:`powerflow-command-language` scripts dispatched from the ``gui``. It gets launched automatically by the ``gui``.
 
   ``ipfbat``
    

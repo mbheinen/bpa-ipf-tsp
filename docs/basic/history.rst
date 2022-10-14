@@ -73,15 +73,16 @@ The original project is the result of a lot of hard work from engineers at BPA a
   * Dan L. Clark
   * Jay G. Coleman
   * Tsu-huei Liu
-  * Walter L. Powell
+  * `Walter L. Powell_`
   * Bill E. Rogers
   * William D. Rogers
   * K E Rowell
   * John L Rutis
-  * D M Stefonik
+  * David M Stefonik
   * D M Syzmanski
 
 .. _Bonneville Power Administration: https://www.bpa.gov/
 .. _Motif X Window: https://motif.ics.com/motif/downloads
 .. _Electric Power Research Institute: https://www.epri.com/
 .. _Western Electricity Coordinating Council: https://www.wecc.org/
+.. _Walter L. Powell: https://linkedin.com/in/walter-powell-18506b53/

@@ -53,9 +53,23 @@ Contents
    basic/pfc_examples
    basic/pcl
    basic/bpf
-   basic/ipfcut
-   basic/ipfnet
    basic/tsp
+   basic/ipf_reports
+   basic/pvcurve
+   basic/post_pvcurve
+   basic/qvcurve
+   basic/ipfcut
+   basic/netdat
+   basic/ipfnet
+   basic/ipfplot
+   basic/ipf_test
+   basic/findout
+   basic/lineflow
+   basic/puf
+   basic/mimic
+   basic/ipfsrv
+   basic/ipfbat
+   basic/gui
    basic/x_window_gui
    basic/cflow
    basic/application_examples

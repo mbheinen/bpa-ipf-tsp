@@ -1,7 +1,11 @@
+.. _bpf:
+
 *******
 ``bpf``
 *******
-In order to process a case, ``bpf`` requires a program control file and a valid set of base case data, which may be a composite of ``NETWORK_DATA`` and ``BRANCH_DATA`` formatted ASCII files or an ``OLD_BASE`` file from a previous power flow case, and a ``CHANGE`` file.
+Command line interface that performs power flow. It executes using commands from a Power Flow Control (PFC) file. Example usage: ``bpf bench.pfc.`` The PFC commands (.pfc) used with ``bpf`` allow for complete power flow runs including defining the network model and commands to perform various operations such as evaluating outages. The :ref:`record-formats` section describes the network model records available and the :ref:`power-flow-control` section describes the PFC syntax and commands available.
+
+In order to process a case, ``bpf`` requires a program control file and a valid set of base case data, which may be a composite of ``NETWORK_DATA`` and ``BRANCH_DATA`` formatted ASCII files or an ``OLD_BASE`` file from a previous run of ``bpf``, and a ``CHANGE`` file.
 
 The PFC file either contains data used for the solution, or names files containing such data. The solution data is optionally saved on the file named in the ``NEW_BASE`` command.
 

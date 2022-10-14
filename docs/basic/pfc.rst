@@ -2406,7 +2406,7 @@ The named constituent buses which comprise each coherent cluster may be either r
 
 Special codes on each bus permit individual dispositions of generator and load quantities. Generation and/or load may be converted to constant current, constant admittance, or converted to an REI coherent unit. The codes are show in the table below.
 
-.. table:: Reduction Quali?er Codes
+.. table:: Reduction Qualifier Codes
 
   ============== =======================
   Column         Value

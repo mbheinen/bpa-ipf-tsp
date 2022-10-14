@@ -3,7 +3,7 @@
 ****************************
 X Window Graphical Interface
 ****************************
-This section presents information about the X Window graphical user interface (GUI) for IPF.
+This section presents information about the X Window graphical user interface (``gui``) for IPF.
 
 IPF's X Window GUI interface makes data entry and modification easy. It also simplifies the running of base case solutions and the printing of network diagrams. This guide shows how to use the major features of IPF. Users who need details about data input record formats or system models should consult the :ref:`record-formats` section.
 
@@ -11,7 +11,7 @@ IPF's GUI uses the X Window System and the OSF/Motif window manager interface. T
 
 Audience
 ========
-You will be expected to already know the basics of power flow programs in general. You will find that small changes in bus and branch values are  easier to make in the GUI than hunting through ASCII text files. For example, users will get a feel for how changes to the input data affect the solution voltages in a network much more quickly with IPF than by using a batch style interaction.
+You will be expected to already know the basics of power flow programs in general. You will find that small changes in bus and branch values are easier to make in the GUI than trying to manage through ASCII text files and running ``bpf`` commands on the terminal. For example, users will get a feel for how changes to the input data affect the solution voltages in a network much more quickly with the GUI than by using a terminal style interaction.
 
 User Interface
 ==============
@@ -60,11 +60,11 @@ Server
 
 Client 
 
-  A stand-alone X program. Clients are the X programs that you use to accomplish your work, such as drawing graphs, preparing text, making power flow calculations, etc. Clients usually reside in a computer across the local area network, but they can also reside in the same memory as the server itself. Clients and servers communicate through a special language (â€œprotocolâ€) that is especially efficient for communication over a Local Area Network (LAN).
+  A stand-alone X program. Clients are the X programs that you use to accomplish your work, such as drawing graphs, preparing text, making power flow calculations, etc. Clients usually reside in a computer across the local area network, but they can also reside in the same memory as the server itself. Clients and servers communicate through a special language ("protocol") that is especially efficient for communication over a Local Area Network (LAN).
 
 Resources 
 
-  X components that are held and managed in common for X clients by the server. X resources reside in your local computer (or X terminal) memory just like the server. X resources are things like fonts, color â€œpixmaps,â€ font information, etc.
+  X components that are held and managed in common for X clients by the server. X resources reside in your local computer (or X terminal) memory just like the server. X resources are things like fonts, color "pixmaps," font information, etc.
 
 Window manager 
 
@@ -86,9 +86,9 @@ The GUI portion of IPF is a server; the powerflow portion is a client. These two
 
 The figure above shows you the basic architecture and communication model of the X Window System. Something you should note is that the client (application) program may be physically residing on a completely different computer from the one that your keyboard, mouse, and display are attached to. To access the remote application, you only have to know the name of the computer your client is on. (You also must have permission to use the other computer, of course, and it must be connected properly to the LAN.) The X Window System was designed from the ground up to run in a distributed computing environment.
 
-When you are running a client, such as IPF, over the network, in contrast to running it in your own computer’s local memory, you will ordinarily notice very little performance degradation due to network traffic, though there may be some depending on how busy the network is. X is designed to minimize network communication.
+When you are running a client, such as IPF, over the network, in contrast to running it in your own computer's local memory, you will ordinarily notice very little performance degradation due to network traffic, though there may be some depending on how busy the network is. X is designed to minimize network communication.
 
-The server side of X resides in your own computer’s (or X terminal’s) memory. There is one X server for each user’s keyboard, mouse, and display. The server is dedicated to you. However, your server may communicate simultaneously with many different X clients, not just IPF. And again, these other clients may be anywhere out on the LAN. Thus, in any one X session (between “login” and “logout”), you may run many X clients on many different computers. The server manages all this.
+The server side of X resides in your own computer's (or X terminal's) memory. There is one X server for each user's keyboard, mouse, and display. The server is dedicated to you. However, your server may communicate simultaneously with many different X clients, not just IPF. And again, these other clients may be anywhere out on the LAN. Thus, in any one X session (between "login" and "logout"), you may run many X clients on many different computers. The server manages all this.
 
 When your client requests a certain font, the server delivers it. When your client requests different colors for graphical objects, the server consults the color map for that client and delivers the correct colors. Fonts, colors, and certain other server-managed software components are termedresources. Some resources such as colors and fonts you can change in your own account’s IPF resources file, XGUI. See ?? if you would like to learn more about this.
 
@@ -744,9 +744,117 @@ The ``BX`` dialog box supplies data for a bus that controls its own or a remote 
 
 ``BD`` Bus
 ----------
-The ``BD`` dialog box supplies data for a two-terminal DC bus. See the ``BD`` record in :ref:`ac-bus-data-bd`.
+The ``BD`` dialog box supplies data for a two-terminal DC bus. See the ``BD`` record :ref:`ac-bus-data-bd`.
 
 .. figure:: ../img/Input_Data_Edit_Box_Showing_BD_Bus.png
 
   Input Data Edit Box Showing BD Bus
 
+**Number of Bridges**. Two digit integer designating the number of bridges per dc circuit (number
+of valves serially connected).
+
+**Smoothing Reactor**. Five character maximum, real number designating smoothing inductance
+in millihenries.
+
+**Min Firing Angle**. Five character maximum, real number designating minimum firing angle
+(:math:`alpha_min`) in degrees, for rectifier operation.
+
+**Max Firing Angle**. Five character maximum, real number designating maximum firing angle
+(:math:`alpha_stop`) in degrees, for inverter operation.
+
+**Valve Drop**. Five character maximum, real number designating valve voltage drop per bridge, in
+volts.
+
+**Bridge Rating**. Five character maximum, real number designating maximum bridge current
+rating in amps.
+
+**Commutating Bus**. Eight character maximum, alphanumeric string designating the
+commutating bus name. This is the bus on the ac system side of the commutating transformer bank.
+
+``BM`` Bus
+----------
+The BM dialog box supplies data for a multi-terminal dc bus.  See the ``BM`` record :ref:`ac-bus-data-bm`.
+
+.. figure:: ../img/Input_Data_Edit_Box_Showing_BM_Bus.png
+
+  Input Data Edit Box Showing BM Bus
+
+**Number of Bridges**. Two digit integer designating the number of bridges per dc circuit (number
+of converters serially connected).
+
+**Smoothing Reactor**. Five character maximum, real number designating smoothing inductance in millihenries.
+
+**Min Firing Angle**. Five character maximum, real number designating minimum ignition delay
+angle (:math:`alpha_min`) in degrees.
+
+Max Firing Angle. Five character maximum, real number designating maximum ignition delay
+angle (:math:`alpha_stop`) in degrees.
+
+Valve Drop. Five character maximum, real number designating converter valve drop per bridge,
+in volts.
+
+Bridge Rating. Five character maximum, real number designating bridge current rating
+(maximum converter current) in amps.
+
+**Commutating Bus**. Eight character maximum, alphanumeric string designating the
+commutating bus name.
+
+**Converter Type**. Single character alpha string designating the converter code. R indicates
+normal operation as a rectifier; I is normal operation as an inverter. M indicates an inverter with
+current margin, and blank indicates a passive dc tap.
+
+**Ignition Delay Angle**. Three character maximum, real number designating the normal ignition
+delay angle (:math:`alpha_N`) for a rectifier, or normal extinction angle (:math:`gamma_N`) for an inverter, in
+degrees.
+
+**Min Extinction Angle**. Three character maximum, real number designating the minimum
+ignition angle (:math:`alpha_min`) for a rectifier, or minimum extinction angle (:math:`gamma_0`) for an inverter, in
+degrees.
+
+**Converter DC Power**. Six character maximum, real number designating the scheduled dc bus
+load (net converter dc output power) in megawatts (MW) at the base kV of the bus.
+
+**Converter DC Voltage**. Five character maximum, real number designating the scheduled dc bus
+kV (converter dc voltage).
+
+Continuation Bus
+----------------
+The continuation bus dialog box is used for extending the data for a given bus record. You can
+specify additional generation, load, and shunt admittance. A typical use is the case where several
+owners have load at the same bus. Also, shunt specified on this record is considered to be fixed,
+rather than variable. See the `+`` (plus) record :ref:`continuation-bus-data`.
+
+.. figure:: ../img/Continuation_Bus_Dialog_Box.png
+
+  Continuation Bus Dialog Box
+
+**Name**. An eight character maximum, alphanumeric string, plus a five character maximum real
+number, designating the name of the bus that this continuation data is associated with.
+Code Type. An option button that specifies the type of continuation record: +blank, +A, +C, +F
++I, +N, +P, or +S. See the IPF Batch User's Guide for an explanation of these codes.
+
+**Owner**. Three character maximum, alphanumeric string designating the owner of this particular
+load, shunt, etc. This will usually be different from the owner of the bus itself.
+
+**Code Year**. Two character maximum, alphanumeric string. See :ref:`continuation-bus-data`.
+for details.
+
+**Load P**. Five character maximum, real number designating real load in megawatts (MW).
+
+**Load Q**. Five character maximum, real number designating reactive load in megavoltamperes
+reactive (Mvar).
+
+**Shunt P**. Four character maximum, real number designating the shunt admittance load in
+megawatts (MW) at the base kV of the bus.
+
+**Shunt Q**. Four character maximum, real number designating the shunt reactance load in
+megavoltamperes reactive (MVar) at the base kV of the bus.
+
+**Gen P**. Five character maximum, real number designating scheduled real power in megawatts
+(MW) as a real number.
+
+**Gen Qmax**. Five character maximum, real number designating maximum reactive power in
+megawatts (MW).
+
+**Gen Qmin**. Five character maximum, real number designating minimum reactive power in
+megawatts (MW).
