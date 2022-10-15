@@ -13,7 +13,7 @@ A copy of the original WSCC specifications for both power flow and transient sta
 
 The difference between this version of the program and the one used in Salt Lake City was the control record requirements for defining the problem such as where the fault is applied, line switching, etc., and the format for all output options. The formats for almost all other intput data requirements maintain strict compatibility between the two programs. Therefore, with grateful acknowledgements to the WSCC Staff, a substantial portion of the materials used in this documentation are reproduced copies taken from the WSCC Program Manual.
 
-Acknowledgement is also given to Teshmont Consultants, Inc. of Winnipeg, Manitoba for their many correctoins and additions to the code.
+Acknowledgement is also given to Teshmont Consultants, Inc. of Winnipeg, Manitoba for their many corrections and additions to the code.
 
 Program Description
 ===================
@@ -21,7 +21,7 @@ There are basically two methods of simulation used in this program. All differen
 
 The diagram ?? shows that the swing program is divided into solution and output portions. The solution portion creates a swing solution file which saves all output data for all busses in the study. This structure allows the user to run the solution portion and save the swing solution file. Then, using the swing solution file, the power flow output file, and the swing output data file, the user can run any number of output jobs without resolving the solution.
 
-The program is designed to run in conjunction with the IPF power flow program (`bpf`). The diagram ?? shows the interconnection between the power flow and transient stability program. Note that both the soution and output portions of the swing program require a power flow output file (.bse) as input.
+The program is designed to run in conjunction with the IPF power flow program (``bpf``). The diagram ?? shows the interconnection between the power flow and transient stability program. Note that both the soution and output portions of the swing program require a power flow output file (``.bse``) as input.
 
 The program also has a save data feature which allows the user to enter the majority of the swing input data via a save data file and enter only the line switching and FF records in the swing input file. This is useful when a series of swing studies are run using the same basic data but with different system perturbations.
 

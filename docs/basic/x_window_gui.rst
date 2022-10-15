@@ -1,8 +1,8 @@
 .. _x-window-graphical-interface:
 
-****************************
-X Window Graphical Interface
-****************************
+**************************************
+``gui`` - X Window Graphical Interface
+**************************************
 This section presents information about the X Window graphical user interface (``gui``) for IPF.
 
 IPF's X Window GUI interface makes data entry and modification easy. It also simplifies the running of base case solutions and the printing of network diagrams. This guide shows how to use the major features of IPF. Users who need details about data input record formats or system models should consult the :ref:`record-formats` section.
@@ -700,8 +700,8 @@ The ``BQ`` dialog box supplies data for a bus that holds its voltage to a specif
 
 **V Hold**. Four character maximum, real number designating a voltage to hold for the bus, in per unit.
 
-BS Bus
-------
+``BS`` Bus
+----------
 The ``BS`` dialog box supplies data for the system slack (or swing) bus. See the ``BS`` record in :ref:`ac-bus-data-bs`.
 
 **Q Sched**. Five character maximum, real number designating scheduled reactive power in megavoltamperes reactive (MVAR). May be positive or negative.
@@ -730,7 +730,7 @@ The ``BV`` dialog box supplies data for a bus that holds its net reactive power 
 
 ``BX`` Bus
 ----------
-The ``BX`` dialog box supplies data for a bus that controls its own or a remote bus’s voltage by switching capacitors or reactors in and out. See the BX record in :ref:`ac-bus-data-bx`.
+The ``BX`` dialog box supplies data for a bus that controls its own or a remote bus's voltage by switching capacitors or reactors in and out. See the BX record in :ref:`ac-bus-data-bx`.
 
 **Q Max**. Five character maximum, real number designating maximum reactive power in megavoltamperes reactive (MVAR). Generally positive.
 
@@ -743,7 +743,7 @@ The ``BX`` dialog box supplies data for a bus that controls its own or a remote 
 **Remote Bus**. An eight character maximum, alphanumeric string designating the remote bus to be voltage controlled.
 
 ``BD`` Bus
-----------
+==========
 The ``BD`` dialog box supplies data for a two-terminal DC bus. See the ``BD`` record :ref:`ac-bus-data-bd`.
 
 .. figure:: ../img/Input_Data_Edit_Box_Showing_BD_Bus.png
@@ -772,7 +772,7 @@ rating in amps.
 commutating bus name. This is the bus on the ac system side of the commutating transformer bank.
 
 ``BM`` Bus
-----------
+==========
 The BM dialog box supplies data for a multi-terminal dc bus.  See the ``BM`` record :ref:`ac-bus-data-bm`.
 
 .. figure:: ../img/Input_Data_Edit_Box_Showing_BM_Bus.png
@@ -818,7 +818,7 @@ load (net converter dc output power) in megawatts (MW) at the base kV of the bus
 kV (converter dc voltage).
 
 Continuation Bus
-----------------
+================
 The continuation bus dialog box is used for extending the data for a given bus record. You can
 specify additional generation, load, and shunt admittance. A typical use is the case where several
 owners have load at the same bus. Also, shunt specified on this record is considered to be fixed,
@@ -858,3 +858,951 @@ megawatts (MW).
 
 **Gen Qmin**. Five character maximum, real number designating minimum reactive power in
 megawatts (MW).
+
+Switched Reactance
+==================
+The switched reactance bus dialog box is used for specifying steps in a switched reactance ``BX`` bus. 
+See the ``X`` record :ref:`switched-reactance` for detailed information.
+
+.. figure:: ../img/Switched_Reactance_Dialog_Box.png
+
+  Switched Reactance Dialog Box
+
+**Name**. An eight character maximum, alphanumeric string, plus a five character maximum real
+number, designating the name of the BX bus that this data is associated with.
+
+**Remote Bus**. An eight character maximum, alphanumeric string, plus a five character maximum
+real number, designating the name of the remote bus to be voltage controlled.
+
+**Owner**. A three character maximum, alphanumeric string designating the bus owner.
+
+**Steps**. An integer from 1 to 9, designating the number of increments of shunt of this magnitude.
+
+**MVAR**. A five character maximum, real number designating a block of switchable reactive shunt
+in megavoltamperes reactive (Mvar).
+
+PQ Curve
+========
+The PQ Curve dialog box allows you to specify points for a generator reactive capability curve for
+a type BE, BG, BQ, BX, or BS bus. See the `QP`` record :ref:`reactive-capability-curves` for detailed information.
+
+To specify P Gen, Q Max, and Q Min values, type the values in the bottom text entry boxes. Click
+the Insert button to transfer the values from the text entry boxes to the list boxes above. Rows of
+values are associated across. Six rows of values are sufficient for most curves. Once you have
+values typed in and entered, you can replace or delete them, a row at a time.
+
+.. figure:: ../img/PQ_Geneartion_Dialog_Box.png
+
+  P-Q Generation Dialog Box
+
+**P Gen**. Five character maximum, real number designating a particular level of real power
+generation in megawatts (MW) which is to be associated with certain Q limits. Values may be
+specified in per unit on Pmax, or in MVA. All values for a curve must be specified the same way.
+
+**Q Max**. Five character maximum, real number designating maximum reactive power (positive) in
+megavoltamperes reactive (Mvar) that can be produced by the generator when operating at this
+level of real power output. Values may be specified in per unit on Pmax, or in MVA. All values
+for a curve must be specified the same way.
+
+**Q Min**. Five character maximum, real number designating minimum reactive power (negative) in
+megavoltamperes reactive (Mvar) that can be absorbed by the generator when operating at this
+level of real power output. Values may be specified in per unit on Pmax, or in MVA. All values
+for a curve must be specified the same way.
+
+**Insert**. A button that inserts the values in the bottom text entry boxes into the text lists above.
+Replace. A button that replaces the selected row of values in the list above with the current values
+in the bottom text entry boxes.
+
+**Delete**. A button that deletes the selected text list row of values.
+
+**Active**. A radio button that makes the curve defined by the values in the text list rows active, that
+is, IPF uses the curve to determine what the Q limits will be, based on the current level of Pgen
+specified in the bus record.
+
+**Inactive**. A radio button that makes the curve inactive, that is, IPF does not calculate new Q limits
+whenever Pgen is changed, but uses whatever it currently has stored.
+
+**MVA**. The values for the PQ curves may be specified in MVA or per unit. Clicking the MVA radio
+button tells the program to expect values in MVA.
+
+**Per Unit**. The values for the PQ curves may be specified in MVA or per unit. Clicking the Per
+Unit radio button tells the program to expect values in per unit on Pmax.
+
+**Add**. A button that adds a new three-record point set to the current curve data for this bus.
+
+**Modify**. A button that modifies the curve data. (Not available.)
+
+**Reset**. A button that restores text box values to their original values (before any changes were
+made).
+
+**Delete**. A button that deletes (removes) the curve data from the database.
+
+**Outage**. (Not applicable.)
+
+**Close**. A button that causes the dialog box to close and disappear from the display without making
+any modifications.
+
+Sectionalization
+================
+The Sectionalize Bus dialog box allows you to split a bus to create two buses, with existing
+branches divided between them. You can sectionalize a bus at any time. You get
+to this dialog box from the Sectionalize button in the Input Data Edit dialog box for the bus you
+want to split.
+
+When the Sectionalize Bus dialog box first comes up, it assumes the current bus name and
+information from the Input Data Edit dialog box. Note that the name of the current bus appears in
+both text boxes found at the top of the dialog box. You change the name in the right-hand box to
+create a new bus record, which will inherit the bus type and voltage of the old bus.
+
+Once you have changed the bus name to a new one, you can arrange the branch information in the
+list boxes to define the new connections. The list box under the left-hand text box applies to the
+bus name on the left side, and the list on the right to the right-hand bus name. If you click on a
+record in either box, it will be transferred to the other. Use the horizontal and vertical scroll bars to
+see information that is hidden.
+
+After the two buses and their associated branches are satisfactory, you can optionally press the Bus
+Tie button to create a "bus tie" record, which is a line with impedance :math:`0.0 + j0.00001`` between the
+new bus and the old one. The bus tie record will appear in the text box.
+
+.. figure:: ../img/Sectionalize_Bus_Dialog_Box.png
+
+  Sectionalize Bus Dialog Box
+
+**Sectionalize Bus 1**. This text box contains the bus type, name, and base kV of the current bus
+you are working with in the Input Data Edit Box.
+
+**Sectionalize Bus 2**. This text box initially contains the name of the current bus. You can change
+this to be any new bus name. The new bus inherits the base kV, ownership, and bus type of Bus 1.
+
+**Bus Tie**. Click this button if you want to tie the two buses with a low impedance tie line. This
+creates a bus tie record. The branch record shows up in the text box.
+OK. Click this button to cause the new data to be saved in the memory-resident bus and branch
+database. No changing action occurs until you click OK. The dialog box closes and returns you to
+the Input Data Edit Box.
+
+**Reset**. Click this button if you want to return to the initial state of a just opened dialog box. All
+changes that you have made are erased and returned to initial conditions.
+
+**Close**. Click this button if you have decided that no save action is necessary, that is, you do not
+want to make any sectionalization changes to the memory-resident bus and branch database.
+Clicking this button closes the dialog box and returns you to the Input Data Edit Box.
+
+Line Tapping (may not be available)
+===================================
+Tapping a line means to service a new load by creating a new tap point bus on an existing line. The
+tapped line is effectively segmented into two lines, separated with a newly created bus. If the load
+is remote from the tapped point, an additional line and bus will be necessary. The new load and the
+new bus are connected by a new line. As with many line operations, you access line tapping
+through a bus that the line is connected to.
+
+.. figure:: ../img/Line_Tapping_Dialog_Box.png
+
+  Line Tapping Dialog Box
+
+**Bus 1 Line Data**. This text box displays the lines between bus 1 and the tapped bus. Initially, it
+contains all the lines between Bus 1 and Bus 2.
+
+**Bus 2 Line Data**. This text box displays the lines between bus 1 and the tapped bus. Initially, it
+is empty.
+
+**Scale Value Radio Buttons**. These ratio buttons identify the line tap point in terms of three
+different criteria: (1) percent of reactance from bus 1, (2) the distance from bus 1, (3) the section
+number. Note that transformers and series capacitors (X < 0) have zero (0) length and cannot be
+tapped.
+
+**Scale Slide**. A dynamic, moveable slider that shows the proportion of the selected scale on the
+line between Bus 1 and Bus 2. The slider value changes according to what scale value radio button 
+is currently active.
+
+**Base 1 Name**. A bus name and base kV bus identifier specifying the terminal 1 bus of the line to
+be tapped.
+
+**Base 2 Name**. A bus name and base kV bus identifier specifying the terminal 2 bus of the line to
+be tapped.
+
+**Reverse Scale**. A button that flips the scale values from one end to the other.
+
+**Tapped Bus Name**. The name and base kV of the new bus created at the tap point.
+
+**Send**. Click this button to cause the line tapping operation data to be saved in the memory-resident
+bus and branch database. The dialog box closes and returns you to the Input Data Edit Box.
+
+**Calculate**. Click this button to see the effects of the slider operation. This action does not send
+any data to Powerflow.
+
+**Cancel**. A button that closes the dialog box and causes no further action.
+
+**Close**. Click this button if you have decided that no save action is necessary, that is, you do not
+want to make any sectionalization changes to the memory-resident bus and branch database.
+Clicking this button closes the dialog box and returns you to the Input Data Edit Box.
+
+**Help**. (Not yet implemented)
+
+Transmission Line
+=================
+The transmission line dialog box specifies the identification and electrical characteristics of a
+balanced pi line, section of a line, or series capacitor. See the ``L`` record :ref:`balanced-transmission-line`.
+
+.. figure:: ../img/Transmission_Line_Dialog_Box.png
+
+  Transmission Line Dialog Box
+
+**Name**. Two eight character maximum, alphanumeric strings designating the buses. The strings
+must start with an alpha character. The first name is placed in the first text box from the left. The
+next text box should have a four character maximum numeric string representing the bus's base kV
+rating. The second bus name and its base kV are to the right of the first.
+
+**Metering**. An integer (or blank) flag having three possible values: 1 means to meter at the bus 1
+end; 2 means to meter at the bus 2 end; and blank means to let the program decide on the following
+criteria — (1) when bus ownership differs from bus ownership, meter at the point where line
+ownership differs from bus ownership, or (2) when both buses have the same ownership, meter at
+bus 1 location.
+
+**Owner**. A three character alphanumeric code representing ownership of the branch.
+Circuit ID. A single alphanumeric character representing the circuit identification.
+Section. An integer (1-9) representing the section number for making an equivalent for series
+elements. The elements are assembled in ascending numeric order. This may be blank or zero if
+the line has only one section.
+
+**Resistance (R)**. A six digit real number representing the per unit resistance R.
+
+**Reactance (X)**. A six digit real number representing the per unit reactance X.
+
+**Admittance (G/2)**. A six digit real number representing the per unit admittance G.
+
+**Susceptance (B/2)**. A six digit real number representing the per unit susceptance B.
+
+**Number of Parallels**. An integer representing the number of parallel circuits represented by this
+record.
+
+**Miles**. A real number indicating the line length. Note: if a branch is composed of individual
+sections, then the total line length is the sum of mileage of each section. Also, note that series
+capacitors (X < 0) have no mileage.
+
+**Current Ratings**. Real numbers that are conductor current ratings in amps. Nominal is the
+normal rating based on the line construction and conductor size. Thermal takes into account the
+effect of ambient temperature and other environmental factors upon the maximum permissible
+temperature of the conductor, usually for short time periods. Bottleneck is the minimum rating of
+the line including other series connected components, such as circuit breakers, fuses, or disconnect
+switches.
+
+**Calculate Impedance**. A button that allows you to compute the electrical parameters given the
+conductor size and type, and tower geometry and length.
+
+**Tap Line**. A button that allows you to tap a line with a newly added bus.
+
+**Add**. A button that adds a new record to the database.
+
+**Modify**. A button that modifies the record.
+
+**Reset**. A button that restores text box values to their original values (before any changes were
+made).
+
+**Delete**. A button that deletes (removes) a record from the database.
+
+**Outage**. (Not yet implemented.)
+
+**Close**. A button that causes the dialog box to close and disappear from the display without making
+any modifications to the record.
+
+Phase Shifter
+=============
+The Phase Shifter dialog box allows you to add data for phase shifting transformers. See the ``T`` :ref:`transformer-data` and
+``R`` records :ref:`regulating-transformer` for more details.
+
+.. figure:: ../img/Phase_Shifter_Dialog_Box.png
+
+  Phase Shifter Dialog Box
+
+**Name**. Two eight character maximum, alphanumeric strings designating the buses. The strings
+must start with an alpha character. The first name is placed in the first text box from the left. The
+next text box should have a four character maximum numeric string representing the bus’s base kV
+rating. The second bus name and its base kV are to the right of the first.
+
+**Metering**. An integer (or blank) flag having three possible values: 1 means to meter at the bus 1
+end; 2 means to meter at the bus 2 end; and blank means to let the program decide on the following
+criteria — (1) when bus ownership differs from bus ownership, meter at the point where line
+ownership differs from bus ownership, or (2) when both buses have the same ownership, meter at
+bus 1 location.
+
+**Section**. An integer (1-9) representing the section number for making an equivalent for series
+elements. The elements are assembled in ascending numeric order.
+
+**Circuit ID**. A single alphanumeric character representing the circuit identification.
+
+**Owner**. A three character alphanumeric code representing ownership.
+
+**Parallels**. An integer representing the number of parallel transformers in this record.
+
+**Resistance (R)**. A six digit real number representing per unit equivalent resistance R due to
+copper loss.
+
+**Reactance (X)**. A six digit real number representing per unit leakage reactance X.
+
+**Admittance (G)**. A six digit real number representing per unit shunt equivalent core loss
+conductance G (iron losses).
+
+**Susceptance (B)**. A six digit real number representing per unit shunt magnetizing susceptance
+B. This is always converted to a negative number by the program.
+
+**Phase Shift**. A five digit real number representing the fixed phase shift in degrees that describes
+bus 1 relative to bus 2.
+
+**Tap 2 kV**. A five digit real number representing the fixed bus 2 tap. It is possible for a transformer
+to have both a phase shift and a tap.
+
+**MVA Ratings**. All MVA ratings (Nominal, Thermal, Bottleneck, and Emergency) are represented 
+by four digit real numbers. Nominal is the normal rating based on the construction. Thermal takes
+into account the effect of ambient temperature and other environmental factors upon the maximum 
+permissible temperature of the conductor, usually for short time periods. Bottleneck is the minimum
+rating of the transformer including other series connected components, such as circuit breakers, fuses, or 
+disconnect switches.
+
+**Add**. A button that adds a new record to the database.
+
+**Modify**. A button that modifies the record.
+
+**Reset**. A button that restores text box values to their original values.
+
+**Delete**. A button that deletes (removes) a record from the database.
+
+**Outage**. (Not yet implemented.)
+
+**Close**. A button that causes the dialog box to close and disappear from the display without making
+any modifications to the record.
+
+Transformer
+===========
+The transformer dialog box allows you to add data for fixed tap transformers. See the ``T`` record :ref:`transformer-data`.
+
+.. figure:: ../img/Transformer_Dialog_Box.png
+
+  Transformer Dialog box
+
+**Name**. Two eight character maximum, alphanumeric strings designating connected buses. The
+strings must start with an alpha character. The first name is placed in the first text box from the left.
+The next text box should have a four character maximum numeric string representing the bus's
+base kV rating. The second bus name and its base kV are to the right of the first.
+
+**Metering**. An integer (or blank) flag having three possible values: 1 means to meter at the bus 1
+end; 2 means to meter at the bus 2 end; and blank means to let the program decide on the following
+criteria — (1) when bus ownership differs from bus ownership, meter at the point where line
+ownership differs from bus ownership, or (2) when both buses have the same ownership, meter at
+bus 1 location.
+
+**Section**. An integer (1-9) representing the section number for making an equivalent for series
+elements. This may be zero or blank if the branch has only one section.
+
+**Circuit ID**. An alphanumeric character representing the circuit identification.
+
+**Owner**. A three character alphanumeric code representing ownership.
+
+**Parallels**. An integer representing the number of parallel transformer banks in this record.
+
+**Resistance (R)**. A six digit real number representing per unit equivalent resistance R due to
+copper loss.
+
+**Reactance (X)**. A six digit real number representing per unit leakage reactance X.
+
+**Admittance (G)**. A six digit real number representing per unit shunt equivalent core loss
+conductance G (iron losses).
+
+**Susceptance (B)**. A six digit real number representing per unit shunt magnetizing susceptance
+B\. This is always converted to a negative number by the program.
+
+**Tap 1 kV**. A five digit real number representing the fixed bus 1 tap.
+
+**Tap 2 kV.** A five digit real number representing the fixed bus 2 tap.
+
+**MVA Ratings**. All MVA ratings (Nominal, Thermal, Bottleneck, and Emergency) are
+represented by four digit real numbers.  Nominal is the normal rating based on the construction. Thermal takes
+into account the effect of ambient temperature and other environmental factors upon the maximum 
+permissible temperature of the conductor, usually for short time periods. Bottleneck is the minimum
+rating of the transformer including other series connected components, such as circuit breakers, fuses, or 
+disconnect switches.
+
+**Add**. A button that adds a new record to the database.
+
+**Modify**. A button that modifies the record.
+
+**Reset**. A button that restores text box values to their original values (before any changes were
+made).
+
+**Delete**. A button that deletes (removes) a record from the database.
+
+**Outage**. (Not yet implemented.)
+
+**Close**. A button that causes the dialog box to close and disappear from the display without making
+any modifications to the record.
+
+Regulating Transformer
+======================
+The regulating transformer dialog box allows you to add data for regulating transformers. See the
+``R`` record :ref:`regulating-transformer`.
+
+.. figure:: ../img/Regulating_Transformer_Dialog_Box.png
+
+  Regulating Transformer Dialog Box
+
+**Name**. Two eight character maximum, alphanumeric strings designating connected buses. The
+strings must start with an alpha character. The first name is placed in the first text box from the left.
+The next text box should have a four character maximum numeric string representing the bus's
+base kV rating. The second bus name and its base kV are to the right of the first.
+
+**Owner**. A three character alphanumeric code representing ownership.
+
+**R (subtypes)**. An option button allowing you to choose types R-blank, RV, RQ,RP, RN, or RM.
+See the R record in the IPF Batch User’s Guide for a description of these types.
+
+**Low Alpha Fixed**. A radio button that identifies the fixed tap side as at the low alpha order bus
+name terminal. Note that this field is necessary only to resolve ambiguity if Min Tap and Max Tap
+cannot establish the variable tap side. Low Alpha Fixed is the default.
+
+**Bus 1 Variable**. A radio button that identifies the variable tap side as at the bus 1 terminal. Note
+that this field is necessary only to resolve ambiguity if Min Tap and Max Tap cannot establish the
+variable tap side.
+
+**Bus 2 Variable**. A radio button that identifies the variable tap side as at the bus 2 terminal. Note
+that this field is necessary only to resolve ambiguity if Min Tap and Max Tap cannot establish the
+variable tap side.
+
+**Remote Bus**. An eight character maximum, alphanumeric string designating the remote bus to
+be voltage-controlled.
+
+**Min Tap**. A real number in kV that specifies the minimum tap on the variable tap side.
+
+**Max Tap**. A real number in kV that specifies the maximum tap on the variable tap side.
+
+**Number of Taps**. An integer specifying the number of taps on the variable tap side. This must
+be greater than one for discrete taps; zero (0) indicates continuous taps. Zero is the default.
+
+**Add**. A button that adds a new record to the database.
+
+**Modify**. A button that modifies the record.
+
+**Reset**. A button that restores text box values to their original values (before any changes were
+made).
+
+**Delete**. A button that deletes (removes) a record from the database.
+
+**Outage**. (Not yet implemented.)
+
+**Close**. A button that causes the dialog box to close and disappear from the display without making
+any modifications to the record.
+
+Equivalent Network
+==================
+The equivalent network dialog box allows you to add data for an equivalent, unbalanced pi
+transmission line branch. See the ``E`` record :ref:`equivalent-transmission-line-branch`.
+
+.. figure:: ../img/Equivalent_Network_Dialog_Box.png
+
+  Equivalent Network Dialog Box
+
+**Name**. Two eight character maximum, alphanumeric strings designating connecting buses. The
+strings must start with an alpha character. The first name is placed in the first text box from the left.
+The next text box should have a four character maximum numeric string representing the bus's
+base kV rating. The second bus name and its base kV are to the right of the first.
+
+**Metering**. An integer (or blank) flag having three possible values: 1 means to meter at the bus 1
+end; 2 means to meter at the bus 2 end; and blank means to let the program decide on the following
+criteria — (1) when bus ownership differs from bus ownership, meter at the point where line
+ownership differs from bus ownership, or (2) when both buses have the same ownership, meter at
+bus 1 location.
+
+**Owner**. A three character alphanumeric code representing ownership.
+
+**Circuit ID**. An alphanumeric character representing the circuit identification.
+
+**Section**. An integer (1-9) representing the section number for making an equivalent for series
+elements. The elements are assembled in ascending numeric order. This may be blank or zero if
+the line has only one section.
+
+**Resistance (R)**. A six digit real number representing the per unit resistance R through the
+branch from bus 1 to bus2.
+
+**Reactance (X)**. A six digit real number representing the per unit reactance X through the branch
+from bus 1 to bus 2.
+
+**Admittance (G1)**. A six digit real number representing the line's per unit shunt conductance G
+at the bus 1 terminal.
+
+**Susceptance (B1)**. A six digit real number representing the line's per unit shunt susceptance B
+at the bus 1 terminal.
+
+**Admittance (G2)**. A six digit real number representing the line's per unit shunt conductance G
+at the bus 2 terminal.
+
+**Susceptance (B2)**. A six digit real number representing the line's per unit shunt susceptance B
+at the bus 2 terminal.
+
+**Number of Parallels**. An integer representing the number of parallel transformer banks in this
+record.
+
+**Current Ratings**. Real numbers that are conductor current ratings in amps. Nominal is the
+normal rating based on the line construction and conductor size. Thermal takes into account the
+ambient temperature and other environmental factors upon the maximum permissible temperature
+of the conductor, usually for short time periods. Bottleneck is the minimum rating of the line
+including other series connected components, such as circuit breakers, fuses, or disconnect
+switches.
+
+**Add**. A button that adds a new record to the database.
+
+**Modify**. A button that modifies the record.
+
+**Reset**. A button that restores text box values to their original values (before any changes were
+made).
+
+**Delete**. A button that deletes (removes) a record from the database.
+
+**Outage**. (Not yet implemented.)
+
+**Close**. A button that causes the dialog box to close and disappear from the display without making
+any modifications to the record.
+
+Menu Commands
+=============
+The commands descibed in this section are all accessible from the menu bar in the main
+window. The commands are arranged alphabetically. Each command entry is found at the top of a
+page and shows you which menu it is on by including the menu name in parentheses. For example,
+the entry Alpha Search (View) means that the Alpha Search command is found on the View menu.
+
+See the table below for a quick look at the main window menu commands.
+
+==== ======================== =====================================================================
+Page Command                  Description
+==== ======================== =====================================================================
+4-50 ALPHA SEARCH (View)      Finds a specific bus by name.
+4-51 AREA/INTERCHANGE (Edit)  Allows editing of area/interchange records.
+4-54 AUTO CFLOW (Process)     Allows execution of CFLOW programs by users.
+4-57 BENDING POINTS (View)    Turns on (and off) display of the capital B denoting a bending point.
+4-58 COLOR SCHEME (View)      Switches between line display by overload or by nominal kV.
+4-59 COMMAND DIALOG (View)    Allows typing of PCL commands for PF.
+4-61 ERROR MESSAGES (Help)    Displays IPF error messages.
+4-62 EXIT (File)              Exits IPF. Same as Exit button.
+4-63 GENERAL (Help)           Displays on-line help text.
+4-65 NETWORK DATA EDIT (Edit) Allows editing of network data.
+4-70 OPEN (File)              Allows loading of IPF files.
+4-74 PF ID/DESCRIPTION (Edit) Allows creating and saving of user case description.
+4-76 PLOT OPTIONS (File)      Allows changing of printer and diagram attributes and the printer device itself.
+4-83 PRINT PLOT (File)        Prints a case diagram to the currently set printer
+4-84 REPORTS (View)           Creates some standard PF reports and allows display viewing, hard copy printing, and writing to files.
+4-91 RUN CFLOW (Process)      Allows the running of CFLOW C programs from IPF. (Intended for CFLOW programmers.)
+4-92 SAVE (File)              Saves change, base case, and coordinate files.
+4-96 SOLUTION DATA OFF (View) Rewrites the display without rewriting the current solution data.
+4-97 SOLUTION DATA ON (View)  Rewrites the display with the current solution data.
+4-98 SOLVE CASE (Process)     Initiates the solution of a resident base case
+==== ======================== =====================================================================
+
+Alpha Search (View)
+===================
+The Alpha Search dialog box allows you to find any bus within the currently loaded base case data.
+Any bus selected when you close this dialog box becomes the currently selected bus until some
+other selection process changes it.
+
+When you open the dialog box from the View menu, you see a text box below Search Bus Name
+kV. Type in this box any character or string of characters matching the first part of the name of the
+bus you are looking for. Thus, if you are looking for CASCADTP, you type in C, CA, or CAS to take
+you to the part of the bus list starting with C, CA, or CAS. Note that the search function is case
+sensitive; that is, c and C are not the same. The search function immediately begins searching as
+soon as you enter a character in the text box.
+
+You can also use the scroll bar to go up or down the list to visually identify the bus you are looking
+for, and then select the desired bus by clicking it
+
+.. figure:: ../img/Alpha_Search_Dialog_Box.png
+
+  Alpha Search Dialog box
+
+**Search Bus Name kV**. Use this text box to type a string of letters at the beginning of the bus
+name you are looking for.
+
+**Close**. Clicking this button makes the last selected bus name into the currently selected bus. The
+dialog box then closes.
+
+Area/Interchange (Edit)
+=======================
+For area or intertie studies, you can add, modify, or delete areas or interties. You do this through
+the main window Area/Interchange command.
+
+The Area/Interchange dialog box includes all the area and intertie records from the currently
+resident base case - one record per line in a list box. Selecting a line puts the line in the Selection
+text box. Then press the Edit Area/Intertie Record button to bring up a dialog box with the data in
+it.
+
+.. figure:: ../img/Area_Interchange_Edit_Dialog_Box.png
+
+  Area/Interchange Edit Dialog Box
+
+**List of Area Control and Intertie records**. This scrolling list contains all the area and intertie
+records from the currently resident base case. Area records are listed first followed by intertie
+records. Scroll through the list to find the one you want. Select it by clicking on it.
+
+**Selection**. This text box contains the currently selected record from the list of records above. This
+text will not change when you edit a record, so you can compare the new record with the old.
+
+**Edit Area/Intertie Record**. Clicking this button opens a dialog box where you can edit the
+currently selected area or intertie record (line).
+
+**Apply**. Not available.
+
+**Close**. Clicking this button causes the Area/Interchange dialog box to close and disappear from
+the display.
+
+**Create New**. Clicking this button brings up the a blank dialog box so you can create a new area
+or intertie record.
+
+.. figure:: ../img/Area_Interchange_Record_Dialog_Box
+
+  Area/Interchange Record Dialog Box
+
+**Interchange Area**. A ten character maximum name designating an interchange area of a
+network.
+
+**Area Slack Bus. An eight character maximum name designating the area slack bus plus a four
+character maximum real number representing the base kV rating of the slack bus.
+
+**Scheduled Export**. An eight character maximum real number designating the scheduled export
+in MW. Negative denotes inflow.
+
+**Zone**. A two character alphanumeric designating zone. The zone at the extreme left must be filled
+in; others may be blank or filled.
+
+**Max PU Volt**. A four character maximum real number designating maximum per unit voltage for
+this area.
+
+**Min PU Volt**. A four character maximum real number designating minimum per unit voltage for
+this area.
+
+**Modify**. A button that modifies and updates in place a record (line) in the Area/Interchange dialog
+box. The data in the selection box is not changed.
+
+**Add**. A button that adds a new record (line) to the list in the Area/Interchange dialog box.
+
+**Delete**. A button that deletes (removes) a record (line) from the list in the Area/Interchange dialog
+box.
+
+**Reset**. A button that restores text box values to their original values (before any changes were
+made).
+
+**Close**. Clicking this button causes the Area/Interchange dialog box to close and disappear from
+the display without making any changes to the Area/Interchange records.
+
+.. figure:: ../img/Intertie_Record_Dialog_Box.png
+
+  Intertie Record Dialog Box
+
+**Area Name 1**. A ten character name designating an area of a network.
+
+**Area Name 2**. A ten character name designating an area of a network.
+
+**Sched Export Number for Sched Interchange**. An eight character maximum real number
+representing scheduled power transfer from Area Name 1 to Area Name 2.
+
+**Modify**. A button that modifies and updates in place a record (line) in the Area/Intertie Selection
+dialog box.
+
+**Add**. A button that adds a new record (line) to the list in the Area/Intertie Selection dialog box.
+
+**Delete**. A button that deletes (removes) a record (line) from the list in the Area/Intertie Selection
+dialog box.
+
+**Reset**. A button that returns text box values to their original values (before any changes were
+made).
+
+**Close**. Clicking this button causes the Intertie Record dialog box to close without making any
+changes to the Area/Interchange dialog box records.
+
+Auto CFLOW (Process)
+====================
+CFLOW files are C programs using the IPF CFLOW library of routines. These routines enable you
+to access the base case memory-resident data in IPF. Many CFLOW programs are designed to
+collect information for specialized reports that are not built into IPF in the Reports command. See
+:ref:`libcflow-c-library` for more information.
+
+There are two ways to execute a CFLOW program: Auto CFLOW is one; Run CFLOW is the other.
+Refer also to Run CFLOW later in this section so that you choose the appropriate CFLOW
+execution command.
+
+The Auto CFLOW command is used primarily by CFLOW program users (rather than
+programmers) for CFLOW programs that are fully debugged and "production-grade." These
+CFLOW programs create windows for I/O themselves or are embedded in script or command file
+utilities that do. Thus, any I/O to or from the screen is program I/O only and not potentially
+confusing for a user. Alternatively, the CFLOW program may have no screen I/O and simply
+produce file output for a report. See Figure 4-21.
+
+Programs that read/write to ``stdin`` or ``stdout`` would have their I/O intermixed in the same terminal
+window as the ``gui`` and ``ipfsrv`` server. Such programs should be run with the Run CFLOW command
+not with the Auto CFLOW command.
+
+**To use the Auto CFLOW command**:
+
+  1. Start up IPF and load a base case file.
+  2. Select the Auto CFLOW command and (if necessary) specify a socket id number (any integer between 1024 and 4096). Generally the default socket number will be OK.
+  3. Use the file selection dialog box to find and select a CFLOW program. Double click the program name or click Launch CFLOW to run the program.
+
+.. note:: 
+  
+  When you have launched a CFLOW program, you cannot do anything else in the GUI until the program is finished running. Also if the CFLOW program fails, control is returned to IPF. However, if the CFLOW program hangs (as in an infinite loop), you need to kill the CFLOW process through operating system resources. (For example, in Unix, this can be done with the kill command.) See your computer system documentation or your system administrator for help.
+
+.. figure:: ../img/Auto_CFLOW_File_Dialog_Box.png
+
+  Auto CFLOW File Dialog box
+
+**Socket Number**. This is the number of the TCP/IP socket which CFLOW will use to connect to
+``ipfsrv``. Normally, you should not have to change it.
+
+**CLFOW Program Arguments**. If the particular program you want to run requires input
+arguments, enter them here. You cannot, however, use this to redirect input or output.
+
+**Filter**. The file name text box contains a "filter" that selects categories of file names. You can
+directly modify the file name text by clicking in the Filter box and then typing in new text. Then
+click the Filter button below to apply the new filter.
+
+**Directories**. This list component contains directory names. You cannot modify these directory
+names by selecting them and typing. Use the scroll bars at the side and bottom to move the list up
+and down or back and forth. The UNIX operating system arranges directories in a “hierarchical”
+way. You move up this hierarchical tree structure by double clicking the directory name ending
+with a period-period (..). You move down by selecting the name of the directory you want to move
+into.
+
+**Files**. This list component contains file names that are within the directory named at the left that
+ends with a period (.) and that satisfy the filter criterion specified above in Filter. You cannot
+modify these file names by selecting them and typing. Use the scroll bars at the side and bottom to
+move the file names up and down or back and forth.
+
+You select a file name by clicking once on the file name. This puts the selected file name in the
+Selection file name text box below.
+
+**Selection**. This file name text box contains the file name selected by clicking a file name in the
+Files file list. Or, since it is a text box, you can directly modify the file name by selecting text and
+typing replacement text. Be sure to type an exact file name and not a wildcard character such as the
+asterisk (*) as part of the file name.
+
+**Launch C Flow**. This button causes whatever file name is in the Selection text box to be passed
+to the operating system as an executable file. The file is then run.
+
+**Filter**. Clicking this button causes all file names satisfying the filter file name text in Filter to
+appear in the Files file list. It also puts the currently selected directory name without the file name
+in the Selection text box. You must select a file name from the Files file list to select a specific file
+name.
+
+**Cancel**. Clicking this button causes the Auto CFLOW File dialog box to close and disappear from
+the display. No directories or file names are changed with a Cancel action. Thus, if you
+immediately open the dialog box after a Cancel action, you return to the state you just left. The
+directories and files names are not returned to some default state.
+
+**Help**. (Not yet implemented).
+
+Bending Points (View)
+=====================
+This command toggles on or off the display of a capital B at line bending points. The display of the
+capital B is simply to make line bending points completely apparent at a quick glance.
+
+.. figure:: ../img/Bending_Points_On_and_Off.png
+
+  Bending Points On and Off
+
+Color Scheme (View)
+===================
+This command causes the display of lines to switch between two modes: Color by kV or Color by
+Overload. Color by kV causes the display of lines to match the ranges that are keyed in the lower
+left-hand corner Branch Color Key. Color by Overload causes the display of lines to match the
+ranges that are keyed in the Overloaded Branch Key. These two keys are found in the same location
+in the main window and change when you change the command.
+
+In the Color by Overload mode, you can type in percentages of overload. The figure below shows 90%
+for Mild Overload, 100% for Moderate Overload, and 110% for Extreme Overload.
+
+.. figure:: ../img/Branch_Color_Key.png
+
+  Branch Color Key
+
+.. figure:: ../img/Overloaded_Branch_Key.png
+
+  Overloaded Branch Key
+
+After you change the overload percentages, you will have to go back to the kV color scheme and
+then back again to the overload color scheme in order to redisplay the map with the new
+percentages implemented.
+
+Command Dialog (View)
+=====================
+The Command Dialog box allows you to type Powerflow Command Language commands and
+send them to ``ipfsrv``. It also allows you to see the communication that passes between the GUI and PF
+components of IPF as IPF runs. 
+
+.. note:: 
+  
+  Tis command is intended for advanced users. It was created for program development and may be useful for users wanting to observe the
+  interprocess communication channel traffic.
+
+The top box is a scrolling text box that stores PCL commands you type in the text box labeled
+Command Entry. The PCL commands list can be double-clicked to put the command into the
+Command Entry box. The third box down shows you what IPF's GUI component sends across the
+IPC channel to the PF component. The fourth box down shows what PF sends back to the GUI in
+response to the previously passed command. The third and fourth boxes are output only and are not
+responsive to any mouse clicks. Note that you can vary the vertical size of both output-only boxes
+by pressing on the sash controls and moving them up or down.
+
+.. note::
+
+  Be sure to terminate the command set with ``*[EOM]`` or ``^[EOM]``. The former issues a synchronous command; the latter, an asynchronous
+  command.
+
+.. figure:: ../img/Command_Dialog_Box.png
+
+  Command Dialog Box
+
+**Command Entry**. This text entry box is intended for valid PCL commands that you want to send
+to the PF component of IPF. There is no syntax checking at data entry time. PF does all the
+checking once a command is sent. The command is sent to PF when you press the Return key. See
+the :ref:`powerflow-command-language` section for information on valid commands.
+
+**Close**. Clicking this button causes the dialog box to disappear from the screen. No other action is
+performed.
+
+Error Messages (Help)
+=====================
+When an error condition occurs, such as when IPF detects bad data, the Error Messages dialog box
+contains messages to help you determine what caused the error. See below.
+
+These messages, along with many others, also appear in the terminal window where you started
+IPF. The other messages are usually not of any interest to a user. However, if you want to view the
+interation report, you will have to look at the terminal window. This information is not displayed
+anywhere in the GUI.
+
+.. note::
+
+  This dialog box pops up on its own only when the error message is a fatal one.
+
+.. figure:: ../img/Error_Box_Dialog_Box.png
+
+  Error Box Dialog Box
+
+**Identifier**. This text box specifies the identifier (source code file) where an error condition
+occurred. This message assists the programming staff to locate the source message.
+
+**Line**. This text box gives the source code line number associated with the identifier where an error
+condition occurred.
+
+**Close**. This button closes the Error Messages dialog box.
+
+**Help**. This button brings up the IPF help system window.
+
+Exit (File)
+===========
+This command exits you from IPF. You can exit at any time. The exit command is also available
+on a button below the toolbox in the main window. Although you can also click on the X Windows
+menu button at the upper right of the window to close, this is not the recommended method of
+exiting from IPF. It should be used only as a last resort.
+
+.. figure:: ../img/Exit_Dialog_Box.png
+
+  Exit Dialog Box
+
+**OK**. Clicking this button exits you to the operating system.
+
+**Cancel**. This closes the Exit dialog box without any action.
+
+General (Help)
+==============
+The IPF help system provides a condensation of this documentation. See below.
+
+In addition to the Page Up and Page Down window buttons and scroll bar, the Help system text
+itself has a feature to help you navigate. The text incorporates hyperlinks. These allow you
+to jump immediately to a desired spot in the help text.
+
+At the top of the Help text is a list of topics. You can click on a topic to go to the text explaining
+that topic. To read the topic text on a page, use the scroll bar. Use the Page Up and Page Down
+buttons at any time to go to different pages, one page at a time.
+
+The Annotate button allows you to attach your own notes to a particular page. See below. A
+red paper clip shows up in the left margin after you save a note, indicating that a note exists. To
+read an existing note, just click the Annotate button when you see a red paper clip.
+
+.. figure:: ../img/General_Help_Dialog_Box.png
+
+  General Help Dialog Box
+
+**Page Up**. The Page Up button finds the next page marker toward the beginning of the IPF Help
+file. Page Up does not go to the top of the next page up. Use the scroll bar to scroll to the top of the
+page if necessary.
+
+**Page Down**. The Page Down button finds the next page marker toward the end of the IPF Help
+file. Page Down does not go to the top of the next page down. Use the scroll bar to scroll to the top
+of the page if necessary.
+
+**Annotate**. The Annotate button opens a text window that you can type text into. If you want to
+save the text, click the Save button; if you want to clear or remove the text, click the Remove
+button; Close closes the Annotation dialog box without making further changes.
+
+**Close**. The Close button closes the Help system window.
+
+.. figure:: ../img/Annotate_Dialog_Box.png
+
+  Annotate Dialog Box
+
+Network Data Edit (Edit)
+========================
+There are two ways to edit bus and branch data in IPF. Editing via the Network Data Edit dialog
+box is just one. See below. The other one is the Input Data Edit Box. Each of the ways offers
+its own benefits. See the Input Data Edit Box for more information.
+
+The advantage of Network Data Edit over the other two methods of editing is that you can access
+the entire network data base using filters. The other editing methods require accessing the network
+data through the displayed network diagram or through the Bus List dialog box.
+
+.. note::
+
+  Network Data Editing is designed for the expert user. Editing a network data record directly is intended for advanced users who already know
+  the exact columns for specific data fields in each network record. See :ref:`powerflow-command-language` for network record format information.
+
+When you use the Network Data Edit dialog box, editing is performed indirectly on the resident
+network data using either an internal editor or an external editor. The internal editor is very basic;
+it permits cutting, pasting, and overtyping. The external editor can be any editor selected by the
+GUI setup script file. For UNIX systems, ``vi`` is usually the editor specified. There is no formatting
+or data validation support other than that provided by the user's external editor. No matter which
+you choose, the work is actually done on an intermediate file from which network changes may
+later be assimilated.
+
+Editing of the network data is done with a screen editor. Four steps are required to successfully
+accomplish data editing. See below.
+
+  1. Select individual items within a filter. The filter list is scrollable so that you can see items
+  outside the visible listing. When you click the left mouse button anywhere on a non-highlighted item, 
+  the line highlights by reverse video, indicating selection. You can unselect by clicking again on the
+  same item using the left mouse button. You can continue to select as many additional items as you like.
+  If none are selected, the default is that all the items for the filter are selected.
+  2. Apply the selected filter(s) by pressing the Apply button(s).
+  3. Click either the Internal or External Editor button to display the data.
+  4. Edit the data in the display box. You can use the cursor "arrow" keys to move around in the
+  data and to cause it to scroll up and down.
+  5. Process the edited file using the Send To PF button.
+  
+The last step concludes the editing session. If it is skipped, no changes are performed upon the
+system. If it is applied, the edited file is automatically processed into network data changes and sent
+to Powerflow.
+
+.. figure:: ../img/Network_Data_Edit_Dialog_Box.png
+
+  Network Data Edit Dialog Box
+
+Dynamic Filters
+---------------
+The power of the Network Data Edit dialog box is realized in applying the dynamic filters. Six
+filters allow you to restrict the amount of network data displayed. The filters are Area, Base, Zone,
+Owner, Bus, and Type. The filters are dynamic because they propagate "downstream" (from left
+to right) the effects of previously defined filters upon the remaining filters.
+
+Initially, all of the filters are primary and each filter displays the full attributes of its type. However,
+suppose you select one of the filters, say Owner, and highlight individual owners of interest. Then
+press the Apply button. Three things happen.
+
+  1. The Owner filter becomes the solitary primary filter; it is automatically repositioned to the
+  leftmost position in the dialog box. The Apply button on this filter is ghosted, indicating
+that it has been applied.
+2. The remaining filters are now collectively called secondary filters. They are repositioned
+on the dialog in an arbitrary order on the right of the primary filter. The effects of the primary filter are applied to the secondary filters through the network (downstreaming). There
+is a one exception, Type, whose display is always static.
+3. Only the network items that collectively meet the combined filter criteria are displayed.

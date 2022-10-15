@@ -1028,6 +1028,8 @@ This command deletes all buses that reside in the zone named in columns 4-5. Pla
   4-5    yes      A2     Zone Name
   ====== ======== ====== ====================
 
+.. _equivalent-transmission-line-branch:
+
 Equivalent Transmission Line Branch (``E``)
 ===========================================
 This record differs from the type ``L`` record by allowing for an asymmetrical pi. Two additional fields of data must describe the second leg to ground admittances. The additional fields occupy the columns which are used for line description and mileage on the ``L`` record. In all other aspects, the description of the ``L`` branch pertains also to the type ``E`` branch.
@@ -1143,6 +1145,8 @@ A coding sheet and column descriptions follow.
   Circulating flow = Scheduled flow - Actual flow
 
 Circulating flow is also a misnomer because it implies wasteful circulating power eddies within a network. If any circulating flow exists, it is introduced deliberately with the application of transformers (MVAR) or phase shifters (MW). Otherwise the flows will always be distributed optimally to minimize losses by simply following Kirchoff’s voltage and current laws. The circulating flows are calculated in the interchange output.
+
+.. _balanced-transmission-line:
 
 Balanced Transmission Line Branch (``L``)
 =========================================
@@ -1481,6 +1485,8 @@ Six different subtypes are permitted. Different subtypes may be submitted togeth
   |        |       |          | ``*I.``                                              |
   +--------+-------+----------+------------------------------------------------------+
 
+.. _reactive-capability-curves:
+
 Reactive Capability Curves (``QP``, ``QX``, ``QN``)
 ===================================================
 Three records are required to define a curve: ``QP``, ``QX``, and ``QN``. They may appear anywhere in the input stream although they normally are put immediately after the bus record to which the curve applies. Each curve applies only to the bus named.
@@ -1722,6 +1728,8 @@ RANI stands for Rapid Adjustment of Network Impedance and represents a series co
   | 67-72  | no       | F6.5   | Bismin (p.u.)                                        |
   +--------+----------+--------+------------------------------------------------------+
 
+.. _transformer-data:
+
 Transformer Data (``T``, ``TP``)
 ================================
 This record is applied to two-winding transformers and phase shifters. An equivalent pi representation depicts the transformer admittance in series with an ideal transformer. The electrical data is specified in terms of the transformer data which is defined as follows:
@@ -1831,6 +1839,8 @@ Four MVA ratings are used to flag overloaded transformers: nominal, thermal, eme
   +--------+----------+--------+------------------------------------------------------+
   | 89-92  | no       | F4.0   | Bottleneck rating in MVA                             |
   +--------+----------+--------+------------------------------------------------------+
+
+.. _switched-reactance:
 
 Switched Reactance (``X``)
 ==========================

@@ -7,9 +7,21 @@ Debugging
 =========
 You can list names of functions or subroutines to debug in a ``DBGIN`` file in .fil passed to tsp. Debug output is printed to file defined by ``DBGOUT``. For example, the following routines can be listed: CNTRL, CNTRLA, FFREAD, INITL1, INITL4, INPUT1, INT3FA, LSREAD, MATMOD, NAMBAS, NOUT1, NOUT2, RVREAD, SOLN, SWINGM, TAPEWK, WRTHIS. These Fortran subroutines will have their debug enabled.
 
+``bpf`` Flowchart
+=================
+Below is a high level flowchart of the batch power flow process.
+
+.. figure:: ../img/IPF-bpf-flowchart.png
+
+  IPF ``bpf`` Flowchart
+
 ``tsp`` Flowchart
 =================
-.. image:: ../img/IPF-tsp-flowchart.png
+Below is a high level flowchart of the transient stability program.
+
+.. figure:: ../img/IPF-tsp-flowchart.png
+
+  IPF ``bpf`` Flowchart
 
 Variables
 =========

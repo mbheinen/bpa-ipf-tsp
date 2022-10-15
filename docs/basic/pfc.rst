@@ -2386,7 +2386,7 @@ REDUCTION
 
   ``/ REDUCTION``
 
-This command reduces the network in residence to a desired size and solves the reduced network. It can be saved or processed further as an ordinary base case. For more detail on the methods used, see ??.::
+This command reduces the network in residence to a desired size and solves the reduced network. It can be saved or processed further as an ordinary base case. For more detail on the methods used, see :ref:`network-reduction`.::
 
   / REDUCTION
   .......

@@ -2,6 +2,7 @@
 Advanced Features
 *****************
 
+.. _network-reduction:
 Network Reduction
 =================
 This section gives a detailed description of the network reduction method and solution options.
