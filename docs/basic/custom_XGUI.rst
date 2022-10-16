@@ -1,3 +1,5 @@
+.. _custom-xgui:
+
 ******************
 Custom GUI (XGUI)
 ******************
@@ -18,8 +20,8 @@ covered below.
 
 .. note::  
   
-  After you make changes to the XGUI file, you may not see changes in your client (IPF) until you exit the X Window System itself. Exiting and
-  restarting IPF may or may not be sufficient.
+  After you make changes to the XGUI file, you may not see changes in your client (IPF) until you 
+  exit the X Window System itself. Exiting and restarting IPF may or may not be sufficient.
 
 Changing Open File Defaults
 ===========================
@@ -89,3 +91,32 @@ a study you are working continuously from a particular base file, say ``../base/
 might want to edit XGUI to make this file, and its associated coordinate file, load automatically
 every time you start ``gui``. You then can begin work immediately, without having to go through the
 Open Files menu.
+
+To add default filenames, insert them after the ``:``
+
+.. code::
+  
+  XGUI*file_select_dia_base_text.value: ../base/97HS4.bse
+  XGUI*file_select_dia_coord_text.value: /archive/ipf/dat/volts.cor
+  
+These two files will be automatically loaded for you. If you look at the Open Files menu, you will
+see their names in the boxes to the right of the filter boxes.
+
+.. warning::
+  
+  Do not specify both a base file and a network file name. These are mutually exclusive!
+
+Changing Printer Defaults
+=========================
+You can specify your default printer and also enter a list of others you may want to choose from.
+These are right at the top of the XGUI file.
+
+.. code::
+  
+  XGUI*printer_selection_box*textstring: print
+
+Change "print" to whatever string you will want to use most often.
+
+The section just below this is where you put in the other print strings that you want to appear in the
+printer list.
+

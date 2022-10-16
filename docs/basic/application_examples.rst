@@ -309,7 +309,7 @@ The preparation of the network data will be presented in the following steps:
 
 .. note::
 
-  The most difficult task in setting up branch data is determining the per unit (pu) values of R, X, G and B.
+  The most difficult task in setting up branch data is determining the per unit (pu) values of R, X, G and B. See :ref:`calculating-line-impedance` for some help on this.
 
 
 .. note::

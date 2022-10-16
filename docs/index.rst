@@ -2,16 +2,16 @@ Welcome to Interactive Power Flow!
 ==================================
 Interactive Power Flow (IPF) is a software package for doing power flow studies. IPF models the balanced steady-state operation of an electric power network. It can be used to:
  
-* Investigate electric power networks
-* Determine bus voltage distribution
-* Study real and reactive power flows in lines
-* Evaluate line overloads
-* Plan area interchange control
-* Determine transformer tap settings
-* Determine remote-bus voltage controls
-* Plan for system reactive power requirements
-* Determine effect of load shedding, generator dropping, and line outages
-* Run transient stability studies on generator rotor dynamics
+  * Investigate electric power networks
+  * Determine bus voltage distribution
+  * Study real and reactive power flows in lines
+  * Evaluate line overloads
+  * Plan area interchange control
+  * Determine transformer tap settings
+  * Determine remote-bus voltage controls
+  * Plan for system reactive power requirements
+  * Determine effect of load shedding, generator dropping, and line outages
+  * Run transient stability studies on generator rotor dynamics
 
 .. figure:: img/IPF_GUI.png
 
@@ -31,13 +31,13 @@ Features
 ========
 Interactive Power Flow has the following high level feature set:
 
- * Set of command line tools for running studies
- * Set of C API functions for running studies
- * `Motif X Window`_ based graphical user interface allowing easy-to-edit graphical display of the network diagram
- * Basic power flow and advanced capabilities like REI reduction and transient stability
- * Domain specific languages for "batch" command line runs in which multiple scenarios can be studied
- * Output reports
- * Extensive log messages for aiding the user in troubleshooting
+  * Set of command line tools for running studies
+  * Set of C API functions for running studies
+  * `Motif X Window`_ based graphical user interface allowing easy-to-edit graphical display of the network diagram
+  * Basic power flow and advanced capabilities like REI reduction and transient stability
+  * Domain specific languages for "batch" command line runs in which multiple scenarios can be studied
+  * Output reports
+  * Extensive log messages for aiding the user in troubleshooting
 
 Contents
 ========

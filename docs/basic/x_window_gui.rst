@@ -43,14 +43,15 @@ X Window System
 ---------------
 This chapter provides a quick introduction to the X Window System and X window managers with emphasis on the OSF/Motif window manager. The treatment here is certainly not exhaustive or even complete. But it is intended to give you enough background to successfully use the Interactive Powerflow (IPF) program.
 
-If you have not used an X Window based GUI before, be sure to go through this chapter for some pointers so that youâ€™ll be headed in the right direction. If you would like more information, refer to the following books about the X Window System and OSF/Motif.
+If you have not used an X Window based GUI before, be sure to go through this chapter for some pointers so that you'll be headed in the right direction. If you would like more information, refer to the following books resources the X Window System and OSF/Motif.
 
   * Open Software Foundation. *OSF/Motif Style Guide Revision 1.1*. Prentice Hall, 1991. This provides the official description of OSF/Motif look, feel, and behavior for OSF/Motif software developers. Though not oriented toward OSF/Motif users, this book does give precise descriptions of all OSF/Motif components and behavior.
-  * Quercia, Valerie and Tim Oâ€™Reilly. *X Window System Userâ€™s Guide OSF/Motif Edition*. Oâ€™Reilly & Associates, Inc., 1991. This is a good, general introduction to X and OSF/Motif.
+  * Quercia, Valerie and Tim O'Reilly. *X Window System User's Guide OSF/Motif Edition*. O'Reilly & Associates, Inc., 1991. This is a good, general introduction to X and OSF/Motif.
+  * `Motif Programming Manual <https://www.oreilly.com/openbook/motif/vol6a/Vol6a_html/toc.html>`_
 
 Broadly speaking, the X Window System is designed to deliver mouse-driven menu/window user interface applications over a local area network.
 
-The X Window System specifies that the "look and feel" of its user interface be "policy free."" Because of this, programmers are free to create their own look and feel within broad limits. Over the past few years, Sun Microsystems, AT&T, and the Open Software Foundation have all created GUIs for the X Window System with a distinct look and feel. The Open Software Foundation offers OSF/Motif.
+The X Window System specifies that the "look and feel" of its user interface be "policy free." Because of this, programmers are free to create their own look and feel within broad limits. Over the past few years, Sun Microsystems, AT&T, and the Open Software Foundation have all created GUIs for the X Window System with a distinct look and feel. The Open Software Foundation offers OSF/Motif.
 
 Like most large software systems, X and its environment have a jargon of their own. Here are a few terms you should know:
 
@@ -90,7 +91,7 @@ When you are running a client, such as IPF, over the network, in contrast to run
 
 The server side of X resides in your own computer's (or X terminal's) memory. There is one X server for each user's keyboard, mouse, and display. The server is dedicated to you. However, your server may communicate simultaneously with many different X clients, not just IPF. And again, these other clients may be anywhere out on the LAN. Thus, in any one X session (between "login" and "logout"), you may run many X clients on many different computers. The server manages all this.
 
-When your client requests a certain font, the server delivers it. When your client requests different colors for graphical objects, the server consults the color map for that client and delivers the correct colors. Fonts, colors, and certain other server-managed software components are termedresources. Some resources such as colors and fonts you can change in your own account’s IPF resources file, XGUI. See ?? if you would like to learn more about this.
+When your client requests a certain font, the server delivers it. When your client requests different colors for graphical objects, the server consults the color map for that client and delivers the correct colors. Fonts, colors, and certain other server-managed software components are termedresources. Some resources such as colors and fonts you can change in your own account's IPF resources file, XGUI. See :ref:`custom-xgui` if you would like to learn more about this.
 
 A Summary of Motif Basics
 =========================
@@ -166,7 +167,7 @@ The Maximize button in the upper right corner is a quick way to enlarge a window
   1. Move the mouse cursor over the Maximize button in the upper right corner of a window.
   2. Click the button. Note that the window now covers the maximum area of the display. (All other windows should be covered.) You can resize the window using the directions above.
 
-To pop up a window’s menu
+To pop up a window's menu
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 All Motif windows have a minimum set of window management functions available in the upper left corner via the Window Menu button. Many of the functions described above are available through this menu. Some additional ones are there too, such as Close, Restore, and Lower.
 
@@ -179,9 +180,9 @@ Lowering a window means to cause it to go to the bottom of the windows “stack.
 
 IPF as an X Client
 ==================
-IPF is built on top of the X Window System and uses the facilities of an X window manager of your choice. (However, the recommended window manager is Motif.) In the figure below, you can see that both the X server and the GUI part of IPF reside on the user’s computer. Another client that is always present on the user’s computer is the user’s window manager. This is not shown in the figure below, however. In most configurations, the "engine" (``ipfsrv``) part of IPF resides on the user’s computer, but may, as shown below, reside on some other computer across the LAN.
+IPF is built on top of the X Window System and uses the facilities of an X window manager of your choice. (However, the recommended window manager is Motif.) In the figure below, you can see that both the X server and the GUI part of IPF reside on the user's computer. Another client that is always present on the user's computer is the user's window manager. This is not shown in the figure below, however. In most configurations, the "engine" (``ipfsrv``) part of IPF resides on the user's computer, but may, as shown below, reside on some other computer across the LAN.
 
-When you start up IPF, the GUI initializes itself, initializes ``ipfsrv``, and then brings up IPF’s window interface.
+When you start up IPF, the GUI initializes itself, initializes ``ipfsrv``, and then brings up IPF's window interface.
 
 .. figure:: ../img/Powerflow_GUI_Communication.png
 
@@ -216,7 +217,7 @@ Meanwhile, truly affordable personal computing was taking off in the late 1970s 
 
 In 1984, Apple introduced the first personal computer with a thorough-going GUI. This was the Macintosh. This computer introduced wide numbers of people to a very easy to use graphical interface. It showed many computer manufacturers that they needed to design with GUIs in mind. A few years later, Microsoft Corporation retrofitted a windowing system onto MS DOS IBM PC-compatible computers.
 
-Also in the late 1970s and 1980s, Sun Microsystems, Hewlett-Packard, DEC, and other companies saw the need for powerful computing "workstations" that business, research laboratories, and government could use. These workstations became common where personal computers didn’t have enough power. However, they generally lacked GUIs, which made them harder to use and less versatile than they might have been.
+Also in the late 1970s and 1980s, Sun Microsystems, Hewlett-Packard, DEC, and other companies saw the need for powerful computing "workstations" that business, research laboratories, and government could use. These workstations became common where personal computers didn't have enough power. However, they generally lacked GUIs, which made them harder to use and less versatile than they might have been.
 
 Another element in the computing picture was also developing in the 1970s and 1980s. This was widespread inter-computer communication. The idea of the local area networks (LAN), which was a room-to-room and building-to-building communication network, was created and implemented. A particularly popular LAN was, and is today, the Xerox-created Ethernet. This LAN is simply a cable connecting computers, whereby the computers can request and send just about any kind of data, often organized as files.
 
@@ -269,7 +270,7 @@ IPF is an X Window System application and is started like any other X applicatio
 
 To start IPF from an X terminal emulator window:
 
-  1. Make sure the X Window System and your window manager are running. Consult with your system administrator if you don’t have X running.
+  1. Make sure the X Window System and your window manager are running. Consult with your system administrator if you don't have X running.
   2. Find a terminal emulator window or open one from a window manager menu.
   3. In the terminal emulator window, enter gui. Within a minute or less, depending on the performance of your computer system, you should see the IPF main window appear.
 
@@ -471,8 +472,8 @@ Sectionalizing a bus separates a bus into two buses and rearranges its branches 
 
 To sectionalize a bus:
 
-  1. Make sure you have system data loaded. See :ref:`opening-files` to find out how to do this.
-  2. Click the Input Data Edit mode button in the toolbox. You are now in Input Data Edit mode.
+1. Make sure you have system data loaded. See :ref:`opening-files` to find out how to do this.
+2. Click the Input Data Edit mode button in the toolbox. You are now in Input Data Edit mode.
   3. Select a bus by clicking it. This brings up the Input Data Edit Box. At the center bottom of the dialog box is the Sectionalize button. Click it to cause the Bus Sectionalize dialog box to appear. Note that the bus name of the currently selected bus appears in two places.
   4. Type a new bus name over the existing Bus 2 name to create a new bus.
   5. Click any branch, transformer, etc., record in the left-hand scrolling text box to transfer it to the right-hand scrolling text box. Note that you can go back and forth by clicking the appropriate records till branches, transformers, etc., are all associated with the bus you want.
@@ -482,7 +483,7 @@ To sectionalize a bus:
 
   If the name you type is not accepted, IPF has found it to be a duplicate name and rejects it. If, at any point, you would like to start from the beginning, just press Reset at any time. This returns all values to the state they were at the time the dialog box first opened.
   
-  7. Sometimes you may want to connect the old and new buses making up the sectionalized bus. Click on the Bus Tie button to create a line with impedance of 0.0 + j0.00001. You may modify this line later, if you wish
+7. Sometimes you may want to connect the old and new buses making up the sectionalized bus. Click on the Bus Tie button to create a line with impedance of 0.0 + j0.00001. You may modify this line later, if you wish
 
 .. figure:: ../img/Sectionalize_Operation_Completed.png
 
@@ -1396,7 +1397,7 @@ Page Command                  Description
 ==== ======================== =====================================================================
 
 Alpha Search (View)
-===================
+-------------------
 The Alpha Search dialog box allows you to find any bus within the currently loaded base case data.
 Any bus selected when you close this dialog box becomes the currently selected bus until some
 other selection process changes it.
@@ -1422,7 +1423,7 @@ name you are looking for.
 dialog box then closes.
 
 Area/Interchange (Edit)
-=======================
+-----------------------
 For area or intertie studies, you can add, modify, or delete areas or interties. You do this through
 the main window Area/Interchange command.
 
@@ -1515,7 +1516,7 @@ made).
 changes to the Area/Interchange dialog box records.
 
 Auto CFLOW (Process)
-====================
+--------------------
 CFLOW files are C programs using the IPF CFLOW library of routines. These routines enable you
 to access the base case memory-resident data in IPF. Many CFLOW programs are designed to
 collect information for specialized reports that are not built into IPF in the Reports command. See
@@ -1596,7 +1597,7 @@ directories and files names are not returned to some default state.
 **Help**. (Not yet implemented).
 
 Bending Points (View)
-=====================
+---------------------
 This command toggles on or off the display of a capital B at line bending points. The display of the
 capital B is simply to make line bending points completely apparent at a quick glance.
 
@@ -1605,7 +1606,7 @@ capital B is simply to make line bending points completely apparent at a quick g
   Bending Points On and Off
 
 Color Scheme (View)
-===================
+-------------------
 This command causes the display of lines to switch between two modes: Color by kV or Color by
 Overload. Color by kV causes the display of lines to match the ranges that are keyed in the lower
 left-hand corner Branch Color Key. Color by Overload causes the display of lines to match the
@@ -1628,7 +1629,7 @@ then back again to the overload color scheme in order to redisplay the map with 
 percentages implemented.
 
 Command Dialog (View)
-=====================
+---------------------
 The Command Dialog box allows you to type Powerflow Command Language commands and
 send them to ``ipfsrv``. It also allows you to see the communication that passes between the GUI and PF
 components of IPF as IPF runs. 
@@ -1664,7 +1665,7 @@ the :ref:`powerflow-command-language` section for information on valid commands.
 performed.
 
 Error Messages (Help)
-=====================
+---------------------
 When an error condition occurs, such as when IPF detects bad data, the Error Messages dialog box
 contains messages to help you determine what caused the error. See below.
 
@@ -1692,7 +1693,7 @@ condition occurred.
 **Help**. This button brings up the IPF help system window.
 
 Exit (File)
-===========
+-----------
 This command exits you from IPF. You can exit at any time. The exit command is also available
 on a button below the toolbox in the main window. Although you can also click on the X Windows
 menu button at the upper right of the window to close, this is not the recommended method of
@@ -1707,7 +1708,7 @@ exiting from IPF. It should be used only as a last resort.
 **Cancel**. This closes the Exit dialog box without any action.
 
 General (Help)
-==============
+--------------
 The IPF help system provides a condensation of this documentation. See below.
 
 In addition to the Page Up and Page Down window buttons and scroll bar, the Help system text
@@ -1745,7 +1746,7 @@ button; Close closes the Annotation dialog box without making further changes.
   Annotate Dialog Box
 
 Network Data Edit (Edit)
-========================
+------------------------
 There are two ways to edit bus and branch data in IPF. Editing via the Network Data Edit dialog
 box is just one. See below. The other one is the Input Data Edit Box. Each of the ways offers
 its own benefits. See the Input Data Edit Box for more information.
@@ -1790,7 +1791,7 @@ to Powerflow.
   Network Data Edit Dialog Box
 
 Dynamic Filters
----------------
+^^^^^^^^^^^^^^^
 The power of the Network Data Edit dialog box is realized in applying the dynamic filters. Six
 filters allow you to restrict the amount of network data displayed. The filters are Area, Base, Zone,
 Owner, Bus, and Type. The filters are dynamic because they propagate "downstream" (from left
@@ -1807,4 +1808,813 @@ press the Apply button. Three things happen.
   on the dialog in an arbitrary order on the right of the primary filter. The effects of the primary filter are applied to the secondary filters through the network (downstreaming). There is a one exception, Type, whose display is always static.
   3. Only the network items that collectively meet the combined filter criteria are displayed.
 
+The effects of the primary filter can be undone by pressing the Reset button.
+The procedure can be repeated for all remaining filters. The first selection, mentioned above,
+identifies the primary filter; the second, if selected, identifies the secondary filter; the third, the
+tertiary filter; etc. Select any of the remaining filters that do not have their Apply buttons ghosted.
+Make selections and press the Apply button. The filters will be repositioned again from left to right:
+primary, secondary, tertiary, etc.
+
+The display for each filter is always current, and it shows selected network attributes (owners,
+zones, base kVs, etc.) that will be extracted if an Edit button is pressed.
+
+Through judicious use of filters, you can reduce the size of the displayed network to a few hundred
+items. Since all of the displayed data must be encoded in Power flow and transported to the GUI
+process via the interprocess communication channel, the time to retrieve network data can become
+very long for large systems.
+
+.. table:: Description of Type Filter
+
+  ============================================= ===============================================
+  Code                                          Description
+  ============================================= ===============================================
+  *                                             Retrieves all data.
+  A*                                            Retrieves A, A0, A1, A2, A3, A4, and I data.
+  A?                                            Retrieves A, A0, A1, A2, A3, A4 data.
+  I                                             Retrieves I data.
+  B*                                            Retrieves all bus and branch data.
+  L*                                            Retrieves all branch data including LTCs, transformers.
+  B?                                            Retrieves all bus types.
+  B, BE, BS, BC, BD, BV, BQ, BG, BT, BX, BM, BF Retrieves specific bus type(s) named.
+  +                                             Retrieves all continuation bus data.
+  X                                             Retrieves X data.
+  Q                                             Retrieves QP, QX, and QN data.
+  L, LD, LM, E, T, TP, R, RZ                    Retrieves specific branch type(s) named.
+  ============================================= ===============================================
+
+**Apply**. Clicking this button applies the selection of items within the filter to the remaining filters.
+It also promotes that filter to the next available downstream order: primary, secondary, tertiary, etc.
+
+**Reset**. Clicking this button resets the filter in context with its status (primary, secondary, tertiary,
+etc.). If you wish to reset the filter to its primary state, you must first reset the original primary filter
+- the leftmost displayed one. Resetting a filter also unhighlights any prior selected items.
+
+**Internal Editor**. Clicking this button applies the filters to the network database, and displays the
+retrieved data in the editing portion of the dialog box. The edit dialog box is a scrollable list; it
+supports only basic functions, such as cutting, pasting, and overtyping. The input data for the editor
+resides in the file ``editbus.dat``; the output data is in the file ``editbusn.dat``.
+
+**External Editor**. Clicking this button applies the filters to the network database, and displays the
+retrieved data in a selected external editor in a new terminal window. For UNIX, the default
+external editor is ``vi``. The input data for the editor resides in the file ``editbus.dat``; the output data
+is in the file ``editbusn.dat``.
+
+**Send To PF**. Clicking this button applies a script file to the two files ``editbus.dat`` and
+``editbusn.dat``, translating the differences into a change file ``editbusc.dat``. Network data changes
+are not made until this step is performed.
+
+**Close**. Clicking this button closes the dialog box. This does not cancel any changes which have
+already been sent to PF.
+
+Reviewing Network Changes
+^^^^^^^^^^^^^^^^^^^^^^^^^
+Once the Send To PF button is clicked, the editing changes are translated into equivalent Power
+flow data change records, which are sent to Powerflow. Since little or no data checking or
+validation is performed prior to the dispatch, the possibility of errors is high. You can check the
+status of your changes by viewing the Network Changes report in the View-Reports menu and the
+System Errors in the Help menu.
+
+Notes
+^^^^^
+When using the internal editor, remember that you are in *overtype* mode only. Delete and
+Backspace keys may delete forward or backward depending on your X defaults. The Tab key
+inserts a blank character, but there is no insert mode.
+
+The Powerflow and GUI must be launched from the same directory and reside on the same
+platform. The file passed in the IPF command ``/CHANGEs, FILE = editbusc.dat`` does not contain
+directory or node prefixes.
+
+The branch data is displayed double entry. If both terminal buses of a mutual branch are displayed
+in the edit dialog box, then the branch is displayed twice. It suffices to edit either branch entity; it
+is redundant to edit both branch items.
+
+Editing an identification field amounts to deleting an old network data entity and adding a new
+network data item. Editing a data field amounts to modifying the data field. There is a special
+problem with blanks in data fields. Blanks, when applied to change modifications, designate "no
+changes."" You must enter a zero (0) to delete a data field within a network data record.
+
+An external program ``ipf_diff`` translates differences between files ``editbus.dat`` and
+``editbusn.dat`` into equivalent network data changes and puts them into the file ``editbusc.dat``.
+The script defining this procedure must be installed in the GUI.
+
+Open (File)
+-----------
+The Open command allows you to specify which files you want to work with. You can open files,
+work with them, and save them (or discard the work and not save them) as many times as you like,
+once IPF is executing. You do not need to exit IPF and start it up again once you are done with a
+given set of files. You simply load the next file(s) you want to work with. They replace (overwrite
+in memory only!) the previously loaded files. See *Save* and *Exit*.
+
+When you first choose Open, you may see file names already existing in some of the text boxes.
+These default file names come from the X resource file for IPF, the XGUI file, in your logon
+directory. You can change these defaults to fit your operation. Read about the XGUI file in
+:ref:`custom-xgui`.
+
+There are three areas in the OPEN dialog box: a file type selection panel at the left, a standard Motif
+file selection dialog in a panel at the right, and a "load files" area at the bottom. See below.
+
+The basic file specifying and loading process goes like this:
+
+  1. Select a file type in the file type area.
+  2. Specify the exact file to load in the file selection dialog.
+  3. Do steps 1 and 2 until all files you want to work with are selected.
+  4. Load them all with the Load Selection button at the bottom.
+
+All text boxes where file names appear are standard Motif file name text boxes. Thus, you can
+modify the file names at any time simply by typing new text into the text box. If a full name is
+hidden at one end or the other of a text box, put the mouse cursor in the text box, press the left
+mouse button and drag till the hidden file name text comes into view. Press and 'paint' to select
+text; then type to replace it.
+
+The asterisk (``\*``) in a file name is a "wildcard" character that stands for "any string of characters of
+arbitrary length."" So, for example, ``*.BSE`` matches any file name that ends in ``.BSE``.
+
+.. figure:: ../img/Open_Dialog_Box.png
+
+  Open Dialog Box
+
+**Command File**. One of five areas in the file type selection panel. The associated Select button
+and file text boxes apply to IPF command files. This ASCII text file is made up of standard
+Powerflow Command Language (PCL) commands and data. PCL files are generally used by
+advanced users. See the :ref:`powerflow-command-language` for more information.
+
+**Change File**. One of five areas in the file type selection panel. The associated Select button and
+file text boxes apply to IPF change files. This ASCII text file is made up of commands and data
+records representing modifications intended for the current case under study. Such a file is applied
+automatically when it is loaded.
+
+**Base Case File**. One of five areas in the file type selection panel. The associated Select button
+and file text boxes apply to IPF base case files. This is the main, binary format 'history' file of IPF
+after it has run a solution.
+
+**Network Data File**. One of five areas in the file type selection panel. The associated Select button
+and file text boxes apply to IPF “raw” network data files. This ASCII text file consists of bus and
+branch data and usually represents basic data for a new network to be studied with IPF.
+
+**Coordinate File**. One of five areas in the file type selection panel. The associated Select button
+and file text boxes apply to IPF coordinate files. This ASCII text file contains position and
+identification data for buses and branches in a given network. The file may be modified
+independently of its associated base case file or network data file.
+
+**Select**. A button whose action transfers its associated file name filter with the wildcard (*) to the
+file name text box labeled Filter in the file selection dialog. Pressing Select causes the file selection
+dialog box to change to the directory specified by the wildcard file name in the file name text box
+associated with the Select button. The filter is specified in the left-hand text file box. The
+right-hand text file box contains the name of the actual file to be loaded, *not a file name filter*.
+
+**Ready to Load**. Feedback information telling you the current state of the file in the associated
+file name text box. *This is not a button*. "Ready to Load" reminds you that IPF does not yet know
+about this file. You must load it with the Load Selections button below.
+
+**Loaded**. Feedback information telling you that you have previously loaded the associated file.
+Thus, IPF is ready to operate on this file. **This is not a button**. If there was some problem loading
+the file, this box will say "Not Loaded".
+
+**Filter**. The file name text box contains a "filter" that selects categories of file names. You can
+directly modify the file name text by selecting text and typing in new text, or more commonly, you
+can use the Select button in the file type selection panel at the left to put a file name filter in the
+box. If you modify the file name filter, you must click the Filter button below to change the
+directory and file list displays.
+
+**Directories**. This list component contains directory names associated with the filter directory.
+You cannot modify these directory names by selecting them and typing. Use the scroll bars at the
+side and bottom to move the directory names up and down or back and forth. Click the arrows or
+the click the bar between the arrows and drag to move the names so you can see them. You move
+up the directory structure by double clicking the directory name ending with a period-period (..).
+You move down by selecting the name of the directory you want to move into. You can also select
+a directory and press the Filter button.
+
+**Files**. This list component contains file names that are within the directory named at the left that
+ends with a period (.) and that satisfy the filter criterion specified above in Filter. You cannot
+modify these file names by selecting them and typing. Use the scroll bars at the side and bottom to
+move the file names up and down or back and forth. Click the arrows or click the bar between the
+arrows and drag to move the names so you can see them.
+
+You select a file name by clicking once on the file name. This puts the selected file name in the
+Selection file name text box below. You can then put the selected file name in the appropriate file
+name text box in the file type selection panel at the left by pressing Apply. You can accomplish the
+same thing by double clicking the file name in the Files box.
+
+**Selection**. This file name text box receives the file name selected by clicking a file name in the
+Files file list. Or, since it is a text box, you can directly modify the file name by selecting text and
+typing replacement text. Be sure to type an exact file name; do not use a wildcard character such
+as the asterisk (*) as part of the file name.
+
+**Apply**. This button causes whatever file name is in the Selection text box to be put in the
+appropriate file name text box in the file type selection panel at the left. This has the same effect
+as double clicking the file name in the Files file list.
+
+**Filter**. Clicking this button causes all file names satisfying the filter file name text in Filter to
+appear in the Files file list. It also puts the currently selected directory name *without the file name*
+in the Selection text box. You must select a file name from the Files file list to select a specific file
+name.
+
+**Help**. (Not yet implemented).
+
+**Load Selections**. Clicking this button sends a "load all the specified files" message to the PF
+component of IPF. The dialog box also closes and disappears. You can verify that the specified
+files were loaded by selecting OPEN again. Files that have been previously loaded display the
+"Loaded" message above the file name text box.
+
+**Close**. Clicking this button closes the dialog box without changing any directory or file name
+values. You can close at any time.
+
+.. note::
+  
+  For more information about the various file types you can open, see :ref:`network-data`.
+
+PF ID/Description (Edit)
+------------------------
+The PF ID/Description dialog box is the way you provide titling and comments for a case. These
+are saved with the case when you save it in a base case file with the Save command. If you loaded
+a case from a base case file, any titling and comments that were in the file will be displayed in this
+dialog. See below.
+
+.. figure:: ../img/PF_ID_Description_Dialog_Box.png
+
+  PF/ID Description Dialog Box
+
+**Case Id**. Ten character maximum, alphanumeric field identifying the base case.
+
+**Description**. Twenty character maximum, alphanumeric field identifying the particular study,
+project, etc.
+
+**PF Header(s)**. These three records will be printed on each batch output report page and hardcopy
+map. The first line is generated by the program and contains the Case ID and Description fields.
+The other two lines can be entered by the user.
+
+**PF Comments**. Up to 20 additional lines of description and comment can be added. These are
+stored with the system data, so they will be visible here when you open an old base file. They are
+also printed in conjunction with certain batch reports, if you load the old base in BPF.
+
+**Reset**. Clicking this button erases the Case, Description, and PF Comments text boxes, and closes
+the dialog box.
+
+**Apply**. Clicking this button sends the current contents of all the text boxes to the currently resident
+case and closes the dialog box. If you save the case, everything you have applied will be saved with
+the case. The dialog will show any saved text when it is opened.
+
+**Close**. Clicking this button closes the dialog box without changing any values in any of the text
+boxes. You can close at any time.
+
+Plot Options (File)
+-------------------
+The Plot Options command allows you to create a network diagram, or map file that can be printed
+on a PostScript compatible printer. The plots may have insets and legends as well as the usual
+power system bus, branch, generator, shunt, series compensation, area bubble, intertie line, and
+other symbols. They are not a copy of what you see on the screen, although both the display and
+the hard copy are based on the coordinate file you currently have loaded.
+
+Four dialog boxes, User Comments, Page Options, Diagram Options, and Plot Destination, allow
+considerable customization of the default power system plot. The basic diagram layout is selectable
+from the Diagram Options dialog box. In addition to the default of real and reactive power flow,
+current and MVA, loss, difference, and interchange diagrams are selectable.
+
+Some computer systems provide previewing capability on your display by means of a separate
+PostScript viewing utility. Check with your system administrator to see if your system has this
+capability.
+
+See :ref:`ipf-network-diagrams` for information about how IPF produces a PostScript plot file.
+
+User Comments
+^^^^^^^^^^^^^
+The User Comments menu item provides a way for you to include text comments on a plot. See
+below.
+
+You can enter comments that will be shown in a block on the diagram. A comment beginning with
+an ampersand (&) identifies an auxiliary coordinate file name. Only one such file is currently
+allowed, and it must be identified in the last comment. The auxiliary coordinate file data will be
+appended to the coordinate file data edited in the GUI
+
+.. figure:: ../img/User_Comments_Dialog_Box.png
+
+  User Comments Dialog Box
+
+**OK**. Clicking this button accepts all text as it is currently shown, passes this on to IPF, and closes
+the dialog box.
+
+**Plot Now**. Clicking this button sends the currently resident plotting information to the currently
+selected printing device, and then closes the dialog box.
+
+**Close**. Clicking this button closes the dialog box without changing any text you have entered. No
+text is passed on to IPF. You can close at any time.
+
+Page Options
+^^^^^^^^^^^^
+The Page Options dialog box facilitates selection of options that control the general appearance of
+a network diagram. The options you choose are incorporated into the network diagram file. See
+below.
+
+**Orientation**. Portrait specifies that the long axis of the paper is vertical. Landscape specifies that
+the long axis is horizontal. Portrait is the default.
+
+**Transparency**. Insets such as the legend or a detailed section of the diagram can show what is
+underneath them. This property is called *transparency*. Opaque specifies that objects underneath
+will *not* show through. Transparent specifies that objects underneath *will* show through. For insets,
+legends, and identification labels usually Opaque is specified. Opaque is the IPF default.
+
+**Paper Size**. Width specifies the width of the paper. Height specifies the height of the paper. Make
+sure your printer can handle the size paper you specify. Two buttons specify 21.59 cm by 27.94 cm
+(8.5 by 11 inch) paper or 27.94 cm by 43.18 cm (11 by 17 inch). The IPF default is 21.59 cm by
+27.94 cm (8.5 by 11 inch).
+
+**Border Top Right Corner**. A border is a solid-line rectangle surrounding graphical objects. X
+cm and Y cm are real numbers that specify x and y values for position with respect to the top right
+corner of the drawing area. The lower left corner is analogous to (0,0) in the Cartesian coordinate
+system.
+
+.. figure:: ../img/Page_Options_Dialog_Box.png
+
+  Page Options Dialog Box
+
+**Case Name Position**. A case name is the user-specified identification associated with a
+particular case study and is saved in the base case file. X cm and Y cm are used to position the case
+name.
+
+**Comments Position**. Comments are from the User Comments dialog box and the base case file.
+Offset. X cm and Y cm are real numbers specifying the x and y locations of the lower left corner
+of an insert relative to the lower left corner of the paper. The lower left corner is analogous to (0,0)
+in the Cartesian coordinate system. The default values for X cm and Y cm are 0.0.
+
+**Scale Factor**. X and Y are real numbers specifying whether the x and/or y axes should be
+enlarged or reduced. Numbers larger than 1.0 enlarge the size of diagram objects. Positive numbers
+smaller than 1.0 reduce the size of diagram objects. The default values for X and Y are 1.0.
+
+**Label Box Coordinates**. Typically, the label box is in the lower right corner of the diagram.
+You may then enter just the top left corner of the box. The bottom right corner must be entered also
+if the box is elsewhere in the diagram.
+
+When the label box option is selected, several default locations are established relative to the upper
+left corner of the box. Default options, which can be overridden by options on the Page Options
+menu, are
+
+  * Coordinate file name, positioned above the box.
+  * Powerflow case name, date, and Powerflow program version, positioned inside the box.
+  * Powerflow description, positioned below the Powerflow case name.
+  * Comments entered by the user, positioned below the Powerflow description.
+  * Comments from the Powerflow case, positioned below comments entered by the user.
+  * Border; the maximum size allowable considering the paper size and printer capabilities.
+
+Accounting information is below the border and is fixed. This information shows the diagram type,
+flow options, and dates and versions of the Powerflow program used to generate the Powerflow
+case and diagram.
+
+**Legend Position**. This locates the top left corner of the legend. The legend provides a
+description of branch symbols used in the diagram.
+
+**OK**. Clicking this button accepts all values as they are currently set and closes the dialog box.
+
+**Close**. Clicking this button closes the dialog box without changing any values. No changed values
+are passed on to IPF. You can close at any time.
+
+Diagram Options
+^^^^^^^^^^^^^^^
+The Diagram Options dialog box allows for selection of power flow values that appear on a
+network diagram. The options you choose determine which power flow solution data is combined
+with coordinate data to create a PostScript network diagram file. See below.
+
+.. figure:: ../img/Diagram_Options_Dialog_Box.png
+
+  Diagram Options Dialog Box
+
+**Bus Name**. Coordinate files contain the bus record identifier consisting of bus name and base kV
+and an alternate coordinate diagram identifier called a bus abbreviation. The Abbreviation
+identifier simplifies crowded diagrams. Abbreviation is the default.
+
+**Bus Voltage**. Bus Voltage allows either the actual kV or per unit voltage to be displayed. The
+actual kV value is the default.
+
+**Generation**. Specifying Generation means that the P and Q generation values and generator
+graphic symbol show on the diagram.
+
+**Shunt**. Specifying Shunt allows you to see shunt values and a graphic symbol.
+
+**Show Phase Angle**. Specifying Show Phase Angle means that bus angle with respect to the
+slack bus shows on the diagram.
+
+**Show Load**. Specifying Show Load allows you to see actual load values near the bus voltage
+values.
+
+**Show Total Flow of Undrawn Branches**. Specifying Show Total Flow of Undrawn Branches
+allows you to see P and Q flow values into undrawn branches.
+
+**Show Outages**. Specifying Show Outages means that outaged branches show in the diagram.
+
+**Parallel Lines**. Specifying Combined adds multiple circuit power flow values together.
+Specifying Separate allows you to see flow values for each individual branch. Combined is the
+default.
+
+**Transfrmr Taps**. Transfrmr Taps shows any transformer taps.
+
+**Compensation**. Compensation shows series compensation values.
+
+**Outages**. Outages shows outaged branches.
+
+**Values**. Specifying Normal shows the solution values of a given Powerflow case. Specifying
+Difference allows you to compare two power flow cases and show the differences.
+
+**Diagram Type**. Diagram Type can be only one type at a time. Specifying PQ Flow shows P and
+Q power flow values. This is the default. Specifying MVA & I shows megavoltamperes on
+transformers and current flows on lines. Specifying Loss shows transmission system loss values.
+Specifying Interchange creates a diagram that shows net generation, load, and line flow values for
+area interchange studies. Specifying Coordinates creates a diagram with no solution data. This may
+be used for verifying that bus and branch placement is satisfactory.
+
+**Flow Detail**. The options in Flow Detail allow you to fine tune how you want to show the P and
+Q flow values. Your choices are: P Sending End, Q Sending End, P Receiving End, and Q
+Receiving End. P Sending End and Q Sending End is the IPF default.
+
+**OK**. Clicking this button accepts all values as they are currently set and closes the dialog box.
+
+**Close**. Clicking this button closes the dialog box without changing any values. No changed values
+are passed on to IPF. You can close at any time.
+
+Plot Destination
+^^^^^^^^^^^^^^^^
+The Plot Destination option allows you to select the printer device most convenient or suitable to
+your job. You select a print command from the top list window, and the command appears in the
+text box below. You can edit the command in the text box. See below.
+
+When you first open this dialog box, a default print command shows in the Selection text box. IPF
+reads the XGUI file in your home directory to find this print command. You can edit the ASCII
+text XGUI file to change this default print command. See :ref:`custom-xgui` for a discussion of how to
+modify the XGUI file.
+
+.. figure:: ../img/Plot_Destination_Dialog_Box.png
+
+  Plot Destination Dialog Box
+
+**Items**. This scrolling window shows the print plot commands currently available. Selecting an
+item in the window makes it appear in the Selection text box below.
+
+**Selection**. This text box contains the command string that IPF uses to print a diagram. You can
+modify the text in this box any way you like, perhaps to specify a printer or printer command option
+you use only occasionally. IPF uses whatever printer command is in this text box to print a diagram.
+
+**OK**. Clicking this button stores the command string in the Selection text box to be used for
+subsequent printing. The Plot Destination dialog box then closes. Use the Print Plot command to
+actually send a diagram to the printer. Diagrams either printed or not printed are available for
+on-line viewing if you have a PostScript previewer on your system.
+
+**Cancel**. Clicking this button closes the dialog box without changing any values. No values are
+passed on to IPF. You can cancel at any time.
+
+**Help**. (Not yet implemented).
+
+Print Plot (File)
+-----------------
+The Print Plot command sends the current, memory-resident base case/coordinate file data to the
+printer you have currently designated, using the settings specified in the Plot Options command.
+See the Plot Options entry in this section.
+
+Reports (View)
+--------------
+Reports are data extracted from a memory-resident base case that is then formatted for output to
+the display. In a few cases, data is extracted from a base case file that you specify. IPF supplies the
+most frequently needed reports via the Reports dialog boxes. See figures below.
+
+The scrolling list of report possibilities appears in the upper portion of the Reports dialog boxes.
+You choose one of the report types by clicking on it. The dialog box itself then changes to reflect
+the kind of report you have chosen. Refer to the figures in this section to see a few of the
+possibilities. Generally, once you have chosen the kind of report you want, you then use the filter
+lists of Areas, Zones, Owners, etc., to narrow down the information you are looking for. Then you
+click View Report to see all the bus or branch records your specified list of criteria produces, or
+Save or Append Report to send the output to a file.
+
+There is a limit of ten items selected on any filter. You can choose more than this, but only the first
+ten will be applied and reported. If you want *all* of any filter list, just *do not select anything* in the
+list (e.g. all areas, all zones in an area, etc.).
+
+.. note::
+  
+  The CFLOW library is available to C programmers so that more extensive reports can be extracted from IPF 
+  data. See :ref:`libcflow-c-library` for more details.
+
+.. figure:: ../img/Reports_Dialog_Box_Bus_Input_Data.png
+
+  Reports Dialog Box: Bus Input Data
+
+**Reports Available**. This scrolling list shows all reports available. You select a report by clicking
+on it. If the report needs another base case file to do a comparison, a files menu will pop up so you
+can select the other file names.
+
+**Area**. Click on the *areas* you want to report. Click again to unselect. Selections across Areas,
+Zones, Owners, Base kV, and Types are effectively "anded" and therefore narrow the reported
+information.
+
+**Zone**. Click on the *zones* you want to report. Click again to unselect. Selections across Areas,
+Zones, Owners, Base kV, and Types are effectively "anded" and therefore narrow the reported
+information.
+
+**Owner**. Click on the *owners* you want to report. Click again to unselect. Selections across Areas,
+Zones, Owners, Base kV, and Types are effectively "anded" and therefore narrow the reported
+information.
+
+**Base kV**. Click on the *base kVs* you want to select. Click again to unselect. Selections across
+Areas, Zones, Owners, Base kV, and Types are effectively "anded" and therefore narrow the
+reported information.
+
+**Type**. Click on the *bus types* you want to select. Click again to unselect. Selections across Areas,
+Zones, Owners, Base kV, and Types are effectively "anded" and therefore narrow the reported
+information.
+
+**File Report Name**. The file name where you want report data saved. If no name is specified, the
+report will be saved in REPORTS.DAT.
+
+**View Report**. Clicking this button brings up the View Report dialog box. The report data is in a
+scrolling text window. See the examples below. The number of lines of output is
+limited. If you see "MORE" at the bottom of the report, you will know it was truncated.
+
+**Save Report**. Clicking this button saves the specified report to a file that you name in the File
+Report Name box. The file will contain all lines of the report, even if there are more than can be
+displayed on the screen.
+
+**Append Report**. Clicking this button adds the report data to an already existing file. You must
+supply the file name you want to append to.
+
+**Close**. Clicking this button closes the dialog box without saving any settings or information.
+
+.. figure:: ../img/Reports_Dialog_Box_Branch_Input_Data.png
+
+  Reports Dialog Box: Branch Input Data
+
+**Search Bus Name KV**. You type in this text box to go to a specific bus. The search function is
+case sensitive; that is, a and A are not the same. The search function begins as soon as you type a
+character. Begin typing the first characters of a bus name and the search function finds the
+alphabetically first bus matching the letters typed so far. For example, A finds ACTON, AL finds
+ALBINA, ALD finds ALDER ST, and ALDERC finds ALDERCRT.
+
+Clicking on a bus, or finding it with the search, causes it to be highlighted (selected). *All
+highlighted buses will be reported*, (up to the limit of ten). To unselect a bus that you do not want
+reported, just click it again.
+
+.. figure:: ../img/Reports_Dialog_Box_Overloaded_Lines.png
+
+  Reports Dialog Box: Overloaded Lines
+
+**Limits**. Under % Line Load you can specify a minimum percentage for reporting overloads on line
+and transformers by typing a value in this text box.
+
+Under PU Volt Relax you can relax the limit for over/under voltage reporting. The normal limits
+are either the gobal ones or those specified on the area record. If these give you too many buses,
+you can use this text box to extend the limit. For example, entering 0.02 will cause to be reported
+only buses whose voltage is more than 0.02 beyond the limits (you cannot lower the limit by
+entering a negative number.)
+
+.. figure:: ../img/Bus_Input_Data_Report_Example.png
+
+  Bus Input Data Report Example
+
+.. figure:: ../img/Bus_Branch_Input_Example.png
+
+  Bus/Branch Input Example
+
+.. figure:: ../img/Bus_Branch_Output_Example.png
+
+  Bus/Branch Output Example
+
+.. figure:: ../img/Area_Interchange_Report_Example.png
+
+  Area Interchange Report Example
+
+.. figure:: ../img/Tie_Line_Summary_Report_Example.png
+
+  Tie Line Summary Report Example
+
+Run CFLOW (Process)
+-------------------
+CFLOW files are C programs using the IPF CFLOW library of routines. These routines enable you
+to access the base case memory-resident data in IPF. Many CFLOW programs are designed to
+collect information for specialized reports that are not built into IPF in the Reports command. See
+:ref:`libcflow-c-library` for more information.
+
+There are two ways to execute a CFLOW program from the GUI. Refer also to *Auto CFLOW*
+earlier in this section so that you choose the appropriate CFLOW execution command.
+
+The Run CFLOW command is used primarily during the development and debugging of CFLOW
+programs. During this time, you use a terminal window outside of IPF as you work on getting the
+program logic to function properly.
+
+.. figure:: ../img/Run_CFLOW_Dialog_Box.png
+
+  Run CFLOW Dialog Box
+
+A second stage of CFLOW programming, after the basic program logic is correct, may involve
+directing input and output to a separate CFLOW-program-created terminal window. This
+"production-grade", user-friendly CFLOW program may then be run by a user from within IPF
+with the Auto CFLOW command.
+
+**To use the Run CFLOW command:**
+
+  1. In a terminal window (or other programming environment) outside of IPF, develop and 
+  debug the basic programming logic of your CFLOW program.
+  2. When you are ready to test it with IPF, start up IPF in a *different* terminal window.
+  3. Start your CFLOW program in its terminal window with a socket id number between 1024
+  and 4096 on the command line. Example: ``cfpgm 2020``
+  4. Return to IPF, select the Run CFLOW command and type the same socket id number that
+  you typed on the command line in the terminal window.
+  5. Click OK to supply the socket id number to your CLFOW program and start it executing.
+
+Save (File)
+-----------
+The Save command permanently stores current work on a disk storage device. When you are
+through running a solution on a network or editing the coordinates in a network, you usually want
+to keep the work. You use Save to do this. The saved files remain available for continued
+modification within the current IPF session. You can save files at any time. See figures below.
+
+The Save dialog box is divided into five file save text boxes with associated Save buttons, and
+Options buttons for the Network and Stability files. The current files that you have loaded appear
+in the their respective text boxes when you first open this dialog box. If you want to change the
+name of a file, modify the file name by selecting and typing new characters. You may also add a
+file path if you want to save the file in a different directory.
+
+If you fail to change an existing file name to a new name, you get a dialog box asking you to
+confirm that you really want to overwrite an existing file.
+
+When you save a file, IPF does not change the file names in the Open dialog box or any file names
+in the Current Files Area of the main window. These file names change only if you use the Open
+dialog box to load new files.
+
+.. figure:: ../img/Save_Dialog_Box.png
+
+  Save Dialog Box
+
+**Change File**. This ASCII text file is made up of data representing modifications made in the
+current session.
+
+**Base File**. This is the main, binary format output file of IPF after it has run a solution.
+
+**Network**. This ASCII text file contains the bus and branch record data comprising the current
+network, including any alterations you have made.
+
+**Coordinate**. This ASCII text file contains position and identification data for buses and branches
+in the current case.
+
+**Stability**. This ASCII text or binary file contains base case data that is readable by the WSCC
+Stability program.
+
+**Save**. These Save buttons are dedicated to their respective files. Click the appropriate button(s) to
+save the file(s) you want to keep.
+
+**Options**. These Options buttons are dedicated to their respective files. Click the associated button
+to pop up a dialog box appropriate to the Network or Stability file.
+
+**Close**. Clicking this button closes the dialog box and returns you to the current IPF session.
+
+.. figure:: ../img/Save_Overwrite_Dialog_Box.png
+
+  Save Overwrite Dialog Box
+
+**Overwrite**. Clicking this button causes the data in the file named in the dialog box to be
+overwritten. This is a replacement operation, and, thus, you may lose data if you are mistaken.
+Caution is urged.
+
+**Cancel**. Clicking this button closes the dialog box and returns you to the main Save dialog box.
+
+**Help**. (Not yet implemented.)
+
+.. figure:: ../img/Save_Network_Options_Dialog_Box.png
+
+  Save Network Options Dialog Box
+
+**WSCC Dialect**. Dialect refers to how values in a field are interpreted and how fields are arranged.
+See :ref:`ipfcut` and :ref:`ipfnet` for more information. BPA is the default.
+
+**Ratings**. These refer to line voltage ratings. Extended means that more than one rating is allowed
+for a line. For example, thermal is another kind of rating. Nominal means there is just one rating
+allowed. Minimum means that the lowest of extended ratings is selected for the file. Nominal is the default.
+
+**Record Size**. Eighty (80) specifies that you want to limit the record size to 80 characters. WSCC,
+WSCC1, and PTI dialects require this. The BPA dialect allows the 120 setting.
+
+**Close**. Clicking this button closes the dialog box without writing the file to disk or changing any
+radio button values.
+
+.. figure:: ../img/Save_Stability_Options_Dialog_Box.png
+
+  Save Stability Options Dialog Box
+
+**ASCII, Binary**. The ASCII button saves the solved system data in ASCII text format, which is
+readable by ordinary text editors. This file can be transferred to any other platform for input to the
+WSCC stability program. The Binary button saves the same data in binary format. The binary file
+is less than half the size of the ASCII file, but can be used as stability input only on the same type
+of computer system.
+
+**Close**. Clicking this button closes the dialog box without writing the file to disk or changing any
+radio button values.
+
+Solution Data Off (View)
+------------------------
+The Solution Data Off command rewrites the display *without* reading and displaying the current
+solution data. Sometimes you may want to clear the display of extra data so that it is more readable.
+This command does that.
+
+Solution Data On (View)
+-----------------------
+The Solution Data On command rewrites solution data to the display. When you do repeated
+solutions, the displayed solution data does not automatically refresh in all circumstances. When
+you notice this, do a Solution Data On command to read and display the latest solution data.
+
+Solve Case (Process)
+--------------------
+Solving a network case (or base case) causes IPF to calculate bus voltages that satisfy network
+constraints as they exist within the currently resident system data. See below.
+In a solution scenario, the following steps are typical:
+
+  1. You make changes to the case.
+  2. You solve the network.
+  3. You examine the output.
+
+You follow these steps repeatedly until some desired output conditions or criteria are achieved. The
+Error Message dialog box gives you feedback about the progress and success of a solution attempt.
+See below. However, the interation report is visible only in the terminal window behind the
+GUI.
+
+Since solution voltages are stored in all base cases, you need not solve a case after initially loading
+one to access solution voltage data. However, if your case is specified by a network data file, you
+do need to run a solution to access solution voltage data. Thereafter, solution voltages are stored in
+the binary base case data.
+
+You do not need to load a coordinate or change file to solve a case — only a base case file or
+network file is needed.
+
+.. figure:: ../img/Solve_Dialog_Box.png
+
+  Solve Dialog Box
+
+**LTC**. The radio buttons in this section select different load tap changing (LTC) transformer
+options. Button On enables all LTC transformer options. RP & RQ enables only LTC transformers
+controlling real and imaginary power. R Only enables only LTC transformers controlling voltage.
+DC Only enables only LTC transformers controlling DC converters. Off turns all LTC
+transformers off.
+
+**Area Interchange**. The CON radio button causes IPF to control the area interchange according
+to the specified constraints. MON does not control, but will inform you of constraint violations.
+The OFF radio button causes IPF to ignore all area interchange constraints.
+
+**Phase Shifter Bias**. There are two options for phase shifter bias: BPA and WSCC. Choose BPA
+to instruct IPF to try to bias voltage phase angle to zero if possible for minimum losses. Choose
+WSCC to instruct IPF to try to bias voltage phase angle to the initial values of the base case.
+
+**Limits**. QRes is the per unit MVAR by which a bus must be perturbed to revert from a state of
+Qmax control to a state of V control. Min Phase Angle is the minimum angle in degrees for which
+fixed-tap phase shifters are modeled as ideal devices in the DC iterations. Delta Angle is the
+maximum angle adjustment in radians permitted in one iteration. Delta Volts is the maximum
+voltage adjustment in per unit permitted in an iteration.
+
+**Tolerances**. These values set the tolerances in per unit for convergence testing.
+
+Iteration Control. This section specifies the number of iterations IPF goes through. Specifying
+a number for Decoupled Start means that you want IPF to calculate P and Q separately before it
+goes to the full Newton-Raphson solution method. Values from zero (0) to ten (10) are valid.
+Specifying zero means that you want to skip the decoupled start. Specifying two means that one P
+solution and one Q solution is done. Specifying ten means that five P and five Q solutions are done,
+alternating P and Q (P, Q, P, Q, P, ...) before the Newton-Raphson solution begins. It is often useful
+to do more DC iterations if a case has early difficulty in solving.
+
+If a case is 'hunting', you can increase the number of Newton-Raphson iterations beyond the
+default of 30 to cause it to keep trying. Setting it lower (say to 10) will not cause it to stop before
+it finds a solution, however. Maximum is 50.
+
+Turning the Iteration Summary button on causes several thousand lines of solution process detail
+to be written to your [logon].pfd file.
+
+**Base Solution**. Clicking this button bypasses the solution routine, and uses the base voltages in
+residence to calculate line flows.
+
+**Debug**. These buttons turn on various program debug switches. See the ?? for more details.
+
+**Miscellaneous Control**. If the Flat Start radio button is on, IPF will initialize all bus voltage
+angle values to zero before it does a solution. This is the default. If the button is off, IPF will leave
+all bus voltage angles and magnitudes unchanged from their previous solution values. This option
+is chosen most often for base cases that have already been solved, and to which only minor changes
+have been made. The DCLP button should be on. It controls the type of solution used for
+multi-terminal DC lines.
+
+**BX Voltage Bias**. There are three options for BX Voltage Bias: BPA, WSCC, and VMAX. The
+BPA option accepts any discrete reactance step on a BX bus when its solution voltage V lies
+between Vmin and Vmax. The VMAX option attempts to find the switched reactance step such
+that the solution voltage is the largest which is still less than or equal to Vmax. The WSCC option
+adjusts the shunt only when the voltage violates the limits.
+
+**Tap Start**. Sets the LTC transformer starting tap. See ?? for a full description of how the 
+starting tap is calculated.
+
+**VSTEPS**. This controls the modeling of BQ buses which are on a Q limit.
+
+**Reset**. Clicking Reset returns all radio buttons to their default values.
+
+**Solve**. Clicking the Solve button causes the IPF solution algorithms to attempt a solution within
+the constraints of the base case data and the Solve dialog box option settings. Solution performance
+varies with computer system and size of the base case data set. Messages about the solution can be
+seen in the Error Messages dialog box. See below. If there are any Fatal errors, this box will
+pop up on its own; otherwise you must open it in order to see the messages. The iteration history
+can be observed in the terminal window where IPF was started. You can examine all of this in the
+[logon].pfd file in your current directory, after you exit IPF.
+
+**Close**. Clicking Close closes the dialog box without saving any changes in the settings.
+
+.. figure:: ../img/Solution_Feedback.png
+
+  Solution Feedback
 

@@ -91,6 +91,8 @@ The CFLOW Approach
 ------------------
 Many times users need to do a large number of similar runs or they need to process data from another system or set of files before running studies. CFLOW is a C library API (``libcflow``) for IPF. To use CFLOW, you write a C program, including the header file ``cflowlib.h``, which defines all the structures and unions which allow access to the powerflow input and solution values. To retrieve these values, you call various CFLOW functions. The API interacts with ``ipfsrv`` interally. This allows you to do things like ask for a new solution, change the model, etc. See :ref:`libcflow-c-library` for details on the API and examples.
 
+.. _network-data:
+
 Network Data
 ============
 A core component to any power system analysis problem is the power system network (the interconnected lines, generators, loads, transformers, nodes/buses, breakers, and other components). In IPF, this is referred to as Network Data. Network Data defines the structure (connectivity) and properties (base voltage, real power injections, real and reactive power loads, transformer tap settings, etc.) of the power system network. This data is defined in files that contain bus (nodes) and branch (lines, transformers, etc.) records. Most of the input files are ASCII text files. But one important file, the base case file (.bse), is in binary format. You can, of course, edit ASCII text files with any text editor. This is often done, but your data integrity is safer if you do all the editing you can in the ``gui``. The base case binary file cannot be edited with an ordinary text editor, but can in effect be edited via the ``gui`` when you have a base case file loaded.
