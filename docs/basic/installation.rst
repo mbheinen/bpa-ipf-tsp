@@ -27,6 +27,7 @@ Otherwise start an interactive tty with ``bash`` to run other processes.
 
     $ docker run -it --rm bpa-ipf-tsp bash
     [root@e9d28ac4f070 data]# bpf bench.pfc
+    [root@e9d28ac4f070 data]# tsp bench.fil
 
 Standard
 ========

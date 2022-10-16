@@ -10,7 +10,7 @@ This section describes all data record formats recognized by IPF. Records are us
 
 Each record description in this section has a "card" figure that shows you where to put record identification and the other fields and properties of the record. These "card" figures are artifacts from the days of punchcards and mainframes, but they do provide good visual represenation of the data for each record format when manually creating intput files for IPF. Each card figure has a legend showing whether each fields is required, optional, or ignored.
 
-Each entry also has a table of column descriptions and data formats. This supplements the ca.. figure. Additional text accompanies any record formats that need extended discussion.
+Each entry also has a table of column descriptions and data formats. This supplements the card figure. Additional text accompanies any record formats that need extended discussion.
 
 Some data are real numbers. For these fields, the implicit decimal point is shown as a black dot on the ca.. figure, just above the information entry row. Note that you can enter data with an explicit decimal point in any position within the field. A black dot that appears at the extreme right side of a field represents a decimal point at the right end (least significant digit) of a number. All other black dots appear above a line, indicating that the decimal point will fall between the digits on either side.
 

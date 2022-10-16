@@ -8,7 +8,7 @@ Overview
 ========
 This section describes the batch Power Flow Control (PFC) language and its syntax, commands and subcommands. Command entries follow the PFC description in alphabetical order. The table below helps you turn quickly to a specific command entry. The table also gives you a quick description of all of the commands.
 
-Each command entry explains the meaning of the command and gives its syntax. Some commands have subcommands, which are also described. Many entries have additional discussion, and some have examples, particularly where a command’s usage may not be immediately obvious.
+Each command entry explains the meaning of the command and gives its syntax. Some commands have subcommands, which are also described. Many entries have additional discussion, and some have examples, particularly where a command's usage may not be immediately obvious.
 
 The ``bpf`` Control Language
 ============================

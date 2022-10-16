@@ -1,7 +1,7 @@
 .. _overview:
 
 ********
-Overivew
+Overview
 ********
 You can interact with IPF using the command line tools (``bpf``, ``ipfbat``, ``ipfcut``, etc.), the ``libcflow`` C API, or the `Motif X Window`_ GUI. Many of the functions and features of the command line tools are available through specially designed GUI features. The GUI simplifies creating network data, running the base case solutions, and graphically visualizing the network diagrams but is rather dated and in need of a refresh. For this reason, many users will likely prefer the command line tools.
 
@@ -27,7 +27,7 @@ IPF can be thought of as a family of executable programs. ``bpf`` is the batch f
 
   ``ipfnet``
   
-    The command line batch version of the "save netdata file" command built into the ``gui``/``ipfsrv``. This program generates a WSCC-formatted network data file in any of the following dialects: BPA, WSCC, or PTI. "Dialects" means that the file is still WSCC, but the data is generated with special processing or restrictions and is destined for use with other programs. In the case of the PTI dialect, that data is preprocessed by the PTI-proprietary conversion program WSCFOR. Documentation is in :ref:`ipfnet`.  More documentation about this program is in :ref:`ipfnet` section.
+    The command line batch version of the "save netdata file" command built into the ``gui``/``ipfsrv``. This program generates a WSCC-formatted network data file in any of the following dialects: BPA, WSCC, or PTI. "Dialects" means that the file is still WSCC, but the data is generated with special processing or restrictions and is destined for use with other programs. In the case of the PTI dialect, that data is preprocessed by the PTI-proprietary conversion program WSCFOR. Detailed documentation is in :ref:`ipfnet`.
 
   ``gui``
   

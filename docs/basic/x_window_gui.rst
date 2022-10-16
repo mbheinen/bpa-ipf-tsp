@@ -884,14 +884,15 @@ in megavoltamperes reactive (Mvar).
 PQ Curve
 ========
 The PQ Curve dialog box allows you to specify points for a generator reactive capability curve for
-a type BE, BG, BQ, BX, or BS bus. See the `QP`` record :ref:`reactive-capability-curves` for detailed information.
+a type ``BE``, ``BG``, ``BQ``, ``BX``, or ``BS`` bus. See the `QP`` record 
+:ref:`reactive-capability-curves` for detailed information.
 
 To specify P Gen, Q Max, and Q Min values, type the values in the bottom text entry boxes. Click
 the Insert button to transfer the values from the text entry boxes to the list boxes above. Rows of
 values are associated across. Six rows of values are sufficient for most curves. Once you have
 values typed in and entered, you can replace or delete them, a row at a time.
 
-.. figure:: ../img/PQ_Geneartion_Dialog_Box.png
+.. figure:: ../img/PQ_Generation_Dialog_Box.png
 
   P-Q Generation Dialog Box
 
@@ -1801,8 +1802,9 @@ press the Apply button. Three things happen.
 
   1. The Owner filter becomes the solitary primary filter; it is automatically repositioned to the
   leftmost position in the dialog box. The Apply button on this filter is ghosted, indicating
-that it has been applied.
-2. The remaining filters are now collectively called secondary filters. They are repositioned
-on the dialog in an arbitrary order on the right of the primary filter. The effects of the primary filter are applied to the secondary filters through the network (downstreaming). There
-is a one exception, Type, whose display is always static.
-3. Only the network items that collectively meet the combined filter criteria are displayed.
+  that it has been applied.
+  2. The remaining filters are now collectively called secondary filters. They are repositioned
+  on the dialog in an arbitrary order on the right of the primary filter. The effects of the primary filter are applied to the secondary filters through the network (downstreaming). There is a one exception, Type, whose display is always static.
+  3. Only the network items that collectively meet the combined filter criteria are displayed.
+
+
