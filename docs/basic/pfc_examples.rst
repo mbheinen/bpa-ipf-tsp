@@ -156,7 +156,7 @@ Here is an example of merging two systems defined from sepearate solved old base
 
 Merge Case Example 2
 ====================
-Here is an example of merging two topologically overlapping networks into one consolidated network and solvubg the network, creating a new base to be called J86JFY82. Each of the original networks is to be appropriately modified before the merger. The first network is a WSCC base case saved as 86J201.BSE which must be modified by saving areas, excluding buses, renaming buses and excluding certain branches. The second network is the BPA system which will be extracted from the branch file BDFY82W using the extraction date Jan 1986.::
+Here is an example of merging two topologically overlapping networks into one consolidated network and solvubg the network, creating a new base to be called ``J86JFY82``. Each of the original networks is to be appropriately modified before the merger. The first network is a WSCC base case saved as ``86J201.BSE`` which must be modified by saving areas, excluding buses, renaming buses and excluding certain branches. The second network is the BPA system which will be extracted from the branch file ``BDFY82W`` using the extraction date Jan 1986.::
 
   (POWERFLOW, CASEID = J86FY82, PROJECT = BASEMERGE) 
   /NEWBASE FILE = [APF]J86FY82.BSE 

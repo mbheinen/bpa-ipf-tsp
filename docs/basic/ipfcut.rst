@@ -11,15 +11,15 @@
 
 The function of ``CUTTING`` and ``REDUCTION`` are similar, but their methodologies are different. Both generate subsystems whose internal composition and characteristics are identical to that of the base case. REDUCTION generates equivalent branches, shunt admittances, and injections such that internal nodes still "see" the full system. CUTTING generates equivalent shunt admittances and injections such that internal nodes can determine that the boundary has changed and the external system has been cut out, even though the internal flows and nodal voltages are identical.
 
-The CUTTING program mandates that the flow into the cut-out system is constant. This is valid for eliminating radial feeder circuits, but not for eliminating a strongly interconnected external network. In the latter case, REDUCTION yields a more responsive equivalent.
+The ``CUTTING`` program mandates that the flow into the cut-out system is constant. This is valid for eliminating radial feeder circuits, but not for eliminating a strongly interconnected external network. In the latter case, ``REDUCTION`` yields a more responsive equivalent.
 
-A simple criterion can be used to determine whether CUTTING or REDUCTION is more appropriate.
+A simple criterion can be used to determine whether ``CUTTING`` or ``REDUCTION`` is more appropriate.
 
   * Will a line outage or other major perturbation near the boundary of the retained subsystem and eliminated system significantly alter the flow between the two systems?
 
-If the answer is no, the flow will not be significantly altered, then CUTTING is acceptable. (It is the author's opinion that REDUCTION is always superior.)
+If the answer is *no*, the flow will not be significantly altered, then ``CUTTING`` is acceptable. (It is the author's opinion that ``REDUCTION`` is always superior.)
 
-The CUTTING program is initiated by entering IPFCUT at the keyboard after the computer displays the system prompt.
+The ``CUTTING`` program is initiated by entering ``ipfcut`` at the keyboard after the computer displays the system prompt.
 
 From this point on the operation is interactive. You should respond to the questions as they are asked.
 

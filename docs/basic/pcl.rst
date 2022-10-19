@@ -18,18 +18,21 @@ PCL has some overlap with the PFC command language used in the batch Powerflow (
 
 .. table:: IPC Commands Quick Descriptions
 
-  +------------+--------------------------------------------------+
-  | Command    | Description                                      |
-  +------------+--------------------------------------------------+
-  | (END)      | Terminates a data stream following a command.    |
-  +------------+--------------------------------------------------+
-  | *[EOM]     | Used in the Command Dialog to launch a command   |
-  |            | stream.                                          |
-  +------------+--------------------------------------------------+
-  | CFLOW      | Launches a CFLOW program.                        |
-  CHANGES Introduces system data change records. 3-10
-GET_DATA Fetches data from the Powerﬂow process. 3-12
-GET_DATA, TYPE = A_DATA Retrieves all type A input data records in WSCC format.
+  +------------+--------------------------------------------------+-------------+
+  | Command    | Description                                      | Section     |
+  +============+==================================================+=============+
+  | (END)      | Terminates a data stream following a command.    |             |
+  +------------+--------------------------------------------------+-------------+
+  | *[EOM]     | Used in the Command Dialog to launch a command   |             |
+  |            | stream.                                          |             |
+  +------------+--------------------------------------------------+-------------+
+  | CFLOW      | Launches a CFLOW program.                        |             |
+  +------------+--------------------------------------------------+-------------+
+  | CHANGES    | Introduces system data change records.           |             |
+  +------------+--------------------------------------------------+-------------+
+  |GET_DATA    | Fetches data from the Powerﬂow process.          |             |
+  +------------+--------------------------------------------------+-------------+
+  | GET_DATA, TYPE = A_DATA Retrieves all type A input data records in WSCC format.
 3-12
 GET_DATA, TYPE = AREA_DATA Initializes the user analysis arrays. 3-13
 GET_DATA, TYPE = AREA_LIST Loads the area list dialog into the Network Data Edit Dialog and the Reports Dialog.
@@ -121,3 +124,31 @@ SYSCAL Passes a system command to the operating system.
 
 General
 =======
+
+``(END)``
+---------
+Use this command to terminate a data stream following a command in a PCL command file. Some
+commands which would be followed by data are ``/CHANGES, FILE=*`` and ``/PLOT``.
+
+Example::
+
+  /Network_Data, File = *
+  B ARAPAHOA115.
+  BS ARAP1 13.8 3.5 45. 1.05
+  B SHERIDAN115. 41.5 11.8
+  T ARAPAHOA115. ARAP1 13.8 .00672.14684.00064-00313115.5 13.2
+  L ARAPAHOA115. SHERIDAN115. .00261.00657 .0004
+  (end)
+
+``*[EOM]``
+----------
+This is used when entering commands in the Command Dialog of the GUI, to indicated that the
+line or lines you have entered into the buffer should be send to ``ipfsrv``. When the GUI generates
+this "End of Message" string, it has all six characters; however, the first two characters are all that
+are required to be entered.
+
+For Command Dialog usage, this also serves in place of the ``(END)`` command above. But unlike
+it, this must be entered after every command, when using the Command Dialog.
+
+``INITIALIZE``
+--------------

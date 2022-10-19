@@ -74,14 +74,14 @@ Each general format is followed by an example.
      / P_INPUT_LIST, ZONES=NA,NB,NC,ND,NE,NF, -
               NG,NH,NI,NJ,NK
 
-  * A command followed by a comma with multiple value/keyword assignments.
+ * A command followed by a comma with multiple value/keyword assignments.
 
    .. code::
 
      / command , keyword = value , keyword = value ,... 
      / MERGE_OLD_BASE, SUB_SYSTEM_ID = AREA-1, OLD_BASE = TESTDC.BAS
  
-  * A command followed by a data record(s).
+ * A command followed by a data record(s).
 
    .. code::
 
@@ -91,14 +91,14 @@ Each general format is followed by an example.
      B     GEN2 HI    230  1  -0.0  -0.0  0.0 0.0      -0.0 -0.0 -0.0 
      B     GEN3 HI    230  2  -0.0  -0.0  0.0 0.0      -0.0 -0.0 -0.0
   
-  * A subcommand followed by a comma with multiple comma-separated values.
+ * A subcommand followed by a comma with multiple comma-separated values.
 
    .. code::
 
      >subcommand, value, value, value ,... 
      >SAVE_ZONES,NA,NB,NC,ND,NE,NF,NG,NH,NI,NJ,NR
 
-  * A subcommand followed by a data record on the next line.
+ * A subcommand followed by a data record on the next line.
 
    .. code::
 
@@ -129,7 +129,9 @@ After the first case has been processed, ``P_INPUT_LIST`` is set to ``NONE``. Th
 Microfiche Control Statement
 ============================
 
-  ``[ FICHE,COPIES = n ]`` or
+.. code::
+
+  ``[ FICHE,COPIES = n ]``
   ``( FICHE,COPIES = n )``
 
 This command requests "n" copies of microfiche listings to be made. If it is omitted, the fiche file is not saved. If ""n" is zero or omitted, no copies are made. When it is used, this control must be first in the job stream.
@@ -147,7 +149,11 @@ Level 1 PFC Commands
 
 ``( END )`` or ``( STOP )``
 
-  This stops the execution of the IPF program. Each network is processed with a ``( POWERFLOW )`` or ``( NEXTCASE )`` command. The first must always be ``( POWERFLOW )``. Several cases may be concatenated (stacked) in the following format:
+  This stops the execution of the IPF program. 
+  
+Each network is processed with a ``( POWERFLOW )`` or ``( NEXTCASE )`` command. The first must always be ``( POWERFLOW )``. Several cases may be concatenated (stacked) in the following format:
+
+.. code::
 
     ``( POWERFLOW )`` statement for case 1
     ``( POWERFLOW )`` statement or ``( NEXTCASE )`` statement for case 2
@@ -159,13 +165,17 @@ Level 1 PFC Commands
 
 The following control statement and the optional keywords that go with it identify the ``OLD_BASE`` file, optionally perform miscellaneous temporary changes to ``OLDBASE``, set solution parameters, and solve the resultant network. 
 
-  ``(POWERFLOW CASEID = <casename>, PROJECT = <projname>)``
+.. code::
+
+  (POWERFLOW CASEID = <casename>, PROJECT = <projname>)
 
 ``casename`` is a user-assigned 10-character identification for the case. ``projname`` is a user-assigned, 20-character identification for the project or study to which this case applies. (No blanks are allowed; use hyphens instead.) 
 
 The following statement is used if the Powerflow solution is to be run starting with data and controls from the previous base case in residence.
 
-  ``( NEXTCASE, CASEID = <casename>, PROJECT = <projname> )``
+.. code::
+
+  ( NEXTCASE, CASEID = <casename>, PROJECT = <projname> )
 
 Note that ``/ OLD_BASE`` is not used with a ``( NEXTCASE )`` statement since a base data file is already in residence.
 
@@ -245,7 +255,9 @@ This command emulates automatic generation control (AGC) in the solution algorit
 
 The individual AGC units are identified with type ``B`` (bus) records which follow the ``/ AGC`` command. columns (1:18) correspond with the original format. Beyond column 18, data is free field.
 
-  ``B  <bus_name,base kV>  Pmin=<##>, Pmax=<##>, Pgen=<##>, %=<##>``
+.. code::
+
+  B  <bus_name,base kV>  Pmin=<##>, Pmax=<##>, Pgen=<##>, %=<##>
 
 where
 
@@ -309,9 +321,9 @@ All of the active units should have an individual ratio
 
 AI_LIST
 =======
-This command controls the level of detail in the area interchange listing.
+This command controls the level of detail in the area interchange listing.::
 
-  ``/ AI_LIST = FULL``
+  / AI_LIST = FULL
 
 ``FULL`` is the default. The options are:
 
@@ -337,13 +349,13 @@ A special option exists on the ``> LINEFF`` report. Its entirety is::
 
  > LINEFF, SORT = BUS_NAME, OUTPUT=filename, FIELD_WIDTH =  132,F,P
                                                              80,F,P 
- >   VOLTAGE,
-     OWNER,
-     ZONE,
+ >                VOLTAGE,
+                  OWNER,
+                  ZONE
 
-All quantities are optional.::
+All quantities are optional.
 
-  ``SORT`` Controls sorting by bus kV_name, owner_name, or name.
+  ``SORT`` Controls sorting by bus kV_name, owner_name, or zone name.
 
   ``OUTPUT`` Copies a duplicate report to the named file.
 
@@ -401,8 +413,8 @@ The primary motive of sensitivity is to calculate the instantaneous system respo
 By recalculating the Jacobian matrix, various constraints can be changed. The flexibility of these constraints is evident in the format of the sensitivity command.::
 
   / BUS_SENSITIVITIES,LTC=ON,AI_CONTROL=CON,Q_SHUNT=ADJ,Q_GEN=ADJ
-                   OFF,          OFF         FIXED     FIXED
-                                 MON
+                          OFF,          OFF         FIXED     FIXED
+                                        MON
 
 The top line defines the default values.
 
@@ -444,10 +456,10 @@ The fields on the ``B``-blank record determine which sensitivity :math:`\frac{dP
   :math:`\frac{dP}{d\theta}` Not required Required            Not required
   :math:`\frac{dP}{dV}`      Literal: “V” Required            Not required
   :math:`\frac{dQ}{dV}`      Not required Not required        Required 
-  :math:`\frac{dQ}{dV}` a    (blank)      (blank)             (blank)
+  :math:`\frac{dQ}{dV}`*     (blank)      (blank)             (blank)
   ========================== ============ =================== =====================
 
-a. This is the default.
+\* This is the default.
 
 Repeat Sensitivities
 --------------------
@@ -1236,9 +1248,9 @@ Line sensitivities relate line immittances (impedance or admittance) to voltage,
 
   :math:`d\frac{Loss}{dB_s}` Change in system losses with respect to a change in shunt susceptance :math:`B_s` .
 
-  :math:`d\frac{V_i}/{dX_t}` Change in bus voltage (:math:`V_i`) with respect to a change in transfer reactance math:`X_t` .
+  :math:`d\frac{V_i}{dX_t}` Change in bus voltage (:math:`V_i`) with respect to a change in transfer reactance :math:`X_t`.
 
-  :math:`d\frac{V_i}/{dB_s}` Change in bus voltage (:math:`V_i`) with respect to a change in shunt susceptance :math:`B_s` .
+  :math:`d\frac{V_i}{dB_s}` Change in bus voltage (:math:`V_i`) with respect to a change in shunt susceptance :math:`B_s` .
 
 The change in transfer reactance :math:`X_t` or shunt susceptance :math:`B_s` pertains to an existing line. The command statement which invokes line sensitivities is::
 
@@ -1255,7 +1267,7 @@ The second part of the sensitivities is the perturbed quantities :math:`dX_t` or
   ======= ======= ==========================
   Columns Format  Description
   ======= ======= ==========================
-  (1:3)   A3      ``>PB``: :math:`\frac{dP_{ij}}{dB_s} or :math:`\frac{dP_{ij}}{dX_t}`
+  (1:3)   A3      ``>PB``: :math:`\frac{dP_{ij}}{dB_s}`` or :math:`\frac{dP_{ij}}{dX_t}`
                   ``>LB``: :math:`\frac{dLoss}{dB_s}` or :math:`\frac{dLoss}{dX_t}`
                   ``>VB``: :math:`\frac{dV_i}{dB_s}` or :math:`\frac{dV_i}{dX_t}`
   (7:18)  A8,F4.0 Bus1 name and base kV
@@ -1268,7 +1280,7 @@ The second part of the sensitivities is the perturbed quantities :math:`dX_t` or
 
 A maximum of 50 perturbed quantity ``>`` records may be present.
 
-The ambiguity :math:`d(.)/dB_s` or :math:`d(.)/dX_t` is resolved by non-zero entities for :math:`X_t` or :math:`B_s` . If both are zero, the default is :math:`X_t` . Non-zero entities define the magnitude of the perturbed quantity :math:`dX_t` or :math:`dB_s`. Perturbed flows, losses, or voltages will be computed using these values.
+The ambiguity :math:`d(.)/dB_s` or :math:`d(.)/dX_t` is resolved by non-zero entities for :math:`X_t` or :math:`B_s` . If both are zero, the default is :math:`X_t` . Non-zero entities define the magnitude of the perturbed quantity :math:`Delta_X_t` or :math:`Delta_B_s`. Perturbed flows, losses, or voltages will be computed using these values.
 
 The perturbed branch flows :math:`P_{ij}` are identified with the individual ``L`` records that follow. If parallel lines are present, :math:`P_{ij}` pertains to the total of all parallel flows.
 
@@ -1392,19 +1404,25 @@ Six percentage distribution factors can be specified by the user. The following 
 
 .. math::
 
-  P_{load} &= 50% P + 25% I + 25% Z  \\
-  Q_{load} &= 50% Q + 25% I + 25% Z
+  P_{load} = 50% P + 25% I + 25% Z
+
+  Q_{load} = 50% Q + 25% I + 25% Z
 
 From this command, the following quantities will be defined:
 
 .. math::
 
-  PP (%Constant P_{load}) &= 50% \\
-  PI (%Constant I_{load}) &= 25% \\
-  PZ (%Constant Z_{load}) &= 25% \\
-  QP (%Constant Q_{load}) &= 50% \\
-  QI (%Constant I_{load}) &= 25% \\
-  QZ (%Constant Z_{load}) &= 25%
+  PP (%Constant P_{load}) = 50%
+
+  PI (%Constant I_{load}) = 25%
+
+  PZ (%Constant Z_{load}) = 25%
+
+  QP (%Constant Q_{load}) = 50%
+
+  QI (%Constant I_{load}) = 25%
+
+  QZ (%Constant Z_{load}) = 25%
 
 There are restrictions; the percentage distributions must be complete.
 
@@ -1417,22 +1435,26 @@ This means that if some load is to be unchanged, a value of 100% must be entered
 
 The following relations hold at the base voltages:
 
-::
-
-  Constant MVA     Constant MVA    Constant I    Constant Z
-
 .. math::
 
-  P_{load_{old}}     &=  P_{load_{new}}     + A_{load} * V   + G_{shunt} * V^2 \\
+  Constant MVA        Constant MVA            Constant I         Constant Z
+
+  P_{load_{old}}     &=  P_{load_{new}}     + A_{load} * V   + G_{shunt} * V^2
+  
   Q_{load_{old}}     &=  Q_{load_{new}}     + B_{load} * V   - B_{shunt} * V^2
 
 where
 
   :math:`P_{load_{new}}` (MW) =  :math:`P_{load_{old}}` (MW) :math:`* PP / 100`
+
   :math:`Q_{load_{new}}` (MVAR) =  :math:`Q_{load_{old}}` (MVAR)  :math:`*  QP / 100`
+
   :math:`A_{load}` (MW) =  :math:`P_{load_{old}}` (MW) :math:`*  PI / (100 * V)`
+
   :math:`B_{load}` (MVAR) =  :math:`Q_{load_{old}}` (MVAR)  :math:`*  QI / (100 * V)`
+
   :math:`G_{shunt}` (MW) =  :math:`P_{load_{old}}` (MW) :math:`*  PZ / (100 * V^2)`
+
   :math:`B_{shunt}` (MVAR) = :math:`--Q_{load_{old}}` (MVAR) :math:`*  QZ / (100 * V^2)`
 
 The negative sign for :math:`B_{shunt}` is correct. The actual expression is
@@ -1513,7 +1535,8 @@ Individually Selected Buses
 This command permits unique distribution factors to be specified for individual buses. The buses and their distribution factors are identified on fixed field records. The format of the B % load change record is shown in the figure below. ``CHANGE_TYPE`` is optional. ``ALOAD`` and ``RLOAD`` have the same interpretation given in Table 4-8. Thus, they would apply to ``+`` records, but not to ``B`` records.
 
 If the ownership field is blank or includes the bus ownership, the percentages apply only to data on the bus ``B`` record. Continuation bus data will not be affected.
-On the other hand, if the ownership is the magic code ###, the percentages apply to data on the bus ``B`` record and also to data on all associated continuation bus records.
+
+On the other hand, if the ownership is the magic code ``###``, the percentages apply to data on the bus ``B`` record and also to data on all associated continuation bus records.
 
 .. figure:: ../img/CHANGE_BUS_Load_Input_Format_for_B_Records.png
 
@@ -1537,7 +1560,7 @@ The identification fields for ``+ %`` bus records are identical to those for the
 
 The format of the ``+ %`` load change records is shown below.
 
-.. figure:: ../img/CHANGE_BUS_Load_Input_Format_for_+_Records.png
+.. figure:: ../img/CHANGE_BUS_Load_Input_Format_For_plus_Records.png
 
   CHANGE_BUS % Load Input Format for + Records
 
@@ -2497,7 +2520,7 @@ This command defines the retained network as consisting of all buses identified 
 
   >SAVE_ZONES = <list>, BASES = <list>
 
-This command defines the retained network as consisting of those buses which have zones in the first list, with the optional, additional provision that their base kvs must be in the second list. Elements of the list are separated with commas (,).
+This command defines the retained network as consisting of those buses which have zones in the first list, with the optional, additional provision that their base kvs must be in the second list. Elements of the list are separated with commas (,).::
 
   >STARTING_VOLTAGES = FLAT
                        HOT

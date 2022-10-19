@@ -5,7 +5,7 @@
 **********
 ``ipfnet`` is the batch version of the "save netdata file" function built into the GUI/IPFSRV. This program generates a WSCC-formatted network data file in any of the following dialects: BPA, WSCC, or PTI. The GUI allows you to save a network data file describing the case you currently have loaded. This should not be confused with the ``netdat`` program, which performs very similar function by loading a saved base case (``.bse``) file and writing it out in an ASCII network (``.net``) file.
 
-Both programs generate a WSCC-formatted network data file in any of the following dialects: BPA, WSCC1, or PTI. "Dialects" means that although the file is still WSCC format, the data is generated with special processing or restrictions and is destined for use with other programs. In the case of the PTI dialect, that data is intended to be processed by the PTI-proprietary conversion program WSCFOR.
+Both programs generate a WSCC-formatted network data file in any of the following dialects: BPA, WSCC1, or PTI. "Dialects" means that although the file is still WSCC format, the data is generated with special processing or restrictions and is destined for use with other programs. In the case of the PTI dialect, that data is intended to be processed by the PTI-proprietary conversion program ``wscfor``.
 
 This program extracts network data from a Powerflow "old base" history file. Table F-1 below summarizes the effects of each dialect.
 

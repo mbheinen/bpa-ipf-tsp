@@ -131,11 +131,11 @@ There are multiple methods for specifying the Network Data. The following is a l
 
   This ASCII text input file contains changes (new and modification records) to the data input from any combination of ``NETWORK_DATA``, ``BRANCH_DATA``, and ``OLD_BASE`` files making up the case to be studied. These change records change the input data for the base case.
 
-``Printout File`` 
+Printout File ``.pfo`` 
 
   This is an ASCII text output file that contains bus, branch, and solution data from a completed case study and is intended for ordinary, paper hardcopy output.
 
-``Microfiche file`` 
+Microfiche file ``.pff`` 
 
   This is a special format output file that contains bus, branch, and solution data from a completed case study and is intended for microfiche format.
 
@@ -178,7 +178,7 @@ This ASCII text data file consists of area, bus, and branch records in the forma
 
    ``+`` (Continuation bus records)
 
-   ``X`` (Continuation bus records)
+   ``X`` (Switched Reactance records)
 
    ``Q`` (PQ Curve data records)
 

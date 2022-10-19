@@ -745,7 +745,7 @@ The ``BX`` dialog box supplies data for a bus that controls its own or a remote 
 
 ``BD`` Bus
 ==========
-The ``BD`` dialog box supplies data for a two-terminal DC bus. See the ``BD`` record :ref:`ac-bus-data-bd`.
+The ``BD`` dialog box supplies data for a two-terminal DC bus. See the ``BD`` record :ref:`two-terminal--dc-bus-data-bd`.
 
 .. figure:: ../img/Input_Data_Edit_Box_Showing_BD_Bus.png
 
@@ -774,7 +774,7 @@ commutating bus name. This is the bus on the ac system side of the commutating t
 
 ``BM`` Bus
 ==========
-The BM dialog box supplies data for a multi-terminal dc bus.  See the ``BM`` record :ref:`ac-bus-data-bm`.
+The BM dialog box supplies data for a multi-terminal dc bus.  See the ``BM`` record :ref:`multi-terminal-dc-bus-data-bm`.
 
 .. figure:: ../img/Input_Data_Edit_Box_Showing_BM_Bus.png
 

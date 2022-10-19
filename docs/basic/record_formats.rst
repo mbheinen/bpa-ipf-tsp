@@ -12,7 +12,7 @@ Each record description in this section has a "card" figure that shows you where
 
 Each entry also has a table of column descriptions and data formats. This supplements the card figure. Additional text accompanies any record formats that need extended discussion.
 
-Some data are real numbers. For these fields, the implicit decimal point is shown as a black dot on the ca.. figure, just above the information entry row. Note that you can enter data with an explicit decimal point in any position within the field. A black dot that appears at the extreme right side of a field represents a decimal point at the right end (least significant digit) of a number. All other black dots appear above a line, indicating that the decimal point will fall between the digits on either side.
+Some data are real numbers. For these fields, the implicit decimal point is shown as a black dot on the card. figure, just above the information entry row. Note that you can enter data with an explicit decimal point in any position within the field. A black dot that appears at the extreme right side of a field represents a decimal point at the right end (least significant digit) of a number. All other black dots appear above a line, indicating that the decimal point will fall between the digits on either side.
 
 All IPF data record types are identified by the characters in columns 1 and 2. To fully specify a particular record, additional fields need to be filled in. These additional ID fields are usually the bus name and base kV. ID fields are called out in the column description tables.
 
@@ -314,7 +314,7 @@ These records permit an area to be defined independently of any area interchange
 
 AC Bus Data
 ===========
-Bus records identify nodes in the network. The following description applies to AC buses only; DC buses are identified by a subtype ``D`` or ``M`` and are described in ?? and ??.
+Bus records identify nodes in the network. The following description applies to AC buses only; DC buses are identified by a subtype ``D`` or ``M`` and are described in :ref:`two-terminal-dc-bus-data-bd` and :ref:`multi-terminal-dc-bus-data-bm`.
 
 Each AC bus consists of three attributes: generation, load, and shunt admittance. Various subtypes assign unique characteristics to these attributes. Some affect conditions in the solution; others affect only the allocation of quantities in the output listings.
 
@@ -397,7 +397,7 @@ Since this bus normally has no voltage control, the voltage limits (``V MAX``, `
  * If the bus is remotely controlled by another bus (type ``BG`` or ``BX``) or by an LTC transformer (which is not standard but is accepted), the limits specify the range of acceptable voltage.
  * For accounting purposes, these limits can flag undervoltage or overvoltage situations in the analysis reports.
 
-It must be recognized that every bus has voltage limits, whether they are explicitly specified through the ``V MIN``, ``V MAX`` fields or implicitly specified through default global voltage limits. See Appendix ??.
+It must be recognized that every bus has voltage limits, whether they are explicitly specified through the ``V MIN``, ``V MAX`` fields or implicitly specified through default global voltage limits. See :ref:`voltage-limits-and-starting-voltages` for details on global limits.
 
 Reactive limits are not allowed for this type of bus. If reactive limits are entered in the ``Q MAX`` and ``Q MIN`` fields, they will be ignored. However, legitimate ``Q GEN`` can be entered if ``Q MIN`` is zero.
 
@@ -455,7 +455,7 @@ A specific amount of reactive generation can be requested. This can be accomplis
 
 Reactive constraints are not allowed for this type of bus. If reactive limits are entered in the ``Q MAX`` and ``Q MIN`` fields, they will be ignored.
 
-Since this bus type has its voltage maintained by a generator bus, a ``V HOLD`` entry is strongly recommended on the bus record. However, if that field is blank, the global default limits apply, in effect, using ``VMAX`` for the ``VHOLD``. See ??
+Since this bus type has its voltage maintained by a generator bus, a ``V HOLD`` entry is strongly recommended on the bus record. However, if that field is blank, the global default limits apply, in effect, using ``VMAX`` for the ``VHOLD``. See :ref:`voltage-limits-and-starting-voltages` for details on global limits.
 
 .. figure:: ../img/BC_Subtype_Format.png
 
@@ -569,7 +569,7 @@ Reactive (:math:`Q`) load and shunt are held constant for this bus type.
 
 Reactive (:math:`Q`) generation is variable.
 
-This bus type requires reactive limits to be entered in the ``Q MAX``and ``Q MIN`` fields. The reactive limits on the subtype ``BG`` bus are used to maintain a specified voltage at a remote bus. If the remote bus voltage cannot be held with the available ``BG`` bus reactance, voltage control stops at either ``Q MAX`` or ``Q MIN``.
+This bus type requires reactive limits to be entered in the ``Q MAX`` and ``Q MIN`` fields. The reactive limits on the subtype ``BG`` bus are used to maintain a specified voltage at a remote bus. If the remote bus voltage cannot be held with the available ``BG`` bus reactance, voltage control stops at either ``Q MAX`` or ``Q MIN``.
 
 A specific amount of reactive generation (``Q SCHED``) cannot be requested.
 
@@ -902,7 +902,7 @@ It should be noted that the program will attempt to select a discrete reactive s
 
   Q-V Curve for ``BX`` Subtype
 
-.. _ac-bus-data-bd:
+.. _two-terminal-dc-bus-data-bd:
 
 Two-Terminal DC Bus (``BD``)
 ============================
@@ -938,7 +938,7 @@ Data for the inverter and rectifier buses are identical. Identification of each 
   51-62  no       A8,F4.0 Commutating bus — Alphanumeric name in columns 51-58 and base kV in columns 59-62. This is on the AC system side of the commutating transformer bank
   ====== ======== ======= =====================
 
-.. _ac-bus-data-bm:
+.. _multi-terminal-dc-bus-data-bm:
 
 Multi-Terminal DC Bus (``BM``)
 ==============================
@@ -1177,7 +1177,7 @@ A sample coding sheet with column explanations follows.
 
   Transmission Line Data Input Format
 
-.. table:: 
+.. table:: Column Description for Transmission Line Data
 
   +--------+----------+--------+---------------------------------------------------------+
   | Column | ID Field | Format | Description                                             |
@@ -1240,11 +1240,15 @@ A sample coding sheet with column explanations follows.
   | 67-74  | no       | A8     | Descriptive data (alphanumeric, for example 6-wire).    |
   +--------+----------+--------+---------------------------------------------------------+
   | 75-77  | no       | A1,I2  | Energization Date - MYY                                 |
+  |        |          |        |                                                         |
   |        |          |        |   M = {1,2,3,4,5,6,7,8,9,O,N,D}                         |
+  |        |          |        |                                                         |
   |        |          |        |   YY = last two digits of year                          |
   +--------+----------+--------+---------------------------------------------------------+
   | 78-80  | no       | A1,I2  | De-energization Data - MYY                              |
+  |        |          |        |                                                         |
   |        |          |        |   M = {0,1,2,3,4,5,6,7,8,9,O,N,D}                       |
+  |        |          |        |                                                         |
   |        |          |        |   YY = last two digits of year                          |
   +--------+----------+--------+---------------------------------------------------------+
   | 81-84  | no       | F4.0   | Thermal rating in Amps                                  |
@@ -1257,7 +1261,7 @@ Two-Terminal DC Line (``LD``)
 This record is used in conjunction with the two dc bus records; collectively they define the dc model. The dc line data contains pertinent information describing the electrical characteristics of the line, the scheduled dc power and voltage, and the initial firing and extinction angles.
 
 Distinction between the inverter and rectifier buses is made with the dc line record using the sign of the scheduled dc power. The direction of power flow is always from rectifier to inverter, and the criteria assumes positive values from bus 1 to bus 2 on the record. Thus, simple modifications in the line data permit power reversals to be modeled with a minimum of data changes.
-A sample dc line data coding form and column descriptions follow. See Figure 3-33 and Table 3-25.
+A sample dc line data coding form and column descriptions follow. See figure and table below.
 
 .. figure:: ../img/DC_Line_Data_Input_Format.png
 
@@ -1298,10 +1302,10 @@ A sample dc line data coding form and column descriptions follow. See Figure 3-3
   |         |          |        | from converter 1 to 2 metered at the end indicated by     |
   |         |          |        | ``I`` or ``R`` in column 56.                              |
   +---------+----------+--------+-----------------------------------------------------------+
-  | 62-66   | no       | F5.1   | Schedule DC line volts (kV) - at rectiﬁer end of DC     |
+  | 62-66   | no       | F5.1   | Schedule DC line volts (kV) - at rectiﬁer end of DC       |
   |         |          |        | line.                                                     |
   +---------+----------+--------+-----------------------------------------------------------+
-  | 67-70   | no       | F4.1   | Rectiﬁer (:math:`\alpha_N`) - Initial firing angle in   |
+  | 67-70   | no       | F4.1   | Rectiﬁer (:math:`\alpha_N`) - Initial firing angle in     |
   |         |          |        | degrees at rectifier.                                     |
   +---------+----------+--------+-----------------------------------------------------------+
   | 71-74   | no       | F4.1   | Inverter (:math:`\gamma_0`) - Minimum margin angle in     |
@@ -1397,7 +1401,7 @@ Six different subtypes are permitted. Different subtypes may be submitted togeth
 
   Subtype ``Z`` Factor change by zones (20 maximum). All AC bus and continuation bus loads and generation within the depicted zones will be changed by the specified factors.
 
-  Subtype ``N`` Factor change by zone on all nonindustrial loads and generation (20 maximum). All AC bus and continuation bus data except +A, +F, +I or +P continuation bus data within the designated zones will be changed by the specified factors. All zones may be changed with one record having a key zone 00 (zero-zero).
+  Subtype ``N`` Factor change by zone on all nonindustrial loads and generation (20 maximum). All AC bus and continuation bus data except ``+A``, ``+F``, ``+I`` or ``+P`` continuation bus data within the designated zones will be changed by the specified factors. All zones may be changed with one record having a key zone ``00`` (zero-zero).
   
   Subtype ``A`` Factor change on all loads and generation on all AC bus and continuation bus data (1 only).
   
@@ -1481,7 +1485,7 @@ Six different subtypes are permitted. Different subtypes may be submitted togeth
   |        |       |          | blanks. Change will be restricted to these listed    |
   |        |       |          | owners, if no list, all owners are assumed. Note:    |
   |        |       |          | Subtype C is restricted to the following types of    |
-  |        |       |          | continuation buses: ``+A01``, ``+A02``, ``*P``,    |
+  |        |       |          | continuation buses: ``+A01``, ``+A02``, ``*P``,      |
   |        |       |          | ``*I.``                                              |
   +--------+-------+----------+------------------------------------------------------+
 
@@ -1544,7 +1548,7 @@ Before solution of the case, each ``BE``, ``BG``, ``BQ``, ``BX``, and ``BS`` bus
   | 19-20  | no       | I2     | Number of units. Total used is number of      |
   |        |          |        | units times the values specified (            |
   |        |          |        | :math:`P_{gen}`, :math:`Q_{max}`,             |
-  |        |          |        | :math:`Q_{min}` ))                            |
+  |        |          |        | :math:`Q_{min}` )                             |
   +--------+----------+--------+-----------------------------------------------+
   | 21-25  | no       | F5.2   | QP - Maximum MVA                              |
   |        |          |        | QX - Positive (leading) power factor for Qmax |
@@ -1758,7 +1762,7 @@ The base kV is used to calculate the equivalent pi. Complications arise when ste
 
 A transformer is identified by subtype blank and a viable entry for ``TAP 2.`` A phase shifter is identified either by a subtype ``P`` or by a blank field for ``TAP 2``. However, the program always adds the subtype P for distinction and convenience in data changes. The ANGLE is TAP 1 interpreted in degrees. If ``TAP 2`` is blank, a nominal tap is presumed. A phase shifter assumes a pure voltage rotation and an optional transformation. Increasing the ANGLE will decrease the power flowing from bus 1 and bus 2.
 
-Four MVA ratings are used to flag overloaded transformers: nominal, thermal, emergency, and bottleneck. The latter three are “extended ratings”, which supersede nominal ratings. Other entries are similar to the type L record. A sample of the format and explanations follow.
+Four MVA ratings are used to flag overloaded transformers: nominal, thermal, emergency, and bottleneck. The latter three are “extended ratings”, which supersede nominal ratings. Other entries are similar to the type ``L`` record. A sample of the format and explanations follow.
 
 .. figure:: ../img/Transformer_Data_Input_Format.png
 
