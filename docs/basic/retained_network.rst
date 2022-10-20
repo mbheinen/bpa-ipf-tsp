@@ -59,4 +59,16 @@ a card without a B in column1 is encountered.
 
 Input listings
 ==============
+Following the program control card and subsequent reduction cards, the retained system is defined
+and two listings are produced. The first listing defines the retained network. Each bus name will be
+preceded with one or two of the following characters:
+Blank Retained bus is internal and unchanged.
+E Retained bus is an envelope node and will receive distributed injections and
+equivalent branches.
+X Retained bus is also an envelope node. However, everyone of the adjacent
+nodes is eliminated. This is acceptable but may not be intentional and is
+intended as an informative diagnostic.
+* Retained bus is selected by the optimal feature.
+P Retained bus is a generator.
+The second listing defines all eliminated nodes.
 

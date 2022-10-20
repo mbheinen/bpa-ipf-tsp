@@ -5,9 +5,51 @@ Overview
 ********
 You can interact with IPF using the command line tools (``bpf``, ``ipfbat``, ``ipfcut``, etc.), the ``libcflow`` C API, or the `Motif X Window`_ GUI. Many of the functions and features of the command line tools are available through specially designed GUI features. The GUI simplifies creating network data, running the base case solutions, and graphically visualizing the network diagrams but is rather dated and in need of a refresh. For this reason, many users will likely prefer the command line tools.
 
+IPF Interaction Model
+=====================
+The conceptual model of IPF is quite simple. You load power system network data into IPF; the IPF solution "engine" performs the calculations for the solution, and then outputs this solution data.
+
+IPF offers different approaches to accomplish power system solutions. Their style of interaction and processing are quite different.
+
+ * The batch power flow (can use either ``bpf`` or ``ipfbat``) approach. This is an Input-Process-Output approach. You write a command file containing all of the "orders" that you want filled, and the program performs the actions it determines are necessary to produce the ordered results.
+ * The Graphical User Interface (GUI) approach. This is command oriented - you click a button or enter a command, and it is executed immediately by the backend power flow engine (``ipfsrv``).
+ * The CFLOW approach (the C API called ``libcflow``). This is a programming based approach where you write C code to interact with IPF.
+
+Two Domain Specific Languages (DSLs) called  Powerflow Command Language (PCL) and Power Flow Control (PFC) allow users to define the "scenarios" or "orders". PCL is directly available through a Command Dialog window in the X Window GUI and can be used with the ``ipfbat`` program. PFC is used with the ``bpf`` program. See :ref:`power-flow-control` for details of the PFC syntax and :ref:`powerflow-command-language` for details of the PCL sytanx.
+
+ .. note::
+
+  The PFC syntax was developed first and later `Bonneville Power Administration`_ (BPA) added the PCL syntax. They referred to PCL as the "new style", and the PFC as the "old style". These two sets of commands are not completely compatible even though the "new style" command set and syntax is closely modeled on the "old style."
+
+The ``bpf`` Batch Approach
+--------------------------
+When you use ``bpf``, you must first create a PFC file with the appropriate commands to accomplish the solution task at hand. At runtime these commands are accepted by ``bpf`` and executed according to a logical processing order determined by the program. Hence you need not be concerned with the ordering of commands in your PFC file. Input commands will be processed first, and a solution done automatically before any output is produced. Finally, a new base file will be created, if you have requested one. See :ref:`pfc-examples` for examples of PFC files.
+
+.. figure:: ../img/BPF_Information_Flow_Model.png
+
+   BPF Information Flow Model
+
+The ``ipfbat`` Batch Approach
+-----------------------------
+``ipfbat`` allows you fine control over the data and solution "engine" (``ipfsrv``). You first create a PCL file with the appropriate commands, in the right order, to accomplish the solution task at hand. At runtime these commands are interpreted by ``ipfbat``. The PCL file commands are processed sequentially. Additional PCL command files may be specified by name, so that a "chain" of PCL files may be processed in one run.
+
+The GUI Approach
+----------------
+When you use the GUI approach, you use an X Window graphical interface with dialog boxes, menus, windows, etc. This makes data input, output, and manipulation easy. In addition to allowing basic case solution tasks to be accomplished, certain specialized tasks such as line impedance calculations are available. See :ref:`calculating-line-impedance` for details. However, for more involved tasks, you need to use the ``bpf`` approach. For information about how to work with the GUI dialog boxes, menus, windows, etc., see :ref:`x-window-graphical-interface`. This guide also has a tutorial to show you how to solve straightforward power system cases.
+
+.. figure:: ../img/PCL_Information_Flow_Model.png
+
+   PCL Information Flow Model
+
+The core powerflow program (``ipfsrv``) can be ran on separate machine from the graphical user interface. These two halves of the IPF program are joined by interprocess communication (IPC) routines that shuttle data and instruction messages back and forth between the GUI and powerflow program. The powerflow program serves primarily as a solution and data engine that sends and receives data when requested by the user through the GUI. Note that all of this commuication is basic socket communication so it likely doesn't work if GUI runs on one platform (Windows) and powerflow programs run on another (Linux).
+
+The CFLOW Approach
+------------------
+Many times users need to do a large number of similar runs or they need to process data from another system or set of files before running studies. CFLOW is a C library API (``libcflow``) for IPF. To use CFLOW, you write a C program, including the header file ``cflowlib.h``, which defines all the structures and unions which allow access to the powerflow input and solution values. To retrieve these values, you call various CFLOW functions. The API interacts with ``ipfsrv`` interally. This allows you to do things like ask for a new solution, change the model, etc. See :ref:`libcflow-c-library` for details on the API and examples.
+
 Executables
 ===========
-IPF can be thought of as a family of executable programs. ``bpf`` is the batch form of the powerflow program allowing one or more scenarios to be defined in input files and run all at once via a call to ``bpf``. When the editing and displaying of buses and branches is being handled by ``gui``, the work of calculating solution voltages for a given power system network is done by ``ipfsrv``, which is just the ``bpf`` program in a different guise. Auxiliary programs allow you to do plots in batch mode, do a save of network data in batch mode, perform a "cut" of a solved base case, etc. Each of the executables are briefly described below. 
+IPF consists of many executable programs. ``bpf`` is the batch form of the powerflow program allowing one or more scenarios to be defined in input files and run all at once via a call to ``bpf`` from a command line terminal. When the editing and displaying of buses and branches is being handled by the ``gui`` process, the work of calculating solution voltages for a given power system network is done by ``ipfsrv``, which is just the ``bpf`` program in a different guise. Auxiliary programs allow you to do plots in batch mode, do a save of network data in batch mode, perform a "cut" of a solved base case, etc. Several of the most common executables are briefly described below. 
 
   ``bpf``
    
@@ -49,53 +91,11 @@ IPF can be thought of as a family of executable programs. ``bpf`` is the batch f
   
     The program that converts a network data file from WSCC's Interactive Powerflow System (IPS) format to IPF format. Duplicate buses are renamed; Load Tap Changer (LTC) steps are converted to taps, shunt susceptance on slack and ``BQ`` buses are transferred to ``+A`` records; sectionalized lines containing a section 0 are renumbered 1, 2, ... ; ``BX``, ``X``, and remote controlled bus data are converted to IPF format, etc. Documentation is in :ref:`ips-ipf-differences`.
 
-IPF Interaction Model
-=====================
-The conceptual model of IPF is quite simple. You load power system network data into IPF; the IPF solution "engine" performs the calculations for the solution, and then outputs this solution data.
-
-IPF offers different approaches to accomplish power system solutions. Their style of interaction and processing are quite different.
-
- * The batch power flow (can use either ``bpf`` or ``ipfbat``) approach. This is an Input-Process-Output approach. You write a command file containing all of the "orders" that you want filled, and the program performs the actions it determines are necessary to produce the ordered results.
- * The Graphical User Interface (``gui``) approach. This is command oriented – you click a button or enter a command, and it is executed immediately by the backend power flow engine (``ipfsrv``).
- * The CFLOW approach (the C API called ``libcflow``). This is a programming based approach where you write C code to interact with IPF.
-
-Two Domain Specific Languages (DSLs) called  Powerflow Command Language (PCL) and Power Flow Control (PFC) allow users to define the "scenarios" or "orders". PCL is directly available through a Command Dialog window in the X Window GUI and can be used with the ``ipfbat`` program. PFC is used with the ``bpf`` program. See :ref:`power-flow-control` for details of the PFC syntax and :ref:`powerflow-command-language` for details of the PCL sytanx.
-
- .. note::
-
-  The PFC syntax was developed first and later `Bonneville Power Administration`_ (BPA) added the PCL syntax. They referred to PCL as the "new style", and the PFC as the "old style". These two sets of commands are not completely compatible even though the "new style" command set and syntax is closely modeled on the "old style."
-
-The ``bpf`` Batch Approach
---------------------------
-When you use ``bpf``, you must first create a PFC file with the appropriate commands to accomplish the solution task at hand. At runtime these commands are accepted by ``bpf`` and executed according to a logical processing order determined by the program. Hence you need not be concerned with the ordering of commands in your PFC file. Input commands will be processed first, and a solution done automatically before any output is produced. Finally, a new base file will be created, if you have requested one. See :ref:`pfc-examples` for examples of PFC files.
-
-.. figure:: ../img/BPF_Information_Flow_Model.png
-
-   BPF Information Flow Model
-
-The ``ipfbat`` Batch Approach
------------------------------
-``ipfbat`` allows you fine control over the data and solution "engine" (``ipfsrv``). You first create a PCL file with the appropriate commands, in the right order, to accomplish the solution task at hand. At runtime these commands are interpreted by ``ipfbat``. The PCL file commands are processed sequentially. Additional PCL command files may be specified by name, so that a "chain" of PCL files may be processed in one run.
-
-The ``gui`` Approach
---------------------
-When you use the ``gui`` approach, you use an X Window graphical interface with dialog boxes, menus, windows, etc. This makes data input, output, and manipulation easy. In addition to allowing basic case solution tasks to be accomplished, certain specialized tasks such as line impedance calculations are available. However, for more involved tasks, you need to use the ``bpf`` approach. For information about how to work with the GUI dialog boxes, menus, windows, etc., see :ref:`x-window-graphical-interface`. This guide also has a tutorial to show you how to solve straightforward power system cases.
-
-.. figure:: ../img/PCL_Information_Flow_Model.png
-
-   PCL Information Flow Model
-
-The core powerflow program (``ipfsrv``) can be ran on separate machine from the graphical user interface. These two halves of the IPF program are joined by interprocess communication (IPC) routines that shuttle data and instruction messages back and forth between the GUI and powerflow program. The powerflow program serves primarily as a solution and data engine that sends and receives data when requested by the user through the GUI. Note that all of this commuication is basic socket communication so it likely doesn't work if GUI runs on one platform (Windows) and powerflow programs run on another (Linux).
-
-The CFLOW Approach
-------------------
-Many times users need to do a large number of similar runs or they need to process data from another system or set of files before running studies. CFLOW is a C library API (``libcflow``) for IPF. To use CFLOW, you write a C program, including the header file ``cflowlib.h``, which defines all the structures and unions which allow access to the powerflow input and solution values. To retrieve these values, you call various CFLOW functions. The API interacts with ``ipfsrv`` interally. This allows you to do things like ask for a new solution, change the model, etc. See :ref:`libcflow-c-library` for details on the API and examples.
-
 .. _network-data:
 
 Network Data
 ============
-A core component to any power system analysis problem is the power system network (the interconnected lines, generators, loads, transformers, nodes/buses, breakers, and other components). In IPF, this is referred to as Network Data. Network Data defines the structure (connectivity) and properties (base voltage, real power injections, real and reactive power loads, transformer tap settings, etc.) of the power system network. This data is defined in files that contain bus (nodes) and branch (lines, transformers, etc.) records. Most of the input files are ASCII text files. But one important file, the base case file (.bse), is in binary format. You can, of course, edit ASCII text files with any text editor. This is often done, but your data integrity is safer if you do all the editing you can in the ``gui``. The base case binary file cannot be edited with an ordinary text editor, but can in effect be edited via the ``gui`` when you have a base case file loaded.
+A core component to any power system analysis problem is the power system network (the interconnected lines, generators, loads, transformers, nodes/buses, breakers, and other components). In IPF, this is referred to as Network Data. Network Data defines the structure (connectivity) and properties (base voltage, real power injections, real and reactive power loads, transformer tap settings, etc.) of the power system network. This data is defined in files that contain bus (nodes) and branch (lines, transformers, etc.) records. Most of the input files are ASCII text files. But one important file, the base case file (.bse), is in binary format. You can, of course, edit ASCII text files with any text editor. This is often done, but your data integrity is safer if you do all the editing you can in the GUI. The base case binary file cannot be edited with an ordinary text editor, but can in effect be edited via the GUI when you have a base case file loaded.
 
 There are multiple methods for specifying the Network Data. The following is a list of the various methods with descriptions.
 
@@ -117,15 +117,15 @@ There are multiple methods for specifying the Network Data. The following is a l
 
 ``BRANCH_DATA``
   
-  This ASCII text input file contains the branch data of all branches coded with in-service date and out-of-service date. This file is searched for branches in service on the date requested. BPF selects the appropriate branches.
+  This ASCII text input file contains the branch data of all branches coded with in-service date and out-of-service date. This file is searched for branches in service on the date requested. ``bpf`` selects the appropriate branches.
 
 ``NEW_BASE``
 
-  This program-generated, binary output file contains complete base network data and steady-state operating values for the case being processed. This file is identical in format to the ``OLD_BASE`` file. ``NEW_BASE`` simply designates the file when it is produced as the output from a recently concluded case study.
+  This program-generated, binary output file contains complete base network data and steady-state operating values for the case being processed. This file is identical in format to the ``OLD_BASE`` file. ``NEW_BASE`` simply designates the file when it is produced as the output from a recently concluded case study. See :ref:`bse-base-file` section for more details on this file.
 
 ``OLD_BASE`` 
 
-  This program-generated, binary input file contains complete base network data and steady-state operating values. This file is identical in format to the ``NEW_BASE`` file. ``OLD_BASE`` simply designates the file when it functions as an already existing input file.
+  This program-generated, binary input file contains complete base network data and steady-state operating values. This file is identical in format to the ``NEW_BASE`` file. ``OLD_BASE`` simply designates the file when it functions as an already existing input file. See :ref:`bse-base-file` section for more details on this file.
 
 ``CHANGE`` 
 
@@ -144,23 +144,23 @@ Microfiche file ``.pff``
    ========================== ====== ============================ =============== ======= =================================
    File                       Format Input/Output (I/O)           Created by      Editing Information Contained
    ========================== ====== ============================ =============== ======= =================================
-   PFC                        ASCII  ``bpf`` (I)                  User            Yes     Bus, Branch, Commands, File Names
-   PCL                        ASCII  ``gui``, ``ipbat`` (I)       User            Yes     Commands, File Names
+   ``.pfc``                   ASCII  ``bpf`` (I)                  User            Yes     Bus, Branch, Commands, File Names
+   ``.pcl``                   ASCII  ``gui``, ``ipbat`` (I)       User            Yes     Commands, File Names
    NETWORK_DATA               ASCII  ``bpf`` (I) GUI,IPFBAT (I/O) User gui ipfnet Yes     Bus, Branch
    BRANCH_DATA                ASCII  Input Only                   User            Yes     Branch
-   OLD_BASE                   Binary Input Only                   IPF             No      Bus, Branch, Solution Values
+   OLD_BASE ``.bse``          Binary Input Only                   IPF             No      Bus, Branch, Solution Values
    CHANGES                    ASCII  Input or Output              User ``gui``    Yes     Bus, Branch, Modiﬁcations
-   NEW_BASE                   Binary Output Only                  IPF             No      Bus, Branch, Solution Values
-   Printout ﬁle (<name>.PFO)  ASCII  Output Only                  ``bpf``         No      Input Data and Solution Reports, User Analysis
-   Microﬁche ﬁle (<name>.PFF) ASCII  Output Only                  ``bpf``         No      Input Data and Solution Reports, User Analysis
-   Debug ﬁle (<name>.PFD)     ASCII  Output Only                  ``bpf``         No      Solution arrays and iteration processing
-   Printout ﬁle (<logon>.PFO) ASCII  Output Only                  ``gui``         No      Messages, Iteration Summary
-   Debug ﬁle (<logon>.PFD)    ASCII  Output Only                  ``gui``         No      Solution arrays and iteration processing
+   NEW_BASE ``.bse``          Binary Output Only                  IPF             No      Bus, Branch, Solution Values
+   Printout ﬁle (<name>.pfo)  ASCII  Output Only                  ``bpf``         No      Input Data and Solution Reports, User Analysis
+   Microﬁche ﬁle (<name>.pff) ASCII  Output Only                  ``bpf``         No      Input Data and Solution Reports, User Analysis
+   Debug ﬁle (<name>.pfd)     ASCII  Output Only                  ``bpf``         No      Solution arrays and iteration processing
+   Printout ﬁle (<logon>.pfo) ASCII  Output Only                  ``gui``         No      Messages, Iteration Summary
+   Debug ﬁle (<logon>.pfd)    ASCII  Output Only                  ``gui``         No      Solution arrays and iteration processing
    ========================== ====== ============================ =============== ======= =================================
 
 The NETWORK_DATA File
 =====================
-This ASCII text data file consists of area, bus, and branch records in the format used by the Western Systems Coordinating Council (WSCC) back in the 1990s. However, note that IPF supports many record types which are not recognized by IPS, and in some cases the interpretation and application of the data values entered is different. See :ref:`ips-ipf-differences` for a list of IPS-IPF differences. This file must not contain modification records, only new data.
+This ASCII text data file consists of area, bus, and branch records. This file must not contain modification records, only new data.
 
  1. Area interchange records.
    
@@ -199,6 +199,8 @@ Branches are uniquely identified by three fields:
  * Their terminal bus names and base kVs.
  * Their circuit or parallel ID code.
  * Their section code.
+
+.. _bse-base-file:
 
 The BASE (.bse) File
 ====================

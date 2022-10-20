@@ -14,7 +14,7 @@ Prior to the development of the Interactive Power Flow in the 1990s, BPA had dev
 
 The Western Systems Coordinating Council (WSCC) now known as the `Western Electricity Coordinating Council`_ (WECC) had a similar set of tools known as Interactive Powerflow System (IPS) complete with a Domain Specific Language called Computationally Oriented Programming Environment (COPE) for defining power flow studies in a programmatic way. Many of the features and data record formats for IPF, especially for transient stability, were influenced by WSCC's IPS.
 
-These programs were designed for character-based terminals connected to mainframes. However, the 1980s and 90s saw the creation and maturation of graphical user interfaces (GUI) based on the mouse, windows, and menus. Many people became familiar with the physical components of the most widely used GUI: the mouse, the menu, and the window. These components were generally available on the Macintosh computer since 1984 and on IBM PC-compatible computers as an option since 1987. The third most popular GUI in the 90s was the one associated with the X Window System. GUIs were more intuitive and easier to use than character/keyboard-based interfaces. Starting in 1991, BPA began a two-way joint development of a GUI interface for the powerflow program, based upon the X-Window System and the `Motif X Window`_ GUI. The joint partners were the `Electric Power Research Institute`_ EPRI and WSCC. The powerlow program itself was also restructured and enhanced in the process, and a ``libcflow`` library was added as a means to provide users API access to the IPF  functions for use in other programs.
+These programs were designed for character-based terminals connected to mainframes. However, the 1980s and 90s saw the creation and maturation of graphical user interfaces (GUI) based on the mouse, windows, and menus. These components were generally available on the Macintosh computer since 1984 and on IBM PC-compatible computers as an option since 1987. The third most popular GUI in the 90s was the one associated with the X Window System. GUIs were more intuitive and easier to use than character/keyboard-based interfaces. Starting in 1991, BPA began a two-way joint development of a GUI interface for the powerflow program, based upon the X-Window System and the `Motif X Window`_ GUI. The joint partners were the `Electric Power Research Institute`_ EPRI and WSCC. The powerflow program itself was also restructured and enhanced in the process, and a ``libcflow`` library was added as a means to provide users API access to the IPF  functions for use in other programs.
 
 Original License
 ================
@@ -73,7 +73,7 @@ The original project is the result of a lot of hard work from engineers at BPA a
   * Dan L. Clark
   * Jay G. Coleman
   * Tsu-huei Liu
-  * `Walter L. Powell_`
+  * `Walter L. Powell`_
   * Bill E. Rogers
   * William D. Rogers
   * K E Rowell

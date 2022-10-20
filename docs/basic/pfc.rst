@@ -456,7 +456,7 @@ The fields on the ``B``-blank record determine which sensitivity :math:`\frac{dP
   :math:`\frac{dP}{d\theta}` Not required Required            Not required
   :math:`\frac{dP}{dV}`      Literal: “V” Required            Not required
   :math:`\frac{dQ}{dV}`      Not required Not required        Required 
-  :math:`\frac{dQ}{dV}`*     (blank)      (blank)             (blank)
+  :math:`\frac{dQ}{dV}` *    (blank)      (blank)             (blank)
   ========================== ============ =================== =====================
 
 \* This is the default.
@@ -537,7 +537,7 @@ CHANGE_BUS_TYPE
 
   ``/ CHANGE_BUS_TYPE``
 
-This command disables voltage control in selected areas of the system and performs bus type changes from a voltage control type to a more passive type. The changes it makes are permanent and apply to the case in residence. If this command appears before any system changes, the bus type changes will apply before the system changes, exempting any new or changed buses. If this command appears after any system changes, any new or changed buses will be subject to bus type changes invoked with this command. See Table 4-5.
+This command disables voltage control in selected areas of the system and performs bus type changes from a voltage control type to a more passive type. The changes it makes are permanent and apply to the case in residence. If this command appears before any system changes, the bus type changes will apply before the system changes, exempting any new or changed buses. If this command appears after any system changes, any new or changed buses will be subject to bus type changes invoked with this command.
 
 An example is shown below.
 
@@ -624,7 +624,7 @@ The following restrictions apply to line drop compensation:
 
 Reactive Compensation
 ---------------------
-This feature is similar to the Raindrop Compensation; it temporarily replaces the ordinary ``BG`` -> ``BC`` voltage control of a remote bus with a ``BG`` control of a compensated voltage, which is specified as the voltage drop from the bus terminal voltage computed with the generator reactive power in series with a user-specified impedance. This control scheme is valid only for this case, and may be introduced only within context of a ``CHANGE_BUS_TYPE`` command. In subsequent cases, these generators revert to their normal control mode
+This feature is similar to Line Drop Compensation; it temporarily replaces the ordinary ``BG`` -> ``BC`` voltage control of a remote bus with a ``BG`` control of a compensated voltage, which is specified as the voltage drop from the bus terminal voltage computed with the generator reactive power in series with a user-specified impedance. This control scheme is valid only for this case, and may be introduced only within context of a ``CHANGE_BUS_TYPE`` command. In subsequent cases, these generators revert to their normal control mode
 
 The target compensated voltage is defined with a computed voltage limit. That limit is derived from two base case terminal voltages -- the ``BG`` bus and the remote ``BC`` bus (the remote bus may be another type). The formula used is
 
@@ -1280,7 +1280,7 @@ The second part of the sensitivities is the perturbed quantities :math:`dX_t` or
 
 A maximum of 50 perturbed quantity ``>`` records may be present.
 
-The ambiguity :math:`d(.)/dB_s` or :math:`d(.)/dX_t` is resolved by non-zero entities for :math:`X_t` or :math:`B_s` . If both are zero, the default is :math:`X_t` . Non-zero entities define the magnitude of the perturbed quantity :math:`Delta_X_t` or :math:`Delta_B_s`. Perturbed flows, losses, or voltages will be computed using these values.
+The ambiguity :math:`d(.)/dB_s` or :math:`d(.)/dX_t` is resolved by non-zero entities for :math:`X_t` or :math:`B_s` . If both are zero, the default is :math:`X_t` . Non-zero entities define the magnitude of the perturbed quantity :math:`Delta X_t` or :math:`Delta B_s`. Perturbed flows, losses, or voltages will be computed using these values.
 
 The perturbed branch flows :math:`P_{ij}` are identified with the individual ``L`` records that follow. If parallel lines are present, :math:`P_{ij}` pertains to the total of all parallel flows.
 
@@ -1404,25 +1404,19 @@ Six percentage distribution factors can be specified by the user. The following 
 
 .. math::
 
-  P_{load} = 50% P + 25% I + 25% Z
-
-  Q_{load} = 50% Q + 25% I + 25% Z
+  P_{load} &= 50% P + 25% I + 25% Z \\
+  Q_{load} &= 50% Q + 25% I + 25% Z
 
 From this command, the following quantities will be defined:
 
 .. math::
 
-  PP (%Constant P_{load}) = 50%
-
-  PI (%Constant I_{load}) = 25%
-
-  PZ (%Constant Z_{load}) = 25%
-
-  QP (%Constant Q_{load}) = 50%
-
-  QI (%Constant I_{load}) = 25%
-
-  QZ (%Constant Z_{load}) = 25%
+  PP (%Constant P_{load}) &= 50%  \\
+  PI (%Constant I_{load}) &= 25%  \\
+  PZ (%Constant Z_{load}) &= 25%  \\
+  QP (%Constant Q_{load}) &= 50%  \\
+  QI (%Constant I_{load}) &= 25%  \\
+  QZ (%Constant Z_{load}) &= 25%
 
 There are restrictions; the percentage distributions must be complete.
 

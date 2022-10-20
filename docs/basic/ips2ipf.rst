@@ -3,6 +3,12 @@
 ***********
 ``ips2ipf``
 ***********
+The :ref:`record-formats` used by IPF are defined in ASCII format and consists of area, bus, and 
+branch records. This format is very similar to the format used by the Western Systems Coordinating
+ Council (WSCC) back in the 1990s in their similarly named Interactive Powerflow System (IPS) 
+ application. However, note that IPF supports many record types which are not recognized by IPS, 
+ and in some cases the interpretation and application of the data values entered is different.
+
 The ``ips2ipf`` command line program is designed to ease the burden of converting an IPS data deck
 into one which can be input to the IPF program with the expectation of getting the same powerflow
 solution results, within normal engineering tolerances. However, the conversion is not 100% automatic.
