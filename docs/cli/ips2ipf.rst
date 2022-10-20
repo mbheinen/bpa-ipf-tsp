@@ -1,8 +1,7 @@
 .. _ips2ipf:
 
-***********
 ``ips2ipf``
-***********
+===========
 The :ref:`record-formats` used by IPF are defined in ASCII format and consists of area, bus, and 
 branch records. This format is very similar to the format used by the Western Systems Coordinating
  Council (WSCC) back in the 1990s in their similarly named Interactive Powerflow System (IPS) 

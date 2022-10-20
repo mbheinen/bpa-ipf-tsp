@@ -1,9 +1,8 @@
 .. _ipfnet:
 
-**********
 ``ipfnet``
-**********
-``ipfnet`` is the batch version of the "save netdata file" function built into the GUI/IPFSRV. This program generates a WSCC-formatted network data file in any of the following dialects: BPA, WSCC, or PTI. The GUI allows you to save a network data file describing the case you currently have loaded. This should not be confused with the ``netdat`` program, which performs very similar function by loading a saved base case (``.bse``) file and writing it out in an ASCII network (``.net``) file.
+==========
+``ipfnet`` is the batch version of the "save netdata file" function built into the GUI / ``ipfsrv``. This program generates a WSCC-formatted network data file in any of the following dialects: BPA, WSCC, or PTI. The GUI allows you to save a network data file describing the case you currently have loaded. This should not be confused with the ``netdat`` program, which performs very similar function by loading a saved base case (``.bse``) file and writing it out in an ASCII network (``.net``) file.
 
 Both programs generate a WSCC-formatted network data file in any of the following dialects: BPA, WSCC1, or PTI. "Dialects" means that although the file is still WSCC format, the data is generated with special processing or restrictions and is destined for use with other programs. In the case of the PTI dialect, that data is intended to be processed by the PTI-proprietary conversion program ``wscfor``.
 
@@ -105,14 +104,14 @@ The resultant output is an ASCII file. Two formats are available for the resulti
 The CASEID of the power flow case data being extracted is used to create a file named CASEID.DAT. Any changes made to the data for WSCC (IPS) compatibility will be flagged on file CASEID.MES.
 
 Input
-=====
+-----
 The ``ipfnet`` program prompts with the following requests:
 
   * File name of the Powerflow “old base” history filename.
   * Select output format desired: BPA, BPA1, BPA2, WSCC (IPS), or WSCC1 (IPS1).
 
 Sample Run
-==========
+----------
 Type ``ipfnet`` at the system prompt and press the <RETURN> key. Answer the questions appropriately. An example is given below.
 
 .. code::

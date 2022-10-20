@@ -1,8 +1,8 @@
 .. _libcflow-c-library:
 
-******************
-libcflow C Library
-******************
+**************************
+``libcflow`` C API (CLFOW)
+**************************
 
 Overview
 ========

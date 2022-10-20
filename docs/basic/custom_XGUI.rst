@@ -1,8 +1,8 @@
 .. _custom-xgui:
 
-******************
-Custom GUI (XGUI)
-******************
+**************************
+Customizing the GUI (XGUI)
+**************************
 X resources are X system components managed in common by the X server. Examples of resources
 are colors, fonts and their characteristics, default size and position of windows, and default file
 names for dialog boxes. The IPF ``gui`` allows you to change many of these resource values.

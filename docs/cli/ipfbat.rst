@@ -1,15 +1,14 @@
 .. _ipfbat:
 
-**********
 ``ipfbat``
-**********
+==========
 
 Overview
-========
+--------
 ``ipfbat`` is a command line program that is the batch version of ``ipfsrv``. It accepts a Powerflow Control Language (.pcl) file. Plotting can be done with a control file; however, for most plots ``ipfplot`` is easier to use. Example of use: ``ipfbat bench.pcl``. The PCL commands used with ``ipfsrv`` and ``ipfbat`` are described in :ref:`powerflow-command-language`.
 
 Batch Mode Plotting
-===================
+-------------------
 Batch mode plotting can be used when a coordinate file already exists, and the user simply wants
 a hard copy diagram based on that file and Powerflow data. If the Powerflow data is on a saved
 base case (``*.bse``) file, the simplest method is to use the ``ipfplot`` program. However, ``ipfbat``
@@ -44,7 +43,7 @@ the option specified in the coordinate file. Multiple ``@`` records are allowed 
 on the diagram.
 
 Example 1
----------
+^^^^^^^^^
 Make a "standard" diagram (similar to the GUI operation).::
 
   /network_data,file=a92cy91.dat        ! Load the powerflow network data

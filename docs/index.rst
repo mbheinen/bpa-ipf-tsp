@@ -52,27 +52,26 @@ Contents
    basic/pfc
    basic/pfc_examples
    basic/pcl
-   basic/bpf
-   basic/tsp
-   basic/ipf_reports
-   basic/ipfplot
-   basic/netdat
-   basic/ipfcut
-   basic/ipfnet
-   basic/ipf_test
+   cli/bpf
+   cli/ipf_reports
+   cli/ipfplot
+   cli/netdat
+   cli/ipfcut
+   cli/cflow
+   cli/pvcurve
+   cli/qvcurve
+   cli/findout
+   cli/lineflow
+   cli/mimic
+   cli/post_pvcurve
+   cli/ips2ipf
+   cli/ipfnet
+   cli/ipf_test
+   cli/ipfbat
    basic/ipfsrv
-   basic/ipfbat
    basic/x_window_gui
    basic/custom_XGUI
-   basic/cflow
-   basic/pvcurve
-   basic/qvcurve
-   basic/findout
-   basic/lineflow
-   basic/puf
-   basic/mimic
-   basic/post_pvcurve
-   basic/ips2ipf
+   basic/tsp
    basic/network_diagrams
    basic/line_impedance
    basic/dc_line_modeling
@@ -81,7 +80,6 @@ Contents
    basic/retained_network
    basic/voltage_limits_starts
    basic/ownership_codes
-   basic/ips_ipf_differences
    basic/wscc_specifications
    basic/developer
 
