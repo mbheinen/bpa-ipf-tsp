@@ -1,8 +1,8 @@
 .. _ipf-network-diagrams:
 
-********************
-IPF Network Diagrams
-********************
+****************
+Network Diagrams
+****************
 
 Overview
 ========

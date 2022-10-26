@@ -48,39 +48,20 @@ Contents
    basic/installation
    basic/overview
    basic/history
+   basic/application_examples
    basic/record_formats
    basic/pfc
    basic/pfc_examples
    basic/pcl
-   cli/bpf
-   cli/ipf_reports
-   cli/ipfplot
-   cli/netdat
-   cli/ipfcut
-   cli/cflow
-   cli/pvcurve
-   cli/qvcurve
-   cli/findout
-   cli/lineflow
-   cli/mimic
-   cli/post_pvcurve
-   cli/ips2ipf
-   cli/ipfnet
-   cli/ipf_test
-   cli/ipfbat
-   basic/ipfsrv
-   basic/x_window_gui
-   basic/custom_XGUI
+   basic/command_line
    basic/tsp
+   basic/x_window_gui
    basic/network_diagrams
    basic/line_impedance
    basic/dc_line_modeling
-   basic/application_examples
    basic/network_reduction
    basic/retained_network
    basic/voltage_limits_starts
-   basic/ownership_codes
-   basic/wscc_specifications
    basic/developer
 
 .. _Motif X Window: https://motif.ics.com/motif/downloads
