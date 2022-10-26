@@ -1258,10 +1258,16 @@ A sample coding sheet with column explanations follows.
  
 Two-Terminal DC Line (``LD``)
 =============================
-This record is used in conjunction with the two dc bus records; collectively they define the dc model. The dc line data contains pertinent information describing the electrical characteristics of the line, the scheduled dc power and voltage, and the initial firing and extinction angles.
+This record is used in conjunction with :ref:`two-terminal-dc-bus-data-bd` records; collectively 
+they define the dc model. The dc line data contains pertinent information describing the electrical 
+characteristics of the line, the scheduled dc power and voltage, and the initial firing (ignition)
+and extinction angles.
 
-Distinction between the inverter and rectifier buses is made with the dc line record using the sign of the scheduled dc power. The direction of power flow is always from rectifier to inverter, and the criteria assumes positive values from bus 1 to bus 2 on the record. Thus, simple modifications in the line data permit power reversals to be modeled with a minimum of data changes.
-A sample dc line data coding form and column descriptions follow. See figure and table below.
+Distinction between the inverter and rectifier buses is made with the DC line record using the sign 
+of the scheduled DC power. The direction of power flow is always from rectifier to inverter, and the 
+criteria assumes positive values from bus 1 to bus 2 on the record. Thus, simple modifications in the 
+line data permit power reversals to be modeled with a minimum of data changes. A sample DC line data 
+coding form and column descriptions follow. See figure and table below.
 
 .. figure:: ../img/DC_Line_Data_Input_Format.png
 
@@ -1320,9 +1326,13 @@ A sample dc line data coding form and column descriptions follow. See figure and
 
 Multiterminal DC Line (``LM``)
 ==============================
-This data is used in conjunction with multiterminal DC bus data type ``M``. The line data together with the DC bus data define the DC converter terminals and interconnecting DC lines for a multiterminal DC network. This line data contains only the fields for some of the converter quantities which were included on the two-terminal DC format.
+This data is used in conjunction with :ref:`multi-terminal-dc-bus-data-bm` records. The line data together 
+with the DC bus data define the DC converter terminals and interconnecting DC lines for a multiterminal DC
+network. This line data contains only the fields for some of the converter quantities which were included 
+on the two-terminal DC format.
 
-Two-terminal (type ``D``) and multiterminal (type ``M``) data may coexist within the same base, but cannot coexist on the same ``DC`` circuit.
+Two-terminal (type ``LD``) and multiterminal (type ``LM``) data may coexist within the same base, but cannot 
+coexist on the same DC circuit.
 
 The following shows the multiterminal DC line data coding form format. It is followed by explanations of its various columns.
 
