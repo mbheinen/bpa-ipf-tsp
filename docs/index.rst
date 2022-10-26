@@ -55,6 +55,7 @@ Contents
    basic/pcl
    basic/command_line
    basic/tsp
+   basic/cflow
    basic/x_window_gui
    basic/network_diagrams
    basic/line_impedance

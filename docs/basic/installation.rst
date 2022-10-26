@@ -4,6 +4,7 @@ Installation
 IPF is installed by compiling from source. This is probably easiest using Docker approach 
 outlined below, but compiling manually from source is also an option.
 
+
 Docker
 ======
 You can use docker to build and run this project. Just build the container:
@@ -15,7 +16,7 @@ You can use docker to build and run this project. Just build the container:
     $ docker build -t bpa-ipf-tsp .
 
 Then run it, the container will run ``bpf`` by default. So once the container is started, 
-you can just type the name of the file in the ``data`` directory that you'd like to run 
+you can just type the name of the file in the ``data`` directory that you'd like to run
 (e.g. ``bench.pfc``):
 
 .. code::
