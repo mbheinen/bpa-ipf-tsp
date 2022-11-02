@@ -31,13 +31,12 @@ Features
 ========
 Interactive Power Flow has the following high level feature set:
 
-  * Set of command line tools for running studies
-  * Set of C API functions for running studies
-  * `Motif X Window`_ based graphical user interface allowing easy-to-edit graphical display of the network diagram
-  * Basic power flow and advanced capabilities like REI reduction and transient stability
-  * Domain specific languages for "batch" command line runs in which multiple scenarios can be studied
-  * Output reports
-  * Extensive log messages for aiding the user in troubleshooting
+  * Set of :ref:`command-line-tools` for running studies
+  * :ref:`x-window-graphical-interface` allowing easy-to-edit graphical display of the network diagram
+  * :ref:`libcflow-c-library` functions for running studies
+  * Basic power flow and advanced capabilities like REI :ref:`network-reduction` and :ref:`transient-stability-program`
+  * Domain specific languages (See :ref:`powerflow-command-language` and :ref:`power-flow-control` commands) for "batch" command line runs in which users can run multiple powerflow scenarios
+  * Output reports (See :ref:`ipf_reports`)
 
 Contents
 ========
@@ -51,12 +50,11 @@ Contents
    basic/application_examples
    basic/record_formats
    basic/pfc
-   basic/pfc_examples
    basic/pcl
    basic/command_line
    basic/tsp
-   basic/cflow
    basic/x_window_gui
+   basic/cflow
    basic/network_diagrams
    basic/line_impedance
    basic/dc_line_modeling
@@ -65,4 +63,3 @@ Contents
    basic/voltage_limits_starts
    basic/developer
 
-.. _Motif X Window: https://motif.ics.com/motif/downloads

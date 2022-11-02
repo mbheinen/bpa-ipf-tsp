@@ -3,10 +3,11 @@
 **************************
 Calculating Line Impedance
 **************************
-The line impedance subroutine was been extracted from `BPA's EMTP (Electromagnetic
-Transients Program) <https://github.com/ahmadabdullah/BPA_EMTP>`_ and modified for computing a balanced
-pi-equivalent line section. The line impedance calculation feature is invoked from the branch data dialog. See Table C-1
-and . It calculates the pi-equivalent quantities from the conductor type, conductor bundling, and
+The line impedance subroutine was been extracted from BPA's Electromagnetic Transients 
+Program (EMTP) and modified for computing a balanced pi-equivalent line section. You can
+find a clone of `BPA's EMTP <https://github.com/ahmadabdullah/BPA_EMTP>`_  The line impedance 
+calculation feature is invoked from the branch data dialog. See the screenshot, diagram, and 
+table below. It calculates the pi-equivalent quantities from the conductor type, conductor bundling, and
 tower geometry. The following applies to all calculations:
 
    * There is continuous transposition of phases.

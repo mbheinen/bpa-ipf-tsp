@@ -1,9 +1,13 @@
 .. _x-window-graphical-interface:
 
 **************************************
-``gui`` - X Window Graphical Interface
+X Window Graphical Interface (``gui``)
 **************************************
 This section presents information about the X Window graphical user interface (``gui``) for IPF.
+
+.. figure:: ../img/IPF_GUI.png
+
+   Interactive Power Flow X Window GUI
 
 IPF's X Window GUI interface makes data entry and modification easy. It also simplifies the running of base case solutions and the printing of network diagrams. This guide shows how to use the major features of IPF. Users who need details about data input record formats or system models should consult the :ref:`record-formats` section.
 
