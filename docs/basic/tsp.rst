@@ -5,16 +5,6 @@ Transient Stability Program (``tsp``)
 *************************************
 The ``tsp`` program performs dynamic (e.g. generator rotor angle, governor output, power system stabilizer output, etc.) simulation of a power system when disturbed from its steady-state condition under various perturbations such as three phase faults, line to line faults, line to ground faults, loss of generation, etc.
 
-History
-=======
-The `Bonneville Power Administration`_ (BPA) Transient Stability Program was developed in accordance with specifications written by the Western Systems Coordinating Council (WSCC), now known as the `Western Electricity Coordinating Council`_ (WECC), and was originally written to be executed on a VAX 11/780 computer. With some exceptions this program closely paralleled the program used in Salt Lake City by the WSCC Technical Staff in the 1980s. 
-
-A copy of the original WSCC specifications for both power flow and transient stability can be found in ??.
-
-The difference between this version of the program and the one used in Salt Lake City was the control record requirements for defining the problem such as where the fault is applied, line switching, etc., and the format for all output options. The formats for almost all other intput data requirements maintain strict compatibility between the two programs. Therefore, with grateful acknowledgements to the WSCC Staff, a substantial portion of the materials used in this documentation are reproduced copies taken from the WSCC Program Manual.
-
-Acknowledgement is also given to Teshmont Consultants, Inc. of Winnipeg, Manitoba for their many corrections and additions to the code.
-
 Program Description
 ===================
 There are basically two methods of simulation used in this program. All differential equations are linear and solved by the trapezoidal rule of integration. The network equations are solved iteratively using the triangularized admittence matrix. Both of these methods are described in the paper *Fast Transient Stability Solutions* (IEEE Transactions on Power Apparatus and Systems, July/August 1972) written by Hermann Dommel and Nobuo Sato.

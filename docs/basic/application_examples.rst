@@ -168,7 +168,7 @@ The preparation of the network data will be presented in the following steps:
 
   1 and 2 designations are arbitrary identifications for parallel branches. Letters A-Z and digits 0-9 are acceptable.
 
-  a. Data for Transformer GEN 22 GEN HI 500
+a. Data for Transformer GEN 22 GEN HI 500
   
   .. code::
 
@@ -196,7 +196,7 @@ The preparation of the network data will be presented in the following steps:
     Date In:          blank (in) 
     Date Out:         blank (not out)
 
-  b. Data for Line GEN HI 500 MID 500 circuit 1
+b. Data for Line GEN HI 500 MID 500 circuit 1
 
   .. code::
 
@@ -223,7 +223,7 @@ The preparation of the network data will be presented in the following steps:
     Date In:          blank (in) 
     Date Out:         blank (not out)
 
-  c. Data for Line GEN HI 500 MID 500 circuit 2
+c. Data for Line GEN HI 500 MID 500 circuit 2
 
   .. code::
 
@@ -251,7 +251,7 @@ The preparation of the network data will be presented in the following steps:
     Date In:          blank (in) 
     Date Out:         blank (not out)
  
-  d. Data for Line INF BUS 500 MID 500 circuit 1
+d. Data for Line INF BUS 500 MID 500 circuit 1
 
   .. code::
 
@@ -279,7 +279,7 @@ The preparation of the network data will be presented in the following steps:
     Date In:          blank (in)
     Date Out:         blank (not out)
 
-  e. Data for Line INF BUS 500 MID 500 circuit 2
+e. Data for Line INF BUS 500 MID 500 circuit 2
 
   .. code::
 
@@ -414,28 +414,31 @@ IPF can be used to study the power flows, voltage regulation and reliability of 
 
   1. The base case is run to determine power flows, voltage levels and transmission losses.
   2. The change case is run to modify the data for lines AB, BC and DE reflecting the new conductors used. Power flows, voltages and losses will again be reviewed.
-  3. The outage simulations case is run to verify the effect of certain lines being out of service on power flows, voltage levels, line loading and line losses. If the base network to be amended by the proposed new facility is described in an old-base file named BASENET.BSE, the program control file following the diagram of the reconductoring can be built for this project.::
+  3. The outage simulations case is run to verify the effect of certain lines being out of service on power
+  flows, voltage levels, line loading and line losses. If the base network to be amended by the proposed new 
+  facility is described in an old-base file named BASENET.BSE, the program control file following the diagram
+  of the reconductoring can be built for this project.::
 
-  ( POWERFLOW, CASEID = EXAMPLE30, PROJECT = RECONDUCT ) 
-  / OLD_BASE, FILE = BASENET.BSE 
-  . . . 
-  . . .  Optional network solution qualifiers. 
-  . . . 
-  ( NEXTCASE, CASEID = EXAMPLE31, PROJECT = RECONDUCT ) 
-  / NEW_BASE, FILE = EXAMPLE31.CAS 
-  . . .  Optional qualifiers to override options 
-  . . .  already selected above.  This should be 
-  . . .  an empty set. 
-  / CHANGES 
-  L - record to modify line AB 
-  L - record to modify line BC 
-  L - record to modify line DE 
-  ( NEXTCASE, CASEID = EXAMPLE32, PROJECT = RECONDUCT ) 
-  / OUTAGE_SIM 
-  . . . 
-  . . .  Optional simulation qualifiers. 
-  . . . 
-  ( STOP )
+    ( POWERFLOW, CASEID = EXAMPLE30, PROJECT = RECONDUCT ) 
+    / OLD_BASE, FILE = BASENET.BSE 
+    . . . 
+    . . .  Optional network solution qualifiers. 
+    . . . 
+    ( NEXTCASE, CASEID = EXAMPLE31, PROJECT = RECONDUCT ) 
+    / NEW_BASE, FILE = EXAMPLE31.CAS 
+    . . .  Optional qualifiers to override options 
+    . . .  already selected above.  This should be 
+    . . .  an empty set. 
+    / CHANGES 
+    L - record to modify line AB 
+    L - record to modify line BC 
+    L - record to modify line DE 
+    ( NEXTCASE, CASEID = EXAMPLE32, PROJECT = RECONDUCT ) 
+    / OUTAGE_SIM 
+    . . . 
+    . . .  Optional simulation qualifiers. 
+    . . . 
+    ( STOP )
 
 Series Compsensation
 ====================

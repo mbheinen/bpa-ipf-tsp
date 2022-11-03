@@ -591,9 +591,9 @@ IPS IPF Differences
   +----+----------------------------------------------------+---------------------------------------------------+
   |    | WSCC's IPS                                         | BPA's IPF                                         |
   +====+====================================================+===================================================+
-  | 1  | The d-c line current rating is used only as a      | The minimum of the bridge current rating and      |
+  | 1  | The DC line current rating is used only as a       | The minimum of the bridge current rating and      |
   |    | base by IPS. Both line current and bridge current  | the line current rating is used as a limit by the |
-  |    | ratings are passed to the Stability program; they  | d-c system solution                               |
+  |    | ratings are passed to the Stability program; they  | DC system solution                                |
   |    | are not used as limits in the powerflow solution.  |                                                   |
   +----+----------------------------------------------------+---------------------------------------------------+
   | 2  | Type RM phase shifters (controlling :math: `P_{km}`| Type RM phase shifters (controlling :math:`P_km`  |
@@ -635,153 +635,80 @@ IPS IPF Differences
   +----+----------------------------------------------------+---------------------------------------------------+
   | 9  | Inductance (G-jB) is applied to only one end of    | One half of G-jB is applied to each end of both   |
   |    | a transformer branch.                              | transformers and balanced pi lines.               |
-Model RF phase shifter takes several iterations
-to get from an initial angle to its final (fixed)
-phase shift angle.
-No such model. Problems in solving phase
-shifters are handled internally.
-11 Phase shifter must have same base kV at both
-terminals.
-Step up phase shifter. Tap2 field is off-nominal
-tap2.
-12 Phase shifter cannot be a section. Phase shifting transformer can be a section.
-13 Bus ties (zero impedance lines) receive special
-handling in solution and reporting.
-No special bus tie model. A ’bus tie’ is defined
-as a very low impedance line (0.0 + j0.00001).
-14 Not available. “+” continuation bus records. Except for constant current load models, these records are
-used mainly for accounting purposes to differentiate generation, load, and shunt with unique
-ownerships.
-15 Not available. “I” area intertie records. These records compute net area export on accompanying “A”
-records.
-16 Not available. “A” area record may be accompanied with
-“A1”, “A2”, “A3”, and “A4” continuation records
-to accept a maximum of 50 zones per area.
-17 Not available. Branch records accept extended line current
-ratings:
-For types “L” and “E” records, thermal and bottleneck ratings.
-For types “T” and “TP” records, thermal, bottleneck and emergency ratings.
-18 Not available. Types “BM” and “LM” multi-terminal d-c data.
-19 Not available. Type “RZ” RANI devices.
-1
-*
-Base kv field interpreted as A4 for identification
-purposes. SAMPLE 20.0 and SAMPLE 20
-are different buses.
-Base kV field interpreted as F4.0.
- SAMPLE 20.0 and SAMPLE 20 are the
-same bus.
-2
-*
-The number of steps on R records are interpreted as steps, where STEPS = TAPS - 1
-The number of steps on R records are interpreted as number of taps, where TAPS =
-STEPS + 1
-3
-*
-A parallel branch consisting of sections will
-accept section numbers in the set [0-9]. (Blank
-is interpreted as a zero.)
-A parallel branch consisting of sections will
-accept section numbers in the set [1-9]. Zero
-or blank can be used as a section number only
-in a single section line (i.e. there are no ’sections’ in the line at all.) Zero or blank can also
-be used on delete, to remove all sections of
-one circuit .
-4
-*
-Remotely controlled bus for a BX bus is specified on the X record.
-Remotely controlled bus for a BX bus is specified on the BX record.
-5
-*
-Voltage limits for a bus remotely controlled by
-a BX bus are specified on the BC record.
-Voltage limits for any bus, no matter how it is
-controlled, are specified on the controlled bus
-record.
-6 Voltage limits (for reporting over and under
-voltage buses) are specified on A records
-Default voltage limits (for all purposes) are
-specified by a default array which establishes
-limits using base KV and zones.
-7
-*
-Branches entered with both R and X equal to
-zero receive special handling as 'bus ties'.
-Zero impedance is not allowed - no bus tie
-simulation.
-8
-*
-The system slack bus can be designated as a
-BS type bus, but very often is specified in the
-SOLVE options instead.
-System slack bus must be specified as a BS
-bus.
-9
-*
-IPS accepts various types of comment records
-('CB', 'CL', 'CR') which annotate the data file,
-and are printed in the (batch) input listing.
-IPF uses a "." (period) in column 1 to designate
-a comment. These annotate only the data file;
-they are never printed.
+  +----+----------------------------------------------------+---------------------------------------------------+
+  | 10 | Model RF phase shifter takes several iterations    | No such model. Problems in solving phase          |
+  |    | to get from an initial angle to its final (fixed)  | shifters are handled internally.                  |
+  |    | phase shift angle.                                 |                                                   |
+  +----+----------------------------------------------------+---------------------------------------------------+
+  | 11 | Phase shifter must have same base kV at both       | Step up phase shifter. Tap2 field is off-nominal  |
+  |    | terminals.                                         | tap2.                                             |
+  +----+----------------------------------------------------+---------------------------------------------------+
+  | 12 | Phase shifter cannot be a section.                 | Phase shifting transformer can be a section.      |
+  +----+----------------------------------------------------+---------------------------------------------------+
+  | 13 | Bus ties (zero impedance lines) receive special    | No special bus tie model. A 'bus tie' is defined  |
+  |    | handling in solution and reporting.                | as a very low impedance line (0.0 + j0.00001).    |
+  +----+----------------------------------------------------+---------------------------------------------------+
+  | 14 | Not available.                                     | ``+`` continuation bus records. Except for        |
+  |    |                                                    | constant current load models, these records are   |
+  |    |                                                    | used mainly for accounting purposes to            |
+  |    |                                                    | differentiate generation, load, and shunt with    |
+  |    |                                                    | unique ownerships.                                |
+  +----+----------------------------------------------------+---------------------------------------------------+
+  | 15 | Not available.                                     | ``I`` area intertie records. These records compute|
+  |    |                                                    | net area export on accompanying ``A``             |
+  |    |                                                    | records.                                          |
+  +----+----------------------------------------------------+---------------------------------------------------+
+  | 16 | Not available.                                     | ``A`` area record may be accompanied with         |
+  |    |                                                    | ``A1``, ``A2``, ``A3``, and ``A4`` continuation   |
+  |    |                                                    | records to accept a maximum of 50 zones per area. |
+  +----+----------------------------------------------------+---------------------------------------------------+
+  | 17 | Not available.                                     | Branch records accept extended line current       |
+  |    |                                                    | ratings:                                          |
+  |    |                                                    |                                                   |
+  |    |                                                    | For types ``L`` and ``E`` records, thermal and    |
+  |    |                                                    | bottleneck ratings.                               |
+  |    |                                                    |                                                   |
+  |    |                                                    | For types ``T`` and ``TP`` records, thermal,      |
+  |    |                                                    | bottleneck and emergency ratings.                 |
+  +----+----------------------------------------------------+---------------------------------------------------+
+  | 18 | Not available.                                     | Types ``BM`` and ``LM`` multi-terminal DC data.   |
+  +----+----------------------------------------------------+---------------------------------------------------+
+  | 19 | Not available.                                     | Type ``RZ`` RANI devices.                         |
+  +----+----------------------------------------------------+---------------------------------------------------+
+  | 20*| Base kV field interpreted as A4 for identification | Base kV field interpreted as F4.0.                |
+  |    | purposes. ``SAMPLE 20.0`` and ``SAMPLE      20``   | ``SAMPLE 20.0`` and ``SAMPLE      20`` are the    |
+  |    | are different buses.                               | same bus.                                         |
+  +----+----------------------------------------------------+---------------------------------------------------+
+  | 21*| The number of steps on R records are interpreted   | The number of steps on R records are interpreted  |
+  |    | as steps, where STEPS = TAPS - 1                   | as number of taps, where TAPS = STEPS + 1         |
+  +----+----------------------------------------------------+---------------------------------------------------+
+  | 22*| A parallel branch consisting of sections will      | A parallel branch consisting of sections will     |
+  |    | accept section numbers in the set [0-9]. (Blank    | accept section numbers in the set [1-9]. Zero     |
+  |    | is interpreted as a zero.)                         | or blank can be used as a section number only     |
+  |    |                                                    | be used on delete, to remove all sections of      |
+  |    |                                                    | one circuit.                                      |
+  +----+----------------------------------------------------+---------------------------------------------------+
+  | 23*| Remotely controlled bus for a BX bus is specified  | Remotely controlled bus for a ``BX`` bus is       |
+  |    | on the ``X`` record.                               | specified on the ``BX`` record.                   |
+  +----+----------------------------------------------------+---------------------------------------------------+
+  | 24*| Voltage limits for a bus remotely controlled by    | Voltage limits for any bus, no matter how it is   |
+  |    | a ``BX`` bus are specified on the ``BC`` record.   | controlled, are specified on the controlled bus   |
+  |    |                                                    | record.                                           |
+  +----+----------------------------------------------------+---------------------------------------------------+
+  | 25 | Voltage limits (for reporting over and under       | Default voltage limits (for all purposes) are     |
+  |    | voltage buses) are specified on ``A`` records      | specified by a default array which establishes    |
+  |    |                                                    | limits using base KV and zones.                   |
+  +----+----------------------------------------------------+---------------------------------------------------+
+  | 26*| Branches entered with both ``R`` and ``X`` equal to| Zero impedance is not allowed - no bus tie        |
+  |    | zero receive special handling as 'bus ties'.       | simulation.                                       |
+  +----+----------------------------------------------------+---------------------------------------------------+
+  | 27*| The system slack bus can be designated as a        | System slack bus must be specified as a ``BS ``   |
+  |    | ``BS`` type bus, but very often is specified in the| bus.                                              |
+  |    | SOLVE options instead.                             |                                                   |
+  +----+----------------------------------------------------+---------------------------------------------------+
+  | 28*| IPS accepts various types of comment records       | IPF uses a `.`` (period) in column 1 to designate |
+  |    | (``CB``, ``CL``, ``CR``) which annotate the data   | a comment. These annotate only the data file;     |
+  |    | file, and are printed in the (batch) input listing.| they are never printed.                           |
+  +----+----------------------------------------------------+---------------------------------------------------+
 
 * The conversion program will handle this item.
-
-WSCC Specifications
--------------------
-These functional specifications are here for more historical reasons than present day 
-usefulness but they are from Wester Systems Coordinating Council Load Flow and Stability
-Computer Programs department. They were used during intial development of IPS.
-
-General, Load Flow, & Stability
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-  A. WSCC will consider an deviations and alternates of these specifications, provided the details of such deviations and alternates are explained by the supplier.
-
-  B. Load Flow and Stability programs shall be compatible. Load flow shall accept card input or tape input from previous cases. Stability program shall accept load flow output and system data directly from load flow history tape of any case. Load flow and stability shall also run "back-to-back" if desired, that is, stability program run as a continuation of load flow without operator intervention to intiate stability run.
-
-  C. Program shall be written ina standard Fortran language for ease of modification except for relocatable Fortran subroutines.
-
-  D. Programs shall be completely documented including full explanation of theory and equations upon which calculations are based as well as the Fortran listings. Complete users manual and program documentation shall be supplied with delivery of programs. A glossary of terms shall be included in the documentation.
-
-  E. Programs shall be written for computer acceptable to the Coucil.
-
-  F. Reduced computer storage capacity shall result in reduced prgoram limits rather than elimination of program features.
-
-  G. Program features shall not be at the expense of excessive input manipulation or machine time.
-
-  H. Diagnostics shall be provided in program operation to reveal cause of program stoppage or failure to converge. Included in diagnostic shall be maximum real and quadrature components of power and voltage change and names of buses on which they occur. Bus mismatch shall be available as diagnostic at user's option. Diagnostics shall be available at each iteration at user's option.
-
-
-
-Load Flow Program
-^^^^^^^^^^^^^^^^^
-
-  A. System Limits
-  
-    1. 2000 buses
-    2. 3000 branches, 1000 of which may be transformers with fixed or LTC taps.
-    3. 50 phase shifters
-    4. 60 interchange control areas.
-    5. Voltage at 400 buses controlled remotely by generation or transformer LTC.
-    6. 90 loss accumulation areas other than interchange areas.
-    7. 10 two-terminal and 5 three-terminal DC lines.
-
-  B. Buses
-
-    1. Machines, loads, shunt capacitors, and shunt reactors shall all be representable separately at each bus.
-    2. Loads shall be representable as scheduled mw and mvar.
-    3. Shunt admittances shall be representable in per-unit as follows:
-
-      (a) Fixed admittance
-      (b) Switched capacitor in steps with on and off voltages
-      (c) Switched reactor in steps with on and off voltages
-
-    4. Machines shall be represetable as follows:
-
-      (a) Scheduled voltage magnitude and angle (swing).
-      (b) Scheduled mw and voltage magnitude, with or without mvar limits. In event mvar limit is reached, voltage schedule is no longer held.
-      (c) Scheduled mw and mvar, with or without voltage limits. In event voltage limit is reached, mvar schedule is no longer held.
-      (d) Scheduled mw and variable mvar to hold voltage on remote bus. Provision shall be made at 50 voltage controlled buses for the controlling action to be shared in scheduled proportion among the reactive outputs of up to 5 remote machines.
-
-    3. Buses shall be identified by name rather than number. Bus name shall include bus voltage base.

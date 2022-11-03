@@ -3,11 +3,17 @@
 ********
 Overview
 ********
-You can interact with IPF using the command line tools (``bpf``, ``ipfbat``, ``ipfcut``, etc.), the ``libcflow`` C API, or the `Motif X Window`_ GUI. Many of the functions and features of the command line tools are available through specially designed GUI features. The GUI simplifies creating network data, running the base case solutions, and graphically visualizing the network diagrams but is rather dated and in need of a refresh. For this reason, many users will likely prefer the command line tools.
+You can interact with IPF using the :ref:`command-line-tools` (``bpf``, ``ipfbat``, ``ipfcut``, 
+etc.), the :ref:`x-window-graphical-interface` or the :ref:`libcflow-c-library`. Many of the 
+functions and features of the command line tools are available through specially designed GUI 
+features. The GUI simplifies creating network data, running the base case solutions, and 
+graphically visualizing the network diagrams.
 
 IPF Interaction Model
 =====================
-The conceptual model of IPF is quite simple. You load power system network data into IPF; the IPF solution "engine" performs the calculations for the solution, and then outputs this solution data.
+The conceptual model of IPF is quite simple. You load power system network data into IPF; the 
+IPF solution "engine" performs the calculations for the solution, and then outputs this 
+solution data.
 
 IPF offers different approaches to accomplish power system solutions. Their style of interaction and processing are quite different.
 
@@ -107,13 +113,51 @@ There are multiple methods for specifying the Network Data. The following is a l
 
 ``NETWORK_DATA`` 
 
-  This ASCII text input file contains a series of records of bus and branch data. It must not contain modification records.
+  This ASCII text input file consists of area, bus, and branch records. It must not 
+  contain modification records.
   
-  This file can be maintained by using an ASCII text editor. Or you can edit the records you want in the GUI through the various dialog boxes and then save a new ``NETWORK_DATA`` file. In the file, data records may be in random order, but actual processing is done in the following order:
+  This file can be maintained by using an ASCII text editor. Or you can edit the records
+  you want in the GUI through the various dialog boxes and then save a new 
+  ``NETWORK_DATA`` file. In the file, data records may be in random order, but actual 
+  processing is done in the following order:
   
-   1. ``A`` and ``I`` records (area interchange)
-   2. ``B``, ``+``, and ``X`` records (bus)
-   3. ``L``, ``R``, ``E``, and ``T`` records (branch).
+    1. Area interchange records.
+   
+      Each area record identifies a composition of zones whose member (associated) buses define specific aggregate quantities that may be controlled to specified export values.
+
+      ``A`` (Area interchange records)
+
+      ``I`` (Area intertie records)
+
+   2. Bus data record group containing at least two records.
+   
+     Each bus data record identifies one bus in the network. Buses are uniquely identified by their bus name and base kV.
+   
+     ``B`` (Bus records) 
+
+     ``+`` (Continuation bus records)
+
+     ``X`` (Switched Reactance records)
+
+     ``Q`` (PQ Curve data records)
+
+   3. Branch data record group containing at least one record.
+
+    ``L`` (AC or DC Transmission line records)
+
+    ``E`` (Equivalent Branch records) 
+
+    ``T`` (Transformer records) 
+
+    ``R`` (Regulators (Automatic or LTC transformer) records)
+
+  Branch data entered in any of the ASCII files is *single-entry* or one-way only. This means, for example, that a branch connecting buses A and B has a user-submitted entry (A,B) or (B,A) but not both. The program transposes the record internally as required during execution. Normally which way the branch is entered does not matter, but it does affect the default end metered on a tie line, and the physical position of line sections. See :ref:`record-formats`, for a discussion of this feature.
+
+  Branches are uniquely identified by three fields:
+  
+  * Their terminal bus names and base kVs.
+  * Their circuit or parallel ID code.
+  * Their section code.
 
 ``BRANCH_DATA``
   
@@ -158,48 +202,6 @@ Microfiche file ``.pff``
    Debug ﬁle (<logon>.pfd)    ASCII  Output Only                  ``gui``         No      Solution arrays and iteration processing
    ========================== ====== ============================ =============== ======= =================================
 
-The NETWORK_DATA File
-=====================
-This ASCII text data file consists of area, bus, and branch records. This file must not contain modification records, only new data.
-
- 1. Area interchange records.
-   
-   Each area record identifies a composition of zones whose member (associated) buses define specific aggregate quantities that may be controlled to specified export values.
-
-   ``A`` (Area interchange records)
-
-   ``I`` (Area intertie records)
-
- 2. Bus data record group containing at least two records.
-   
-   Each bus data record identifies one bus in the network. Buses are uniquely identified by their bus name and base kV.
-   
-   ``B`` (Bus records) 
-
-   ``+`` (Continuation bus records)
-
-   ``X`` (Switched Reactance records)
-
-   ``Q`` (PQ Curve data records)
-
- 3. Branch data record group containing at least one record.
-
-  ``L`` (AC or DC Transmission line records)
-
-  ``E`` (Equivalent Branch records) 
-
-  ``T`` (Transformer records) 
-
-  ``R`` (Regulators (Automatic or LTC transformer) records)
-
-Branch data entered in any of the ASCII files is *single-entry* or one-way only. This means, for example, that a branch connecting buses A and B has a user-submitted entry (A,B) or (B,A) but not both. The program transposes the record internally as required during execution. Normally which way the branch is entered does not matter, but it does affect the default end metered on a tie line, and the physical position of line sections. See :ref:`record-formats`, for a discussion of this feature.
-
-Branches are uniquely identified by three fields:
-
- * Their terminal bus names and base kVs.
- * Their circuit or parallel ID code.
- * Their section code.
-
 .. _bse-base-file:
 
 The BASE (.bse) File
@@ -211,5 +213,4 @@ This file, designated ``OLD_BASE`` if you are loading it, or ``NEW_BASE`` if you
  * The program version used to generate the file (so future program versions can read the file if file structures change).
  * Up to 100 comment records.
 
-.. _Motif X Window: https://motif.ics.com/motif/downloads
 .. _Bonneville Power Administration: https://www.bpa.gov/

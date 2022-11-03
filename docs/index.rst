@@ -31,11 +31,10 @@ Features
 ========
 Interactive Power Flow has the following high level feature set:
 
-  * Set of :ref:`command-line-tools` for running studies
+  * Set of :ref:`command-line-tools` for running power flow studies using domain specific languages (See :ref:`powerflow-command-language` and :ref:`power-flow-control` commands) for "batch" command line runs in which users can run multiple powerflow scenarios
   * :ref:`x-window-graphical-interface` allowing easy-to-edit graphical display of the network diagram
   * :ref:`libcflow-c-library` functions for running studies
-  * Basic power flow and advanced capabilities like REI :ref:`network-reduction` and :ref:`transient-stability-program`
-  * Domain specific languages (See :ref:`powerflow-command-language` and :ref:`power-flow-control` commands) for "batch" command line runs in which users can run multiple powerflow scenarios
+  * Advanced capabilities like REI :ref:`network-reduction` and :ref:`transient-stability-program`
   * Output reports (See :ref:`ipf_reports`)
 
 Contents
