@@ -1794,6 +1794,8 @@ to Powerflow.
 
   Network Data Edit Dialog Box
 
+.. _gui-dynamic-filters:
+
 Dynamic Filters
 ^^^^^^^^^^^^^^^
 The power of the Network Data Edit dialog box is realized in applying the dynamic filters. Six
@@ -2628,7 +2630,7 @@ Customizing the GUI (XGUI)
 ==========================
 X resources are X system components managed in common by the X server. Examples of resources
 are colors, fonts and their characteristics, default size and position of windows, and default file
-names for dialog boxes. The IPF ``gui`` allows you to change many of these resource values.
+names for dialog boxes. You can change many of these resource values in the IPF ``gui``.
 
 You customize IPF ``gui``, as you do other X clients, by changing the client's X resources file. This is the
 XGUI file in your home (logon) directory. It is an ASCII text file, so you can alter it with any text
@@ -2643,8 +2645,23 @@ covered below.
 
 .. note::  
   
-  After you make changes to the XGUI file, you may not see changes in your client (IPF) until you 
-  exit the X Window System itself. Exiting and restarting IPF may or may not be sufficient.
+  After you make changes to the XGUI file, you may not see changes in
+  your client (IPF) till you exit the X Window System itself. Exiting and
+  restarting IPF is not sufficient! You must exit IPF and the X Window
+  System and restart both.
+
+XGUI Resources
+--------------
+As you look at the following XGUI file excerpts, note these characteristics:
+
+  * For the most part, each line specifies a resource and value for the resource.
+  *  Each resource specification consists of a descriptive resource name followed by a colon (``:``)
+followed by a value.
+  * Values may be numeric or alpha.
+  * Comment lines are preceded by an exclamation point (``!``).
+  * Categories of resources are grouped for reading convenience.
+  * The IPF resources you can change — the ones in the XGUI file — are window size and
+  position, fonts, colors, and file names.
 
 Changing Open File Defaults
 ---------------------------

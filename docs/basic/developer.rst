@@ -369,7 +369,7 @@ Computer Programs department. They were used during intial development of IPS.
 General, Load Flow, & Stability
 -------------------------------
 
-  A. WSCC will consider an deviations and alternates of these specifications, provided the details of such deviations and alternates are explained by the supplier.
+  A. WSCC will consider any deviations and alternates of these specifications, provided the details of such deviations and alternates are explained by the supplier.
 
   B. Load Flow and Stability programs shall be compatible. Load flow shall accept card input or tape input from previous cases. Stability program shall accept load flow output and system data directly from load flow history tape of any case. Load flow and stability shall also run "back-to-back" if desired, that is, stability program run as a continuation of load flow without operator intervention to intiate stability run.
 

@@ -1963,6 +1963,8 @@ MVA_BASE
 
 This command changes the base MVA from the default value of 100 MVA to an assigned value.
 
+.. _pfc-network-data:
+
 NETWORK_DATA
 ============
 
