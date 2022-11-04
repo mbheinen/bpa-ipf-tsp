@@ -6,11 +6,26 @@ Network Diagrams
 
 Overview
 ========
-IPF has two different network diagram presentations. One is the display you see in the ``gui`` graphics, and the other is the hard copy map. The display is for convenience in accessing system data graphically - it does not represent what the plotted map will look like, nor does it need to be 'pretty'. The hard copy diagram is designed for reports, documentation, and analysis. It can be generated as a report from the graphic display or produced in a batch environment.
+IPF has two different network diagram presentations. One is the display you see in the GUI
+graphics, and the other is the hard copy map. The display is for convenience in accessing 
+system data graphically - it does not represent what the plotted map will look like, nor 
+does it need to be 'pretty'. The hard copy diagram is designed for reports, documentation, 
+and analysis. It can be generated as a report from the graphic display or produced in a 
+batch environment. This section addresses the hard copy diagram which is designed for 
+reports, documentation, and analysis.
 
-Both presentations use the same coordinate file format. The most important coordinate data, like bus icon and name locations, and line bending points, can be edited graphically from the ``gui`` by moving things around and saving the altered coordinate file. However, you will have to plot out the map in order to see how your changes have affected the hard copy appearance.
+Both presentations use the same coordinate file format. The most important coordinate data, 
+like bus icon and name locations, and line bending points, can be edited graphically from 
+the GUI by moving things around and saving the altered coordinate file. However, you will 
+have to plot out the map in order to see how your changes have affected the hard copy 
+appearance.
 
-The basic diagram shows power system components modeled in a power flow study. The diagram is less detailed than a Powerflow listing, but may have more (or different) information than the graphic display. It shows essential bus and branch solution data. The diagram also shows identification data. For example, it shows date, case identification, program version, and the options used to generate the diagram. The diagram can be enhanced by adding to the coordinate file such items as:
+The basic diagram shows power system components modeled in a power flow study. The diagram 
+is less detailed than a Powerflow listing, but may have more (or different) information 
+than the graphic display. It shows essential bus and branch solution data. The diagram also 
+shows identification data. For example, it shows date, case identification, program version, 
+and the options used to generate the diagram. The diagram can be enhanced by adding to the 
+coordinate file such items as:
 
   * A legend.
   * A border.
@@ -20,10 +35,19 @@ The basic diagram shows power system components modeled in a power flow study. T
   * An inset showing detail in a selected area.
   * Any PostScript language objects.
 
-These items will show up on the map plotted from the ``gui``, even though many of them cannot be added or edited with ``gui``. For details on all the hard copy diagram options and capabilities, and the usage of the ``ipfplot`` and ``ipfbat`` programs, see :ref:`ipfplot` and :ref:`ipfbat`.
+These items will show up on the map plotted from the GUI, even though many of them cannot be 
+added or edited from the GUI. For details on all the hard copy diagram options and capabilities, 
+and the usage of the ``ipfplot`` and ``ipfbat`` programs, see :ref:`ipfplot` and :ref:`ipfbat`.
 
 Input Requirements, Output, and Operation
 =========================================
+The Plot function is a set of FORTRAN subroutines within ``ipfmain``, which build a dynamic
+PostScript objects file of references to a static PostScript objects file (``pfmaster.post``). The same
+routines are called by the Print Plot command issued from the GUI, a command file entered via
+``ipfbat`` or the GUI, and by the batch program ``ipfplot``. The dynamic file, which is built by
+"anding" a coordinate file with powerflow data, defines *which data* will appear on a diagram. The
+static ASCII PostScript file describes *how data* will appear on a diagram.
+
 When you load a coordinate file, for example ``name.cor``, into the GUI, the program copies the
 contents of the file into ``name.tmp``. Any changes you make during your interactive session are
 reflected in the latter file. They will disappear when you exit IPF unless you Save the coordinate
@@ -35,8 +59,49 @@ combines this with the file ``pfmaster.post``, which describes how data will app
 The result is a ``name.ps`` file, which is sent to a PostScript-capable printer using the Printer
 Destination string you have selected.
 
+Input Requirements
+------------------
+The input requirements are:
+
+  
+  * A coordinate file, built via the GUI and/or an ASCII text editor.
+  * A solved system network, either from a base case file or currently loaded in IPF.
+  * The static PostScript file (``pfmaster.post``) defining how data will be shown on the 
+  diagram.
+
+Output
+------
+A dynamic PostScript file, which is built by the Plot program, is appended to the static PostScript
+file and sent to a PostScript interpreter (printer or computer display) to produce a diagram.
+
+Plot Program Operation
+-----------------------
+GUI: Select Print Plot from the File pull-down menu. You can also change the options for the
+particular plot, by selecting Diagram Options and/or Page Options. These override the options
+which may be specified in the coordinate file.
+
+``ipfbat``: See :ref:`ipfbat`.
+
+``ipfplot``: Enter ``ipfplot coordinate_file base_file_1 [base_file_2]``. This is a strictly
+batch process which does not require the GUI. A coordinate file name and one solved base file must
+be provided. The second base file is required only for difference maps.
+
+However it is invoked, the Plot program determines which information should appear on the
+diagram by examining the coordinate file. It then searches the Powerflow data for bus, branch,
+area, and intertie data that are identified in the coordinate file. When a match is found, the
+Powerflow and coordinate data are combined and formatted into a dynamic PostScript file to
+activate procedures on the static PostScript file. In addition to bus, branch, transformer, area, and
+intertie records, all other coordinate file records — options, draw, >define, comment, and
+PostScript — are processed by the Plot program and formatted to invoke procedures on the static
+PostScript file.
+
+
 Coordinate File
 ===============
+The coordinate file used by the diagram program is the same file that is generated and used by the
+GUI display. Since the coordinate file is an ASCII file, it can be generated by any ASCII text
+editor. The records in that file are described in this section.
+
 The Coordinate file consists of primary coordinate data records and supportive coordinate data
 records. All coordinates are first quadrant positive Cartesian coordinate values in centimeters. The
 lower left corner of the diagram is coordinate (0,0). The primary coordinate data records those

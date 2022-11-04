@@ -1316,3 +1316,656 @@ Dialogof the GUI. It returns in out_buffer the hard-coded list of various record
 following format.
 <record_type>LINEFEED
 <record_type> is the record type code in A2 format. This command calls type_list.f with the
+following parameters.
+integer function type_list (in_buffer, out_buffer)
+parameter (MAXBUFFER = 6600)
+character in_buffer * (MAXBUFFER)
+character out_buffer * (MAXBUFFER)
+The character array in_buffer contains optional filter data in the following command.
+/GET_DATA, TYPE = RECORD_LIST [ FROM BUS_DATA ]
+ WHERE AREAS = <area1>, <area2>, etc AND
+ ZONES = <zone1>, <zone2>, etc AND
+ OWNERS = <own1>, <own2>, etc AND
+ BASEKV = base1
+ < base ( example < 115.0 means all base
+ kv's less than or equal to 115.0)
+ > base ( example > 115.0 means all base
+ kv's greater than or equal to 115.0)
+ base1 < base2 (all bases between base1 and
+ base 2)
+ base2 > base1 (same as above)
+ TYPE = ’* ’, ’A*’, ’A?’, ’I ’, ’B*’, ’L*’, ’B?’,
+’B ’, ’BE’, ’BS’, ’BC’, ’BD’, ’BV’, ’BQ’,
+ ’BG’, ’BT’, ’BX’, ’BM’, ’BF’, ’+ ’, ’X ’,
+ ’Q ’, ’LD’, ’LM’, ’E ’, ’T ’, ’TP’, ’R ’,
+ ’RZ’
+ BUS = "<busname>" (quotes are necessary)
+ AFTER_BUS = "<busname>"
+ ALL
+ LOADING = (<min> <max>)
+In this instance only, the filter has no impact upon the contents of the returned data. Details of the
+filter are found in the IPF Basic User’s Guide under the section on “Dynamic Filters.”
+GET_DATA, TYPE = REF_AREA_DATA
+This command obtains the area interchange output data from the WSCC-formatted input area
+records using the reference base case data. This command should be preceded with a prior command GET_AREA, TYPE=LOAD_REF_AREA. It calls p_gtxardta.f with the following parameters.
+integer function p_gtxardta (in_buffer, out_buffer)
+parameter (MAXBUFFER = 6600)
+character in_buffer * (MAXBUFFER)
+character out_buffer * (MAXBUFFER)
+The character array in_buffer contains the following information.
+/GET_DATA, TYPE = AREA_REF_DATA
+A <areaname>
+
+GET_DATA, TYPE = REF_OUTPUT
+This command can access virtually the entire network data from the reference base. It calls gtaltopt.f with the following parameters.
+integer function gtaltopt (in_buffer, out_buffer)
+parameter (MAXBUFFER = 6600)
+character in_buffer * (MAXBUFFER)
+character out_buffer * (MAXBUFFER)
+The character array in_buffer contains the following information.
+/GET_DATA, TYPE = OUTPUT
+A <areaname> returns all data associated with area
+I <area1 area2> returns all interties between the two areas
+B <busname, etc> returns all data associated with bus
++ <busname, etc> returns all data if id fields have wild cards
+ (type - column 2, owner, columns 3-5, and code-year
+ columns 20-21)
+X <busname, etc>
+L <bus1 bus2, etc> returns all parallels if id is wild card (*)
+ returns all sections if section is wild card (0)
+T <bus1 bus2, etc>
+R <bus1 bus2, etc>
+E <bus1 bus2, etc>
+The returned values in out_buffer correspond with the input record in in_buffer.
+
+.. table:: Area A Record
+
+  ======= ====== ============================
+  Column  Format Description
+  ======= ====== ============================
+  1 A1 A — Area Identifier
+2 1X Blank
+3-12 A10 Area name
+13 1X Blank
+14-28 E15.7 Total Area Generation (MW)
+29-43 E15.7 Total Area Load (MW)
+44-58 E15.7 Total Area Losses (MW)
+59-73 E15.7 Net Area Export (MW)
+  ======= ====== ============================
+
+
+.. table:: Intertie I Record
+
+  ======= ====== ============================
+  Column  Format Description
+  ======= ====== ============================
+  1 A1 I — Intertie Area Identifier
+2 1X Blank
+3-12 A10 Area 1 name
+13 1X Blank
+14-23 A10 Area 2 name
+24 1X Blank
+25-39 E15.7 Scheduled Area1-Area2 Export (MW)
+40-54 E15.7 Actual Area1-Area2 Export (MW)
+55-69 E15.7 “Circulating” Flow (MW)
+70 1X Blank
+71 I1 0 — No Area1-Area2 I record exists
+1 — Area1-Area2 I record exists
+  ======= ====== ============================
+
+.. table:: AC Buses (Types B, BE, BS, BC, BD, BV, BQ, BG, BT, BX)
+
+  ======= ====== ============================
+  Column  Format Description
+  ======= ====== ============================
+  1 A1 Bus code “B”
+2 A1 Bus type
+3 1X (Not used)
+4-6 A3 Ownership
+7-14 A8 Bus name
+15-18 F4.0 Bus base KV
+19-20 A2 Zone
+21-35 E15.7 P_gen (MW)
+36-50 E15.7 Q_gen (MVAR)
+51-65 E15.7 Voltage (KV))
+66-80 E15.7 Angle (degrees)
+81-95 E15.7 P_load (MW)
+96-110 E15.7 Q_load (MVAR)
+111-125 E15.7 B_shunt used (MVAR)
+126-140 E15.7 B_shunt scheduled (MVAR)
+141-155 E15.7 B_shunt (capacitors) used
+(MVAR)
+156-170 E15.7 B_shunt (capacitors) scheduled (MVAR)
+171-185 E15.7 B_shunt (reactors) used
+(MVAR)
+186-200 E15.7 B_shunt (reactors) scheduled
+(MVAR)
+201-215 E15.7 Q unscheduled (MVAR)
+  ======= ====== ============================
+
+.. table:: DC Buses (Type BD and BM)
+
+  ======= ====== ============================
+  Column  Format Description
+  ======= ====== ============================
+  1 A1 Bus code “B”
+2 A1 Bus type (“D” or “M)”
+3 1X (Not used)
+4-6 A3 Ownership
+7-14 A8 Bus name
+15-18 F4.0 Bus base KV
+19-20 A2 Zone
+21-35 E15.7 P_d-c (MW)
+36-50 E15.7 Q_d-c (MVAR)
+51-65 E15.7 D_C Voltage (KV)
+66-80 E15.7 Converter angle (degrees)
+81-95 E15.7 P_valve losses (MW)
+96-110 E15.7 Q_valve losses (MVAR)
+  ======= ====== ============================
+
+.. table:: X-bus Output Data
+
+  ======= ====== ============================
+  Column  Format Description
+  ======= ====== ============================
+  1 A1 Record code (X)
+2-6 5X (Not used)
+4-6 A3 Ownership
+7-14 A8 Bus name
+15-18 F4.0 Bus base kV
+19-20 2X (not used)
+21 I1 Group No. 1 scheduled units
+22 I1 Group No. 1 used units
+23-37 E15.7 Group No. 1 reactance (MVAR) / unit
+38 I1 Group No. 2 scheduled units
+39 I1 Group No. 2 used units
+40-54 E15.7 Group No. 2 reactance (MVAR) / unit
+55 I1 Group No. 3 scheduled units
+56 I1 Group No. 3 used units
+57-71 E15.7 Group No.3 reactance (MVAR) / unit
+72 I1 Group No. 4 scheduled units
+73 I1 Group No. 4 used units
+74-88 E15.7 Group No. 4 reactance (MVAR) / unit
+89 I1 Group No. 5 scheduled units
+90 I1 Group No.5 used units
+91-105 E15.7 Group No. 5 reactance (MVAR) / unit
+106 I1 Group No. 6 scheduled units
+107 I1 Group No. 6 used units
+108-122 E15.7 Group No. 6 reactance (MVAR) / unit
+123 I1 Group No. 7 scheduled units
+124 I1 Group No. 7 scheduled units
+125-139 E15.7 Group No. 7 reactance (MVAR) / unit
+91 I1 Group No. 8 scheduled units
+92 I1 Group No. 8 used units
+93-100 E15.7 Group No. 8 reactance (MVAR) / unit
+  ======= ====== ============================
+
+.. table:: Continuation Bus (+)
+
+  ======= ====== ============================
+  Column  Format Description
+  ======= ====== ============================
+  1 A1 Continuation bus code (+)
+2 A1 Continuation bus subtype (A,C,F,I,N,P,S)
+3 1X (Not used)
+4-6 A3 Ownership
+7-14 A8 Bus name
+15-18 F4.0 Bus base KV
+19-20 A2 Classification code year,
+*I — constant current loads,
+*Z — constant impedance loads,
+*P — constant MVA loads,
+21-35 E15.7 P_gen (MW)
+36-50 E15.7 Q_gen (MVAR)
+51-65 E15.7 P_load (MW)
+66-80 E15.7 Q_load(MVAR)
+81-95 E15.7 G_shunt (MW)
+96-110 E15.7 B_shunt (MVAR)
+  ======= ====== ============================
+
+.. table:: All Lines (Types L, LD, LM, E, T, TP, and R)
+
+  ======= ====== ============================
+  Column  Format Description
+  ======= ====== ============================
+  1 A1 Line code L, E, or T
+2 A1 Line subtype (LD, LM, or TP)
+3 1X (Not used)
+4-6 A3 Ownership
+7-14 A8 Bus1 name
+15-18 F4.0 Bus1 base KV
+19 I1 Interchange metering point (0, 1, or 2)
+20-27 A8 Bus 2 name
+28-31 F4.0 Bus 2 base KV
+32 A1 Parallel ID ( * (asterisk) means all parallels)
+33 I1 Number of circuits
+34-48 E15.7 P_in (MW)
+49-63 E15.7 Q_in (MVAR)
+64-78 E15.7 P_out (MW)
+79-93 E15.7 Q_out (MVAR)
+94-108 E15.7 P_loss (MW)
+109-123 E15.7 Q_loss (MW)
+124-138 E15.7 Critical line loading (amps)
+139-146 F8.1 Critical line rating (amps)
+147 A1 Critical line rating code (N,T,B)
+148 I1 Critical line loading terminal (0,1,2)
+149-163 E15.7 Critical transformer loading (MVA)
+164-171 F8.1 Critical transformer rating (MVA)
+172 A1 Critical transformer rating code (N,T,E,B)
+173 I1 Critical transformer loading terminal
+(0,1,2)
+174-188 E15.7 Total Line loading (percent)
+189-203 E15.7 Total Line loading (amps)
+204-218 E15.7 Total Transformer loading (percent)
+219-233 E15.7 Total Transformer loading (MVA)
+234-241 F8.2 Tap1 in kV (Type T or TP) or
+%Compensation (L or E.)
+242-249 F8.2 Tap2 in kV
+250-256 A7 (Reserved for difference plotting)
+  ======= ====== ============================
+
+GET_DATA, TYPE = SOL_PAR
+This command obtains solution tolerances, controls, or switches that influence the processing of
+the case in residence. The obtained system data is identical to the set of data modified by the related
+command /SOLUTION.
+The returned values are encoded in the character array in_buffer in free field, C-formatted strings.
+The quantities enclosed in angle brackets “< ... >” denote variables quantitied; < status > denotes
+a logical on or off; < value > denotes an integer, floating point, or character quantity.
+/GET_DATA, TYPE = SOL_PAR,
+> AI_CONTROL = < value > { CON | MOD | OFF }
+> BASE_SOLUTION = < status >
+> DEBUG_TX = < status >
+> DEBUG_BUS = < status >
+> DEBUG_AI = < status >
+> DEBUG_DC = < status >
+> LIMITS_QRES = < value >
+> LIMITS_PHA = < value >
+> LIMITS_DA = < value >
+> LIMITS_DV = < value >
+> LTC = < value> { ON | ON_NV | ON_NPS | OFF | ON_DCONLY }
+> MISC_XBUS = < value > { BPA | VMAX | WSCC }
+> MISC_DCLP = < status >
+> MISC_VFLAT = < status >
+> MISC_TSTART = < value >
+> MISC_ITER_SUM = < status >
+> MISC_PHA_SHIFT_BIAS = < value > { BPA | WSCC }
+> SOL_ITER_DECOUP = < value >
+> SOL_ITER_NEWTON = < value >
+> TOL_BUSV = < value >
+> TOL_AIPOWER = < value >
+> TOL_TX = < value >
+> TOL_Q = < value >
+return status: status = 0 : success
+1 : errors
+GET_DATA, TYPE = SUB_DEFINE
+This command performs character string substitution using computed base case quantities upon the
+tokens defined with the >DEFINE statement within comment records in the USER_ANALYSIS command. It calls p_subdef.f with the following parameters.
+integer function p_subdef (in_buffer, out_buffer)
+parameter (MAXBUFFER = 6600)
+character in_buffer * (MAXBUFFER)
+character out_buffer * (MAXBUFFER)
+The character array in_buffer contains the following information.
+/GET_DATA, TYPE = SUB_DEFINE, SOURCE = BASE
+ ALTERNATE_BASE
+GET_DATA, TYPE = STATUS
+This command retrieves the case description. It calls gtstatus.f with the following parameters.
+integer function gtstatus out_buffer)
+parameter (MAXBUFFER = 6600)
+character in_buffer * (MAXBUFFER)
+character out_buffer * (MAXBUFFER)
+The character array in_buffer contains the following information.
+/GET_DATA, TYPE = STATUS
+The character array out_buffer contains the following information.
+c
+c Program: <n> version <n> date <n>
+c Program size: max buses <n> max branches
+c Case: <name> status <n> base file <n>
+c <n> buses <n> branches <n> areas <n> d-c lines
+c <n> changes
+c c comments
+c c comments
+c c comments
+c
+
+GET_DATA, TYPE = SYSTEM
+This command obtains system-specific information pertaining to parameters which describe general characteristics of the base case in residence.
+The returned values are encoded in the character array out_buffer in free field, C-formatted
+strings. The quantities enclosed in angle brackets “< ... >” denote variables returned; < status >
+denotes a logical on or off and < value > denotes an integer or floating point quantity.
+/GET_DATA, TYPE = SYSTEM,
+CASE_DT = < case date >
+OLD_BASE = < file name >
+NEW_BASE = < file name >
+OLD_NETD = < file name >
+NEW_NETD = < file name >
+OLD_CHGF = < file name >
+NEW_CHGF = < file name >
+PRG_VERS = < program version >
+BASE_MVA = < base MVA >
+NUM_DC_SYS = < number of DC systems >
+NUM_AREA = < number of areas>
+NUM_ITIE = < number of interties>
+NUM_ZONE = < number of zones>
+NUM_OWN = < number of owners>
+NUM_BUS = < number of buses >
+NUM_AREA_SBUS = < number of area slack buses>
+NUM_DC_BUS = < number of DC buses >
+NUM_AGC_BUS = < number of AGC buses>
+NUM_BX_BUS = < number of BX buses>
+NUM_ADJ_BUS = < number of adjustable buses >
+NUM_PCT_VAR_BUS = < number of % VAR controlled buses >
+NUM_BRN = < number of branch records>
+NUM_CKT = < number of circuits >
+NUM_DC_LINE = < number of DC lines >
+NUM_LTC = < number of LTC transformers >
+NUM_PHAS = < number of phase shifters >
+SOLN_STATUS = < solution status >
+NUM_KV = < number of different KVs >
+NUM_REC_TYP = < number of record types >
+return status: status = 0 : success
+1 : errors
+GET_DATA, TYPE = ZONE_LIST
+This command loads the zone list dialog in the Reports Dialog and the Network Data Edit Dialog.
+See the IPF Basic User’s Guide. It returns in out_buffer the list of filtered zones in the following
+format.
+<zone>LINEFEED
+
+<zone> is the zone name in A2 format. It calls zone_list.f with the following parameters.
+integer function zone_list (in_buffer, out_buffer)
+parameter (MAXBUFFER = 6600)
+character in_buffer * (MAXBUFFER)
+character out_buffer * (MAXBUFFER)
+The character array in_buffer contains optional filter data in the following command.
+/GET_DATA, TYPE = ZONE_LIST [ FROM BUS_DATA ]
+ WHERE AREAS = <area1>, <area2>, etc AND
+ ZONES = <zone1>, <zone2>, etc AND
+ OWNERS = <own1>, <own2>, etc AND
+ BASEKV = base1
+ < base ( example < 115.0 means all base
+ kv's less than or equal to 115.0)
+ > base ( example > 115.0 means all base
+ kv's greater than or equal to 115.0)
+ base1 < base2 (all bases between base1 and
+ base 2)
+ base2 > base1 (same as above)
+ TYPE = ’* ’, ’A*’, ’A?’, ’I ’, ’B*’, ’L*’, ’B?’,
+’B ’, ’BE’, ’BS’, ’BC’, ’BD’, ’BV’, ’BQ’,
+ ’BG’, ’BT’, ’BX’, ’BM’, ’BF’, ’+ ’, ’X ’,
+ ’Q ’, ’LD’, ’LM’, ’E ’, ’T ’, ’TP’, ’R ’,
+ ’RZ’
+ BUS = "<busname>" (quotes are necessary)
+ AFTER_BUS = "<busname>"
+ ALL
+ LOADING = (<min> <max>)
+Details of the filter are found in the IPF Basic User’s Guide under the section on “Dynamic Filters.”
+
+PUT_DATA
+========
+PUT_DATA, TYPE = COMMENTS
+This command replaces case comments, along with caseid, case description, and headers.
+There is a related command
+ /GET_DATA, TYPE = COMMENTS
+which obtains the corresponding data including header 1 which is not modifiable. Header 1 is formatted to include case name, case description, program version, date, etc. Up to 20 comments are
+allowed. The two header records must be present even if blank. For all blank “H” or “C” records
+(blank “C” records are accepted, but optional) include at least one blank character after the “H” or
+“C”.
+The sent values are encoded in the character array out_buffer in free field, C-formatted strings.
+The quantities enclosed in angle brackets “< ... >” denote variables. Headers may be up to 130 characters; comments may be up to 120 characters, not including the “H” or “C” in column 1.
+/PUT_DATA, TYPE = COMMENTS
+CASE_ID = “< case name >” 10 chars
+CASE_DS = “< case description >” 20 chars
+H< header 2 information >
+H< header 3 information >
+C< comment text >
+...
+C< comment text >
+
+Report Generation
+=================
+The /REPORTS command with its many different forms fetches data from the Powerflow process
+for display in the Reports Dialog. It calls p_report.f with the following parameters.
+integer function p_report (in_buffer, out_buffer)
+parameter (MAXBUFFER = 6600)
+character in_buffer * (MAXBUFFER)
+character out_buffer * (MAXBUFFER)
+The character array in_buffer contains any of the following commands.
+/REPORTS, SELECT AI_SUMMARY
+/REPORTS, SELECT BUS_INPUT
+/REPORTS, SELECT BUS_BR_INPUT
+/REPORTS, SELECT BUS_BR_OUTPUT
+/REPORTS, SELECT BUS_UVOV
+/REPORTS, SELECT LINE_COMPARISON
+/REPORTS, SELECT NETWORK_CHANGES
+/REPORTS, SELECT NETWORK_DELETIONS
+/REPORTS, SELECT OVERLOADED_LINES
+/REPORTS, SELECT OVERLOADED_TXS
+/REPORTS, SELECT PHASE_SHIFTER
+/REPORTS, SELECT TIE_LINE_SUMMARY
+/REPORTS, SELECT VOLTAGE_COMPARISON
+The routine p_report.f parses these command and calls a subroutine to perform the specific
+task. The modules are listed below.
+
+``REPORTS, SELECT AI_SUMMARY``
+------------------------------
+This command retrieves filtered area interchange output data. It calls areaintrpt.f with the following parameters.
+integer function areaintrpt (in_buffer, out_buffer)
+parameter (MAXBUFFER = 6600)
+character in_buffer * (MAXBUFFER)
+character out_buffer * (MAXBUFFER)
+in_buffer is positioned to the first character following the string AI_SUMMARY. The character
+array in_buffer contains the following information.
+/REPORTS, SELECT AI_SUMMARY
+ [ OUTPUT = <filename> ]
+The output is placed in out_buffer. The report dialog is shown below.
+
+.. figure:: ../img/Area_Interchange_Summary_Report_Dialog.png
+
+  Area Interchange Summary Report Dialog
+
+``REPORTS, SELECT BUS_INPUT``
+-----------------------------
+This command retrieves filtered WSCC-formatted bus input data records. It calls businrpt.f with
+the following parameters.
+integer function businrpt(in_buffer, out_buffer)
+parameter (MAXBUFFER = 6600)
+character in_buffer * (MAXBUFFER)
+character out_buffer * (MAXBUFFER)
+in_buffer is positioned to the first character following the string BUS_INPUT. The character array
+in_buffer contains the following information.
+/REPORTS, SELECT BUS_INPUT [ FROM BUS_DATA ]
+ [ OUTPUT = <filename> ]
+ WHERE (repeat filter from BUS_LIST)
+The output is placed in out_buffer. The report dialog is shown below.
+
+.. figure:: ../img/Bus_Input_Data_Report_Example.png
+
+   Bus Input Data Report Dialog
+
+``REPORTS, SELECT BUS_BR_INPUT``
+--------------------------------
+This command retrieves filtered WSCC-formatted bus and branch input data records. It calls busbrinrpt.f with the following parameters.
+integer function busbrinrpt(in_buffer, out_buffer)
+parameter (MAXBUFFER = 6600)
+character in_buffer * (MAXBUFFER)
+character out_buffer * (MAXBUFFER)
+in_buffer is positioned to the first character following the string BUS_BR_INPUT. The character
+array in_buffer contains the following information.
+/REPORTS, SELECT BUS_BR_INPUT [ FROM BUS_DATA ]
+ [ OUTPUT = <filename> ]
+ WHERE (repeat filter from BUS_LIST)
+The output is placed in out_buffer. The report dialog is shown below.
+
+.. figure:: ../img/Bus_Branch_Input_Example2.png
+
+   Bus Branch Input Report Dialog
+
+``REPORTS, SELECT BUS_BR_OUTPUT``
+---------------------------------
+This command retrieves filtered bus and branch output records. It calls busbrotrpt.f with the following parameters.
+integer function busbrotrpt(in_buffer, out_buffer)
+parameter (MAXBUFFER = 6600)
+character in_buffer * (MAXBUFFER)
+character out_buffer * (MAXBUFFER)
+in_buffer is positioned to the first character following the string BUS_BR_OUTPUT. The character
+array in_buffer contains the following information.
+/REPORTS, SELECT BUS_BR_OUTPUT [ FROM BUS_DATA ]
+ [ OUTPUT = <filename> ]
+ WHERE (repeat filter from BUS_LIST)
+The output is placed in out_buffer.The report dialog is shown below.
+
+.. figure:: ../img/Bus_Branch_Output_Example2.png
+
+   Bus Branch Output Report Dialog
+
+``REPORTS, SELECT BUS_UVOV``
+----------------------------
+This command retrieves filtered under/over voltage bus output data. It calls busuvovrpt.f with
+the following parameters.
+integer function busuvovrpt (in_buffer, out_buffer)
+parameter (MAXBUFFER = 6600)
+character in_buffer * (MAXBUFFER)
+character out_buffer * (MAXBUFFER)
+in_buffer positioned to the first character following the string BUS_UVOV. The character array
+in_buffer contains the following information.
+/REPORTS, SELECT BUS_UVOV [ FROM BUS_DATA ]
+ [ OUTPUT = <filename> ]
+ WHERE (repeat filter from BUS_LIST)
+The output is placed in out_buffer.The report dialog is shown below.
+
+.. figure:: ../img/Overvoltage_Undervoltage_Report_Dialog.png.png
+
+   Overvoltage Undervoltage Report Dialog
+
+``REPORTS, SELECT LINE_COMPARISON``
+-----------------------------------
+This command retrieves filtered line loading differences between the base case in residence and a
+selected base case history data file. It calls lfodifrpt.f with the following parameters. (Not currently working.)
+integer function lfodifrpt (in_buffer, out_buffer)
+parameter (MAXBUFFER = 6600)
+character in_buffer * (MAXBUFFER)
+character out_buffer * (MAXBUFFER)
+in_buffer is positioned to the first character following the string LINE_COMPARISON. The character array in_buffer contains the following information.
+/REPORTS, SELECT LINE_COMPARISON
+ [ OUTPUT = <filename> ]
+ FILE = <filename>
+ WHERE (repeat filter from BUS_LIST)
+The output is placed in out_buffer.
+
+``REPORTS, SELECT NETWORK_CHANGES``
+-----------------------------------
+This command retrieves the list of all accumulated changes performed on the base case in residence. It calls chglisrpt.f with the following parameters.
+integer function chglilsrpt (in_buffer, out_buffer)
+parameter (MAXBUFFER = 6600)
+character in_buffer * (MAXBUFFER)
+character out_buffer * (MAXBUFFER)
+in_buffer is positioned to the first character following the string NETWORK_CHANGES. The character array in_buffer contains the following information.
+/REPORTS, SELECT NETWORK_CHANGES
+ [ OUTPUT = <filename> ]
+The output is placed in out_buffer.The report dialog is shown below.
+
+.. figure:: ../img/Network_Changes_Report_Dialog.png
+
+  Network Changes Remote Dialog
+
+``REPORTS, SELECT NETWORK_DELETIONS``
+-------------------------------------
+This command retrieves the list of all deleted network data in WSCC format. It calls deleterpt.f
+with the following parameters.
+integer function deleterpt (in_buffer, out_buffer)
+parameter (MAXBUFFER = 6600)
+character in_buffer * (MAXBUFFER)
+character out_buffer * (MAXBUFFER)
+in_buffer is positioned to the first character following the string NETWORK_DELETIONS. The
+character array in_buffer contains the following information.
+/REPORTS, SELECT NETWORK_DELETIONS
+ [ OUTPUT = <filename> ]
+The output is placed in out_buffer.The report dialog is shown below. (This is the report
+accessed under Bone Pile.)
+
+.. figure:: ../img/Bonepile_Output_Report_Dialog.png
+
+  Bonepile Output Report Dialog
+
+``REPORTS, SELECT OVERLOADED_LINES``
+------------------------------------
+This command retrieves filtered overloaded branch output data. It calls ovldlnsrpt.f with the following parameters.
+integer function ovldlnsrpt (in_buffer, out_buffer)
+parameter (MAXBUFFER = 6600)
+character in_buffer * (MAXBUFFER)
+character out_buffer * (MAXBUFFER)
+in_buffer positioned to the first character following the string OVERLOADED_LINES. The character array in_buffer contains the following information.
+/REPORTS, SELECT OVERLOADED_LINES [ FROM BUS_DATA ]
+ [ OUTPUT = <filename> ]
+ WHERE (repeat filter from BUS_LIST)
+The output is placed in out_buffer.The report dialog is shown below.
+
+.. figure:: ../img/Overvoltage_Lines_Report_Dialog.png
+
+  Overvoltage Lines Report Dialog
+
+``REPORTS, SELECT OVERLOADED_TXS``
+----------------------------------
+This command retrieves filtered overloaded transformer output data. It calls ovldtxsrpt.f with
+the following parameters.
+integer function ovldtxsrpt (in_buffer, out_buffer)
+parameter (MAXBUFFER = 6600)
+character in_buffer * (MAXBUFFER)
+character out_buffer * (MAXBUFFER)
+in_buffer is positioned to the first character following the string OVERLOADED_TXS. The character array in_buffer contains the following information.
+/REPORTS, SELECT OVERLOADED_TXS [ FROM BUS_DATA ]
+ [ OUTPUT = <filename> ]
+ WHERE (repeat filter from BUS_LIST)
+The output is placed in out_buffer.The report dialog is shown below
+
+.. figure:: ../img/Overloaded_Transformers_Report_Dialog.png
+
+  Overloaded Transformers Report Dialog
+
+``REPORTS, SELECT PHASE_SHIFTER``
+---------------------------------
+This command retrieves the phase shifter report. It calls phshftrpt.f with the following parameters.
+integer function phshftrpt (in_buffer, out_buffer)
+parameter (MAXBUFFER = 6600)
+character in_buffer * (MAXBUFFER)
+character out_buffer * (MAXBUFFER)
+in_buffer is positioned to the first character following the string PHASE_SHIFTER The character
+array in_buffer contains the following information.
+/REPORTS, SELECT PHASE_SHIFTER
+ [ OUTPUT = <filename> ]
+The output is placed in out_buffer.The report dialog is shown below.
+
+.. figure:: ../img/Phase_Shifter_Report_Dialog.png
+
+  Phase Shifter Report Dialog
+
+``REPORTS, SELECT TIE_LINE_SUMMARY``
+------------------------------------
+This command retrieves filtered area tie line flows. It calls inttierpt.f with the following parameters.
+integer function inttierpt (in_buffer, out_buffer)
+parameter (MAXBUFFER = 6600)
+character in_buffer * (MAXBUFFER)
+character out_buffer * (MAXBUFFER)
+in_buffer is positioned to the first character following the string TIE_LINE_SUMMARY. The character array in_buffer contains the following information.
+/REPORTS, SELECT TIE_LINE_SUMMARY
+ [ OUTPUT = <filename> ]
+ WHERE (repeat filter from BUS_LIST)
+The output is placed in out_buffer.The report dialog is shown below.
+
+.. figure:: ../img/Tie_Line_Summary_Report_Example2.png
+
+  Tie Line Summary Report Dialog
+
+``REPORTS, SELECT VOLTAGE_COMPARISON``
+--------------------------------------
+This command retrieves filtered voltage differences between the base case in residence and a selected base case history data file. It calls vltdifrpt.f with the following parameters. (Not currently working.)
+integer function vltdifrpt (in_buffer, out_buffer)
+parameter (MAXBUFFER = 6600)
+character in_buffer * (MAXBUFFER)
+character out_buffer * (MAXBUFFER)
+in_buffer is positioned to the first character following the string VOLTAGE_COMPARISON. The
+character array in_buffer contains the following information.
+/REPORTS, SELECT VOLTAGE_COMPARISON
+ [ OUTPUT = <filename> ]
+ FILE = <filename>
+ WHERE (repeat filter from BUS_LIST)
+The output is placed in out_buffer.The report dialog is shown below.

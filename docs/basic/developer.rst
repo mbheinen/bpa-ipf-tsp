@@ -233,7 +233,7 @@ This section has a information about which Fortran subroutines to take a look at
                     p_lic.f
                     linimp.f
 
-/GET_DATA, TYPE = output
+  /GET_DATA, TYPE = output
 
        processed by cmd_parse.c
                     p_gtdata.f 

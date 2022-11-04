@@ -2663,6 +2663,19 @@ followed by a value.
   * The IPF resources you can change — the ones in the XGUI file — are window size and
   position, fonts, colors, and file names.
 
+Changing IPF Resources
+----------------------
+Most values for resources are easy to figure out. Others, like colors, are more difficult. Here are a
+few hints to get you started. Be sure to read further in Quercia’s book, or a comparable book, for
+more information.
+
+.. warning::
+  
+  If you make a spelling mistake or the value is not correct for the 
+  resource, there are no error messages. The resource is ignored. And, there
+  are no X Window System facilities to help you find your error, so be
+  careful!
+
 Changing Open File Defaults
 ---------------------------
 Although you can always find your way to the file you want to open by using the Files filter system,
@@ -2681,8 +2694,8 @@ your text editor and forward search for "DEFAULT MASKS"
   XGUI*open_dia_coord_dir_text.value: *.cor
   
   ! These are the default filenames in the open file menu.
-  ! Leave blank where you don’t want a default.
-  ! Don’t set default filenames for both base and network!!!
+  ! Leave blank where you don't want a default.
+  ! Don't set default filenames for both base and network!!!
   
   XGUI*file_select_dia_command_text.value:
   XGUI*file_select_dia_change_text.value:
@@ -2759,4 +2772,123 @@ Change "print" to whatever string you will want to use most often.
 
 The section just below this is where you put in the other print strings that you want to appear in the
 printer list.
+
+Changing Window Position and Size
+---------------------------------
+Windows are positioned on the screen by specifying pixel locations. X is the horizontal dimension.
+Y is the vertical dimension. The position ``x,y = (0,0)`` is the upper left corner of the screen.
+``(XGUI.x, XGUI.y)`` represents the upper left-hand corner of the main window of IPF.
+
+**To change the main window default position:**
+
+The default in the XGUI file is:::
+
+  XGUI.x: 127
+  XGUI.y: 0
+
+Change the 0 to a 127:::
+  
+  XGUI.x: 127
+  XGUI.y: 127
+
+Now the upper left-hand corner of the main window appears 127 pixels down and to the right of
+the 0,0 screen pixel position in the extreme upper left-hand corner of the screen.
+
+**To change the main window default size:**
+
+The default in the XGUI file is:::
+
+  XGUI.width: 600
+  XGUI.height: 550
+
+Change the 550 to a 600:::
+
+  XGUI.width: 600
+  XGUI.height: 600
+
+Now the IPF main window will be square. Other windows and dialog boxes in XGUI work similarly.
+
+Changing Fonts
+--------------
+The X Window System for your computer comes with a standard set of fonts. Commonly used
+fonts such as Courier (a typewriter-like font), Times (a serif, “newspaper” font), and Helvetica (a
+common, sans serif font) are included. Ask your system administrator about the X fonts available
+on your computer. Each size, shape, and kind of font has a unique name. Here is the name of one
+of IPF's default fonts:::
+
+  -*-Courier-Bold-R-*--*-100-*-*-*-*-ISO8859-1
+
+This X font name specifies Courier bold with a normal slant (R) of size 10 points. Its International
+Standards Organization character set registry identification is ISO8851-1. The asterisks denote
+"don't care" states for the other font parameters such as, for example, foundry (who made the font)
+and pixel size.
+
+**To change a default font:**
+
+For example, the default font in the XGUI file for descriptive IPF text in the windows and dialog
+boxes is:::
+
+  XGUI*XmText.fontList:*-Courier-Bold-R-*--*-100-*-*-*-*-ISO8859-1
+
+Change the Courier to Times:
+
+  XGUI*XmText.fontList:*-Times-Bold-R-*--*-100-*-*-*-*-ISO8859-1
+
+Now the descriptive text is a 10 point bold Times of a regular slant.
+
+Changing Colors
+---------------
+X color values can be specified as regular names such as blue, red, yellow, magenta, slate blue, sky
+blue, navy blue, etc., or as hexadecimal digits. Ask your system administrator for a list of all named
+standard colors because this is much easier to deal with than figuring out hexadecimal color values.
+However, here is a quick explanation of the hexadecimal color specification system.
+
+Colors are specified in the RGB (Red-Green-Blue) color system. The RGB hex numbers have 12
+digits. The first four stand for the Red component. The middle four stand for the Green component.
+And the last four stand for the Blue component. (Reading left to right, of course.) ``ffff`` hex stands
+for fully saturated red if it is in the first position. ``8000`` hex stands for a half way saturated red (called
+“red4” in X). ``0000`` hex stands for no red at all, which would be black. The green and blue work
+analogously. Thus, ``ffffffffffff`` hex stands for pure white, and ``000000000000`` hex stands for
+pure black. To get the color you want, you need to play with different values of hex numbers in the
+appropriate Red-Green-Blue positions since the RGB intensities are mixed to render one color.
+
+**To change a default color:**
+For example, the default color in the XGUI file for the 500 kV branches as shown in the branch
+color key of the IPF main window is:::
+
+  XGUI*kv_500_label.background: #ffffcccc0000
+
+Note the hexadecimal color value specification. This default color is a gold-looking color.
+
+Use a color name specification and change the ``#ffffcccc0000`` to ``yellow``:::
+
+  XGUI*kv_500_label.background: yellow
+
+Now the 500kV branches and the branch color key shows up as pure yellow.
+
+Changing Default File Names
+---------------------------
+When you first execute IPF and select the Open command from the main window menu, some
+default file names fill some of the file text boxes. You can specify your own valid file names or file
+name masks in the XGUI file.
+
+**To change a default file mask:**
+
+For example, the default coordinate file mask in the XGUI file for the Open dialog box is:::
+
+  XGUI*open_dia_coord_dir_text.value: /shr5/all/ipf/dat/*.cor
+
+The ``*.cor`` selects just the coordinate files in the given directory (if they all end with ``.cor``, of
+course). (The asterisk ( ``*`` ) is a UNIX wildcard character meaning "any arbitrary length string of
+characters."")
+
+Change the ``/shr5/all`` to ``/archive/year1992``:::
+
+  XGUI*open_dia_coord_dir_text.value: /archive/year1992/ipf/dat/*.cor
+
+Now the coordinate files selected are in the ``/archive/year1992/ipf/dat directory``.
+
+You can change any part of the file name, of course, just so long as the file name is a valid file name
+for your operating system.
+
 
