@@ -1968,4 +1968,4 @@ character array in_buffer contains the following information.
  [ OUTPUT = <filename> ]
  FILE = <filename>
  WHERE (repeat filter from BUS_LIST)
-The output is placed in out_buffer.The report dialog is shown below.
+The output is placed in out_buffer.

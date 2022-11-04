@@ -75,7 +75,7 @@ A dynamic PostScript file, which is built by the Plot program, is appended to th
 file and sent to a PostScript interpreter (printer or computer display) to produce a diagram.
 
 Plot Program Operation
------------------------
+----------------------
 GUI: Select Print Plot from the File pull-down menu. You can also change the options for the
 particular plot, by selecting Diagram Options and/or Page Options. These override the options
 which may be specified in the coordinate file.
@@ -128,17 +128,68 @@ For complete details on all of the coordinate file records, see ??.
 
 File Indentification Record - ``[ID COORD``
 -------------------------------------------
-The file identification record signifies the beginning of a set of coordinate records. Options are set
-to their default condition when this record is encountered.
+The file identification record signifies the beginning of a set of coordinate records. See the table
+below. Options are set to their default condition when this record is encountered. One such record is
+required at the beginning of the coordinate file, but it may optionally contain several ``[ID COORD``
+records and their associated coordinate record sets. Multiple ``[ID COORD`` records may be used to
+insert a control block, legend, or an inset of a detailed section of the diagram.
+
+.. table:: File Identification Record Format
+
+  ====== ====== ===================================================
+  Column Format Description
+  ====== ====== ===================================================
+   1-9   A9     ``[ID COORD``
+   9-90         Not used by Plot program, available for user notes.
+  ====== ====== ===================================================
 
 Options Record - ``O``
 ----------------------
 Options affect the general appearance of a diagram and determine which Powerflow data will be
 displayed for each bus and branch on a diagram.
 
+The default option values can be overridden by options specified in the coordinate file. If a
+coordinate file is currently loaded in the GUI, and the options are changed via the Page Options or
+Diagram Options menus, these will override (replace) those originally specified in the file. If the
+file is saved, the new options will be saved in it.
+
+The ``=`` and ``,`` and blank field delimiters may be used interchangeably. Option names may be
+upper or lower case. Upper case characters shown in the tables indicate the minimum mandatory
+characters for identifying the option.
+
+.. table:: Option Record Format
+
+  ====== ====== ===================================================
+  Column Format Description
+  ====== ====== ===================================================
+  1-2    A 2    ``OP`` - identifies an option record.
+  3-90   A 88   Free field description of option, see tables below for details.
+  ====== ====== ===================================================
+
+Here is an example of how to specify options in the coordinate file:::
+
+  OPtions OR=L
+  Options SCale_factor=0.9,0.9
+  OP BUs_detail=Bus_name,Powerflow_name
+
+**Page Options**
+These are general appearance options. Several of them are interdependent. They are applied in the
+following order:
+
+  * Orientation
+  * Scale
+  * Offset
+  * Border with transparency flag
+  * Box for identification
+  * Case location
+  * Comment location
+  * Coordinate file name location
+  * Size
+  * Legend location
+
 The option values can be set on the Diagram Options menu.
 
-.. table:: General Appearance Options
+.. table:: General Appearance (Page) Options
 
   +----------------------------------+------------------------------------------------------------+
   | Option                           | Description                                                |
@@ -184,8 +235,41 @@ The option values can be set on the Diagram Options menu.
   |                                  | DEFAULT = no legend.                                       |
   +----------------------------------+------------------------------------------------------------+
 
-The options described in the table above determine which Powerflow values will be displayed on a
+.. figure:: ../img/Page_Options_Dialog_Box.png
+
+  Page Options Dialog Box
+
+**Diagram Options**
+
+The options described in the table below determine which powerflow values will be displayed on a
 diagram.
+
+Those selections that are ON by DEFAULT may be turned off in one of two ways. Some, such as the
+bus name selection, may be toggled to the abbreviations on the bus coordinate records, full bus
+name, or full bus name and base kv. Others, such as generation, may be turned off by preceding
+the value of interest with ``NO_``. For example, to not show generation:::
+
+  Option BUs_detail=NO_Generation
+  or
+  O BU=NO_G
+
+You can also specify on the bus coordinate record whether or not the generation and shunt
+reactance at this bus should be displayed. See bus coordinate records in Table ?? and Figure ??
+for details. The no display indicator on the coordinate records can be overridden with a draw more
+or alwaws draw option for generators or shunt reactors. For example,::
+  
+  Op BUs_detail=AL_Generators
+  Op BUs_detail=MO_Generators
+  Option BUs_detail=AL_Shunt
+
+.. figure:: ../img/GUI_Diagram_Options.png
+
+  GUI Diagram Options
+
+Some of the diagram options are independent; others are mutually exclusive. Look at the GUI
+menu above to quickly determine which is which. Those with *diamond* buttons are exclusive; those
+with *square* buttons can be turned on or off in any combination. This applies no matter whether the
+options are specified from the menu or in the coordinate file.
 
 .. table:: Powerflow Values Options
 
