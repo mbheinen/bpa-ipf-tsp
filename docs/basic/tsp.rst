@@ -3,7 +3,10 @@
 *************************************
 Transient Stability Program (``tsp``)
 *************************************
-The ``tsp`` program performs dynamic (e.g. generator rotor angle, governor output, power system stabilizer output, etc.) simulation of a power system when disturbed from its steady-state condition under various perturbations such as three phase faults, line to line faults, line to ground faults, loss of generation, etc.
+The ``tsp`` program performs dynamic (e.g. generator rotor angle, governor output,
+power system stabilizer output, etc.) simulation of a power system when disturbed 
+from its steady-state condition under various perturbations such as three phase 
+faults, line to line faults, line to ground faults, loss of generation, etc.
 
 Program Description
 ===================

@@ -15,8 +15,9 @@ You can use docker to build and run this project. Just build the container:
     $ cd bpa-ipf-tsp
     $ docker build -t bpa-ipf-tsp .
 
-Then run it, the container will run ``bpf`` by default. So once the container is started, 
-you can just type the name of the file in the ``data`` directory that you'd like to run
+Then run it using interactive ``-i`` and tty ``-t`` option. The container will 
+run ``bpf`` by default so once the container is started you can just type the 
+name of the file in the ``data`` directory that you'd like to run
 (e.g. ``bench.pfc``):
 
 .. code::
@@ -38,7 +39,8 @@ Compiling Manually
 If Docker isn't an option, compile manually. The majority of this codebase is written in
 Fortran with some C so both Fortran and C compiler are needed in order to compile it. 
 Also, note that to this point it has only been test compiled on CentOS/RHEL 7 (gcc 4.8.5) 
-and Ubuntu 20.04 (gcc 9.4.0).
+and Ubuntu 20.04 (gcc 9.4.0). Pull Requests are welcome if you want to try a different
+platform or run into issues on another platform and want to fix something!
 
 Install the build tool (`CMake`_), compilers, and dependencies (`Motif X Window`_):
 
@@ -84,7 +86,7 @@ To build with debug symbols, do ``cmake -DCMAKE_BUILD_TYPE=Debug ..`` instead of
 
 Testing
 -------
-You can run the test suite with ``ctest -C <Build Type>```:
+You can run the test suite after compiling by running ``ctest -C <Build Type>```:
 
 .. code::
 

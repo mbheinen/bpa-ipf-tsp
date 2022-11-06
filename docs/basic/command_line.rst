@@ -329,13 +329,73 @@ Make a "standard" diagram (similar to the GUI operation).::
   aberdeenmetric.cor                    ! using this coordinate file
   diagram.ps                            ! to build this postscript file.
   Case prepared by: A. Perfect Planner  ! Include this comment
-  Priority of study: RWI ! and this comment
-&aberdeeninset.cor ! and this additional coordinate file.
-@OPtion DIagram_type=Pq_flow ! Supplement/Override *.cor options.
-/syscal ! Hello operating system ...
-lpr diagram.ps ! ... send this file to the printer.
-/exit ! This job is finished.
-(end)
+  Priority of study: RWI                ! and this comment
+  &aberdeeninset.cor                    ! and this additional coordinate file.
+  @OPtion DIagram_type=Pq_flow          ! Supplement/Override *.cor options.
+  /syscal                               ! Hello operating system ...
+  lpr diagram.ps                        ! ... send this file to the printer.
+  /exit                                 ! This job is finished.
+  (end)
+
+Example 2
+^^^^^^^^^
+Make a bubble diagram.
+
+  /old_base,file=j94cy91.bse         ! Load the powerflow saved base case
+  /plot                              ! Make a hard copy diagram
+  bubble.cor                         ! using this coordinate file
+  diagram.ps                         ! to build this postscript file.
+  BUBBLE PLOT EXAMPLE                ! Include this comment.
+  /syscal                            ! Hello operating system ...
+  lpr diagram.ps                     ! ... send this file to the printer.
+  /exit                              ! This job is finished.
+  (end)
+
+Example 3
+^^^^^^^^^
+Make a difference diagram.::
+  
+  /old_base,file=9_bus_test.bse                   ! Load the powerflow saved base case
+  /get_data,type=load_ref_base,file=bus_alt1.bse  ! Load a reference
+                                                  ! saved base case
+  / get_data, type = load_ref_area                ! load reference solution data in tables
+  /plot                                           ! Make a hard copy diagram
+  9bus_metricdif.cor                              ! using this coordinate file
+  diagram.ps                                      ! to build this postscript file.
+  Case prepared by: A. Perfect Planner            ! Include this comment
+  Priority of study: RWI                          ! and this comment
+  Difference plot between two cases               ! and this comment.
+  /syscal                                         ! Hello operating system ...
+  lpr diagram.ps                                  ! ... send this file to the printer.
+  /exit                                           ! This job is finished.
+  (end)
+
+Example 4
+^^^^^^^^^
+Make a series of diagrams from a list of coordinate files.::
+
+  /old_base,file=/shr5/j96cy89.bse       ! Load the powerflow saved base case
+  /plot                                  ! Make a hard copy diagram
+  master.cor                             ! using all the coordinate files
+                                         ! listed in this file
+  diagram.ps                             ! to build this postscript file.
+  Case prepared by: A. Perfect Planner   ! Include this comment
+  Priority of study: RWI                 ! and this comment on each diagram.
+  /syscal                                ! Hello operating system ...
+  lpr diagram.ps                         ! ... send this file to the printer.
+  /exit                                  ! This job is finished.
+  (end)
+
+Example 5
+^^^^^^^^^
+Here is an example of a master coordinate file (``master.cor``).::
+  
+  master
+  /home/dave/cor/3rdac.cor
+  /home/dave/cor/500bus.cor
+  /home/dave/cor/bubble.cor
+  /home/dave/cor/sworegon.cor
+  /home/dave/cor/nwmont.cor
 
 .. _ipf_test:
 
