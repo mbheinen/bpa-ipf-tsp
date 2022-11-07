@@ -162,7 +162,7 @@ void unmanage_test_all();
 void system_test_pcdr();
 void test_abort();
 void system_test_c();
-void quick_gui_exit();
+void quick_exit();
 void toolbox_move_toggle();
 void edit_applyz();
 void edit_bus_closez();
@@ -439,7 +439,7 @@ static MrmRegisterArg reglist [] = {
 {"system_test_pcdr", (caddr_t)system_test_pcdr},
 {"test_abort", (caddr_t)test_abort},
 {"system_test_c", (caddr_t)system_test_c},
-{"quick_gui_exit", (caddr_t)quick_gui_exit},
+{"quick_exit", (caddr_t)quick_exit},
 {"toolbox_move_toggle", (caddr_t)toolbox_move_toggle},
 {"edit_applyz", (caddr_t)edit_applyz},
 {"edit_bus_closez", (caddr_t)edit_bus_closez},
@@ -1237,7 +1237,7 @@ void system_test_c(Widget w, XtPointer tag, XtPointer reason)
 {
 test_graphdata(w, tag, reason);
 }
-void quick_gui_exit(Widget w, XtPointer tag, XtPointer reason)
+void quick_exit(Widget w, XtPointer tag, XtPointer reason)
 {
 exit_ipf_quick(w, tag, reason);
 }

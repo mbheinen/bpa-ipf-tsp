@@ -29,3 +29,7 @@ docs/doxygen
 
 # ctags index file from running "ctags -R"
 tags
+
+# X Window binaries and logs
+xwindow/gui.uid
+xwindow/em_log

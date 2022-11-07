@@ -1,0 +1,77 @@
+# File: Makefile
+# Purpose: compile and link gui.c.
+# 
+#
+# Need extra suffixes for uid file compilation.
+#
+.SUFFIXES: .uil .uid
+
+UIL=uil
+UILINC =	-I../libgui
+
+LIBS =		-lgui -lipc \
+		-lMrm -lXm -lXpm -lXmu -lXt -lXext -lX11 -lSM -lICE -lm 
+
+UILS = gui.uil
+UID = gui.uid
+
+all: $(UID)
+
+# new suffix rule for compiling uil files.
+
+.uil.uid:
+	$(UIL) $(UILFLAGS) $(UILINC) -o $*.uid $<
+
+#acbusform.u
+#aclineform.u
+#areaselect.u
+#buscoord.u
+#buseditn.u
+#bushelp.u
+#bus_icon.u
+#buslistdia.u
+#bussectn.u
+#cflow.u
+#color.u
+#contbusdia.u
+#contform.u
+#dcbusform.u
+#dclineform.u
+#debug_dmgr.u
+#define.u
+#display.u
+#equivform.u
+#filemenu.u
+#fopendia.u
+#frontdia.u
+#fsavedia.u
+#helpmenu.u
+#help.u
+#icons.u
+#ipcwindow.u
+#ipfreport.u
+#linedia.u
+#linetap2.u
+#linetap.u
+#linezcalc.u
+#main.u
+#menu_bar.u
+#networkedt.u
+#optmenu.u
+#pf_descrip.u
+#pixmaps.u
+#pqcrvform.u
+#printopt.u
+#procs.u
+#recorddia.u
+#regxfmr.u
+#reportdia.u
+#safe_tools.u
+#solve.u
+#statdia.u
+#swrreac.u
+#systemtest.u
+#tools.u
+#values.u
+#viewmenu.u
+#xfmrdia.u
