@@ -38,15 +38,6 @@ The output portion of the program provides the output data in the form of listin
 
 If line impedances were modified during the solution portion of the program, to correctly output data for these lines the output portiong of the program must be given the modified impedances via line modifiation (``LM``) records. ?? gives an example of how to use ``LM`` records.
 
-Solution
-========
+The remaining information for the Transient Stability Program has not yet been migrated to ReadTheDocs format. See `TSP Users Guide`_ PDF for details.
 
-Debug
-=====
-
-Debug Options
--------------
-
-
-.. _Bonneville Power Administration: https://www.bpa.gov/
-.. _Western Electricity Coordinating Council: https://www.wecc.org/
+.. _TSP Users Guide: https://github.com/mbheinen/bpa-ipf-tsp/blob/master/manuals/TSP_UsersGuide.pdf

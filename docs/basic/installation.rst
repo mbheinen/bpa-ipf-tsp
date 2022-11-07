@@ -1,9 +1,9 @@
 ************
 Installation
 ************
-IPF is installed by compiling from source. This is probably easiest using Docker approach 
-outlined below, but compiling manually from source is also an option.
-
+IPF is installed by compiling from source. This is probably easiest using the 
+Docker approach outlined below, but compiling manually from source is also an 
+option.
 
 Docker
 ======
