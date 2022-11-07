@@ -3073,6 +3073,7 @@ TX_EFF
 
 Use this command to compare total and core transformer losses. The output can be filtered by owners. "BPA" is the default if no owners are specified.
 
+.. _user-analysis:
 USER_ANALYSIS
 =============
 ::
