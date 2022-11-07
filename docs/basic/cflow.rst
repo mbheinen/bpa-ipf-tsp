@@ -1,56 +1,54 @@
 .. _libcflow-c-library:
 
-******************
-libcflow C Library
-******************
+**************************
+CFLOW C API (``libcflow``)
+**************************
 
 Overview
 ========
-CLFOW is a C Application Programming Interface (API) for IPF. The library name is ``libcflow``. With CFLOW, users can access the bus and branch data within the power flow data structures in a highly flexible way. Once data is retrieved from the IPF "data engine", it can be manipulated within the user-written C program and either output to a file, screen, or plotter, or sent back to the IPF "data engine" itself. A CFLOW program is a totally separate process running concurrently with the "powerflow solution and data server" process and communicates with it via an IPC (Inter Process Communication) protocol, so CFLOW requires an
-operating system capable of multi-processing and that supports “sockets” for IPC.
+CLFOW is a C Application Programming Interface (API) for IPF. The library name is ``libcflow``. With CFLOW, users can access the bus and branch data within the power flow data structures in a highly flexible way. Once data is retrieved from the IPF "data engine", it can be manipulated within the user-written C program and either output to a file, screen, or plotter, or sent back to the IPF "data engine" for further processing. A CFLOW program is a totally separate process running concurrently with the "powerflow solution and data server" process and communicates with it via an Inter Process Communication (IPC) protocol that uses sockets.
 
-In order to use CFLOW, you must have some knowledge of the C language and a C compiler. Once a CFLOW program has been written, compiled, linked, and debugged, it is stored as an executable which can be run from the command line or from the IPF GUI using the “PROCESS -- CFLOW” menu option.
+In order to use CFLOW, you must have some knowledge of the C language and have a C compiler. Once a CFLOW program has been written, compiled, linked, and debugged, it is stored as an executable which can be run from the command line or from the IPF GUI using the "PROCESS -- CFLOW" menu option.
 
-The CFLOW product is completely compatible with ANSI C language and compilers and portable to all environments that have an ANSI C compiler.
+CFLOW is completely compatible with ANSI C and portable to all environments that have an ANSI C compiler.
 
 History
 -------
-CFLOW was written to perform analogous functions to the WSCC COPE language: Computationally Oriented Programming Environment. COPE is a stand-alone language integrated with the WSCC equivalent of BPA’s IPF, the Interactive Powerflow System (IPS). CFLOW is a library of C language functions, that have “sister” functions within the IPF. The function pairs form a “remote procedure call” library. All the power of the C language is immediately available to CFLOW users, whereas COPE users are limited to the COPE language and environment. Another example of similar functionality is PTI’s IPLAN which is interpreted similar to the way COPE is. CFLOW is more powerful and flexible than COPE.
+CFLOW was written to perform analogous functions to the WSCC's Computationally Oriented Programming Environment (COPE) language. COPE was a standalone language integrated with the WSCC equivalent of BPA's IPF, the Interactive Powerflow System (IPS). CFLOW is a library of C language functions, that that effectively wrap the ``ipsrv`` server component of IPF. This means it operates as a "remote procedure call" library. All the power of the C language is available to CFLOW users, whereas COPE users are limited to the COPE language and environment. Another example of similar functionality is PTI's IPLAN which is interpreted similar to the way COPE is. CFLOW is more powerful and flexible than COPE.
 
 Audience
 --------
-This documentation assumes that you are a beginning to mid-level C language programmer. This means you should have successfully written programs in languages such as Fortran, BASIC, Pascal, or C. These need not be complex programs, simply programs such as you would be required to complete in an undergraduate college programming course. If you already know C, you are ready to write CFLOW programs. If not, you should probably take a class, invest in a computer tutorial course, and/or spend some time with a good C language book.
+This documentation assumes that you are a beginning to mid-level C language programmer. This means you should have successfully written programs in some languages. If you have some experience with Fortran, BASIC, Pascal, or C it will be even easier for you to grasp. You need not have written complex programs, simply programs such as you would be required to complete in an undergraduate college programming course. If you already know C, you are ready to write CFLOW programs. If not, you should probably take a class, invest in a computer tutorial course, and/or spend some time with a good C language book.
 
-The following C programming books are recommended for those users needing introductory or
-refresher information:
+The following C programming books are recommended for those users needing introductory or refresher information:
 
-  * Brakakati, Nabajyoti. *The Waite Group’s Microsoft C Bible*. Howard W. Sams & Company, 1988. This MS-DOS environment reference book clearly describes ANSI C compatibility for each function.
+  * Brakakati, Nabajyoti. *The Waite Group's Microsoft C Bible*. Howard W. Sams & Company, 1988. This MS-DOS environment reference book clearly describes ANSI C compatibility for each function.
   * Harbison, Samuel P. and Guy L. Steele. C: A Reference Manual. 3rd ed. Prentice-Hall, 1991. This book shows ANSI C facilities contrasted with traditional or alternate facilities. If you are well acquainted with C programming, but want to make sure your program complies with ANSI C, look here.
   * Johnsonbaugh, Richard and Martin Kalin. *Applications Programming in ANSI C*. MacMillan, 1990. This is a textbook used in beginning undergraduate college courses.
-  * Kernighan, Brian W. and Dennis M. Ritchie. *The C Programming Language*. Second Edition. Prentice-Hall, 1988. This is the standard book for learning the language, updated to a second edition. Experienced programmers will do well with this book. Beginners should use Kochan’s book.
+  * Kernighan, Brian W. and Dennis M. Ritchie. *The C Programming Language*. Second Edition. Prentice-Hall, 1988. This is the standard book for learning the language, updated to a second edition. Experienced programmers will do well with this book. Beginners should use Kochan's book.
   * Kernighan, Brian W. and Rob Pike. *The UNIX Programming Environment*. Prentice-Hall, 1984. This book describes how to develop programs in the UNIX operating system.
   * Kochan, Stephen G. *Programming in ANSI C*. Howard W. Sams & Company, 1988. This book is a comprehensive tutorial for the beginning programmer.
   * Plauger, P. J. *The Standard C Library*. Prentice-Hall, 1992. This book shows you how to use the standard ANSI and ISO C library functions. It provides code examples for implementing many of the library functions.
 
 Creating a Program
 ==================
-CFLOW is a library of functions that a C program can link to (with an object file linker) to access IPF data and control IPF execution. The program you write is a C program. CFLOW source programs are created using a text editor. The program lines can be entered in “free format,” since there are no column restrictions like Fortran.
+CFLOW is a library of functions that a C program can link to (with an object file linker) to access IPF data and control IPF execution. The program you write is a C program. CFLOW source programs are created using a text editor. The program lines can be entered in "free format," since there are no column restrictions like Fortran.
 
 Indentation is recommended when designing nested logical constructs to reduce logic errors and enhance readability. For example:
 
 .. code::
 
-  if(condition) {/* beginning of first “if” block */
-    if(condition) {/* beginning of second “if” block */
+  if(condition) {/* beginning of first "if" block */
+    if(condition) {/* beginning of second "if" block */
       statement;
       statement;
-    }/* end of second “if” block */
+    }/* end of second "if" block */
     statement;
     statement;
-  }/* end of first “if” block */
+  }/* end of first "if" block */
   statement;
 
-Include the CFLOW header file, called ``cflowlib.h``, in each of your CFLOW files
+Include the CFLOW header file, called ``cflowlib.h``, in each file that calls a CFLOW function.
 
 Running a CFLOW Program
 =======================

@@ -35,7 +35,7 @@ An example will clarify this. Assume that the normal direct voltages is 800 kV p
 
 .. figure:: ../img/One_Negative_Bridge_Out_of_Operation.png
 
-  Single Negative Bridge Out of Operation
+  One Negative Bridge Out of Operation
 
 For zero neutral current, :math:`I^+_d = I^-_d` (with positive values assigned in the direction shown)
 

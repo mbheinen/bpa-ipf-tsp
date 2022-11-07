@@ -128,7 +128,6 @@ int output_cond_error		( int i, int j, double v1, double v2,
 			 	  char *wrd, char *uname );
 int check_sag			( int p1, int p2, int p3, int cnt );
 
-
 void 
 load_all_edit_widget_id /*****************************************************\
 *
@@ -173,7 +172,7 @@ load_all_edit_widget_id /*****************************************************\
    if( strlen( line_freq ) ==0 ) strncpy( line_freq, "60",      2 );
 }
 
-
+
 void 
 read_lcd_file /***************************************************************\
 *	
@@ -481,7 +480,6 @@ void save_lcd_cb(Widget widget, XtPointer tag,
   XtFree(file_string);
 }
 
-
 /*****************************************************************************\
 *	Function: uscan20.c 
 *
@@ -559,7 +557,6 @@ int cond_num_cmpr(char *s1, char *s2)
 
 
 
-
 /***************************************************************************\
 *	Function: lookup_cp_to_field
 *		(lookup_and_copy_text_to_list_field)
@@ -612,7 +609,6 @@ lookup_cp_to_field \n", fmt);
 }
 
 
-
 void line_z_units_change ( Widget w, XtPointer tag,
 				     XmAnyCallbackStruct *cbs )
 /***************************************************************************\
@@ -649,7 +645,6 @@ void line_z_freq_change ( Widget w, XtPointer tag, XmAnyCallbackStruct *cbs )
 }
 
 
-
 /*****************************************************************************\
 *
 *	Function: line_z_edit_replace
@@ -696,7 +691,6 @@ unsigned long *list_data;
 
 }
 
-
 /*****************************************************************************\
 *
 *	Function: line_z_edit_insert
@@ -752,7 +746,6 @@ unsigned long   *list_data;
    }
 }
 
-
 /*****************************************************************************\
 *
 *	Function: line_z_edit_delete
@@ -794,7 +787,6 @@ unsigned long   *list_data;
 
 }
 
-
 /**************************************************************************\
 *
 *	Function: find_xnum
@@ -850,7 +842,6 @@ int find_xnum ( int *pos )
 }
 
  
-
 /*****************************************************************************\
 *
 *	Function: delete_list_row
@@ -887,7 +878,7 @@ void delete_list_row ( int cnt )
 
 }
 
-
+
 /*****************************************************************************\
 *
 *	Function: transf_list_row
@@ -942,7 +933,7 @@ void edit_to_list ( char *edit_fld, Widget list_id, int cnt )
   motif_string = XmStringCreateSimple( data );
   XmListAddItem   ( list_id, motif_string, cnt );
 }
-
+
 /*****************************************************************************\
 *
 *	Function: highlight_list_row
@@ -983,7 +974,6 @@ void hi_lite( char *widget_name, int cnt )
 }
 
 
-
 /*****************************************************************************\
 *
 *	Function: line_z_edit_clear
@@ -1013,7 +1003,6 @@ void line_z_edit_clear ()
 }
 
 
-
 int set_std_cond_values (Widget w, XtPointer tag, XmAnyCallbackStruct *cbs ) 
 /*****************************************************************************\
 *
@@ -1064,7 +1053,6 @@ int set_std_cond_values (Widget w, XtPointer tag, XmAnyCallbackStruct *cbs )
    return;
 }
 
-
 /*****************************************************************************\
 *
 *	Function: line_z_edit_bundle 
@@ -1083,8 +1071,6 @@ int line_z_edit_bundle (Widget w, XtPointer tag, XmAnyCallbackStruct *cbs )
   return(0);
 }
 
-
-
 /*****************************************************************************\
 *       Function: lookup_and_fill_list.c
 *
@@ -1113,7 +1099,7 @@ void lookup_and_fill_list( char *fld_name, char string[][10], int size )
    XmListAddItems( wid, items, size, 1);
 
 }
-
+
 void line_z_list_number_cb ( Widget w, XtPointer client_data, 
 				XmListCallbackStruct *list_data)
 /*****************************************************************************\
@@ -1177,7 +1163,7 @@ void line_z_list_number_cb ( Widget w, XtPointer client_data,
 
 }
 
-
+
 /*****************************************************************************\
 *
 *	Function: list_to_edit
@@ -1216,7 +1202,7 @@ void list_to_edit( char *edit_fld, char *list_fld, int row, int length )
 
 }
 
-
+
 /*****************************************************************************\
 *	Function: set_optmenu_label
 *
@@ -1254,7 +1240,7 @@ void set_optmenu_label_id( Widget menu_id, char *label )
 }
 
 
-
+
 /*****************************************************************************\
 *
 *	Function: line_z_calc
@@ -1645,7 +1631,7 @@ limit %d \n", count, MAXCND);
    return;
 }     
 
-
+
 /***************************************************************************\
 *	Function: check_conductors
 *		  Checks conductor group data for matching values.
@@ -1708,7 +1694,6 @@ int output_cond_error( int i, int j, double v1, double v2, char *wrd,
   return ( TRUE );
 }
 
-
 /**************************************************************************\
 *	Function: check_sag
 *	 Check for consistent sag for conductors
@@ -1785,8 +1770,6 @@ phases [%d-%d] (%f) \n", p1, p3, sag0, sag);
   return ( FALSE );
 }
 
-
-
 /****************************************************************************
 *	Function: line_z_ok_callback
 *

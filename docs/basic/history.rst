@@ -14,11 +14,21 @@ Prior to the development of the Interactive Power Flow in the 1990s, BPA had dev
 
 The Western Systems Coordinating Council (WSCC) now known as the `Western Electricity Coordinating Council`_ (WECC) had a similar set of tools known as Interactive Powerflow System (IPS) complete with a Domain Specific Language called Computationally Oriented Programming Environment (COPE) for defining power flow studies in a programmatic way. Many of the features and data record formats for IPF, especially for transient stability, were influenced by WSCC's IPS.
 
-These programs were designed for character-based terminals connected to mainframes. However, the 1980s and 90s saw the creation and maturation of graphical user interfaces (GUI) based on the mouse, windows, and menus. Many people became familiar with the physical components of the most widely used GUI: the mouse, the menu, and the window. These components were generally available on the Macintosh computer since 1984 and on IBM PC-compatible computers as an option since 1987. The third most popular GUI in the 90s was the one associated with the X Window System. GUIs were more intuitive and easier to use than character/keyboard-based interfaces. Starting in 1991, BPA began a two-way joint development of a GUI interface for the powerflow program, based upon the X-Window System and the `Motif X Window`_ GUI. The joint partners were the `Electric Power Research Institute`_ EPRI and WSCC. The powerlow program itself was also restructured and enhanced in the process, and a ``libcflow`` library was added as a means to provide users API access to the IPF  functions for use in other programs.
+These programs were designed for character-based terminals connected to mainframes. However, the 1980s and 90s saw the creation and maturation of graphical user interfaces (GUI) based on the mouse, windows, and menus. These components were generally available on the Macintosh computer since 1984 and on IBM PC-compatible computers as an option since 1987. The third most popular GUI in the 90s was the one associated with the X Window System. GUIs were more intuitive and easier to use than character/keyboard-based interfaces. Starting in 1991, BPA began a two-way joint development of a GUI interface for the powerflow program, based upon the X-Window System and the `Motif X Window`_ GUI. The joint partners were the `Electric Power Research Institute`_ EPRI and WSCC. The powerflow program itself was also restructured and enhanced in the process, and a ``libcflow`` library was added as a means to provide users API access to the IPF  functions for use in other programs.
+
+The `Bonneville Power Administration`_ (BPA) Transient Stability Program was developed in accordance with specifications written by the Western Systems Coordinating Council (WSCC), now known as the `Western Electricity Coordinating Council`_ (WECC), and was originally written to be executed on a VAX 11/780 computer. With some exceptions this program closely paralleled the program used in Salt Lake City by the WSCC Technical Staff in the 1980s. 
+
+A copy of the original WSCC specifications for both power flow and transient stability can be found in :ref:`wscc-specifications`.
+
+The difference between this version of the program (i.e. ``tsp``) and the one used in Salt Lake City was the control record requirements for defining the problem such as where the fault is applied, line switching, etc., and the format for all output options. The formats for almost all other intput data requirements maintain strict compatibility between the two programs. Therefore, with grateful acknowledgements to the WSCC Staff, a substantial portion of the materials used in this documentation are reproduced copies taken from the WSCC Program Manual.
+
+Acknowledgement is given to Teshmont Consultants, Inc. of Winnipeg, Manitoba for their many corrections and additions to the transient stability code.
 
 Original License
 ================
-Below is a copy of the original license notice from BPA.::
+Below is a copy of the original license notice from BPA.
+
+.. code::
 
   The BPA Powerflow software (IPF) is Public Domain; here is a copy of the License. 
 
@@ -73,15 +83,16 @@ The original project is the result of a lot of hard work from engineers at BPA a
   * Dan L. Clark
   * Jay G. Coleman
   * Tsu-huei Liu
-  * Walter L. Powell
+  * `Walter L. Powell`_
   * Bill E. Rogers
   * William D. Rogers
   * K E Rowell
   * John L Rutis
-  * D M Stefonik
+  * David M Stefonik
   * D M Syzmanski
 
 .. _Bonneville Power Administration: https://www.bpa.gov/
 .. _Motif X Window: https://motif.ics.com/motif/downloads
 .. _Electric Power Research Institute: https://www.epri.com/
 .. _Western Electricity Coordinating Council: https://www.wecc.org/
+.. _Walter L. Powell: https://linkedin.com/in/walter-powell-18506b53/

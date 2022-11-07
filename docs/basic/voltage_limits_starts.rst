@@ -1,6 +1,8 @@
-*******************************************
-Global Voltage Limits and Starting Voltages
-*******************************************
+.. _voltage-limits-and-starting-voltages:
+
+************************************
+Voltage Limits and Starting Voltages
+************************************
 
 The following table allows you to find global and starting voltages for a bus given the base kV and zone. These values are hard-coded in the program and cannot be altered by the user.
 

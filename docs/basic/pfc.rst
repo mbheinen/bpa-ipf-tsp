@@ -8,7 +8,7 @@ Overview
 ========
 This section describes the batch Power Flow Control (PFC) language and its syntax, commands and subcommands. Command entries follow the PFC description in alphabetical order. The table below helps you turn quickly to a specific command entry. The table also gives you a quick description of all of the commands.
 
-Each command entry explains the meaning of the command and gives its syntax. Some commands have subcommands, which are also described. Many entries have additional discussion, and some have examples, particularly where a command’s usage may not be immediately obvious.
+Each command entry explains the meaning of the command and gives its syntax. Some commands have subcommands, which are also described. Many entries have additional discussion, and some have examples, particularly where a command's usage may not be immediately obvious.
 
 The ``bpf`` Control Language
 ============================
@@ -74,14 +74,14 @@ Each general format is followed by an example.
      / P_INPUT_LIST, ZONES=NA,NB,NC,ND,NE,NF, -
               NG,NH,NI,NJ,NK
 
-  * A command followed by a comma with multiple value/keyword assignments.
+ * A command followed by a comma with multiple value/keyword assignments.
 
    .. code::
 
      / command , keyword = value , keyword = value ,... 
      / MERGE_OLD_BASE, SUB_SYSTEM_ID = AREA-1, OLD_BASE = TESTDC.BAS
  
-  * A command followed by a data record(s).
+ * A command followed by a data record(s).
 
    .. code::
 
@@ -91,14 +91,14 @@ Each general format is followed by an example.
      B     GEN2 HI    230  1  -0.0  -0.0  0.0 0.0      -0.0 -0.0 -0.0 
      B     GEN3 HI    230  2  -0.0  -0.0  0.0 0.0      -0.0 -0.0 -0.0
   
-  * A subcommand followed by a comma with multiple comma-separated values.
+ * A subcommand followed by a comma with multiple comma-separated values.
 
    .. code::
 
      >subcommand, value, value, value ,... 
      >SAVE_ZONES,NA,NB,NC,ND,NE,NF,NG,NH,NI,NJ,NR
 
-  * A subcommand followed by a data record on the next line.
+ * A subcommand followed by a data record on the next line.
 
    .. code::
 
@@ -129,7 +129,9 @@ After the first case has been processed, ``P_INPUT_LIST`` is set to ``NONE``. Th
 Microfiche Control Statement
 ============================
 
-  ``[ FICHE,COPIES = n ]`` or
+.. code::
+
+  ``[ FICHE,COPIES = n ]``
   ``( FICHE,COPIES = n )``
 
 This command requests "n" copies of microfiche listings to be made. If it is omitted, the fiche file is not saved. If ""n" is zero or omitted, no copies are made. When it is used, this control must be first in the job stream.
@@ -147,7 +149,11 @@ Level 1 PFC Commands
 
 ``( END )`` or ``( STOP )``
 
-  This stops the execution of the IPF program. Each network is processed with a ``( POWERFLOW )`` or ``( NEXTCASE )`` command. The first must always be ``( POWERFLOW )``. Several cases may be concatenated (stacked) in the following format:
+  This stops the execution of the IPF program. 
+  
+Each network is processed with a ``( POWERFLOW )`` or ``( NEXTCASE )`` command. The first must always be ``( POWERFLOW )``. Several cases may be concatenated (stacked) in the following format:
+
+.. code::
 
     ``( POWERFLOW )`` statement for case 1
     ``( POWERFLOW )`` statement or ``( NEXTCASE )`` statement for case 2
@@ -159,13 +165,17 @@ Level 1 PFC Commands
 
 The following control statement and the optional keywords that go with it identify the ``OLD_BASE`` file, optionally perform miscellaneous temporary changes to ``OLDBASE``, set solution parameters, and solve the resultant network. 
 
-  ``(POWERFLOW CASEID = <casename>, PROJECT = <projname>)``
+.. code::
+
+  (POWERFLOW CASEID = <casename>, PROJECT = <projname>)
 
 ``casename`` is a user-assigned 10-character identification for the case. ``projname`` is a user-assigned, 20-character identification for the project or study to which this case applies. (No blanks are allowed; use hyphens instead.) 
 
 The following statement is used if the Powerflow solution is to be run starting with data and controls from the previous base case in residence.
 
-  ``( NEXTCASE, CASEID = <casename>, PROJECT = <projname> )``
+.. code::
+
+  ( NEXTCASE, CASEID = <casename>, PROJECT = <projname> )
 
 Note that ``/ OLD_BASE`` is not used with a ``( NEXTCASE )`` statement since a base data file is already in residence.
 
@@ -245,7 +255,9 @@ This command emulates automatic generation control (AGC) in the solution algorit
 
 The individual AGC units are identified with type ``B`` (bus) records which follow the ``/ AGC`` command. columns (1:18) correspond with the original format. Beyond column 18, data is free field.
 
-  ``B  <bus_name,base kV>  Pmin=<##>, Pmax=<##>, Pgen=<##>, %=<##>``
+.. code::
+
+  B  <bus_name,base kV>  Pmin=<##>, Pmax=<##>, Pgen=<##>, %=<##>
 
 where
 
@@ -309,9 +321,9 @@ All of the active units should have an individual ratio
 
 AI_LIST
 =======
-This command controls the level of detail in the area interchange listing.
+This command controls the level of detail in the area interchange listing.::
 
-  ``/ AI_LIST = FULL``
+  / AI_LIST = FULL
 
 ``FULL`` is the default. The options are:
 
@@ -337,13 +349,13 @@ A special option exists on the ``> LINEFF`` report. Its entirety is::
 
  > LINEFF, SORT = BUS_NAME, OUTPUT=filename, FIELD_WIDTH =  132,F,P
                                                              80,F,P 
- >   VOLTAGE,
-     OWNER,
-     ZONE,
+ >                VOLTAGE,
+                  OWNER,
+                  ZONE
 
-All quantities are optional.::
+All quantities are optional.
 
-  ``SORT`` Controls sorting by bus kV_name, owner_name, or name.
+  ``SORT`` Controls sorting by bus kV_name, owner_name, or zone name.
 
   ``OUTPUT`` Copies a duplicate report to the named file.
 
@@ -401,8 +413,8 @@ The primary motive of sensitivity is to calculate the instantaneous system respo
 By recalculating the Jacobian matrix, various constraints can be changed. The flexibility of these constraints is evident in the format of the sensitivity command.::
 
   / BUS_SENSITIVITIES,LTC=ON,AI_CONTROL=CON,Q_SHUNT=ADJ,Q_GEN=ADJ
-                   OFF,          OFF         FIXED     FIXED
-                                 MON
+                          OFF,          OFF         FIXED     FIXED
+                                        MON
 
 The top line defines the default values.
 
@@ -444,10 +456,10 @@ The fields on the ``B``-blank record determine which sensitivity :math:`\frac{dP
   :math:`\frac{dP}{d\theta}` Not required Required            Not required
   :math:`\frac{dP}{dV}`      Literal: “V” Required            Not required
   :math:`\frac{dQ}{dV}`      Not required Not required        Required 
-  :math:`\frac{dQ}{dV}` a    (blank)      (blank)             (blank)
+  :math:`\frac{dQ}{dV}` *    (blank)      (blank)             (blank)
   ========================== ============ =================== =====================
 
-a. This is the default.
+\* This is the default.
 
 Repeat Sensitivities
 --------------------
@@ -525,7 +537,7 @@ CHANGE_BUS_TYPE
 
   ``/ CHANGE_BUS_TYPE``
 
-This command disables voltage control in selected areas of the system and performs bus type changes from a voltage control type to a more passive type. The changes it makes are permanent and apply to the case in residence. If this command appears before any system changes, the bus type changes will apply before the system changes, exempting any new or changed buses. If this command appears after any system changes, any new or changed buses will be subject to bus type changes invoked with this command. See Table 4-5.
+This command disables voltage control in selected areas of the system and performs bus type changes from a voltage control type to a more passive type. The changes it makes are permanent and apply to the case in residence. If this command appears before any system changes, the bus type changes will apply before the system changes, exempting any new or changed buses. If this command appears after any system changes, any new or changed buses will be subject to bus type changes invoked with this command.
 
 An example is shown below.
 
@@ -612,7 +624,7 @@ The following restrictions apply to line drop compensation:
 
 Reactive Compensation
 ---------------------
-This feature is similar to the Raindrop Compensation; it temporarily replaces the ordinary ``BG`` -> ``BC`` voltage control of a remote bus with a ``BG`` control of a compensated voltage, which is specified as the voltage drop from the bus terminal voltage computed with the generator reactive power in series with a user-specified impedance. This control scheme is valid only for this case, and may be introduced only within context of a ``CHANGE_BUS_TYPE`` command. In subsequent cases, these generators revert to their normal control mode
+This feature is similar to Line Drop Compensation; it temporarily replaces the ordinary ``BG`` -> ``BC`` voltage control of a remote bus with a ``BG`` control of a compensated voltage, which is specified as the voltage drop from the bus terminal voltage computed with the generator reactive power in series with a user-specified impedance. This control scheme is valid only for this case, and may be introduced only within context of a ``CHANGE_BUS_TYPE`` command. In subsequent cases, these generators revert to their normal control mode
 
 The target compensated voltage is defined with a computed voltage limit. That limit is derived from two base case terminal voltages -- the ``BG`` bus and the remote ``BC`` bus (the remote bus may be another type). The formula used is
 
@@ -1236,9 +1248,9 @@ Line sensitivities relate line immittances (impedance or admittance) to voltage,
 
   :math:`d\frac{Loss}{dB_s}` Change in system losses with respect to a change in shunt susceptance :math:`B_s` .
 
-  :math:`d\frac{V_i}/{dX_t}` Change in bus voltage (:math:`V_i`) with respect to a change in transfer reactance math:`X_t` .
+  :math:`d\frac{V_i}{dX_t}` Change in bus voltage (:math:`V_i`) with respect to a change in transfer reactance :math:`X_t`.
 
-  :math:`d\frac{V_i}/{dB_s}` Change in bus voltage (:math:`V_i`) with respect to a change in shunt susceptance :math:`B_s` .
+  :math:`d\frac{V_i}{dB_s}` Change in bus voltage (:math:`V_i`) with respect to a change in shunt susceptance :math:`B_s` .
 
 The change in transfer reactance :math:`X_t` or shunt susceptance :math:`B_s` pertains to an existing line. The command statement which invokes line sensitivities is::
 
@@ -1255,7 +1267,7 @@ The second part of the sensitivities is the perturbed quantities :math:`dX_t` or
   ======= ======= ==========================
   Columns Format  Description
   ======= ======= ==========================
-  (1:3)   A3      ``>PB``: :math:`\frac{dP_{ij}}{dB_s} or :math:`\frac{dP_{ij}}{dX_t}`
+  (1:3)   A3      ``>PB``: :math:`\frac{dP_{ij}}{dB_s}`` or :math:`\frac{dP_{ij}}{dX_t}`
                   ``>LB``: :math:`\frac{dLoss}{dB_s}` or :math:`\frac{dLoss}{dX_t}`
                   ``>VB``: :math:`\frac{dV_i}{dB_s}` or :math:`\frac{dV_i}{dX_t}`
   (7:18)  A8,F4.0 Bus1 name and base kV
@@ -1268,7 +1280,7 @@ The second part of the sensitivities is the perturbed quantities :math:`dX_t` or
 
 A maximum of 50 perturbed quantity ``>`` records may be present.
 
-The ambiguity :math:`d(.)/dB_s` or :math:`d(.)/dX_t` is resolved by non-zero entities for :math:`X_t` or :math:`B_s` . If both are zero, the default is :math:`X_t` . Non-zero entities define the magnitude of the perturbed quantity :math:`dX_t` or :math:`dB_s`. Perturbed flows, losses, or voltages will be computed using these values.
+The ambiguity :math:`d(.)/dB_s` or :math:`d(.)/dX_t` is resolved by non-zero entities for :math:`X_t` or :math:`B_s` . If both are zero, the default is :math:`X_t` . Non-zero entities define the magnitude of the perturbed quantity :math:`Delta X_t` or :math:`Delta B_s`. Perturbed flows, losses, or voltages will be computed using these values.
 
 The perturbed branch flows :math:`P_{ij}` are identified with the individual ``L`` records that follow. If parallel lines are present, :math:`P_{ij}` pertains to the total of all parallel flows.
 
@@ -1392,18 +1404,18 @@ Six percentage distribution factors can be specified by the user. The following 
 
 .. math::
 
-  P_{load} &= 50% P + 25% I + 25% Z  \\
+  P_{load} &= 50% P + 25% I + 25% Z \\
   Q_{load} &= 50% Q + 25% I + 25% Z
 
 From this command, the following quantities will be defined:
 
 .. math::
 
-  PP (%Constant P_{load}) &= 50% \\
-  PI (%Constant I_{load}) &= 25% \\
-  PZ (%Constant Z_{load}) &= 25% \\
-  QP (%Constant Q_{load}) &= 50% \\
-  QI (%Constant I_{load}) &= 25% \\
+  PP (%Constant P_{load}) &= 50%  \\
+  PI (%Constant I_{load}) &= 25%  \\
+  PZ (%Constant Z_{load}) &= 25%  \\
+  QP (%Constant Q_{load}) &= 50%  \\
+  QI (%Constant I_{load}) &= 25%  \\
   QZ (%Constant Z_{load}) &= 25%
 
 There are restrictions; the percentage distributions must be complete.
@@ -1417,22 +1429,26 @@ This means that if some load is to be unchanged, a value of 100% must be entered
 
 The following relations hold at the base voltages:
 
-::
-
-  Constant MVA     Constant MVA    Constant I    Constant Z
-
 .. math::
 
-  P_{load_{old}}     &=  P_{load_{new}}     + A_{load} * V   + G_{shunt} * V^2 \\
+  Constant MVA        Constant MVA            Constant I         Constant Z
+
+  P_{load_{old}}     &=  P_{load_{new}}     + A_{load} * V   + G_{shunt} * V^2
+  
   Q_{load_{old}}     &=  Q_{load_{new}}     + B_{load} * V   - B_{shunt} * V^2
 
 where
 
   :math:`P_{load_{new}}` (MW) =  :math:`P_{load_{old}}` (MW) :math:`* PP / 100`
+
   :math:`Q_{load_{new}}` (MVAR) =  :math:`Q_{load_{old}}` (MVAR)  :math:`*  QP / 100`
+
   :math:`A_{load}` (MW) =  :math:`P_{load_{old}}` (MW) :math:`*  PI / (100 * V)`
+
   :math:`B_{load}` (MVAR) =  :math:`Q_{load_{old}}` (MVAR)  :math:`*  QI / (100 * V)`
+
   :math:`G_{shunt}` (MW) =  :math:`P_{load_{old}}` (MW) :math:`*  PZ / (100 * V^2)`
+
   :math:`B_{shunt}` (MVAR) = :math:`--Q_{load_{old}}` (MVAR) :math:`*  QZ / (100 * V^2)`
 
 The negative sign for :math:`B_{shunt}` is correct. The actual expression is
@@ -1513,7 +1529,8 @@ Individually Selected Buses
 This command permits unique distribution factors to be specified for individual buses. The buses and their distribution factors are identified on fixed field records. The format of the B % load change record is shown in the figure below. ``CHANGE_TYPE`` is optional. ``ALOAD`` and ``RLOAD`` have the same interpretation given in Table 4-8. Thus, they would apply to ``+`` records, but not to ``B`` records.
 
 If the ownership field is blank or includes the bus ownership, the percentages apply only to data on the bus ``B`` record. Continuation bus data will not be affected.
-On the other hand, if the ownership is the magic code ###, the percentages apply to data on the bus ``B`` record and also to data on all associated continuation bus records.
+
+On the other hand, if the ownership is the magic code ``###``, the percentages apply to data on the bus ``B`` record and also to data on all associated continuation bus records.
 
 .. figure:: ../img/CHANGE_BUS_Load_Input_Format_for_B_Records.png
 
@@ -1537,7 +1554,7 @@ The identification fields for ``+ %`` bus records are identical to those for the
 
 The format of the ``+ %`` load change records is shown below.
 
-.. figure:: ../img/CHANGE_BUS_Load_Input_Format_for_+_Records.png
+.. figure:: ../img/CHANGE_BUS_Load_Input_Format_For_plus_Records.png
 
   CHANGE_BUS % Load Input Format for + Records
 
@@ -1946,6 +1963,8 @@ MVA_BASE
 
 This command changes the base MVA from the default value of 100 MVA to an assigned value.
 
+.. _pfc-network-data:
+
 NETWORK_DATA
 ============
 
@@ -1964,15 +1983,219 @@ NEW_BASE
 
 This command defines the name of the new base file to save the network solved by the case run. It may be the same as the old base file, if you want to overwrite it.
 
- OI_LIST
- =======
+OI_LIST
+=======
+This command is used to list ownership interchange.::
 
    / OI_LIST = NONE
                TIELINE
                MATRIX
                FULL
 
-This is used to list ownership interchange. Owners are listed using the expanded owner identifications hard-coded in the program. See ?? for the complete list.
+Owners are listed using the expanded owner identifications hard-coded in the program. See 
+below for the complete list of codes and expanded names.
+
+============== =========================================
+Ownership Code Ownership Name
+============== =========================================
+AAC            ANACONDA ALUMINUM COMPANY
+AEC            ATOMIC ENERGY COMMISSION 
+AEP            ARIZONA ELECTRIC POWER COOPERATION 
+ALA            ALABAMA POWER COMPANY 
+ALC            ALUMINUM COMPANY OF AMERICA 
+APS            ARIZONA PUBLIC SERVICE COMPANY 
+ARL            ARKANSAS POWER AND LIGHT COMPANY 
+ARR            ARROWHEAD ELECTRIC COOPERATIVE, INC.
+AVC            AMARGOSA VALLEY COOPERATIVE INC.
+BBE            BIG BEND ELECT. COOP 
+BCH            BRITISH COLUMBIA HYDRO AND POWER AUTHORITY 
+BEC            BASIN ELECTRIC POWER COOP.
+BEP            BASIN ELECTRIC COOPERATIVE
+BHP            BLACK HILLS POWER AND LIGHT COMPANY 
+BPA            BONNEVILLE POWER ADMINISTRATION
+BPD            BENTON CO. PUD 
+BRE            BENTON REA 
+CAL            CALIFORNIA DEPARTMENT OF WATER RESOURCES
+CCC            COOS CURRY ELECTRIC COOP 
+CCP            COWLITZ COUNTY PUBLIC UTILITY DISTRICT NO.1
+CCS            CITY OF COLORADO SPRINGS 
+CE1            DEP. OF ARMY CORPS OF ENGINEER (REGION 1 AREA)
+CE2            DEP. OF ARMY CORPS OF ENGINEER (REGION 2 AREA)
+CE3            DEP. OF ARMY CORPS OF ENGINEER (REGION 3 AREA)
+CE4            DEP. OF ARMY CORPS OF ENGINEER (REGION 4 AREA)
+CE5            DEP. OF ARMY CORPS OF ENGINEER (REGION 5 AREA)
+CE6            DEP. OF ARMY CORPS OF ENGINEER (REGION 6 AREA)
+CE7            DEP. OF ARMY CORPS OF ENGINEER (REGION 7 AREA)
+CEC            COMMONWEALTH EDISON COMPANY (ILLINOIS) 
+CED            COMMONWEALTH EDISON COMPANY OF INDIANA, INC. 
+CEN            CENTRAL POWER ELECTRIC COOP., INC. (N. DAKOTA)
+CIP            CENTRAL IOWA POWER COOPERATIVE 
+CIS            CENTRAL ILLINOIS PUBLIC SERVICE COMPANY 
+CLA            CLALLAM PUD 
+CLK            CLARK COUNTY PUBLIC UTILITY DISTRICT NO. 1 
+CLP            CENTRAL LINCOLN PUD 
+CLT            CLATSKANIE PUD 
+CMS            CHICAGO, MILWAUKEE, ST.PAUL AND PACIFIC R.R. CO. 
+CNP            CENTRAL NEBRASKA PUBLIC POWER AND IRRIGATION DIST.
+COB            CORN BELT POWER COOPERATIVE, INC. 
+COE            DEP. OF ARMY CORPS OF ENGINEERS 
+COR            CITY OF RICHLAND 
+CPA            COOPERATIVE POWER ADMINISTRATION 
+CPD            CHELAN COUNTY PUBLIC UTILITY DISTRICT NO. 1 
+CPI            CONSUMERS POWER INC. 
+CPL            CALGARY POWER LIMITED 
+CPN            C P NATIONAL 
+CPP            CONSUMERS PUBLIC POWER DISTRICT (NEBRASKA) 
+CPS            COMMUNITY PUBLIC SERVICE CO. 
+CPU            CALIFORNIA PACIFIC UTILITIES COMPANY 
+CRP            COLUMBIA RIVER PUD 
+CU             COLORADO-UTE ELECTRIC ASSOCIATION 
+DPC            DAIRYLAND POWER COOPERATIVE (WISC., MINN.) 
+DPD            DOUGLAS COUNTY PUBLIC UTILITIES DISTRICT 
+EEQ            EASTERN EQUIVALENT 
+EIL            EASTERN IOWA LIGHT AND POWER COOPERATIVE 
+ELE            EL PASO ELECTRIC COMPANY 
+ELP            EL PASO ELECTRIC COMPANY 
+EMP            EMERALD PUD 
+EPE            EL PASO ELECTRIC 
+ERP            EAST RIVER ELECTRIC POWER COOP.,INC.(S. DAKOTA) 
+EWE            EUGENE WATER AND ELECTRIC BOARD (OREGON) 
+FRC            FALL RIVER ELEC. COOP 
+FRK            FRANKLIN CO. PUD 
+GH             GRAYS HARBOR COUNTY PUBLIC UTILTIY DISTRICT 
+GPD            GRANT COUNTY PUD NO.2 (WASHINGTON) 
+GSU            GULF STATE UTILITIES COMPANY (TEXAS, LOUISIANA) 
+HAR            HARNEY ELECTRIC COOP 
+HEA            HIGHLINE ELECTRIC ASSOCIATION 
+HPL            HOUSTON POWER AND LIGHT COMPANY 
+IDP            IDAHO POWER COMPANY 
+IEL            IOWA ELECTRIC LIGHT AND POWER 
+IGE            IOWA ILLINOIS GAS AND ELECTRIC COMPANY 
+IID            IMPERIAL IRRIGATION DISTRICT (CALIFORNIA) 
+IIG            IOWA-ILLINOIS GAS & ELECTRIC CO. 
+ILL            ILLINOIS POWER COMPANY 
+ILM            ILLINOIS AND EASTERN MISSOURI 
+IME            INDIANA AND MICHIGAN ELECTRIC COMPANY 
+INL            INLAND POWER AND LIGHT 
+INP            INLAND POWER AND LIGHT COMPANY 
+IPC            IDAHO POWER COMPANY 
+IPL            IOWA POWER AND LIGHT COMPANY 
+IPS            IOWA PUBLIC SERVICE COMPANY 
+IPU            IOWA SOUTHERN UTILITIES CO. 
+ISP            INTERSTATE POWER COMPANY 
+ISU            IOWA SOUTHERN UTILITIES COMPANY 
+KCP            KANSAS CITY POWER AND LIGHT COMPANY 
+KGE            KANSAS GAS AND ELECTRIC COMPANY 
+KPL            KANSAS POWER AND LIGHT COMPANY 
+LA             CITY OF LOS ANGELES DEPARTMENT OF WATER AND POWER
+LCR            LOWER COLORADO REGION WESTERN AREA POWER ADMIN. 
+LEC            LANE CO. ELEC.COOP. 
+LES            LINCOLN ELECTRIC SYSTEM 
+LEW            LEWIS CO. PUD. 
+LPL            LOUISIANA POWER AND LIGHT COMPANY 
+LSD            LAKE SUPERIOR DISTRICT POWER COMPANY 
+LVP            LOWER VALLEY POWER AND LIGHT 
+MAI            MAIN-MID-AMERICA INTERPOOL NETWORK 
+MCM            MCMINNVILE, CITY OF 
+MDU            MONTANA-DAKOTA UTILITIES COMPANY 
+MFR            MILTON-FREEWATER 
+MH             MANITOVA HYDRO ELECTRIC BOARD 
+MIN            MINNKOTA POWER COOPERATIVE, INC. 
+MLC            MISSOURI POWER AND LIGHT COMPANY 
+MLE            MOON LAKE ELECTRIC ASSOCIATION, INC. 
+MN1            MASON COUNTY PUD #1 
+MN3            MASON COUNTY PUD #3 
+MPC            MONTANA POWER COMPANY 
+MPL            MINNESOTA POWER AND LIGHT COMPANY 
+MPO            MISSISSIPPI POWER AND LIGHT COMPANY 
+MPR            MID PACIFIC REGION - USBR 
+MPS            MISSOURI PUBLIC SERVICE COMPANY 
+MPW            MUSCATINE POWER AND WATER 
+MWD            METROPOLITAN WATER DISTRICT OF SOUTHERN CALIFORNIA 
+NEP            N.W. ELECTRIC POWER COOP., INC. (MISSOURI,ARK.) 
+NGT            NEBRASKA ELECTRIC GENERATING AND TRANSMISSION COOP 
+NIP            NORTHWEST IOWA POWER COOPERATIVE 
+NLI            NORTHERN LIGHTS,INC. 
+NPC            NEVADA POWER COMPANY 
+NPP            NEBRASKA PUBLIC POWER SYSTEM 
+NPR            NORTH PACIFIC REGION - USBR 
+NSC            NORTHERN STATES POWER COMPANY, (WISCONSIN) 
+NSP            NORTHERN STATES POWER COMPANY, (MINN.,N.D.,S.D.) 
+NWA            NORTHERN WASCO PUD 
+NWP            NORTHWESTERN PUBLIC SERVICE COMPANY (S. DAKOTA) 
+OGE            OKLAHOMA GAS AND ELECTRIC COMPANY 
+OKP            OKANOGAN CO. PUD 
+OPD            OMAHA PUBLIC POWER DISTRICT 
+OPP            OMAHA PUBLIC POWER DISTRICT 
+OTC            OREGON TRAIL COOP 
+OTP            OTTER TAIL POWER COMPANY 
+OWI            OROVILLE-WYANDOTTE IRRIGATION DISTRICT, (CALIF.) 
+PAN            PORT ANGELES 
+PDO            PEND OREILLE PUD 
+PEG            PLAINS ELECTRIC G AND T COOP(NEW MEXICO) 
+PEN            PENINSULA LT. CO. 
+PG             PORTLAND GENERAL ELECTRIC COMPANY 
+PGE            PACIFIC GAS AND ELECTRIC COMPANY 
+PGT            PLAINS ELECTRIC G AND T COOP., (NEW MEXICO) 
+PNM            PUBLIC SERVICE COMPANY OF NEW MEXICO 
+PPL            PACIFIC POWER AND LIGHT COMPANY
+PPW            PACIFIC POWER AND LIGHT - WYOMING 
+PRP            PLATTE RIVER POWER AUTHORITY 
+PSC            PUBLIC SERVICE COMPANY OF COLORADO 
+PSI            PUBLIC SERVICE COMPANY OF INDIANA 
+PSO            PUBLIC SERVICE COMPANY OF OKLAHOMA 
+PSP            PUGET SOUND POWER AND LIGHT COMPANY 
+R1             WESTERN AREA POWER ADMIN. REGION 1 
+R2             WESTERN AREA POWER ADMIN. SACRAMENTO AREA 
+R3             WESTERN AREA POWER ADMIN. REGION 3 
+R4             WESTERN AREA POWER ADMIN. SALT LAKE CITY AREA 
+R5             WESTERN AREA POWER ADMIN. REGION 5 
+R6             WESTERN AREA POWER ADMIN. BILLINGS AREA 
+R7             WESTERN AREA POWER ADMIN. DENVER AREA 
+RCP            RURAL COOPERATIVE POWER ASSOCIATION, (MINNESOTA) 
+RFT            RAFT RIVER RURAL ELECTRIC COOP 
+SC             SOUTHERN CALIFORNIA EDISON COMPANY 
+SCE            SOUTHERN CALIFORNIA EDISON COMPANY 
+SCL            SEATTLE CITY LIGHT COMPANY 
+SCP            SOUTHEAST COLORADO POWER ASSOCIATION 
+SDG            SAN DIEGO GAS AND ELECTRIC COMPANY 
+SJL            SAINT JOSEPH LIGHT AND POWER COMPANY 
+SMD            SACRAMENTO MUNICIPAL UTILITIES DISTRICT 
+SPA            SOUTHWESTERN POWER ADMIN. 
+SPC            SASKATCHAWAN POWER COMPANY 
+SPD            SNOHOMISH COUNTY PUBLIC UTILITIES DISTRICT 
+SPP            SIERRA PACIFIC POWER COMPANY 
+SPS            SOUTHWESTERN PUBLIC SERVICE COMPANY 
+SRP            SALT RIVER POWER DISTRICT 
+SUB            SPRINGFIELD UTILITY BOARD 
+SWP            SOUTHWESTERN POWER ADMINISTRATION 
+SWR            SOUTHWEST REGION - USBR 
+TCE            TRI-COUNTY ELECTRIC ASSOCIATION, INC. (WYOMING) 
+TCL            TACOMA CITY LIGHT COMPANY 
+TEP            TUSCON ELECTRIC POWER COMPANY 
+TES            TEXAS ELECTRIC SERVICE COMPANY 
+TGE            TUCSON GAS AND ELECTRIC COMPANY 
+TIL            TILLAMOOK PUD 
+TPL            TEXAS POWER AND LIGHT COMPANY 
+TRI            TRI-STATE GENERATION AND TRANSMISSION ASSOC. 
+TSG            TRI-STATE GENERATION AND TRANSMISSION ASSOC. 
+TVA            TENNESEE VALLEY AUTHORITY 
+UEC            UNION ELECTRIC COMPANY (IOWA,MISSOURI,ILLLINOIS) 
+UPA            UNITED POWER ASSOCIATION, INC. (NORTH DAAKOTA) 
+UPL            UTAH POWER AND LIGHT COMPANY 
+USN            U.S.NAVY WAP WESTERN AREA POWER ADMINISTRATION-BILLINGS AREA 
+WEP            WISCONSIN ELECTRIC POWER COMPANY 
+WIS            WISCONSIN PUBLIC SERVICE CORP. 
+WKP            WEST KOOTENAY POWER AND LIGHT COMPANY, LTD. 
+WMP            WISCONSIN MICHIGAN POWER COMPANY 
+WPD            WHATCOM COUNTY PUD
+WPS            WASHINGTON PUBLIC POWER SUPPLY SYSTEM 
+WRP            WISCONSIN RIVER POWER COMPANY 
+WRE            WELLS RURAL ELECTRIC CO. 
+WST            WESTERN POWER AND GAS COMPANY (COLORADO) 
+WWP            WASHINGTON WATER POWER COMPANY 
+YWE            YUMA WRAY ELEC.ASSN.,INC.
+============== =========================================
 
 OLD_BASE
 ========
@@ -2386,7 +2609,7 @@ REDUCTION
 
   ``/ REDUCTION``
 
-This command reduces the network in residence to a desired size and solves the reduced network. It can be saved or processed further as an ordinary base case. For more detail on the methods used, see ??.::
+This command reduces the network in residence to a desired size and solves the reduced network. It can be saved or processed further as an ordinary base case. For more detail on the methods used, see :ref:`network-reduction`.::
 
   / REDUCTION
   .......
@@ -2406,7 +2629,7 @@ The named constituent buses which comprise each coherent cluster may be either r
 
 Special codes on each bus permit individual dispositions of generator and load quantities. Generation and/or load may be converted to constant current, constant admittance, or converted to an REI coherent unit. The codes are show in the table below.
 
-.. table:: Reduction Quali?er Codes
+.. table:: Reduction Qualifier Codes
 
   ============== =======================
   Column         Value
@@ -2497,7 +2720,7 @@ This command defines the retained network as consisting of all buses identified 
 
   >SAVE_ZONES = <list>, BASES = <list>
 
-This command defines the retained network as consisting of those buses which have zones in the first list, with the optional, additional provision that their base kvs must be in the second list. Elements of the list are separated with commas (,).
+This command defines the retained network as consisting of those buses which have zones in the first list, with the optional, additional provision that their base kvs must be in the second list. Elements of the list are separated with commas (,).::
 
   >STARTING_VOLTAGES = FLAT
                        HOT
@@ -2850,6 +3073,7 @@ TX_EFF
 
 Use this command to compare total and core transformer losses. The output can be filtered by owners. "BPA" is the default if no owners are specified.
 
+.. _user-analysis:
 USER_ANALYSIS
 =============
 ::
@@ -3343,3 +3567,216 @@ The second comment line has no substitution. The third has two symbol substituti
 If no format specification is used, the default (F6.0) is used. In this instance, it would be plausible to use five-character symbol names. When the $ is included, the substituted text is the same field width as the original text. The program limits are 500 comment lines including headers and subheaders. No symbol substitution occurs on headers or subheaders.
 
 If a comment refers to an undefined symbol, a warning is issued, with the questionable fields flagged with a string of ``??????``s. The limits are 500 lines of symbol definition and 1000 symbols. Comment text (``.`` in column 1) is excluded.
+
+.. _pfc-examples:
+
+PFC Examples
+============
+This section gives several examples of PFC files that can be used with the ``bpf`` process.
+
+Base Case Example
+-----------------
+Here is a basic powerflow run that contains all data in the control file (``ninebus.pfc``).
+
+:: 
+
+  (  POWERFLOW,CASEID=NINEBUS,  PROJECT = EXAMPLES  ) 
+  / HEADER 
+  H    WSCC Nine Bus Base Case 
+  / COMMENT 
+  C 
+  C  CASEB-1_  NINE-BUS CASE, ON CARDS, THAT IN ADDITION TO TESTING 
+  C             THE FEATURES OF CASE A-1, ALSO FEATURES_TRANSFORMERS 
+  C            AND SUBTYPE "E" BUSES. 
+  C 
+  / P_INPUT_LIST,FULL 
+  / P_OUTPUT_LIST,FULL 
+  / AI_LIST=NONE 
+  / P_ANALYSIS_RPT,LEVEL = 4 
+  / F_ANALYSIS_RPT,LEVEL = 1 
+  / NEW_BASE, FILE = ninebus.bse 
+  / NETWORK_DATA 
+  B     GEN1 HI    230  2  -0.0  -0.0  0.0 0.0      -0.0 -0.0 -0.0 
+  B     GEN2 HI    230  1  -0.0  -0.0  0.0 0.0      -0.0 -0.0 -0.0 
+  B     GEN3 HI    230  2  -0.0  -0.0  0.0 0.0      -0.0 -0.0 -0.0 
+  B     STA A        230   1125.0  50.0  0.0 0.0    -0.0 -0.0 -0.0 
+  B     STA B        230  2  90.     30. 
+  B     STA C        230  2100.0   35.0 0.0 0.0     -0.0 -0.0  -0.0 
+  BS   GEN1       16.5  2 -0.0    -0.0   0.0 0.0     71.6 -0.0 -0.01040 
+  BE   GEN2       18 1   -0.0      -0.0  0.0 0.0    163.0 -0.0 -0.01025 
+  BE   GEN3       13.8  2 -0.0    -0.0   0.0 0.0     85.0 -0.0 -0.01025 
+  L     GEN1 HI    230 STA B       230  1        1700  9200        7900 
+  L     GEN1 HI    230 STA B       230  2        1700  9200        7900 
+  L     GEN1 HI    2302STA A      230            1         85               88 
+  L     GEN3 HI    230 STA B       230            39       17             179 
+  L     STA C        230 GEN3 HI   230            1190  10080   10450 
+  L     STA A        230 GEN2 HI   230             32      161           153
+  L     GEN2 HI   2302STA C       230              85       72           745 
+  T     GEN1 HI   230 GEN1        16.5                 5760  23000 1650 
+  T     GEN2 HI   230 GEN2           18                 6250  23000 1800 
+  T     GEN3 HI   230 GEN3        13.8                  5860 23000 1380
+  (STOP)
+
+A more convenient method to perform the preceding setup is to use a ``NETWORK_DATA`` command and provide the network data portion (the power system network) in a separate file and similarly a ``INCLUDE_CONTROL`` command and provide the control comands in a separate file as well. The PFC file would look like this::
+
+  (  POWERFLOW,CASEID=NINEBUS,  PROJECT = EXAMPLES  ) 
+  / HEADER 
+  H      WSCC Nine Bus Base Case 
+  / COMMENT 
+  C 
+  C  CASEB-1_  NINE-BUS CASE, ON CARDS, THAT IN ADDITION TO TESTING 
+  C            THE FEATURES OF CASE A-1, ALSO FEATURES TRANSFORMERS 
+  C            AND SUBTYPE "E" BUSES. 
+  C 
+  / NEW_BASE, FILE= ninebus.bse 
+  / INCLUDE_CONTROL,FILE = ninebus.ctl 
+  / NETWORK_DATA, FILE = ninebus.net 
+  (STOP)
+
+Where ``ninebus.ctl`` contains::
+
+  / P_INPUT_LIST,FULL 
+  / P_OUTPUT_LIST,FULL 
+  / AI_LIST=NONE 
+  / P_ANALYSIS_RPT,LEVEL = 4 
+  / F_ANALYSIS_RPT,LEVEL = 1
+
+and ``ninebus.net`` contains::
+
+  B     GEN1 HI   230  2  -0.0  -0.0 0.0 0.0    -0.0 -0.0 -0.0 
+  B     GEN2 HI   230  1  -0.0 -0.0 0.0 0.0     -0.0 -0.0 -0.0 
+  B     GEN3 HI   230  2  -0.0 -0.0 0.0 0.0     -0.0 -0.0 -0.0 
+  B     STA A       230 1125.0 50.0 0.0 0.0     -0.0 -0.0 -0.0 
+  B     STA B       230 2 90.    30. 
+  B     STA C      230 2100.0  35.0 0.0 0.0    -0.0 -0.0 -0.0 
+  BS    GEN1    16.5  2  -0.0  -0.0 0.0 0.0     71.6 -0.0 -0.01040 
+  BE    GEN2        18 1 -0.0   -0.0 0.0 0.0   163.0 -0.0 -0.01025 
+  BE    GEN3     13.8 2 -0.0   -0.0 0.0 0.0     85.0 -0.0 -0.01025 
+  L     GEN1 HI  230 STA B     230 1      1700  9200        7900 
+  L     GEN1 HI  230 STA B     230 2      1700  9200        7900 
+  L     GEN1 HI  2302STA A    230        1     85          88 
+  L     GEN3 HI  230 STA B     230        39   17          179 
+  L     STA C    230 GEN3 HI   230        1190 10080  10450 
+  L     STA A    230 GEN2 HI   230        32   161         153 
+  L     GEN2 HI  2302STA C   230         85   72          745 
+  T     GEN1 HI  230 GEN1    16.5                5760            23000 1650 
+  T     GEN2 HI  230 GEN2      18                 6250            23000 1800 
+  T     GEN3 HI  230 GEN3    13.8                5860            23000 1380
+
+Change Case Example
+-------------------
+Here is an example of loading a system from a solved old base case, and make data changes, and save a new base.::
+
+  ( POWERFLOW, CASEID = TEST-CHG,  PROJECT = TEST-WSCC-DATA) 
+  / NEW_BASE, FILE = 9BUSNEW.BSE 
+  / COMMENTS 
+  C  CASEB-1_  NINE-BUS CASE, ON CARDS, THAT IN ADDITION TO TESTING THE 
+  C             FEATURES OF CASE A-1, ALSO FEATURES  TRANSFORMERS AND 
+  C             SUBTYPE "E" BUSES. 
+  C                THE BUS_BRANCH FILE AND THE CHANGE FILE ARE REMOTE 
+  / INCLUDE_CONTROLS, FILE = TESTCONT.CTL 
+  / OLD_BASE, FILE= ninebus.bse 
+  / CHANGES, FILE = CHANG.DAT 
+  ( STOP - END OF TEST )
+
+.. note::
+
+  PFC language commands are not performed in the order they are encountered in the file, but rather in the order the ``bpf`` program decides is logical.
+
+Merge Case Example 1
+--------------------
+Here is an example of merging two systems defined from sepearate solved old base files.::
+
+  ( POWERFLOW, CASEID = TEST-MERGE, PROJECT = TEST-MERGE_OLD_BASE ) 
+  /COMMENTS 
+  C  CASE 2 - TEST BASE MERGE BY MERGING TWO IDENTICAL BASE SYSTEMS. 
+  C           TWO MUTUALLY EXCLUSIVE SUBSYSTEMS ARE INTEGRATED TO 
+  C           REGENERATE THE ORIGINAL SYSTEM. 
+  C 
+  C    EACH SYSTEM IS BUILT FROM DIFFERENT AREAS OF THE SAME OLDBASE 
+  . 
+  .     control options 
+  . 
+  / P_INPUTLIST,FULL 
+  / F_INPUTLIST,NONE 
+  / P_OUTPUTLIST,FULL 
+  / F_OUTPUTLIST,NONE 
+  / AILIST=FULL 
+  . 
+  / NEW_BASE, FILE = MERGOLD.BAS 
+  . 
+  .      DEFINE SUBSYSTEM "AREA 1" 
+  . 
+  / MERGE_OLD_BASE, SUB_SYSTEM_ID = AREA-1, OLD_BASE = TESTDC.BAS 
+  > USE_AIC 
+  > SAVE_AREAS 
+  A  AREA 1 
+  . 
+  .      DEFINE SUBSYSTEM "AREA 2"
+  / MERGE_OLD_BASE, SUB_SYSTEM_ID = AREA-2,OLD_BASE = TESTDC.BAS 
+  > SAVE_ AREAS 
+  A  AREA 2 
+  . 
+  .      SUBSYSTEMS ARE NOW MERGED 
+  . 
+  .      ( CHANGES ) may now follow 
+  . 
+  ( STOP )
+
+Merge Case Example 2
+--------------------
+Here is an example of merging two topologically overlapping networks into one consolidated network and solvubg the network, creating a new base to be called ``J86JFY82``. Each of the original networks is to be appropriately modified before the merger. The first network is a WSCC base case saved as ``86J201.BSE`` which must be modified by saving areas, excluding buses, renaming buses and excluding certain branches. The second network is the BPA system which will be extracted from the branch file ``BDFY82W`` using the extraction date Jan 1986.::
+
+  (POWERFLOW, CASEID = J86FY82, PROJECT = BASEMERGE) 
+  /NEWBASE FILE = [APF]J86FY82.BSE 
+  . 
+  .Note:  composite network will be solved with defaults. 
+  . 
+  /MERGE_OLD_BASE,SUBSYSID = WSCC_NETWORK,OLD_BASE=86J201.BSE 
+  >SAVE_AREAS 
+  ..... 
+  ..... "A" - records - name fields only 
+  ..... 
+  >EXCLUDE_BUSES 
+  ..... 
+  ..... "B" - records - name fields only 
+  ..... 
+  >RENAME_BUSES 
+  ..... 
+  ..... rename table 
+  ..... 
+  >EXCLUDE_BRANCHES 
+  ..... 
+  ..... "L" - records - name fields only 
+  ..... 
+  /MERGE_NEW_BASE,SUBSYSID = BPA_NETWORK,BRANCH_DATA=BDFY84,DATE=186 
+  ..... 
+  ..... "B" - records for BPA system 
+  ..... 
+  /CHANGES 
+  ..... 
+  ..... change records 
+  ..... 
+  (STOP)
+
+.. _reduction-case-exmaple:
+
+Reduction Case Example
+----------------------
+Here is an example of reducing an existing network to a desired size and solving the reduced network. Reduction is achieved by retaining only specified zones from the original system. Produce full input/output listings on microfiche. Partial input/output listings (restricted to certain specified zones) will be printed on paper. Give full analysis report on both paper and fiche. In solving the network, regulating transformers will be activated and area-interchange control will be switched to control mode. Provide full listing of area interchange flows.::
+
+  (POWERFLOW, CASEID = A86FY81RED, PROJECT = SAMPLE_PCL) 
+  /OLDBASE, FILE = A8601FY81.BA2 
+  /REDUCTION 
+  >SAVE_ZONES,NA,NB,NC,ND,NE,NF,NG,NH,NI,NJ,NR 
+  >SAVE_ZONES 19,17,20,08,PR,27,16 
+  /P_INPUT_LIST, ZONES=NA,NB,NC,ND,NE,NF,NG,NH,NI,NJ,NK 
+  /P_INPUT_LIST, ZONES = 19,17,20,08,PR 
+  /P_OUTPUT_LIST, ZONES= NA,NB,NC,ND,NE,NF,NG,NH,NI,NJ,NK 
+  /P_OUTPUT_LIST, ZONES= 19,17,20,08,PR 
+  /LTC = ON 
+  /AI_CONTROL = CON 
+  /AI_LIST = FULL 
+  /P_ANALYSIS_RPT, LEVEL = 4 
+  (STOP)
+
